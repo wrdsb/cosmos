@@ -39,6 +39,13 @@
     "hagar-console-e2e": {
       "tags": [],
       "implicitDependencies": ["hagar-console"]
+    },
+    "sorting-hat-console": {
+      "tags": []
+    },
+    "sorting-hat-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["sorting-hat-console"]
     }
   }
 }

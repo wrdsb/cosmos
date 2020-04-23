@@ -369,6 +369,132 @@
           }
         }
       }
+    },
+    "sorting-hat-console": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/sorting-hat-console",
+      "sourceRoot": "apps/sorting-hat-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/sorting-hat-console",
+            "index": "apps/sorting-hat-console/src/index.html",
+            "main": "apps/sorting-hat-console/src/main.ts",
+            "polyfills": "apps/sorting-hat-console/src/polyfills.ts",
+            "tsConfig": "apps/sorting-hat-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/sorting-hat-console/src/favicon.ico",
+              "apps/sorting-hat-console/src/assets"
+            ],
+            "styles": ["apps/sorting-hat-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/sorting-hat-console/src/environments/environment.ts",
+                  "with": "apps/sorting-hat-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sorting-hat-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sorting-hat-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sorting-hat-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/sorting-hat-console/tsconfig.app.json",
+              "apps/sorting-hat-console/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/sorting-hat-console/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/sorting-hat-console/jest.config.js",
+            "tsConfig": "apps/sorting-hat-console/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/sorting-hat-console/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "sorting-hat-console-e2e": {
+      "root": "apps/sorting-hat-console-e2e",
+      "sourceRoot": "apps/sorting-hat-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/sorting-hat-console-e2e/cypress.json",
+            "tsConfig": "apps/sorting-hat-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "sorting-hat-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sorting-hat-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/sorting-hat-console-e2e/tsconfig.e2e.json"],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/sorting-hat-console-e2e/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
