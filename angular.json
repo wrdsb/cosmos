@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "projects": {
+    "panama-console": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/panama-console",
+      "sourceRoot": "apps/panama-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/panama-console",
+            "index": "apps/panama-console/src/index.html",
+            "main": "apps/panama-console/src/main.ts",
+            "polyfills": "apps/panama-console/src/polyfills.ts",
+            "tsConfig": "apps/panama-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/panama-console/src/favicon.ico",
+              "apps/panama-console/src/assets"
+            ],
+            "styles": ["apps/panama-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/panama-console/src/environments/environment.ts",
+                  "with": "apps/panama-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "panama-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "panama-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "panama-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/panama-console/tsconfig.app.json",
+              "apps/panama-console/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/panama-console/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/panama-console/jest.config.js",
+            "tsConfig": "apps/panama-console/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/panama-console/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "panama-console-e2e": {
+      "root": "apps/panama-console-e2e",
+      "sourceRoot": "apps/panama-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/panama-console-e2e/cypress.json",
+            "tsConfig": "apps/panama-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "panama-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "panama-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/panama-console-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/panama-console-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "panama-console"
+}
