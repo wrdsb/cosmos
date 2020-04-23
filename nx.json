@@ -32,6 +32,13 @@
     "igor-console-e2e": {
       "tags": [],
       "implicitDependencies": ["igor-console"]
+    },
+    "hagar-console": {
+      "tags": []
+    },
+    "hagar-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["hagar-console"]
     }
   }
 }

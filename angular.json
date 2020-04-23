@@ -246,6 +246,129 @@
           }
         }
       }
+    },
+    "hagar-console": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/hagar-console",
+      "sourceRoot": "apps/hagar-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/hagar-console",
+            "index": "apps/hagar-console/src/index.html",
+            "main": "apps/hagar-console/src/main.ts",
+            "polyfills": "apps/hagar-console/src/polyfills.ts",
+            "tsConfig": "apps/hagar-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/hagar-console/src/favicon.ico",
+              "apps/hagar-console/src/assets"
+            ],
+            "styles": ["apps/hagar-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/hagar-console/src/environments/environment.ts",
+                  "with": "apps/hagar-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "hagar-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "hagar-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "hagar-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/hagar-console/tsconfig.app.json",
+              "apps/hagar-console/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/hagar-console/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/hagar-console/jest.config.js",
+            "tsConfig": "apps/hagar-console/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/hagar-console/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "hagar-console-e2e": {
+      "root": "apps/hagar-console-e2e",
+      "sourceRoot": "apps/hagar-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/hagar-console-e2e/cypress.json",
+            "tsConfig": "apps/hagar-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "hagar-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "hagar-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/hagar-console-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/hagar-console-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
