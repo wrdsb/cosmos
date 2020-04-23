@@ -60,6 +60,13 @@
     "houston-console-e2e": {
       "tags": [],
       "implicitDependencies": ["houston-console"]
+    },
+    "codex-console": {
+      "tags": []
+    },
+    "codex-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["codex-console"]
     }
   }
 }

@@ -741,6 +741,129 @@
           }
         }
       }
+    },
+    "codex-console": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/codex-console",
+      "sourceRoot": "apps/codex-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/codex-console",
+            "index": "apps/codex-console/src/index.html",
+            "main": "apps/codex-console/src/main.ts",
+            "polyfills": "apps/codex-console/src/polyfills.ts",
+            "tsConfig": "apps/codex-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/codex-console/src/favicon.ico",
+              "apps/codex-console/src/assets"
+            ],
+            "styles": ["apps/codex-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/codex-console/src/environments/environment.ts",
+                  "with": "apps/codex-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "codex-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "codex-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "codex-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/codex-console/tsconfig.app.json",
+              "apps/codex-console/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/codex-console/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/codex-console/jest.config.js",
+            "tsConfig": "apps/codex-console/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/codex-console/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "codex-console-e2e": {
+      "root": "apps/codex-console-e2e",
+      "sourceRoot": "apps/codex-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/codex-console-e2e/cypress.json",
+            "tsConfig": "apps/codex-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "codex-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "codex-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/codex-console-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/codex-console-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
