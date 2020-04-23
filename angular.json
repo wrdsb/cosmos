@@ -618,6 +618,129 @@
           }
         }
       }
+    },
+    "houston-console": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/houston-console",
+      "sourceRoot": "apps/houston-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/houston-console",
+            "index": "apps/houston-console/src/index.html",
+            "main": "apps/houston-console/src/main.ts",
+            "polyfills": "apps/houston-console/src/polyfills.ts",
+            "tsConfig": "apps/houston-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/houston-console/src/favicon.ico",
+              "apps/houston-console/src/assets"
+            ],
+            "styles": ["apps/houston-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/houston-console/src/environments/environment.ts",
+                  "with": "apps/houston-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "houston-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "houston-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "houston-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/houston-console/tsconfig.app.json",
+              "apps/houston-console/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/houston-console/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/houston-console/jest.config.js",
+            "tsConfig": "apps/houston-console/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/houston-console/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "houston-console-e2e": {
+      "root": "apps/houston-console-e2e",
+      "sourceRoot": "apps/houston-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/houston-console-e2e/cypress.json",
+            "tsConfig": "apps/houston-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "houston-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "houston-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/houston-console-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/houston-console-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -53,6 +53,13 @@
     "viewfinder-console-e2e": {
       "tags": [],
       "implicitDependencies": ["viewfinder-console"]
+    },
+    "houston-console": {
+      "tags": []
+    },
+    "houston-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["houston-console"]
     }
   }
 }
