@@ -25,6 +25,13 @@
     "panama-console-e2e": {
       "tags": [],
       "implicitDependencies": ["panama-console"]
+    },
+    "igor-console": {
+      "tags": []
+    },
+    "igor-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["igor-console"]
     }
   }
 }

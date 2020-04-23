@@ -123,6 +123,129 @@
           }
         }
       }
+    },
+    "igor-console": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/igor-console",
+      "sourceRoot": "apps/igor-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/igor-console",
+            "index": "apps/igor-console/src/index.html",
+            "main": "apps/igor-console/src/main.ts",
+            "polyfills": "apps/igor-console/src/polyfills.ts",
+            "tsConfig": "apps/igor-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/igor-console/src/favicon.ico",
+              "apps/igor-console/src/assets"
+            ],
+            "styles": ["apps/igor-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/igor-console/src/environments/environment.ts",
+                  "with": "apps/igor-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "igor-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "igor-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "igor-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/igor-console/tsconfig.app.json",
+              "apps/igor-console/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/igor-console/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/igor-console/jest.config.js",
+            "tsConfig": "apps/igor-console/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/igor-console/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "igor-console-e2e": {
+      "root": "apps/igor-console-e2e",
+      "sourceRoot": "apps/igor-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/igor-console-e2e/cypress.json",
+            "tsConfig": "apps/igor-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "igor-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "igor-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/igor-console-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/igor-console-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
