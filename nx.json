@@ -46,6 +46,13 @@
     "sorting-hat-console-e2e": {
       "tags": [],
       "implicitDependencies": ["sorting-hat-console"]
+    },
+    "viewfinder-console": {
+      "tags": []
+    },
+    "viewfinder-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["viewfinder-console"]
     }
   }
 }

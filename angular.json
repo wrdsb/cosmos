@@ -495,6 +495,129 @@
           }
         }
       }
+    },
+    "viewfinder-console": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/viewfinder-console",
+      "sourceRoot": "apps/viewfinder-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/viewfinder-console",
+            "index": "apps/viewfinder-console/src/index.html",
+            "main": "apps/viewfinder-console/src/main.ts",
+            "polyfills": "apps/viewfinder-console/src/polyfills.ts",
+            "tsConfig": "apps/viewfinder-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/viewfinder-console/src/favicon.ico",
+              "apps/viewfinder-console/src/assets"
+            ],
+            "styles": ["apps/viewfinder-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/viewfinder-console/src/environments/environment.ts",
+                  "with": "apps/viewfinder-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "viewfinder-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "viewfinder-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "viewfinder-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/viewfinder-console/tsconfig.app.json",
+              "apps/viewfinder-console/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/viewfinder-console/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/viewfinder-console/jest.config.js",
+            "tsConfig": "apps/viewfinder-console/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/viewfinder-console/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "viewfinder-console-e2e": {
+      "root": "apps/viewfinder-console-e2e",
+      "sourceRoot": "apps/viewfinder-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/viewfinder-console-e2e/cypress.json",
+            "tsConfig": "apps/viewfinder-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "viewfinder-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "viewfinder-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/viewfinder-console-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/viewfinder-console-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
