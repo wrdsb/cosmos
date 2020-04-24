@@ -68,6 +68,9 @@
       "tags": [],
       "implicitDependencies": ["codex-console"]
     },
+    "igor-types": {
+      "tags": []
+    },
     "hagar-types": {
       "tags": []
     }

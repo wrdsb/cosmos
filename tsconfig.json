@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@cosmos/igor-types": ["libs/igor-types/src/index.ts"],
       "@cosmos/hagar-types": ["libs/hagar-types/src/index.ts"]
     }
   },

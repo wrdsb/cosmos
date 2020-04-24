@@ -865,6 +865,32 @@
         }
       }
     },
+    "igor-types": {
+      "root": "libs/igor-types",
+      "sourceRoot": "libs/igor-types/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/igor-types/tsconfig.lib.json",
+              "libs/igor-types/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/igor-types/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/igor-types/jest.config.js",
+            "tsConfig": "libs/igor-types/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "hagar-types": {
       "root": "libs/hagar-types",
       "sourceRoot": "libs/hagar-types/src",
