@@ -67,6 +67,9 @@
     "codex-console-e2e": {
       "tags": [],
       "implicitDependencies": ["codex-console"]
+    },
+    "hagar-types": {
+      "tags": []
     }
   }
 }

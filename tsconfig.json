@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@cosmos/hagar-types": ["libs/hagar-types/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
