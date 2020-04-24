@@ -73,6 +73,9 @@
     },
     "hagar-types": {
       "tags": []
+    },
+    "azure-functions-shared": {
+      "tags": []
     }
   }
 }

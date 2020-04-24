@@ -916,6 +916,32 @@
           }
         }
       }
+    },
+    "azure-functions-shared": {
+      "root": "libs/azure-functions-shared",
+      "sourceRoot": "libs/azure-functions-shared/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/azure-functions-shared/tsconfig.lib.json",
+              "libs/azure-functions-shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/azure-functions-shared/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/azure-functions-shared/jest.config.js",
+            "tsConfig": "libs/azure-functions-shared/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
