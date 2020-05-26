@@ -1,8 +1,12 @@
 # Cosmos
 
-This project was generated using [Nx](https://nx.dev).
+## Notes
+* Every Azure Function returns an HTTP response to original requester
+* Also generates an event with a pointer to local storage which contains same response
+* Requester always gets what they ask for, but any other interested parties can also get response
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>
+
+This project was generated using [Nx](https://nx.dev).
 
 🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
 
