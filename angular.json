@@ -25,7 +25,9 @@
               "apps/panama-console/src/favicon.ico",
               "apps/panama-console/src/assets"
             ],
-            "styles": ["apps/panama-console/src/styles.scss"],
+            "styles": [
+              "apps/panama-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -83,7 +85,10 @@
               "apps/panama-console/tsconfig.app.json",
               "apps/panama-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/panama-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/panama-console/**"
+            ]
           }
         },
         "test": {
@@ -118,8 +123,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/panama-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/panama-console-e2e/**"]
+            "tsConfig": [
+              "apps/panama-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/panama-console-e2e/**"
+            ]
           }
         }
       }
@@ -148,7 +158,9 @@
               "apps/igor-console/src/favicon.ico",
               "apps/igor-console/src/assets"
             ],
-            "styles": ["apps/igor-console/src/styles.scss"],
+            "styles": [
+              "apps/igor-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -206,7 +218,10 @@
               "apps/igor-console/tsconfig.app.json",
               "apps/igor-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/igor-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igor-console/**"
+            ]
           }
         },
         "test": {
@@ -241,8 +256,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/igor-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/igor-console-e2e/**"]
+            "tsConfig": [
+              "apps/igor-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igor-console-e2e/**"
+            ]
           }
         }
       }
@@ -271,7 +291,9 @@
               "apps/hagar-console/src/favicon.ico",
               "apps/hagar-console/src/assets"
             ],
-            "styles": ["apps/hagar-console/src/styles.scss"],
+            "styles": [
+              "apps/hagar-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -329,7 +351,10 @@
               "apps/hagar-console/tsconfig.app.json",
               "apps/hagar-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/hagar-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hagar-console/**"
+            ]
           }
         },
         "test": {
@@ -364,8 +389,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/hagar-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/hagar-console-e2e/**"]
+            "tsConfig": [
+              "apps/hagar-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hagar-console-e2e/**"
+            ]
           }
         }
       }
@@ -394,7 +424,9 @@
               "apps/sorting-hat-console/src/favicon.ico",
               "apps/sorting-hat-console/src/assets"
             ],
-            "styles": ["apps/sorting-hat-console/src/styles.scss"],
+            "styles": [
+              "apps/sorting-hat-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -452,7 +484,10 @@
               "apps/sorting-hat-console/tsconfig.app.json",
               "apps/sorting-hat-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/sorting-hat-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/sorting-hat-console/**"
+            ]
           }
         },
         "test": {
@@ -487,7 +522,9 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/sorting-hat-console-e2e/tsconfig.e2e.json"],
+            "tsConfig": [
+              "apps/sorting-hat-console-e2e/tsconfig.e2e.json"
+            ],
             "exclude": [
               "**/node_modules/**",
               "!apps/sorting-hat-console-e2e/**"
@@ -520,7 +557,9 @@
               "apps/viewfinder-console/src/favicon.ico",
               "apps/viewfinder-console/src/assets"
             ],
-            "styles": ["apps/viewfinder-console/src/styles.scss"],
+            "styles": [
+              "apps/viewfinder-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -578,7 +617,10 @@
               "apps/viewfinder-console/tsconfig.app.json",
               "apps/viewfinder-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/viewfinder-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/viewfinder-console/**"
+            ]
           }
         },
         "test": {
@@ -613,8 +655,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/viewfinder-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/viewfinder-console-e2e/**"]
+            "tsConfig": [
+              "apps/viewfinder-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/viewfinder-console-e2e/**"
+            ]
           }
         }
       }
@@ -643,7 +690,9 @@
               "apps/houston-console/src/favicon.ico",
               "apps/houston-console/src/assets"
             ],
-            "styles": ["apps/houston-console/src/styles.scss"],
+            "styles": [
+              "apps/houston-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -701,7 +750,10 @@
               "apps/houston-console/tsconfig.app.json",
               "apps/houston-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/houston-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/houston-console/**"
+            ]
           }
         },
         "test": {
@@ -736,8 +788,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/houston-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/houston-console-e2e/**"]
+            "tsConfig": [
+              "apps/houston-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/houston-console-e2e/**"
+            ]
           }
         }
       }
@@ -766,7 +823,9 @@
               "apps/codex-console/src/favicon.ico",
               "apps/codex-console/src/assets"
             ],
-            "styles": ["apps/codex-console/src/styles.scss"],
+            "styles": [
+              "apps/codex-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -824,7 +883,10 @@
               "apps/codex-console/tsconfig.app.json",
               "apps/codex-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/codex-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/codex-console/**"
+            ]
           }
         },
         "test": {
@@ -859,8 +921,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/codex-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/codex-console-e2e/**"]
+            "tsConfig": [
+              "apps/codex-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/codex-console-e2e/**"
+            ]
           }
         }
       }
@@ -878,7 +945,10 @@
               "libs/igor-types/tsconfig.lib.json",
               "libs/igor-types/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/igor-types/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/igor-types/**"
+            ]
           }
         },
         "test": {
@@ -904,7 +974,10 @@
               "libs/hagar-types/tsconfig.lib.json",
               "libs/hagar-types/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/hagar-types/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/hagar-types/**"
+            ]
           }
         },
         "test": {
@@ -930,7 +1003,10 @@
               "libs/azure-functions-shared/tsconfig.lib.json",
               "libs/azure-functions-shared/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/azure-functions-shared/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/azure-functions-shared/**"
+            ]
           }
         },
         "test": {
@@ -956,7 +1032,10 @@
               "libs/sorting-hat/tsconfig.lib.json",
               "libs/sorting-hat/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/sorting-hat/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/sorting-hat/**"
+            ]
           }
         },
         "test": {
@@ -988,7 +1067,10 @@
               "libs/sorting-hat-types/tsconfig.lib.json",
               "libs/sorting-hat-types/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/sorting-hat-types/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/sorting-hat-types/**"
+            ]
           }
         },
         "test": {
@@ -1004,6 +1086,66 @@
       "schematics": {
         "@nrwl/angular:component": {
           "style": "scss"
+        }
+      }
+    },
+    "sorting-hat-functions": {
+      "root": "apps/sorting-hat-functions",
+      "sourceRoot": "apps/sorting-hat-functions/src",
+      "projectType": "application",
+      "prefix": "sorting-hat-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/sorting-hat-functions",
+            "main": "apps/sorting-hat-functions/src/main.ts",
+            "tsConfig": "apps/sorting-hat-functions/tsconfig.app.json",
+            "assets": [
+              "apps/sorting-hat-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/sorting-hat-functions/src/environments/environment.ts",
+                  "with": "apps/sorting-hat-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "sorting-hat-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/sorting-hat-functions/tsconfig.app.json",
+              "apps/sorting-hat-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/sorting-hat-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/sorting-hat-functions/jest.config.js",
+            "tsConfig": "apps/sorting-hat-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
         }
       }
     }
