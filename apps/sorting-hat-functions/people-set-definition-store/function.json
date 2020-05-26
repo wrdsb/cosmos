@@ -1,0 +1,45 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "people-set-definition-store",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "recordIn",
+            "type": "cosmosDB",
+            "databaseName": "sorting-hat",
+            "collectionName": "people-set-definitions",
+            "id": "{payload.id}",
+            "partitionKey": "{payload.id}",
+            "connectionStringSetting": "wrdsb-sorting-hat_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "recordOut",
+            "type": "cosmosDB",
+            "databaseName": "sorting-hat",
+            "collectionName": "people-set-definitions",
+            "connectionStringSetting": "wrdsb-sorting-hat_CosmosDB",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/people-set-definition-store/index.js"
+}

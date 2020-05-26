@@ -1,0 +1,20 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "memberships-all-staff-calculate",
+            "connection": "wrdsbsortinghat_STORAGE"
+        },
+        {
+            "name": "iamwpRaw",
+            "type": "blob",
+            "path": "hris/view-iamwp-raw.json",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/memberships-all-staff-calculate/index.js"
+}

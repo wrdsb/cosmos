@@ -1,0 +1,41 @@
+{
+    "bindings": [
+        {
+            "name": "req",
+            "type": "httpTrigger",
+            "authLevel": "anonymous",
+            "methods": [
+                "post"
+            ],
+            "direction": "in"
+        },
+        {
+            "name": "queueMessage",
+            "type": "queue",
+            "queueName": "people-set-definition-store",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "res",
+            "type": "http",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/people-set-definition-command/index.js"
+}

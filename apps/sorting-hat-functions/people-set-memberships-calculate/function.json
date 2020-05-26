@@ -1,0 +1,41 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "people-set-memberships-calculate",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "peopleSets",
+            "type": "blob",
+            "path": "sets/people-sets.json",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "personStore",
+            "type": "queue",
+            "queueName": "person-store",
+            "connection": "wrdsbcodex_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/people-set-memberships-calculate/index.js"
+}

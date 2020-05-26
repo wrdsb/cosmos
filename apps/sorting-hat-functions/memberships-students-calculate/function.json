@@ -1,0 +1,20 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "memberships-students-calculate",
+            "connection": "wrdsbsortinghat_STORAGE"
+        },
+        {
+            "name": "studentsNow",
+            "type": "blob",
+            "path": "trillium/students-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/memberships-students-calculate/index.js"
+}

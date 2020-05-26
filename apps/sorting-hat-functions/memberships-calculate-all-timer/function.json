@@ -1,0 +1,61 @@
+{
+    "bindings": [
+        {
+            "name": "timer",
+            "type": "timerTrigger",
+            "schedule": "0 0 5-17 * * *",
+            "direction": "in"
+        },
+        {
+            "name": "membershipsABCCalculateAll",
+            "type": "queue",
+            "queueName": "memberships-abc-calculate-all",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "membershipsABCCalculate",
+            "type": "queue",
+            "queueName": "memberships-abc-calculate",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "membershipsAllStaffCalculate",
+            "type": "queue",
+            "queueName": "memberships-all-staff-calculate",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "membershipsOneOffsCalculate",
+            "type": "queue",
+            "queueName": "memberships-one-offs-calculate",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "membershipsStudentsCalculate",
+            "type": "queue",
+            "queueName": "memberships-students-calculate",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+       {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        }
+   ],
+    "disabled": false,
+    "scriptFile": "../dist/memberships-calculate-all-timer/index.js"
+}

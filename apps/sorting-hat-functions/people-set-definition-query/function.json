@@ -1,0 +1,20 @@
+{
+    "bindings": [
+        {
+            "name": "req",
+            "type": "httpTrigger",
+            "authLevel": "anonymous",
+            "methods": [
+                "post"
+            ],
+            "direction": "in"
+        },
+        {
+            "name": "res",
+            "type": "http",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/people-set-definition-query/index.js"
+}
