@@ -1,4 +1,4 @@
-# Cosmos
+# C.O.S.M.O.S.
 
 This project was generated using [Nx](https://nx.dev).
 
