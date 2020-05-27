@@ -26,6 +26,30 @@
 * [viewfinder-console](https://github.com/wrdsb/cosmos/tree/master/apps/viewfinder-console): Viewfinder's frontend Angular app
 
 
+## End-to-End Testing Apps
+
+### Codex
+* [codex-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/codex-console-e2e): E2E tests for Codex's frontend Angular app
+
+### HAGAR
+* [hagar-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/hagar-console-e2e): E2E tests for HAGAR's frontend Angular app
+
+### Houston
+* [houston-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/houston-console-e2e): E2E tests for Houston's frontend Angular app
+
+### IGOR
+* [igor-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/igor-console-e2e): E2E tests for IGOR's frontend Angular app
+
+### Panama
+* [panama-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/panama-console-e2e): E2E tests for Panama's frontend Angular app
+
+### Sorting Hat
+* [sorting-hat-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/sorting-hat-console-e2e): E2E tests for the Sorting Hat's frontend Angular app
+
+### Viewfinder
+* [viewfinder-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/viewfinder-console-e2e): E2E tests for Viewfinder's frontend Angular app
+
+
 ## Visual Studio Code Workspaces
 In the .vscode folder, you'll find a number of .code-workspace files. These workspaces make it trivial to work with all of the assets associated with a particular application or project within the COSMOS mono repo, without having to load the entire repo into VS Code. If you find yourself working with a particular set of files and/or folders often, simply add a new workspace to this folder. This will make your life, and the lives of your colleagues, much easier.
 
