@@ -1148,6 +1148,66 @@
           }
         }
       }
+    },
+    "igor-functions": {
+      "root": "apps/igor-functions",
+      "sourceRoot": "apps/igor-functions/src",
+      "projectType": "application",
+      "prefix": "igor-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/igor-functions",
+            "main": "apps/igor-functions/src/main.ts",
+            "tsConfig": "apps/igor-functions/tsconfig.app.json",
+            "assets": [
+              "apps/igor-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/igor-functions/src/environments/environment.ts",
+                  "with": "apps/igor-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "igor-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/igor-functions/tsconfig.app.json",
+              "apps/igor-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igor-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/igor-functions/jest.config.js",
+            "tsConfig": "apps/igor-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
