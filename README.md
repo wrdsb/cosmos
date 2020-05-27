@@ -2,8 +2,29 @@
 
 ## Applications
 
+### Codex
+* [codex-console](https://github.com/wrdsb/cosmos/tree/master/apps/codex-console): Codex's frontend Angular app
+
+### HAGAR
+* [hagar-console](https://github.com/wrdsb/cosmos/tree/master/apps/hagar-console): HAGAR's frontend Angular app
+
+### Houston
+* [houston-console](https://github.com/wrdsb/cosmos/tree/master/apps/houston-console): Houston's frontend Angular app
+
 ### IGOR
-* [igor-functions](https://github.com/wrdsb/cosmos/tree/master/apps/igor-functions)
+* [igor-console](https://github.com/wrdsb/cosmos/tree/master/apps/igor-console): IGOR's frontend Angular app
+* [igor-functions](https://github.com/wrdsb/cosmos/tree/master/apps/igor-functions): IGOR's backend Azure Functions app
+
+### Panama
+* [panama-console](https://github.com/wrdsb/cosmos/tree/master/apps/panama-console): Panama's frontend Angular app
+
+### Sorting Hat
+* [sorting-hat-console](https://github.com/wrdsb/cosmos/tree/master/apps/sorting-hat-console): the Sorting Hat's frontend Angular app
+* [sorting-hat-functions](https://github.com/wrdsb/cosmos/tree/master/apps/sorting-hat-functions): the Sorting Hat's backend Azure Functions app
+
+### Viewfinder
+* [viewfinder-console](https://github.com/wrdsb/cosmos/tree/master/apps/viewfinder-console): Viewfinder's frontend Angular app
+
 
 ## Visual Studio Code Workspaces
 In the .vscode folder, you'll find a number of .code-workspace files. These workspaces make it trivial to work with all of the assets associated with a particular application or project within the COSMOS mono repo, without having to load the entire repo into VS Code. If you find yourself working with a particular set of files and/or folders often, simply add a new workspace to this folder. This will make your life, and the lives of your colleagues, much easier.
