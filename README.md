@@ -78,7 +78,7 @@ This project was generated using [Nx](https://nx.dev). When using Nx, you can cr
 
 ## Generate a library
 * Run `ng g @nrwl/angular:lib my-lib` to generate an Angular library.
-* Run `nx g lib mylib` to generate a generic TypeScript library
+* Run `nx g @nrwl/workspace:lib my-lib` to generate a generic TypeScript library
 
 ## Development server
 
