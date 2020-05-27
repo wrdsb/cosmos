@@ -1,0 +1,7 @@
+<ng-container *ngIf="enabled">
+  <footer>
+    <ul *ngFor="let link of footerMenu.links">
+      <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
+    </ul>
+  </footer>
+</ng-container>

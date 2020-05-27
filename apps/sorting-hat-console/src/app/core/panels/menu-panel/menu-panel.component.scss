@@ -1,0 +1,66 @@
+:host {
+  grid-area: nav;
+}
+  
+nav {
+  height: 100%;
+
+  transform: translateX(-9999px);
+
+  opacity: 0.95;
+  background: lightgrey;
+  border-right: 3px solid darkgrey;
+  padding: 15px;
+  overflow: auto;
+
+  &>* {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .currentSelection {
+    font-weight: bold;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-500px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-500px);
+  }
+}
+
+.showNav {
+  animation: slideIn 500ms;
+  animation-fill-mode: forwards;
+}
+
+.hideNav {
+  animation: slideOut 500ms;
+  animation-fill-mode: forwards;
+}

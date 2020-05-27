@@ -1,0 +1,24 @@
+<ng-container *ngIf="enabled">
+  <header>
+    <button (click)="toggleShowPanelLeft()" class="material-icons">
+      {{ showPanelLeft ? 'close' : 'menu' }}
+    </button>
+      
+    <!--
+      The unusual handling of showNav ensures that the nav animations are only
+      triggered at the appropriate points.
+    -->
+    <a routerLink="/" (click)="toggleShowPanelLeft()">
+      <h1>{{ title }}</h1>
+    </a>
+
+    <ul *ngFor="let link of headerMenu.links">
+      <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
+    </ul>
+
+    <button (click)="toggleShowPanelRight()" class="material-icons">
+      {{ showPanelRight ? 'close' : 'menu' }}
+    </button>
+
+  </header>
+</ng-container>

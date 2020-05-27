@@ -1,0 +1,8 @@
+<h1>{{pageTitle}}</h1>
+<div *ngIf="definitions$ | async as definitions">
+    <ul>
+        <li *ngFor="let definition of definitions">
+            {{definition.name}}
+        </li>
+    </ul>
+</div>
