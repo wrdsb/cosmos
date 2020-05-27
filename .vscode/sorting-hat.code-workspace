@@ -1,0 +1,16 @@
+{
+    "folders": [
+		{
+			"path": "../apps/sorting-hat-functions"
+		},
+		{
+			"path": "../libs/sorting-hat-types"
+		},
+		{
+			"path": "../libs/sorting-hat"
+		},
+		{
+			"path": "../libs/azure-functions-shared"
+		}
+	]
+}
