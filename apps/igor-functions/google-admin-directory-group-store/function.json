@@ -1,0 +1,46 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "google-admin-directory-group-store",
+            "connection": "wrdsbigor_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "recordIn",
+            "type": "cosmosDB",
+            "databaseName": "igor",
+            "collectionName": "google-admin-directory-groups",
+            "id": "{payload.id}",
+            "partitionKey": "{payload.id}",
+            "connectionStringSetting": "wrdsb-igor_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "recordOut",
+            "type": "cosmosDB",
+            "databaseName": "igor",
+            "collectionName": "google-admin-directory-groups",
+            "connectionStringSetting": "wrdsb-igor_CosmosDB",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbigor_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbigor_STORAGE",
+            "direction": "out"
+        }
+
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/google-admin-directory-group-store/index.js"
+}

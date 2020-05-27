@@ -1,0 +1,288 @@
+PUT[Organization URI] / api / data / v9 .0 / EntityDefinitions(417129e1 - 207 c - e511 - 80 d2 - 00155 d2a68d2) HTTP / 1.1
+Accept: application / json
+Content - Type: application / json;
+charset = utf - 8
+OData - MaxVersion: 4.0
+OData - Version: 4.0
+MSCRM.MergeLabels: true
+
+{
+    "@odata.context": "[Organization URI]/api/data/v9.0/$metadata#EntityDefinitions/$entity",
+    "ActivityTypeMask": 0,
+    "AutoRouteToOwnerQueue": false,
+    "CanTriggerWorkflow": true,
+    "Description": {
+        "LocalizedLabels": [{
+            "Label": "An entity to store information about customer bank accounts",
+            "LanguageCode": 1033,
+            "IsManaged": false,
+            "MetadataId": "edc3abd7-c5ae-4822-a3ed-51734fdd0469",
+            "HasChanged": null
+        }]
+    },
+    "DisplayCollectionName": {
+        "LocalizedLabels": [{
+            "Label": "Bank Accounts",
+            "LanguageCode": 1033,
+            "IsManaged": false,
+            "MetadataId": "7c758e0c-e9cf-4947-93b0-50ec30b20f60",
+            "HasChanged": null
+        }]
+    },
+    "DisplayName": {
+        "@odata.type": "Microsoft.Dynamics.CRM.Label",
+        "LocalizedLabels": [{
+            "@odata.type": "Microsoft.Dynamics.CRM.LocalizedLabel",
+            "Label": "Bank Business Name",
+            "LanguageCode": 1033
+        }]
+    },
+    "EntityHelpUrlEnabled": false,
+    "EntityHelpUrl": null,
+    "IsDocumentManagementEnabled": false,
+    "IsOneNoteIntegrationEnabled": false,
+    "IsInteractionCentricEnabled": false,
+    "IsKnowledgeManagementEnabled": false,
+    "AutoCreateAccessTeams": false,
+    "IsActivity": false,
+    "IsActivityParty": false,
+    "IsAuditEnabled": {
+        "Value": false,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canmodifyauditsettings"
+    },
+    "IsAvailableOffline": false,
+    "IsChildEntity": false,
+    "IsAIRUpdated": false,
+    "IsValidForQueue": {
+        "Value": false,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canmodifyqueuesettings"
+    },
+    "IsConnectionsEnabled": {
+        "Value": false,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canmodifyconnectionsettings"
+    },
+    "IconLargeName": null,
+    "IconMediumName": null,
+    "IconSmallName": null,
+    "IsCustomEntity": true,
+    "IsBusinessProcessEnabled": false,
+    "IsCustomizable": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "iscustomizable"
+    },
+    "IsRenameable": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "isrenameable"
+    },
+    "IsMappable": {
+        "Value": true,
+        "CanBeChanged": false,
+        "ManagedPropertyLogicalName": "ismappable"
+    },
+    "IsDuplicateDetectionEnabled": {
+        "Value": false,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canmodifyduplicatedetectionsettings"
+    },
+    "CanCreateAttributes": {
+        "Value": true,
+        "CanBeChanged": false,
+        "ManagedPropertyLogicalName": "cancreateattributes"
+    },
+    "CanCreateForms": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "cancreateforms"
+    },
+    "CanCreateViews": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "cancreateviews"
+    },
+    "CanCreateCharts": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "cancreatecharts"
+    },
+    "CanBeRelatedEntityInRelationship": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canberelatedentityinrelationship"
+    },
+    "CanBePrimaryEntityInRelationship": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canbeprimaryentityinrelationship"
+    },
+    "CanBeInManyToMany": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canbeinmanytomany"
+    },
+    "CanEnableSyncToExternalSearchIndex": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canenablesynctoexternalsearchindex"
+    },
+    "SyncToExternalSearchIndex": false,
+    "CanModifyAdditionalSettings": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canmodifyadditionalsettings"
+    },
+    "CanChangeHierarchicalRelationship": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canchangehierarchicalrelationship"
+    },
+    "IsOptimisticConcurrencyEnabled": true,
+    "ChangeTrackingEnabled": false,
+    "IsImportable": true,
+    "IsIntersect": false,
+    "IsMailMergeEnabled": {
+        "Value": true,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canmodifymailmergesettings"
+    },
+    "IsManaged": false,
+    "IsEnabledForCharts": true,
+    "IsEnabledForTrace": false,
+    "IsValidForAdvancedFind": true,
+    "IsVisibleInMobile": {
+        "Value": false,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canmodifymobilevisibility"
+    },
+    "IsVisibleInMobileClient": {
+        "Value": false,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canmodifymobileclientvisibility"
+    },
+    "IsReadOnlyInMobileClient": {
+        "Value": false,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canmodifymobileclientreadonly"
+    },
+    "IsOfflineInMobileClient": {
+        "Value": false,
+        "CanBeChanged": true,
+        "ManagedPropertyLogicalName": "canmodifymobileclientoffline"
+    },
+    "DaysSinceRecordLastModified": 0,
+    "IsReadingPaneEnabled": true,
+    "IsQuickCreateEnabled": false,
+    "LogicalName": "new_bankaccount",
+    "ObjectTypeCode": 10009,
+    "OwnershipType": "UserOwned",
+    "PrimaryNameAttribute": "new_accountname",
+    "PrimaryImageAttribute": null,
+    "PrimaryIdAttribute": "new_bankaccountid",
+    "Privileges": [{
+            "CanBeBasic": true,
+            "CanBeDeep": true,
+            "CanBeGlobal": true,
+            "CanBeLocal": true,
+            "CanBeEntityReference": false,
+            "CanBeParentEntityReference": false,
+            "Name": "prvCreatenew_BankAccount",
+            "PrivilegeId": "d1a8de4b-27df-42e1-bc5c-b863e002b37f",
+            "PrivilegeType": "Create"
+        },
+        {
+            "CanBeBasic": true,
+            "CanBeDeep": true,
+            "CanBeGlobal": true,
+            "CanBeLocal": true,
+            "CanBeEntityReference": false,
+            "CanBeParentEntityReference": false,
+            "Name": "prvReadnew_BankAccount",
+            "PrivilegeId": "726043b1-de2c-487e-9d6d-5629fca2bf22",
+            "PrivilegeType": "Read"
+        },
+        {
+            "CanBeBasic": true,
+            "CanBeDeep": true,
+            "CanBeGlobal": true,
+            "CanBeLocal": true,
+            "CanBeEntityReference": false,
+            "CanBeParentEntityReference": false,
+            "Name": "prvWritenew_BankAccount",
+            "PrivilegeId": "fa50c539-b6c7-4eaf-bd49-fd8224bc51b6",
+            "PrivilegeType": "Write"
+        },
+        {
+            "CanBeBasic": true,
+            "CanBeDeep": true,
+            "CanBeGlobal": true,
+            "CanBeLocal": true,
+            "CanBeEntityReference": false,
+            "CanBeParentEntityReference": false,
+            "Name": "prvDeletenew_BankAccount",
+            "PrivilegeId": "17c1fd6e-f856-45e7-b563-796f53108b85",
+            "PrivilegeType": "Delete"
+        },
+        {
+            "CanBeBasic": true,
+            "CanBeDeep": true,
+            "CanBeGlobal": true,
+            "CanBeLocal": true,
+            "CanBeEntityReference": false,
+            "CanBeParentEntityReference": false,
+            "Name": "prvAssignnew_BankAccount",
+            "PrivilegeId": "133ca81d-668e-4c19-a71e-10c6dfe099cd",
+            "PrivilegeType": "Assign"
+        },
+        {
+            "CanBeBasic": true,
+            "CanBeDeep": true,
+            "CanBeGlobal": true,
+            "CanBeLocal": true,
+            "CanBeEntityReference": false,
+            "CanBeParentEntityReference": false,
+            "Name": "prvSharenew_BankAccount",
+            "PrivilegeId": "15f27df4-9c67-47c9-b1f1-274e1c44f24a",
+            "PrivilegeType": "Share"
+        },
+        {
+            "CanBeBasic": true,
+            "CanBeDeep": true,
+            "CanBeGlobal": true,
+            "CanBeLocal": true,
+            "CanBeEntityReference": false,
+            "CanBeParentEntityReference": false,
+            "Name": "prvAppendnew_BankAccount",
+            "PrivilegeId": "ac8b1920-8f93-4e9d-94e3-c680e2a2f228",
+            "PrivilegeType": "Append"
+        },
+        {
+            "CanBeBasic": true,
+            "CanBeDeep": true,
+            "CanBeGlobal": true,
+            "CanBeLocal": true,
+            "CanBeEntityReference": false,
+            "CanBeParentEntityReference": false,
+            "Name": "prvAppendTonew_BankAccount",
+            "PrivilegeId": "f63a5f46-3bc7-4eac-81d0-7f77f566ef46",
+            "PrivilegeType": "AppendTo"
+        }
+    ],
+    "RecurrenceBaseEntityLogicalName": null,
+    "ReportViewName": "Filterednew_BankAccount",
+    "SchemaName": "new_BankAccount",
+    "IntroducedVersion": "1.0",
+    "IsStateModelAware": true,
+    "EnforceStateTransitions": false,
+    "EntityColor": null,
+    "LogicalCollectionName": "new_bankaccounts",
+    "CollectionSchemaName": "new_BankAccounts",
+    "EntitySetName": "new_bankaccounts",
+    "IsEnabledForExternalChannels": false,
+    "IsPrivate": false,
+    "MetadataId": "417129e1-207c-e511-80d2-00155d2a68d2",
+    "HasChanged": null
+}
