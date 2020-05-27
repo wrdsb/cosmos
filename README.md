@@ -1,5 +1,10 @@
 # C.O.S.M.O.S.
 
+## Applications
+
+### IGOR
+* [igor-functions](https://github.com/wrdsb/cosmos/tree/master/apps/igor-functions)
+
 ## Visual Studio Code Workspaces
 In the .vscode folder, you'll find a number of .code-workspace files. These workspaces make it trivial to work with all of the assets associated with a particular application or project within the COSMOS mono repo, without having to load the entire repo into VS Code. If you find yourself working with a particular set of files and/or folders often, simply add a new workspace to this folder. This will make your life, and the lives of your colleagues, much easier.
 
