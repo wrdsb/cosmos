@@ -7,6 +7,7 @@
 
 ### HAGAR
 * [hagar-console](https://github.com/wrdsb/cosmos/tree/master/apps/hagar-console): HAGAR's frontend Angular app
+* [hagar-functions](https://github.com/wrdsb/cosmos/tree/master/apps/hagar-functions): HAGAR's backend Azure Functions app
 
 ### Houston
 * [houston-console](https://github.com/wrdsb/cosmos/tree/master/apps/houston-console): Houston's frontend Angular app
