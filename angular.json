@@ -1208,6 +1208,66 @@
           }
         }
       }
+    },
+    "hagar-functions": {
+      "root": "apps/hagar-functions",
+      "sourceRoot": "apps/hagar-functions/src",
+      "projectType": "application",
+      "prefix": "hagar-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/hagar-functions",
+            "main": "apps/hagar-functions/src/main.ts",
+            "tsConfig": "apps/hagar-functions/tsconfig.app.json",
+            "assets": [
+              "apps/hagar-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/hagar-functions/src/environments/environment.ts",
+                  "with": "apps/hagar-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "hagar-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/hagar-functions/tsconfig.app.json",
+              "apps/hagar-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hagar-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/hagar-functions/jest.config.js",
+            "tsConfig": "apps/hagar-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
