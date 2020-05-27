@@ -60,12 +60,11 @@ For bonus points, add your frequently used workspaces to your launcher. (See htt
 * Also generates an event with a pointer to local storage which contains same response
 * Requester always gets what they ask for, but any other interested parties can also get response
 
+# Nx
 
-This project was generated using [Nx](https://nx.dev).
+This project was generated using [Nx](https://nx.dev). When using Nx, you can create multiple applications and libraries in the same workspace. Libraries are sharable across libraries and applications. They can be imported from `@cosmos/mylib`.
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
-
-## Quick Start & Documentation
+## Nx Documentation
 
 [Nx Documentation](https://nx.dev/angular)
 
@@ -74,20 +73,12 @@ This project was generated using [Nx](https://nx.dev).
 [Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
 
 ## Generate an application
-
-Run `ng g @nrwl/angular:app my-app` to generate an application.
-
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
+* Run `ng g @nrwl/angular:app my-app` to generate an Angular application.
+* Run `ng g @nrwl/node:app my-app` to generate a Node application. This is currently out starting point for an Azure Functions application. Once the application has been generated, an Azure Functions app generated in VS Code can be folded into the boilerplate Node app.
 
 ## Generate a library
-
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are sharable across libraries and applications. They can be imported from `@cosmos/mylib`.
+* Run `ng g @nrwl/angular:lib my-lib` to generate an Angular library.
+* Run `nx g lib mylib` to generate a generic TypeScript library
 
 ## Development server
 
