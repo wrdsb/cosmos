@@ -1,0 +1,11 @@
+<h1>Groups List</h1>
+<ul class="google-groups">
+  <li *ngFor="let group of groups" (click)="onSelect(group)">
+    {{group.name}}
+  </li>
+</ul>
+
+<div *ngIf="selectedGroup">
+  <h2>{{selectedGroup.name}} Details</h2>
+  <div><span>id: </span>{{selectedGroup.id}}</div>
+</div>

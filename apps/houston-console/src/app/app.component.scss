@@ -1,133 +1,148 @@
-/*
- * Remove template code below
- */
 :host {
-  display: block;
-  font-family: sans-serif;
-  min-width: 300px;
-  max-width: 600px;
-  margin: 50px auto;
-}
+  display: grid;
 
-.gutter-left {
-  margin-left: 9px;
-}
+  grid-gap: 0;
 
-.col-span-2 {
-  grid-column: span 2;
-}
+  grid-template:
+    " header            header "auto [nav-start] " main              main   "1fr [nav-end] " footer            footer "auto / [nav-start] 225px [nav-end] 1fr;
 
-.flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
+
+  padding: 0;
 }
 
 header {
-  background-color: #143055;
-  color: white;
-  padding: 5px;
-  border-radius: 3px;
+  grid-area: header;
+
+  display: grid;
+
+  grid-template:
+    " navToggle  title "auto / auto minmax(0, 1fr);
+
+  background: lightgrey;
+  padding: 15px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.33);
+  z-index: 1;
+
+  button {
+    grid-area: navToggle;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    margin: 0;
+    margin-right: 15px;
+    padding: 0;
+  }
+
+  a {
+    grid-area: title;
+  }
+
+  h1 {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+nav {
+  grid-area: nav;
+
+  transform: translateX(-9999px);
+
+  opacity: 0.95;
+  background: lightgrey;
+  border-right: 3px solid darkgrey;
+  padding: 15px;
+  overflow: auto;
+
+  &>* {
+    display: block;
+    margin-bottom: 15px;
+  }
 }
 
 main {
-  padding: 0 36px;
-}
-
-p {
-  text-align: center;
-}
-
-h1 {
-  text-align: center;
-  margin-left: 18px;
-  font-size: 24px;
-}
-
-h2 {
-  text-align: center;
-  font-size: 20px;
-  margin: 40px 0 10px 0;
-}
-
-.resources {
-  text-align: center;
-  list-style: none;
-  padding: 0;
+  grid-area: main;
   display: grid;
-  grid-gap: 9px;
-  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  overflow: auto;
+  padding: 15px;
+  padding-left: 50px;
+
+  img {
+    width: 700px;
+    margin: 50px;
+    display: block;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.33);
+  }
 }
 
-.resource {
-  color: #0094ba;
-  height: 36px;
-  background-color: rgba(0, 0, 0, 0);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  padding: 3px 9px;
-  text-decoration: none;
+footer {
+  grid-area: footer;
+  background: lightgrey;
+  padding: 15px;
+  box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.33);
+  z-index: 1;
+
+  a {
+    color: grey;
+  }
+
+  // Separate footer links with bullet characters
+  a:not(:last-child)::after {
+    padding-left: 10px;
+    padding-right: 10px;
+    content: '\2022';
+  }
 }
 
-.resource:hover {
-  background-color: rgba(68, 138, 255, 0.04);
+header,
+footer,
+nav {
+  a {
+    text-decoration: none;
+    color: black;
+  }
 }
 
-pre {
-  padding: 9px;
-  border-radius: 4px;
-  background-color: black;
-  color: #eee;
+li {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-details {
-  border-radius: 4px;
-  color: #333;
-  background-color: rgba(0, 0, 0, 0);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 3px 9px;
-  margin-bottom: 9px;
+.currentSelection {
+  font-weight: bold;
 }
 
-summary {
-  cursor: pointer;
-  outline: none;
-  height: 36px;
-  line-height: 36px;
+@keyframes slideIn {
+  from {
+    transform: translateX(-500px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
-.github-star-container {
-  margin-top: 12px;
-  line-height: 20px;
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-500px);
+  }
 }
 
-.github-star-container a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #333;
+.showNav {
+  animation: slideIn 500ms;
+  animation-fill-mode: forwards;
 }
 
-.github-star-badge {
-  color: #24292e;
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  padding: 3px 10px;
-  border: 1px solid rgba(27, 31, 35, 0.2);
-  border-radius: 3px;
-  background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
-  margin-left: 4px;
-  font-weight: 600;
-}
-
-.github-star-badge:hover {
-  background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
-  border-color: rgba(27, 31, 35, 0.35);
-  background-position: -0.5em;
-}
-.github-star-badge .material-icons {
-  height: 16px;
-  width: 16px;
-  margin-right: 4px;
+.hideNav {
+  animation: slideOut 500ms;
+  animation-fill-mode: forwards;
 }

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'cosmos-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'houston-console';
+  title = 'Houston';
+  showNav = false;
 }

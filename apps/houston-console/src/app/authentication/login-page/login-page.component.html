@@ -1,0 +1,11 @@
+<p>login-page works!</p>
+
+<div *ngIf="!(afAuth.authState | async)">
+  <button appAADSignin>Login</button>
+</div>
+
+<div *ngIf="afAuth.authState | async as user">
+  <p>{{user.displayName}}</p>
+  <p>{{user.email}}</p>
+  <button appSignout>Logout</button>
+</div>
