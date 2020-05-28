@@ -1,0 +1,11 @@
+<h1>People</h1>
+<ul class="codex-people">
+  <li *ngFor="let person of people" (click)="onSelect(person)">
+    {{person.name}}
+  </li>
+</ul>
+
+<div *ngIf="selectedPerson">
+  <h2>{{selectedPerson.name}} Details</h2>
+  <div><span>id: </span>{{selectedPerson.id}}</div>
+</div>
