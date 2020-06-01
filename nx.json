@@ -131,6 +131,9 @@
     },
     "houston-functions": {
       "tags": []
+    },
+    "codex-functions": {
+      "tags": []
     }
   }
 }

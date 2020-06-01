@@ -1688,6 +1688,66 @@
           }
         }
       }
+    },
+    "codex-functions": {
+      "root": "apps/codex-functions",
+      "sourceRoot": "apps/codex-functions/src",
+      "projectType": "application",
+      "prefix": "codex-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/codex-functions",
+            "main": "apps/codex-functions/src/main.ts",
+            "tsConfig": "apps/codex-functions/tsconfig.app.json",
+            "assets": [
+              "apps/codex-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/codex-functions/src/environments/environment.ts",
+                  "with": "apps/codex-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "codex-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/codex-functions/tsconfig.app.json",
+              "apps/codex-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/codex-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/codex-functions/jest.config.js",
+            "tsConfig": "apps/codex-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
