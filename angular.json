@@ -1448,6 +1448,66 @@
           }
         }
       }
+    },
+    "panama-functions": {
+      "root": "apps/panama-functions",
+      "sourceRoot": "apps/panama-functions/src",
+      "projectType": "application",
+      "prefix": "panama-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/panama-functions",
+            "main": "apps/panama-functions/src/main.ts",
+            "tsConfig": "apps/panama-functions/tsconfig.app.json",
+            "assets": [
+              "apps/panama-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/panama-functions/src/environments/environment.ts",
+                  "with": "apps/panama-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "panama-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/panama-functions/tsconfig.app.json",
+              "apps/panama-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/panama-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/panama-functions/jest.config.js",
+            "tsConfig": "apps/panama-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
