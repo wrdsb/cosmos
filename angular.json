@@ -1328,6 +1328,66 @@
           }
         }
       }
+    },
+    "skinner-functions": {
+      "root": "apps/skinner-functions",
+      "sourceRoot": "apps/skinner-functions/src",
+      "projectType": "application",
+      "prefix": "skinner-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/skinner-functions",
+            "main": "apps/skinner-functions/src/main.ts",
+            "tsConfig": "apps/skinner-functions/tsconfig.app.json",
+            "assets": [
+              "apps/skinner-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/skinner-functions/src/environments/environment.ts",
+                  "with": "apps/skinner-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "skinner-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/skinner-functions/tsconfig.app.json",
+              "apps/skinner-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skinner-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/skinner-functions/jest.config.js",
+            "tsConfig": "apps/skinner-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
