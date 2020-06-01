@@ -1734,6 +1734,129 @@
           }
         }
       }
+    },
+    "lamson-console": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/lamson-console",
+      "sourceRoot": "apps/lamson-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/lamson-console",
+            "index": "apps/lamson-console/src/index.html",
+            "main": "apps/lamson-console/src/main.ts",
+            "polyfills": "apps/lamson-console/src/polyfills.ts",
+            "tsConfig": "apps/lamson-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/lamson-console/src/favicon.ico",
+              "apps/lamson-console/src/assets"
+            ],
+            "styles": ["apps/lamson-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/lamson-console/src/environments/environment.ts",
+                  "with": "apps/lamson-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "lamson-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "lamson-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "lamson-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/lamson-console/tsconfig.app.json",
+              "apps/lamson-console/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/lamson-console/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/lamson-console/jest.config.js",
+            "tsConfig": "apps/lamson-console/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/lamson-console/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "lamson-console-e2e": {
+      "root": "apps/lamson-console-e2e",
+      "sourceRoot": "apps/lamson-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/lamson-console-e2e/cypress.json",
+            "tsConfig": "apps/lamson-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "lamson-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "lamson-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/lamson-console-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/lamson-console-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {

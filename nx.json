@@ -122,6 +122,13 @@
     "flenderson-console-e2e": {
       "tags": [],
       "implicitDependencies": ["flenderson-console"]
+    },
+    "lamson-console": {
+      "tags": []
+    },
+    "lamson-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["lamson-console"]
     }
   }
 }
