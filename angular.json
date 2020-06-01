@@ -1568,6 +1568,66 @@
           }
         }
       }
+    },
+    "lamson-functions": {
+      "root": "apps/lamson-functions",
+      "sourceRoot": "apps/lamson-functions/src",
+      "projectType": "application",
+      "prefix": "lamson-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/lamson-functions",
+            "main": "apps/lamson-functions/src/main.ts",
+            "tsConfig": "apps/lamson-functions/tsconfig.app.json",
+            "assets": [
+              "apps/lamson-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/lamson-functions/src/environments/environment.ts",
+                  "with": "apps/lamson-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "lamson-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/lamson-functions/tsconfig.app.json",
+              "apps/lamson-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/lamson-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/lamson-functions/jest.config.js",
+            "tsConfig": "apps/lamson-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
