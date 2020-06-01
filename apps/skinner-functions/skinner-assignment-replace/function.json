@@ -1,0 +1,38 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "assignment-replace",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "recordIn",
+            "type": "cosmosDB",
+            "databaseName": "skinner",
+            "collectionName": "assignments",
+            "id": "{id}",
+            "partitionKey": "{id}",
+            "connectionStringSetting": "wrdsb-skinner_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "recordOut",
+            "type": "cosmosDB",
+            "databaseName": "skinner",
+            "collectionName": "assignments",
+            "connectionStringSetting": "wrdsb-skinner_CosmosDB",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbskinner_STORAGE"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/skinner-assignment-replace/index.js"
+}

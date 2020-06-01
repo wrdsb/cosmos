@@ -1,0 +1,55 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "view-skinnerassignments-process",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "panamaBlob",
+            "type": "blob",
+            "path": "trillium-view-skinnerassignments/now.json",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "viewRaw",
+            "type": "blob",
+            "path": "trillium/view-skinnerassignments-raw.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "assignmentsNowArray",
+            "type": "blob",
+            "path": "trillium/assignments-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "assignmentsNowObject",
+            "type": "blob",
+            "path": "trillium/assignments-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "triggerJobs",
+            "type": "queue",
+            "queueName": "job-enqueue",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/view-skinnerassignments-process/index.js"
+}

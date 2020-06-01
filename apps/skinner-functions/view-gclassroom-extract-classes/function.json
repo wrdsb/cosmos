@@ -1,0 +1,48 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "view-gclassroom-extract-classes",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "panamaBlob",
+            "type": "blob",
+            "path": "trillium-view-gclassroom/now.json",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "classesNowArray",
+            "type": "blob",
+            "path": "trillium/classes-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "classesNowObject",
+            "type": "blob",
+            "path": "trillium/classes-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "triggerJobs",
+            "type": "queue",
+            "queueName": "job-enqueue",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/view-gclassroom-extract-classes/index.js"
+}

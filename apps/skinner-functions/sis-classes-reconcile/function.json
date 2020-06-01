@@ -1,0 +1,62 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "sis-classes-reconcile",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "classesNow",
+            "type": "blob",
+            "path": "trillium/classes-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "peopleNow",
+            "type": "blob",
+            "path": "hris/people-now-object.json",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "queueCreates",
+            "type": "queue",
+            "queueName": "class-replace",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "queueUpdates",
+            "type": "queue",
+            "queueName": "class-replace",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "queueDeletes",
+            "type": "queue",
+            "queueName": "class-delete",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "logCalculation",
+            "type": "blob",
+            "path": "logs/sis-classes-reconcile.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbskinner_STORAGE"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/sis-classes-reconcile/index.js"
+}

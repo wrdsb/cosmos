@@ -1,0 +1,90 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "job-enqueue",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "viewGClassroomProcessTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-process",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewGClassroomExtractClassesTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-extract-classes",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewGClassroomExtractEnrolmentsTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-extract-enrolments",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewGClassroomExtractStudentsTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-extract-students",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewGClassroomExtractTeachersTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-extract-teachers",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewSkinnerStaffProcessTrigger",
+            "type": "queue",
+            "queueName": "view-skinnerstaff-process",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "sisAssignmentsReconcileTrigger",
+            "type": "queue",
+            "queueName": "sis-assignments-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "sisClassesReconcileTrigger",
+            "type": "queue",
+            "queueName": "sis-classes-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "sisEnrolmentsReconcileTrigger",
+            "type": "queue",
+            "queueName": "sis-enrolments-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "sisStaffReconcileTrigger",
+            "type": "queue",
+            "queueName": "sis-staff-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbskinner_STORAGE"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/job-enqueue/index.js"
+}

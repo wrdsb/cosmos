@@ -1,0 +1,12 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "job-callbacks",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        }
+    ],
+    "scriptFile": "../dist/job-callback/index.js"
+}
