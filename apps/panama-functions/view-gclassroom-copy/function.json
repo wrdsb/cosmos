@@ -1,0 +1,40 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "view-gclassroom-copy",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "incomingBlob",
+            "type": "blob",
+            "path": "trillium-view-gclassroom/incoming.json",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "outgoingBlob",
+            "type": "blob",
+            "path": "trillium-view-gclassroom/now.json",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "scriptFile": "../dist/view-gclassroom-copy/index.js"
+}

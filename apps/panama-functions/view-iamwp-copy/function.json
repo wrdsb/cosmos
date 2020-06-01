@@ -1,0 +1,40 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "view-iamwp-copy",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "incomingBlob",
+            "type": "blob",
+            "path": "ipps-view-iamwp/incoming.json",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "outgoingBlob",
+            "type": "blob",
+            "path": "ipps-view-iamwp/now.json",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "scriptFile": "../dist/view-iamwp-copy/index.js"
+}

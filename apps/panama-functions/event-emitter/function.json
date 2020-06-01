@@ -1,0 +1,54 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "event-emitter",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "triggerViewGClassroomProcess",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "view-gclassroom-process",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "triggerViewIAMWPProcess",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "view-iamwp-process",
+            "connection": "wrdsbflenderson_STORAGE"
+        },
+        {
+            "name": "triggerViewSkinnerAssignmentsProcess",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "view-skinnerassignments-process",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "triggerViewSkinnerStaffProcess",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "view-skinnerstaff-process",
+            "connection": "wrdsbskinner_STORAGE"
+        },
+        {
+            "name": "triggerViewStaffDirProcess",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "view-staffdir-process",
+            "connection": "wrdsbflenderson_STORAGE"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "scriptFile": "../dist/event-emitter/index.js"
+}
