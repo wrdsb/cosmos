@@ -1628,6 +1628,66 @@
           }
         }
       }
+    },
+    "houston-functions": {
+      "root": "apps/houston-functions",
+      "sourceRoot": "apps/houston-functions/src",
+      "projectType": "application",
+      "prefix": "houston-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/houston-functions",
+            "main": "apps/houston-functions/src/main.ts",
+            "tsConfig": "apps/houston-functions/tsconfig.app.json",
+            "assets": [
+              "apps/houston-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/houston-functions/src/environments/environment.ts",
+                  "with": "apps/houston-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "houston-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/houston-functions/tsconfig.app.json",
+              "apps/houston-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/houston-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/houston-functions/jest.config.js",
+            "tsConfig": "apps/houston-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
