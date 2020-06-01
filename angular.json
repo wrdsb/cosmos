@@ -1508,6 +1508,66 @@
           }
         }
       }
+    },
+    "radar-functions": {
+      "root": "apps/radar-functions",
+      "sourceRoot": "apps/radar-functions/src",
+      "projectType": "application",
+      "prefix": "radar-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/radar-functions",
+            "main": "apps/radar-functions/src/main.ts",
+            "tsConfig": "apps/radar-functions/tsconfig.app.json",
+            "assets": [
+              "apps/radar-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/radar-functions/src/environments/environment.ts",
+                  "with": "apps/radar-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "radar-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/radar-functions/tsconfig.app.json",
+              "apps/radar-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/radar-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/radar-functions/jest.config.js",
+            "tsConfig": "apps/radar-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
