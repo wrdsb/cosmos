@@ -143,6 +143,13 @@
     "skinner-console-e2e": {
       "tags": [],
       "implicitDependencies": ["skinner-console"]
+    },
+    "skyline-console": {
+      "tags": []
+    },
+    "skyline-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["skyline-console"]
     }
   }
 }
