@@ -1980,6 +1980,129 @@
           }
         }
       }
+    },
+    "skinner-console": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/skinner-console",
+      "sourceRoot": "apps/skinner-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/skinner-console",
+            "index": "apps/skinner-console/src/index.html",
+            "main": "apps/skinner-console/src/main.ts",
+            "polyfills": "apps/skinner-console/src/polyfills.ts",
+            "tsConfig": "apps/skinner-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/skinner-console/src/favicon.ico",
+              "apps/skinner-console/src/assets"
+            ],
+            "styles": ["apps/skinner-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/skinner-console/src/environments/environment.ts",
+                  "with": "apps/skinner-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "skinner-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "skinner-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "skinner-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/skinner-console/tsconfig.app.json",
+              "apps/skinner-console/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/skinner-console/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/skinner-console/jest.config.js",
+            "tsConfig": "apps/skinner-console/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/skinner-console/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "skinner-console-e2e": {
+      "root": "apps/skinner-console-e2e",
+      "sourceRoot": "apps/skinner-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/skinner-console-e2e/cypress.json",
+            "tsConfig": "apps/skinner-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "skinner-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "skinner-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/skinner-console-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/skinner-console-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {

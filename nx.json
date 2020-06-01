@@ -136,6 +136,13 @@
     "radar-console-e2e": {
       "tags": [],
       "implicitDependencies": ["radar-console"]
+    },
+    "skinner-console": {
+      "tags": []
+    },
+    "skinner-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["skinner-console"]
     }
   }
 }
