@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/viewfinder-console"
+		},
+		{
+			"path": "../apps/viewfinder-console-e2e"
+		},
+		{
+			"path": "../apps/viewfinder-functions"
+		}
+	]
+}

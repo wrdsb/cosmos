@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../apps/houston-console"
+		},
+		{
+			"path": "../apps/houston-functions"
+		}
+	],
+	"settings": {}
+}

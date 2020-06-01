@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/hagar-console"
+		},
+		{
+			"path": "../apps/hagar-console-e2e"
+		},
+		{
+			"path": "../apps/hagar-functions"
+		}
+	]
+}

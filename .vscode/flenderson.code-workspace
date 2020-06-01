@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/flenderson-console"
+		},
+		{
+			"path": "../apps/flenderson-console-e2e"
+		},
+		{
+			"path": "../apps/flenderson-functions"
+		}
+	]
+}

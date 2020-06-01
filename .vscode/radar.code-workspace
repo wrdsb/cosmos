@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/radar-console"
+		},
+		{
+			"path": "../apps/radar-console-e2e"
+		},
+		{
+			"path": "../apps/radar-functions"
+		}
+	]
+}

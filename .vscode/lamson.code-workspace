@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/lamson-console"
+		},
+		{
+			"path": "../apps/lamson-console-e2e"
+		},
+		{
+			"path": "../apps/lamson-functions"
+		}
+	]
+}

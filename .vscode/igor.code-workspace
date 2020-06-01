@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/igor-console"
+		},
+		{
+			"path": "../apps/igor-console-e2e"
+		},
+		{
+			"path": "../apps/igor-functions"
+		}
+	]
+}

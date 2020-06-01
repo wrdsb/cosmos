@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/codex-console"
+		},
+		{
+			"path": "../apps/codex-console-e2e"
+		},
+		{
+			"path": "../apps/codex-functions"
+		}
+	]
+}

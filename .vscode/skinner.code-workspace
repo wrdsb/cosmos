@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/skinner-console"
+		},
+		{
+			"path": "../apps/skinner-console-e2e"
+		},
+		{
+			"path": "../apps/skinner-functions"
+		}
+	]
+}

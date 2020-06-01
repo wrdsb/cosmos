@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/skyline-console"
+		},
+		{
+			"path": "../apps/skyline-console-e2e"
+		},
+		{
+			"path": "../apps/skyline-functions"
+		}
+	]
+}
