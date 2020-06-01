@@ -4,6 +4,11 @@
 
 ### Codex
 * [codex-console](https://github.com/wrdsb/cosmos/tree/master/apps/codex-console): Codex's frontend Angular app
+* [codex-functions](https://github.com/wrdsb/cosmos/tree/master/apps/codex-functions): Codex's backend Azure Functions app
+
+### Flenderson
+* [flenderson-console](https://github.com/wrdsb/cosmos/tree/master/apps/flenderson-console): Flenderson's frontend Angular app
+* [flenderson-functions](https://github.com/wrdsb/cosmos/tree/master/apps/flenderson-functions): Flenderson's backend Azure Functions app
 
 ### HAGAR
 * [hagar-console](https://github.com/wrdsb/cosmos/tree/master/apps/hagar-console): HAGAR's frontend Angular app
@@ -11,13 +16,31 @@
 
 ### Houston
 * [houston-console](https://github.com/wrdsb/cosmos/tree/master/apps/houston-console): Houston's frontend Angular app
+* [houston-functions](https://github.com/wrdsb/cosmos/tree/master/apps/houston-functions): Houston's backend Azure Functions app
 
 ### IGOR
 * [igor-console](https://github.com/wrdsb/cosmos/tree/master/apps/igor-console): IGOR's frontend Angular app
 * [igor-functions](https://github.com/wrdsb/cosmos/tree/master/apps/igor-functions): IGOR's backend Azure Functions app
 
+### Lamson
+* [lamson-console](https://github.com/wrdsb/cosmos/tree/master/apps/lamson-console): Lamson's frontend Angular app
+* [lamson-functions](https://github.com/wrdsb/cosmos/tree/master/apps/lamson-functions): Lamson's backend Azure Functions app
+
 ### Panama
 * [panama-console](https://github.com/wrdsb/cosmos/tree/master/apps/panama-console): Panama's frontend Angular app
+* [panama-functions](https://github.com/wrdsb/cosmos/tree/master/apps/panama-functions): Panama's backend Azure Functions app
+
+### RADAR
+* [radar-console](https://github.com/wrdsb/cosmos/tree/master/apps/radar-console): RADAR's frontend Angular app
+* [radar-functions](https://github.com/wrdsb/cosmos/tree/master/apps/radar-functions): RADAR's backend Azure Functions app
+
+### Skinner
+* [skinner-console](https://github.com/wrdsb/cosmos/tree/master/apps/skinner-console): Skinner's frontend Angular app
+* [skinner-functions](https://github.com/wrdsb/cosmos/tree/master/apps/skinner-functions): Skinner's backend Azure Functions app
+
+### Skyline
+* [skyline-console](https://github.com/wrdsb/cosmos/tree/master/apps/skyline-console): Skyline's frontend Angular app
+* [skyline-functions](https://github.com/wrdsb/cosmos/tree/master/apps/skyline-functions): Skyline's backend Azure Functions app
 
 ### Sorting Hat
 * [sorting-hat-console](https://github.com/wrdsb/cosmos/tree/master/apps/sorting-hat-console): the Sorting Hat's frontend Angular app
@@ -25,12 +48,16 @@
 
 ### Viewfinder
 * [viewfinder-console](https://github.com/wrdsb/cosmos/tree/master/apps/viewfinder-console): Viewfinder's frontend Angular app
+* [viewfinder-functions](https://github.com/wrdsb/cosmos/tree/master/apps/viewfinder-functions): Viewfinder's backend Azure Functions app
 
 
 ## End-to-End Testing Apps
 
 ### Codex
 * [codex-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/codex-console-e2e): E2E tests for Codex's frontend Angular app
+
+### Flenderson
+* [flenderson-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/flenderson-console-e2e): E2E tests for Flenderson's frontend Angular app
 
 ### HAGAR
 * [hagar-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/hagar-console-e2e): E2E tests for HAGAR's frontend Angular app
@@ -41,8 +68,20 @@
 ### IGOR
 * [igor-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/igor-console-e2e): E2E tests for IGOR's frontend Angular app
 
+### Lamson
+* [lamson-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/lamson-console-e2e): E2E tests for Lamson's frontend Angular app
+
 ### Panama
 * [panama-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/panama-console-e2e): E2E tests for Panama's frontend Angular app
+
+### RADAR
+* [radar-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/radar-console-e2e): E2E tests for RADAR's frontend Angular app
+
+### Skinner
+* [skinner-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/skinner-console-e2e): E2E tests for Skinner's frontend Angular app
+
+### Skyline
+* [skyline-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/skyline-console-e2e): E2E tests for Skyline's frontend Angular app
 
 ### Sorting Hat
 * [sorting-hat-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/sorting-hat-console-e2e): E2E tests for the Sorting Hat's frontend Angular app
