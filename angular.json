@@ -1388,6 +1388,66 @@
           }
         }
       }
+    },
+    "flenderson-functions": {
+      "root": "apps/flenderson-functions",
+      "sourceRoot": "apps/flenderson-functions/src",
+      "projectType": "application",
+      "prefix": "flenderson-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/flenderson-functions",
+            "main": "apps/flenderson-functions/src/main.ts",
+            "tsConfig": "apps/flenderson-functions/tsconfig.app.json",
+            "assets": [
+              "apps/flenderson-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/flenderson-functions/src/environments/environment.ts",
+                  "with": "apps/flenderson-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "flenderson-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/flenderson-functions/tsconfig.app.json",
+              "apps/flenderson-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flenderson-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/flenderson-functions/jest.config.js",
+            "tsConfig": "apps/flenderson-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
