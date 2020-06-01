@@ -1857,6 +1857,129 @@
           }
         }
       }
+    },
+    "radar-console": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/radar-console",
+      "sourceRoot": "apps/radar-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/radar-console",
+            "index": "apps/radar-console/src/index.html",
+            "main": "apps/radar-console/src/main.ts",
+            "polyfills": "apps/radar-console/src/polyfills.ts",
+            "tsConfig": "apps/radar-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/radar-console/src/favicon.ico",
+              "apps/radar-console/src/assets"
+            ],
+            "styles": ["apps/radar-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/radar-console/src/environments/environment.ts",
+                  "with": "apps/radar-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "radar-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "radar-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "radar-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/radar-console/tsconfig.app.json",
+              "apps/radar-console/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/radar-console/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/radar-console/jest.config.js",
+            "tsConfig": "apps/radar-console/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/radar-console/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "radar-console-e2e": {
+      "root": "apps/radar-console-e2e",
+      "sourceRoot": "apps/radar-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/radar-console-e2e/cypress.json",
+            "tsConfig": "apps/radar-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "radar-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "radar-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/radar-console-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/radar-console-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {

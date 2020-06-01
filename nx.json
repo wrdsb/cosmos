@@ -129,6 +129,13 @@
     "lamson-console-e2e": {
       "tags": [],
       "implicitDependencies": ["lamson-console"]
+    },
+    "radar-console": {
+      "tags": []
+    },
+    "radar-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["radar-console"]
     }
   }
 }
