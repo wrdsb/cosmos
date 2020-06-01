@@ -1,0 +1,48 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "event-emitter",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "triggerHRISGroupsReconcile",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "hris-groups-reconcile",
+            "connection": "wrdsbflenderson_STORAGE"
+        },
+        {
+            "name": "triggerHRISJobsReconcile",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "hris-jobs-reconcile",
+            "connection": "wrdsbflenderson_STORAGE"
+        },
+        {
+            "name": "triggerHRISLocationsReconcile",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "hris-locations-reconcile",
+            "connection": "wrdsbflenderson_STORAGE"
+        },
+        {
+            "name": "triggerHRISPeopleReconcile",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "hris-people-reconcile",
+            "connection": "wrdsbflenderson_STORAGE"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbflenderson_STORAGE"
+        }
+    ],
+    "disabled": true,
+    "scriptFile": "../dist/event-emitter/index.js"
+}

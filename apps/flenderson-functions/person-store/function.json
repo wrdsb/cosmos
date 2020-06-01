@@ -1,0 +1,45 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "person-store",
+            "connection": "wrdsbflenderson_STORAGE"
+        },
+        {
+            "name": "recordIn",
+            "type": "cosmosDB",
+            "databaseName": "flenderson",
+            "collectionName": "people",
+            "id": "{payload.id}",
+            "partitionKey": "{payload.id}",
+            "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "recordOut",
+            "type": "cosmosDB",
+            "databaseName": "flenderson",
+            "collectionName": "people",
+            "connectionStringSetting": "wrdsb-flenderson_COSMOSDB",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbflenderson_STORAGE"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "event-emitter",
+            "connection": "wrdsbflenderson_STORAGE"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/person-store/index.js"
+}
