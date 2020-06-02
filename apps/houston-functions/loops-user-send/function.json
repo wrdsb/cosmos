@@ -1,0 +1,18 @@
+{
+    "bindings": [
+        {
+            "name": "message",
+            "type": "queueTrigger",
+            "queueName": "loops-user-send",
+            "connection": "wrdsbhouston_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "$return",
+            "type": "signalR",
+            "hubName": "houston",
+            "direction": "out"
+        }
+    ],
+    "scriptFile": "../dist/loops-user-send/index.js"
+}

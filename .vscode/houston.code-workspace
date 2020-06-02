@@ -1,13 +1,16 @@
 {
 	"folders": [
 		{
+			"name": "houston-console",
 			"path": "../apps/houston-console"
 		},
 		{
-			"path": "../apps/houston-functions"
+			"name": "houston-console-e2e",
+			"path": "../apps/houston-console-e2e"
 		},
 		{
-			"path": "../apps/houston-console-e2e"
+			"name": "houston-functions",
+			"path": "../apps/houston-functions"
 		}
 	],
 	"settings": {}
