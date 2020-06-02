@@ -2,6 +2,10 @@
 
 ## Applications
 
+### Claptrap
+* [claptrap-console](https://github.com/wrdsb/cosmos/tree/master/apps/claptrap-console): Claptrap's frontend Angular app
+* [claptrap-functions](https://github.com/wrdsb/cosmos/tree/master/apps/claptrap-functions): Claptrap's backend Azure Functions app
+
 ### Codex
 * [codex-console](https://github.com/wrdsb/cosmos/tree/master/apps/codex-console): Codex's frontend Angular app
 * [codex-functions](https://github.com/wrdsb/cosmos/tree/master/apps/codex-functions): Codex's backend Azure Functions app
@@ -52,6 +56,9 @@
 
 
 ## End-to-End Testing Apps
+
+### Claptrap
+* [claptrap-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/claptrap-console-e2e): E2E tests for Claptrap's frontend Angular app
 
 ### Codex
 * [codex-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/codex-console-e2e): E2E tests for Codex's frontend Angular app
