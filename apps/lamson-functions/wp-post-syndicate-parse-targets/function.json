@@ -1,0 +1,26 @@
+{
+    "bindings": [
+        {
+            "name": "req",
+            "type": "httpTrigger",
+            "authLevel": "function",
+            "direction": "in",
+            "methods": [
+                "post"
+            ]
+        },
+        {
+            "name": "postObject",
+            "type": "blob",
+            "path": "wp-posts/{post}",
+            "connection": "wrdsblamson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "$return",
+            "type": "http",
+            "direction": "out"
+        }
+    ],
+    "disabled": false
+}

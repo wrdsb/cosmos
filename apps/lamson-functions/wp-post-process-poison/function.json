@@ -1,0 +1,26 @@
+{
+    "bindings": [
+        {
+            "name": "queueMessage",
+            "type": "queueTrigger",
+            "queueName": "wp-post-process-poison",
+            "connection": "wrdsblamson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "lamsonErrorProcess",
+            "type": "queue",
+            "queueName": "lamson-error-process",
+            "connection": "wrdsblamson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection":"wrdsblamson_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "disabled": false
+}

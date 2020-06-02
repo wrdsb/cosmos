@@ -1,0 +1,26 @@
+{
+    "bindings": [
+        {
+            "name": "req",
+            "type": "httpTrigger",
+            "authLevel": "function",
+            "direction": "in",
+            "methods": [
+                "post"
+            ]
+        },
+        {
+            "name": "lamsonWpPostsList",
+            "type": "queue",
+            "queueName": "lamson-wp-posts-list",
+            "connection":"wrdsblamson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "$return",
+            "type": "http",
+            "direction": "out"
+        }
+    ],
+    "disabled": false
+}

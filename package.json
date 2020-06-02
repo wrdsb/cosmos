@@ -51,6 +51,9 @@
     "@nrwl/angular": "9.2.3",
     "@sendgrid/mail": "^6.3.1",
     "angular-in-memory-web-api": "^0.11.0",
+    "async": "^2.5.0",
+    "axios": "^0.18.0",
+    "azure-storage": "^2.8.1",
     "core-js": "^2.5.4",
     "cz-conventional-changelog": "^3.0.2",
     "lodash": "^4.17.15",
@@ -59,6 +62,7 @@
     "msal": "^1.2.2",
     "rxjs": "^6.5.5",
     "rxjs-compat": "^6.5.5",
+    "wpapi": "^1.2.1",
     "zone.js": "^0.10.2"
   },
   "devDependencies": {

@@ -1,0 +1,26 @@
+{
+    "bindings": [
+        {
+            "name": "lamsonWpPostFetch",
+            "type": "queueTrigger",
+            "queueName": "lamson-wp-post-fetch",
+            "connection":"wrdsblamson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "lamsonWpPostStore",
+            "type": "queue",
+            "queueName": "lamson-wp-post-store",
+            "connection":"wrdsblamson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection":"wrdsblamson_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "disabled": false
+}
