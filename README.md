@@ -30,6 +30,10 @@
 * [lamson-console](https://github.com/wrdsb/cosmos/tree/master/apps/lamson-console): Lamson's frontend Angular app
 * [lamson-functions](https://github.com/wrdsb/cosmos/tree/master/apps/lamson-functions): Lamson's backend Azure Functions app
 
+### MCP
+* [mcp-console](https://github.com/wrdsb/cosmos/tree/master/apps/mcp-console): the MCP's frontend Angular app
+* [mcp-functions](https://github.com/wrdsb/cosmos/tree/master/apps/mcp-functions): the MCP's backend Azure Functions app
+
 ### Panama
 * [panama-console](https://github.com/wrdsb/cosmos/tree/master/apps/panama-console): Panama's frontend Angular app
 * [panama-functions](https://github.com/wrdsb/cosmos/tree/master/apps/panama-functions): Panama's backend Azure Functions app
@@ -77,6 +81,9 @@
 
 ### Lamson
 * [lamson-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/lamson-console-e2e): E2E tests for Lamson's frontend Angular app
+
+### MCP
+* [mcp-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/mcp-console-e2e): E2E tests for the MCP's frontend Angular app
 
 ### Panama
 * [panama-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/panama-console-e2e): E2E tests for Panama's frontend Angular app
