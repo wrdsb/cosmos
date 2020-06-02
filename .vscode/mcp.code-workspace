@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/mcp-console"
+		},
+		{
+			"path": "../apps/mcp-console-e2e"
+		},
+		{
+			"path": "../apps/mcp-functions"
+		}
+	]
+}
