@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../apps/houston-functions"
+		},
+		{
+			"path": "../apps/houston-console-e2e"
 		}
 	],
 	"settings": {}
