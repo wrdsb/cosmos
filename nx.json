@@ -14,12 +14,7 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
@@ -29,63 +24,49 @@
     },
     "panama-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "panama-console"
-      ]
+      "implicitDependencies": ["panama-console"]
     },
     "igor-console": {
       "tags": []
     },
     "igor-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "igor-console"
-      ]
+      "implicitDependencies": ["igor-console"]
     },
     "hagar-console": {
       "tags": []
     },
     "hagar-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "hagar-console"
-      ]
+      "implicitDependencies": ["hagar-console"]
     },
     "sorting-hat-console": {
       "tags": []
     },
     "sorting-hat-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "sorting-hat-console"
-      ]
+      "implicitDependencies": ["sorting-hat-console"]
     },
     "viewfinder-console": {
       "tags": []
     },
     "viewfinder-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "viewfinder-console"
-      ]
+      "implicitDependencies": ["viewfinder-console"]
     },
     "houston-console": {
       "tags": []
     },
     "houston-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "houston-console"
-      ]
+      "implicitDependencies": ["houston-console"]
     },
     "codex-console": {
       "tags": []
     },
     "codex-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "codex-console"
-      ]
+      "implicitDependencies": ["codex-console"]
     },
     "igor-types": {
       "tags": []
@@ -140,45 +121,35 @@
     },
     "flenderson-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "flenderson-console"
-      ]
+      "implicitDependencies": ["flenderson-console"]
     },
     "lamson-console": {
       "tags": []
     },
     "lamson-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "lamson-console"
-      ]
+      "implicitDependencies": ["lamson-console"]
     },
     "radar-console": {
       "tags": []
     },
     "radar-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "radar-console"
-      ]
+      "implicitDependencies": ["radar-console"]
     },
     "skinner-console": {
       "tags": []
     },
     "skinner-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "skinner-console"
-      ]
+      "implicitDependencies": ["skinner-console"]
     },
     "skyline-console": {
       "tags": []
     },
     "skyline-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "skyline-console"
-      ]
+      "implicitDependencies": ["skyline-console"]
     },
     "viewfinder-functions": {
       "tags": []
@@ -188,12 +159,17 @@
     },
     "claptrap-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "claptrap-console"
-      ]
+      "implicitDependencies": ["claptrap-console"]
     },
     "claptrap-functions": {
       "tags": []
+    },
+    "mcp-console": {
+      "tags": []
+    },
+    "mcp-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["mcp-console"]
     }
   }
 }
