@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/claptrap-console"
+		},
+		{
+			"path": "../apps/claptrap-console-e2e"
+		},
+		{
+			"path": "../apps/claptrap-functions"
+		}
+	]
+}
