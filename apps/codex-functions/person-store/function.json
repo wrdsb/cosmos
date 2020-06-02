@@ -1,0 +1,41 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "person-store",
+            "connection": "wrdsbcodex_STORAGE"
+        },
+        {
+            "name": "recordOut",
+            "type": "cosmosDB",
+            "databaseName": "codex",
+            "collectionName": "people",
+            "connectionStringSetting": "wrdsb-codex_CosmosDB",
+            "direction": "out"
+        },
+        {
+            "name": "sortingHat",
+            "type": "queue",
+            "queueName": "people-set-memberships-calculate",
+            "connection": "wrdsbsortinghat_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessages",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbcodex_STORAGE"
+        },
+        {
+            "name": "flynnEvents",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "event-emitter",
+            "connection": "wrdsbcodex_STORAGE"
+        }
+    ],
+    "scriptFile": "../dist/person-store/index.js"
+}

@@ -1,0 +1,41 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "direction": "in",
+            "queueName": "materialize-school-staff",
+            "connection": "wrdsbcodex_STORAGE"
+        },
+        {
+            "name": "skinnerSchoolStaff",
+            "type": "blob",
+            "path": "school-staff/{triggerMessage}-school-staff.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "schoolStaffOut",
+            "type": "blob",
+            "path": "school-staff/{triggerMessage}-school-staff.json",
+            "connection": "wrdsbcodex_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "logObject",
+            "type": "blob",
+            "path": "logs/materialize-school-staff.json",
+            "connection": "wrdsbcodex_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "direction": "out",
+            "queueName": "callbacks",
+            "connection": "wrdsbcodex_STORAGE"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/materialize-school-staff/index.js"
+}
