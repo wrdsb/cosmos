@@ -1,0 +1,15 @@
+{
+  "name": "ipps_people_differences_calculate",
+  "version": "0.0.1",
+  "description": "Calculates differences in people extracts from IPPS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.5.0",
+    "lodash.isequal": "^4.5.0"
+  }
+}

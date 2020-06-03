@@ -1,0 +1,44 @@
+{
+  "bindings": [
+    {
+      "name": "req",
+      "type": "httpTrigger",
+      "webHookType": "genericJson",
+      "direction": "in"
+    },
+    {
+      "name": "recordsNow",
+      "type": "blob",
+      "path": "ipps/locations-now-object.json",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "recordsPrevious",
+      "type": "blob",
+      "path": "ipps/locations-previous.json",
+      "connection": "wrdsbbabbage_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "recordsDifferences",
+      "type": "blob",
+      "path": "ipps/locations-differences.json",
+      "connection": "wrdsbbabbage_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "flynnGrid",
+      "type": "eventHub",
+      "path": "flynn-events",
+      "connection": "wrdsb-flynn_EVENTHUB",
+      "direction": "out"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}

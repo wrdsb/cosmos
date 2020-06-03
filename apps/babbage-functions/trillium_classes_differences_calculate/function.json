@@ -1,0 +1,44 @@
+{
+    "bindings": [
+      {
+        "name": "req",
+        "type": "httpTrigger",
+        "webHookType": "genericJson",
+        "direction": "in"
+      },
+      {
+        "name": "recordsNow",
+        "type": "blob",
+        "path": "trillium/classes-now-object.json",
+        "connection": "wrdsbskinner_STORAGE",
+        "direction": "in"
+      },
+      {
+        "name": "recordsPrevious",
+        "type": "blob",
+        "path": "trillium/classes-previous.json",
+        "connection": "wrdsbbabbage_STORAGE",
+        "direction": "in"
+      },
+      {
+        "name": "recordsDifferences",
+        "type": "blob",
+        "path": "trillium/classes-differences.json",
+        "connection": "wrdsbbabbage_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "flynnGrid",
+        "type": "eventHub",
+        "path": "flynn-events",
+        "connection": "wrdsb-flynn_EVENTHUB",
+        "direction": "out"
+      },
+      {
+        "name": "res",
+        "type": "http",
+        "direction": "out"
+      }
+    ],
+    "disabled": false
+  }

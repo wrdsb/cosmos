@@ -1,0 +1,44 @@
+{
+  "bindings": [
+    {
+      "name": "req",
+      "type": "httpTrigger",
+      "webHookType": "genericJson",
+      "direction": "in"
+    },
+    {
+      "name": "groupMembershipsNow",
+      "type": "blob",
+      "path": "groups-memberships-actual/{group}.json",
+      "connection": "wrdsbcodex_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "groupMembershipsPrevious",
+      "type": "blob",
+      "path": "groups-memberships-previous/{group}.json",
+      "connection": "wrdsbbabbage_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "groupMembershipsDiff",
+      "type": "blob",
+      "path": "groups-memberships-changes/{group}.json",
+      "connection": "wrdsbbabbage_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "gSuiteEvents",
+      "type": "eventHub",
+      "path": "g-suite-events",
+      "connection": "wrdsb-skyline_RootManageSharedAccessKey_EVENTHUB",
+      "direction": "out"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}

@@ -1,0 +1,30 @@
+{
+    "bindings": [
+      {
+        "name": "req",
+        "type": "httpTrigger",
+        "webHookType": "genericJson",
+        "direction": "in"
+      },
+      {
+        "name": "inBlob",
+        "type": "blob",
+        "path": "{in_blob.path}/{in_blob.name}",
+        "connection": "wrdsbflenderson_STORAGE",
+        "direction": "in"
+      },
+      {
+        "name": "outBlob",
+        "type": "blob",
+        "path": "{out_blob.path}/{out_blob.name}",
+        "connection": "wrdsbbabbage_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "res",
+        "type": "http",
+        "direction": "out"
+      }
+    ],
+    "disabled": false
+  }

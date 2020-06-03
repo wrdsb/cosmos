@@ -1,0 +1,13 @@
+{
+  "name": "groups_memberships_previous_refresh",
+  "version": "0.0.1",
+  "description": "Overwrites 'previous' file with 'now' file to prepare for the next diff calculation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+  }
+}

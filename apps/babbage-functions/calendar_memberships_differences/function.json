@@ -1,0 +1,37 @@
+{
+  "bindings": [
+    {
+      "name": "req",
+      "type": "httpTrigger",
+      "webHookType": "genericJson",
+      "direction": "in"
+    },
+    {
+      "name": "membershipsActual",
+      "type": "blob",
+      "path": "calendar-memberships-actual/{calendar}.json",
+      "connection": "wrdsbcodex_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "membershipsIPPS",
+      "type": "blob",
+      "path": "calendar-memberships-ipps/{calendar}.json",
+      "connection": "wrdsbcodex_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "membershipsDiff",
+      "type": "blob",
+      "path": "calendar-memberships-differences/{calendar}.json",
+      "connection": "wrdsbbabbage_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}

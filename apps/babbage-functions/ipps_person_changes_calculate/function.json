@@ -1,0 +1,23 @@
+{
+  "bindings": [
+    {
+      "name": "req",
+      "type": "httpTrigger",
+      "webHookType": "genericJson",
+      "direction": "in"
+    },
+    {
+      "name": "flynnGrid",
+      "type": "eventHub",
+      "path": "flynn-events",
+      "connection": "wrdsb-flynn_EVENTHUB",
+      "direction": "out"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}

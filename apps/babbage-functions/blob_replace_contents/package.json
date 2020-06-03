@@ -1,0 +1,13 @@
+{
+    "name": "blob_replace_contents",
+    "version": "0.0.1",
+    "description": "Replace the contents of one blob with those of another, on demand.",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {}
+  }
+  

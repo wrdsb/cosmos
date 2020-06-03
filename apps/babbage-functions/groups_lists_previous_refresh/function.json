@@ -1,0 +1,30 @@
+{
+  "bindings": [
+    {
+      "name": "req",
+      "type": "httpTrigger",
+      "webHookType": "genericJson",
+      "direction": "in"
+    },
+    {
+      "name": "groupsListNow",
+      "type": "blob",
+      "path": "groups-lists/{list}-object.json",
+      "connection": "wrdsbcodex_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "groupsListPrevious",
+      "type": "blob",
+      "path": "groups-lists-previous/{list}-object.json",
+      "connection": "wrdsbbabbage_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}

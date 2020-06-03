@@ -1,0 +1,30 @@
+{
+  "bindings": [
+    {
+      "name": "req",
+      "type": "httpTrigger",
+      "webHookType": "genericJson",
+      "direction": "in"
+    },
+    {
+      "name": "groupSettingsNow",
+      "type": "blob",
+      "path": "groups-settings/{group}.json",
+      "connection": "wrdsbcodex_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "groupSettingsPrevious",
+      "type": "blob",
+      "path": "groups-settings-previous/{group}.json",
+      "connection": "wrdsbbabbage_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
