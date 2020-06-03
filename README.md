@@ -42,6 +42,10 @@
 * [radar-console](https://github.com/wrdsb/cosmos/tree/master/apps/radar-console): RADAR's frontend Angular app
 * [radar-functions](https://github.com/wrdsb/cosmos/tree/master/apps/radar-functions): RADAR's backend Azure Functions app
 
+### Relay
+* [relay-console](https://github.com/wrdsb/cosmos/tree/master/apps/relay-console): Relay's frontend Angular app
+* [relay-functions](https://github.com/wrdsb/cosmos/tree/master/apps/relay-functions): Relay's backend Azure Functions app
+
 ### Skinner
 * [skinner-console](https://github.com/wrdsb/cosmos/tree/master/apps/skinner-console): Skinner's frontend Angular app
 * [skinner-functions](https://github.com/wrdsb/cosmos/tree/master/apps/skinner-functions): Skinner's backend Azure Functions app
@@ -90,6 +94,9 @@
 
 ### RADAR
 * [radar-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/radar-console-e2e): E2E tests for RADAR's frontend Angular app
+
+### Relay
+* [relay-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/relay-console-e2e): E2E tests for Relay's frontend Angular app
 
 ### Skinner
 * [skinner-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/skinner-console-e2e): E2E tests for Skinner's frontend Angular app
