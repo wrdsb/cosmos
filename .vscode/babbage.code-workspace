@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/babbage-console"
+		},
+		{
+			"path": "../apps/babbage-console-e2e"
+		},
+		{
+			"path": "../apps/babbage-functions"
+		}
+	]
+}
