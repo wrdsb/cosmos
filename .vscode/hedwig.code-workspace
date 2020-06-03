@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/hedwig-console"
+		},
+		{
+			"path": "../apps/hedwig-console-e2e"
+		},
+		{
+			"path": "../apps/hedwig-functions"
+		}
+	]
+}
