@@ -2,6 +2,10 @@
 
 ## Applications
 
+### Babbage
+* [babbage-console](https://github.com/wrdsb/cosmos/tree/master/apps/babbage-console): Babbage's frontend Angular app
+* [babbage-functions](https://github.com/wrdsb/cosmos/tree/master/apps/babbage-functions): Babbage's backend Azure Functions app
+
 ### Claptrap
 * [claptrap-console](https://github.com/wrdsb/cosmos/tree/master/apps/claptrap-console): Claptrap's frontend Angular app
 * [claptrap-functions](https://github.com/wrdsb/cosmos/tree/master/apps/claptrap-functions): Claptrap's backend Azure Functions app
@@ -64,6 +68,9 @@
 
 
 ## End-to-End Testing Apps
+
+### Babbage
+* [babbage-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/babbage-console-e2e): E2E tests for Babbage's frontend Angular app
 
 ### Claptrap
 * [claptrap-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/claptrap-console-e2e): E2E tests for Claptrap's frontend Angular app
