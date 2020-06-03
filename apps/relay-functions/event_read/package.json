@@ -1,0 +1,15 @@
+{
+    "name": "event_read",
+    "version": "0.0.1",
+    "description": "Reads the details of an event (vertex) in the Relay database, including incoming and outgoing connections.",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "async": "^2.6.0",
+        "gremlin": "^2.6.0"
+    }
+  }

@@ -1,0 +1,33 @@
+{
+    "bindings": [
+      {
+        "name": "req",
+        "type": "httpTrigger",
+        "webHookType": "genericJson",
+        "direction": "in",
+        "methods": [
+          "post"
+        ]
+      },
+      {
+        "name": "outBlob",
+        "type": "blob",
+        "path": "event-objects/{id}.json",
+        "connection": "wrdsbrelay_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "flynnGrid",
+        "type": "eventHub",
+        "path": "hopper",
+        "connection": "wrdsb-flynn_EVENTHUB",
+        "direction": "out"
+      },
+      {
+        "name": "res",
+        "type": "http",
+        "direction": "out"
+      }
+    ],
+    "disabled": false
+  }

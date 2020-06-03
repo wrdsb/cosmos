@@ -1,0 +1,26 @@
+{
+    "bindings": [
+      {
+        "name": "req",
+        "type": "httpTrigger",
+        "webHookType": "genericJson",
+        "direction": "in",
+        "methods": [
+          "post"
+        ]
+      },
+      {
+        "type": "blob",
+        "name": "outBlob",
+        "path": "event-objects/{id}.json",
+        "connection": "wrdsbrelay_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "res",
+        "type": "http",
+        "direction": "out"
+      }
+    ],
+    "disabled": false
+  }

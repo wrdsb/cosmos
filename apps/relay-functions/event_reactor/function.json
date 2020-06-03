@@ -1,0 +1,21 @@
+{
+  "bindings": [
+    {
+      "name": "triggerEvent",
+      "type": "eventHubTrigger",
+      "connection": "wrdsb-flynn_EVENTHUB",
+      "path": "flynn-events",
+      "consumerGroup": "relay",
+      "cardinality": "one",
+      "direction": "in"
+    },
+    {
+      "name": "crankcaseRequest",
+      "type": "queue",
+      "queueName": "requests",
+      "connection": "wrdsbcrankcase_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
