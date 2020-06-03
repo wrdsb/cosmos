@@ -22,6 +22,10 @@
 * [hagar-console](https://github.com/wrdsb/cosmos/tree/master/apps/hagar-console): HAGAR's frontend Angular app
 * [hagar-functions](https://github.com/wrdsb/cosmos/tree/master/apps/hagar-functions): HAGAR's backend Azure Functions app
 
+### Hedwig
+* [hedwig-console](https://github.com/wrdsb/cosmos/tree/master/apps/hedwig-console): Hedwig's frontend Angular app
+* [hedwig-functions](https://github.com/wrdsb/cosmos/tree/master/apps/hedwig-functions): Hedwig's backend Azure Functions app
+
 ### Houston
 * [houston-console](https://github.com/wrdsb/cosmos/tree/master/apps/houston-console): Houston's frontend Angular app
 * [houston-functions](https://github.com/wrdsb/cosmos/tree/master/apps/houston-functions): Houston's backend Azure Functions app
@@ -86,6 +90,9 @@
 
 ### Houston
 * [houston-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/houston-console-e2e): E2E tests for Houston's frontend Angular app
+
+### Hedwig
+* [hedwig-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/hedwig-console-e2e): E2E tests for Hedwig's frontend Angular app
 
 ### IGOR
 * [igor-console-e2e](https://github.com/wrdsb/cosmos/tree/master/apps/igor-console-e2e): E2E tests for IGOR's frontend Angular app
