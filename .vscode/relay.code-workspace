@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../apps/relay-console"
+		},
+		{
+			"path": "../apps/relay-console-e2e"
+		},
+		{
+			"path": "../apps/relay-functions"
+		}
+	]
+}
