@@ -25,7 +25,9 @@
               "apps/panama-console/src/favicon.ico",
               "apps/panama-console/src/assets"
             ],
-            "styles": ["apps/panama-console/src/styles.scss"],
+            "styles": [
+              "apps/panama-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -83,7 +85,10 @@
               "apps/panama-console/tsconfig.app.json",
               "apps/panama-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/panama-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/panama-console/**"
+            ]
           }
         },
         "test": {
@@ -118,8 +123,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/panama-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/panama-console-e2e/**"]
+            "tsConfig": [
+              "apps/panama-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/panama-console-e2e/**"
+            ]
           }
         }
       }
@@ -148,7 +158,9 @@
               "apps/igor-console/src/favicon.ico",
               "apps/igor-console/src/assets"
             ],
-            "styles": ["apps/igor-console/src/styles.scss"],
+            "styles": [
+              "apps/igor-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -206,7 +218,10 @@
               "apps/igor-console/tsconfig.app.json",
               "apps/igor-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/igor-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igor-console/**"
+            ]
           }
         },
         "test": {
@@ -241,8 +256,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/igor-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/igor-console-e2e/**"]
+            "tsConfig": [
+              "apps/igor-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igor-console-e2e/**"
+            ]
           }
         }
       }
@@ -271,7 +291,9 @@
               "apps/hagar-console/src/favicon.ico",
               "apps/hagar-console/src/assets"
             ],
-            "styles": ["apps/hagar-console/src/styles.scss"],
+            "styles": [
+              "apps/hagar-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -329,7 +351,10 @@
               "apps/hagar-console/tsconfig.app.json",
               "apps/hagar-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/hagar-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hagar-console/**"
+            ]
           }
         },
         "test": {
@@ -364,8 +389,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/hagar-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/hagar-console-e2e/**"]
+            "tsConfig": [
+              "apps/hagar-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hagar-console-e2e/**"
+            ]
           }
         }
       }
@@ -394,7 +424,9 @@
               "apps/sorting-hat-console/src/favicon.ico",
               "apps/sorting-hat-console/src/assets"
             ],
-            "styles": ["apps/sorting-hat-console/src/styles.scss"],
+            "styles": [
+              "apps/sorting-hat-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -452,7 +484,10 @@
               "apps/sorting-hat-console/tsconfig.app.json",
               "apps/sorting-hat-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/sorting-hat-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/sorting-hat-console/**"
+            ]
           }
         },
         "test": {
@@ -487,7 +522,9 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/sorting-hat-console-e2e/tsconfig.e2e.json"],
+            "tsConfig": [
+              "apps/sorting-hat-console-e2e/tsconfig.e2e.json"
+            ],
             "exclude": [
               "**/node_modules/**",
               "!apps/sorting-hat-console-e2e/**"
@@ -520,7 +557,9 @@
               "apps/viewfinder-console/src/favicon.ico",
               "apps/viewfinder-console/src/assets"
             ],
-            "styles": ["apps/viewfinder-console/src/styles.scss"],
+            "styles": [
+              "apps/viewfinder-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -578,7 +617,10 @@
               "apps/viewfinder-console/tsconfig.app.json",
               "apps/viewfinder-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/viewfinder-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/viewfinder-console/**"
+            ]
           }
         },
         "test": {
@@ -613,8 +655,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/viewfinder-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/viewfinder-console-e2e/**"]
+            "tsConfig": [
+              "apps/viewfinder-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/viewfinder-console-e2e/**"
+            ]
           }
         }
       }
@@ -643,7 +690,9 @@
               "apps/houston-console/src/favicon.ico",
               "apps/houston-console/src/assets"
             ],
-            "styles": ["apps/houston-console/src/styles.scss"],
+            "styles": [
+              "apps/houston-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -701,7 +750,10 @@
               "apps/houston-console/tsconfig.app.json",
               "apps/houston-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/houston-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/houston-console/**"
+            ]
           }
         },
         "test": {
@@ -736,8 +788,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/houston-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/houston-console-e2e/**"]
+            "tsConfig": [
+              "apps/houston-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/houston-console-e2e/**"
+            ]
           }
         }
       }
@@ -766,7 +823,9 @@
               "apps/codex-console/src/favicon.ico",
               "apps/codex-console/src/assets"
             ],
-            "styles": ["apps/codex-console/src/styles.scss"],
+            "styles": [
+              "apps/codex-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -824,7 +883,10 @@
               "apps/codex-console/tsconfig.app.json",
               "apps/codex-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/codex-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/codex-console/**"
+            ]
           }
         },
         "test": {
@@ -859,8 +921,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/codex-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/codex-console-e2e/**"]
+            "tsConfig": [
+              "apps/codex-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/codex-console-e2e/**"
+            ]
           }
         }
       }
@@ -878,7 +945,10 @@
               "libs/igor-types/tsconfig.lib.json",
               "libs/igor-types/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/igor-types/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/igor-types/**"
+            ]
           }
         },
         "test": {
@@ -904,7 +974,10 @@
               "libs/hagar-types/tsconfig.lib.json",
               "libs/hagar-types/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/hagar-types/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/hagar-types/**"
+            ]
           }
         },
         "test": {
@@ -930,7 +1003,10 @@
               "libs/azure-functions-shared/tsconfig.lib.json",
               "libs/azure-functions-shared/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/azure-functions-shared/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/azure-functions-shared/**"
+            ]
           }
         },
         "test": {
@@ -956,7 +1032,10 @@
               "libs/sorting-hat/tsconfig.lib.json",
               "libs/sorting-hat/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/sorting-hat/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/sorting-hat/**"
+            ]
           }
         },
         "test": {
@@ -988,7 +1067,10 @@
               "libs/sorting-hat-types/tsconfig.lib.json",
               "libs/sorting-hat-types/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/sorting-hat-types/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/sorting-hat-types/**"
+            ]
           }
         },
         "test": {
@@ -1020,7 +1102,9 @@
             "outputPath": "dist/apps/sorting-hat-functions",
             "main": "apps/sorting-hat-functions/src/main.ts",
             "tsConfig": "apps/sorting-hat-functions/tsconfig.app.json",
-            "assets": ["apps/sorting-hat-functions/src/assets"]
+            "assets": [
+              "apps/sorting-hat-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1049,7 +1133,10 @@
               "apps/sorting-hat-functions/tsconfig.app.json",
               "apps/sorting-hat-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/sorting-hat-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/sorting-hat-functions/**"
+            ]
           }
         },
         "test": {
@@ -1075,7 +1162,9 @@
             "outputPath": "dist/apps/igor-functions",
             "main": "apps/igor-functions/src/main.ts",
             "tsConfig": "apps/igor-functions/tsconfig.app.json",
-            "assets": ["apps/igor-functions/src/assets"]
+            "assets": [
+              "apps/igor-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1104,7 +1193,10 @@
               "apps/igor-functions/tsconfig.app.json",
               "apps/igor-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/igor-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igor-functions/**"
+            ]
           }
         },
         "test": {
@@ -1130,7 +1222,9 @@
             "outputPath": "dist/apps/hagar-functions",
             "main": "apps/hagar-functions/src/main.ts",
             "tsConfig": "apps/hagar-functions/tsconfig.app.json",
-            "assets": ["apps/hagar-functions/src/assets"]
+            "assets": [
+              "apps/hagar-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1159,7 +1253,10 @@
               "apps/hagar-functions/tsconfig.app.json",
               "apps/hagar-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/hagar-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hagar-functions/**"
+            ]
           }
         },
         "test": {
@@ -1185,7 +1282,9 @@
             "outputPath": "dist/apps/skyline-functions",
             "main": "apps/skyline-functions/src/main.ts",
             "tsConfig": "apps/skyline-functions/tsconfig.app.json",
-            "assets": ["apps/skyline-functions/src/assets"]
+            "assets": [
+              "apps/skyline-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1214,7 +1313,10 @@
               "apps/skyline-functions/tsconfig.app.json",
               "apps/skyline-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/skyline-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skyline-functions/**"
+            ]
           }
         },
         "test": {
@@ -1240,7 +1342,9 @@
             "outputPath": "dist/apps/skinner-functions",
             "main": "apps/skinner-functions/src/main.ts",
             "tsConfig": "apps/skinner-functions/tsconfig.app.json",
-            "assets": ["apps/skinner-functions/src/assets"]
+            "assets": [
+              "apps/skinner-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1269,7 +1373,10 @@
               "apps/skinner-functions/tsconfig.app.json",
               "apps/skinner-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/skinner-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skinner-functions/**"
+            ]
           }
         },
         "test": {
@@ -1295,7 +1402,9 @@
             "outputPath": "dist/apps/flenderson-functions",
             "main": "apps/flenderson-functions/src/main.ts",
             "tsConfig": "apps/flenderson-functions/tsconfig.app.json",
-            "assets": ["apps/flenderson-functions/src/assets"]
+            "assets": [
+              "apps/flenderson-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1324,7 +1433,10 @@
               "apps/flenderson-functions/tsconfig.app.json",
               "apps/flenderson-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/flenderson-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flenderson-functions/**"
+            ]
           }
         },
         "test": {
@@ -1350,7 +1462,9 @@
             "outputPath": "dist/apps/panama-functions",
             "main": "apps/panama-functions/src/main.ts",
             "tsConfig": "apps/panama-functions/tsconfig.app.json",
-            "assets": ["apps/panama-functions/src/assets"]
+            "assets": [
+              "apps/panama-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1379,7 +1493,10 @@
               "apps/panama-functions/tsconfig.app.json",
               "apps/panama-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/panama-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/panama-functions/**"
+            ]
           }
         },
         "test": {
@@ -1405,7 +1522,9 @@
             "outputPath": "dist/apps/radar-functions",
             "main": "apps/radar-functions/src/main.ts",
             "tsConfig": "apps/radar-functions/tsconfig.app.json",
-            "assets": ["apps/radar-functions/src/assets"]
+            "assets": [
+              "apps/radar-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1434,7 +1553,10 @@
               "apps/radar-functions/tsconfig.app.json",
               "apps/radar-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/radar-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/radar-functions/**"
+            ]
           }
         },
         "test": {
@@ -1460,7 +1582,9 @@
             "outputPath": "dist/apps/lamson-functions",
             "main": "apps/lamson-functions/src/main.ts",
             "tsConfig": "apps/lamson-functions/tsconfig.app.json",
-            "assets": ["apps/lamson-functions/src/assets"]
+            "assets": [
+              "apps/lamson-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1489,7 +1613,10 @@
               "apps/lamson-functions/tsconfig.app.json",
               "apps/lamson-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/lamson-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/lamson-functions/**"
+            ]
           }
         },
         "test": {
@@ -1515,7 +1642,9 @@
             "outputPath": "dist/apps/houston-functions",
             "main": "apps/houston-functions/src/main.ts",
             "tsConfig": "apps/houston-functions/tsconfig.app.json",
-            "assets": ["apps/houston-functions/src/assets"]
+            "assets": [
+              "apps/houston-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1544,7 +1673,10 @@
               "apps/houston-functions/tsconfig.app.json",
               "apps/houston-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/houston-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/houston-functions/**"
+            ]
           }
         },
         "test": {
@@ -1570,7 +1702,9 @@
             "outputPath": "dist/apps/codex-functions",
             "main": "apps/codex-functions/src/main.ts",
             "tsConfig": "apps/codex-functions/tsconfig.app.json",
-            "assets": ["apps/codex-functions/src/assets"]
+            "assets": [
+              "apps/codex-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -1599,7 +1733,10 @@
               "apps/codex-functions/tsconfig.app.json",
               "apps/codex-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/codex-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/codex-functions/**"
+            ]
           }
         },
         "test": {
@@ -1636,7 +1773,9 @@
               "apps/flenderson-console/src/favicon.ico",
               "apps/flenderson-console/src/assets"
             ],
-            "styles": ["apps/flenderson-console/src/styles.scss"],
+            "styles": [
+              "apps/flenderson-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -1694,7 +1833,10 @@
               "apps/flenderson-console/tsconfig.app.json",
               "apps/flenderson-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/flenderson-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flenderson-console/**"
+            ]
           }
         },
         "test": {
@@ -1729,8 +1871,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/flenderson-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/flenderson-console-e2e/**"]
+            "tsConfig": [
+              "apps/flenderson-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flenderson-console-e2e/**"
+            ]
           }
         }
       }
@@ -1759,7 +1906,9 @@
               "apps/lamson-console/src/favicon.ico",
               "apps/lamson-console/src/assets"
             ],
-            "styles": ["apps/lamson-console/src/styles.scss"],
+            "styles": [
+              "apps/lamson-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -1817,7 +1966,10 @@
               "apps/lamson-console/tsconfig.app.json",
               "apps/lamson-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/lamson-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/lamson-console/**"
+            ]
           }
         },
         "test": {
@@ -1852,8 +2004,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/lamson-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/lamson-console-e2e/**"]
+            "tsConfig": [
+              "apps/lamson-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/lamson-console-e2e/**"
+            ]
           }
         }
       }
@@ -1882,7 +2039,9 @@
               "apps/radar-console/src/favicon.ico",
               "apps/radar-console/src/assets"
             ],
-            "styles": ["apps/radar-console/src/styles.scss"],
+            "styles": [
+              "apps/radar-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -1940,7 +2099,10 @@
               "apps/radar-console/tsconfig.app.json",
               "apps/radar-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/radar-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/radar-console/**"
+            ]
           }
         },
         "test": {
@@ -1975,8 +2137,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/radar-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/radar-console-e2e/**"]
+            "tsConfig": [
+              "apps/radar-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/radar-console-e2e/**"
+            ]
           }
         }
       }
@@ -2005,7 +2172,9 @@
               "apps/skinner-console/src/favicon.ico",
               "apps/skinner-console/src/assets"
             ],
-            "styles": ["apps/skinner-console/src/styles.scss"],
+            "styles": [
+              "apps/skinner-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2063,7 +2232,10 @@
               "apps/skinner-console/tsconfig.app.json",
               "apps/skinner-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/skinner-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skinner-console/**"
+            ]
           }
         },
         "test": {
@@ -2098,8 +2270,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/skinner-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/skinner-console-e2e/**"]
+            "tsConfig": [
+              "apps/skinner-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skinner-console-e2e/**"
+            ]
           }
         }
       }
@@ -2128,7 +2305,9 @@
               "apps/skyline-console/src/favicon.ico",
               "apps/skyline-console/src/assets"
             ],
-            "styles": ["apps/skyline-console/src/styles.scss"],
+            "styles": [
+              "apps/skyline-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2186,7 +2365,10 @@
               "apps/skyline-console/tsconfig.app.json",
               "apps/skyline-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/skyline-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skyline-console/**"
+            ]
           }
         },
         "test": {
@@ -2221,8 +2403,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/skyline-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/skyline-console-e2e/**"]
+            "tsConfig": [
+              "apps/skyline-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skyline-console-e2e/**"
+            ]
           }
         }
       }
@@ -2240,7 +2427,9 @@
             "outputPath": "dist/apps/viewfinder-functions",
             "main": "apps/viewfinder-functions/src/main.ts",
             "tsConfig": "apps/viewfinder-functions/tsconfig.app.json",
-            "assets": ["apps/viewfinder-functions/src/assets"]
+            "assets": [
+              "apps/viewfinder-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -2269,7 +2458,10 @@
               "apps/viewfinder-functions/tsconfig.app.json",
               "apps/viewfinder-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/viewfinder-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/viewfinder-functions/**"
+            ]
           }
         },
         "test": {
@@ -2306,7 +2498,9 @@
               "apps/claptrap-console/src/favicon.ico",
               "apps/claptrap-console/src/assets"
             ],
-            "styles": ["apps/claptrap-console/src/styles.scss"],
+            "styles": [
+              "apps/claptrap-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2364,7 +2558,10 @@
               "apps/claptrap-console/tsconfig.app.json",
               "apps/claptrap-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/claptrap-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/claptrap-console/**"
+            ]
           }
         },
         "test": {
@@ -2399,8 +2596,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/claptrap-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/claptrap-console-e2e/**"]
+            "tsConfig": [
+              "apps/claptrap-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/claptrap-console-e2e/**"
+            ]
           }
         }
       }
@@ -2418,7 +2620,9 @@
             "outputPath": "dist/apps/claptrap-functions",
             "main": "apps/claptrap-functions/src/main.ts",
             "tsConfig": "apps/claptrap-functions/tsconfig.app.json",
-            "assets": ["apps/claptrap-functions/src/assets"]
+            "assets": [
+              "apps/claptrap-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -2447,7 +2651,10 @@
               "apps/claptrap-functions/tsconfig.app.json",
               "apps/claptrap-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/claptrap-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/claptrap-functions/**"
+            ]
           }
         },
         "test": {
@@ -2484,7 +2691,9 @@
               "apps/mcp-console/src/favicon.ico",
               "apps/mcp-console/src/assets"
             ],
-            "styles": ["apps/mcp-console/src/styles.scss"],
+            "styles": [
+              "apps/mcp-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2542,7 +2751,10 @@
               "apps/mcp-console/tsconfig.app.json",
               "apps/mcp-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/mcp-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/mcp-console/**"
+            ]
           }
         },
         "test": {
@@ -2577,8 +2789,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/mcp-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/mcp-console-e2e/**"]
+            "tsConfig": [
+              "apps/mcp-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/mcp-console-e2e/**"
+            ]
           }
         }
       }
@@ -2596,7 +2813,9 @@
             "outputPath": "dist/apps/mcp-functions",
             "main": "apps/mcp-functions/src/main.ts",
             "tsConfig": "apps/mcp-functions/tsconfig.app.json",
-            "assets": ["apps/mcp-functions/src/assets"]
+            "assets": [
+              "apps/mcp-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -2625,7 +2844,10 @@
               "apps/mcp-functions/tsconfig.app.json",
               "apps/mcp-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/mcp-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/mcp-functions/**"
+            ]
           }
         },
         "test": {
@@ -2662,7 +2884,9 @@
               "apps/relay-console/src/favicon.ico",
               "apps/relay-console/src/assets"
             ],
-            "styles": ["apps/relay-console/src/styles.scss"],
+            "styles": [
+              "apps/relay-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2720,7 +2944,10 @@
               "apps/relay-console/tsconfig.app.json",
               "apps/relay-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/relay-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/relay-console/**"
+            ]
           }
         },
         "test": {
@@ -2755,8 +2982,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/relay-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/relay-console-e2e/**"]
+            "tsConfig": [
+              "apps/relay-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/relay-console-e2e/**"
+            ]
           }
         }
       }
@@ -2774,7 +3006,9 @@
             "outputPath": "dist/apps/relay-functions",
             "main": "apps/relay-functions/src/main.ts",
             "tsConfig": "apps/relay-functions/tsconfig.app.json",
-            "assets": ["apps/relay-functions/src/assets"]
+            "assets": [
+              "apps/relay-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -2803,7 +3037,10 @@
               "apps/relay-functions/tsconfig.app.json",
               "apps/relay-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/relay-functions/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/relay-functions/**"
+            ]
           }
         },
         "test": {
@@ -2840,7 +3077,9 @@
               "apps/babbage-console/src/favicon.ico",
               "apps/babbage-console/src/assets"
             ],
-            "styles": ["apps/babbage-console/src/styles.scss"],
+            "styles": [
+              "apps/babbage-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2898,7 +3137,10 @@
               "apps/babbage-console/tsconfig.app.json",
               "apps/babbage-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/babbage-console/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/babbage-console/**"
+            ]
           }
         },
         "test": {
@@ -2933,8 +3175,73 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/babbage-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/babbage-console-e2e/**"]
+            "tsConfig": [
+              "apps/babbage-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/babbage-console-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "babbage-functions": {
+      "root": "apps/babbage-functions",
+      "sourceRoot": "apps/babbage-functions/src",
+      "projectType": "application",
+      "prefix": "babbage-functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/babbage-functions",
+            "main": "apps/babbage-functions/src/main.ts",
+            "tsConfig": "apps/babbage-functions/tsconfig.app.json",
+            "assets": [
+              "apps/babbage-functions/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/babbage-functions/src/environments/environment.ts",
+                  "with": "apps/babbage-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "babbage-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/babbage-functions/tsconfig.app.json",
+              "apps/babbage-functions/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/babbage-functions/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/babbage-functions/jest.config.js",
+            "tsConfig": "apps/babbage-functions/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
