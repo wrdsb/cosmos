@@ -26,7 +26,8 @@
       "@cosmos/ui": ["libs/ui/src/index.ts"],
       "@cosmos/ui-layout": ["libs/ui-layout/src/index.ts"],
       "@cosmos/ui-navigation": ["libs/ui-navigation/src/index.ts"],
-      "@cosmos/ui-panels": ["libs/ui-panels/src/index.ts"]
+      "@cosmos/ui-panels": ["libs/ui-panels/src/index.ts"],
+      "@cosmos/ui-theme": ["libs/ui-theme/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

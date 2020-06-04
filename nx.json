@@ -215,6 +215,9 @@
     },
     "ui-panels": {
       "tags": []
+    },
+    "ui-theme": {
+      "tags": []
     }
   }
 }

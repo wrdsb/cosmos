@@ -3299,6 +3299,38 @@
           "style": "scss"
         }
       }
+    },
+    "ui-theme": {
+      "projectType": "library",
+      "root": "libs/ui-theme",
+      "sourceRoot": "libs/ui-theme/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui-theme/tsconfig.lib.json",
+              "libs/ui-theme/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-theme/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-theme/jest.config.js",
+            "tsConfig": "libs/ui-theme/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ui-theme/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
