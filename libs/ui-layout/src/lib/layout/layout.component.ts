@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UILayoutService } from "../ui-layout.service";
 
 @Component({
   selector: 'cosmos-layout',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
+  showNav = false;
 
-  constructor() { }
+  constructor(
+    private layoutService: UILayoutService
+  ) { }
 
   ngOnInit(): void {
   }
