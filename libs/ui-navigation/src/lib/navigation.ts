@@ -1,4 +1,4 @@
-import { Menu } from "./menu.model";
+import { Menu } from "@cosmos/ui";
 
 export const SIDE: Menu = {
     links: [
