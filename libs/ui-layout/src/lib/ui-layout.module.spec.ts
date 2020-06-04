@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { UiLayoutModule } from './ui-layout.module';
+import { UILayoutModule } from './ui-layout.module';
 
-describe('UiLayoutModule', () => {
+describe('UILayoutModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [UiLayoutModule]
+      imports: [UILayoutModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(UiLayoutModule).toBeDefined();
+    expect(UILayoutModule).toBeDefined();
   });
 });

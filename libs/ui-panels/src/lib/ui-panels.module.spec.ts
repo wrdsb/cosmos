@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { UiPanelsModule } from './ui-panels.module';
+import { UIPanelsModule } from './ui-panels.module';
 
-describe('UiPanelsModule', () => {
+describe('UIPanelsModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [UiPanelsModule]
+      imports: [UIPanelsModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(UiPanelsModule).toBeDefined();
+    expect(UIPanelsModule).toBeDefined();
   });
 });

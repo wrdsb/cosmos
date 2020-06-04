@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { UiThemeModule } from './ui-theme.module';
+import { UIThemeModule } from './ui-theme.module';
 
-describe('UiThemeModule', () => {
+describe('UIThemeModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [UiThemeModule]
+      imports: [UIThemeModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(UiThemeModule).toBeDefined();
+    expect(UIThemeModule).toBeDefined();
   });
 });

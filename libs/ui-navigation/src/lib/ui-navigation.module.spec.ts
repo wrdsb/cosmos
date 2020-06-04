@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { UiNavigationModule } from './ui-navigation.module';
+import { UINavigationModule } from './ui-navigation.module';
 
-describe('UiNavigationModule', () => {
+describe('UINavigationModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [UiNavigationModule]
+      imports: [UINavigationModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(UiNavigationModule).toBeDefined();
+    expect(UINavigationModule).toBeDefined();
   });
 });

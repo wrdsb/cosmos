@@ -13,4 +13,4 @@ import { SidebarRightComponent } from './sidebar-right/sidebar-right.component';
   declarations: [FooterComponent, HeaderComponent, LayoutComponent, PanelLeftComponent, PanelRightComponent, SidebarLeftComponent, SidebarRightComponent],
   exports: [FooterComponent, HeaderComponent, LayoutComponent, PanelLeftComponent, PanelRightComponent, SidebarLeftComponent, SidebarRightComponent]
 })
-export class UiLayoutModule {}
+export class UILayoutModule {}
