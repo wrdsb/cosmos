@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { Menu } from "./menu.model";
+import { Menu } from "@cosmos/ui";
 import { FOOTER } from "./navigation";
 import { HEADER } from "./navigation";
 import { SIDE } from "./navigation";
@@ -9,7 +9,7 @@ import { SIDE } from "./navigation";
 @Injectable({
   providedIn: 'root'
 })
-export class NavigationService {
+export class UINavigationService {
   constructor() { }
 
   getFooter(): Observable<Menu> {
