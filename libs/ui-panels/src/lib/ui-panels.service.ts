@@ -4,7 +4,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PanelsService {
+export class UIPanelsService {
   private feedbackPanelEnabled = new BehaviorSubject<boolean>(false);
   readonly feedbackPanelEnabled$ = this.feedbackPanelEnabled.asObservable();
 
