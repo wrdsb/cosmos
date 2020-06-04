@@ -1,1 +1,5 @@
-<p>panel-left works!</p>
+<ng-container *ngIf="enabled">
+    <aside class="panelLeft" [class.showPanelLeft]="visible" [class.hidePanelLeft]="visible === false">
+        <p>panel-left works!</p>
+    </aside>
+</ng-container>
