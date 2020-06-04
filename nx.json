@@ -209,6 +209,9 @@
     },
     "ui-layout": {
       "tags": []
+    },
+    "ui-navigation": {
+      "tags": []
     }
   }
 }
