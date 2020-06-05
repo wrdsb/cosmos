@@ -29,7 +29,8 @@
       "@cosmos/ui-panels": ["libs/ui-panels/src/index.ts"],
       "@cosmos/ui-theme": ["libs/ui-theme/src/index.ts"],
       "@cosmos/powder-coat": ["libs/powder-coat/src/index.ts"],
-      "@cosmos/chassis": ["libs/chassis/src/index.ts"]
+      "@cosmos/chassis": ["libs/chassis/src/index.ts"],
+      "@cosmos/panels": ["libs/panels/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

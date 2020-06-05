@@ -224,6 +224,9 @@
     },
     "chassis": {
       "tags": []
+    },
+    "panels": {
+      "tags": []
     }
   }
 }
