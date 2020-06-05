@@ -2,11 +2,7 @@
     <header class="header" [class.showHeader]="visible" [class.hideHeader]="visible === false">
         <cosmos-toggle-slidin-left></cosmos-toggle-slidin-left>
         
-        <!--
-            The unusual handling of showNav ensures that the nav animations are only
-            triggered at the appropriate points.
-        -->
-        <a routerLink="/" (click)="toggleShowSlideinLeft()">
+        <a routerLink="/">
             <h1>{{ title }}</h1>
         </a>
   
