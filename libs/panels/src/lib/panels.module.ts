@@ -4,10 +4,11 @@ import { FeedbackPanelComponent } from './feedback-panel/feedback-panel.componen
 import { HelpPanelComponent } from './help-panel/help-panel.component';
 import { MenuPanelComponent } from './menu-panel/menu-panel.component';
 import { NotifictaionsPanelComponent } from './notifictaions-panel/notifictaions-panel.component';
+import { ProfilePanelComponent } from './profile-panel/profile-panel.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [FeedbackPanelComponent, HelpPanelComponent, MenuPanelComponent, NotifictaionsPanelComponent],
-  exports: [FeedbackPanelComponent, HelpPanelComponent, MenuPanelComponent, NotifictaionsPanelComponent]
+  declarations: [FeedbackPanelComponent, HelpPanelComponent, MenuPanelComponent, NotifictaionsPanelComponent, ProfilePanelComponent],
+  exports: [FeedbackPanelComponent, HelpPanelComponent, MenuPanelComponent, NotifictaionsPanelComponent, ProfilePanelComponent]
 })
 export class PanelsModule {}
