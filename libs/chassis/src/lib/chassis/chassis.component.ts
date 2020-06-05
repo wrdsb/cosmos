@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChassisService } from "../chassis.service";
 
 @Component({
-  selector: 'cosmos-layout',
+  selector: 'cosmos-chassis',
   templateUrl: './chassis.component.html',
   styleUrls: ['./chassis.component.scss']
 })

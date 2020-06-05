@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { Menu } from "./core/navigation/menu.model";
-import { NavigationService } from "./core/navigation/navigation.service";
+import { Menu } from "@cosmos/ui";
+import { UINavigationService } from "@cosmos/ui-navigation";
 
 @Component({
   selector: 'app-root',

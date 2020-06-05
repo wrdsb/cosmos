@@ -5,10 +5,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './people-set-definitions/in-memory-data.service';
 
+import { ChassisModule } from "@cosmos/chassis";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CoreModule } from "./core/core.module";
 import { SharedModule } from "./shared/shared.module";
 import { HomePageComponent } from './home-page/home-page.component';
 
@@ -30,7 +31,7 @@ import { HomePageComponent } from './home-page/home-page.component';
       InMemoryDataService, { dataEncapsulation: false }
     ),
 
-    CoreModule,
+    ChassisModule,
     SharedModule
   ],
   providers: [],

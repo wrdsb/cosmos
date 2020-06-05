@@ -13,7 +13,7 @@ export class MenuPanelComponent implements OnInit {
   sideMenu: Menu;
 
   showNav: boolean;
-  showNav$ = this.chassisService.showNav$;
+  showNav$ = this.chassisService.sidebarLeftVisible$;
 
   constructor(
     private navigationService: UINavigationService,
@@ -40,7 +40,7 @@ export class MenuPanelComponent implements OnInit {
 
   toggleShowNav(): void {
     console.log(`set showNav to ${!this.showNav}`);
-    this.chassisService.setShowNav(!this.showNav);
+    this.chassisService.showSidebarLeft(!this.showNav);
     console.log(`current showNav ${this.showNav}`);
   }
 }
