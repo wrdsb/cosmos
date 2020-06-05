@@ -221,6 +221,9 @@
     },
     "powder-coat": {
       "tags": []
+    },
+    "chassis": {
+      "tags": []
     }
   }
 }
