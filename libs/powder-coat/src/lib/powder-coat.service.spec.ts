@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ThemeService } from './theme.service';
+import { PowderCoatService } from './powder-coat.service';
 
-describe('ThemeService', () => {
-  let service: ThemeService;
+describe('PowderCoatService', () => {
+  let service: PowderCoatService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ThemeService);
+    service = TestBed.inject(PowderCoatService);
   });
 
   it('should be created', () => {
