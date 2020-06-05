@@ -3325,6 +3325,38 @@
           "style": "scss"
         }
       }
+    },
+    "powder-coat": {
+      "projectType": "library",
+      "root": "libs/powder-coat",
+      "sourceRoot": "libs/powder-coat/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/powder-coat/tsconfig.lib.json",
+              "libs/powder-coat/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/powder-coat/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/powder-coat/jest.config.js",
+            "tsConfig": "libs/powder-coat/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/powder-coat/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
