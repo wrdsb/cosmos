@@ -1,8 +1,6 @@
 <ng-container *ngIf="enabled">
     <header class="header" [class.showHeader]="visible" [class.hideHeader]="visible === false">
-        <button (click)="toggleShowSlideinLeft()" class="material-icons">
-            {{ showSlideinLeft ? 'close' : 'menu' }}
-        </button>
+        <cosmos-toggle-slidin-left></cosmos-toggle-slidin-left>
         
         <!--
             The unusual handling of showNav ensures that the nav animations are only
@@ -15,9 +13,7 @@
         <ul *ngFor="let link of headerMenu.links">
             <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
         </ul>
-  
-        <button (click)="toggleShowSlideinRight()" class="material-icons">
-            {{ showSlideinRight ? 'close' : 'menu' }}
-        </button>
+
+        <cosmos-toggle-slidin-right></cosmos-toggle-slidin-right>
     </header>
 </ng-container>

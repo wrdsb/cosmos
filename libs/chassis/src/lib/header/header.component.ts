@@ -40,8 +40,6 @@ export class HeaderComponent implements OnInit {
     this.getVisible();
     this.getContent();
     this.getHeaderMenu();
-    this.getShowSlideinLeft();
-    this.getShowSlideinRight();
   }
 
   getEnabled(): void {
@@ -67,31 +65,5 @@ export class HeaderComponent implements OnInit {
 
   getHeaderMenu(): void {
     this.navigationService.getHeader().subscribe(menu => this.headerMenu = menu);
-  }
-
-  getShowSlideinLeft() {
-    this.showSlideinLeft$.subscribe(showSlideinLeft => 
-      this.showSlideinLeft = showSlideinLeft
-    );
-    console.log(`getShowSlideinLeft: ${this.showSlideinLeft}`);
-  }
-
-  toggleShowSlideinLeft(): void {
-    console.log(`set showSlideinLeft to: ${!this.showSlideinLeft}`);
-    this.chassisService.showSlideinLeft(!this.showSlideinLeft);
-    console.log(`current showSlideinLeft: ${this.showSlideinLeft}`);
-  }
-
-  getShowSlideinRight() {
-    this.showSlideinRight$.subscribe(showSlideinRight => 
-      this.showSlideinRight = showSlideinRight
-    );
-    console.log(`getShowSlideinRight: ${this.showSlideinRight}`);
-  }
-
-  toggleShowSlideinRight(): void {
-    console.log(`set showSlideinRight to: ${!this.showSlideinRight}`);
-    this.chassisService.showSlideinRight(!this.showSlideinRight);
-    console.log(`current showSlideinRight: ${this.showSlideinRight}`);
   }
 }
