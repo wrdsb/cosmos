@@ -1,5 +1,5 @@
 <ng-container *ngIf="enabled">
-    <header>
+    <header class="header" [class.showHeader]="visible" [class.hideHeader]="visible === false">
         <button (click)="toggleShowSlideinLeft()" class="material-icons">
             {{ showSlideinLeft ? 'close' : 'menu' }}
         </button>
@@ -19,6 +19,5 @@
         <button (click)="toggleShowSlideinRight()" class="material-icons">
             {{ showSlideinRight ? 'close' : 'menu' }}
         </button>
-  
     </header>
 </ng-container>

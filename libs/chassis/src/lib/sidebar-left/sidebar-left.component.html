@@ -1,4 +1,5 @@
 <ng-container *ngIf="enabled">
-    <p>sidebar-left works!</p>
-  </ng-container>
-  
+    <div class="sidebarRight" [class.showSidbarRight]="visible" [class.hideSidebarRight]="visible === false">
+        {{content}}
+    </div>
+</ng-container>
