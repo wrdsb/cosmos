@@ -1,6 +1,0 @@
-<nav (click)="toggleShowNav()" [class.showNav]="showNav" [class.hideNav]="showNav === false">
-  <ul *ngFor="let link of sideMenu.links">
-    <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
-  </ul>
-</nav>
-    
