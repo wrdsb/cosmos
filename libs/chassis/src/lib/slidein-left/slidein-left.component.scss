@@ -1,8 +1,8 @@
 :host {
-    grid-area: panelRight;
+    grid-area: slideinLeft;
   }
   
-  .panelRight {
+  .slideinLeft {
     height: 100%;
   
     transform: translateX(-9999px);
@@ -37,7 +37,7 @@
     }
   }
   
-  @keyframes slideInRight {
+  @keyframes slideInLeft {
     from {
       transform: translateY(-9999px);
     }
@@ -47,7 +47,7 @@
     }
   }
   
-  @keyframes slideOutRight {
+  @keyframes slideOutLeft {
     from {
       transform: translateY(0);
     }
@@ -57,13 +57,13 @@
     }
   }
   
-  .showPanelRight {
-    animation: slideInRight 500ms;
-    animation-fill-mode: forwards
+  .showSlideinLeft {
+    animation: slideInLeft 500ms;
+    animation-fill-mode: forwards;
   }
   
-  .hidePanelRight {
-    animation: slideOutRight 500ms;
+  .hideSlideinLeft {
+    animation: slideOutLeft 500ms;
     animation-fill-mode: forwards;
   }
   

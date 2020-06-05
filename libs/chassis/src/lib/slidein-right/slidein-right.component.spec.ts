@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PanelLeftComponent } from './panel-left.component';
+import { SlideinRightComponent } from './slidein-right.component';
 
-describe('PanelLeftComponent', () => {
-  let component: PanelLeftComponent;
-  let fixture: ComponentFixture<PanelLeftComponent>;
+describe('SlideinRightComponent', () => {
+  let component: SlideinRightComponent;
+  let fixture: ComponentFixture<SlideinRightComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PanelLeftComponent ]
+      declarations: [ SlideinRightComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PanelLeftComponent);
+    fixture = TestBed.createComponent(SlideinRightComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -11,8 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarRightComponent } from './sidebar-right/sidebar-right.component';
 import { SidebarLeftComponent } from './sidebar-left/sidebar-left.component';
 
-import { PanelLeftComponent } from './panel-left/panel-left.component';
-import { PanelRightComponent } from './panel-right/panel-right.component';
+import { SlideinLeftComponent } from './slidein-left/slidein-left.component';
+import { SlideinRightComponent } from './slidein-right/slidein-right.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import { PanelRightComponent } from './panel-right/panel-right.component';
     FooterComponent,
     SidebarRightComponent,
     SidebarLeftComponent,
-    PanelLeftComponent,
-    PanelRightComponent
+    SlideinLeftComponent,
+    SlideinRightComponent
   ],
   imports: [
     CommonModule,

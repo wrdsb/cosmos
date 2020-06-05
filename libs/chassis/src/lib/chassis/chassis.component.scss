@@ -6,10 +6,10 @@
     /* beautify ignore:start */
       grid-template:
                             " header         header   header "         auto
-          [panelRight-start][panelLeft-start] " sidebar-left   main     sidebar-right "  1fr   [panelLeft-end][panelRight-end]
+          [slideinRight-start][slideinLeft-start] " sidebar-left   main     sidebar-right "  1fr   [slideinLeft-end][slideinRight-end]
                             " footer         footer   footer "         auto
   
-        / [panelLeft-start] 1fr [panelLeft-end]   7fr  [panelRight-end] 1fr [panelRight-start]
+        / [slideinLeft-start] 1fr [slideinLeft-end]   7fr  [slideinRight-end] 1fr [slideinRight-start]
     ;
     /* beautify ignore:end */
     

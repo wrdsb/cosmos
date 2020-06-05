@@ -24,11 +24,11 @@ export class HeaderComponent implements OnInit {
 
   headerMenu: Menu;
 
-  showPanelLeft: boolean;
-  showPanelLeft$ = this.chassisService.panelLeftVisible$;
+  showSlideinLeft: boolean;
+  showSlideinLeft$ = this.chassisService.slideinLeftVisible$;
 
-  showPanelRight: boolean;
-  showPanelRight$ = this.chassisService.panelRightVisible$;
+  showSlideinRight: boolean;
+  showSlideinRight$ = this.chassisService.slideinRightVisible$;
 
   constructor(
     private chassisService: ChassisService,
@@ -40,8 +40,8 @@ export class HeaderComponent implements OnInit {
     this.getVisible();
     this.getContent();
     this.getHeaderMenu();
-    this.getShowPanelLeft();
-    this.getShowPanelRight();
+    this.getShowSlideinLeft();
+    this.getShowSlideinRight();
   }
 
   getEnabled(): void {
@@ -69,29 +69,29 @@ export class HeaderComponent implements OnInit {
     this.navigationService.getHeader().subscribe(menu => this.headerMenu = menu);
   }
 
-  getShowPanelLeft() {
-    this.showPanelLeft$.subscribe(showPanelLeft => 
-      this.showPanelLeft = showPanelLeft
+  getShowSlideinLeft() {
+    this.showSlideinLeft$.subscribe(showSlideinLeft => 
+      this.showSlideinLeft = showSlideinLeft
     );
-    console.log(`getShowPanelLeft: ${this.showPanelLeft}`);
+    console.log(`getShowSlideinLeft: ${this.showSlideinLeft}`);
   }
 
-  toggleShowPanelLeft(): void {
-    console.log(`set showPanelLeft to: ${!this.showPanelLeft}`);
-    this.chassisService.showPanelLeft(!this.showPanelLeft);
-    console.log(`current showPanelLeft: ${this.showPanelLeft}`);
+  toggleShowSlideinLeft(): void {
+    console.log(`set showSlideinLeft to: ${!this.showSlideinLeft}`);
+    this.chassisService.showSlideinLeft(!this.showSlideinLeft);
+    console.log(`current showSlideinLeft: ${this.showSlideinLeft}`);
   }
 
-  getShowPanelRight() {
-    this.showPanelRight$.subscribe(showPanelRight => 
-      this.showPanelRight = showPanelRight
+  getShowSlideinRight() {
+    this.showSlideinRight$.subscribe(showSlideinRight => 
+      this.showSlideinRight = showSlideinRight
     );
-    console.log(`getShowPanelRight: ${this.showPanelRight}`);
+    console.log(`getShowSlideinRight: ${this.showSlideinRight}`);
   }
 
-  toggleShowPanelRight(): void {
-    console.log(`set showPanelRight to: ${!this.showPanelRight}`);
-    this.chassisService.showPanelRight(!this.showPanelRight);
-    console.log(`current showPanelRight: ${this.showPanelRight}`);
+  toggleShowSlideinRight(): void {
+    console.log(`set showSlideinRight to: ${!this.showSlideinRight}`);
+    this.chassisService.showSlideinRight(!this.showSlideinRight);
+    console.log(`current showSlideinRight: ${this.showSlideinRight}`);
   }
 }

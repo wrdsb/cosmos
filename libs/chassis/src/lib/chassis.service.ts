@@ -41,23 +41,23 @@ export class ChassisService {
   private sidebarRightContent = new BehaviorSubject<string>('');
   readonly sidebarRightContent$ = this.sidebarRightContent.asObservable();
 
-  private panelLeftEnabled = new BehaviorSubject<boolean>(true);
-  readonly panelLeftEnabled$ = this.panelLeftEnabled.asObservable();
+  private slideinLeftEnabled = new BehaviorSubject<boolean>(true);
+  readonly slideinLeftEnabled$ = this.slideinLeftEnabled.asObservable();
 
-  private panelLeftVisible = new BehaviorSubject<boolean>(false);
-  readonly panelLeftVisible$ = this.panelLeftVisible.asObservable();
+  private slideinLeftVisible = new BehaviorSubject<boolean>(false);
+  readonly slideinLeftVisible$ = this.slideinLeftVisible.asObservable();
 
-  private panelLeftContent = new BehaviorSubject<string>('');
-  readonly panelLeftContent$ = this.panelLeftContent.asObservable();
+  private slideinLeftContent = new BehaviorSubject<string>('');
+  readonly slideinLeftContent$ = this.slideinLeftContent.asObservable();
 
-  private panelRightEnabled = new BehaviorSubject<boolean>(true);
-  readonly panelRightEnabled$ = this.panelRightEnabled.asObservable();
+  private slideinRightEnabled = new BehaviorSubject<boolean>(true);
+  readonly slideinRightEnabled$ = this.slideinRightEnabled.asObservable();
 
-  private panelRightVisible = new BehaviorSubject<boolean>(false);
-  readonly panelRightVisible$ = this.panelRightVisible.asObservable();
+  private slideinRightVisible = new BehaviorSubject<boolean>(false);
+  readonly slideinRightVisible$ = this.slideinRightVisible.asObservable();
 
-  private panelRightContent = new BehaviorSubject<string>('');
-  readonly panelRightContent$ = this.panelRightContent.asObservable();
+  private slideinRightContent = new BehaviorSubject<string>('');
+  readonly slideinRightContent$ = this.slideinRightContent.asObservable();
 
   constructor() { }
 
@@ -97,21 +97,21 @@ export class ChassisService {
     console.log(`sidebarRightVisible$ set to ${this.sidebarRightVisible.getValue()}`);
   }
 
-  enablePanelLeft(panelLeftEnabled: boolean): void {
-    this.panelLeftEnabled.next(panelLeftEnabled);
-    console.log(`panelLeftEnabled$ set to ${this.panelLeftEnabled.getValue()}`);
+  enableSlideinLeft(slideinLeftEnabled: boolean): void {
+    this.slideinLeftEnabled.next(slideinLeftEnabled);
+    console.log(`slideinLeftEnabled$ set to ${this.slideinLeftEnabled.getValue()}`);
   }
-  showPanelLeft(panelLeftVisible: boolean): void {
-    this.panelLeftVisible.next(panelLeftVisible);
-    console.log(`panelLeftVisible$ set to ${this.panelLeftVisible.getValue()}`);
+  showSlideinLeft(slideinLeftVisible: boolean): void {
+    this.slideinLeftVisible.next(slideinLeftVisible);
+    console.log(`slideinLeftVisible$ set to ${this.slideinLeftVisible.getValue()}`);
   }
 
-  enablePanelRight(panelRightEnabled: boolean): void {
-    this.panelRightEnabled.next(panelRightEnabled);
-    console.log(`panelRightEnabled$ set to ${this.panelRightEnabled.getValue()}`);
+  enableSlideinRight(slideinRightEnabled: boolean): void {
+    this.slideinRightEnabled.next(slideinRightEnabled);
+    console.log(`slideinRightEnabled$ set to ${this.slideinRightEnabled.getValue()}`);
   }
-  showPanelRight(panelRightVisible: boolean): void {
-    this.panelRightVisible.next(panelRightVisible);
-    console.log(`panelRightVisible$ set to ${this.panelRightVisible.getValue()}`);
+  showSlideinRight(slideinRightVisible: boolean): void {
+    this.slideinRightVisible.next(slideinRightVisible);
+    console.log(`slideinRightVisible$ set to ${this.slideinRightVisible.getValue()}`);
   }
 }
