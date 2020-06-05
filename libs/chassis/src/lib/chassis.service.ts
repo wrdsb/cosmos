@@ -69,6 +69,10 @@ export class ChassisService {
     this.headerVisible.next(headerVisible);
     console.log(`headerVisible$ set to ${this.headerVisible.getValue()}`);
   }
+  setHeaderContent(headerContent: string): void {
+    this.headerContent.next(headerContent);
+    console.log(`headerContent$ set to ${this.headerContent.getValue()}`)
+  }
 
   enableFooter(footerEnabled: boolean): void {
     this.footerEnabled.next(footerEnabled);
@@ -77,6 +81,10 @@ export class ChassisService {
   showFooter(footerVisible: boolean): void {
     this.footerVisible.next(footerVisible);
     console.log(`footerVisible$ set to ${this.footerVisible.getValue()}`);
+  }
+  setFooterContent(footerContent: string): void {
+    this.footerContent.next(footerContent);
+    console.log(`footerContent$ set to ${this.footerContent.getValue()}`)
   }
 
   enableSidebarLeft(sidebarLeftEnabled: boolean): void {
@@ -87,6 +95,10 @@ export class ChassisService {
     this.sidebarLeftVisible.next(sidebarLeftVisible);
     console.log(`sidebarLeftVisible$ set to ${this.sidebarLeftVisible.getValue()}`);
   }
+  setSidebarLeftContent(sidebarLeftContent: string): void {
+    this.sidebarLeftContent.next(sidebarLeftContent);
+    console.log(`sidebarLeftContent$ set to ${this.sidebarLeftContent.getValue()}`)
+  }
 
   enableSidebarRight(sidebarRightEnabled: boolean): void {
     this.sidebarRightEnabled.next(sidebarRightEnabled);
@@ -95,6 +107,10 @@ export class ChassisService {
   showSidebarRight(sidebarRightVisible: boolean): void {
     this.sidebarRightVisible.next(sidebarRightVisible);
     console.log(`sidebarRightVisible$ set to ${this.sidebarRightVisible.getValue()}`);
+  }
+  setSidebarRightContent(sidebarRightContent: string): void {
+    this.sidebarRightContent.next(sidebarRightContent);
+    console.log(`sidebarRightContent$ set to ${this.sidebarRightContent.getValue()}`)
   }
 
   enableSlideinLeft(slideinLeftEnabled: boolean): void {
@@ -105,6 +121,10 @@ export class ChassisService {
     this.slideinLeftVisible.next(slideinLeftVisible);
     console.log(`slideinLeftVisible$ set to ${this.slideinLeftVisible.getValue()}`);
   }
+  setSlideinLeftContent(slideinLeftContent: string): void {
+    this.slideinLeftContent.next(slideinLeftContent);
+    console.log(`slideinLeftContent$ set to ${this.slideinLeftContent.getValue()}`)
+  }
 
   enableSlideinRight(slideinRightEnabled: boolean): void {
     this.slideinRightEnabled.next(slideinRightEnabled);
@@ -113,5 +133,9 @@ export class ChassisService {
   showSlideinRight(slideinRightVisible: boolean): void {
     this.slideinRightVisible.next(slideinRightVisible);
     console.log(`slideinRightVisible$ set to ${this.slideinRightVisible.getValue()}`);
+  }
+  setSlideinRightContent(slideinRightContent: string): void {
+    this.slideinRightContent.next(slideinRightContent);
+    console.log(`slideinRightContent$ set to ${this.slideinRightContent.getValue()}`)
   }
 }
