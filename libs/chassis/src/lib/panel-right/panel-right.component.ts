@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UILayoutService } from '../ui-layout.service';
+import { ChassisService } from '../chassis.service';
 
 @Component({
   selector: 'cosmos-panel-right',
@@ -9,16 +9,16 @@ import { UILayoutService } from '../ui-layout.service';
 })
 export class PanelRightComponent implements OnInit {
   enabled: boolean;
-  enabled$ = this.layoutService.panelRightEnabled$;
+  enabled$ = this.chassisService.panelRightEnabled$;
 
   visible: boolean;
-  visible$ = this.layoutService.panelRightVisible$
+  visible$ = this.chassisService.panelRightVisible$
 
   content: string;
-  content$ = this.layoutService.panelRightContent$;
+  content$ = this.chassisService.panelRightContent$;
 
   constructor(
-    private layoutService: UILayoutService
+    private chassisService: ChassisService
   ) { }
 
   ngOnInit(): void {

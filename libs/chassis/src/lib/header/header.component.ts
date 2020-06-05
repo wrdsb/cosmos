@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UILayoutService } from '../ui-layout.service';
+import { ChassisService } from '../chassis.service';
 
 import { Menu } from "@cosmos/ui";
 import { UINavigationService } from "@cosmos/ui-navigation";
@@ -14,24 +14,24 @@ export class HeaderComponent implements OnInit {
   title = 'Sorting Hat';
 
   enabled: boolean;
-  enabled$ = this.layoutService.headerEnabled$;
+  enabled$ = this.chassisService.headerEnabled$;
 
   visible: boolean;
-  visible$ = this.layoutService.headerVisible$;
+  visible$ = this.chassisService.headerVisible$;
 
   content: string;
-  content$ = this.layoutService.headerContent$;
+  content$ = this.chassisService.headerContent$;
 
   headerMenu: Menu;
 
   showPanelLeft: boolean;
-  showPanelLeft$ = this.layoutService.panelLeftVisible$;
+  showPanelLeft$ = this.chassisService.panelLeftVisible$;
 
   showPanelRight: boolean;
-  showPanelRight$ = this.layoutService.panelRightVisible$;
+  showPanelRight$ = this.chassisService.panelRightVisible$;
 
   constructor(
-    private layoutService: UILayoutService,
+    private chassisService: ChassisService,
     private navigationService: UINavigationService
   ) { }
 
@@ -78,7 +78,7 @@ export class HeaderComponent implements OnInit {
 
   toggleShowPanelLeft(): void {
     console.log(`set showPanelLeft to: ${!this.showPanelLeft}`);
-    this.layoutService.showPanelLeft(!this.showPanelLeft);
+    this.chassisService.showPanelLeft(!this.showPanelLeft);
     console.log(`current showPanelLeft: ${this.showPanelLeft}`);
   }
 
@@ -91,7 +91,7 @@ export class HeaderComponent implements OnInit {
 
   toggleShowPanelRight(): void {
     console.log(`set showPanelRight to: ${!this.showPanelRight}`);
-    this.layoutService.showPanelRight(!this.showPanelRight);
+    this.chassisService.showPanelRight(!this.showPanelRight);
     console.log(`current showPanelRight: ${this.showPanelRight}`);
   }
 }

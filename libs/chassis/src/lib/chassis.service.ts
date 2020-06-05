@@ -4,7 +4,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UILayoutService {
+export class ChassisService {
   private headerEnabled = new BehaviorSubject<boolean>(true);
   readonly headerEnabled$ = this.headerEnabled.asObservable();
 

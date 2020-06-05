@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UILayoutService } from './ui-layout.service';
+import { ChassisService } from './chassis.service';
 
-describe('LayoutService', () => {
-  let service: UILayoutService;
+describe('ChassisService', () => {
+  let service: ChassisService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UILayoutService);
+    service = TestBed.inject(ChassisService);
   });
 
   it('should be created', () => {

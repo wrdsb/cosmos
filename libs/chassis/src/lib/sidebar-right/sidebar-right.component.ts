@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UILayoutService } from '../ui-layout.service';
+import { ChassisService } from '../chassis.service';
 
 @Component({
   selector: 'cosmos-sidebar-right',
@@ -9,16 +9,16 @@ import { UILayoutService } from '../ui-layout.service';
 })
 export class SidebarRightComponent implements OnInit {
   enabled: boolean;
-  enabled$ = this.layoutService.sidebarRightEnabled$;
+  enabled$ = this.chassisService.sidebarRightEnabled$;
 
   visible: boolean;
-  visible$ = this.layoutService.sidebarRightVisible$;
+  visible$ = this.chassisService.sidebarRightVisible$;
 
   content: string;
-  content$ = this.layoutService.sidebarRightContent$;
+  content$ = this.chassisService.sidebarRightContent$;
 
   constructor(
-    private layoutService: UILayoutService
+    private chassisService: ChassisService
   ) { }
 
   ngOnInit(): void {

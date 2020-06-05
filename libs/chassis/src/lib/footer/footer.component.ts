@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Menu } from '@cosmos/ui';
 import { UINavigationService } from '@cosmos/ui-navigation';
 
-import { UILayoutService } from '../ui-layout.service';
+import { ChassisService } from '../chassis.service';
 
 @Component({
   selector: 'cosmos-footer',
@@ -12,18 +12,18 @@ import { UILayoutService } from '../ui-layout.service';
 })
 export class FooterComponent implements OnInit {
   enabled: boolean;
-  enabled$ = this.layoutService.footerEnabled$;
+  enabled$ = this.chassisService.footerEnabled$;
 
   visible: boolean;
-  visible$ = this.layoutService.footerVisible$;
+  visible$ = this.chassisService.footerVisible$;
 
   content: string;
-  content$ = this.layoutService.footerContent$;
+  content$ = this.chassisService.footerContent$;
 
   footerMenu: Menu;
 
   constructor(
-    private layoutService: UILayoutService,
+    private chassisService: ChassisService,
     private navigationService: UINavigationService
   ) { }
 
