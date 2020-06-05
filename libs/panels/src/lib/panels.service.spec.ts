@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UIPanelsService } from './ui-panels.service';
+import { PanelsService } from './panels.service';
 
 describe('PanelsService', () => {
-  let service: UIPanelsService;
+  let service: PanelsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UIPanelsService);
+    service = TestBed.inject(PanelsService);
   });
 
   it('should be created', () => {
