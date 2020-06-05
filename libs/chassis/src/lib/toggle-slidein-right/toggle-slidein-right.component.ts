@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ChassisService } from '../chassis.service';
 
 @Component({
-  selector: 'cosmos-toggle-slidin-right',
-  templateUrl: './toggle-slidin-right.component.html',
-  styleUrls: ['./toggle-slidin-right.component.scss']
+  selector: 'cosmos-toggle-slidein-right',
+  templateUrl: './toggle-slidein-right.component.html',
+  styleUrls: ['./toggle-slidein-right.component.scss']
 })
-export class ToggleSlidinRightComponent implements OnInit {
+export class ToggleSlideinRightComponent implements OnInit {
   showSlideinRight: boolean;
   showSlideinRight$ = this.chassisService.slideinRightVisible$;
 

@@ -1,6 +1,6 @@
 <ng-container *ngIf="enabled">
     <header class="header" [class.showHeader]="visible" [class.hideHeader]="visible === false">
-        <cosmos-toggle-slidin-left></cosmos-toggle-slidin-left>
+        <cosmos-toggle-slidein-left></cosmos-toggle-slidein-left>
         
         <a routerLink="/">
             <h1>{{ title }}</h1>
@@ -10,6 +10,6 @@
             <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
         </ul>
 
-        <cosmos-toggle-slidin-right></cosmos-toggle-slidin-right>
+        <cosmos-toggle-slidein-right></cosmos-toggle-slidein-right>
     </header>
 </ng-container>

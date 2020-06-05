@@ -13,8 +13,8 @@ import { SidebarLeftComponent } from './sidebar-left/sidebar-left.component';
 
 import { SlideinLeftComponent } from './slidein-left/slidein-left.component';
 import { SlideinRightComponent } from './slidein-right/slidein-right.component';
-import { ToggleSlidinLeftComponent } from './toggle-slidin-left/toggle-slidin-left.component';
-import { ToggleSlidinRightComponent } from './toggle-slidin-right/toggle-slidin-right.component';
+import { ToggleSlideinLeftComponent } from './toggle-slidein-left/toggle-slidein-left.component';
+import { ToggleSlideinRightComponent } from './toggle-slidein-right/toggle-slidein-right.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +25,8 @@ import { ToggleSlidinRightComponent } from './toggle-slidin-right/toggle-slidin-
     SidebarLeftComponent,
     SlideinLeftComponent,
     SlideinRightComponent,
-    ToggleSlidinLeftComponent,
-    ToggleSlidinRightComponent
+    ToggleSlideinLeftComponent,
+    ToggleSlideinRightComponent
   ],
   imports: [
     CommonModule,
@@ -40,8 +40,8 @@ import { ToggleSlidinRightComponent } from './toggle-slidin-right/toggle-slidin-
     FooterComponent,
     SidebarRightComponent,
     SidebarLeftComponent,
-    ToggleSlidinLeftComponent,
-    ToggleSlidinRightComponent
+    ToggleSlideinLeftComponent,
+    ToggleSlideinRightComponent
   ]
 })
 export class ChassisModule {}

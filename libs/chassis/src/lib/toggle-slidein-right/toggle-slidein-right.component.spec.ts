@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToggleSlidinRightComponent } from './toggle-slidin-right.component';
+import { ToggleSlideinRightComponent } from './toggle-slidein-right.component';
 
-describe('ToggleSlidinRightComponent', () => {
-  let component: ToggleSlidinRightComponent;
-  let fixture: ComponentFixture<ToggleSlidinRightComponent>;
+describe('ToggleSlideinRightComponent', () => {
+  let component: ToggleSlideinRightComponent;
+  let fixture: ComponentFixture<ToggleSlideinRightComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToggleSlidinRightComponent ]
+      declarations: [ ToggleSlideinRightComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToggleSlidinRightComponent);
+    fixture = TestBed.createComponent(ToggleSlideinRightComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
