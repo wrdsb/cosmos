@@ -40,7 +40,7 @@
     "@angular/router": "^9.1.9",
     "@azure/cosmos": "^2.1.7",
     "@azure/msal-angular": "^1.0.0",
-    "@azure/storage-blob": "^10.3.0",
+    "@azure/storage-blob": "^12.1.2",
     "@fortawesome/angular-fontawesome": "^0.6.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
