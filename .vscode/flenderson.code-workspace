@@ -9,5 +9,8 @@
 		{
 			"path": "../apps/flenderson-functions"
 		}
-	]
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	}
 }
