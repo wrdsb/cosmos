@@ -1,8 +1,8 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { createLogObject } from "../SharedCode/createLogObject";
-import { createLogBlob } from "../SharedCode/createLogBlob";
-import { createCallbackMessage } from "../SharedCode/createCallbackMessage";
-import { createEvent } from "../SharedCode/createEvent";
+import { createLogObject } from "@cosmos/azure-functions-shared";
+import { storeLogBlob } from "@cosmos/azure-functions-shared";
+import { createCallbackMessage } from "@cosmos/azure-functions-shared";
+import { createEvent } from "@cosmos/azure-functions-shared";
 
 const viewIAMWPProcess: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
@@ -170,14 +170,26 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
         locations: locationsObject
     };
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await createLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
+    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
     context.log(logBlob);
 
     const callbackMessage = await createCallbackMessage(logObject, 200);
     context.bindings.callbackMessage = JSON.stringify(callbackMessage);
     context.log(callbackMessage);
 
-    const invocationEvent = await createEvent(functionInvocationID, functionInvocationTime, functionInvocationTimestamp, functionName, functionEventType, functionEventID, functionLogID, statusCode, statusMessage, logStorageAccount, logStorageContainer, eventLabel, eventTags);
+    const invocationEvent = await createEvent(
+        functionInvocationID,
+        functionInvocationTime,
+        functionInvocationTimestamp,
+        functionName,
+        functionEventType,
+        functionEventID,
+        functionLogID,
+        logStorageAccount,
+        logStorageContainer,
+        eventLabel,
+        eventTags
+    );
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
