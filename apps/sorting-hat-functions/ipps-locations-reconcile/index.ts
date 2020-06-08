@@ -1,9 +1,9 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
-import { createLogObject } from "../shared/createLogObject";
-import { createLogBlob } from "../shared/createLogBlob";
-import { createCallbackMessage } from "../shared/createCallbackMessage";
-import { createEvent } from "../shared/createEvent";
+import { createLogObject } from "@cosmos/azure-functions-shared";
+import { storeLogBlob } from "@cosmos/azure-functions-shared";
+import { createCallbackMessage } from "@cosmos/azure-functions-shared";
+import { createEvent } from "@cosmos/azure-functions-shared";
 import { initCalculation } from "../shared/initCalculation";
 import { initOperations } from "../shared/initOperations";
 import { findCreatesAndUpdates } from "../shared/findCreatesAndUpdates";
