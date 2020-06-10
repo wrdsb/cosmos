@@ -3389,6 +3389,38 @@
           "style": "scss"
         }
       }
+    },
+    "msgraph-service": {
+      "projectType": "library",
+      "root": "libs/msgraph-service",
+      "sourceRoot": "libs/msgraph-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/msgraph-service/tsconfig.lib.json",
+              "libs/msgraph-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/msgraph-service/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/msgraph-service/jest.config.js",
+            "tsConfig": "libs/msgraph-service/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/msgraph-service/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
