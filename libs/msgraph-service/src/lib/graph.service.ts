@@ -4,6 +4,7 @@ import { User } from "@microsoft/microsoft-graph-types";
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { MSGraphServiceModule } from './msgraph-service.module';
 
 @Injectable({
   providedIn: 'root'

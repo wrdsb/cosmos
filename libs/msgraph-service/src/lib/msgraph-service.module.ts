@@ -4,4 +4,6 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   imports: [CommonModule]
 })
-export class MsgraphServiceModule {}
+export class MSGraphServiceModule {
+
+}

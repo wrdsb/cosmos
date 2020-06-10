@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import '@microsoft/mgt/dist/es6/components/mgt-person/mgt-person';
 import { User } from "@microsoft/microsoft-graph-types";
-import { GraphService } from '../../../graph.service';
+import { GraphService } from '@cosmos/msgraph-service';
 
 @Component({
   selector: 'app-profile-panel',

@@ -20,6 +20,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from "./core/core.module";
 
 import { HomeComponent } from './home/home.component';
+import { GraphService } from '@cosmos/msgraph-service';
+
 
 export const protectedResourceMap: [string, string[]][] = [
   ['https://graph.microsoft.com/v1.0/me', ['user.read']]
@@ -72,6 +74,7 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
     CoreModule
   ],
   providers: [
+    GraphService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,

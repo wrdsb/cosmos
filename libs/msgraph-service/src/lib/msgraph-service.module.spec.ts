@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { MsgraphServiceModule } from './msgraph-service.module';
+import { MSGraphServiceModule } from './msgraph-service.module';
 
-describe('MsgraphServiceModule', () => {
+describe('MSGraphServiceModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MsgraphServiceModule]
+      imports: [MSGraphServiceModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(MsgraphServiceModule).toBeDefined();
+    expect(MSGraphServiceModule).toBeDefined();
   });
 });
