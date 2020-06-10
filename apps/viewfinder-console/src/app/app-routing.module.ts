@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 
-import { ProfilePanelComponent } from './core/panels/profile-panel/profile-panel.component';
+import { ProfilePanelComponent } from './profile-panel/profile-panel.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [

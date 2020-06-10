@@ -1,7 +1,7 @@
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import {
   MsalModule,
@@ -17,9 +17,9 @@ import { Configuration } from 'msal';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CoreModule } from "./core/core.module";
-
 import { HomeComponent } from './home/home.component';
+import { ProfilePanelComponent } from "./profile-panel/profile-panel.component";
+
 import { GraphService } from '@cosmos/msgraph-service';
 
 
@@ -63,16 +63,17 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ProfilePanelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MsalModule,
-    CoreModule
+    MsalModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     GraphService,
     {
