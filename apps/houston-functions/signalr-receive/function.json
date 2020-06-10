@@ -1,0 +1,16 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "signalRTrigger",
+            "hubName": "SignalRTest",
+            "category": "messages",
+            "event": "SendMessage",
+            "parameterNames": [
+                "message"
+            ],
+            "direction": "in"
+        }
+    ],
+    "scriptFile": "../dist/signalr-send-user/index.js"
+}
