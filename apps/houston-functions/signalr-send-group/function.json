@@ -1,0 +1,18 @@
+{
+  "bindings": [
+      {
+          "name": "triggerMessage",
+          "type": "queueTrigger",
+          "queueName": "signalr-send-group",
+          "connection": "wrdsbhouston_STORAGE",
+          "direction": "in"
+      },
+      {
+          "name": "signalrMessage",
+          "type": "signalR",
+          "hubName": "houston",
+          "direction": "out"
+      }
+  ],
+  "scriptFile": "../dist/signalr-send-group/index.js"
+}
