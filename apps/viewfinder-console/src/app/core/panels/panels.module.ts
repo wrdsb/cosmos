@@ -4,13 +4,11 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../../app-routing.module';
 
 import { ProfilePanelComponent } from "./profile-panel/profile-panel.component";
-import { SettingsPanelComponent } from './settings-panel/settings-panel.component';
 
 
 @NgModule({
   declarations: [
-    ProfilePanelComponent,
-    SettingsPanelComponent
+    ProfilePanelComponent
   ],
   imports: [
     CommonModule,
@@ -18,8 +16,7 @@ import { SettingsPanelComponent } from './settings-panel/settings-panel.componen
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
-    ProfilePanelComponent,
-    SettingsPanelComponent
+    ProfilePanelComponent
   ]
 })
 export class PanelsModule { }
