@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { AngularAadAuthModule } from './angular-aad-auth.module';
+import { AngularAADAuthModule } from './angular-aad-auth.module';
 
-describe('AngularAadAuthModule', () => {
+describe('AngularAADAuthModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AngularAadAuthModule]
+      imports: [AngularAADAuthModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(AngularAadAuthModule).toBeDefined();
+    expect(AngularAADAuthModule).toBeDefined();
   });
 });
