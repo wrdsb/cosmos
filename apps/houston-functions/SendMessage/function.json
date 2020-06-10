@@ -1,26 +1,27 @@
 {
-  "disabled": false,
-  "bindings": [
-      {
-          "authLevel": "anonymous",
-          "type": "httpTrigger",
-          "direction": "in",
-          "name": "req",
-          "route": "messages",
-          "methods": [
-              "post"
-          ]
-      },
-      {
-          "type": "http",
-          "direction": "out",
-          "name": "res"
-      },
-      {
-          "name": "$return",
-          "type": "signalR",
-          "hubName": "houston",
-          "direction": "out"
-      }
-  ]
+    "bindings": [
+        {
+            "name": "req",
+            "type": "httpTrigger",
+            "authLevel": "anonymous",
+            "route": "messages",
+            "methods": [
+                "post"
+            ],
+            "direction": "in"
+        },
+        {
+            "name": "$return",
+            "type": "signalR",
+            "hubName": "houston",
+            "direction": "out"
+        },
+        {
+            "name": "res",
+            "type": "http",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/send-message/index.js"
 }
