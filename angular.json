@@ -3357,6 +3357,38 @@
           "style": "scss"
         }
       }
+    },
+    "angular-aad-auth": {
+      "projectType": "library",
+      "root": "libs/angular-aad-auth",
+      "sourceRoot": "libs/angular-aad-auth/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-aad-auth/tsconfig.lib.json",
+              "libs/angular-aad-auth/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/angular-aad-auth/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/angular-aad-auth/jest.config.js",
+            "tsConfig": "libs/angular-aad-auth/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/angular-aad-auth/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

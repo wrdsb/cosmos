@@ -221,6 +221,9 @@
     },
     "panels": {
       "tags": []
+    },
+    "angular-aad-auth": {
+      "tags": []
     }
   }
 }
