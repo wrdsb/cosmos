@@ -236,6 +236,9 @@
     },
     "not-found-page": {
       "tags": []
+    },
+    "settings-service": {
+      "tags": []
     }
   }
 }
