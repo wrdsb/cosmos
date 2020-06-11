@@ -2,22 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { BroadcastService, MsalService } from '@azure/msal-angular';
 import { Logger, CryptoUtils } from 'msal';
 
+import { AppSettingsService } from "@cosmos/app-settings";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Viewfinder';
   isIframe = false;
   loggedIn = false;
 
   constructor(
     private broadcastService: BroadcastService,
-    private authService: MsalService
-  ) { }
+    private authService: MsalService,
+    private appSettingsService: AppSettingsService
+  ) {}
 
   ngOnInit(): void {
+    this.appSettingsService.setAppName('Viewfinder');
+
     this.isIframe = window !== window.parent && !window.opener;
 
     this.checkoutAccount();
@@ -43,18 +47,16 @@ export class AppComponent implements OnInit {
     }));
   }
 
+  getAppName() {
+    return this.appSettingsService.getAppName();
+  }
+
   checkoutAccount() {
     this.loggedIn = !!this.authService.getAccount();
   }
 
   login() {
-    const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
-
-    if (isIE) {
-      this.authService.loginRedirect();
-    } else {
-      this.authService.loginPopup();
-    }
+    this.authService.loginPopup();
   }
 
   logout() {
