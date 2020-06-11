@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Menu } from "@cosmos/ui";
+
+import { ChassisService } from "@cosmos/chassis";
 import { UINavigationService } from "@cosmos/ui-navigation";
-import { ChassisService } from '@cosmos/chassis';
 
 @Component({
   selector: 'cosmos-menu-panel',

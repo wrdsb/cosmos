@@ -9,10 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HomeComponent } from './home/home.component';
-import { ProfilePanelComponent } from "./profile-panel/profile-panel.component";
-
 import { AngularAADAuthModule } from "@cosmos/angular-aad-auth";
+import { ChassisModule } from "@cosmos/chassis";
+import { PanelsModule } from "@cosmos/panels";
+
+import { HomeComponent } from './home/home.component';
+import { ProfilePanelComponent } from './profile-panel/profile-panel.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AngularAADAuthModule } from "@cosmos/angular-aad-auth";
     BrowserAnimationsModule,
     HttpClientModule,
     MsalModule,
-    AngularAADAuthModule
+    AngularAADAuthModule,
+    ChassisModule,
+    PanelsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
