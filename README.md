@@ -1,4 +1,5 @@
 # C.O.S.M.O.S.
+Consolidated Online Status, Monitoring, and Operations Suite
 
 ## Applications
 
@@ -18,7 +19,7 @@
 * [flenderson-console](https://github.com/wrdsb/cosmos/tree/master/apps/flenderson-console): Flenderson's frontend Angular app
 * [flenderson-functions](https://github.com/wrdsb/cosmos/tree/master/apps/flenderson-functions): Flenderson's backend Azure Functions app
 
-### HAGAR
+### HAGAR (Highly Advanced Graph Automation Robot)
 * [hagar-console](https://github.com/wrdsb/cosmos/tree/master/apps/hagar-console): HAGAR's frontend Angular app
 * [hagar-functions](https://github.com/wrdsb/cosmos/tree/master/apps/hagar-functions): HAGAR's backend Azure Functions app
 
@@ -30,7 +31,7 @@
 * [houston-console](https://github.com/wrdsb/cosmos/tree/master/apps/houston-console): Houston's frontend Angular app
 * [houston-functions](https://github.com/wrdsb/cosmos/tree/master/apps/houston-functions): Houston's backend Azure Functions app
 
-### IGOR
+### IGOR (Intelligent G Suite Operations Robot)
 * [igor-console](https://github.com/wrdsb/cosmos/tree/master/apps/igor-console): IGOR's frontend Angular app
 * [igor-functions](https://github.com/wrdsb/cosmos/tree/master/apps/igor-functions): IGOR's backend Azure Functions app
 
