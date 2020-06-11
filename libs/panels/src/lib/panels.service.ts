@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { PanelsModule } from './panels.module';
 
 @Injectable({
   providedIn: 'root'

@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { UINavigationModule } from "@cosmos/ui-navigation";
-import { PanelsModule } from '@cosmos/panels';
-
 import { ChassisComponent } from './chassis/chassis.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -30,9 +27,7 @@ import { ToggleSlideinRightComponent } from './toggle-slidein-right/toggle-slide
   ],
   imports: [
     CommonModule,
-    RouterModule,
-    UINavigationModule,
-    PanelsModule
+    RouterModule
   ],
   exports: [
     ChassisComponent,

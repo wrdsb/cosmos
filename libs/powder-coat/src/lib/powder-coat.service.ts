@@ -3,7 +3,6 @@ import { Observable, of } from "rxjs";
 
 import { Theme } from "@cosmos/ui";
 import { THEME } from "./theme";
-import { PowderCoatModule } from './powder-coat.module';
 
 @Injectable({
   providedIn: 'root'
