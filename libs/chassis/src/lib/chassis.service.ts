@@ -3,7 +3,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 import { ChassisModule } from './chassis.module';
 
 @Injectable({
-  providedIn: ChassisModule
+  providedIn: 'root'
 })
 export class ChassisService {
   private headerEnabled = new BehaviorSubject<boolean>(true);

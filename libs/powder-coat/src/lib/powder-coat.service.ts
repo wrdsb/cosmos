@@ -6,7 +6,7 @@ import { THEME } from "./theme";
 import { PowderCoatModule } from './powder-coat.module';
 
 @Injectable({
-  providedIn: PowderCoatModule
+  providedIn: 'root'
 })
 export class PowderCoatService {
   constructor() { }
