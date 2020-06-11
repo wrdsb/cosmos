@@ -227,6 +227,9 @@
     },
     "msgraph-service": {
       "tags": []
+    },
+    "home-page": {
+      "tags": []
     }
   }
 }
