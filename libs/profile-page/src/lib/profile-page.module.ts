@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -15,6 +15,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
       {path: '', pathMatch: 'full', component: ProfilePageComponent}
     ])
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     ProfilePageComponent
   ]
