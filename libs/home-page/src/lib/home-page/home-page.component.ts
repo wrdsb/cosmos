@@ -8,7 +8,7 @@ import { AppSettingsService } from "@cosmos/app-settings";
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  title = this.appSettingsService.appName;
+  title = this.appSettingsService.getAppName();
 
   constructor(
     private appSettingsService: AppSettingsService
