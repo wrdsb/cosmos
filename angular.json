@@ -3518,29 +3518,29 @@
         }
       }
     },
-    "settings-service": {
+    "app-settings": {
       "projectType": "library",
-      "root": "libs/settings-service",
-      "sourceRoot": "libs/settings-service/src",
+      "root": "libs/app-settings",
+      "sourceRoot": "libs/app-settings/src",
       "prefix": "cosmos",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/settings-service/tsconfig.lib.json",
-              "libs/settings-service/tsconfig.spec.json"
+              "libs/app-settings/tsconfig.lib.json",
+              "libs/app-settings/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/settings-service/**"]
+            "exclude": ["**/node_modules/**", "!libs/app-settings/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/settings-service/jest.config.js",
-            "tsConfig": "libs/settings-service/tsconfig.spec.json",
+            "jestConfig": "libs/app-settings/jest.config.js",
+            "tsConfig": "libs/app-settings/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "libs/settings-service/src/test-setup.ts"
+            "setupFile": "libs/app-settings/src/test-setup.ts"
           }
         }
       },

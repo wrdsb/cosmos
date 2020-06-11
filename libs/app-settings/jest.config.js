@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'settings-service',
+  name: 'app-settings',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/libs/settings-service',
+  coverageDirectory: '../../coverage/libs/app-settings',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',
