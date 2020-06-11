@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AngularAADAuthModule } from "@cosmos/angular-aad-auth";
 import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
+import { HomePageModule } from "@cosmos/home-page";
 
 import { HomeComponent } from './home/home.component';
 import { ProfilePanelComponent } from './profile-panel/profile-panel.component';
@@ -30,7 +31,8 @@ import { ProfilePanelComponent } from './profile-panel/profile-panel.component';
     MsalModule,
     AngularAADAuthModule,
     ChassisModule,
-    PanelsModule
+    PanelsModule,
+    HomePageModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
