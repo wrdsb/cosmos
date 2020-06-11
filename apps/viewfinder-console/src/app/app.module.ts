@@ -14,13 +14,11 @@ import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
 import { HomePageModule } from "@cosmos/home-page";
 
-import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     ProfileComponent
   ],
   imports: [
