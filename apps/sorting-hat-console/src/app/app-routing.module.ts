@@ -1,20 +1,32 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomePageComponent } from './home-page/home-page.component';
-
+import { MsalGuard } from '@azure/msal-angular';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
   { 
     path: 'people-set-definitions',
-    loadChildren: () => import('./people-set-definitions/people-set-definitions.module').then(m => m.PeopleSetDefinitionsModule)
+    loadChildren: () => import('./people-set-definitions/people-set-definitions.module').then(m => m.PeopleSetDefinitionsModule),
+    canActivate: [
+      MsalGuard
+    ]
   },
   { 
     path: 'people-set-memberships',
-    loadChildren: () => import('./people-set-memberships/people-set-memberships.module').then(m => m.PeopleSetMembershipsModule)
+    loadChildren: () => import('./people-set-memberships/people-set-memberships.module').then(m => m.PeopleSetMembershipsModule),
+    canActivate: [
+      MsalGuard
+    ]
   },
-  { path: 'login',
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+  {
+    path: 'profile',
+    loadChildren: () => import('@cosmos/profile-page').then(m => m.ProfilePageModule),
+    canActivate: [
+      MsalGuard
+    ]
+  },
+  {
+    path: '',
+    loadChildren: () => import('@cosmos/home-page').then(m => m.HomePageModule)
   }
 ];
 
