@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfilePanelComponent } from './profile-panel.component';
+import { ProfileComponent } from './profile.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from '../app.component';
 import { MsalService, MSAL_CONFIG, MSAL_CONFIG_ANGULAR, MsalAngularConfiguration, BroadcastService } from '@azure/msal-angular';
 import { Configuration } from 'msal';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('ProfilePanelComponent', () => {
-  let component: ProfilePanelComponent;
-  let fixture: ComponentFixture<ProfilePanelComponent>;
+describe('ProfileComponent', () => {
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -53,7 +53,7 @@ describe('ProfilePanelComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfilePanelComponent);
+    fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

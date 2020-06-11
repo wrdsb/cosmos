@@ -15,13 +15,13 @@ import { PanelsModule } from "@cosmos/panels";
 import { HomePageModule } from "@cosmos/home-page";
 
 import { HomeComponent } from './home/home.component';
-import { ProfilePanelComponent } from './profile-panel/profile-panel.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfilePanelComponent
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
