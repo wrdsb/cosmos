@@ -5,9 +5,10 @@ import { Menu } from "@cosmos/ui";
 import { FOOTER } from "./navigation";
 import { HEADER } from "./navigation";
 import { SIDE } from "./navigation";
+import { UINavigationModule } from './ui-navigation.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: UINavigationModule
 })
 export class UINavigationService {
   constructor() { }

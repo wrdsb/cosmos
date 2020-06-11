@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
+import { PanelsModule } from './panels.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: PanelsModule
 })
 export class PanelsService {
   private feedbackPanelEnabled = new BehaviorSubject<boolean>(false);

@@ -7,7 +7,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { MSGraphServiceModule } from './msgraph-service.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: MSGraphServiceModule
 })
 export class GraphService {
 
