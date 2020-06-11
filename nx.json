@@ -233,6 +233,9 @@
     },
     "profile-page": {
       "tags": []
+    },
+    "not-found-page": {
+      "tags": []
     }
   }
 }

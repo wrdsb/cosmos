@@ -2,20 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 
-import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
-
 const routes: Routes = [
   {
     path: 'profile',
-    component: ProfileComponent,
+    loadChildren: () => import('@cosmos/profile-page').then(m => m.ProfilePageModule),
     canActivate: [
       MsalGuard
     ]
   },
   {
     path: '',
-    component: HomeComponent
+    loadChildren: () => import('@cosmos/home-page').then(m => m.HomePageModule)
   }
 ];
 
