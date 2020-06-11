@@ -1,1 +1,8 @@
-<p>profile-panel works!</p>
+<p>
+    Welcome {{profile?.displayName}}
+</p>
+<pre>
+    {{profileString()}}
+</pre>
+
+<mgt-person [personDetails]="profile" show-name show-email></mgt-person>
