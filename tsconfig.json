@@ -31,7 +31,8 @@
       "@cosmos/panels": ["libs/panels/src/index.ts"],
       "@cosmos/angular-aad-auth": ["libs/angular-aad-auth/src/index.ts"],
       "@cosmos/msgraph-service": ["libs/msgraph-service/src/index.ts"],
-      "@cosmos/home-page": ["libs/home-page/src/index.ts"]
+      "@cosmos/home-page": ["libs/home-page/src/index.ts"],
+      "@cosmos/profile-page": ["libs/profile-page/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
