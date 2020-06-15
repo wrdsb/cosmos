@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BroadcastService, MsalService } from '@azure/msal-angular';
 import { Logger, CryptoUtils } from 'msal';
 
-import { AppSettingsService } from "@cosmos/app-settings";
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +10,18 @@ import { AppSettingsService } from "@cosmos/app-settings";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  environment = environment;
+  appName = environment.appName;
+
   isIframe = false;
   loggedIn = false;
 
   constructor(
     private broadcastService: BroadcastService,
-    private authService: MsalService,
-    private appSettingsService: AppSettingsService
+    private authService: MsalService
   ) {}
 
   ngOnInit(): void {
-    this.appSettingsService.setAppName('Sorting Hat');
-
     this.isIframe = window !== window.parent && !window.opener;
 
     this.checkoutAccount();
@@ -45,10 +45,6 @@ export class AppComponent implements OnInit {
       correlationId: CryptoUtils.createNewGuid(),
       piiLoggingEnabled: false
     }));
-  }
-
-  getAppName() {
-    return this.appSettingsService.getAppName();
   }
 
   checkoutAccount() {
