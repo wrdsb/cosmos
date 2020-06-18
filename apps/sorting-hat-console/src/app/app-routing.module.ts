@@ -5,14 +5,14 @@ import { MsalGuard } from '@azure/msal-angular';
 const routes: Routes = [
   { 
     path: 'people-set-definitions',
-    loadChildren: () => import('./people-set-definitions/people-set-definitions.module').then(m => m.PeopleSetDefinitionsModule),
+    loadChildren: () => import('@cosmos/people-sets').then(m => m.PeopleSetDefinitionsModule),
     canActivate: [
       MsalGuard
     ]
   },
   { 
     path: 'people-set-memberships',
-    loadChildren: () => import('./people-set-memberships/people-set-memberships.module').then(m => m.PeopleSetMembershipsModule),
+    loadChildren: () => import('@cosmos/people-sets').then(m => m.PeopleSetMembershipsModule),
     canActivate: [
       MsalGuard
     ]

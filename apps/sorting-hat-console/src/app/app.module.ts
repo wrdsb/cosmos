@@ -19,6 +19,8 @@ import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
 import { HomePageModule } from "@cosmos/home-page";
 
+import { PeopleSetsModule } from "@cosmos/people-sets";
+
 // TODO: move these out or use existing shared libs
 import { SharedModule } from "./shared/shared.module";
 
@@ -45,6 +47,7 @@ import { SharedModule } from "./shared/shared.module";
     PanelsModule,
     HomePageModule,
 
+    PeopleSetsModule,
     SharedModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
