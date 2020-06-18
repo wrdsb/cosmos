@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { EnvironmentService } from "@cosmos/environment";
 import { GraphService } from '@cosmos/msgraph-service';
 
 import {
@@ -20,15 +21,15 @@ export const protectedResourceMap: [string, string[]][] = [
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 
-function MSALConfigFactory(): Configuration {
+function MSALConfigFactory(env: EnvironmentService): Configuration {
   return {
     auth: {
-      clientId: 'd15732c7-13e4-41fc-9d8f-c7776b875e58',
-      authority: "https://login.microsoftonline.com/cd25c694-bfb8-48f4-9d0d-b9af282c4ab4",
-      validateAuthority: true,
-      redirectUri: "http://localhost:4200/",
-      postLogoutRedirectUri: "http://localhost:4200/",
-      navigateToLoginRequestUrl: true,
+      clientId: env.aadClientId,
+      authority: env.aadAuthority,
+      validateAuthority: env.aadValidateAuthority,
+      redirectUri: env.aadRedirectUri,
+      postLogoutRedirectUri: env.aadPostLogoutRedirectUri,
+      navigateToLoginRequestUrl: env.aadNavigateToLoginRequestUrl
     },
     cache: {
       cacheLocation: "localStorage",
@@ -66,7 +67,8 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
     },
     {
       provide: MSAL_CONFIG,
-      useFactory: MSALConfigFactory
+      useFactory: MSALConfigFactory,
+      deps: [ EnvironmentService ]
     },
     {
       provide: MSAL_CONFIG_ANGULAR,
