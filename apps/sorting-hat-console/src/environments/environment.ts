@@ -1,4 +1,6 @@
-export const environment = {
+import { Environment } from "@cosmos/types";
+
+export const environment: Environment = {
   production: false,
   appName: 'Sorting Hat',
 
