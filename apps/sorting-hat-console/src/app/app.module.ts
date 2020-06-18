@@ -21,12 +21,10 @@ import { HomePageModule } from "@cosmos/home-page";
 
 // TODO: move these out or use existing shared libs
 import { SharedModule } from "./shared/shared.module";
-import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomePageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
