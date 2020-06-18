@@ -8,6 +8,9 @@ import { MsalModule } from '@azure/msal-angular';
 //import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryDataService }  from './people-set-definitions/in-memory-data.service';
 
+import { environment } from "../environments/environment";
+import { EnvironmentService } from "@cosmos/environment";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -40,7 +43,12 @@ import { HomePageModule } from "@cosmos/home-page";
     HomePageModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [
+    {
+      provide: EnvironmentService,
+      useValue: environment
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
