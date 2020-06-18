@@ -1,5 +1,5 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { PeopleSetDefinition } from './people-set-definition.model';
+import { PeopleSetDefinition } from '@cosmos/types';
 import { Injectable } from '@angular/core';
 
 @Injectable({
