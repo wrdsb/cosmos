@@ -8,7 +8,7 @@ import {
   PeopleSetsCollection,
   PeopleSetDefinition,
   PeopleSetDefinitionQuery }
-  from "./people-set-definition.model";
+  from "@cosmos/types";
 
 import { MessageService } from "../shared/message.service";
 
