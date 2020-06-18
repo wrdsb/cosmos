@@ -3639,6 +3639,38 @@
           "style": "scss"
         }
       }
+    },
+    "notifications": {
+      "projectType": "library",
+      "root": "libs/notifications",
+      "sourceRoot": "libs/notifications/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/notifications/tsconfig.lib.json",
+              "libs/notifications/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/notifications/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/notifications/jest.config.js",
+            "tsConfig": "libs/notifications/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/notifications/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
