@@ -3607,6 +3607,38 @@
           }
         }
       }
+    },
+    "people-sets": {
+      "projectType": "library",
+      "root": "libs/people-sets",
+      "sourceRoot": "libs/people-sets/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/people-sets/tsconfig.lib.json",
+              "libs/people-sets/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/people-sets/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/people-sets/jest.config.js",
+            "tsConfig": "libs/people-sets/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/people-sets/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
