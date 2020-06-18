@@ -239,6 +239,9 @@
     },
     "app-settings": {
       "tags": []
+    },
+    "environment": {
+      "tags": []
     }
   }
 }
