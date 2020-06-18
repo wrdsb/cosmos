@@ -44,6 +44,7 @@ import { PeopleSetsModule } from "@cosmos/people-sets";
     ChassisModule,
     PanelsModule,
     HomePageModule,
+    NotificationsModule,
 
     PeopleSetsModule
   ],

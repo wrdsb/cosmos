@@ -18,6 +18,7 @@ import { AngularAADAuthModule } from "@cosmos/angular-aad-auth";
 import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
 import { HomePageModule } from "@cosmos/home-page";
+import { NotificationsModule } from '@cosmos/notifications'
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HomePageModule } from "@cosmos/home-page";
     AngularAADAuthModule,
     ChassisModule,
     PanelsModule,
-    HomePageModule
+    HomePageModule,
+    NotificationsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
