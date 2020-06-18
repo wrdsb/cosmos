@@ -18,11 +18,9 @@ import { AngularAADAuthModule } from "@cosmos/angular-aad-auth";
 import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
 import { HomePageModule } from "@cosmos/home-page";
+import { NotificationsModule } from '@cosmos/notifications'
 
 import { PeopleSetsModule } from "@cosmos/people-sets";
-
-// TODO: move these out or use existing shared libs
-import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -47,8 +45,7 @@ import { SharedModule } from "./shared/shared.module";
     PanelsModule,
     HomePageModule,
 
-    PeopleSetsModule,
-    SharedModule
+    PeopleSetsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
