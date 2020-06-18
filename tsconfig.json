@@ -35,7 +35,8 @@
       "@cosmos/profile-page": ["libs/profile-page/src/index.ts"],
       "@cosmos/not-found-page": ["libs/not-found-page/src/index.ts"],
       "@cosmos/app-settings": ["libs/app-settings/src/index.ts"],
-      "@cosmos/environment": ["libs/environment/src/index.ts"]
+      "@cosmos/environment": ["libs/environment/src/index.ts"],
+      "@cosmos/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

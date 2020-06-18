@@ -242,6 +242,9 @@
     },
     "environment": {
       "tags": []
+    },
+    "types": {
+      "tags": []
     }
   }
 }
