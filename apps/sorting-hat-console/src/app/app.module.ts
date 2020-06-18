@@ -6,7 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { MsalModule } from '@azure/msal-angular';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './people-set-definitions/in-memory-data.service';
+import { InMemoryDataService }  from '@cosmos/people-sets';
 
 import { environment } from "../environments/environment";
 import { EnvironmentService } from "@cosmos/environment";
