@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { tap, catchError, map, filter } from 'rxjs/operators';
-import { PeopleSetDefinition } from "../people-set-definition.model";
+import { PeopleSetDefinition } from "@cosmos/types";
 import { PeopleSetDefinitionsService } from '../people-set-definitions.service';
 import { Observable } from 'rxjs';
 

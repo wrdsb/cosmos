@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PeopleSetDefinition, PeopleSetDefinitionQuery } from '../people-set-definition.model';
+import { PeopleSetDefinition, PeopleSetDefinitionQuery } from '@cosmos/types';
 import { Subscription } from 'rxjs';
 import { PeopleSetDefinitionsService } from '../people-set-definitions.service';
 

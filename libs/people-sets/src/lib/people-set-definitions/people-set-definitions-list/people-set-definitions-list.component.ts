@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from "rxjs/operators";
 
-import { PeopleSetDefinition, PeopleSetDefinitionQuery } from '../people-set-definition.model';
+import { PeopleSetDefinition, PeopleSetDefinitionQuery } from '@cosmos/types';
 import { PeopleSetDefinitionsService } from '../people-set-definitions.service';
 
 @Component({
