@@ -10,7 +10,7 @@ import {
   PeopleSetDefinitionQuery }
   from "@cosmos/types";
 
-import { MessageService } from "../shared/message.service";
+import { NotificationsService } from "@cosmos/notifications";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class PeopleSetDefinitionsService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: NotificationsService
   ) { }
 
 /** GET definition by id. Will 404 if id not found */
@@ -93,7 +93,7 @@ export class PeopleSetDefinitionsService {
   //   };
   // }
 
-  /** Log a PeopleSetDefinitionService message with the MessageService */
+  /** Log a PeopleSetDefinitionService message with the NotificationsService */
   private log(message: string) {
     this.messageService.add(`PeopleSetDefinitionService: ${message}`);
   }
