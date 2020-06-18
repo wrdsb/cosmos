@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AppSettingsService } from "@cosmos/app-settings";
+import { EnvironmentService } from "@cosmos/environment";
 
 @Component({
   selector: 'cosmos-home-page',
@@ -8,10 +8,10 @@ import { AppSettingsService } from "@cosmos/app-settings";
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  title = this.appSettingsService.getAppName();
+  title = this.environmentService.appName;
 
   constructor(
-    private appSettingsService: AppSettingsService
+    private environmentService: EnvironmentService
   ) { }
 
   ngOnInit(): void {
