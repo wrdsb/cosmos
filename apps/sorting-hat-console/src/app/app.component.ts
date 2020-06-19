@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BroadcastService, MsalService } from '@azure/msal-angular';
 import { Logger, CryptoUtils } from 'msal';
-
-import { environment } from '../environments/environment';
+import { EnvironmentService } from '@cosmos/environment';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +9,11 @@ import { environment } from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  environment = environment;
-  appName = environment.appName;
-
   isIframe = false;
   loggedIn = false;
 
   constructor(
+    private environmentService: EnvironmentService,
     private broadcastService: BroadcastService,
     private authService: MsalService
   ) {}
