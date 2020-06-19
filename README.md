@@ -60,14 +60,17 @@ Consolidated Online Status, Monitoring, and Operations Suite
 * [skinner-functions](https://github.com/wrdsb/cosmos/tree/master/apps/skinner-functions): Skinner's backend Azure Functions app
 
 ### Skyline
+Centralized logging.
 * [skyline-console](https://github.com/wrdsb/cosmos/tree/master/apps/skyline-console): Skyline's frontend Angular app
 * [skyline-functions](https://github.com/wrdsb/cosmos/tree/master/apps/skyline-functions): Skyline's backend Azure Functions app
 
 ### Sorting Hat
+Sorts people into sets, based on their attributes.
 * [sorting-hat-console](https://github.com/wrdsb/cosmos/tree/master/apps/sorting-hat-console): the Sorting Hat's frontend Angular app
 * [sorting-hat-functions](https://github.com/wrdsb/cosmos/tree/master/apps/sorting-hat-functions): the Sorting Hat's backend Azure Functions app
 
 ### Viewfinder
+Read-only dashboards, reports, and queries for frontline staff.
 * [viewfinder-console](https://github.com/wrdsb/cosmos/tree/master/apps/viewfinder-console): Viewfinder's frontend Angular app
 * [viewfinder-functions](https://github.com/wrdsb/cosmos/tree/master/apps/viewfinder-functions): Viewfinder's backend Azure Functions app
 
