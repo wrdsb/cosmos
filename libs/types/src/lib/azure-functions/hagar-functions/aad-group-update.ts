@@ -1,22 +1,29 @@
 import { Group } from "@microsoft/microsoft-graph-types";
+import * as Cosmos from "../common";
 
-interface AADGroupUpdateFunctionRequest {
+interface AADGroupUpdateFunctionRequest extends Cosmos.FunctionRequest {
     readonly payload: AADGroupUpdateFunctionRequestPayload;
 }
 
-interface AADGroupUpdateFunctionResponse {}
-interface AADGroupUpdateFunctionLogObject {}
-interface AADGroupUpdateFunctionCallbackMessage {}
-interface AADGroupUpdateFunctionInvocationEvent {}
+interface AADGroupUpdateFunctionResponse extends Cosmos.FunctionResponse {}
 
-interface AADGroupUpdateFunctionRequestPayload {
+interface AADGroupUpdateFunctionLogObject extends Cosmos.FunctionLogObject {}
+
+interface AADGroupUpdateFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
+
+interface AADGroupUpdateFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {}
+
+interface AADGroupUpdateFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
     readonly group: Group;
 }
 
-interface AADGroupUpdateFunctionResponsePayload {}
-interface AADGroupUpdateFunctionLogObjectPayload {}
-interface AADGroupUpdateFunctionCallbackMessagePayload {}
-interface AADGroupUpdateFunctionInvocationEventPayload {}    
+interface AADGroupUpdateFunctionResponsePayload extends Cosmos.FunctionResponsePayload {}
+
+interface AADGroupUpdateFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
+
+interface AADGroupUpdateFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
+
+interface AADGroupUpdateFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEvent {}
 
 export {
     AADGroupUpdateFunctionRequest,
