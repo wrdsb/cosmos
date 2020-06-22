@@ -1,20 +1,28 @@
-interface AADGroupGetFunctionRequest {
+import * as Cosmos from "../common";
+
+interface AADGroupGetFunctionRequest extends Cosmos.FunctionRequest {
     readonly payload: AADGroupGetFunctionRequestPayload;
 }
 
-interface AADGroupGetFunctionResponse {}
-interface AADGroupGetFunctionLogObject {}
-interface AADGroupGetFunctionCallbackMessage {}
-interface AADGroupGetFunctionInvocationEvent {}
+interface AADGroupGetFunctionResponse extends Cosmos.FunctionResponse {}
 
-interface AADGroupGetFunctionRequestPayload {
+interface AADGroupGetFunctionLogObject extends Cosmos.FunctionLogObject {}
+
+interface AADGroupGetFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
+
+interface AADGroupGetFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {}
+
+interface AADGroupGetFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
     readonly groupID: string;
 }
 
-interface AADGroupGetFunctionResponsePayload {}
-interface AADGroupGetFunctionLogObjectPayload {}
-interface AADGroupGetFunctionCallbackMessagePayload {}
-interface AADGroupGetFunctionInvocationEventPayload {}    
+interface AADGroupGetFunctionResponsePayload extends Cosmos.FunctionResponsePayload {}
+
+interface AADGroupGetFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
+
+interface AADGroupGetFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
+
+interface AADGroupGetFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
 
 export {
     AADGroupGetFunctionRequest,
