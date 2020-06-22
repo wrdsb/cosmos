@@ -1,37 +1,37 @@
 import { Group } from "@microsoft/microsoft-graph-types";
-import * as cosmos from "../common";
+import * as Cosmos from "../common";
 
-interface AADGroupCreateFunctionRequest extends cosmos.FunctionRequest {
+interface AADGroupCreateFunctionRequest extends Cosmos.FunctionRequest {
     readonly payload: AADGroupCreateFunctionRequestPayload;
 }
 
-interface AADGroupCreateFunctionResponse extends cosmos.FunctionResponse {
+interface AADGroupCreateFunctionResponse extends Cosmos.FunctionResponse {
     readonly payload: AADGroupCreateFunctionResponsePayload;
 }
 
-interface AADGroupCreateFunctionLogObject extends cosmos.FunctionLogObject {
+interface AADGroupCreateFunctionLogObject extends Cosmos.FunctionLogObject {
     readonly payload: AADGroupCreateFunctionResponsePayload;
 }
 
-interface AADGroupCreateFunctionCallbackMessage extends cosmos.FunctionCallbackMessage {}
+interface AADGroupCreateFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
 
-interface AADGroupCreateFunctionInvocationEvent extends cosmos.FunctionInvocationEvent {
+interface AADGroupCreateFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
     readonly data: AADGroupCreateFunctionInvocationEventPayload;
 }
 
-interface AADGroupCreateFunctionRequestPayload extends cosmos.FunctionRequestPayload {
+interface AADGroupCreateFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
     readonly group: Group;
 }
 
-interface AADGroupCreateFunctionResponsePayload extends cosmos.FunctionResponsePayload {
+interface AADGroupCreateFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
     readonly group: Group;
 }
 
-interface AADGroupCreateFunctionLogObjectPayload extends cosmos.FunctionLogObjectPayload {}
+interface AADGroupCreateFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
 
-interface AADGroupCreateFunctionCallbackMessagePayload extends cosmos.FunctionCallbackMessagePayload {}
+interface AADGroupCreateFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
 
-interface AADGroupCreateFunctionInvocationEventPayload extends cosmos.FunctionInvocationEventPayload {}
+interface AADGroupCreateFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
 
 export {
     AADGroupCreateFunctionRequest,
