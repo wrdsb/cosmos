@@ -1,17 +1,25 @@
-interface AADGroupsListFunctionRequest {}
+import * as Cosmos from "../common";
 
-interface AADGroupsListFunctionResponse {}
-interface AADGroupsListFunctionLogObject {}
-interface AADGroupsListFunctionCallbackMessage {}
-interface AADGroupsListFunctionInvocationEvent {}
+interface AADGroupsListFunctionRequest extends Cosmos.FunctionRequest {}
+
+interface AADGroupsListFunctionResponse extends Cosmos.FunctionResponse {}
+
+interface AADGroupsListFunctionLogObject extends Cosmos.FunctionLogObject {}
+
+interface AADGroupsListFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
+
+interface AADGroupsListFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {}
 
 // No payload required
-interface AADGroupsListFunctionRequestPayload {}
+interface AADGroupsListFunctionRequestPayload extends Cosmos.FunctionRequestPayload {}
 
-interface AADGroupsListFunctionResponsePayload {}
-interface AADGroupsListFunctionLogObjectPayload {}
-interface AADGroupsListFunctionCallbackMessagePayload {}
-interface AADGroupsListFunctionInvocationEventPayload {}    
+interface AADGroupsListFunctionResponsePayload extends Cosmos.FunctionResponsePayload {}
+
+interface AADGroupsListFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
+
+interface AADGroupsListFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
+
+interface AADGroupsListFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
 
 export {
     AADGroupsListFunctionRequest,
