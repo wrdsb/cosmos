@@ -1,0 +1,51 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "users-provision-multiple",
+            "connection": "wrdsbradar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "allGroups",
+            "type": "cosmosDB",
+            "databaseName": "radar",
+            "collectionName": "groups",
+            "connectionStringSetting": "wrdsbradar_COSMOSDB",
+            "direction": "in"
+        },
+        {
+            "name": "allUsers",
+            "type": "cosmosDB",
+            "databaseName": "radar",
+            "collectionName": "users",
+            "connectionStringSetting": "wrdsbradar_COSMOSDB",
+            "direction": "in"
+        },
+        {
+            "name": "userProvisionQueue",
+            "type": "queue",
+            "queueName": "user-provision",
+            "connection": "wrdsbradar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbradar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbradar_STORAGE",
+            "direction": "out"
+        }
+
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/users-provision-multiple/index.js"
+}

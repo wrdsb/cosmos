@@ -1,0 +1,28 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "contacts-list",
+            "connection": "wrdsbradar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbradar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbradar_STORAGE",
+            "direction": "out"
+        }
+
+    ],
+    "disabled": false,
+    "scriptFile": "../dist/contacts-list/index.js"
+}
