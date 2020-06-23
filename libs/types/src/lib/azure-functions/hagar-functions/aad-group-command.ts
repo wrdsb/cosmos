@@ -16,6 +16,10 @@ interface AADGroupCommandFunctionLogObject extends Cosmos.FunctionLogObject {
 interface AADGroupCommandFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
 
 interface AADGroupCommandFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
+    readonly type: 'WRDSB.HAGAR.AADGroup.Command';
+    readonly typeURL: ''; 
+    readonly typeVersion : '1.0.0';
+
     readonly data: AADGroupCommandFunctionInvocationEventPayload;
 }
 
