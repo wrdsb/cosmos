@@ -18,6 +18,7 @@ export * from './aad-group-members-list';
 
 export * from './aad-user-command';
 export * from './aad-user-get';
+export * from './aad-user-query';
 export * from './aad-user-store';
 //export * from './aad-users-delta';
 export * from './aad-users-list';
