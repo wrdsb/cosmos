@@ -1,3 +1,6 @@
+type CommandFunctionOperation = 'patch' | 'replace' | 'delete';
+type StoreFunctionOperation = 'patch' | 'replace' | 'delete';
+
 type FunctionLogID = string;
 type FunctionName = string;
 type FunctionInvocationID = string;
@@ -89,6 +92,9 @@ interface FunctionInvocationEventPayload {
 }    
 
 export {
+    CommandFunctionOperation,
+    StoreFunctionOperation,
+
     FunctionLogID,
     FunctionName,
     FunctionInvocationID,

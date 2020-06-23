@@ -1,6 +1,7 @@
 import * as Cosmos from "../common";
 
 interface AADGroupCommandFunctionRequest extends Cosmos.FunctionRequest {
+    readonly operation: Cosmos.CommandFunctionOperation;
     readonly payload: AADGroupCommandFunctionRequestPayload;
 }
 
