@@ -1,24 +1,28 @@
 type CommandFunctionOperation = 'patch' | 'replace' | 'delete';
 type StoreFunctionOperation = 'patch' | 'replace' | 'delete';
 
+type FunctionCallbackType = 'Function.Invocation';
+
 type FunctionLogID = string;
 type FunctionName = string;
 type FunctionInvocationID = string;
 type FunctionInvocationTime = string;
 type FunctionInvocationTimestamp = string;
-type FunctionCallbackType = 'Function.Invocation';
 type FunctionInvocationStatus = string;
 
 type FunctionInvocationEventSpecVersion = '0.3';
 type FunctionInvocationEventDataContentType = 'application/json';
-type FunctionEventType = string;
-type FunctionTypeURL = string;
-type FunctionEventID = string;
-type FunctionSource = string;
-type FunctionEventSource = string;
 
-type Label = string;
-type Tags = string[];
+type FunctionInvocationEventType = string;
+type FunctionInvocationEventTypeURL = string;
+type FunctionInvocationEventTypeVersion = string;
+
+type FunctionInvocationEventID = string;
+type FunctionInvocationEventTimestamp = FunctionInvocationTimestamp;
+type FunctionInvocationEventSource = string;
+
+type FunctionInvocationEventLabel = string;
+type FunctionInvocationEventTags = string[];
 
 type LogStorageAccount = string;
 type LogStorageContainer = string;
@@ -52,16 +56,16 @@ interface FunctionInvocationEvent {
     specversion: FunctionInvocationEventSpecVersion;
     datacontenttype: FunctionInvocationEventDataContentType;
 
-    type: FunctionEventType,
-    typeVersion : "1.0.0",
-    typeURL: FunctionTypeURL,
+    type: FunctionInvocationEventType,
+    typeURL: FunctionInvocationEventTypeURL,
+    typeVersion : FunctionInvocationEventTypeVersion,
 
-    id : FunctionEventID,
-    time : FunctionInvocationTimestamp,
-    source : FunctionSource,
+    id : FunctionInvocationEventID,
+    time : FunctionInvocationEventTimestamp,
+    source : FunctionInvocationEventSource,
 
-    label: Label;
-    tags: Tags;
+    label: FunctionInvocationEventLabel;
+    tags: FunctionInvocationEventTags;
 }
 
 interface FunctionRequestPayload {
@@ -81,15 +85,15 @@ interface FunctionInvocationEventPayload {
     functionInvocationTimestamp: FunctionInvocationTimestamp,
 
     functionName: FunctionName,
-    functionEventType: FunctionEventType,
-    functionEventID: FunctionEventID,
+    functionInvocationEventType: FunctionInvocationEventType,
+    functionInvocationEventID: FunctionInvocationEventID,
     functionLogID: FunctionLogID,
 
     logStorageAccount: LogStorageAccount,
     logStorageContainer: LogStorageContainer,
 
-    url: FunctionEventSource
-}    
+    url: FunctionInvocationEventSource
+}
 
 export {
     CommandFunctionOperation,
@@ -104,8 +108,8 @@ export {
     FunctionInvocationStatus,
     FunctionInvocationEventSpecVersion,
     FunctionInvocationEventDataContentType,
-    Label,
-    Tags,
+    FunctionInvocationEventLabel,
+    FunctionInvocationEventTags,
 
     FunctionRequest,
     FunctionResponse,
