@@ -64,7 +64,7 @@
           "options": {
             "browserTarget": "panama-console:build",
             "port": 4250
-          }          },
+          },
           "configurations": {
             "production": {
               "browserTarget": "panama-console:build:production"
