@@ -1,43 +1,56 @@
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { HttpClientModule } from '@angular/common/http';
+import { MsalModule } from '@azure/msal-angular';
+
+//import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+//import { InMemoryDataService }  from '@cosmos/people-sets';
 
 import { environment } from "../environments/environment";
-
-// Firebase imports
-import { AngularFireModule } from "@angular/fire";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
-import { AngularFireAuthModule, AngularFireAuth } from "@angular/fire/auth";
-import { AngularFireAuthGuardModule } from "@angular/fire/auth-guard";
-
-import { AuthenticationModule } from "./authentication/authentication.module";
+import { EnvironmentService } from "@cosmos/environment";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NavigationModule } from "./core/navigation/navigation.module";
-import { ThemeModule } from "./core/theme/theme.module";
-
-import { HomeComponent } from './home/home.component';
-import { HappyComponent } from './happy/happy.component';
+import { AngularAADAuthModule } from "@cosmos/angular-aad-auth";
+import { ChassisModule } from "@cosmos/chassis";
+import { PanelsModule } from "@cosmos/panels";
+import { HomePageModule } from "@cosmos/home-page";
+import { NotificationsModule } from '@cosmos/notifications'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    HappyComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AuthenticationModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-    AngularFireAuthGuardModule,
-    NavigationModule,
-    ThemeModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MsalModule,
+
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    //HttpClientInMemoryWebApiModule.forRoot(
+      //InMemoryDataService, { dataEncapsulation: false }
+    //),
+
+    AngularAADAuthModule,
+    ChassisModule,
+    PanelsModule,
+    HomePageModule,
+    NotificationsModule
   ],
-  providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    {
+      provide: EnvironmentService,
+      useValue: environment
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
