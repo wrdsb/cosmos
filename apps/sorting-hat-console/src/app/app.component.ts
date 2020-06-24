@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   loggedIn = false;
 
   constructor(
-    private environmentService: EnvironmentService,
+    public environmentService: EnvironmentService,
     private broadcastService: BroadcastService,
     private authService: MsalService
   ) {}
