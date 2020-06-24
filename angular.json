@@ -62,8 +62,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "panama-console:build"
-          },
+            "browserTarget": "panama-console:build",
+            "port": 4250
+          }          },
           "configurations": {
             "production": {
               "browserTarget": "panama-console:build:production"
@@ -185,7 +186,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "igor-console:build"
+            "browserTarget": "igor-console:build",
+            "port": 4234
           },
           "configurations": {
             "production": {
@@ -308,7 +310,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "hagar-console:build"
+            "browserTarget": "hagar-console:build",
+            "port": 4226
           },
           "configurations": {
             "production": {
@@ -431,7 +434,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sorting-hat-console:build"
+            "browserTarget": "sorting-hat-console:build",
+            "port": 4276
           },
           "configurations": {
             "production": {
@@ -557,7 +561,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "viewfinder-console:build"
+            "browserTarget": "viewfinder-console:build",
+            "port": 4290
           },
           "configurations": {
             "production": {
@@ -680,7 +685,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "houston-console:build"
+            "browserTarget": "houston-console:build",
+            "port": 4230
           },
           "configurations": {
             "production": {
@@ -803,7 +809,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "codex-console:build"
+            "browserTarget": "codex-console:build",
+            "port": 4214
           },
           "configurations": {
             "production": {
@@ -1673,7 +1680,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "flenderson-console:build"
+            "browserTarget": "flenderson-console:build",
+            "port": 4220
           },
           "configurations": {
             "production": {
@@ -1796,7 +1804,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "lamson-console:build"
+            "browserTarget": "lamson-console:build",
+            "port": 4240
           },
           "configurations": {
             "production": {
@@ -1919,7 +1928,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "radar-console:build"
+            "browserTarget": "radar-console:build",
+            "port": 4256
           },
           "configurations": {
             "production": {
@@ -2042,7 +2052,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "skinner-console:build"
+            "browserTarget": "skinner-console:build",
+            "port": 4266
           },
           "configurations": {
             "production": {
@@ -2165,7 +2176,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "skyline-console:build"
+            "browserTarget": "skyline-console:build",
+            "port": 4270
           },
           "configurations": {
             "production": {
@@ -2343,7 +2355,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "claptrap-console:build"
+            "browserTarget": "claptrap-console:build",
+            "port": 4210
           },
           "configurations": {
             "production": {
@@ -2521,7 +2534,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mcp-console:build"
+            "browserTarget": "mcp-console:build",
+            "port": 4244
           },
           "configurations": {
             "production": {
@@ -2699,7 +2713,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "relay-console:build"
+            "browserTarget": "relay-console:build",
+            "port": 4260
           },
           "configurations": {
             "production": {
@@ -2877,7 +2892,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "babbage-console:build"
+            "browserTarget": "babbage-console:build",
+            "port": 4205
           },
           "configurations": {
             "production": {
@@ -3055,7 +3071,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "hedwig-console:build"
+            "browserTarget": "hedwig-console:build",
+            "port": 4228
           },
           "configurations": {
             "production": {
