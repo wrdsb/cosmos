@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('@cosmos/home-page').then(m => m.HomePageModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('@cosmos/not-found-page').then(m => m.NotFoundPageModule)
   }
 ];
 
