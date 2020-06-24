@@ -1,16 +1,13 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+import { Environment } from "@cosmos/types";
 
-export const environment = {
-  production: false
+export const environment: Environment = {
+  production: false,
+  appName: 'Hedwig Beta',
+
+  aadClientId: 'd15732c7-13e4-41fc-9d8f-c7776b875e58',
+  aadAuthority: "https://login.microsoftonline.com/cd25c694-bfb8-48f4-9d0d-b9af282c4ab4",
+  aadValidateAuthority: true,
+  aadRedirectUri: "http://localhost:4200/",
+  aadPostLogoutRedirectUri: "http://localhost:4200/",
+  aadNavigateToLoginRequestUrl: true,
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
