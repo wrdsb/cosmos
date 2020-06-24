@@ -1,31 +1,38 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from "@angular/fire/auth-guard";
+import { MsalGuard } from '@azure/msal-angular';
 
-import { AppComponent } from "./app.component";
-import { HomeComponent } from './home/home.component';
-import { HappyComponent } from './happy/happy.component';
+//const adminOnly = () => hasCustomClaim('admin');
+//const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
-const adminOnly = () => hasCustomClaim('admin');
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
-const belongsToAccount = (next) => hasCustomClaim(`account-${next.params.id}`);
+// TODO: redirect logged in users to home when they access login page
+//const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
+
+//const belongsToAccount = (next) => hasCustomClaim(`account-${next.params.id}`);
 
 const routes: Routes = [
   {
-    path: 'login',
-    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule),
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectLoggedInToHome}
+    path: 'people',
+    loadChildren: () => import('./people/people.module').then(m => m.PeopleModule),
+    canActivate: [
+      MsalGuard
+    ]
   },
-
-  { path: 'people', loadChildren: () => import('./people/people.module').then(m => m.PeopleModule) },
-
-  { path: 'home',   component: HomeComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
-  { path: 'happy',  component: HappyComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
-
-  { path: '',   redirectTo: 'home', pathMatch: 'full', canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
-  { path: '**', redirectTo: 'home', pathMatch: 'full', canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
+  {
+    path: 'profile',
+    loadChildren: () => import('@cosmos/profile-page').then(m => m.ProfilePageModule),
+    canActivate: [
+      MsalGuard
+    ]
+  },
+  {
+    path: '',
+    loadChildren: () => import('@cosmos/home-page').then(m => m.HomePageModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('@cosmos/not-found-page').then(m => m.NotFoundPageModule)
+  }
 
   //{ path: 'admin',        component: AdminComponent,    ...canActivate(adminOnly) },
   //{ path: 'accounts/:id', component: AdminComponent,    ...canActivate(belongsToAccount) }
