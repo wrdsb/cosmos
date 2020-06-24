@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
 
 import { Menu } from "@cosmos/ui";
@@ -11,7 +12,7 @@ import { UINavigationService } from "@cosmos/ui-navigation";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  title = 'Sorting Hat';
+  appName = this.environmentService.appName;
 
   enabled: boolean;
   enabled$ = this.chassisService.headerEnabled$;
@@ -31,6 +32,7 @@ export class HeaderComponent implements OnInit {
   showSlideinRight$ = this.chassisService.slideinRightVisible$;
 
   constructor(
+    private environmentService: EnvironmentService,
     private chassisService: ChassisService,
     private navigationService: UINavigationService
   ) { }
