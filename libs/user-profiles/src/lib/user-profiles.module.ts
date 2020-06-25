@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ProfileBadgeComponent } from './profile-badge/profile-badge.component';
 
 @NgModule({
   declarations: [
-    ProfilePageComponent
+    ProfilePageComponent,
+    ProfileBadgeComponent
   ],
   imports: [
     CommonModule,
