@@ -14,7 +14,7 @@ import { EnvironmentService } from "@cosmos/environment";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { AngularAADAuthModule } from "@cosmos/angular-aad-auth";
+import { UserAuthModule } from "@cosmos/user-auth";
 import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
 import { HomePageModule } from "@cosmos/home-page";
@@ -38,7 +38,7 @@ import { NotificationsModule } from '@cosmos/notifications'
       //InMemoryDataService, { dataEncapsulation: false }
     //),
 
-    AngularAADAuthModule,
+    UserAuthModule,
     ChassisModule,
     PanelsModule,
     HomePageModule,
