@@ -251,6 +251,9 @@
     },
     "notifications": {
       "tags": []
+    },
+    "user-profiles": {
+      "tags": []
     }
   }
 }

@@ -38,7 +38,8 @@
       "@cosmos/environment": ["libs/environment/src/index.ts"],
       "@cosmos/types": ["libs/types/src/index.ts"],
       "@cosmos/people-sets": ["libs/people-sets/src/index.ts"],
-      "@cosmos/notifications": ["libs/notifications/src/index.ts"]
+      "@cosmos/notifications": ["libs/notifications/src/index.ts"],
+      "@cosmos/user-profiles": ["libs/user-profiles/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
