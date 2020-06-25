@@ -33,12 +33,16 @@ export const HEADER: Menu = {
 export const FOOTER: Menu = {
     links: [
         {
-            link: '/',
-            name: 'Home'
+            link: 'http://localhost:4270',
+            name: 'Skyline'
         },
         {
-            link: '/',
-            name: 'Link'
+            link: 'http://localhost:4276',
+            name: 'Sorting Hat'
+        },
+        {
+            link: 'http://localhost:4290',
+            name: 'Viewfinder'
         }
     ]
 };
