@@ -1,9 +1,20 @@
-<p>profile-page works!</p>
 <p>
-    Welcome {{profile?.displayName}}
+  Welcome {{profile?.displayName}}
 </p>
-<pre>
-    {{profileString()}}
-</pre>
+<p>
+  {{profileString()}}
+</p>
+
+<div>{{profile?.businessPhones}}</div>
+<div>{{profile?.displayName}}</div>
+<div>{{profile?.givenName}}</div>
+<div>{{profile?.jobTitle}}</div>
+<div>{{profile?.mail}}</div>
+<div>{{profile?.mobilePhone}}</div>
+<div>{{profile?.officeLocation}}</div>
+<div>{{profile?.preferredLanguage}}</div>
+<div>{{profile?.surname}}</div>
+<div>{{profile?.userPrincipalName}}</div>
+<div>{{profile?.id}}</div>
 
 <mgt-person [personDetails]="profile" show-name show-email></mgt-person>

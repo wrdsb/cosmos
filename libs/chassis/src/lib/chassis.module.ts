@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -29,6 +29,7 @@ import { ToggleSlideinRightComponent } from './toggle-slidein-right/toggle-slide
     CommonModule,
     RouterModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     ChassisComponent,
     HeaderComponent,
