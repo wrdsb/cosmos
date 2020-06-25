@@ -1,11 +1,1 @@
-<a href="/">{{ environmentService.appName }}</a>
-
-<a [routerLink]="['profile']">Profile</a>
-
-<button *ngIf="!loggedIn" (click)="login()">Login</button>
-<button *ngIf="loggedIn" (click)="logout()">Logout</button>
-
-<main role="main" class="container">
-  <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
-  <router-outlet *ngIf="!isIframe"></router-outlet>
-</main>
+<cosmos-chassis></cosmos-chassis>
