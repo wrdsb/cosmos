@@ -10,8 +10,7 @@
             <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
         </ul>
 
-        <button *ngIf="!loggedIn" (click)="login()">Login</button>
-        <button *ngIf="loggedIn" (click)="logout()">Logout</button>
+        <cosmos-sign-in-out-button></cosmos-sign-in-out-button>
 
         <cosmos-profile-badge></cosmos-profile-badge>
 

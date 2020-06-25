@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { EnvironmentService } from "@cosmos/environment";
 import { GraphService } from '@cosmos/msgraph-service';
 
+import { SignInOutButtonComponent } from './sign-in-out-button/sign-in-out-button.component';
+
 import {
   MsalModule,
   MsalInterceptor,
@@ -14,7 +16,6 @@ import {
 } from '@azure/msal-angular';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Configuration } from 'msal';
-import { SignInOutButtonComponent } from './sign-in-out-button/sign-in-out-button.component';
 
 export const protectedResourceMap: [string, string[]][] = [
   ['https://graph.microsoft.com/v1.0/me', ['user.read']]
@@ -54,6 +55,9 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
 }
 
 @NgModule({
+  declarations: [
+    SignInOutButtonComponent
+  ],
   imports: [
     CommonModule,
     MsalModule
@@ -77,6 +81,8 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
     },
     MsalService
   ],
-  declarations: [SignInOutButtonComponent],
+  exports: [
+    SignInOutButtonComponent
+  ]
 })
 export class AngularAADAuthModule {}

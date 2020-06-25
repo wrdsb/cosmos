@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { AngularAADAuthModule } from "@cosmos/angular-aad-auth";
 import { UserProfilesModule } from "@cosmos/user-profiles";
 
 import { ChassisComponent } from './chassis/chassis.component';
@@ -30,6 +31,7 @@ import { ToggleSlideinRightComponent } from './toggle-slidein-right/toggle-slide
   imports: [
     CommonModule,
     RouterModule,
+    AngularAADAuthModule,
     UserProfilesModule
   ],
   exports: [

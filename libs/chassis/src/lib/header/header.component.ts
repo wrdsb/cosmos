@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MsalService } from '@azure/msal-angular';
 
 import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
@@ -13,8 +12,6 @@ import { UINavigationService } from "@cosmos/ui-navigation";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  loggedIn = false;
-
   appName = this.environmentService.appName;
 
   enabled: boolean;
@@ -37,8 +34,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private environmentService: EnvironmentService,
     private chassisService: ChassisService,
-    private navigationService: UINavigationService,
-    private authService: MsalService,
+    private navigationService: UINavigationService
   ) { }
 
   ngOnInit(): void {
@@ -46,8 +42,6 @@ export class HeaderComponent implements OnInit {
     this.getVisible();
     this.getContent();
     this.getHeaderMenu();
-
-    this.checkoutAccount();
   }
 
   getEnabled(): void {
@@ -73,17 +67,5 @@ export class HeaderComponent implements OnInit {
 
   getHeaderMenu(): void {
     this.navigationService.getHeader().subscribe(menu => this.headerMenu = menu);
-  }
-
-  checkoutAccount() {
-    this.loggedIn = !!this.authService.getAccount();
-  }
-
-  login() {
-    this.authService.loginPopup();
-  }
-
-  logout() {
-    this.authService.logout();
   }
 }
