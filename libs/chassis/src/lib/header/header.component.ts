@@ -13,6 +13,8 @@ import { UINavigationService } from "@cosmos/ui-navigation";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  loggedIn = false;
+
   appName = this.environmentService.appName;
 
   enabled: boolean;
@@ -44,6 +46,8 @@ export class HeaderComponent implements OnInit {
     this.getVisible();
     this.getContent();
     this.getHeaderMenu();
+
+    this.checkoutAccount();
   }
 
   getEnabled(): void {
@@ -71,7 +75,15 @@ export class HeaderComponent implements OnInit {
     this.navigationService.getHeader().subscribe(menu => this.headerMenu = menu);
   }
 
+  checkoutAccount() {
+    this.loggedIn = !!this.authService.getAccount();
+  }
+
   login() {
     this.authService.loginPopup();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
