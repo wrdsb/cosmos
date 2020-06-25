@@ -5,8 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from "@angular/common/http";
 import { MsalModule } from '@azure/msal-angular';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from '@cosmos/people-sets';
+//import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+//import { InMemoryDataService }  from '@cosmos/people-sets';
 
 import { environment } from "../environments/environment";
 import { EnvironmentService } from "@cosmos/environment";
@@ -36,9 +36,9 @@ import { PeopleSetsModule } from "@cosmos/people-sets";
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
+    //HttpClientInMemoryWebApiModule.forRoot(
+      //InMemoryDataService, { dataEncapsulation: false }
+    //),
 
     AngularAADAuthModule,
     ChassisModule,
