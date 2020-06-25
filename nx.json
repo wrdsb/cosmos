@@ -254,6 +254,9 @@
     },
     "user-profiles": {
       "tags": []
+    },
+    "user-auth": {
+      "tags": []
     }
   }
 }
