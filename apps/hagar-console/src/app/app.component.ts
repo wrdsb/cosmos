@@ -47,12 +47,4 @@ export class AppComponent implements OnInit {
   checkoutAccount() {
     this.loggedIn = !!this.authService.getAccount();
   }
-
-  login() {
-    this.authService.loginPopup();
-  }
-
-  logout() {
-    this.authService.logout();
-  }
 }
