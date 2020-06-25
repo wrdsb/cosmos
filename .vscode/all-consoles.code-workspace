@@ -1,0 +1,55 @@
+{
+	"folders": [
+		{
+			"path": "../apps/babbage-console"
+		},
+		{
+			"path": "../apps/claptrap-console"
+		},
+		{
+			"path": "../apps/codex-console"
+		},
+		{
+			"path": "../apps/flenderson-console"
+		},
+		{
+			"path": "../apps/hagar-console"
+		},
+		{
+			"path": "../apps/hedwig-console"
+		},
+		{
+			"path": "../apps/houston-console"
+		},
+		{
+			"path": "../apps/igor-console"
+		},
+		{
+			"path": "../apps/lamson-console"
+		},
+		{
+			"path": "../apps/mcp-console"
+		},
+		{
+			"path": "../apps/panama-console"
+		},
+		{
+			"path": "../apps/radar-console"
+		},
+		{
+			"path": "../apps/relay-console"
+		},
+		{
+			"path": "../apps/skinner-console"
+		},
+		{
+			"path": "../apps/skyline-console"
+		},
+		{
+			"path": "../apps/sorting-hat-console"
+		},
+		{
+			"path": "../apps/viewfinder-console"
+		}
+	]
+}
