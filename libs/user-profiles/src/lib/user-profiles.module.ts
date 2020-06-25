@@ -19,7 +19,8 @@ import { ProfileBadgeComponent } from './profile-badge/profile-badge.component';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
-    ProfilePageComponent
+    ProfilePageComponent,
+    ProfileBadgeComponent
   ]
 })
 export class UserProfilesModule {}

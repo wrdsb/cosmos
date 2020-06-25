@@ -1,6 +1,8 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+import { UserProfilesModule } from "@cosmos/user-profiles";
 
 import { ChassisComponent } from './chassis/chassis.component';
 import { HeaderComponent } from './header/header.component';
@@ -27,9 +29,9 @@ import { ToggleSlideinRightComponent } from './toggle-slidein-right/toggle-slide
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    UserProfilesModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     ChassisComponent,
     HeaderComponent,

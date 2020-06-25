@@ -13,7 +13,7 @@
         <button *ngIf="!loggedIn" (click)="login()">Login</button>
         <button *ngIf="loggedIn" (click)="logout()">Logout</button>
 
-        <a [routerLink]="['profile']"><mgt-person [personDetails]="profile" show-name show-email></mgt-person></a>
+        <cosmos-profile-badge></cosmos-profile-badge>
 
         <cosmos-toggle-slidein-right></cosmos-toggle-slidein-right>
     </header>

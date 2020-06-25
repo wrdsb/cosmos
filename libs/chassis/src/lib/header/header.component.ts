@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
 
-import '@microsoft/mgt/dist/es6/components/mgt-person/mgt-person';
-import { User } from "@microsoft/microsoft-graph-types";
-import { GraphService } from '@cosmos/msgraph-service';
-
 import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
 
@@ -18,8 +14,6 @@ import { UINavigationService } from "@cosmos/ui-navigation";
 })
 export class HeaderComponent implements OnInit {
   loggedIn = false;
-  profile: User;
-  profile$ = this.graphService.getProfile();
 
   appName = this.environmentService.appName;
 
@@ -45,7 +39,6 @@ export class HeaderComponent implements OnInit {
     private chassisService: ChassisService,
     private navigationService: UINavigationService,
     private authService: MsalService,
-    private graphService: GraphService
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +48,6 @@ export class HeaderComponent implements OnInit {
     this.getHeaderMenu();
 
     this.checkoutAccount();
-    this.getProfile();
   }
 
   getEnabled(): void {
@@ -81,12 +73,6 @@ export class HeaderComponent implements OnInit {
 
   getHeaderMenu(): void {
     this.navigationService.getHeader().subscribe(menu => this.headerMenu = menu);
-  }
-
-  getProfile() {
-    this.profile$.subscribe(profile => 
-      this.profile = profile
-    );
   }
 
   checkoutAccount() {
