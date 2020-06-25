@@ -5,7 +5,7 @@ import { MsalGuard } from '@azure/msal-angular';
 const routes: Routes = [
   {
     path: 'profile',
-    loadChildren: () => import('@cosmos/profile-page').then(m => m.ProfilePageModule),
+    loadChildren: () => import('@cosmos/user-profiles').then(m => m.UserProfilesModule),
     canActivate: [
       MsalGuard
     ]
