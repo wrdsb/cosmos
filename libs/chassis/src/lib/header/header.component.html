@@ -10,6 +10,11 @@
             <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
         </ul>
 
+        <a [routerLink]="['profile']">Profile</a>
+
+        <button *ngIf="!loggedIn" (click)="login()">Login</button>
+        <button *ngIf="loggedIn" (click)="logout()">Logout</button>
+
         <cosmos-toggle-slidein-right></cosmos-toggle-slidein-right>
     </header>
 </ng-container>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MsalService } from '@azure/msal-angular';
 
 import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
@@ -34,7 +35,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private environmentService: EnvironmentService,
     private chassisService: ChassisService,
-    private navigationService: UINavigationService
+    private navigationService: UINavigationService,
+    private authService: MsalService
   ) { }
 
   ngOnInit(): void {
@@ -67,5 +69,9 @@ export class HeaderComponent implements OnInit {
 
   getHeaderMenu(): void {
     this.navigationService.getHeader().subscribe(menu => this.headerMenu = menu);
+  }
+
+  login() {
+    this.authService.loginPopup();
   }
 }
