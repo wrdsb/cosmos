@@ -1,0 +1,44 @@
+{
+    "bindings": [
+        {
+            "name": "queueMessage",
+            "type": "queueTrigger",
+            "queueName": "callbacks",
+            "connection": "wrdsbcrankcase_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "originalJob",
+            "type": "table",
+            "tableName": "activeJobs",
+            "partitionKey": "{queueTrigger}",
+            "rowKey": "job",
+            "connection": "wrdsbcrankcase_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "pastJobs",
+            "type": "table",
+            "tableName": "pastJobs",
+            "partitionKey": "{queueTrigger}",
+            "rowKey": "job",
+            "connection": "wrdsbcrankcase_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "garbageCollection",
+            "type": "queue",
+            "queueName": "garbage-collection",
+            "connection": "wrdsbcrankcase_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnGrid",
+            "type": "eventHub",
+            "path": "flynn-events",
+            "connection": "wrdsb-flynn_EVENTHUB",
+            "direction": "out"
+        }
+    ],
+    "disabled": false
+}

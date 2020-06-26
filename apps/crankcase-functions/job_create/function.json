@@ -1,0 +1,12 @@
+{
+    "bindings": [
+        {
+            "name": "queueMessage",
+            "type": "queueTrigger",
+            "queueName": "requests",
+            "connection": "wrdsbcrankcase_STORAGE",
+            "direction": "in"
+        }
+    ],
+    "disabled": false
+}

@@ -1,0 +1,16 @@
+{
+    "name": "job_dispatch",
+    "version": "0.0.1",
+    "description": "Makes outbound HTTP requests based on ada-job-queue queue items, and updates queue items based on results.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "async": "^2.6.0",
+        "azure-storage": "^2.8.1",
+        "request": "^2.85.0"
+    }
+}
