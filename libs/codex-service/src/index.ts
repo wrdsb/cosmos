@@ -1,1 +1,1 @@
-export * from './lib/codex-service.module';
+export * from './lib/codex.service';
