@@ -3909,6 +3909,38 @@
           "style": "scss"
         }
       }
+    },
+    "igor-service": {
+      "projectType": "library",
+      "root": "libs/igor-service",
+      "sourceRoot": "libs/igor-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/igor-service/tsconfig.lib.json",
+              "libs/igor-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/igor-service/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/igor-service/jest.config.js",
+            "tsConfig": "libs/igor-service/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/igor-service/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

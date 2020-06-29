@@ -269,6 +269,9 @@
     },
     "codex-console-private": {
       "tags": []
+    },
+    "igor-service": {
+      "tags": []
     }
   }
 }
