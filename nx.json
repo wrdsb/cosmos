@@ -269,6 +269,9 @@
     },
     "codex-service": {
       "tags": []
+    },
+    "codex-console-private": {
+      "tags": []
     }
   }
 }
