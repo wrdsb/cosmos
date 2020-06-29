@@ -3413,38 +3413,6 @@
         }
       }
     },
-    "home-page": {
-      "projectType": "library",
-      "root": "libs/home-page",
-      "sourceRoot": "libs/home-page/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/home-page/tsconfig.lib.json",
-              "libs/home-page/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/home-page/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/home-page/jest.config.js",
-            "tsConfig": "libs/home-page/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/home-page/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "profile-page": {
       "projectType": "library",
       "root": "libs/profile-page",
@@ -3468,38 +3436,6 @@
             "tsConfig": "libs/profile-page/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/profile-page/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
-    "not-found-page": {
-      "projectType": "library",
-      "root": "libs/not-found-page",
-      "sourceRoot": "libs/not-found-page/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/not-found-page/tsconfig.lib.json",
-              "libs/not-found-page/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/not-found-page/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/not-found-page/jest.config.js",
-            "tsConfig": "libs/not-found-page/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/not-found-page/src/test-setup.ts"
           }
         }
       },

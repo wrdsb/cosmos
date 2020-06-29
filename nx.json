@@ -225,13 +225,7 @@
     "msgraph-service": {
       "tags": []
     },
-    "home-page": {
-      "tags": []
-    },
     "profile-page": {
-      "tags": []
-    },
-    "not-found-page": {
       "tags": []
     },
     "app-settings": {
