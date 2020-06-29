@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CodexPerson } from "../model/codex-person.class";
-import { PeopleService } from "../people.service";
+import { CodexPerson } from "../../../../types/src/lib/codex-person.class";
+import { CodexPeopleService } from "../codex-people.service";
 
 @Component({
-  selector: 'app-people-list',
+  selector: 'cosmos-codex-people-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class PeopleListComponent implements OnInit {
+export class CodexPeopleListComponent implements OnInit {
   private people: CodexPerson[] = [];
   private selectedPerson: CodexPerson;
 
-  constructor(private peopleService: PeopleService) { }
+  constructor(private peopleService: CodexPeopleService) { }
 
   ngOnInit() {
     this.getPeople();

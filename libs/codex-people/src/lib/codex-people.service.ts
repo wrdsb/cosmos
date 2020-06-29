@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
-import { CodexPerson } from "./model/codex-person.class";
-import { PEOPLE } from "./model/people.mocks";
+import { CodexPerson } from "@cosmos/types";
+import { PEOPLE } from "@cosmos/types";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class PeopleService {
+export class CodexPeopleService {
   private people: CodexPerson[] = [];
 
   constructor() { }
