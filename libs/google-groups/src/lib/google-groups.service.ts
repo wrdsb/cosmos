@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { MessageService } from '../shared/services/message.service';
-import { GoogleGroup } from "./google-group.model";
-import { GROUPS } from "./google-groups.mocks";
+import { GoogleGroup } from "@cosmos/types";
+import { GROUPS } from "@cosmos/mocks";
 
 @Injectable({
   providedIn: 'root'
