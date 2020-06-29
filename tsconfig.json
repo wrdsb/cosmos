@@ -40,7 +40,6 @@
       "@cosmos/user-auth": ["libs/user-auth/src/index.ts"],
       "@cosmos/pages": ["libs/pages/src/index.ts"],
       "@cosmos/igor": ["libs/igor/src/index.ts"],
-      "@cosmos/codex": ["libs/codex/src/index.ts"],
       "@cosmos/codex-people": ["libs/codex-people/src/index.ts"],
       "@cosmos/google-groups": ["libs/google-groups/src/index.ts"],
       "@cosmos/codex-service": ["libs/codex-service/src/index.ts"],
