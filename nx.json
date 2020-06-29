@@ -269,6 +269,9 @@
     },
     "sorting-hat-service": {
       "tags": []
+    },
+    "sorting-hat-console-private": {
+      "tags": []
     }
   }
 }
