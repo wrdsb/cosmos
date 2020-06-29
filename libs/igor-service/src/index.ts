@@ -1,1 +1,1 @@
-export * from './lib/igor-service.module';
+export * from './lib/igor.service';
