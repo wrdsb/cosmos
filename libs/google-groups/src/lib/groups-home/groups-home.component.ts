@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-groups-home',
+  selector: 'cosmos-google-groups-home',
   templateUrl: './groups-home.component.html',
   styleUrls: ['./groups-home.component.scss']
 })

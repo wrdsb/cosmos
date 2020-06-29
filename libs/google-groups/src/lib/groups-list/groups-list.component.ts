@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GoogleGroup } from "../google-group.model";
+import { GoogleGroup } from "@cosmos/types";
 import { GoogleGroupsService } from '../google-groups.service';
 
 @Component({
-  selector: 'app-groups-list',
+  selector: 'cosmos-google-groups-list',
   templateUrl: './groups-list.component.html',
   styleUrls: ['./groups-list.component.scss']
 })
