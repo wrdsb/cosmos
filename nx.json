@@ -275,6 +275,9 @@
     },
     "mocks": {
       "tags": []
+    },
+    "messages": {
+      "tags": []
     }
   }
 }
