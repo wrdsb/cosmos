@@ -14,7 +14,8 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
     CommonModule,
 
     RouterModule.forChild([
-      {path: '', pathMatch: 'full', component: HomePageComponent}
+      {path: '', pathMatch: 'full', component: HomePageComponent},
+      {path: '**', pathMatch: 'full', component: NotFoundPageComponent}
     ])
   ],
   exports: [
