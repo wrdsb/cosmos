@@ -1,1 +1,1 @@
-export * from './lib/sorting-hat-service.module';
+export * from './lib/sorting-hat.service';
