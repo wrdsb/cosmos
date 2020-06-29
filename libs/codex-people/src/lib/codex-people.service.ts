@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { CodexPerson } from "@cosmos/types";
-import { PEOPLE } from "@cosmos/types";
+import { PEOPLE } from "@cosmos/mocks";
 
 
 @Injectable({
