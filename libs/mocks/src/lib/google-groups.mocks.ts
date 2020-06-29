@@ -1,4 +1,4 @@
-import { GoogleGroup } from './google-group.model';
+import { GoogleGroup } from '@cosmos/types';
 
 export const GROUPS: GoogleGroup[] = [
     {
