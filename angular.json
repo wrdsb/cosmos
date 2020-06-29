@@ -3941,6 +3941,38 @@
           "style": "scss"
         }
       }
+    },
+    "igor-console-private": {
+      "projectType": "library",
+      "root": "libs/igor-console-private",
+      "sourceRoot": "libs/igor-console-private/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/igor-console-private/tsconfig.lib.json",
+              "libs/igor-console-private/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/igor-console-private/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/igor-console-private/jest.config.js",
+            "tsConfig": "libs/igor-console-private/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/igor-console-private/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

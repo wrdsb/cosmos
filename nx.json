@@ -272,6 +272,9 @@
     },
     "igor-service": {
       "tags": []
+    },
+    "igor-console-private": {
+      "tags": []
     }
   }
 }
