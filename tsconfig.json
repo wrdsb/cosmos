@@ -44,7 +44,10 @@
         "libs/codex-console-private/src/index.ts"
       ],
       "@cosmos/igor-service": ["libs/igor-service/src/index.ts"],
-      "@cosmos/igor-console-private": ["libs/igor-console-private/src/index.ts"]
+      "@cosmos/igor-console-private": [
+        "libs/igor-console-private/src/index.ts"
+      ],
+      "@cosmos/sorting-hat-service": ["libs/sorting-hat-service/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

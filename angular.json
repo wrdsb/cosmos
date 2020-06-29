@@ -3877,6 +3877,38 @@
           "style": "scss"
         }
       }
+    },
+    "sorting-hat-service": {
+      "projectType": "library",
+      "root": "libs/sorting-hat-service",
+      "sourceRoot": "libs/sorting-hat-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/sorting-hat-service/tsconfig.lib.json",
+              "libs/sorting-hat-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/sorting-hat-service/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/sorting-hat-service/jest.config.js",
+            "tsConfig": "libs/sorting-hat-service/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/sorting-hat-service/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
