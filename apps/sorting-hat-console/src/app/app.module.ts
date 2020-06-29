@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
 import { UserAuthModule } from "@cosmos/user-auth";
 import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
-import { HomePageModule } from "@cosmos/home-page";
+import { PagesModule } from "@cosmos/pages";
 import { NotificationsModule } from '@cosmos/notifications'
 
 import { PeopleSetsModule } from "@cosmos/people-sets";
@@ -43,7 +43,7 @@ import { PeopleSetsModule } from "@cosmos/people-sets";
     UserAuthModule,
     ChassisModule,
     PanelsModule,
-    HomePageModule,
+    PagesModule,
     NotificationsModule,
 
     PeopleSetsModule

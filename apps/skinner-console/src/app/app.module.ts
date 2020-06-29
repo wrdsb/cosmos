@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
 import { UserAuthModule } from "@cosmos/user-auth";
 import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
-import { HomePageModule } from "@cosmos/home-page";
+import { PagesModule } from "@cosmos/pages";
 import { NotificationsModule } from '@cosmos/notifications'
 
 @NgModule({
@@ -41,7 +41,7 @@ import { NotificationsModule } from '@cosmos/notifications'
     UserAuthModule,
     ChassisModule,
     PanelsModule,
-    HomePageModule,
+    PagesModule,
     NotificationsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
