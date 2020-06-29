@@ -3845,6 +3845,38 @@
           "style": "scss"
         }
       }
+    },
+    "google-groups": {
+      "projectType": "library",
+      "root": "libs/google-groups",
+      "sourceRoot": "libs/google-groups/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/google-groups/tsconfig.lib.json",
+              "libs/google-groups/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/google-groups/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/google-groups/jest.config.js",
+            "tsConfig": "libs/google-groups/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/google-groups/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
