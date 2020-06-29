@@ -266,6 +266,9 @@
     },
     "google-groups": {
       "tags": []
+    },
+    "codex-service": {
+      "tags": []
     }
   }
 }

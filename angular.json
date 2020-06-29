@@ -3877,6 +3877,38 @@
           "style": "scss"
         }
       }
+    },
+    "codex-service": {
+      "projectType": "library",
+      "root": "libs/codex-service",
+      "sourceRoot": "libs/codex-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/codex-service/tsconfig.lib.json",
+              "libs/codex-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/codex-service/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/codex-service/jest.config.js",
+            "tsConfig": "libs/codex-service/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/codex-service/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
