@@ -3944,6 +3944,32 @@
           "style": "scss"
         }
       }
+    },
+    "mocks": {
+      "root": "libs/mocks",
+      "sourceRoot": "libs/mocks/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/mocks/tsconfig.lib.json",
+              "libs/mocks/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/mocks/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/mocks/jest.config.js",
+            "tsConfig": "libs/mocks/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

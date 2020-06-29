@@ -272,6 +272,9 @@
     },
     "sorting-hat-console-private": {
       "tags": []
+    },
+    "mocks": {
+      "tags": []
     }
   }
 }

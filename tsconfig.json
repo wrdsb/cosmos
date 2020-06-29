@@ -50,7 +50,8 @@
       "@cosmos/sorting-hat-service": ["libs/sorting-hat-service/src/index.ts"],
       "@cosmos/sorting-hat-console-private": [
         "libs/sorting-hat-console-private/src/index.ts"
-      ]
+      ],
+      "@cosmos/mocks": ["libs/mocks/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
