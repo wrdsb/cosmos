@@ -3749,6 +3749,102 @@
           "style": "scss"
         }
       }
+    },
+    "igor": {
+      "projectType": "library",
+      "root": "libs/igor",
+      "sourceRoot": "libs/igor/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/igor/tsconfig.lib.json",
+              "libs/igor/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/igor/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/igor/jest.config.js",
+            "tsConfig": "libs/igor/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/igor/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "codex": {
+      "projectType": "library",
+      "root": "libs/codex",
+      "sourceRoot": "libs/codex/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/codex/tsconfig.lib.json",
+              "libs/codex/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/codex/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/codex/jest.config.js",
+            "tsConfig": "libs/codex/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/codex/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "codex-people": {
+      "projectType": "library",
+      "root": "libs/codex-people",
+      "sourceRoot": "libs/codex-people/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/codex-people/tsconfig.lib.json",
+              "libs/codex-people/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/codex-people/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/codex-people/jest.config.js",
+            "tsConfig": "libs/codex-people/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/codex-people/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
