@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
 
-import { Menu } from "@cosmos/ui";
+import { Menu } from "@cosmos/types";
 import { UINavigationService } from "@cosmos/ui-navigation";
 
 @Component({

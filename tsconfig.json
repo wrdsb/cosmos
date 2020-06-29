@@ -23,7 +23,6 @@
       ],
       "@cosmos/sorting-hat": ["libs/sorting-hat/src/index.ts"],
       "@cosmos/sorting-hat-types": ["libs/sorting-hat-types/src/index.ts"],
-      "@cosmos/ui": ["libs/ui/src/index.ts"],
       "@cosmos/ui-layout": ["libs/ui-layout/src/index.ts"],
       "@cosmos/ui-navigation": ["libs/ui-navigation/src/index.ts"],
       "@cosmos/powder-coat": ["libs/powder-coat/src/index.ts"],

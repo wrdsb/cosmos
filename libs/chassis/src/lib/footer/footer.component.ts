@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Menu } from '@cosmos/ui';
+import { Menu } from '@cosmos/types';
 import { UINavigationService } from '@cosmos/ui-navigation';
 
 import { ChassisService } from '../chassis.service';

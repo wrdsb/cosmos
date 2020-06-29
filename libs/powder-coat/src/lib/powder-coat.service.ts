@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
 
-import { Theme } from "@cosmos/ui";
+import { Theme } from "@cosmos/types";
 import { THEME } from "./theme";
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { Menu } from "@cosmos/ui";
+import { Menu } from "@cosmos/types";
 import { FOOTER } from "./navigation";
 import { HEADER } from "./navigation";
 import { SIDE } from "./navigation";
