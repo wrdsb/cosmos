@@ -13,14 +13,14 @@ import { MsalGuard } from '@azure/msal-angular';
 const routes: Routes = [
   {
     path: 'google/groups',
-    loadChildren: () => import('./google-groups/google-groups.module').then(m => m.GoogleGroupsModule),
+    loadChildren: () => import('@cosmos/google-groups').then(m => m.GoogleGroupsModule),
     canActivate: [
       MsalGuard
     ]
   },
   {
     path: 'loops',
-    loadChildren: () => import('./loops/loops.module').then(m => m.LoopsModule),
+    loadChildren: () => import('@cosmos/signalr-loops').then(m => m.SignalrLoopsModule),
     canActivate: [
       MsalGuard
     ]

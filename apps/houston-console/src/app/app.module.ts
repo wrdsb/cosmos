@@ -20,6 +20,8 @@ import { PanelsModule } from "@cosmos/panels";
 import { PagesModule } from "@cosmos/pages";
 import { NotificationsModule } from '@cosmos/notifications'
 
+import { GoogleGroupsModule } from "@cosmos/google-groups";
+
 @NgModule({
   declarations: [
     AppComponent
@@ -42,7 +44,9 @@ import { NotificationsModule } from '@cosmos/notifications'
     ChassisModule,
     PanelsModule,
     PagesModule,
-    NotificationsModule
+    NotificationsModule,
+
+    GoogleGroupsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
