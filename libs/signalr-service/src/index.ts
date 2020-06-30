@@ -1,1 +1,1 @@
-export * from './lib/signalr-service.module';
+export * from './lib/signalr.service';

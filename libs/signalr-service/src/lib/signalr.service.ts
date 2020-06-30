@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { SignalRConnection } from "../models/signalr-connection.model";
+import { SignalRConnection } from "@cosmos/types";
 import * as SignalR from "@aspnet/signalr";
 
 @Injectable({
   providedIn: 'root'
 })
-export class HoustonSignalrService {
+export class SignalrService {
   messages = [];
 
   //private hubConnection: SignalR.HubConnection;
