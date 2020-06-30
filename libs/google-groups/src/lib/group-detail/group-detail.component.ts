@@ -7,13 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupDetailComponent implements OnInit {
   group = {
+    business_owner: 'some_one@wrdsb.ca',
+
     membership_automation_active: true,
     automate_mangers: true,
     automate_members: true,
     automate_owners: true,
+
     managers_people_sets: [],
     members_people_sets: [],
     owners_people_sets: [],
+
+    configuration_automation_active: true,
+    configuration_templates: '',
+
     google_id: '017dp8vu2oqr4lq',
     etag: '"nM32qckM4XsKqhG-zylXvkNQRY8/UiI5pz7y-TQVoLQLz8rK-yrKCoc"',
     email: 'eds-students@wrdsb.ca',
