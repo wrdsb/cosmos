@@ -278,6 +278,9 @@
     },
     "messages": {
       "tags": []
+    },
+    "signalr-service": {
+      "tags": []
     }
   }
 }

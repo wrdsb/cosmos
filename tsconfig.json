@@ -52,7 +52,8 @@
         "libs/sorting-hat-console-private/src/index.ts"
       ],
       "@cosmos/mocks": ["libs/mocks/src/index.ts"],
-      "@cosmos/messages": ["libs/messages/src/index.ts"]
+      "@cosmos/messages": ["libs/messages/src/index.ts"],
+      "@cosmos/signalr-service": ["libs/signalr-service/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
