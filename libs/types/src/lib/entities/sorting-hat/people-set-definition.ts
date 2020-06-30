@@ -1,6 +1,3 @@
-type PeopleSetType = "schoolCode" | "igor-legacy" | "ipps-location" | "ipps-job" | "ipps-group" | "manual";
-type PeopleSetsCollection = string[];
-
 interface PeopleSetDefinition {
     id: string;
 
@@ -27,5 +24,8 @@ interface PeopleSetDefinition {
 interface PeopleSetDefinitionQuery {
     id?: string;
 }
+
+type PeopleSetType = "schoolCode" | "igor-legacy" | "ipps-location" | "ipps-job" | "ipps-group" | "manual";
+type PeopleSetsCollection = string[];
 
 export { PeopleSetType, PeopleSetsCollection, PeopleSetDefinition, PeopleSetDefinitionQuery };
