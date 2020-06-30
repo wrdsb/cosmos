@@ -1,4 +1,4 @@
-import { AADGroupMembership } from "../aad/aad-group-membership";
+import { AADGroupMembership } from "../aad";
 
 export interface HAGARGroupMembership extends AADGroupMembership {
 
