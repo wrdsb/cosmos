@@ -26,6 +26,13 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'profile',
+    loadChildren: () => import('@cosmos/user-profiles').then(m => m.UserProfilesModule),
+    canActivate: [
+      MsalGuard
+    ]
+  },
+  {
     path: '',
     loadChildren: () => import('@cosmos/pages').then(m => m.PagesModule)
   },
