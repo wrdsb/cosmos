@@ -1,0 +1,7 @@
+interface AADGroupMembership {
+
+}
+
+export {
+    AADGroupMembership
+}
