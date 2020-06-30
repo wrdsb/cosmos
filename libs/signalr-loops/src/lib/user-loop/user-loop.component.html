@@ -1,1 +1,18 @@
-<p>user-loop works!</p>
+<p>user works!</p>
+
+<div class="row" *ngFor="let message of messages">
+  <div class="col-sm">
+    <hr />
+    <div>
+      <div style="display: inline-block; padding-left: 12px;">
+        <div>
+          <span class="text-info small">{{ message.sender }}</span>
+          <span *ngIf="message.isPrivate" class="badge badge-secondary">private message</span>
+        </div>
+        <div>
+          {{ message.text }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
