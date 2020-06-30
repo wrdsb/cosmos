@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GoogleGroup } from "@cosmos/types";
+
+import { IGORGroup } from "@cosmos/types";
 import { GoogleGroupsService } from '../google-groups.service';
 
 @Component({
@@ -8,8 +9,8 @@ import { GoogleGroupsService } from '../google-groups.service';
   styleUrls: ['./groups-list.component.scss']
 })
 export class GroupsListComponent implements OnInit {
-  private groups: GoogleGroup[] = [];
-  private selectedGroup: GoogleGroup;
+  private groups: IGORGroup[] = [];
+  private selectedGroup: IGORGroup;
 
   constructor(private groupsService: GoogleGroupsService) { }
 
@@ -17,7 +18,7 @@ export class GroupsListComponent implements OnInit {
     this.getGroups();
   }
 
-  onSelect(group: GoogleGroup): void {
+  onSelect(group: IGORGroup): void {
     this.selectedGroup = group;
   }
 
