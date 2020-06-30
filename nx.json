@@ -281,6 +281,9 @@
     },
     "signalr-service": {
       "tags": []
+    },
+    "signalr-loops": {
+      "tags": []
     }
   }
 }

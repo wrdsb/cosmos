@@ -4034,6 +4034,38 @@
           "style": "scss"
         }
       }
+    },
+    "signalr-loops": {
+      "projectType": "library",
+      "root": "libs/signalr-loops",
+      "sourceRoot": "libs/signalr-loops/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/signalr-loops/tsconfig.lib.json",
+              "libs/signalr-loops/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/signalr-loops/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/signalr-loops/jest.config.js",
+            "tsConfig": "libs/signalr-loops/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/signalr-loops/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

@@ -53,7 +53,8 @@
       ],
       "@cosmos/mocks": ["libs/mocks/src/index.ts"],
       "@cosmos/messages": ["libs/messages/src/index.ts"],
-      "@cosmos/signalr-service": ["libs/signalr-service/src/index.ts"]
+      "@cosmos/signalr-service": ["libs/signalr-service/src/index.ts"],
+      "@cosmos/signalr-loops": ["libs/signalr-loops/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
