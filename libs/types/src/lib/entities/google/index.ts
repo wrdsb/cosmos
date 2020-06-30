@@ -1,1 +1,1 @@
-export * from './google-group.model';
+export * from './google-group';

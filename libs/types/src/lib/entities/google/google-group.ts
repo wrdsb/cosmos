@@ -1,4 +1,4 @@
-export class GoogleGroup {
+export interface GoogleGroup {
     id?: string;
     google_id?: string;
     etag?: string;
@@ -8,20 +8,6 @@ export class GoogleGroup {
     description?: string;
     aliases?: string[];
     nonEditableAliases?: string[];
-
-    business_owner?: string;
-
-    membership_automation_active?: boolean;
-    automate_mangers?: boolean;
-    automate_members?: boolean;
-    automate_owners?: boolean;
-
-    managers_people_sets?: string[];
-    members_people_sets?: string[];
-    owners_people_sets?: string[];
-
-    configuration_automation_active?: boolean;
-    configuration_templates?: string;
 
     adminCreated?: boolean;
 

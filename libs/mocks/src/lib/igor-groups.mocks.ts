@@ -1,6 +1,6 @@
-import { GoogleGroup } from '@cosmos/types';
+import { IGORGroup } from '@cosmos/types';
 
-export const GROUPS: GoogleGroup[] = [
+export const GROUPS: IGORGroup[] = [
     {
         id: 'group1@wrdsb.ca',
         email: 'group1@wrdsb.ca',

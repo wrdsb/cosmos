@@ -1,3 +1,3 @@
-export * from './lib/google-groups.mocks';
+export * from './lib/igor-groups.mocks';
 
 export * from './lib/people.mocks';
