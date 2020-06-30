@@ -25,5 +25,4 @@ export class GroupsListComponent implements OnInit {
     this.groupsService.getGroups()
       .subscribe(groups => this.groups = groups);
   }
-
 }
