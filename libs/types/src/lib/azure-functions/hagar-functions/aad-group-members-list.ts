@@ -11,7 +11,9 @@ interface AADGroupMembersListFunctionCallbackMessage extends Cosmos.FunctionCall
 interface AADGroupMembersListFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {}
 
 // No payload required
-interface AADGroupMembersListFunctionRequestPayload extends Cosmos.FunctionRequestPayload {}
+interface AADGroupMembersListFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+    readonly groupID: string;
+}
 
 interface AADGroupMembersListFunctionResponsePayload extends Cosmos.FunctionResponsePayload {}
 
