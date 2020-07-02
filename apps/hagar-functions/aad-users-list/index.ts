@@ -4,8 +4,9 @@ import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
 import { MSGraphUsersAPI } from "../shared/MSGraphUsersAPI";
+import { AADUsersListFunctionRequest, AADUsersListFunctionRequestPayload } from "@cosmos/types";
 
-const aadUsersList: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const aadUsersList: AzureFunction = async function (context: Context, triggerMessage: AADUsersListFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
@@ -24,8 +25,8 @@ const aadUsersList: AzureFunction = async function (context: Context, triggerMes
         "hagar", 
     ];
 
-    const triggerObject = triggerMessage;
-    const payload = triggerObject.payload;
+    const triggerObject = triggerMessage as AADUsersListFunctionRequest;
+    const payload = triggerObject.payload as AADUsersListFunctionRequestPayload;
 
     const apiToken = "Bearer " + context.bindings.graphToken;
     const apiClient = new MSGraphUsersAPI(apiToken);

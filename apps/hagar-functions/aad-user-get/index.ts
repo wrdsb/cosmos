@@ -4,28 +4,29 @@ import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
 import { MSGraphUsersAPI } from "../shared/MSGraphUsersAPI";
+import { AADUserGetFunctionRequest, AADUserGetFunctionRequestPayload } from "@cosmos/types";
 
-const aadUserGet: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const aadUserGet: AzureFunction = async function (context: Context, triggerMessage: AADUserGetFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.HAGAR.AAD.Group.Get';
+    const functionEventType = 'WRDSB.HAGAR.AAD.User.Get';
     const functionEventID = `hagar-functions-${functionName}-${functionInvocationID}`;
     const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
 
     const logStorageAccount = process.env['storageAccount'];
     const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-aad-group-get-logs';
+    const logStorageContainer = 'function-aad-user-get-logs';
 
     const eventLabel = '';
     const eventTags = [
         "hagar", 
     ];
 
-    const triggerObject = triggerMessage;
-    const payload = triggerObject.payload;
+    const triggerObject = triggerMessage as AADUserGetFunctionRequest;
+    const payload = triggerObject.payload as AADUserGetFunctionRequestPayload;
 
     const apiToken = "Bearer " + context.bindings.graphToken;
     const apiClient = new MSGraphUsersAPI(apiToken);

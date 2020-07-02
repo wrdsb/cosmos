@@ -4,8 +4,9 @@ import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
 import { MSGraphGroupMembershipsAPI } from "../shared/MSGraphGroupMembershipsAPI";
+import { AADGroupMembersListFunctionRequest, AADGroupMembersListFunctionRequestPayload } from "@cosmos/types";
 
-const aadGroupMembersList: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const aadGroupMembersList: AzureFunction = async function (context: Context, triggerMessage: AADGroupMembersListFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
@@ -24,8 +25,8 @@ const aadGroupMembersList: AzureFunction = async function (context: Context, tri
         "hagar", 
     ];
 
-    const triggerObject = triggerMessage;
-    const payload = triggerObject.payload;
+    const triggerObject = triggerMessage as AADGroupMembersListFunctionRequest;
+    const payload = triggerObject.payload as AADGroupMembersListFunctionRequestPayload;
 
     const apiToken = "Bearer " + context.bindings.graphToken;
     const apiClient = new MSGraphGroupMembershipsAPI(apiToken);

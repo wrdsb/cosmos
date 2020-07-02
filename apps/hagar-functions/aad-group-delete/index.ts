@@ -3,8 +3,9 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
+import { AADGroupDeleteFunctionRequest, AADGroupDeleteFunctionRequestPayload } from "@cosmos/types";
 
-const aadGroupDelete: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const aadGroupDelete: AzureFunction = async function (context: Context, triggerMessage: AADGroupDeleteFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
@@ -23,9 +24,8 @@ const aadGroupDelete: AzureFunction = async function (context: Context, triggerM
         "hagar", 
     ];
 
-    const triggerObject = triggerMessage;
-
-    const payload = triggerObject.payload;
+    const triggerObject = triggerMessage as AADGroupDeleteFunctionRequest;
+    const payload = triggerObject.payload as AADGroupDeleteFunctionRequestPayload;
 
     let result = {
         event: payload

@@ -3,8 +3,9 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
+import { AADGroupMemberRemoveFunctionRequest, AADGroupMemberRemoveFunctionRequestPayload } from "@cosmos/types";
 
-const aadGroupMemberRemove: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const aadGroupMemberRemove: AzureFunction = async function (context: Context, triggerMessage: AADGroupMemberRemoveFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
@@ -23,9 +24,8 @@ const aadGroupMemberRemove: AzureFunction = async function (context: Context, tr
         "hagar", 
     ];
 
-    const triggerObject = triggerMessage;
-
-    const payload = triggerObject.payload;
+    const triggerObject = triggerMessage as AADGroupMemberRemoveFunctionRequest;
+    const payload = triggerObject.payload as AADGroupMemberRemoveFunctionRequestPayload;
 
     let result = {
         event: payload
