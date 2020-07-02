@@ -1,0 +1,75 @@
+{
+    "bindings": [
+        {
+            "authLevel": "anonymous",
+            "type": "httpTrigger",
+            "direction": "in",
+            "name": "req",
+            "methods": [
+                "post"
+            ]
+        },
+        {
+            "type": "http",
+            "direction": "out",
+            "name": "res"
+        },
+        {
+            "name": "aadUserGet",
+            "type": "queue",
+            "queueName": "aad-user-get",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "aadUsersList",
+            "type": "queue",
+            "queueName": "aad-users-list",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "addUserDelta",
+            "type": "queue",
+            "queueName": "add-user-delta",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "aadUserCreate",
+            "type": "queue",
+            "queueName": "aad-user-create",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "aadUserUpdate",
+            "type": "queue",
+            "queueName": "aad-user-update",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "aadUserDelete",
+            "type": "queue",
+            "queueName": "aad-user-delete",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "scriptFile": "../dist/aad-user-command/index.js"
+}
