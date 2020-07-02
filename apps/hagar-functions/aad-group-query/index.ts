@@ -32,23 +32,6 @@ const aadGroupQuery: AzureFunction = async function (context: Context, req: Http
 
     let result;
 
-    switch (operation) {
-        case 'get':
-            result = queueGet(payload);
-            context.log(result);
-            break;
-        case 'list':
-            result = queueList(payload);
-            context.log(result);
-            break;
-        case 'delta':
-            result = queueDelta(payload);
-            context.log(result);
-            break;
-        default:
-            break;
-    }
-
     const logPayload = result;
 
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
@@ -76,47 +59,6 @@ const aadGroupQuery: AzureFunction = async function (context: Context, req: Http
     context.log(invocationEvent);
 
     context.done(null, logBlob);
-
-
-    function queueGet(payload) {
-        const queueName = 'aad-group-get';
-        const queueMessage = 'aad-group-get';
-
-        let status = {
-            code: 202,
-            statusMessage: 'Success: Got group.'
-        }
-
-        context.bindings.aadGroupGet = queueMessage;
-        return queueMessage;
-    }
-
-    function queueList(payload) {
-        const queueName = 'aad-groups-list';
-        const queueMessage = 'aad-groups-list';
-
-        let status = {
-            code: 202,
-            statusMessage: 'Success: Listed groups.'
-        }
-
-        context.bindings.aadGroupsList = queueMessage;
-        return queueMessage;
-    }
-
-    function queueDelta(payload) {
-        const queueName = 'add-group-delta';
-        const queueMessage = 'add-group-delta';
-
-        let status = {
-            code: 202,
-            statusMessage: 'Success: Got groups delta.'
-        }
-
-        context.bindings.addGroupDelta = queueMessage;
-        return queueMessage;
-    }
-
 };
 
 export default aadGroupQuery;
