@@ -13,7 +13,7 @@ interface AADUserGetFunctionCallbackMessage extends Cosmos.FunctionCallbackMessa
 interface AADUserGetFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {}
 
 interface AADUserGetFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
-    readonly groupID: string;
+    readonly userID: string;
 }
 
 interface AADUserGetFunctionResponsePayload extends Cosmos.FunctionResponsePayload {}
