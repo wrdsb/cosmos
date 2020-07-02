@@ -2,13 +2,13 @@ import { AADGroup } from "../aad";
 import { PeopleSetDefinition } from "../sorting-hat";
 
 export interface HAGARGroup extends AADGroup {
-    business_owner?: string;
+    businessOwner?: string;
 
-    membership_automation_active?: boolean;
-    automate_members?: boolean;
+    membershipAutomationActive?: boolean;
+    automateMembers?: boolean;
 
-    members_people_sets?: PeopleSetDefinition[];
+    membersPeopleSets?: PeopleSetDefinition[];
 
-    configuration_automation_active?: boolean;
-    configuration_templates?: string;
+    configurationAutomationActive?: boolean;
+    configurationTemplates?: string;
 }
