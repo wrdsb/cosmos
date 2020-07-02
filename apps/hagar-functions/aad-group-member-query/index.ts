@@ -32,19 +32,6 @@ const aadGroupMemberQuery: AzureFunction = async function (context: Context, req
 
     let result;
 
-    switch (operation) {
-        case 'get':
-            result = queueGet(payload);
-            context.log(result);
-            break;
-        case 'list':
-            result = queueList(payload);
-            context.log(result);
-            break;
-        default:
-            break;
-    }
-
     const logPayload = result;
 
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
@@ -72,34 +59,6 @@ const aadGroupMemberQuery: AzureFunction = async function (context: Context, req
     context.log(invocationEvent);
 
     context.done(null, logBlob);
-
-
-    function queueGet(payload) {
-        const queueName = 'aad-group-member-get';
-        const queueMessage = 'aad-group-member-get';
-
-        let status = {
-            code: 202,
-            statusMessage: 'Success: Got group member.'
-        }
-
-        context.bindings.aadGroupMemberGet = queueMessage;
-        return queueMessage;
-    }
-
-    function queueList(payload) {
-        const queueName = 'aad-group-members-list';
-        const queueMessage = 'aad-group-members-list';
-
-        let status = {
-            code: 202,
-            statusMessage: 'Success: Listed group members.'
-        }
-
-        context.bindings.aadGroupMembersList = queueMessage;
-        return queueMessage;
-    }
-
 };
 
 export default aadGroupMemberQuery;

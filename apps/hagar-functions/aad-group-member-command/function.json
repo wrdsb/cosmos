@@ -15,6 +15,20 @@
             "name": "res"
         },
         {
+            "name": "aadGroupMemberGet",
+            "type": "queue",
+            "queueName": "aad-group-member-get",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "aadGroupMembersList",
+            "type": "queue",
+            "queueName": "aad-group-members-list",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "aadGroupMemberAdd",
             "type": "queue",
             "queueName": "aad-group-member-add",
