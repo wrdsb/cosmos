@@ -27,6 +27,8 @@ const aadUserStore: AzureFunction = async function (context: Context, triggerMes
     const triggerObject = triggerMessage as AADUserStoreFunctionRequest;
     const payload = triggerObject.payload as AADUserStoreFunctionRequestPayload;
 
+    let result;
+
     const logPayload = result;
     context.log(logPayload);
 

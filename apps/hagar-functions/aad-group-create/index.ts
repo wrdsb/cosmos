@@ -31,7 +31,7 @@ const aadGroupCreate: AzureFunction = async function (context: Context, triggerM
     const apiToken = "Bearer " + context.bindings.graphToken;
     const apiClient = new MSGraphGroupsAPI(apiToken);
 
-    let result = await apiClient.create(payload);
+    let result = await apiClient.create(payload.group);
 
     const logPayload = result;
     context.log(logPayload);

@@ -31,7 +31,7 @@ const aadUserGet: AzureFunction = async function (context: Context, triggerMessa
     const apiToken = "Bearer " + context.bindings.graphToken;
     const apiClient = new MSGraphUsersAPI(apiToken);
 
-    let result = await apiClient.get(payload);
+    let result = await apiClient.get(payload.userID);
 
     const logPayload = result;
     context.log(logPayload);
