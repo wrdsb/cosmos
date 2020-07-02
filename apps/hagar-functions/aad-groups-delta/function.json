@@ -31,5 +31,5 @@
 
     ],
     "disabled": false,
-    "scriptFile": "../dist/aad-groups-delta/index.js"
+    "scriptFile": "../dist/apps/hagar-functions/aad-groups-delta/index.js"
 }

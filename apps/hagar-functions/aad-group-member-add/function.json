@@ -31,5 +31,5 @@
 
     ],
     "disabled": false,
-    "scriptFile": "../dist/aad-group-member-add/index.js"
+    "scriptFile": "../dist/apps/hagar-functions/aad-group-member-add/index.js"
 }
