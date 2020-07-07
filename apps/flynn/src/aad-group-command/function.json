@@ -1,0 +1,75 @@
+{
+    "bindings": [
+        {
+            "authLevel": "anonymous",
+            "type": "httpTrigger",
+            "direction": "in",
+            "name": "req",
+            "methods": [
+                "post"
+            ]
+        },
+        {
+            "type": "http",
+            "direction": "out",
+            "name": "res"
+        },
+        {
+            "name": "aadGroupGet",
+            "type": "queue",
+            "queueName": "aad-group-get",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "aadGroupsList",
+            "type": "queue",
+            "queueName": "aad-groups-list",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "addGroupDelta",
+            "type": "queue",
+            "queueName": "add-group-delta",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "aadGroupCreate",
+            "type": "queue",
+            "queueName": "aad-group-create",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "aadGroupUpdate",
+            "type": "queue",
+            "queueName": "aad-group-update",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "aadGroupDelete",
+            "type": "queue",
+            "queueName": "aad-group-delete",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "scriptFile": "../dist/apps/hagar-functions/aad-group-command/index.js"
+}
