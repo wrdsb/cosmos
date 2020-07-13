@@ -6,6 +6,12 @@ import { createEvent } from "@cosmos/azure-functions-shared";
 import { MSGraphGroupsAPI } from "../shared/MSGraphGroupsAPI";
 import { AADGroupsListFunctionRequest, AADGroupsListFunctionRequestPayload } from "@cosmos/types";
 
+import { PageCollection, PageIterator, PageIteratorCallback } from "@microsoft/microsoft-graph-client";
+import { Group } from "@microsoft/microsoft-graph-types";
+import { Client } from "@microsoft/microsoft-graph-client";
+import { MyAuthenticationProvider } from "../shared/MyAuthenticationProvider";
+
+
 const aadGroupsList: AzureFunction = async function (context: Context, triggerMessage: AADGroupsListFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
@@ -28,10 +34,10 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
     const triggerObject = triggerMessage as AADGroupsListFunctionRequest;
     const payload = triggerObject.payload as AADGroupsListFunctionRequestPayload;
 
-    const apiToken = "Bearer " + context.bindings.graphToken;
+    const apiToken = context.bindings.graphToken;
     const apiClient = new MSGraphGroupsAPI(apiToken);
 
-    let result = await apiClient.list();
+    let result = await list();
 
     const logPayload = result;
     context.log(logPayload);
@@ -60,7 +66,51 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
-    context.done(null, logBlob);
+    context.done(null, 'done');
+
+
+    async function list(): Promise<Group[]> {
+        let groups = [];
+        let count = 0;
+
+        const clientOptions = {
+            authProvider: new MyAuthenticationProvider(apiToken)
+        };
+
+        let client = Client.initWithMiddleware(clientOptions);
+
+        try {
+            // Makes request to fetch groups list.
+            let response: PageCollection = await client
+                .api("/groups?$top=999")
+                .get();
+
+            // A callback function to be called for every item in the collection.
+            // This call back should return boolean indicating whether not to
+            // continue the iteration process.
+            let iteratorCallback: PageIteratorCallback = (data) => {
+                groups.push(data);
+                count++;
+                return true;
+            };
+
+            // Creating a new page iterator instance with client a graph client
+            // instance, page collection response from request and callback
+            let pageIterator = new PageIterator(client, response, iteratorCallback);
+
+            // This iterates the collection until the nextLink is drained out.
+            let itter = await pageIterator.iterate();
+
+            return groups;
+        } catch (err) {
+            //if (err && err.response) {
+                //const axiosError = err as AxiosError<ServerError>
+                //return axiosError.response.data;
+            //}
+            context.log(err);
+            throw err;
+        }
+    }
 };
 
 export default aadGroupsList;
