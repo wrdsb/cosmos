@@ -25,7 +25,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
+    "zip": "npm-build-zip --source=dist/hagar-functions/ --destination=dist --name=hagar-functions --info=true"
   },
   "private": true,
   "dependencies": {
@@ -86,9 +87,11 @@
     "eslint": "6.8.0",
     "jest": "25.2.3",
     "jest-preset-angular": "8.1.2",
+    "npm-build-zip": "^1.0.2",
     "prettier": "1.19.1",
     "ts-jest": "^26.0.0",
     "ts-node": "~7.0.0",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
     "typescript": "~3.8.3"
   },
   "config": {
