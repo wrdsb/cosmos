@@ -31,5 +31,5 @@
 
     ],
     "disabled": false,
-    "scriptFile": "../dist/apps/hagar-functions/aad-groups-list/index.js"
+    "scriptFile": "./index.js"
 }

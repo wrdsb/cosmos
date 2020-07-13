@@ -29,5 +29,5 @@
             "direction": "out"
         }
     ],
-    "scriptFile": "../dist/apps/hagar-functions/aad-group-member-query/index.js"
+    "scriptFile": "./index.js"
 }

@@ -31,5 +31,5 @@
 
     ],
     "disabled": false,
-    "scriptFile": "../dist/apps/hagar-functions/aad-group-delete/index.js"
+    "scriptFile": "./index.js"
 }
