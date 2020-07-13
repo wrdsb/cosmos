@@ -31,7 +31,8 @@ const aadGroupGet: AzureFunction = async function (context: Context, triggerMess
     const apiToken = "Bearer " + context.bindings.graphToken;
     const apiClient = new MSGraphGroupsAPI(apiToken);
 
-    let result = await apiClient.get(payload.groupID);
+    //let result = await apiClient.get(payload.groupID);
+    let result = "";
 
     const logPayload = result;
     context.log(logPayload);

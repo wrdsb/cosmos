@@ -30,7 +30,8 @@ const aadGroupsDelta: AzureFunction = async function (context: Context, triggerM
     const apiToken = "Bearer " + context.bindings.graphToken;
     const apiClient = new MSGraphGroupsAPI(apiToken);
 
-    let result = await apiClient.delta();
+    //let result = await apiClient.delta();
+    let result = "";
 
     const logPayload = result;
     context.log(logPayload);
