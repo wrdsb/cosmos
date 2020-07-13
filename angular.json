@@ -1160,9 +1160,35 @@
             "main": "apps/hagar-functions/src/main.ts",
             "tsConfig": "apps/hagar-functions/tsconfig.app.json",
             "webpackConfig": "apps/hagar-functions/webpack.config.js",
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
             "sourceMap": false,
             "assets": [
-              "apps/hagar-functions/src/assets"
+              {
+                "input": "./apps/hagar-functions/src",
+                "glob": "**/function.json",
+                "output": "./hagar-functions"
+              },
+              {
+                "input": "./apps/hagar-functions/src",
+                "glob": "host.json",
+                "output": "./hagar-functions"
+              },
+              {
+                "input": "./apps/hagar-functions/src",
+                "glob": "proxies.json",
+                "output": "./hagar-functions"
+              },
+              {
+                "input": "./apps/hagar-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./hagar-functions"
+              },
+              {
+                "input": "./apps/hagar-functions/bin",
+                "glob": "**.*",
+                "output": "./hagar-functions/bin"
+              }
             ]
           },
           "configurations": {
