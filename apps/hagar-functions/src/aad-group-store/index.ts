@@ -91,7 +91,13 @@ const aadGroupStore: AzureFunction = async function (context: Context, triggerMe
             created_at: '',
             updated_at: '',
             deleted_at: '',
-            deleted: false
+            deleted: false,
+            businessOwner: "",
+            membershipAutomationActive: false,
+            automateMembers: false,
+            membersPeopleSets: [],
+            configurationAutomationActive: false,
+            configurationTemplates: false
         };
 
         // check for existing record
@@ -126,7 +132,13 @@ const aadGroupStore: AzureFunction = async function (context: Context, triggerMe
             created_at: '',
             updated_at: '',
             deleted_at: '',
-            deleted: false
+            deleted: false,
+            businessOwner: "",
+            membershipAutomationActive: false,
+            automateMembers: false,
+            membersPeopleSets: [],
+            configurationAutomationActive: false,
+            configurationTemplates: false
         };
 
         if (!oldRecord) {
@@ -162,7 +174,13 @@ const aadGroupStore: AzureFunction = async function (context: Context, triggerMe
             created_at: '',
             updated_at: '',
             deleted_at: '',
-            deleted: false
+            deleted: false,
+            businessOwner: "",
+            membershipAutomationActive: false,
+            automateMembers: false,
+            membersPeopleSets: [],
+            configurationAutomationActive: false,
+            configurationTemplates: false
         };
 
         newRecord = Object.assign(newRecord, payload);
