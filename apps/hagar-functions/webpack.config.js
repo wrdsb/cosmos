@@ -43,23 +43,6 @@ module.exports = (config, context) => {
             acc[name] = item
             return acc
         }, {}),
-        entry: glob.sync(path.resolve(__dirname, './src/**/function.json')).reduce((acc, item) => {
-            /**
-             * The "[name]" placeholder in the "output" property will be replaced
-             * with each key name in our "entry" object. We need to make sure the
-             * keys are a path to the "index.js" file but without the actual file
-             * name. This is why we replace the file name, "index.js", with a string
-             */
-            let name = item.replace('/function.json', '');
-            name = name.replace(path.resolve(__dirname, './src/'), '');
-            /**
-             * Here we start building our object by placing the "entry" variable from
-             * the previous line as a key and the entire path including the file name
-             * as the value
-             */
-            acc[name] = item
-            return acc
-        }, {}),
         module: {
             rules: [
                 {

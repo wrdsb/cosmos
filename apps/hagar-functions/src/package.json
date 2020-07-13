@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "tsc",
+    "build": "nx build hagar-functions",
     "watch": "tsc -w",
     "prestart": "npm run build",
     "start": "func start",
