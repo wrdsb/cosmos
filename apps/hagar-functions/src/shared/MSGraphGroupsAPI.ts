@@ -89,19 +89,18 @@ export class MSGraphGroupsAPI {
     }
     
     // PATCH /groups/{id}
-    //public async update(group: Group): Promise<Group | ServerError> {
-        //try {
-            //const response = await this.api.patch(`/groups/${group.id}`);
-            //const data = response.data;
-            //return data;
-        //} catch (err) {
-            //if (err && err.response) {
-                //const axiosError = err as AxiosError<ServerError>
-                //return axiosError.response.data;
-            //}
-            //throw err;
-        //}
-    //}
+    public async update(group: Group): Promise<Group> {
+        try {
+            const response = await this.client.api(`/groups/${group.id}`).update(group);
+            const data = response;
+            return data;
+        } catch (err) {
+            if (err) {
+                return err;
+            }
+            throw err;
+        }
+    }
     
     // DELETE /groups/{id}
     //public async delete(id: string): Promise<boolean | ServerError> {
