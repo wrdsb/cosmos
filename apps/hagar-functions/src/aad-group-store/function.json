@@ -8,6 +8,24 @@
             "direction": "in"
         },
         {
+            "name": "recordIn",
+            "type": "cosmosDB",
+            "databaseName": "hagar",
+            "collectionName": "groups",
+            "id": "{payload.id}",
+            "partitionKey": "{payload.id}",
+            "connectionStringSetting": "wrdsb-hagar_COSMOSDB",
+            "direction": "in"
+        },
+        {
+            "name": "recordOut",
+            "type": "cosmosDB",
+            "databaseName": "hagar",
+            "collectionName": "groups",
+            "connectionStringSetting": "wrdsb-hagar_COSMOSDB",
+            "direction": "out"
+        },
+        {
             "name": "callbackMessage",
             "type": "queue",
             "queueName": "callbacks",

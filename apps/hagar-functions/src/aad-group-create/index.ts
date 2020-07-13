@@ -60,6 +60,16 @@ const aadGroupCreate: AzureFunction = async function (context: Context, triggerM
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
+    let groupToStore = result;
+    groupToStore['aadID'] = groupToStore.id;
+    groupToStore['id'] = groupToStore.displayName;
+
+    context.bindings.storeGroup = {
+        operation: "patch",
+        payload: groupToStore
+    }
+    context.log(groupToStore);
+
     context.done(null, logBlob);
 };
 
