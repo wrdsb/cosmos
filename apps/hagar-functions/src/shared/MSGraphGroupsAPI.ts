@@ -34,9 +34,7 @@ export class MSGraphGroupsAPI {
 
         try {
             // Makes request to fetch groups list.
-            let response: PageCollection = await client
-                .api("/groups?$top=999")
-                .get();
+            let response: PageCollection = await client.api("/groups?$top=999").get();
 
             // A callback function to be called for every item in the collection.
             // This call back should return boolean indicating whether not to
@@ -62,19 +60,21 @@ export class MSGraphGroupsAPI {
     }
     
     // GET /groups/{id}
-    //public async get(id: string): Promise<Group | ServerError> {
-        //try {
-            //const response = await this.api.get<Group>(`/groups/${id}`);
-            //const data = response.data;
-            //return data;
-        //} catch (err) {
+    public async get(id: string): Promise<Group> {
+        let client = this.client;
+
+        try {
+            const response = await client.api(`/groups/${id}`).get();
+            const data = response;
+            return data;
+        } catch (err) {
             //if (err && err.response) {
                 //const axiosError = err as AxiosError<ServerError>
                 //return axiosError.response.data;
             //}
-            //throw err;
-        //}
-    //}
+            throw err;
+        }
+    }
     
     // POST /groups
     //public async create(group: Group): Promise<Group | ServerError> {
