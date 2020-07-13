@@ -3,9 +3,9 @@
         {
             "name": "triggerMessage",
             "type": "queueTrigger",
-            "direction": "in",
             "queueName": "location-store",
-            "connection": "wrdsbflenderson_STORAGE"
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
         },
         {
             "name": "recordIn",

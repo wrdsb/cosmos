@@ -24,7 +24,6 @@ const locationStore: AzureFunction = async function (context: Context, triggerMe
     ];
 
     const triggerObject = triggerMessage;
-
     const operation = triggerObject.operation;
     const payload = triggerObject.payload;
 
