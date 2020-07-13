@@ -61,10 +61,8 @@ export class MSGraphGroupsAPI {
     
     // GET /groups/{id}
     public async get(id: string): Promise<Group> {
-        let client = this.client;
-
         try {
-            const response = await client.api(`/groups/${id}`).get();
+            const response = await this.client.api(`/groups/${id}`).get();
             const data = response;
             return data;
         } catch (err) {
@@ -77,19 +75,18 @@ export class MSGraphGroupsAPI {
     }
     
     // POST /groups
-    //public async create(group: Group): Promise<Group | ServerError> {
-        //try {
-            //const response = await this.api.post(`/groups`, JSON.stringify(group));
-            //const data = response.data;
-            //return data;
-        //} catch (err) {
-            //if (err && err.response) {
-                //const axiosError = err as AxiosError<ServerError>
-                //return axiosError.response.data;
-            //}
-            //throw err;
-        //}
-    //}
+    public async create(group: Group): Promise<Group> {
+        try {
+            const response = await this.client.api('/groups').post(group);
+            const data = response;
+            return data;
+        } catch (err) {
+            if (err) {
+                return err;
+            }
+            throw err;
+        }
+    }
     
     // PATCH /groups/{id}
     //public async update(group: Group): Promise<Group | ServerError> {
