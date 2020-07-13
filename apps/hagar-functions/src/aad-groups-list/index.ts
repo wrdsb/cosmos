@@ -34,21 +34,21 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
     const triggerObject = triggerMessage as AADGroupsListFunctionRequest;
     const payload = triggerObject.payload as AADGroupsListFunctionRequestPayload;
 
-    const apiToken = "Bearer " + context.bindings.graphToken;
+    const apiToken = context.bindings.graphToken;
     const apiClient = new MSGraphGroupsAPI(apiToken);
 
     let result = await list();
 
     const logPayload = result;
-    //context.log(logPayload);
+    context.log(logPayload);
 
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
     const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    //context.log(logBlob);
+    context.log(logBlob);
 
     const callbackMessage = await createCallbackMessage(logObject, 200);
     context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    //context.log(callbackMessage);
+    context.log(callbackMessage);
 
     const invocationEvent = await createEvent(
         functionInvocationID,
@@ -64,7 +64,7 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
         eventTags
     );
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
-    //context.log(invocationEvent);
+    context.log(invocationEvent);
 
     context.done(null, 'done');
 
@@ -72,7 +72,6 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
     async function list(): Promise<Group[]> {
         let groups = [];
         let count = 0;
-        context.log(`Count: ${count}`);
 
         const clientOptions = {
             authProvider: new MyAuthenticationProvider(apiToken)
@@ -90,9 +89,8 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
             // This call back should return boolean indicating whether not to
             // continue the iteration process.
             let iteratorCallback: PageIteratorCallback = (data) => {
-                //groups.push(data.subject);
-                //count++;
-                //context.log(count);
+                groups.push(data);
+                count++;
                 return true;
             };
 
@@ -101,7 +99,7 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
             let pageIterator = new PageIterator(client, response, iteratorCallback);
 
             // This iterates the collection until the nextLink is drained out.
-            groups = await pageIterator.iterate();
+            let itter = await pageIterator.iterate();
 
             return groups;
         } catch (err) {
@@ -109,6 +107,7 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
                 //const axiosError = err as AxiosError<ServerError>
                 //return axiosError.response.data;
             //}
+            context.log(err);
             throw err;
         }
     }

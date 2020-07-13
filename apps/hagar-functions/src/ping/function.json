@@ -30,5 +30,5 @@
             "direction": "out"
         }
     ],
-    "scriptFile": "../dist/ping/index.js"
+    "scriptFile": "./index.js"
 }

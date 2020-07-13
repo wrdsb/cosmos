@@ -7,7 +7,7 @@ import { msGraphAPI } from "../shared/msGraphAPI";
 import { apiConfig } from "../shared/apiConfig";
 
 import { Client } from "@microsoft/microsoft-graph-client";
-import { MyAuthenticationProvider } from "../shared/MyAuthenticationProvider";
+import { MyAuthenticationProvider } from "./MyAuthenticationProvider";
 
 export class MSGraphGroupsAPI {
     private client: Client;
