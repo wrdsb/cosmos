@@ -60,6 +60,16 @@ const aadGroupGet: AzureFunction = async function (context: Context, triggerMess
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
+    let groupToStore = result;
+    groupToStore['aadID'] = groupToStore.id;
+    groupToStore['id'] = groupToStore.mailNickname;
+
+    context.bindings.storeGroup = {
+        operation: "patch",
+        payload: groupToStore
+    }
+    context.log(groupToStore);
+
     context.done(null, logBlob);
 };
 
