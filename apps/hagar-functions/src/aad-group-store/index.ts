@@ -57,6 +57,7 @@ const aadGroupStore: AzureFunction = async function (context: Context, triggerMe
 
     context.bindings.recordOut = result.newRecord;
     const logPayload = result.event;
+    context.log(logPayload);
 
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
     const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
