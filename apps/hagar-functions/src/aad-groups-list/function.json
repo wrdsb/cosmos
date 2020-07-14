@@ -34,13 +34,6 @@
             "queueName": "event-emitter",
             "connection": "wrdsbhagar_STORAGE",
             "direction": "out"
-        },
-        {
-            "name": "storeGroup",
-            "type": "queue",
-            "queueName": "aad-group-store",
-            "connection": "wrdsbhagar_STORAGE",
-            "direction": "out"
         }
     ],
     "disabled": false,
