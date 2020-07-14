@@ -62,7 +62,7 @@ const aadGroupCreate: AzureFunction = async function (context: Context, triggerM
 
     let groupToStore = result;
     groupToStore['aadID'] = groupToStore.id;
-    groupToStore['id'] = groupToStore.displayName;
+    groupToStore['id'] = groupToStore.mailNickname;
 
     context.bindings.storeGroup = {
         operation: "patch",
