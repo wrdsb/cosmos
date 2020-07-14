@@ -8,11 +8,22 @@
             "direction": "in"
         },
         {
-            "name": "graphToken",
-            "type": "token",
-            "resource": "https://graph.microsoft.com",
-            "identity": "clientCredentials",
+            "name": "recordIn",
+            "type": "cosmosDB",
+            "databaseName": "hagar",
+            "collectionName": "users",
+            "id": "{payload.id}",
+            "partitionKey": "{payload.id}",
+            "connectionStringSetting": "wrdsb-hagar_COSMOSDB",
             "direction": "in"
+        },
+        {
+            "name": "recordOut",
+            "type": "cosmosDB",
+            "databaseName": "hagar",
+            "collectionName": "users",
+            "connectionStringSetting": "wrdsb-hagar_COSMOSDB",
+            "direction": "out"
         },
         {
             "name": "callbackMessage",
