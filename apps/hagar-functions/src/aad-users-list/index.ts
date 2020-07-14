@@ -33,6 +33,8 @@ const aadUsersList: AzureFunction = async function (context: Context, triggerMes
 
     let result = await apiClient.list(context);
 
+    context.bindings.resultsBlob = result;
+
     const logPayload = result;
     context.log(logPayload);
 
