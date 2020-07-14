@@ -28,10 +28,10 @@ const aadUsersList: AzureFunction = async function (context: Context, triggerMes
     const triggerObject = triggerMessage as AADUsersListFunctionRequest;
     const payload = triggerObject.payload as AADUsersListFunctionRequestPayload;
 
-    const apiToken = "Bearer " + context.bindings.graphToken;
+    const apiToken = context.bindings.graphToken;
     const apiClient = new MSGraphUsersAPI(apiToken);
 
-    let result = await apiClient.list();
+    let result = await apiClient.list(context);
 
     const logPayload = result;
     context.log(logPayload);
