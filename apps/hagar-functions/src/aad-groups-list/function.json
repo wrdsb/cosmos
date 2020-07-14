@@ -15,6 +15,13 @@
             "direction": "in"
         },
         {
+            "name": "resultsBlob",
+            "type": "blob",
+            "path": "aad-groups/actual-current.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "callbackMessage",
             "type": "queue",
             "queueName": "callbacks",
