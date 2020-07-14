@@ -60,6 +60,23 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
+    let groupsToStore = result;
+    let queueMessages = [];
+
+    groupsToStore.forEach((groupToStore) => {
+        groupToStore['aadID'] = groupToStore.id;
+        groupToStore['id'] = groupToStore.mailNickname;
+        queueMessages.push(
+            {
+                operation: "patch",
+                payload: groupToStore
+            }
+        );
+    });
+
+    context.bindings.storeGroup = queueMessages;
+    context.log(queueMessages);
+
     context.done(null, 'done');
 };
 
