@@ -28,7 +28,7 @@ const aadUserGet: AzureFunction = async function (context: Context, triggerMessa
     const triggerObject = triggerMessage as AADUserGetFunctionRequest;
     const payload = triggerObject.payload as AADUserGetFunctionRequestPayload;
 
-    const apiToken = "Bearer " + context.bindings.graphToken;
+    const apiToken = context.bindings.graphToken;
     const apiClient = new MSGraphUsersAPI(apiToken);
 
     let result = await apiClient.get(payload.userID);
@@ -59,6 +59,16 @@ const aadUserGet: AzureFunction = async function (context: Context, triggerMessa
     );
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
+
+    let userToStore = result;
+    userToStore['aadID'] = userToStore.id;
+    userToStore['id'] = userToStore.userPrincipalName;
+
+    context.bindings.storeUser = {
+        operation: "patch",
+        payload: userToStore
+    }
+    context.log(userToStore);
 
     context.done(null, logBlob);
 };

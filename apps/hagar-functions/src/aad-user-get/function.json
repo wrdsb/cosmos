@@ -27,6 +27,13 @@
             "queueName": "event-emitter",
             "connection": "wrdsbhagar_STORAGE",
             "direction": "out"
+        },
+        {
+            "name": "storeUser",
+            "type": "queue",
+            "queueName": "aad-user-store",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
         }
     ],
     "disabled": false,
