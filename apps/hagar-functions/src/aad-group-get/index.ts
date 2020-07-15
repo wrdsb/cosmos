@@ -61,8 +61,6 @@ const aadGroupGet: AzureFunction = async function (context: Context, triggerMess
     context.log(invocationEvent);
 
     let groupToStore = result;
-    groupToStore['aadID'] = groupToStore.id;
-    groupToStore['id'] = groupToStore.mailNickname;
 
     context.bindings.storeGroup = {
         operation: "patch",
