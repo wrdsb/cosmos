@@ -31,9 +31,29 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
     const apiToken = context.bindings.graphToken;
     const apiClient = new MSGraphGroupsAPI(apiToken);
 
+    let blobActualCurrentArray = [];
+    let blobActualCurrentObjectAADID = {};
+    let blobActualCurrentObjectHAGARID = {};
+    let blobActualCurrentObjectMailNickname = {};
+
     let result = await apiClient.list();
 
-    context.bindings.resultsBlob = result;
+    blobActualCurrentArray = result;
+
+    result.forEach((group) => {
+        let groupToStore = group;
+        groupToStore['aadID'] = groupToStore.id;
+        groupToStore.id = groupToStore.mailNickname;
+    
+        blobActualCurrentObjectAADID[groupToStore['aadID']] = group;
+        blobActualCurrentObjectHAGARID[groupToStore.id] = group;
+        blobActualCurrentObjectMailNickname[groupToStore.mailNickname] = group;
+    });
+
+    context.bindings.blobActualCurrentArray = blobActualCurrentArray;
+    context.bindings.blobActualCurrentObjectAADID = blobActualCurrentObjectAADID;
+    context.bindings.blobActualCurrentObjectHAGARID = blobActualCurrentObjectHAGARID;
+    context.bindings.blobActualCurrentObjectMailNickname = blobActualCurrentObjectMailNickname;
 
     const logPayload = result;
     context.log(logPayload);

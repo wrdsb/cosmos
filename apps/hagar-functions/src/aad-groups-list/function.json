@@ -15,9 +15,30 @@
             "direction": "in"
         },
         {
-            "name": "resultsBlob",
+            "name": "blobActualCurrentArray",
             "type": "blob",
-            "path": "aad-groups/actual-current.json",
+            "path": "aad-groups/actual-current-array.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectAADID",
+            "type": "blob",
+            "path": "aad-groups/actual-current-object-aad-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectHAGARID",
+            "type": "blob",
+            "path": "aad-groups/actual-current-object-hagar-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectMailNickname",
+            "type": "blob",
+            "path": "aad-groups/actual-current-object-mailNickname.json",
             "connection": "wrdsbhagar_STORAGE",
             "direction": "out"
         },
