@@ -1,0 +1,97 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "aad-users-list-parse",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "blobActualCurrentArray",
+            "type": "blob",
+            "path": "aad-users/actual-current-array.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "blobActualCurrentObjectAADID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-aad-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectHAGARID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-hagar-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectUserPrincipalName",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-userPrincipalName.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectStaffAADID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-staff-aad-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectStaffHAGARID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-staff-hagar-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectStaffUserPrincipalName",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-staff-userPrincipalName.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectStudentsAADID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-students-aad-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectStudentsHAGARID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-students-hagar-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectStudentsUserPrincipalName",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-students-userPrincipalName.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "./index.js"
+}
