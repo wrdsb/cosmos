@@ -15,11 +15,74 @@
             "direction": "in"
         },
         {
-            "name": "resultsBlob",
+            "name": "blobActualCurrentArray",
             "type": "blob",
-            "path": "aad-users/actual-current.json",
+            "path": "aad-users/actual-current-array.json",
             "connection": "wrdsbhagar_STORAGE",
             "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectAADID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-aad-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectHAGARID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-hagar-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectUserPrincipalName",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-userPrincipalName.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "blobActualCurrentObjectStaffAADID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-staff-aad-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "blobActualCurrentObjectStaffHAGARID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-staff-hagar-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "blobActualCurrentObjectStaffUserPrincipalName",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-staff-userPrincipalName.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "blobActualCurrentObjectStudentsAADID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-students-aad-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "blobActualCurrentObjectStudentsHAGARID",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-students-hagar-id.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "blobActualCurrentObjectStudentsUserPrincipalName",
+            "type": "blob",
+            "path": "aad-users/actual-current-object-students-userPrincipalName.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "in"
         },
         {
             "name": "callbackMessage",

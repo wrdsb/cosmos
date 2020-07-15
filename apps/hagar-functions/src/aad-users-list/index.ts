@@ -31,9 +31,55 @@ const aadUsersList: AzureFunction = async function (context: Context, triggerMes
     const apiToken = context.bindings.graphToken;
     const apiClient = new MSGraphUsersAPI(apiToken);
 
+    let blobActualCurrentArray = [];
+    let blobActualCurrentObjectAADID = {};
+    let blobActualCurrentObjectHAGARID = {};
+    let blobActualCurrentObjectUserPrincipalName = {};
+
+    let blobActualCurrentObjectStaffAADID = {};
+    let blobActualCurrentObjectStaffHAGARID = {};
+    let blobActualCurrentObjectStaffUserPrincipalName = {};
+
+    let blobActualCurrentObjectStudentsAADID = {};
+    let blobActualCurrentObjectStudentsHAGARID = {};
+    let blobActualCurrentObjectStudentsUserPrincipalName = {};
+
     let result = await apiClient.list(context);
 
-    context.bindings.resultsBlob = result;
+    blobActualCurrentArray = result;
+
+    result.forEach((user) => {
+        let userToStore = user;
+        userToStore['aadID'] = userToStore.id;
+        userToStore['id'] = userToStore.userPrincipalName;
+    
+        blobActualCurrentObjectAADID[userToStore['aadID']] = user;
+        blobActualCurrentObjectHAGARID[userToStore.id] = user;
+        blobActualCurrentObjectUserPrincipalName[userToStore.userPrincipalName] = user;
+
+        if (/\d/.test(userToStore.mail)) {
+            blobActualCurrentObjectStudentsAADID[userToStore['aadID']] = user;
+            blobActualCurrentObjectStudentsHAGARID[userToStore.id] = user;
+            blobActualCurrentObjectStudentsUserPrincipalName[userToStore.userPrincipalName] = user;
+        } else {
+            blobActualCurrentObjectStaffAADID[userToStore['aadID']] = user;
+            blobActualCurrentObjectStaffHAGARID[userToStore.id] = user;
+            blobActualCurrentObjectStaffUserPrincipalName[userToStore.userPrincipalName] = user;
+        }
+    });
+
+    context.bindings.blobActualCurrentArray = blobActualCurrentArray;
+    context.bindings.blobActualCurrentObjectAADID = blobActualCurrentObjectAADID;
+    context.bindings.blobActualCurrentObjectHAGARID = blobActualCurrentObjectHAGARID;
+    context.bindings.blobActualCurrentObjectUserPrincipalName = blobActualCurrentObjectUserPrincipalName;
+
+    context.bindings.blobActualCurrentObjectStaffAADID = blobActualCurrentObjectStaffAADID;
+    context.bindings.blobActualCurrentObjectStaffHAGARID = blobActualCurrentObjectStaffHAGARID;
+    context.bindings.blobActualCurrentObjectStaffUserPrincipalName = blobActualCurrentObjectStaffUserPrincipalName;
+
+    context.bindings.blobActualCurrentObjectStudentsAADID = blobActualCurrentObjectStudentsAADID;
+    context.bindings.blobActualCurrentObjectStudentsHAGARID = blobActualCurrentObjectStudentsHAGARID;
+    context.bindings.blobActualCurrentObjectStudentsUserPrincipalName = blobActualCurrentObjectStudentsUserPrincipalName;
 
     const logPayload = result;
     context.log(logPayload);
