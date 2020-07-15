@@ -1,0 +1,41 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "aad-groups-reconcile",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "actualCurrent",
+            "type": "blob",
+            "path": "aad-groups/actual-current-array.json",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "storeGroup",
+            "type": "queue",
+            "queueName": "aad-group-store",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "callbackMessage",
+            "type": "queue",
+            "queueName": "callbacks",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "./index.js"
+}
