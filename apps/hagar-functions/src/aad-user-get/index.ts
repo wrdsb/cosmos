@@ -61,8 +61,6 @@ const aadUserGet: AzureFunction = async function (context: Context, triggerMessa
     context.log(invocationEvent);
 
     let userToStore = result;
-    userToStore['aadID'] = userToStore.id;
-    userToStore['id'] = userToStore.userPrincipalName;
 
     context.bindings.storeUser = {
         operation: "patch",
