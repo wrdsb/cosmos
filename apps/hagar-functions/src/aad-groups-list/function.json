@@ -22,27 +22,6 @@
             "direction": "out"
         },
         {
-            "name": "blobActualCurrentObjectAADID",
-            "type": "blob",
-            "path": "aad-groups/actual-current-object-aad-id.json",
-            "connection": "wrdsbhagar_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "blobActualCurrentObjectHAGARID",
-            "type": "blob",
-            "path": "aad-groups/actual-current-object-hagar-id.json",
-            "connection": "wrdsbhagar_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "blobActualCurrentObjectMailNickname",
-            "type": "blob",
-            "path": "aad-groups/actual-current-object-mailNickname.json",
-            "connection": "wrdsbhagar_STORAGE",
-            "direction": "out"
-        },
-        {
             "name": "callbackMessage",
             "type": "queue",
             "queueName": "callbacks",
@@ -53,6 +32,13 @@
             "name": "flynnEvent",
             "type": "queue",
             "queueName": "event-emitter",
+            "connection": "wrdsbhagar_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "aadGroupsListParse",
+            "type": "queue",
+            "queueName": "aad-groups-list-parse",
             "connection": "wrdsbhagar_STORAGE",
             "direction": "out"
         }
