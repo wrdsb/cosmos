@@ -5,6 +5,7 @@ import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
 import { MSGraphUsersAPI } from "../shared/MSGraphUsersAPI";
 import { AADUsersListFunctionRequest, AADUsersListFunctionRequestPayload } from "@cosmos/types";
+import aadUsersListParse from '../aad-users-list-parse';
 
 const aadUsersList: AzureFunction = async function (context: Context, triggerMessage: AADUsersListFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
@@ -61,7 +62,18 @@ const aadUsersList: AzureFunction = async function (context: Context, triggerMes
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
-    context.bindings.aadUsersListParse = "{}";
+    let aadUsersListParseMessages = [
+        {operation: "actual-current-object-aad-id"},
+        {operation: "actual-current-object-hagar-id"},
+        {operation: "actual-current-object-userPrincipalName"},
+        {operation: "actual-current-object-staff-aad-id"},
+        {operation: "actual-current-object-staff-hagar-id"},
+        {operation: "actual-current-object-staff-userPrincipalName"},
+        {operation: "actual-current-object-students-aad-id"},
+        {operation: "actual-current-object-students-hagar-id"},
+        {operation: "actual-current-object-students-userPrincipalName"}
+    ]
+    context.bindings.aadUsersListParse = aadUsersListParseMessages;
 
     context.done(null, logBlob);
 };
