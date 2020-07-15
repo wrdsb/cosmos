@@ -7,6 +7,7 @@ export * from './aad-group-store';
 export * from './aad-group-update';
 //export * from './aad-groups-delta';
 export * from './aad-groups-list';
+export * from './aad-groups-list-parse';
 export * from './aad-groups-reconcile';
 
 export * from './aad-group-member-add';
@@ -23,4 +24,5 @@ export * from './aad-user-query';
 export * from './aad-user-store';
 //export * from './aad-users-delta';
 export * from './aad-users-list';
+export * from './aad-users-list-parse';
 export * from './aad-users-reconcile';
