@@ -63,7 +63,12 @@ const aadGroupsList: AzureFunction = async function (context: Context, triggerMe
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
-    context.bindings.aadGroupsListParse = "{}";
+    let aadGroupsListParseMessages = [
+        {operation: "actual-current-object-aad-id"},
+        {operation: "actual-current-object-hagar-id"},
+        {operation: "actual-current-object-mailNickname"}
+    ];
+    context.bindings.aadGroupsListParse = aadGroupsListParseMessages;
 
     context.done(null, 'done');
 };
