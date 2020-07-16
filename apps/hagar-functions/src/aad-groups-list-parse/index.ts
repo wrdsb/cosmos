@@ -25,7 +25,7 @@ const aadGroupsListParse: AzureFunction = async function (context: Context, trig
     ];
 
     const triggerObject = triggerMessage as AADGroupsListParseFunctionRequest;
-    const operation = triggerObject.payload as AADGroupsListParseFunctionRequestOperation;
+    const operation = triggerObject.operation as AADGroupsListParseFunctionRequestOperation;
 
     const blobActualCurrentArray = context.bindings.blobActualCurrentArray;
     let outputBlob = {};
@@ -34,6 +34,7 @@ const aadGroupsListParse: AzureFunction = async function (context: Context, trig
 
     switch (operation) {
         case 'actual-current-object-aad-id':
+            context.log('actual-current-object-aad-id');
             blobActualCurrentArray.forEach((group) => {
                 outputBlob[group.id] = group;
             });
@@ -41,6 +42,7 @@ const aadGroupsListParse: AzureFunction = async function (context: Context, trig
             context.bindings.blobActualCurrentObjectAADID = outputBlob;
             break;
         case 'actual-current-object-hagar-id':
+            context.log('actual-current-object-hagar-id');
             blobActualCurrentArray.forEach((group) => {
                 outputBlob[group.id] = group;
             });
@@ -48,6 +50,7 @@ const aadGroupsListParse: AzureFunction = async function (context: Context, trig
             context.bindings.blobActualCurrentObjectHAGARID = outputBlob
             break;
         case 'actual-current-object-mailNickname':
+            context.log('actual-current-object-mailNickname');
             blobActualCurrentArray.forEach((group) => {
                 outputBlob[group.mailNickname] = group;
             });
