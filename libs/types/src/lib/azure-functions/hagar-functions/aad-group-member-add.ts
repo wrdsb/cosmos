@@ -1,3 +1,4 @@
+import { DirectoryObject } from "@microsoft/microsoft-graph-types";
 import * as Cosmos from "../common";
 
 interface AADGroupMemberAddFunctionRequest extends Cosmos.FunctionRequest {
@@ -19,6 +20,8 @@ interface AADGroupMemberAddFunctionInvocationEvent extends Cosmos.FunctionInvoca
 }
 
 interface AADGroupMemberAddFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+    readonly groupID: string;
+    readonly memberIDs: string[];
 }
 
 interface AADGroupMemberAddFunctionResponsePayload extends Cosmos.FunctionResponsePayload {

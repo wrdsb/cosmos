@@ -4,7 +4,7 @@ import { apiConfig } from "./apiConfig";
 import { ServerError } from "./serverError";
 
 import { PageCollection, PageIterator, PageIteratorCallback } from "@microsoft/microsoft-graph-client";
-import { DirectoryObject, Group } from "@microsoft/microsoft-graph-types";
+import { DirectoryObject } from "@microsoft/microsoft-graph-types";
 import { Client } from "@microsoft/microsoft-graph-client";
 import { MyAuthenticationProvider } from "../shared/MyAuthenticationProvider";
 
@@ -61,11 +61,21 @@ export class MSGraphGroupMembershipsAPI {
     }
     
     // POST /groups/{id}/members/$ref
-    public async add(groupID: string, directoryObject: DirectoryObject): Promise<boolean> {
+    public async add(groupID: string, memberIDs: string[]): Promise<boolean> {
         let client = this.client;
 
+        let members = [];
+
+        memberIDs.forEach((id) => {
+            members.push(`https://graph.microsoft.com/v1.0/directoryObjects/${id}`);
+        });
+
+        const group = {
+          "members@odata.bind": members
+        };
+        
         try {
-            const response = await client.api.post(`/groups/${groupID}/members/$ref`, JSON.stringify(directoryObject));
+            const response = await client.api(`/groups/${groupID}`).update(group);
             return true;
         } catch (err) {
             // TODO: Error handling

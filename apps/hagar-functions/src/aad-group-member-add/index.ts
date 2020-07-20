@@ -3,6 +3,7 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
+import { MSGraphGroupMembershipsAPI } from "../shared/MSGraphGroupMembershipsAPI";
 import { AADGroupMemberAddFunctionRequest, AADGroupMemberAddFunctionRequestPayload } from "@cosmos/types";
 
 const aadGroupMemberAdd: AzureFunction = async function (context: Context, triggerMessage: AADGroupMemberAddFunctionRequest): Promise<void> {
@@ -27,11 +28,13 @@ const aadGroupMemberAdd: AzureFunction = async function (context: Context, trigg
     const triggerObject = triggerMessage as AADGroupMemberAddFunctionRequest;
     const payload = triggerObject.payload as AADGroupMemberAddFunctionRequestPayload;
 
-    let result = {
-        event: payload
-    };
+    const apiToken = context.bindings.graphToken;
+    const apiClient = new MSGraphGroupMembershipsAPI(apiToken);
 
-    const logPayload = result.event;
+    let result = await apiClient.add(payload.groupID, payload.memberIDs);
+
+    const logPayload = result;
+    context.log(logPayload);
 
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
     const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
