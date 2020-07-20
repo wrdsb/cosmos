@@ -14,7 +14,7 @@
     "@azure/storage-blob": "^10.3.0",
     "@types/lodash": "^4.14.136",
     "@types/node": "^11.13.18",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.19"
   },
   "devDependencies": {
     "@azure/functions": "^1.0.2-beta2",
