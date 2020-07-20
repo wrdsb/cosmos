@@ -11,7 +11,7 @@ const aadGroupsCreateBulk: AzureFunction = async function (context: Context, tri
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.HAGAR.AAD.Groups.Create.Bulk';
+    const functionEventType = 'WRDSB.HAGAR.AAD.Group.Create.Bulk';
     const functionEventID = `hagar-functions-${functionName}-${functionInvocationID}`;
     const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
 
@@ -37,7 +37,7 @@ const aadGroupsCreateBulk: AzureFunction = async function (context: Context, tri
         });
     });
 
-    context.bindings.createGroup = queueMessages;
+    context.bindings.groupCreateQueue = queueMessages;
 
     let logPayload = {};
     context.log(logPayload);

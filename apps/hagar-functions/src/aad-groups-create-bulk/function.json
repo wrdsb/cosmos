@@ -8,7 +8,7 @@
             "direction": "in"
         },
         {
-            "name": "createGroup",
+            "name": "groupCreateQueue",
             "type": "queue",
             "queueName": "aad-group-create",
             "connection": "wrdsbhagar_STORAGE",
