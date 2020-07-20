@@ -32,9 +32,9 @@ const aadGroupMembersList: AzureFunction = async function (context: Context, tri
     const apiClient = new MSGraphGroupMembershipsAPI(apiToken);
 
     let result = await apiClient.list(payload.groupID);
-    let blobActualCurrentArray = result;
+    let outputBlob = result;
 
-    context.bindings.blobActualCurrentArray = blobActualCurrentArray;
+    context.bindings.outputBlob = outputBlob;
 
     const logPayload = result;
     context.log(logPayload);

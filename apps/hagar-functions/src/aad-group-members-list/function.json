@@ -15,9 +15,9 @@
             "direction": "in"
         },
         {
-            "name": "blobActualCurrentArray",
+            "name": "outputBlob",
             "type": "blob",
-            "path": "aad-groups/actual-current-array.json",
+            "path": "aad-group-members/{payload.groupID}.json",
             "connection": "wrdsbhagar_STORAGE",
             "direction": "out"
         },
@@ -35,7 +35,6 @@
             "connection": "wrdsbhagar_STORAGE",
             "direction": "out"
         }
-
     ],
     "disabled": false,
     "scriptFile": "./index.js"
