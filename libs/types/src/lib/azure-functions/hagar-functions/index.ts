@@ -12,12 +12,15 @@ export * from './aad-groups-list';
 export * from './aad-groups-list-parse';
 export * from './aad-groups-reconcile';
 
-export * from './aad-group-member-add';
+export * from './aad-group-member-add-email';
+export * from './aad-group-member-add-id';
 export * from './aad-group-member-command';
 export * from './aad-group-member-get';
 export * from './aad-group-member-query';
 export * from './aad-group-member-remove';
 export * from './aad-group-member-store';
+export * from './aad-group-members-add-bulk-email';
+export * from './aad-group-members-add-bulk-id';
 export * from './aad-group-members-list';
 
 export * from './aad-user-command';
@@ -25,6 +28,7 @@ export * from './aad-user-get';
 export * from './aad-user-query';
 export * from './aad-user-store';
 //export * from './aad-users-delta';
+export * from './aad-users-get-bulk';
 export * from './aad-users-list';
 export * from './aad-users-list-parse';
 export * from './aad-users-reconcile';
