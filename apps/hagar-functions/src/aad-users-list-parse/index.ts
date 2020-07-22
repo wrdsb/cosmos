@@ -82,7 +82,7 @@ const aadUsersListParse: AzureFunction = async function (context: Context, trigg
         case 'actual-current-object-staff-userPrincipalName':
             blobActualCurrentArray.forEach((user) => {
                 if (typeof user.mail === 'string' && !hasNumber.test(user.mail)) {
-                    outputBlob[user.id] = user;
+                    outputBlob[user.userPrincipalName] = user;
                 }
             });
 
@@ -112,7 +112,7 @@ const aadUsersListParse: AzureFunction = async function (context: Context, trigg
         case 'actual-current-object-students-userPrincipalName':
             blobActualCurrentArray.forEach((user) => {
                 if (typeof user.mail === 'string' && hasNumber.test(user.mail)) {
-                    outputBlob[user.id] = user;
+                    outputBlob[user.userPrincipalName] = user;
                 }
             });
 
