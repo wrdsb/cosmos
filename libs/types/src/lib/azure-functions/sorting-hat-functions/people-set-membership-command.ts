@@ -1,6 +1,8 @@
 import * as Cosmos from "../common";
 
 interface PeopleSetMembershipCommandFunctionRequest extends Cosmos.FunctionRequest {
+    readonly operation: string;
+    readonly payload: PeopleSetMembershipCommandFunctionRequestPayload;
 }
 
 interface PeopleSetMembershipCommandFunctionResponse extends Cosmos.FunctionResponse {

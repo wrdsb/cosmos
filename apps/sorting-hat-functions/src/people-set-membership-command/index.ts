@@ -3,8 +3,9 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
+import { PeopleSetMembershipCommandFunctionRequest, PeopleSetMembershipCommandFunctionRequestPayload } from "@cosmos/types";
 
-const peopleSetMembershipCommand: AzureFunction = async function (context: Context, req: any): Promise<void> {
+const peopleSetMembershipCommand: AzureFunction = async function (context: Context, req: PeopleSetMembershipCommandFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
@@ -23,10 +24,9 @@ const peopleSetMembershipCommand: AzureFunction = async function (context: Conte
         "sorting-hat", 
     ];
 
-    const request = req;
-
+    const request = req as PeopleSetMembershipCommandFunctionRequest;
     const operation = request.operation;
-    const payload = request.payload;
+    const payload = request.payload as PeopleSetMembershipCommandFunctionRequestPayload;
 
     let result = "";
 
