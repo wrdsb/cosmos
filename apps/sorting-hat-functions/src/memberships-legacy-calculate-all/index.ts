@@ -3,8 +3,9 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
+import { MembershipsLegacyCalculateAllFunctionRequest, MembershipsLegacyCalculateAllFunctionRequestPayload } from "@cosmos/types";
 
-const membershipsLegacyCalculateAll: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const membershipsLegacyCalculateAll: AzureFunction = async function (context: Context, triggerMessage: MembershipsLegacyCalculateAllFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
@@ -40,7 +41,7 @@ const membershipsLegacyCalculateAll: AzureFunction = async function (context: Co
         queueMessages: queueMessages
     }
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await createLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
+    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
     context.log(logBlob);
 
     const callbackMessage = await createCallbackMessage(logObject, 200);

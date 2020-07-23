@@ -3,6 +3,8 @@ export * from './lib/create-event';
 export * from './lib/create-log-object';
 export * from './lib/store-log-blob';
 
+export * from './lib/createBlob';
+
 export * from './lib/findCreatesAndUpdates';
 export * from './lib/findDeletes';
 export * from './lib/getCosmosItems';
