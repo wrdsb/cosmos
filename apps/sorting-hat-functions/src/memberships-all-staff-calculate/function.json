@@ -16,5 +16,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/memberships-all-staff-calculate/index.js"
+    "scriptFile": "./index.js"
 }

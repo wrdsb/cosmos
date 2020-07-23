@@ -41,5 +41,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/people-set-definition-store/index.js"
+    "scriptFile": "./index.js"
 }

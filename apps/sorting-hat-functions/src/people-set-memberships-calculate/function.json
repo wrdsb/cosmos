@@ -37,5 +37,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/people-set-memberships-calculate/index.js"
+    "scriptFile": "./index.js"
 }

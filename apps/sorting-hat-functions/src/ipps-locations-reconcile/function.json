@@ -37,5 +37,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/ipps-locations-reconcile/index.js"
+    "scriptFile": "./index.js"
 }

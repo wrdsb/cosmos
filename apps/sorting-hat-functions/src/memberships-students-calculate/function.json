@@ -16,5 +16,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/memberships-students-calculate/index.js"
+    "scriptFile": "./index.js"
 }

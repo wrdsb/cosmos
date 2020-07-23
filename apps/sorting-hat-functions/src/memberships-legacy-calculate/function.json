@@ -82,5 +82,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/memberships-legacy-calculate/index.js"
+    "scriptFile": "./index.js"
 }

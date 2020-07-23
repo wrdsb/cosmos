@@ -39,5 +39,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/memberships-abc-calculate-all/index.js"
+    "scriptFile": "./index.js"
 }

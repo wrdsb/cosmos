@@ -106,5 +106,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/memberships-abc-calculate/index.js"
+    "scriptFile": "./index.js"
 }

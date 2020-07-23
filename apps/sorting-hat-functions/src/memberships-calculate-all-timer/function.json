@@ -57,5 +57,5 @@
         }
    ],
     "disabled": false,
-    "scriptFile": "../dist/memberships-calculate-all-timer/index.js"
+    "scriptFile": "./index.js"
 }

@@ -16,5 +16,5 @@
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/people-set-definition-query/index.js"
+    "scriptFile": "./index.js"
 }
