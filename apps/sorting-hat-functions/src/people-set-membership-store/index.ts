@@ -3,8 +3,9 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
+import { PeopleSetMembershipStoreFunctionRequest, PeopleSetMembershipStoreFunctionRequestPayload } from "@cosmos/types";
 
-const peopleSetMembershipStore: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const peopleSetMembershipStore: AzureFunction = async function (context: Context, triggerMessage: PeopleSetMembershipStoreFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
@@ -23,10 +24,9 @@ const peopleSetMembershipStore: AzureFunction = async function (context: Context
         "sorting-hat", 
     ];
 
-    const triggerObject = triggerMessage;
-
+    const triggerObject = triggerMessage as PeopleSetMembershipStoreFunctionRequest;
     const operation = triggerObject.operation;
-    const payload = triggerObject.payload;
+    const payload = triggerObject.payload as PeopleSetMembershipStoreFunctionRequestPayload;
 
     let oldRecord = context.bindings.recordIn;
     let newRecord;
