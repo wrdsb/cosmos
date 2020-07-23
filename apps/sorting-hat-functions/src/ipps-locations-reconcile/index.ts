@@ -77,7 +77,7 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
         operations: operations
     };
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await createLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
+    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
     context.log(logBlob);
 
     const callbackMessage = await createCallbackMessage(logObject, 200);
