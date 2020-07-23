@@ -20,6 +20,11 @@ class CodexPerson implements Person {
 
     ippsRecord: IPPSRecord;
     trilliumRecord: TrilliumRecord;
+
+    its_field_tech_for: string[];
+    dlst_for: string[];
+    catc_contact_for: string[];
+    its_program_manager_for: string[];
 }
 
 export { CodexPerson };
