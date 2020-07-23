@@ -3,9 +3,10 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
-import { createBlob } from "../shared/createBlob";
+import { createBlob } from "@cosmos/azure-functions-shared";
+import { MembershipsABCCalculateFunctionRequest, MembershipsABCCalculateFunctionRequestPayload } from "@cosmos/types";
 
-const membershipsABCCalculate: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const membershipsABCCalculate: AzureFunction = async function (context: Context, triggerMessage: MembershipsABCCalculateFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
@@ -40,8 +41,10 @@ const membershipsABCCalculate: AzureFunction = async function (context: Context,
 
     const rows = context.bindings.iamwpRaw;
 
-    const triggerJSON = triggerMessage;
-    const requested_school_code = triggerJSON.school_code.toUpperCase();
+    const triggerObject = triggerMessage as MembershipsABCCalculateFunctionRequest;
+    const payload = triggerObject.payload as MembershipsABCCalculateFunctionRequestPayload;
+
+    const requested_school_code = payload.school_code.toUpperCase();
 
     const excluded_job_codes = ['6106', '6118'];
     const activity_codes = ['ACTIVE', 'ONLEAVE'];
@@ -59,7 +62,7 @@ const membershipsABCCalculate: AzureFunction = async function (context: Context,
 
     const logPayload = response;
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await createLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
+    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
     context.log(logBlob);
 
     const callbackMessage = await createCallbackMessage(logObject, 200);

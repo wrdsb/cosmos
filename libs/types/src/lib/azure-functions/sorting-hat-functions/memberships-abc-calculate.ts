@@ -1,6 +1,7 @@
 import * as Cosmos from "../common";
 
 interface MembershipsABCCalculateFunctionRequest extends Cosmos.FunctionRequest {
+    readonly payload: MembershipsABCCalculateFunctionRequestPayload
 }
 
 interface MembershipsABCCalculateFunctionResponse extends Cosmos.FunctionResponse {
@@ -17,6 +18,7 @@ interface MembershipsABCCalculateFunctionInvocationEvent extends Cosmos.Function
 }
 
 interface MembershipsABCCalculateFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+    readonly school_code: string;
 }
 
 interface MembershipsABCCalculateFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
