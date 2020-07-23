@@ -4,16 +4,17 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
-import { initCalculation } from "../shared/initCalculation";
-import { initOperations } from "../shared/initOperations";
-import { findCreatesAndUpdates } from "../shared/findCreatesAndUpdates";
-import { findDeletes } from "../shared/findDeletes";
-import { processCreates } from "../shared/processCreates";
-import { processUpdates } from "../shared/processUpdates";
-import { processDeletes } from "../shared/processDeletes";
-import { getCosmosItems } from "../shared/getCosmosItems";
+import { initCalculation } from "@cosmos/azure-functions-shared";
+import { initOperations } from "@cosmos/azure-functions-shared";
+import { findCreatesAndUpdates } from "@cosmos/azure-functions-shared";
+import { findDeletes } from "@cosmos/azure-functions-shared";
+import { processCreates } from "@cosmos/azure-functions-shared";
+import { processUpdates } from "@cosmos/azure-functions-shared";
+import { processDeletes } from "@cosmos/azure-functions-shared";
+import { getCosmosItems } from "@cosmos/azure-functions-shared";
+import { IPPSLocationsReconcileFunctionRequest, IPPSLocationsReconcileFunctionRequestPayload } from "@cosmos/types";
 
-const ippsLocationsReconcile: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const ippsLocationsReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSLocationsReconcileFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z

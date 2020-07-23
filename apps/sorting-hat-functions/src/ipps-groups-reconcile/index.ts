@@ -4,16 +4,17 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
-import { initCalculation } from "../shared/initCalculation";
-import { initOperations } from "../shared/initOperations";
-import { findCreatesAndUpdates } from "../shared/findCreatesAndUpdates";
-import { findDeletes } from "../shared/findDeletes";
-import { processCreates } from "../shared/processCreates";
-import { processUpdates } from "../shared/processUpdates";
-import { processDeletes } from "../shared/processDeletes";
-import { getCosmosItems } from "../shared/getCosmosItems";
+import { initCalculation } from "@cosmos/azure-functions-shared";
+import { initOperations } from "@cosmos/azure-functions-shared";
+import { findCreatesAndUpdates } from "@cosmos/azure-functions-shared";
+import { findDeletes } from "@cosmos/azure-functions-shared";
+import { processCreates } from "@cosmos/azure-functions-shared";
+import { processUpdates } from "@cosmos/azure-functions-shared";
+import { processDeletes } from "@cosmos/azure-functions-shared";
+import { getCosmosItems } from "@cosmos/azure-functions-shared";
+import { IPPSGroupsReconcileFunctionRequest, IPPSGroupsReconcileFunctionRequestPayload } from "@cosmos/types";
 
-const ippsGroupsReconcile: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const ippsGroupsReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSGroupsReconcileFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
@@ -76,7 +77,7 @@ const ippsGroupsReconcile: AzureFunction = async function (context: Context, tri
         operations: operations
     };
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await createLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
+    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
     context.log(logBlob);
 
     const callbackMessage = await createCallbackMessage(logObject, 200);
