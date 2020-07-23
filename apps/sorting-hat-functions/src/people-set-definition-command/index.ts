@@ -3,8 +3,9 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
+import { PeopleSetDefinitionCommandFunctionRequest, PeopleSetDefinitionCommandFunctionRequestPayload } from "@cosmos/types";
 
-const peopleSetDefinitionCommand: AzureFunction = async function (context: Context, req: any): Promise<void> {
+const peopleSetDefinitionCommand: AzureFunction = async function (context: Context, req: PeopleSetDefinitionCommandFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
@@ -23,10 +24,10 @@ const peopleSetDefinitionCommand: AzureFunction = async function (context: Conte
         "sorting-hat", 
     ];
 
-    const request = req;
+    const request = req as PeopleSetDefinitionCommandFunctionRequest;
 
     const operation = request.operation;
-    const payload = request.payload;
+    const payload = request.payload as PeopleSetDefinitionCommandFunctionRequestPayload;
 
     let oldRecord = context.bindings.recordIn;
     let newRecord;
@@ -65,7 +66,7 @@ const peopleSetDefinitionCommand: AzureFunction = async function (context: Conte
     const logPayload = result.event;
 
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await createLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
+    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
     context.log(logBlob);
 
     const callbackMessage = await createCallbackMessage(logObject, 200);
