@@ -9,7 +9,6 @@ html {
 body {
     padding: 0;
     margin: 0;
-    font-family: Helvetica, sans-serif;
     line-height: 1.5;
 }
 
@@ -21,3 +20,6 @@ li {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

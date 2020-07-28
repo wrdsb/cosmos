@@ -1,13 +1,45 @@
-<cosmos-header></cosmos-header>
+<ng-container>
+  <mat-sidenav-container class="example-container">
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+    <mat-sidenav #outerLeftSlideIn mode="over" position="start" fixedInViewport="false" closed>
+      <p><button mat-button (click)="outerLeftSlideIn.toggle()">Toggle</button></p>
+      Sidenav content
+    </mat-sidenav>
 
-<cosmos-sidebar-left></cosmos-sidebar-left>
-<cosmos-sidebar-right></cosmos-sidebar-right>
+    <mat-sidenav #outerRightSlideIn mode="over" position="end" fixedInViewport="false" closed>
+      <p><button mat-button (click)="outerRightSlideIn.toggle()">Toggle</button></p>
+      Sidenav content
+    </mat-sidenav>
 
-<cosmos-slidein-left></cosmos-slidein-left>
-<cosmos-slidein-right></cosmos-slidein-right>
+    <mat-sidenav-content id="main">
+      <cosmos-header></cosmos-header>
 
-<cosmos-footer></cosmos-footer>
+      <mat-sidenav-container class="example-container">
+        <mat-sidenav #innerLeftSlideIn mode="over" position="start" fixedInViewport="false" closed>
+          <p><button mat-button (click)="innerLeftSlideIn.toggle()">Toggle</button></p>
+          Sidenav content
+        </mat-sidenav>
+    
+        <mat-sidenav #innerRightSlideIn mode="over" position="end" fixedInViewport="false" closed>
+          <p><button mat-button (click)="innerRightSlideIn.toggle()">Toggle</button></p>
+          Sidenav content
+        </mat-sidenav>
+    
+        <mat-sidenav-content id="main">
+    
+          <p><button mat-button (click)="outerLeftSlideIn.toggle()">Outer Left Toggle</button></p>
+          <p><button mat-button (click)="outerRightSlideIn.toggle()">Outer Right Toggle</button></p>
+
+          <p><button mat-button (click)="innerLeftSlideIn.toggle()">Inner Left Toggle</button></p>
+          <p><button mat-button (click)="innerRightSlideIn.toggle()">Inner Right Toggle</button></p>
+
+          <router-outlet></router-outlet>
+
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+
+      <cosmos-footer></cosmos-footer>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</ng-container>

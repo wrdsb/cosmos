@@ -294,6 +294,7 @@
               "apps/hagar-console/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "apps/hagar-console/src/styles.scss"
             ],
             "scripts": []

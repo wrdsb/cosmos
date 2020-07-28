@@ -1,19 +1,23 @@
 <ng-container *ngIf="enabled">
     <header class="header" [class.showHeader]="visible" [class.hideHeader]="visible === false">
-        <cosmos-toggle-slidein-left></cosmos-toggle-slidein-left>
-        
-        <a routerLink="/">
-            <h1>{{ appName }}</h1>
-        </a>
-  
-        <ul *ngFor="let link of content.links">
-            <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
-        </ul>
+        <mat-toolbar color="primary">
+            <cosmos-toggle-slidein-left></cosmos-toggle-slidein-left>
 
-        <cosmos-sign-in-out-button></cosmos-sign-in-out-button>
+            <span><a id="headerTitle" routerLink="/">{{ appName }}</a></span>
 
-        <cosmos-profile-badge></cosmos-profile-badge>
+            <span class="header-spacer"></span>
 
-        <cosmos-toggle-slidein-right></cosmos-toggle-slidein-right>
+            <ul id="headerMenu" *ngFor="let link of content.links">
+                <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
+            </ul>
+
+            <span class="header-spacer"></span>
+
+            <cosmos-toggle-slidein-right></cosmos-toggle-slidein-right>
+
+            <cosmos-profile-badge></cosmos-profile-badge>
+
+            <cosmos-sign-in-out-button></cosmos-sign-in-out-button>
+        </mat-toolbar>
     </header>
 </ng-container>
