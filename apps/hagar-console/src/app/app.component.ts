@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BroadcastService, MsalService } from '@azure/msal-angular';
 import { Logger, CryptoUtils } from 'msal';
 import { EnvironmentService } from '@cosmos/environment';
+import { Menu } from "@cosmos/types";
+import { ChassisService } from '@cosmos/chassis';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +16,31 @@ export class AppComponent implements OnInit {
 
   constructor(
     public environmentService: EnvironmentService,
+    public chassisService: ChassisService,
     private broadcastService: BroadcastService,
     private authService: MsalService
   ) {}
 
   ngOnInit(): void {
+    this.chassisService.setHeaderContent(
+      {
+        links: [
+            {
+                link: '/aad/groups',
+                name: 'AAD Groups'
+            },
+            {
+                link: '/aad/group-memberships',
+                name: 'AAD Group Memberships'
+            },
+            {
+                link: '/aad/users',
+                name: 'AAD Users'
+            }
+        ]
+      }
+    );
+
     this.isIframe = window !== window.parent && !window.opener;
 
     this.checkoutAccount();

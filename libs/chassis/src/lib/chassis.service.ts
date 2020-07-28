@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Menu } from "@cosmos/types";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ChassisService {
   private headerVisible = new BehaviorSubject<boolean>(false);
   readonly headerVisible$ = this.headerVisible.asObservable();
 
-  private headerContent = new BehaviorSubject<string>('');
+  private headerContent = new BehaviorSubject<Menu>({links: []});
   readonly headerContent$ = this.headerContent.asObservable();
 
   private footerEnabled = new BehaviorSubject<boolean>(true);
@@ -69,7 +70,7 @@ export class ChassisService {
     this.headerVisible.next(headerVisible);
     console.log(`headerVisible$ set to ${this.headerVisible.getValue()}`);
   }
-  setHeaderContent(headerContent: string): void {
+  setHeaderContent(headerContent: Menu): void {
     this.headerContent.next(headerContent);
     console.log(`headerContent$ set to ${this.headerContent.getValue()}`)
   }

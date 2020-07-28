@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   visible: boolean;
   visible$ = this.chassisService.headerVisible$;
 
-  content: string;
+  content: Menu;
   content$ = this.chassisService.headerContent$;
 
   headerMenu: Menu;
@@ -66,6 +66,8 @@ export class HeaderComponent implements OnInit {
   }
 
   getHeaderMenu(): void {
-    this.navigationService.getHeader().subscribe(menu => this.headerMenu = menu);
+    this.navigationService.getHeader().subscribe(menu => 
+      this.headerMenu = menu
+    );
   }
 }

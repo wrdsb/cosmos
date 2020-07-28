@@ -6,7 +6,7 @@
             <h1>{{ appName }}</h1>
         </a>
   
-        <ul *ngFor="let link of headerMenu.links">
+        <ul *ngFor="let link of content.links">
             <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
         </ul>
 
