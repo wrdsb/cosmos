@@ -3,19 +3,19 @@ import { Component, OnInit } from '@angular/core';
 import { ChassisService } from '../chassis.service';
 
 @Component({
-  selector: 'cosmos-sidebar-right',
-  templateUrl: './sidebar-right.component.html',
-  styleUrls: ['./sidebar-right.component.scss']
+  selector: 'cosmos-sidebar-inner-left',
+  templateUrl: './sidebar-inner-left.component.html',
+  styleUrls: ['./sidebar-inner-left.component.scss']
 })
-export class SidebarRightComponent implements OnInit {
+export class SidebarInnerLeftComponent implements OnInit {
   enabled: boolean;
-  enabled$ = this.chassisService.sidebarRightEnabled$;
+  enabled$ = this.chassisService.sidebarInnerLeftEnabled$;
 
   visible: boolean;
-  visible$ = this.chassisService.sidebarRightVisible$;
+  visible$ = this.chassisService.sidebarInnerLeftVisible$;
 
   content: string;
-  content$ = this.chassisService.sidebarRightContent$;
+  content$ = this.chassisService.sidebarInnerLeftContent$;
 
   constructor(
     private chassisService: ChassisService
@@ -31,20 +31,20 @@ export class SidebarRightComponent implements OnInit {
     this.enabled$.subscribe(enabled => 
       this.enabled = enabled
     );
-    console.log(`sidebar-right enabled: ${this.enabled}`);
+    console.log(`sidebar-inner-left enabled: ${this.enabled}`);
   }
 
   getVisible(): void {
     this.visible$.subscribe(visible => 
       this.visible = visible
     );
-    console.log(`sidebar-right visible: ${this.visible}`);
+    console.log(`sidebar-inner-left visible: ${this.visible}`);
   }
 
   getContent(): void {
     this.content$.subscribe(content => 
       this.content = content
     );
-    console.log(`sidebar-right content: ${this.content}`);
+    console.log(`sidebar-inner-left content: ${this.content}`);
   }
 }

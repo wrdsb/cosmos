@@ -24,14 +24,12 @@ export class FooterComponent implements OnInit {
 
   constructor(
     private chassisService: ChassisService,
-    private navigationService: UINavigationService
   ) { }
 
   ngOnInit(): void {
     this.getEnabled();
     this.getVisible();
     this.getContent();
-    this.getFooterMenu();
   }
 
   getEnabled(): void {
@@ -53,9 +51,5 @@ export class FooterComponent implements OnInit {
       this.content = content
     );
     console.log(`footer content: ${this.content}`);
-  }
-
-  getFooterMenu(): void {
-    this.navigationService.getFooter().subscribe(menu => this.footerMenu = menu);
   }
 }

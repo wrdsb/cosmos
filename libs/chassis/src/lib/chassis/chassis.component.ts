@@ -10,7 +10,7 @@ export class ChassisComponent implements OnInit {
   showNav = false;
 
   constructor(
-    private layoutService: ChassisService
+    private chassisService: ChassisService
   ) { }
 
   ngOnInit(): void {

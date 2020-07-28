@@ -9,7 +9,7 @@ import { ChassisService } from '../chassis.service';
 })
 export class ToggleSlideinLeftComponent implements OnInit {
   showSlideinLeft: boolean;
-  showSlideinLeft$ = this.chassisService.slideinLeftVisible$;
+  showSlideinLeft$ = this.chassisService.sidebarInnerLeftVisible$;
 
   constructor(
     private chassisService: ChassisService,

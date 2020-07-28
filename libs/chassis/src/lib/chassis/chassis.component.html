@@ -1,13 +1,13 @@
 <ng-container>
   <mat-sidenav-container class="example-container">
 
-    <mat-sidenav #outerLeftSlideIn mode="over" position="start" fixedInViewport="false" closed>
-      <p><button mat-button (click)="outerLeftSlideIn.toggle()">Toggle</button></p>
+    <mat-sidenav #sidebarOuterLeft mode="over" position="start" fixedInViewport="false" closed>
+      <p><button mat-button (click)="sidebarOuterLeft.toggle()">Toggle</button></p>
       Sidenav content
     </mat-sidenav>
 
-    <mat-sidenav #outerRightSlideIn mode="over" position="end" fixedInViewport="false" closed>
-      <p><button mat-button (click)="outerRightSlideIn.toggle()">Toggle</button></p>
+    <mat-sidenav #sidebarOuterRight mode="over" position="end" fixedInViewport="false" closed>
+      <p><button mat-button (click)="sidebarOuterRight.toggle()">Toggle</button></p>
       Sidenav content
     </mat-sidenav>
 
@@ -15,23 +15,23 @@
       <cosmos-header></cosmos-header>
 
       <mat-sidenav-container class="example-container">
-        <mat-sidenav #innerLeftSlideIn mode="over" position="start" fixedInViewport="false" closed>
-          <p><button mat-button (click)="innerLeftSlideIn.toggle()">Toggle</button></p>
+        <mat-sidenav #sidebarInnerLeft mode="over" position="start" fixedInViewport="false" closed>
+          <p><button mat-button (click)="sidebarInnerLeft.toggle()">Toggle</button></p>
           Sidenav content
         </mat-sidenav>
     
-        <mat-sidenav #innerRightSlideIn mode="over" position="end" fixedInViewport="false" closed>
-          <p><button mat-button (click)="innerRightSlideIn.toggle()">Toggle</button></p>
+        <mat-sidenav #sidebarInnerRight mode="over" position="end" fixedInViewport="false" closed>
+          <p><button mat-button (click)="sidebarInnerRight.toggle()">Toggle</button></p>
           Sidenav content
         </mat-sidenav>
     
         <mat-sidenav-content id="main">
     
-          <p><button mat-button (click)="outerLeftSlideIn.toggle()">Outer Left Toggle</button></p>
-          <p><button mat-button (click)="outerRightSlideIn.toggle()">Outer Right Toggle</button></p>
+          <p><button mat-button (click)="sidebarOuterLeft.toggle()">Outer Left Toggle</button></p>
+          <p><button mat-button (click)="sidebarOuterRight.toggle()">Outer Right Toggle</button></p>
 
-          <p><button mat-button (click)="innerLeftSlideIn.toggle()">Inner Left Toggle</button></p>
-          <p><button mat-button (click)="innerRightSlideIn.toggle()">Inner Right Toggle</button></p>
+          <p><button mat-button (click)="sidebarInnerLeft.toggle()">Inner Left Toggle</button></p>
+          <p><button mat-button (click)="sidebarInnerRight.toggle()">Inner Right Toggle</button></p>
 
           <router-outlet></router-outlet>
 

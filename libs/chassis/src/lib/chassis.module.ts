@@ -21,26 +21,21 @@ import { ChassisComponent } from './chassis/chassis.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { SidebarRightComponent } from './sidebar-right/sidebar-right.component';
-import { SidebarLeftComponent } from './sidebar-left/sidebar-left.component';
+import { SidebarOuterRightComponent } from './sidebar-outer-right/sidebar-outer-right.component';
+import { SidebarOuterLeftComponent } from './sidebar-outer-left/sidebar-outer-left.component';
 
-import { SlideinLeftComponent } from './slidein-left/slidein-left.component';
-import { SlideinRightComponent } from './slidein-right/slidein-right.component';
-
-import { ToggleSlideinLeftComponent } from './toggle-slidein-left/toggle-slidein-left.component';
-import { ToggleSlideinRightComponent } from './toggle-slidein-right/toggle-slidein-right.component';
+import { SidebarInnerLeftComponent } from './sidebar-inner-left/sidebar-inner-left.component';
+import { SidebarInnerRightComponent } from './sidebar-inner-right/sidebar-inner-right.component';
 
 @NgModule({
   declarations: [
     ChassisComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarRightComponent,
-    SidebarLeftComponent,
-    SlideinLeftComponent,
-    SlideinRightComponent,
-    ToggleSlideinLeftComponent,
-    ToggleSlideinRightComponent
+    SidebarOuterRightComponent,
+    SidebarOuterLeftComponent,
+    SidebarInnerLeftComponent,
+    SidebarInnerRightComponent
   ],
   imports: [
     CommonModule,
@@ -57,10 +52,8 @@ import { ToggleSlideinRightComponent } from './toggle-slidein-right/toggle-slide
     ChassisComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarRightComponent,
-    SidebarLeftComponent,
-    ToggleSlideinLeftComponent,
-    ToggleSlideinRightComponent
+    SidebarOuterRightComponent,
+    SidebarOuterLeftComponent
   ]
 })
 export class ChassisModule {}

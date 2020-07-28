@@ -1,7 +1,10 @@
 <ng-container *ngIf="enabled">
     <header class="header" [class.showHeader]="visible" [class.hideHeader]="visible === false">
         <mat-toolbar color="primary">
-            <cosmos-toggle-slidein-left></cosmos-toggle-slidein-left>
+
+            <button mat-icon-button id="toggleSidebarOuterLeft" class="material-icons" (click)="sidebarOuterLeft.toggle()" aria-label="Example icon-button with menu icon">
+                <mat-icon>{{ showSlideinLeft ? 'close' : 'menu' }}</mat-icon>
+            </button>
 
             <span><a id="headerTitle" routerLink="/">{{ appName }}</a></span>
 
@@ -13,11 +16,14 @@
 
             <span class="header-spacer"></span>
 
-            <cosmos-toggle-slidein-right></cosmos-toggle-slidein-right>
-
+            <button mat-icon-button id="toggleSidebarOuterRight" class="material-icons" (click)="sidebarOuterRight.toggle()" aria-label="Example icon-button with share icon">
+                <mat-icon>{{ showSlideinRight ? 'close' : 'menu' }}</mat-icon>
+            </button>
+            
             <cosmos-profile-badge></cosmos-profile-badge>
 
             <cosmos-sign-in-out-button></cosmos-sign-in-out-button>
+
         </mat-toolbar>
     </header>
 </ng-container>

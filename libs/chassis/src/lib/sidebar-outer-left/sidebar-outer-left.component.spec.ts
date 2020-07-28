@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SlideinLeftComponent } from './slidein-left.component';
+import { SidebarOuterLeftComponent } from './sidebar-outer-left.component';
 
-describe('SlideinLeftComponent', () => {
-  let component: SlideinLeftComponent;
-  let fixture: ComponentFixture<SlideinLeftComponent>;
+describe('SidebarOuterLeftComponent', () => {
+  let component: SidebarOuterLeftComponent;
+  let fixture: ComponentFixture<SidebarOuterLeftComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SlideinLeftComponent ]
+      declarations: [ SidebarOuterLeftComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SlideinLeftComponent);
+    fixture = TestBed.createComponent(SidebarOuterLeftComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

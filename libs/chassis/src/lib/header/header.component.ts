@@ -26,22 +26,20 @@ export class HeaderComponent implements OnInit {
   headerMenu: Menu;
 
   showSlideinLeft: boolean;
-  showSlideinLeft$ = this.chassisService.slideinLeftVisible$;
+  showSlideinLeft$ = this.chassisService.sidebarInnerLeftVisible$;
 
   showSlideinRight: boolean;
-  showSlideinRight$ = this.chassisService.slideinRightVisible$;
+  showSlideinRight$ = this.chassisService.sidebarInnerRightVisible$;
 
   constructor(
     private environmentService: EnvironmentService,
-    private chassisService: ChassisService,
-    private navigationService: UINavigationService
+    private chassisService: ChassisService
   ) { }
 
   ngOnInit(): void {
     this.getEnabled();
     this.getVisible();
     this.getContent();
-    this.getHeaderMenu();
   }
 
   getEnabled(): void {
@@ -63,11 +61,5 @@ export class HeaderComponent implements OnInit {
       this.content = content
     );
     console.log(`header content: ${this.content}`);
-  }
-
-  getHeaderMenu(): void {
-    this.navigationService.getHeader().subscribe(menu => 
-      this.headerMenu = menu
-    );
   }
 }

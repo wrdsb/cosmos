@@ -7,9 +7,9 @@ import { ChassisService } from '../chassis.service';
   templateUrl: './toggle-slidein-right.component.html',
   styleUrls: ['./toggle-slidein-right.component.scss']
 })
-export class ToggleSlideinRightComponent implements OnInit {
+export class ToggleSidebarInnerRightComponent implements OnInit {
   showSlideinRight: boolean;
-  showSlideinRight$ = this.chassisService.slideinRightVisible$;
+  showSlideinRight$ = this.chassisService.sidebarInnerRightVisible$;
 
   constructor(
     private chassisService: ChassisService,

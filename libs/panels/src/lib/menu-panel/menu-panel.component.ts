@@ -14,7 +14,7 @@ export class MenuPanelComponent implements OnInit {
   sideMenu: Menu;
 
   showNav: boolean;
-  showNav$ = this.chassisService.sidebarLeftVisible$;
+  showNav$ = this.chassisService.sidebarOuterLeftVisible$;
 
   constructor(
     private navigationService: UINavigationService,
