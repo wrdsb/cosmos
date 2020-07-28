@@ -3,9 +3,10 @@
         "obj": true,
         "bin": true
     },
-    "azureFunctions.deploySubpath": ".",
+    "azureFunctions.deploySubpath": "src",
     "azureFunctions.projectLanguage": "TypeScript",
-    "azureFunctions.projectRuntime": "~3",
+    "azureFunctions.projectRuntime": "~2",
     "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "npm prune"
+    "azureFunctions.preDeployTask": "npm prune",
+    "azureFunctions.postDeployTask": "npm install"
 }
