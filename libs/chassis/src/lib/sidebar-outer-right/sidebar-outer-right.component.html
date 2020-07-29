@@ -1,4 +1,7 @@
-<mat-sidenav #sidebarOuterRight mode="over" position="end" fixedInViewport="false" closed>
-    <p><button mat-button (click)="sidebarOuterRight.toggle()">Toggle</button></p>
+<ng-container *ngIf="enabled">
+    <p><button mat-button (click)="toggleSidebarOuterRight()">Toggle</button></p>
     Sidebar Outer Right content
-</mat-sidenav>
+    {{content}}
+</ng-container>
+
+

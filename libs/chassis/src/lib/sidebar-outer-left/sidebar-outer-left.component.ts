@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { ChassisService } from '../chassis.service';
@@ -8,9 +8,7 @@ import { ChassisService } from '../chassis.service';
   templateUrl: './sidebar-outer-left.component.html',
   styleUrls: ['./sidebar-outer-left.component.scss']
 })
-export class SidebarOuterLeftComponent implements OnInit, AfterViewInit {
-  @ViewChild('sidebarOuterLeft') public sidebarOuterLeft: MatSidenav;
-
+export class SidebarOuterLeftComponent implements OnInit {
   enabled: boolean;
   enabled$ = this.chassisService.sidebarOuterLeftEnabled$;
 
@@ -25,16 +23,9 @@ export class SidebarOuterLeftComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.chassisService.setSidebarOuterLeft(this.sidebarOuterLeft);
-
     this.getEnabled();
     this.getVisible();
     this.getContent();
-  }
-
-  ngAfterViewInit(): void {
-    console.log('called after view init');
-    this.chassisService.setSidebarOuterLeft(this.sidebarOuterLeft);
   }
 
   getEnabled(): void {
@@ -56,5 +47,10 @@ export class SidebarOuterLeftComponent implements OnInit, AfterViewInit {
       this.content = content
     );
     console.log(`sidebar-outer-left content: ${this.content}`);
+  }
+
+  toggleSidebarOuterLeft() {
+    this.chassisService.toggleSidebarOuterLeft();
+    console.log('toggle sidebarOuterLeft');
   }
 }

@@ -66,6 +66,9 @@ export class ChassisService {
 
   constructor() { }
 
+  getSidebarOuterLeft(): MatSidenav {
+		return this.sidebarOuterLeft;
+  }
   setSidebarOuterLeft(sidenav: MatSidenav) {
 		this.sidebarOuterLeft = sidenav;
   }
@@ -75,10 +78,14 @@ export class ChassisService {
   closeSidebarOuterLeft() {
     return this.sidebarOuterLeft.close();
   }
-  toggleSidebarOuterLeft() {
+  toggleSidebarOuterLeft(): void {
+    console.log('toggleSidebarOuterLeft');
     this.sidebarOuterLeft.toggle();
   }
 
+  getSidebarOuterRight(): MatSidenav {
+		return this.sidebarOuterRight;
+  }
   setSidebarOuterRight(sidenav: MatSidenav) {
 		this.sidebarOuterRight = sidenav;
   }
@@ -89,7 +96,10 @@ export class ChassisService {
     return this.sidebarOuterRight.close();
   }
   toggleSidebarOuterRight(): void {
+    console.log(`${this.sidebarOuterRight.opened}`);
+    console.log('toggleSidebarOuterRight');
     this.sidebarOuterRight.toggle();
+    console.log(`${this.sidebarOuterRight.opened}`);
   }
 
   enableHeader(headerEnabled: boolean): void {

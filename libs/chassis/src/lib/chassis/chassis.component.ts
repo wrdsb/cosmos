@@ -20,8 +20,15 @@ export class ChassisComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('called after view init');
     this.chassisService.setSidebarOuterLeft(this.sidebarOuterLeft);
+
+    console.log(`chassis component sidebarOuterLeft: ${this.sidebarOuterLeft}`);
+    console.log(`chassis service sidebarOuterLeft: ${this.chassisService.getSidebarOuterLeft()}`);
+
     this.chassisService.setSidebarOuterRight(this.sidebarOuterRight);
+
+    console.log(`chassis component sidebarOuterRight: ${this.sidebarOuterRight}`);
+    console.log(`chassis service sidebarOuterRight: ${this.chassisService.getSidebarOuterRight()}`);
   }
+
 }

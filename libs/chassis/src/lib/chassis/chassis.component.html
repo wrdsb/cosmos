@@ -1,9 +1,13 @@
 <ng-container>
   <mat-sidenav-container fullscreen class="console-container">
 
-    <cosmos-sidebar-outer-left></cosmos-sidebar-outer-left>
+    <mat-sidenav #sidebarOuterLeft mode="over" position="start" fixedInViewport="false" closed>
+      <cosmos-sidebar-outer-left></cosmos-sidebar-outer-left>
+    </mat-sidenav>
 
-    <cosmos-sidebar-outer-right></cosmos-sidebar-outer-right>
+    <mat-sidenav #sidebarOuterRight mode="over" position="end" fixedInViewport="false" closed>
+      <cosmos-sidebar-outer-right></cosmos-sidebar-outer-right>
+    </mat-sidenav>
 
     <mat-sidenav-content id="console" class="console-content">
       <cosmos-header></cosmos-header>
@@ -20,7 +24,7 @@
         </mat-sidenav>
     
         <mat-sidenav-content id="main" class="main-content">
-    
+          <p><button mat-button (click)="sidebarOuterLeft.toggle()">Outer Left Toggle</button></p>
           <p><button mat-button (click)="sidebarOuterRight.toggle()">Outer Right Toggle</button></p>
 
           <p><button mat-button (click)="sidebarInnerLeft.toggle()">Inner Left Toggle</button></p>
