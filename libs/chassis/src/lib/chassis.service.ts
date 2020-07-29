@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Menu } from "@cosmos/types";
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChassisService {
+  private sidebarOuterLeft: MatSidenav;
+  private sidebarOuterRight: MatSidenav;
+
   private headerEnabled = new BehaviorSubject<boolean>(true);
   readonly headerEnabled$ = this.headerEnabled.asObservable();
 
@@ -21,7 +25,7 @@ export class ChassisService {
   private footerVisible = new BehaviorSubject<boolean>(false);
   readonly footerVisible$ = this.footerVisible.asObservable();
 
-  private footerContent = new BehaviorSubject<string>('');
+  private footerContent = new BehaviorSubject<Menu>({links: []});
   readonly footerContent$ = this.footerContent.asObservable();
 
   private sidebarOuterLeftEnabled = new BehaviorSubject<boolean>(true);
@@ -62,6 +66,32 @@ export class ChassisService {
 
   constructor() { }
 
+  setSidebarOuterLeft(sidenav: MatSidenav) {
+		this.sidebarOuterLeft = sidenav;
+  }
+  openSidebarOuterLeft() {
+    return this.sidebarOuterLeft.open();
+  }
+  closeSidebarOuterLeft() {
+    return this.sidebarOuterLeft.close();
+  }
+  toggleSidebarOuterLeft() {
+    this.sidebarOuterLeft.toggle();
+  }
+
+  setSidebarOuterRight(sidenav: MatSidenav) {
+		this.sidebarOuterRight = sidenav;
+  }
+  openSidebarOuterRight() {
+    return this.sidebarOuterRight.open();
+  }
+  closeSidebarOuterRight() {
+    return this.sidebarOuterRight.close();
+  }
+  toggleSidebarOuterRight(): void {
+    this.sidebarOuterRight.toggle();
+  }
+
   enableHeader(headerEnabled: boolean): void {
     this.headerEnabled.next(headerEnabled);
     console.log(`headerEnabled$ set to ${this.headerEnabled.getValue()}`);
@@ -83,7 +113,7 @@ export class ChassisService {
     this.footerVisible.next(footerVisible);
     console.log(`footerVisible$ set to ${this.footerVisible.getValue()}`);
   }
-  setFooterContent(footerContent: string): void {
+  setFooterContent(footerContent: Menu): void {
     this.footerContent.next(footerContent);
     console.log(`footerContent$ set to ${this.footerContent.getValue()}`)
   }

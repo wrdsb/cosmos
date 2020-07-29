@@ -41,6 +41,25 @@ export class AppComponent implements OnInit {
       }
     );
 
+    this.chassisService.setFooterContent(
+      {
+        links: [
+            {
+                link: '/aad/groups',
+                name: 'AAD Groups'
+            },
+            {
+                link: '/aad/group-memberships',
+                name: 'AAD Group Memberships'
+            },
+            {
+                link: '/aad/users',
+                name: 'AAD Users'
+            }
+        ]
+      }
+    );
+
     this.isIframe = window !== window.parent && !window.opener;
 
     this.checkoutAccount();

@@ -1,5 +1,4 @@
-<ng-container *ngIf="enabled">
-    <div class="sidebarLeft" [class.showSidbarLeft]="visible" [class.hideSidebarLeft]="visible === false">
-        {{content}}
-    </div>
-</ng-container>
+<mat-sidenav #sidebarOuterRight mode="over" position="end" fixedInViewport="false" closed>
+    <p><button mat-button (click)="sidebarOuterRight.toggle()">Toggle</button></p>
+    Sidebar Outer Right content
+</mat-sidenav>

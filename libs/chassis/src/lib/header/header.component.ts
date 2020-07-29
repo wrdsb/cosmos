@@ -61,4 +61,14 @@ export class HeaderComponent implements OnInit {
     );
     console.log(`header content: ${this.content}`);
   }
+
+  toggleSidebarOuterLeft() {
+    this.chassisService.toggleSidebarOuterLeft();
+    console.log('toggle sidebarOuterLeft');
+  }
+
+  toggleSidebarOuterRight() {
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
 }

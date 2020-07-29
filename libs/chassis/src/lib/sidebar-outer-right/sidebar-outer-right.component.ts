@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 import { ChassisService } from '../chassis.service';
 
@@ -7,7 +8,9 @@ import { ChassisService } from '../chassis.service';
   templateUrl: './sidebar-outer-right.component.html',
   styleUrls: ['./sidebar-outer-right.component.scss']
 })
-export class SidebarOuterRightComponent implements OnInit {
+export class SidebarOuterRightComponent implements OnInit, AfterViewInit {
+  @ViewChild('sidebarOuterRight') public sidebarOuterRight: MatSidenav;
+
   enabled: boolean;
   enabled$ = this.chassisService.sidebarOuterRightEnabled$;
 
@@ -22,9 +25,16 @@ export class SidebarOuterRightComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.chassisService.setSidebarOuterRight(this.sidebarOuterRight);
+
     this.getEnabled();
     this.getVisible();
     this.getContent();
+  }
+
+  ngAfterViewInit(): void {
+    console.log('called after view init');
+    this.chassisService.setSidebarOuterRight(this.sidebarOuterRight);
   }
 
   getEnabled(): void {
