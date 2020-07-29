@@ -7,7 +7,6 @@ import { ChassisService } from "../chassis.service";
   styleUrls: ['./chassis.component.scss']
 })
 export class ChassisComponent implements OnInit {
-  showNav = false;
 
   constructor(
     private chassisService: ChassisService

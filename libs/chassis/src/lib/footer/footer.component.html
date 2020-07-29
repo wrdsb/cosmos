@@ -1,7 +1,17 @@
 <ng-container *ngIf="enabled">
     <footer class="footer" [class.showFooter]="visible" [class.hideFooter]="visible === false">
-        <ul *ngFor="let link of footerMenu.links">
-            <li><a href="{{ link.link }}">{{ link.name }}</a></li>
-        </ul>
+        <mat-toolbar color="primary" class='mat-toolbar-single-row'>
+
+            <button mat-icon-button>
+                Button
+            </button>
+
+            <span class="footer-spacer"></span>
+
+            <ul *ngFor="let link of footerMenu.links">
+                <li><a href="{{ link.link }}">{{ link.name }}</a></li>
+            </ul>
+
+        </mat-toolbar>
     </footer>
 </ng-container>

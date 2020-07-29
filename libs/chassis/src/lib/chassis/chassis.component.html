@@ -1,33 +1,29 @@
 <ng-container>
-  <mat-sidenav-container class="example-container">
+  <mat-sidenav-container fullscreen class="console-container">
 
-    <mat-sidenav #sidebarOuterLeft mode="over" position="start" fixedInViewport="false" closed>
-      <p><button mat-button (click)="sidebarOuterLeft.toggle()">Toggle</button></p>
-      Sidenav content
-    </mat-sidenav>
+    <cosmos-sidebar-outer-left></cosmos-sidebar-outer-left>
 
     <mat-sidenav #sidebarOuterRight mode="over" position="end" fixedInViewport="false" closed>
       <p><button mat-button (click)="sidebarOuterRight.toggle()">Toggle</button></p>
-      Sidenav content
+      Sidebar Outer Right content
     </mat-sidenav>
 
-    <mat-sidenav-content id="main">
+    <mat-sidenav-content id="console" class="console-content">
       <cosmos-header></cosmos-header>
 
-      <mat-sidenav-container class="example-container">
+      <mat-sidenav-container class="main-container">
         <mat-sidenav #sidebarInnerLeft mode="over" position="start" fixedInViewport="false" closed>
           <p><button mat-button (click)="sidebarInnerLeft.toggle()">Toggle</button></p>
-          Sidenav content
+          Sidebar Inner Left content
         </mat-sidenav>
     
         <mat-sidenav #sidebarInnerRight mode="over" position="end" fixedInViewport="false" closed>
           <p><button mat-button (click)="sidebarInnerRight.toggle()">Toggle</button></p>
-          Sidenav content
+          Sidebar Inner Right content
         </mat-sidenav>
     
-        <mat-sidenav-content id="main">
+        <mat-sidenav-content id="main" class="main-content">
     
-          <p><button mat-button (click)="sidebarOuterLeft.toggle()">Outer Left Toggle</button></p>
           <p><button mat-button (click)="sidebarOuterRight.toggle()">Outer Right Toggle</button></p>
 
           <p><button mat-button (click)="sidebarInnerLeft.toggle()">Inner Left Toggle</button></p>

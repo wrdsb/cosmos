@@ -21,8 +21,8 @@ import { ChassisComponent } from './chassis/chassis.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { SidebarOuterRightComponent } from './sidebar-outer-right/sidebar-outer-right.component';
 import { SidebarOuterLeftComponent } from './sidebar-outer-left/sidebar-outer-left.component';
+import { SidebarOuterRightComponent } from './sidebar-outer-right/sidebar-outer-right.component';
 
 import { SidebarInnerLeftComponent } from './sidebar-inner-left/sidebar-inner-left.component';
 import { SidebarInnerRightComponent } from './sidebar-inner-right/sidebar-inner-right.component';
@@ -32,8 +32,8 @@ import { SidebarInnerRightComponent } from './sidebar-inner-right/sidebar-inner-
     ChassisComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarOuterRightComponent,
     SidebarOuterLeftComponent,
+    SidebarOuterRightComponent,
     SidebarInnerLeftComponent,
     SidebarInnerRightComponent
   ],
@@ -52,8 +52,10 @@ import { SidebarInnerRightComponent } from './sidebar-inner-right/sidebar-inner-
     ChassisComponent,
     HeaderComponent,
     FooterComponent,
+    SidebarOuterLeftComponent,
     SidebarOuterRightComponent,
-    SidebarOuterLeftComponent
+    SidebarInnerLeftComponent,
+    SidebarInnerRightComponent
   ]
 })
 export class ChassisModule {}

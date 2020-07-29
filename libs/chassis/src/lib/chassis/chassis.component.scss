@@ -1,14 +1,25 @@
-:host {
+.console-content {
+  display: grid;
+
+  grid-template-areas:
+    'header'
+    'center'
+    'footer';
+
+  grid-template-rows: 65px auto 70px;
+
   height: 100vh;
   padding: 0;
 }
 
-li {
-  margin-top: 10px;
-  margin-bottom: 10px;
+cosmos-header {
+  grid-area: header;
 }
-    
-.currentSelection {
-  font-weight: bold;
+
+cosmos-footer {
+  grid-area: footer;
 }
-    
+
+.main-container {
+    grid-area: center;
+}

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Menu } from '@cosmos/types';
-import { UINavigationService } from '@cosmos/ui-navigation';
-
+import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
+
+import { Menu } from '@cosmos/types';
 
 @Component({
   selector: 'cosmos-footer',
@@ -23,7 +23,8 @@ export class FooterComponent implements OnInit {
   footerMenu: Menu;
 
   constructor(
-    private chassisService: ChassisService,
+    private environmentService: EnvironmentService,
+    private chassisService: ChassisService
   ) { }
 
   ngOnInit(): void {
