@@ -14,13 +14,11 @@
 
       <mat-sidenav-container [hasBackdrop]="false" class="main-container">
         <mat-sidenav #sidebarInnerLeft mode="over" position="start" fixedInViewport="false" closed>
-          <p><button mat-button (click)="sidebarInnerLeft.toggle()">Toggle</button></p>
-          Sidebar Inner Left content
+          <cosmos-sidebar-inner-left></cosmos-sidebar-inner-left>
         </mat-sidenav>
     
         <mat-sidenav #sidebarInnerRight mode="over" position="end" fixedInViewport="false" closed>
-          <p><button mat-button (click)="sidebarInnerRight.toggle()">Toggle</button></p>
-          Sidebar Inner Right content
+          <cosmos-sidebar-inner-right></cosmos-sidebar-inner-right>
         </mat-sidenav>
     
         <mat-sidenav-content id="main" class="main-content">

@@ -8,6 +8,8 @@ import { ChassisService } from '../chassis.service';
   styleUrls: ['./sidebar-inner-left.component.scss']
 })
 export class SidebarInnerLeftComponent implements OnInit {
+  public title = 'Panel Title';
+
   enabled: boolean;
   enabled$ = this.chassisService.sidebarInnerLeftEnabled$;
 
@@ -35,5 +37,10 @@ export class SidebarInnerLeftComponent implements OnInit {
       this.content = content
     );
     console.log(`sidebar-inner-left content: ${this.content}`);
+  }
+
+  toggleSidebarInnerLeft() {
+    this.chassisService.toggleSidebarInnerLeft();
+    console.log('toggle sidebarInnerLeft');
   }
 }

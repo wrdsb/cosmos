@@ -10,6 +10,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class ChassisComponent implements OnInit, AfterViewInit {
   @ViewChild('sidebarOuterLeft') public sidebarOuterLeft: MatSidenav;
   @ViewChild('sidebarOuterRight') public sidebarOuterRight: MatSidenav;
+  @ViewChild('sidebarInnerLeft') public sidebarInnerLeft: MatSidenav;
+  @ViewChild('sidebarInnerRight') public sidebarInnerRight: MatSidenav;
 
   constructor(
     private chassisService: ChassisService
@@ -21,14 +23,9 @@ export class ChassisComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.chassisService.setSidebarOuterLeft(this.sidebarOuterLeft);
-
-    console.log(`chassis component sidebarOuterLeft: ${this.sidebarOuterLeft}`);
-    console.log(`chassis service sidebarOuterLeft: ${this.chassisService.getSidebarOuterLeft()}`);
-
     this.chassisService.setSidebarOuterRight(this.sidebarOuterRight);
-
-    console.log(`chassis component sidebarOuterRight: ${this.sidebarOuterRight}`);
-    console.log(`chassis service sidebarOuterRight: ${this.chassisService.getSidebarOuterRight()}`);
+    this.chassisService.setSidebarInnerLeft(this.sidebarInnerLeft);
+    this.chassisService.setSidebarInnerRight(this.sidebarInnerRight);
   }
 
 }
