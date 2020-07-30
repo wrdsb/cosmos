@@ -2,13 +2,9 @@
     <header class="header" [class.showHeader]="visible" [class.hideHeader]="visible === false">
         <mat-toolbar>
 
-            <button mat-icon-button id="toggleSidebarOuterLeft" class="material-icons" (click)="toggleSidebarOuterLeft()" aria-label="Example icon-button with menu icon">
-                <mat-icon>{{ showSlideinLeft ? 'close' : 'menu' }}</mat-icon>
+            <button mat-icon-button class="material-icons" (click)="toggleSidebarOuterLeft()">
+                <mat-icon>menu</mat-icon>
             </button>
-
-            <ul id="headerMenu" *ngFor="let link of content.links">
-                <li><a routerLink="{{ link.link }}">{{ link.name }}</a></li>
-            </ul>
 
             <span class="header-spacer"></span>
 
@@ -16,13 +12,25 @@
 
             <span class="header-spacer"></span>
 
-            <button mat-icon-button id="toggleSidebarOuterRight" class="material-icons" (click)="toggleSidebarOuterRight()" aria-label="Example icon-button with share icon">
-                <mat-icon>{{ showSlideinRight ? 'close' : 'menu' }}</mat-icon>
+            <button mat-icon-button class="material-icons" (click)="toggleSidebarOuterRight()">
+                <mat-icon class="material-icons-outlined">notifications</mat-icon>
             </button>
-            
-            <cosmos-profile-badge></cosmos-profile-badge>
 
-            <cosmos-sign-in-out-button></cosmos-sign-in-out-button>
+            <button mat-icon-button class="material-icons" (click)="toggleSidebarOuterRight()">
+                <mat-icon class="material-icons-outlined">help_outline</mat-icon>
+            </button>
+
+            <button mat-icon-button class="material-icons" (click)="toggleSidebarOuterRight()">
+                <mat-icon class="material-icons-outlined">feedback</mat-icon>
+            </button>
+
+            <button mat-icon-button class="material-icons" (click)="toggleSidebarOuterRight()">
+                <mat-icon class="material-icons-outlined">settings</mat-icon>
+            </button>
+
+            <button mat-icon-button class="material-icons" (click)="toggleSidebarOuterRight()">
+                <mat-icon class="material-icons-outlined">account_circle</mat-icon>
+            </button>
 
         </mat-toolbar>
     </header>

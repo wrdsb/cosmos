@@ -17,7 +17,7 @@ export class FooterComponent implements OnInit {
   visible: boolean;
   visible$ = this.chassisService.footerVisible$;
 
-  content: string;
+  content: Menu;
   content$ = this.chassisService.footerContent$;
 
   footerMenu: Menu;
