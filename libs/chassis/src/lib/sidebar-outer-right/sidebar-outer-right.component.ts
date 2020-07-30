@@ -14,9 +14,6 @@ export class SidebarOuterRightComponent implements OnInit {
   enabled: boolean;
   enabled$ = this.chassisService.sidebarOuterRightEnabled$;
 
-  visible: boolean;
-  visible$ = this.chassisService.sidebarOuterRightVisible$;
-
   content: string;
   content$ = this.chassisService.sidebarOuterRightContent$;
 
@@ -26,7 +23,6 @@ export class SidebarOuterRightComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEnabled();
-    this.getVisible();
     this.getContent();
   }
 
@@ -35,13 +31,6 @@ export class SidebarOuterRightComponent implements OnInit {
       this.enabled = enabled
     );
     console.log(`sidebar-outer-right enabled: ${this.enabled}`);
-  }
-
-  getVisible(): void {
-    this.visible$.subscribe(visible => 
-      this.visible = visible
-    );
-    console.log(`sidebar-outer-right visible: ${this.visible}`);
   }
 
   getContent(): void {

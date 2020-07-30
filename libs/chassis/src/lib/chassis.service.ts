@@ -10,6 +10,9 @@ export class ChassisService {
   private sidebarOuterLeft: MatSidenav;
   private sidebarOuterRight: MatSidenav;
 
+  private sidebarInnerLeft: MatSidenav;
+  private sidebarInnerRight: MatSidenav;
+
   private headerEnabled = new BehaviorSubject<boolean>(true);
   readonly headerEnabled$ = this.headerEnabled.asObservable();
 
@@ -31,17 +34,11 @@ export class ChassisService {
   private sidebarOuterLeftEnabled = new BehaviorSubject<boolean>(true);
   readonly sidebarOuterLeftEnabled$ = this.sidebarOuterLeftEnabled.asObservable();
 
-  private sidebarOuterLeftVisible = new BehaviorSubject<boolean>(false);
-  readonly sidebarOuterLeftVisible$ = this.sidebarOuterLeftVisible.asObservable();
-
   private sidebarOuterLeftContent = new BehaviorSubject<string>('');
   readonly sidebarOuterLeftContent$ = this.sidebarOuterLeftContent.asObservable();
 
   private sidebarOuterRightEnabled = new BehaviorSubject<boolean>(true);
   readonly sidebarOuterRightEnabled$ = this.sidebarOuterRightEnabled.asObservable();
-
-  private sidebarOuterRightVisible = new BehaviorSubject<boolean>(false);
-  readonly sidebarOuterRightVisible$ = this.sidebarOuterRightVisible.asObservable();
 
   private sidebarOuterRightContent = new BehaviorSubject<string>('');
   readonly sidebarOuterRightContent$ = this.sidebarOuterRightContent.asObservable();
@@ -49,58 +46,16 @@ export class ChassisService {
   private sidebarInnerLeftEnabled = new BehaviorSubject<boolean>(true);
   readonly sidebarInnerLeftEnabled$ = this.sidebarInnerLeftEnabled.asObservable();
 
-  private sidebarInnerLeftVisible = new BehaviorSubject<boolean>(false);
-  readonly sidebarInnerLeftVisible$ = this.sidebarInnerLeftVisible.asObservable();
-
   private sidebarInnerLeftContent = new BehaviorSubject<string>('');
   readonly sidebarInnerLeftContent$ = this.sidebarInnerLeftContent.asObservable();
 
   private sidebarInnerRightEnabled = new BehaviorSubject<boolean>(true);
   readonly sidebarInnerRightEnabled$ = this.sidebarInnerRightEnabled.asObservable();
 
-  private sidebarInnerRightVisible = new BehaviorSubject<boolean>(false);
-  readonly sidebarInnerRightVisible$ = this.sidebarInnerRightVisible.asObservable();
-
   private sidebarInnerRightContent = new BehaviorSubject<string>('');
   readonly sidebarInnerRightContent$ = this.sidebarInnerRightContent.asObservable();
 
   constructor() { }
-
-  getSidebarOuterLeft(): MatSidenav {
-		return this.sidebarOuterLeft;
-  }
-  setSidebarOuterLeft(sidenav: MatSidenav) {
-		this.sidebarOuterLeft = sidenav;
-  }
-  openSidebarOuterLeft() {
-    return this.sidebarOuterLeft.open();
-  }
-  closeSidebarOuterLeft() {
-    return this.sidebarOuterLeft.close();
-  }
-  toggleSidebarOuterLeft(): void {
-    console.log('toggleSidebarOuterLeft');
-    this.sidebarOuterLeft.toggle();
-  }
-
-  getSidebarOuterRight(): MatSidenav {
-		return this.sidebarOuterRight;
-  }
-  setSidebarOuterRight(sidenav: MatSidenav) {
-		this.sidebarOuterRight = sidenav;
-  }
-  openSidebarOuterRight() {
-    return this.sidebarOuterRight.open();
-  }
-  closeSidebarOuterRight() {
-    return this.sidebarOuterRight.close();
-  }
-  toggleSidebarOuterRight(): void {
-    console.log(`${this.sidebarOuterRight.opened}`);
-    console.log('toggleSidebarOuterRight');
-    this.sidebarOuterRight.toggle();
-    console.log(`${this.sidebarOuterRight.opened}`);
-  }
 
   enableHeader(headerEnabled: boolean): void {
     this.headerEnabled.next(headerEnabled);
@@ -128,52 +83,100 @@ export class ChassisService {
     console.log(`footerContent$ set to ${this.footerContent.getValue()}`)
   }
 
-  enableSidebarLeft(sidebarOuterLeftEnabled: boolean): void {
+  enableSidebarOuterLeft(sidebarOuterLeftEnabled: boolean): void {
     this.sidebarOuterLeftEnabled.next(sidebarOuterLeftEnabled);
     console.log(`sidebarOuterLeftEnabled$ set to ${this.sidebarOuterLeftEnabled.getValue()}`);
   }
-  showSidebarLeft(sidebarOuterLeftVisible: boolean): void {
-    this.sidebarOuterLeftVisible.next(sidebarOuterLeftVisible);
-    console.log(`sidebarOuterLeftVisible$ set to ${this.sidebarOuterLeftVisible.getValue()}`);
+  getSidebarOuterLeft(): MatSidenav {
+		return this.sidebarOuterLeft;
+  }
+  setSidebarOuterLeft(sidenav: MatSidenav) {
+		this.sidebarOuterLeft = sidenav;
+  }
+  openSidebarOuterLeft() {
+    return this.sidebarOuterLeft.open();
+  }
+  closeSidebarOuterLeft() {
+    return this.sidebarOuterLeft.close();
+  }
+  toggleSidebarOuterLeft(): void {
+    console.log('toggleSidebarOuterLeft');
+    this.sidebarOuterLeft.toggle();
   }
   setsidebarOuterLeftContent(sidebarOuterLeftContent: string): void {
     this.sidebarOuterLeftContent.next(sidebarOuterLeftContent);
     console.log(`sidebarOuterLeftContent$ set to ${this.sidebarOuterLeftContent.getValue()}`)
   }
 
-  enableSidebarRight(sidebarOuterRightEnabled: boolean): void {
+  enableSidebarOuterRight(sidebarOuterRightEnabled: boolean): void {
     this.sidebarOuterRightEnabled.next(sidebarOuterRightEnabled);
     console.log(`sidebarOuterRightEnabled$ set to ${this.sidebarOuterRightEnabled.getValue()}`);
   }
-  showSidebarRight(sidebarOuterRightVisible: boolean): void {
-    this.sidebarOuterRightVisible.next(sidebarOuterRightVisible);
-    console.log(`sidebarOuterRightVisible$ set to ${this.sidebarOuterRightVisible.getValue()}`);
+  getSidebarOuterRight(): MatSidenav {
+		return this.sidebarOuterRight;
+  }
+  setSidebarOuterRight(sidenav: MatSidenav) {
+		this.sidebarOuterRight = sidenav;
+  }
+  openSidebarOuterRight() {
+    return this.sidebarOuterRight.open();
+  }
+  closeSidebarOuterRight() {
+    return this.sidebarOuterRight.close();
+  }
+  toggleSidebarOuterRight(): void {
+    console.log('toggleSidebarOuterRight');
+    this.sidebarOuterRight.toggle();
   }
   setsidebarOuterRightContent(sidebarOuterRightContent: string): void {
     this.sidebarOuterRightContent.next(sidebarOuterRightContent);
     console.log(`sidebarOuterRightContent$ set to ${this.sidebarOuterRightContent.getValue()}`)
   }
 
-  enableSlideinLeft(sidebarInnerLeftEnabled: boolean): void {
+  enableSidebarInnerLeft(sidebarInnerLeftEnabled: boolean): void {
     this.sidebarInnerLeftEnabled.next(sidebarInnerLeftEnabled);
     console.log(`sidebarInnerLeftEnabled$ set to ${this.sidebarInnerLeftEnabled.getValue()}`);
   }
-  showSlideinLeft(sidebarInnerLeftVisible: boolean): void {
-    this.sidebarInnerLeftVisible.next(sidebarInnerLeftVisible);
-    console.log(`sidebarInnerLeftVisible$ set to ${this.sidebarInnerLeftVisible.getValue()}`);
+  getSidebarInnerLeft(): MatSidenav {
+		return this.sidebarInnerLeft;
+  }
+  setSidebarInnerLeft(sidenav: MatSidenav) {
+		this.sidebarInnerLeft = sidenav;
+  }
+  openSidebarInnerLeft() {
+    return this.sidebarInnerLeft.open();
+  }
+  closeSidebarInnerLeft() {
+    return this.sidebarInnerLeft.close();
+  }
+  toggleSidebarInnerLeft(): void {
+    console.log('toggleSidebarInnerLeft');
+    this.sidebarInnerLeft.toggle();
   }
   setsidebarInnerLeftContent(sidebarInnerLeftContent: string): void {
     this.sidebarInnerLeftContent.next(sidebarInnerLeftContent);
     console.log(`sidebarInnerLeftContent$ set to ${this.sidebarInnerLeftContent.getValue()}`)
   }
 
-  enableSlideinRight(sidebarInnerRightEnabled: boolean): void {
+  enableSidebarInnerRight(sidebarInnerRightEnabled: boolean): void {
     this.sidebarInnerRightEnabled.next(sidebarInnerRightEnabled);
     console.log(`sidebarInnerRightEnabled$ set to ${this.sidebarInnerRightEnabled.getValue()}`);
   }
-  showSlideinRight(sidebarInnerRightVisible: boolean): void {
-    this.sidebarInnerRightVisible.next(sidebarInnerRightVisible);
-    console.log(`sidebarInnerRightVisible$ set to ${this.sidebarInnerRightVisible.getValue()}`);
+  getSidebarInnerRight(): MatSidenav {
+		return this.sidebarInnerRight;
+  }
+  setSidebarInnerRight(sidenav: MatSidenav) {
+		this.sidebarInnerRight = sidenav;
+  }
+  openSidebarInnerRight() {
+    return this.sidebarInnerRight.open();
+  }
+  closeSidebarInnerRight() {
+    return this.sidebarInnerRight.close();
+  }
+  toggleSidebarInnerRight(): void {
+    console.log('toggleSidebarInnerRight');
+    this.sidebarInnerRight.toggle();
   }
   setsidebarInnerRightContent(sidebarInnerRightContent: string): void {
     this.sidebarInnerRightContent.next(sidebarInnerRightContent);
