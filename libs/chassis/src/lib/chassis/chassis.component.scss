@@ -6,7 +6,7 @@
     'center'
     'footer';
 
-  grid-template-rows: 65px auto 70px;
+  grid-template-rows: 70px auto 70px;
 
   height: 100vh;
   padding: 0;
@@ -22,4 +22,17 @@ cosmos-footer {
 
 .main-container {
     grid-area: center;
+}
+
+.mat-drawer-container {
+  background-color: transparent;
+}
+
+.mat-drawer {
+  background-color: rgba(10, 10, 10, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.mat-drawer:not(.mat-drawer-side) {
+  box-shadow: none;
 }

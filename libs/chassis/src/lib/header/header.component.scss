@@ -1,5 +1,15 @@
 :host {
+  margin: 0;
+  padding: 0;
   z-index: 1;
+
+  background-color: transparent;
+
+  font-family: 'Jura', sans-serif;
+
+  .mat-toolbar {
+    background-color: transparent;
+  }
 
   .header-spacer {
     flex: 1 1 auto;
@@ -10,12 +20,14 @@
   }
 
   a {
+    font-family: 'Jura', sans-serif;
+    font-size: 18px;
+    font-weight: normal;
     color: white;
     text-decoration: none;
   }
 
   h1 {
-    color: white;
     display: inline;
     margin: 0;
     overflow: hidden;
@@ -24,12 +36,10 @@
   }
 
   ul {
-    color: white;
     display: inline;
   }
 
   li {
-    color: white;
     display: inline;
   }
 }
