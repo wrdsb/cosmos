@@ -67,7 +67,32 @@ export class HeaderComponent implements OnInit {
     console.log('toggle sidebarOuterLeft');
   }
 
-  toggleSidebarOuterRight() {
+  toggleNotificationsPanel() {
+    this.chassisService.setsidebarOuterRightContent('Notifications');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleHelpPanel() {
+    this.chassisService.setsidebarOuterRightContent('Help');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleFeedbackPanel() {
+    this.chassisService.setsidebarOuterRightContent('Feedback');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleSettingsPanel() {
+    this.chassisService.setsidebarOuterRightContent('Settings');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleAccountPanel() {
+    this.chassisService.setsidebarOuterRightContent('Account');
     this.chassisService.toggleSidebarOuterRight();
     console.log('toggle sidebarOuterRight');
   }

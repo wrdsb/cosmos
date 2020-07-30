@@ -9,6 +9,8 @@ import { ChassisService } from '../chassis.service';
   styleUrls: ['./sidebar-outer-right.component.scss']
 })
 export class SidebarOuterRightComponent implements OnInit {
+  public title = 'Panel Title';
+
   enabled: boolean;
   enabled$ = this.chassisService.sidebarOuterRightEnabled$;
 

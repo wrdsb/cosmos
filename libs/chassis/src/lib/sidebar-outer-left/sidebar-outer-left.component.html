@@ -1,5 +1,16 @@
 <ng-container *ngIf="enabled">
-    <p><button mat-button (click)="toggleSidebarOuterLeft()">Toggle</button></p>
-    Sidebar Outer Left content bigger and bigger
-    {{content}}
+  <mat-toolbar>
+
+    {{title}}
+
+    <span class="toolbar-spacer"></span>
+
+    <button mat-button (click)="toggleSidebarOuterLeft()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </mat-toolbar>
+
+  {{content}}
+
 </ng-container>

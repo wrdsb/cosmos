@@ -1,7 +1,16 @@
 <ng-container *ngIf="enabled">
-    <p><button mat-button (click)="toggleSidebarOuterRight()">Toggle</button></p>
-    Sidebar Outer Right content
-    {{content}}
+  <mat-toolbar>
+
+    {{title}}
+
+    <span class="toolbar-spacer"></span>
+
+    <button mat-button (click)="toggleSidebarOuterRight()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </mat-toolbar>
+
+  {{content}}
+
 </ng-container>
-
-
