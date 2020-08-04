@@ -4217,6 +4217,38 @@
           "style": "scss"
         }
       }
+    },
+    "hagar-service": {
+      "projectType": "library",
+      "root": "libs/hagar-service",
+      "sourceRoot": "libs/hagar-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/hagar-service/tsconfig.lib.json",
+              "libs/hagar-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/hagar-service/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/hagar-service/jest.config.js",
+            "tsConfig": "libs/hagar-service/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/hagar-service/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
