@@ -8,6 +8,7 @@ import { GroupsListFullComponent } from './groups-list-full/groups-list-full.com
 import { GroupsListBriefComponent } from './groups-list-brief/groups-list-brief.component';
 
 import { MembersListComponent } from './members-list/members-list.component';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { MembersListComponent } from './members-list/members-list.component';
 
     MembersListComponent,
 
-    GroupsHomeComponent
+    GroupsHomeComponent,
+
+    GroupDetailComponent
   ],
   imports: [
     CommonModule,
