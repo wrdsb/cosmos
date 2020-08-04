@@ -6,21 +6,19 @@ import { GroupsHomeComponent } from './groups-home/groups-home.component';
 import { GroupsListComponent } from './groups-list/groups-list.component';
 import { GroupsListFullComponent } from './groups-list-full/groups-list-full.component';
 import { GroupsListBriefComponent } from './groups-list-brief/groups-list-brief.component';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
 
 import { MembersListComponent } from './members-list/members-list.component';
-import { GroupDetailComponent } from './group-detail/group-detail.component';
 
 @NgModule({
   declarations: [
+    GroupsHomeComponent,
     GroupsListComponent,
     GroupsListFullComponent,
     GroupsListBriefComponent,
+    GroupDetailComponent,
 
-    MembersListComponent,
-
-    GroupsHomeComponent,
-
-    GroupDetailComponent
+    MembersListComponent
   ],
   imports: [
     CommonModule,
@@ -32,9 +30,11 @@ import { GroupDetailComponent } from './group-detail/group-detail.component';
     ])
   ],
   exports: [
+    GroupsHomeComponent,
     GroupsListComponent,
     GroupsListFullComponent,
     GroupsListBriefComponent,
+    GroupDetailComponent,
 
     MembersListComponent
   ]
