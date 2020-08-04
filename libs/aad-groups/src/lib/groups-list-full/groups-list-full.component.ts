@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AADGroup } from "@cosmos/types"
+
+import { HagarServiceService } from "@cosmos/hagar-service";
+
 
 @Component({
   selector: 'cosmos-groups-list-full',
@@ -6,10 +10,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./groups-list-full.component.scss']
 })
 export class GroupsListFullComponent implements OnInit {
+  groups: AADGroup[];
 
-  constructor() { }
+  constructor(
+    private hagarService: HagarServiceService
+  ) {}
 
   ngOnInit(): void {
+    this.getGroups();
   }
 
+  getGroups(): void {
+    this.hagarService.getGroups()
+      .subscribe(groups => this.groups = groups);
+  }
 }
