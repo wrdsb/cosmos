@@ -24,4 +24,4 @@ import { MembersListComponent } from './members-list/members-list.component';
     MembersListComponent
   ]
 })
-export class AadGroupsModule {}
+export class AADGroupsModule {}

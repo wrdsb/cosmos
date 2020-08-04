@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { AadGroupsModule } from './aad-groups.module';
+import { AADGroupsModule } from './aad-groups.module';
 
-describe('AadGroupsModule', () => {
+describe('AADGroupsModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AadGroupsModule]
+      imports: [AADGroupsModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(AadGroupsModule).toBeDefined();
+    expect(AADGroupsModule).toBeDefined();
   });
 });

@@ -20,4 +20,4 @@ import { UsersListFullComponent } from './users-list-full/users-list-full.compon
     UsersListBriefComponent
   ]
 })
-export class AadUsersModule {}
+export class AADUsersModule {}

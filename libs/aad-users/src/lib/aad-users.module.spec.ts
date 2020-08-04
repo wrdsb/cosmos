@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { AadUsersModule } from './aad-users.module';
+import { AADUsersModule } from './aad-users.module';
 
-describe('AadUsersModule', () => {
+describe('AADUsersModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AadUsersModule]
+      imports: [AADUsersModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(AadUsersModule).toBeDefined();
+    expect(AADUsersModule).toBeDefined();
   });
 });
