@@ -4154,38 +4154,6 @@
         }
       }
     },
-    "ui-aad-users": {
-      "projectType": "library",
-      "root": "libs/ui-aad-users",
-      "sourceRoot": "libs/ui-aad-users/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/ui-aad-users/tsconfig.lib.json",
-              "libs/ui-aad-users/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/ui-aad-users/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/ui-aad-users/jest.config.js",
-            "tsConfig": "libs/ui-aad-users/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/ui-aad-users/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "hagar-service": {
       "projectType": "library",
       "root": "libs/hagar-service",

@@ -55,7 +55,6 @@
       "@cosmos/messages": ["libs/messages/src/index.ts"],
       "@cosmos/signalr-service": ["libs/signalr-service/src/index.ts"],
       "@cosmos/signalr-loops": ["libs/signalr-loops/src/index.ts"],
-      "@cosmos/ui-aad-users": ["libs/ui-aad-users/src/index.ts"],
       "@cosmos/hagar-service": ["libs/hagar-service/src/index.ts"],
       "@cosmos/aad-users": ["libs/aad-users/src/index.ts"],
       "@cosmos/aad-groups": ["libs/aad-groups/src/index.ts"]
