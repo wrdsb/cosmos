@@ -174,6 +174,17 @@ interface AADGroup {
     // Visibility is supported only for unified groups; it is not supported for security groups.
     // Returned by default.
     visibility?: VisibilityType;
+
+    // TODO: These fields came back from AAD in our query and we guessed at their types
+    creationOptions?: string[];
+    expirationDateTime?: string;
+    isAssignableToRole?: boolean;
+    membershipRule?: string;
+    membershipRuleProcessingState?: string;
+    preferredLanguage?: string;
+    resourceBehaviorOptions?: string[];
+    resourceProvisioningOptions?: string[];
+    theme?: string;
 }
 
 interface AssignedLicense {
@@ -185,7 +196,7 @@ interface AssignedLicense {
     // The unique identifier for the SKU.
     // Guid
     skuId?: string;
-};
+}
 
 interface OnPremisesProvisioningError {
     
