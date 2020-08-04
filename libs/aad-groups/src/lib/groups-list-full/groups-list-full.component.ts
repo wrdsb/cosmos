@@ -10,6 +10,7 @@ import { HagarServiceService } from "@cosmos/hagar-service";
   styleUrls: ['./groups-list-full.component.scss']
 })
 export class GroupsListFullComponent implements OnInit {
+  displayedColumns: string[] = ['displayName'];
   groups: AADGroup[];
 
   constructor(
