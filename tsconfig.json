@@ -57,7 +57,8 @@
       "@cosmos/signalr-loops": ["libs/signalr-loops/src/index.ts"],
       "@cosmos/ui-aad-groups": ["libs/ui-aad-groups/src/index.ts"],
       "@cosmos/ui-aad-users": ["libs/ui-aad-users/src/index.ts"],
-      "@cosmos/hagar-service": ["libs/hagar-service/src/index.ts"]
+      "@cosmos/hagar-service": ["libs/hagar-service/src/index.ts"],
+      "@cosmos/aad-users": ["libs/aad-users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

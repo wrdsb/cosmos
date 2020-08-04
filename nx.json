@@ -296,6 +296,9 @@
     },
     "hagar-service": {
       "tags": []
+    },
+    "aad-users": {
+      "tags": []
     }
   }
 }
