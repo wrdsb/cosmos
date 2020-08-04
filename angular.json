@@ -4281,6 +4281,38 @@
           "style": "scss"
         }
       }
+    },
+    "aad-groups": {
+      "projectType": "library",
+      "root": "libs/aad-groups",
+      "sourceRoot": "libs/aad-groups/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/aad-groups/tsconfig.lib.json",
+              "libs/aad-groups/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/aad-groups/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/aad-groups/jest.config.js",
+            "tsConfig": "libs/aad-groups/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/aad-groups/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
