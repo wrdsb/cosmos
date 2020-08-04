@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AadGroupsAllComponent } from './aad-groups-all.component';
+import { AADGroupsAllComponent } from './aad-groups-all.component';
 
-describe('AadGroupsAllComponent', () => {
-  let component: AadGroupsAllComponent;
-  let fixture: ComponentFixture<AadGroupsAllComponent>;
+describe('AADGroupsAllComponent', () => {
+  let component: AADGroupsAllComponent;
+  let fixture: ComponentFixture<AADGroupsAllComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AadGroupsAllComponent ]
+      declarations: [ AADGroupsAllComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AadGroupsAllComponent);
+    fixture = TestBed.createComponent(AADGroupsAllComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

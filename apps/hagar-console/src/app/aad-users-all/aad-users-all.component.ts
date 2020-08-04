@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './aad-users-all.component.html',
   styleUrls: ['./aad-users-all.component.scss']
 })
-export class AadUsersAllComponent implements OnInit {
+export class AADUsersAllComponent implements OnInit {
 
   constructor() { }
 

@@ -19,14 +19,14 @@ import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
 import { PagesModule } from "@cosmos/pages";
 import { NotificationsModule } from '@cosmos/notifications';
-import { AadGroupsAllComponent } from './aad-groups-all/aad-groups-all.component';
-import { AadUsersAllComponent } from './aad-users-all/aad-users-all.component'
+import { AADGroupsAllComponent } from './aad-groups-all/aad-groups-all.component';
+import { AADUsersAllComponent } from './aad-users-all/aad-users-all.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    AadGroupsAllComponent,
-    AadUsersAllComponent
+    AADGroupsAllComponent,
+    AADUsersAllComponent
   ],
   imports: [
     BrowserModule,
