@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./groups-list.component.scss']
 })
 export class GroupsListComponent implements OnInit {
+  public groups = [];
 
   constructor() { }
 
