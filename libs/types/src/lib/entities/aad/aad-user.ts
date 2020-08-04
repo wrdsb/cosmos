@@ -1,0 +1,7 @@
+interface AADUser {
+
+}
+
+export {
+    AADUser
+};

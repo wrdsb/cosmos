@@ -4,6 +4,20 @@ import { MsalGuard } from '@azure/msal-angular';
 
 const routes: Routes = [
   {
+    path: 'aad/groups',
+    loadChildren: () => import('@cosmos/aad-groups').then(m => m.AADGroupsModule),
+    canActivate: [
+      MsalGuard
+    ]
+  },
+  {
+    path: 'aad/users',
+    loadChildren: () => import('@cosmos/aad-users').then(m => m.AADUsersModule),
+    canActivate: [
+      MsalGuard
+    ]
+  },
+  {
     path: 'profile',
     loadChildren: () => import('@cosmos/user-profiles').then(m => m.UserProfilesModule),
     canActivate: [

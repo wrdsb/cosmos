@@ -18,7 +18,7 @@ import { UserAuthModule } from "@cosmos/user-auth";
 import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
 import { PagesModule } from "@cosmos/pages";
-import { NotificationsModule } from '@cosmos/notifications'
+import { NotificationsModule } from '@cosmos/notifications';
 
 @NgModule({
   declarations: [
