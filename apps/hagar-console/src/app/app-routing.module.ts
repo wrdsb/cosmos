@@ -2,17 +2,20 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 
-import { AADGroupsAllComponent } from "./aad-groups-all/aad-groups-all.component";
-import { AADUsersAllComponent } from "./aad-users-all/aad-users-all.component";
-
 const routes: Routes = [
   {
-    path: 'groups',
-    component: AADGroupsAllComponent
+    path: 'aad/groups',
+    loadChildren: () => import('@cosmos/aad-groups').then(m => m.AADGroupsModule),
+    canActivate: [
+      MsalGuard
+    ]
   },
   {
-    path: 'users',
-    component: AADUsersAllComponent
+    path: 'aad/users',
+    loadChildren: () => import('@cosmos/aad-users').then(m => m.AADUsersModule),
+    canActivate: [
+      MsalGuard
+    ]
   },
   {
     path: 'profile',

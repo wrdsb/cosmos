@@ -20,17 +20,9 @@ import { PanelsModule } from "@cosmos/panels";
 import { PagesModule } from "@cosmos/pages";
 import { NotificationsModule } from '@cosmos/notifications';
 
-import { AADGroupsAllComponent } from './aad-groups-all/aad-groups-all.component';
-import { AADUsersAllComponent } from './aad-users-all/aad-users-all.component'
-
-import { AADGroupsModule } from "@cosmos/aad-groups";
-import { AADUsersModule } from "@cosmos/aad-users";
-
 @NgModule({
   declarations: [
-    AppComponent,
-    AADGroupsAllComponent,
-    AADUsersAllComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -50,10 +42,7 @@ import { AADUsersModule } from "@cosmos/aad-users";
     ChassisModule,
     PanelsModule,
     PagesModule,
-    NotificationsModule,
-
-    AADGroupsModule,
-    AADUsersModule
+    NotificationsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
