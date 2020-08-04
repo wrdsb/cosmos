@@ -2,23 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { GroupsListComponent } from './groups-list/groups-list.component';
-import { MembersListComponent } from './members-list/members-list.component';
-import { GroupsListBriefComponent } from './groups-list-brief/groups-list-brief.component';
 import { GroupsListFullComponent } from './groups-list-full/groups-list-full.component';
+import { GroupsListBriefComponent } from './groups-list-brief/groups-list-brief.component';
+
+import { MembersListComponent } from './members-list/members-list.component';
 
 @NgModule({
   declarations: [
     GroupsListComponent,
-    MembersListComponent,
+    GroupsListFullComponent,
     GroupsListBriefComponent,
-    GroupsListFullComponent
+
+    MembersListComponent
   ],
   imports: [CommonModule],
   exports: [
     GroupsListComponent,
-    MembersListComponent,
+    GroupsListFullComponent,
     GroupsListBriefComponent,
-    GroupsListFullComponent
+
+    MembersListComponent
   ]
 })
 export class AadGroupsModule {}
