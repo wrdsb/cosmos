@@ -28,7 +28,7 @@ import { MembersListComponent } from './members-list/members-list.component';
 
     RouterModule.forChild([
       {path: 'all', pathMatch: 'full', component: GroupsListFullComponent},
-
+      {path: 'brief', pathMatch: 'full', component: GroupsListBriefComponent},
       {path: '', pathMatch: 'full', component: GroupsHomeComponent}
     ])
   ],
