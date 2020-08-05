@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AADGroup } from '@cosmos/types';
 
-import { HagarServiceService } from '@cosmos/hagar-service';
+import { HagarService } from '@cosmos/hagar-service';
 
 @Component({
   selector: 'cosmos-groups-list-brief',
@@ -16,7 +16,7 @@ export class GroupsListBriefComponent implements OnInit {
 
   groups: AADGroup[];
 
-  constructor(private hagarService: HagarServiceService) {}
+  constructor(private hagarService: HagarService) {}
 
   ngOnInit(): void {
     this.getGroups();

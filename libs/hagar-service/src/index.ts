@@ -1,2 +1,1 @@
-export * from './lib/hagar-service.module';
-export * from './lib/hagar-service.service';
+export * from './lib/hagar.service';

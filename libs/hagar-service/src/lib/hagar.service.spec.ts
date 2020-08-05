@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HagarServiceService } from './hagar-service.service';
+import { HagarService } from './hagar.service';
 
-describe('HagarServiceService', () => {
-  let service: HagarServiceService;
+describe('HagarService', () => {
+  let service: HagarService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HagarServiceService);
+    service = TestBed.inject(HagarService);
   });
 
   it('should be created', () => {

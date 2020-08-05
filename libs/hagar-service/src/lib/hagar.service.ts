@@ -10,7 +10,7 @@ import { USERS } from "./mocks/aad-users";
 @Injectable({
   providedIn: 'root'
 })
-export class HagarServiceService {
+export class HagarService {
 
   constructor() { }
 
