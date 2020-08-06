@@ -4252,6 +4252,38 @@
           "style": "scss"
         }
       }
+    },
+    "http-interceptors": {
+      "projectType": "library",
+      "root": "libs/http-interceptors",
+      "sourceRoot": "libs/http-interceptors/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/http-interceptors/tsconfig.lib.json",
+              "libs/http-interceptors/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/http-interceptors/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/http-interceptors/jest.config.js",
+            "tsConfig": "libs/http-interceptors/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/http-interceptors/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

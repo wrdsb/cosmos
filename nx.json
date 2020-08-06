@@ -296,6 +296,9 @@
     },
     "aad-groups": {
       "tags": []
+    },
+    "http-interceptors": {
+      "tags": []
     }
   }
 }
