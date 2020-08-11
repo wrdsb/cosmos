@@ -18,6 +18,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Configuration } from 'msal';
 
 export const protectedResourceMap: [string, string[]][] = [
+  ['https://wrdsb-hagar.azurewebsites.net/api/ping', [ 'https://wrdsb-hagar.azurewebsites.net/user_impersonation' ]],
   ['https://graph.microsoft.com/v1.0/me', ['user.read']]
 ];
 
@@ -42,7 +43,7 @@ function MSALConfigFactory(env: EnvironmentService): Configuration {
 
 function MSALAngularConfigFactory(): MsalAngularConfiguration {
   return {
-    popUp: !isIE,
+    //popUp: !isIE,
     consentScopes: [
       "user.read",
       "openid",
