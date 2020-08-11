@@ -25,9 +25,6 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
 
     const request = req;
 
-    const operation = request.body.operation;
-    const payload = request.body.payload;
-
     let result = "pong";
 
     const logPayload = result;
