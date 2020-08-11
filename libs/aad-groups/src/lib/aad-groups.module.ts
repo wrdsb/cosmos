@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MsalInterceptor } from '@azure/msal-angular';
+
 import { MatTableModule } from "@angular/material/table";
 
 import { GroupsHomeComponent } from './groups-home/groups-home.component';
@@ -40,6 +43,9 @@ import { MembersListComponent } from './members-list/members-list.component';
     GroupDetailComponent,
 
     MembersListComponent
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true }
   ]
 })
 export class AADGroupsModule {}

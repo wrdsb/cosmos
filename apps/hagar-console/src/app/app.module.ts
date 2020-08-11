@@ -2,8 +2,9 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule } from '@angular/common/http';
-import { MsalModule } from '@azure/msal-angular';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
+import { httpInterceptorProviders } from "@cosmos/http-interceptors";
 
 //import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryDataService }  from '@cosmos/people-sets';
@@ -46,6 +47,7 @@ import { NotificationsModule } from '@cosmos/notifications';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
+    httpInterceptorProviders,
     {
       provide: EnvironmentService,
       useValue: environment
