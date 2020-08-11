@@ -133,10 +133,30 @@
       "allowedMemberTypes": [
         "User"
       ],
+      "displayName": "Google Groups Reader",
+      "id": "1223127f-974b-4704-8250-c984debd2f52",
+      "isEnabled": true,
+      "description": "Read-only access to Google Groups config, memberships, and automation",
+      "value": "google-groups-reader"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "Google Groups Manager",
+      "id": "22274ab3-0ccd-4d28-affc-313e8101ddc2",
+      "isEnabled": true,
+      "description": "Write access to Google Groups config, memberships, and automation",
+      "value": "google-groups-manager"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
       "displayName": "AAD Groups Reader",
       "id": "077a5794-dffc-4dca-abcf-dfda40d81248",
       "isEnabled": true,
-      "description": "Read-only access to AAD Groups",
+      "description": "Read-only access to AAD Groups config, memberships, and automation",
       "value": "aad-groups-reader"
     },
     {
@@ -146,7 +166,7 @@
       "displayName": "AAD Groups Manager",
       "id": "e039ab43-dea1-46bd-a6e9-d722b27af8cd",
       "isEnabled": true,
-      "description": "Write access to AAD Groups",
+      "description": "Write access to AAD Groups config, memberships, and automation",
       "value": "aad-groups-manager"
     },
     {
