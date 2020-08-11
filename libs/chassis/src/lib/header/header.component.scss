@@ -1,55 +1,47 @@
 :host {
-    grid-area: header;
-  
-    display: grid;
-  
-    grid-template:
-      " navToggle title " auto / auto minmax(0, 1fr);
-  
-    background: lightgrey;
-    padding: 15px;
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.33);
-    z-index: 1;
-  
-    button {
-      grid-area: navToggle;
-      outline: none;
-      border: none;
-      background-color: transparent;
-      text-align: left;
-      margin: 0;
-      margin-right: 15px;
-      padding: 0;
-    }
-  
-    a {
-      grid-area: title;
-      text-decoration: none;
-      color: black;
-    }
-  
-    h1 {
-      display: inline;
-      margin: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  
-    ul {
-      display: inline;
-    }
-  
-    li {
-      display: inline;
-  
-      // TODO: not working!
-      // Separate footer links with bullet characters
-      :not(:last-child)::after {
-        padding-left: 10px;
-        padding-right: 10px;
-        content: '\2022';
-      }
-    }
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+
+  background-color: transparent;
+
+  font-family: 'Jura', sans-serif;
+
+  .mat-toolbar {
+    background-color: transparent;
   }
-  
+
+  .header-spacer {
+    flex: 1 1 auto;
+  }
+
+  #headerTitle {
+    padding-left: 10px;
+  }
+
+  a {
+    font-family: 'Jura', sans-serif;
+    font-size: 25px;
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
+  }
+
+  h1 {
+    display: inline;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  ul {
+    display: inline;
+  }
+
+  li {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

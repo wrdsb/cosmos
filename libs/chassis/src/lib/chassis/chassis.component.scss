@@ -1,33 +1,38 @@
-:host {
-    display: grid;
-    
-    grid-gap: 0;
-    
-    /* beautify ignore:start */
-      grid-template:
-                            " header         header   header "         auto
-          [slideinRight-start][slideinLeft-start] " sidebar-left   main     sidebar-right "  1fr   [slideinLeft-end][slideinRight-end]
-                            " footer         footer   footer "         auto
-  
-        / [slideinLeft-start] 1fr [slideinLeft-end]   7fr  [slideinRight-end] 1fr [slideinRight-start]
-    ;
-    /* beautify ignore:end */
-    
-    height: 100vh;
-    
-    padding: 0;
-  }
-    
-  main {
-    grid-area: main;
-  }
-    
-  li {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-    
-  .currentSelection {
-    font-weight: bold;
-  }
-    
+.console-content {
+  display: grid;
+
+  grid-template-areas:
+    'header'
+    'center'
+    'footer';
+
+  grid-template-rows: 70px auto 70px;
+
+  height: 100vh;
+  padding: 0;
+}
+
+cosmos-header {
+  grid-area: header;
+}
+
+cosmos-footer {
+  grid-area: footer;
+}
+
+.main-container {
+    grid-area: center;
+}
+
+.mat-drawer-container {
+  background-color: transparent;
+}
+
+.mat-drawer {
+  background-color: rgba(10, 10, 10, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.mat-drawer:not(.mat-drawer-side) {
+  box-shadow: none;
+}

@@ -273,7 +273,10 @@
               "apps/hagar-console/src/favicon.ico",
               "apps/hagar-console/src/assets"
             ],
-            "styles": ["apps/hagar-console/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "apps/hagar-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -4241,6 +4244,70 @@
             "tsConfig": "libs/aad-groups/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/aad-groups/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "http-interceptors": {
+      "projectType": "library",
+      "root": "libs/http-interceptors",
+      "sourceRoot": "libs/http-interceptors/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/http-interceptors/tsconfig.lib.json",
+              "libs/http-interceptors/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/http-interceptors/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/http-interceptors/jest.config.js",
+            "tsConfig": "libs/http-interceptors/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/http-interceptors/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "user-roles": {
+      "projectType": "library",
+      "root": "libs/user-roles",
+      "sourceRoot": "libs/user-roles/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/user-roles/tsconfig.lib.json",
+              "libs/user-roles/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/user-roles/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/user-roles/jest.config.js",
+            "tsConfig": "libs/user-roles/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/user-roles/src/test-setup.ts"
           }
         }
       },

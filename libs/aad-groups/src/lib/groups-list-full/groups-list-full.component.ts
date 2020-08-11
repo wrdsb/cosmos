@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AADGroup } from "@cosmos/types"
+import { AADGroup } from '@cosmos/types';
 
-import { HagarServiceService } from "@cosmos/hagar-service";
-
+import { HagarService } from '@cosmos/hagar-service';
 
 @Component({
   selector: 'cosmos-groups-list-full',
@@ -10,18 +9,34 @@ import { HagarServiceService } from "@cosmos/hagar-service";
   styleUrls: ['./groups-list-full.component.scss']
 })
 export class GroupsListFullComponent implements OnInit {
+  displayedColumns: string[] = [
+    'id',
+    'displayName',
+    'description',
+    'createdDateTime',
+    'deletedDateTime',
+    'visibility',
+    'onPremisesLastSyncDateTime',
+    'onPremisesSamAccountName',
+    'onPremisesSyncEnabled',
+    'securityEnabled',
+  ];
+
+  ping: string;
   groups: AADGroup[];
 
-  constructor(
-    private hagarService: HagarServiceService
-  ) {}
+  constructor(private hagarService: HagarService) {}
 
   ngOnInit(): void {
+    this.getPing();
     this.getGroups();
   }
 
+  getPing() {
+    this.hagarService.getPing().subscribe(ping => (this.ping = ping));
+  }
+
   getGroups(): void {
-    this.hagarService.getGroups()
-      .subscribe(groups => this.groups = groups);
+    this.hagarService.getGroups().subscribe(groups => (this.groups = groups));
   }
 }

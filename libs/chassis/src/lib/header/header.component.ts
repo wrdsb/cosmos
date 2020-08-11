@@ -4,7 +4,6 @@ import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
 
 import { Menu } from "@cosmos/types";
-import { UINavigationService } from "@cosmos/ui-navigation";
 
 @Component({
   selector: 'cosmos-header',
@@ -25,23 +24,15 @@ export class HeaderComponent implements OnInit {
 
   headerMenu: Menu;
 
-  showSlideinLeft: boolean;
-  showSlideinLeft$ = this.chassisService.slideinLeftVisible$;
-
-  showSlideinRight: boolean;
-  showSlideinRight$ = this.chassisService.slideinRightVisible$;
-
   constructor(
     private environmentService: EnvironmentService,
-    private chassisService: ChassisService,
-    private navigationService: UINavigationService
+    private chassisService: ChassisService
   ) { }
 
   ngOnInit(): void {
     this.getEnabled();
     this.getVisible();
     this.getContent();
-    this.getHeaderMenu();
   }
 
   getEnabled(): void {
@@ -65,9 +56,38 @@ export class HeaderComponent implements OnInit {
     console.log(`header content: ${this.content}`);
   }
 
-  getHeaderMenu(): void {
-    this.navigationService.getHeader().subscribe(menu => 
-      this.headerMenu = menu
-    );
+  toggleSidebarOuterLeft() {
+    this.chassisService.toggleSidebarOuterLeft();
+    console.log('toggle sidebarOuterLeft');
+  }
+
+  toggleNotificationsPanel() {
+    this.chassisService.setsidebarOuterRightContent('Notifications');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleHelpPanel() {
+    this.chassisService.setsidebarOuterRightContent('Help');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleFeedbackPanel() {
+    this.chassisService.setsidebarOuterRightContent('Feedback');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleSettingsPanel() {
+    this.chassisService.setsidebarOuterRightContent('Settings');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleAccountPanel() {
+    this.chassisService.setsidebarOuterRightContent('Account');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
   }
 }

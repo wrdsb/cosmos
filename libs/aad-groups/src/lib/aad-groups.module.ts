@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MsalInterceptor } from '@azure/msal-angular';
+
+import { MatTableModule } from "@angular/material/table";
+
 import { GroupsHomeComponent } from './groups-home/groups-home.component';
 import { GroupsListComponent } from './groups-list/groups-list.component';
 import { GroupsListFullComponent } from './groups-list-full/groups-list-full.component';
@@ -22,10 +27,11 @@ import { MembersListComponent } from './members-list/members-list.component';
   ],
   imports: [
     CommonModule,
+    MatTableModule,
 
     RouterModule.forChild([
       {path: 'all', pathMatch: 'full', component: GroupsListFullComponent},
-
+      {path: 'brief', pathMatch: 'full', component: GroupsListBriefComponent},
       {path: '', pathMatch: 'full', component: GroupsHomeComponent}
     ])
   ],
@@ -37,6 +43,9 @@ import { MembersListComponent } from './members-list/members-list.component';
     GroupDetailComponent,
 
     MembersListComponent
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true }
   ]
 })
 export class AADGroupsModule {}

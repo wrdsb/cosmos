@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Menu } from '@cosmos/types';
-import { UINavigationService } from '@cosmos/ui-navigation';
-
+import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
+
+import { Menu } from '@cosmos/types';
 
 @Component({
   selector: 'cosmos-footer',
@@ -17,21 +17,20 @@ export class FooterComponent implements OnInit {
   visible: boolean;
   visible$ = this.chassisService.footerVisible$;
 
-  content: string;
+  content: Menu;
   content$ = this.chassisService.footerContent$;
 
   footerMenu: Menu;
 
   constructor(
-    private chassisService: ChassisService,
-    private navigationService: UINavigationService
+    private environmentService: EnvironmentService,
+    private chassisService: ChassisService
   ) { }
 
   ngOnInit(): void {
     this.getEnabled();
     this.getVisible();
     this.getContent();
-    this.getFooterMenu();
   }
 
   getEnabled(): void {
@@ -53,9 +52,5 @@ export class FooterComponent implements OnInit {
       this.content = content
     );
     console.log(`footer content: ${this.content}`);
-  }
-
-  getFooterMenu(): void {
-    this.navigationService.getFooter().subscribe(menu => this.footerMenu = menu);
   }
 }

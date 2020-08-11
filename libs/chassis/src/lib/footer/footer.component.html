@@ -1,7 +1,71 @@
 <ng-container *ngIf="enabled">
-    <footer class="footer" [class.showFooter]="visible" [class.hideFooter]="visible === false">
-        <ul *ngFor="let link of footerMenu.links">
-            <li><a href="{{ link.link }}">{{ link.name }}</a></li>
-        </ul>
-    </footer>
+  <footer class="footer" [class.showFooter]="visible" [class.hideFooter]="visible === false">
+    <mat-toolbar color="primary" class='mat-toolbar-single-row'>
+
+      <button mat-icon-button [matMenuTriggerFor]="appsMenu">
+        <mat-icon>apps</mat-icon>
+      </button>
+      <mat-menu #appsMenu="matMenu" backdropClass="customWaffle">
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Houston</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>bar_chart</mat-icon>
+          <span>Viewfinder</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>all_inclusive</mat-icon>
+          <span>Codex</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>scatter_plot</mat-icon>
+          <span>Sorting Hat</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>voicemail</mat-icon>
+          <span>Panama</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>school</mat-icon>
+          <span>Flenderson</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>school</mat-icon>
+          <span>Skinner</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>H.A.G.A.R.</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>I.G.O.R.</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>R.A.D.A.R.</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>mediation</mat-icon>
+          <span>Flynn</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>share</mat-icon>
+          <span>Relay</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Skyline</span>
+        </button>
+      </mat-menu>
+
+      <span class="footer-spacer"></span>
+
+      <ul *ngFor="let link of content.links">
+        <li><a href="{{ link.link }}">{{ link.name }}</a></li>
+      </ul>
+
+    </mat-toolbar>
+  </footer>
 </ng-container>

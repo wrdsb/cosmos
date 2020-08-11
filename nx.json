@@ -296,6 +296,12 @@
     },
     "aad-groups": {
       "tags": []
+    },
+    "http-interceptors": {
+      "tags": []
+    },
+    "user-roles": {
+      "tags": []
     }
   }
 }

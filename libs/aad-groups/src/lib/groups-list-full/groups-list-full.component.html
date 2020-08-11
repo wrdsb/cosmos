@@ -1,12 +1,80 @@
-<table>
-    <thead>
-        <tr>
-            <td>displayName</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let group of groups">
-            <td>{{group.displayName}}</td>
-        </tr>
-    </tbody>
-</table>
+Ping: {{ping}}
+
+<div class="widget">
+  <div class="widget-sidebar"></div>
+
+  <div class="widget-content">
+
+    <div class="widget-title">AAD Groups</div>
+
+    <div class="widget-main">
+
+      <table mat-table [dataSource]="groups" class="mat-elevation-z8">
+        <!-- id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let group"> {{group.id}} </td>
+        </ng-container>
+
+        <!-- displayName Column -->
+        <ng-container matColumnDef="displayName">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let group"> {{group.displayName}} </td>
+        </ng-container>
+
+        <!-- description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let group"> {{group.description}} </td>
+        </ng-container>
+
+        <!-- visibility Column -->
+        <ng-container matColumnDef="visibility">
+          <th mat-header-cell *matHeaderCellDef> Visibility </th>
+          <td mat-cell *matCellDef="let group"> {{group.visibility}} </td>
+        </ng-container>
+
+        <!-- onPremisesLastSyncDateTime Column -->
+        <ng-container matColumnDef="onPremisesLastSyncDateTime">
+          <th mat-header-cell *matHeaderCellDef> On-Prem Last Sync </th>
+          <td mat-cell *matCellDef="let group"> {{group.onPremisesLastSyncDateTime}} </td>
+        </ng-container>
+
+        <!-- onPremisesSamAccountName Column -->
+        <ng-container matColumnDef="onPremisesSamAccountName">
+          <th mat-header-cell *matHeaderCellDef> onPremisesSamAccountName </th>
+          <td mat-cell *matCellDef="let group"> {{group.onPremisesSamAccountName}} </td>
+        </ng-container>
+
+        <!-- onPremisesSyncEnabled Column -->
+        <ng-container matColumnDef="onPremisesSyncEnabled">
+          <th mat-header-cell *matHeaderCellDef> On-Prem Sync? </th>
+          <td mat-cell *matCellDef="let group"> {{group.onPremisesSyncEnabled}} </td>
+        </ng-container>
+
+        <!-- securityEnabled Column -->
+        <ng-container matColumnDef="securityEnabled">
+          <th mat-header-cell *matHeaderCellDef> Security? </th>
+          <td mat-cell *matCellDef="let group"> {{group.securityEnabled}} </td>
+        </ng-container>
+
+        <!-- createdDateTime Column -->
+        <ng-container matColumnDef="createdDateTime">
+          <th mat-header-cell *matHeaderCellDef> Created </th>
+          <td mat-cell *matCellDef="let group"> {{group.createdDateTime}} </td>
+        </ng-container>
+
+        <!-- deletedDateTime Column -->
+        <ng-container matColumnDef="deletedDateTime">
+          <th mat-header-cell *matHeaderCellDef> Deleted </th>
+          <td mat-cell *matCellDef="let group"> {{group.deletedDateTime}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="blah()"></tr>
+      </table>
+
+    </div>
+
+  </div>
+</div>

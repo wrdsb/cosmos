@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AADGroup } from "@cosmos/types"
+import { AADGroup } from '@cosmos/types';
 
-import { HagarServiceService } from "@cosmos/hagar-service";
+import { HagarService } from '@cosmos/hagar-service';
 
 @Component({
   selector: 'cosmos-groups-list-brief',
@@ -9,18 +9,20 @@ import { HagarServiceService } from "@cosmos/hagar-service";
   styleUrls: ['./groups-list-brief.component.scss']
 })
 export class GroupsListBriefComponent implements OnInit {
+  displayedColumns: string[] = [
+    'id',
+    'displayName'
+  ];
+
   groups: AADGroup[];
 
-  constructor(
-    private hagarService: HagarServiceService
-  ) {}
+  constructor(private hagarService: HagarService) {}
 
   ngOnInit(): void {
     this.getGroups();
   }
 
   getGroups(): void {
-    this.hagarService.getGroups()
-      .subscribe(groups => this.groups = groups);
+    this.hagarService.getGroups().subscribe(groups => (this.groups = groups));
   }
 }
