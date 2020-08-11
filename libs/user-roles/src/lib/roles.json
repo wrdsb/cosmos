@@ -1,0 +1,163 @@
+{
+  "appRoles": [{
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "Cosmos User - Generic",
+      "id": "cf175d87-75ca-4ecc-b7eb-09d0c47da54a",
+      "isEnabled": true,
+      "description": "Generic Cosmos users. Base role with basic access.",
+      "value": "cosmos-user-generic"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "Cosmos User - ITS",
+      "id": "6c1a2d8f-be8c-46b1-87ee-7768e5c1ab6b",
+      "isEnabled": true,
+      "description": "ITS Staff Cosmos users. Base role for ITS staff.",
+      "value": "cosmos-user-its"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - Management",
+      "id": "2674c4bc-b6c9-428e-9c99-a5194ffc5451",
+      "isEnabled": true,
+      "description": "ITS Management (Supervisors, Managers, Senior Manager, Superintendent",
+      "value": "its-management"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - Assistant Supervisor (Support and Solutions)",
+      "id": "0f6ae5fe-02a7-4453-950f-bed08d3aba52",
+      "isEnabled": true,
+      "description": "ITS Assistant Supervisors (Support and Solutions)",
+      "value": "its-assistant-supervisor"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - Assistant Supervisor (Support)",
+      "id": "2c2e9031-5840-42d6-878f-c07b6351c06b",
+      "isEnabled": true,
+      "description": "ITS Assistant Supervisors (Support)",
+      "value": "its-assistant-supervisor-support"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - Assistant Supervisor (Solutions)",
+      "id": "181b24ca-ea97-4a0b-873c-70445208c875",
+      "isEnabled": true,
+      "description": "ITS Assistant Supervisors (Solutions)",
+      "value": "its-assistant-supervisor-solutions"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - Support Specialist",
+      "id": "b9e75f7f-1b33-455f-a8bb-d5f7cf68ae88",
+      "isEnabled": true,
+      "description": "ITS Support Specialists (Client and Operational)",
+      "value": "its-support-specialist"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - First-Line Support Specialist",
+      "id": "913e4a4f-711a-480f-8c42-6bc805aacd3f",
+      "isEnabled": true,
+      "description": "ITS First-Line Support Specialists (Client and Operational)",
+      "value": "its-first-line-support-specialist"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - Support Specialist (Client)",
+      "id": "13f7450f-f5ad-401b-acaf-300809a52e17",
+      "isEnabled": true,
+      "description": "ITS Support Specialists, Client Support",
+      "value": "its-support-specialist-client"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - Support Specialist (Ops)",
+      "id": "4d3436ba-c6e5-4e42-b777-640bec8124d1",
+      "isEnabled": true,
+      "description": "ITS Support Specialists, Operational Support",
+      "value": "its-support-specialist-ops"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - First-Line Support Specialist (Client)",
+      "id": "bab65c0e-86d7-4d4d-9cd4-426e1f1a1190",
+      "isEnabled": true,
+      "description": "ITS First-Line Support Specialists, Client Support",
+      "value": "its-first-line-support-specialist-client"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - First-Line Support Specialist (Ops)",
+      "id": "09ede1f9-ef5e-47d9-8d3b-fcfbc0d500e8",
+      "isEnabled": true,
+      "description": "ITS First-Line Support Specialists, Operational Support",
+      "value": "its-first-line-support-specialist-ops"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "ITS - IST",
+      "id": "5297c241-385a-44a7-b31d-eea164baa6bb",
+      "isEnabled": true,
+      "description": "ITS In-School Technicians",
+      "value": "its-ist"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "AAD Groups Reader",
+      "id": "077a5794-dffc-4dca-abcf-dfda40d81248",
+      "isEnabled": true,
+      "description": "Read-only access to AAD Groups",
+      "value": "aad-groups-reader"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "AAD Groups Manager",
+      "id": "e039ab43-dea1-46bd-a6e9-d722b27af8cd",
+      "isEnabled": true,
+      "description": "Write access to AAD Groups",
+      "value": "aad-groups-manager"
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "displayName": "AAD Users Reader",
+      "id": "93c424d2-6476-4646-8cb3-2dfc07884ab9",
+      "isEnabled": true,
+      "description": "Read-only access to AAD Users",
+      "value": "aad-users-reader"
+    }
+  ]
+}
