@@ -58,7 +58,8 @@
       "@cosmos/hagar-service": ["libs/hagar-service/src/index.ts"],
       "@cosmos/aad-users": ["libs/aad-users/src/index.ts"],
       "@cosmos/aad-groups": ["libs/aad-groups/src/index.ts"],
-      "@cosmos/http-interceptors": ["libs/http-interceptors/src/index.ts"]
+      "@cosmos/http-interceptors": ["libs/http-interceptors/src/index.ts"],
+      "@cosmos/user-roles": ["libs/user-roles/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
