@@ -302,6 +302,9 @@
     },
     "user-roles": {
       "tags": []
+    },
+    "guards": {
+      "tags": []
     }
   }
 }
