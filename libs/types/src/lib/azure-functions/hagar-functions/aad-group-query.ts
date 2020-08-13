@@ -1,6 +1,7 @@
 import * as Cosmos from "../common";
 
 interface AADGroupQueryFunctionRequest extends Cosmos.FunctionRequest {
+    readonly operation: Cosmos.QueryFunctionOperation;
     readonly payload: AADGroupQueryFunctionRequestPayload;
 }
 
@@ -19,6 +20,10 @@ interface AADGroupQueryFunctionInvocationEvent extends Cosmos.FunctionInvocation
 }
 
 interface AADGroupQueryFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+    readonly id?: string;
+    readonly displayName?: string;
+    readonly mailNickname?: string;
+    readonly onPremisesSamAccountName?: string;
 }
 
 interface AADGroupQueryFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
