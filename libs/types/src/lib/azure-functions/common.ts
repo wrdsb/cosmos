@@ -28,6 +28,7 @@ type LogStorageAccount = string;
 type LogStorageContainer = string;
 
 interface FunctionRequest {
+    readonly operation?: FunctionRequestOperation;
     readonly payload: FunctionRequestPayload;
 }
 
@@ -66,6 +67,9 @@ interface FunctionInvocationEvent {
 
     label: FunctionInvocationEventLabel;
     tags: FunctionInvocationEventTags;
+}
+
+interface FunctionRequestOperation {
 }
 
 interface FunctionRequestPayload {
