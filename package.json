@@ -60,6 +60,7 @@
     "azure-storage": "^2.8.1",
     "core-js": "^2.5.4",
     "cz-conventional-changelog": "^3.0.2",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
