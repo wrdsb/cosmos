@@ -29,7 +29,7 @@ type LogStorageAccount = string;
 type LogStorageContainer = string;
 
 interface FunctionRequest {
-    readonly operation?: QueryFunctionOperation;
+    readonly operation?: QueryFunctionOperation | CommandFunctionOperation | StoreFunctionOperation;
     readonly payload: FunctionRequestPayload;
 }
 
