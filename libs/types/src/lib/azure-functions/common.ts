@@ -1,3 +1,4 @@
+type QueryFunctionOperation = 'list' | 'find';
 type CommandFunctionOperation = 'patch' | 'replace' | 'delete';
 type StoreFunctionOperation = 'patch' | 'replace' | 'delete';
 
@@ -28,7 +29,7 @@ type LogStorageAccount = string;
 type LogStorageContainer = string;
 
 interface FunctionRequest {
-    readonly operation?: FunctionRequestOperation;
+    readonly operation?: QueryFunctionOperation;
     readonly payload: FunctionRequestPayload;
 }
 
@@ -69,9 +70,6 @@ interface FunctionInvocationEvent {
     tags: FunctionInvocationEventTags;
 }
 
-interface FunctionRequestOperation {
-}
-
 interface FunctionRequestPayload {
 }
 
@@ -100,6 +98,7 @@ interface FunctionInvocationEventPayload {
 }
 
 export {
+    QueryFunctionOperation,
     CommandFunctionOperation,
     StoreFunctionOperation,
 
