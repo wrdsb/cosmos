@@ -1,4 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import jwt_decode from 'jwt-decode';
 import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
@@ -24,6 +25,14 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
     ];
 
     const request = req;
+    let idToken = '';
+    let userRoles = [];
+
+    if (request.headers['x-ms-token-aad-id-token']) {
+        idToken = request.headers['x-ms-token-aad-id-token'];
+        let decodedToken = jwt_decode(idToken);
+        userRoles = decodedToken.roles as string[];
+    }
 
     let result = "pong";
 
@@ -53,10 +62,26 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
-    context.res = {
-        status: 200,
-        body: invocationEvent
-    };
+    if (!request.headers['x-ms-token-aad-id-token']) {
+        context.res = {
+            status: 401,
+            body: 'Unauthorized'
+        };
+    }
+    else if (userRoles.includes('cosmos-user-its')) {
+        context.res = {
+            status: 200,
+            body: {
+                invocationEvent: invocationEvent
+            }
+        };
+    } else {
+        context.res = {
+            status: 403,
+            body: 'Forbidden'
+        };
+    }
+
 
     context.done(null, logBlob);
 };
