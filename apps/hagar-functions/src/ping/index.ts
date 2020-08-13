@@ -82,7 +82,6 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
         };
     }
 
-
     context.done(null, logBlob);
 };
 

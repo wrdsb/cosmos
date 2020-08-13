@@ -14,7 +14,10 @@ import { USERS } from './mocks/aad-users';
 })
 export class HagarService {
   private pingURL = 'https://wrdsb-hagar.azurewebsites.net/api/ping';
-  private groupsURL = '';
+  
+  private aadGroupsCommandURL = 'https://wrdsb-hagar.azurewebsites.net/api/aad-group-command';
+  private aadGroupsQueryURL = 'https://wrdsb-hagar.azurewebsites.net/api/aad-group-query';
+  
   private usersURL = '';
 
   httpOptions = {
@@ -36,8 +39,19 @@ export class HagarService {
     return this.http.get<string>(this.pingURL, this.httpOptions);
   }
 
-  getGroups(): Observable<AADGroup[]> {
-    return of(GROUPS);
+  listGroups(): Observable<AADGroup[]> {
+    let req = {
+      operation: 'list'
+    };
+    console.log('HAGAR: list groups');
+
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    let groups = this.http.post<AADGroup[]>(this.aadGroupsQueryURL, req, this.httpOptions);
+    return groups;
   }
 
   getUsers(): Observable<AADUser[]> {
