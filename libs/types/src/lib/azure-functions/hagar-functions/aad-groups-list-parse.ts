@@ -1,6 +1,6 @@
 import * as Cosmos from "../common";
 
-interface AADGroupsListParseFunctionRequest extends Cosmos.FunctionRequest {
+interface AADGroupsListParseFunctionRequest {
     readonly operation: AADGroupsListParseFunctionRequestOperation;
 }
 
