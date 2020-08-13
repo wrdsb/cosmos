@@ -1,7 +1,7 @@
 import * as Cosmos from "../common";
 
 interface PeopleSetDefinitionQueryFunctionRequest extends Cosmos.FunctionRequest {
-    readonly operation: string;
+    readonly operation: Cosmos.QueryFunctionOperation;
     readonly payload: PeopleSetDefinitionQueryFunctionRequestPayload;
 }
 
