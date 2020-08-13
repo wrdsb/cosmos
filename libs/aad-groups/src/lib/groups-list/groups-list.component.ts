@@ -20,7 +20,7 @@ export class GroupsListComponent implements OnInit {
   }
 
   getGroups(): void {
-    this.hagarService.getGroups()
+    this.hagarService.listGroups()
       .subscribe(groups => this.groups = groups);
   }
 }
