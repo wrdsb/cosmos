@@ -1135,7 +1135,7 @@
                 "output": "./hagar-functions"
               },
               {
-                "input": "./apps/hagar-functions/bin",
+                "input": "./apps/hagar-functions/src/bin",
                 "glob": "**.*",
                 "output": "./hagar-functions/bin"
               }
