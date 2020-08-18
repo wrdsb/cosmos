@@ -17,6 +17,7 @@ export class HagarService {
   
   private aadGroupsCommandURL = 'https://wrdsb-hagar.azurewebsites.net/api/aad-group-command';
   private aadGroupsQueryURL = 'https://wrdsb-hagar.azurewebsites.net/api/aad-group-query';
+  private aadGroupsSearchURL = '';
   
   private usersURL = '';
 
@@ -26,7 +27,10 @@ export class HagarService {
     })
   };
 
-  constructor(private http: HttpClient, private msalService: UserAuthService) {}
+  constructor(
+    private http: HttpClient,
+    private msalService: UserAuthService
+  ) {}
 
   getPing(): Observable<string> {
     console.log('ping hagar');
