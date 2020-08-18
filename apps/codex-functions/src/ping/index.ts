@@ -11,8 +11,8 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.HAGAR.Ping';
-    const functionEventID = `hagar-functions-${functionName}-${functionInvocationID}`;
+    const functionEventType = 'WRDSB.Codex.Ping';
+    const functionEventID = `codex-functions-${functionName}-${functionInvocationID}`;
     const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
 
     const logStorageAccount = process.env['storageAccount'];
@@ -21,7 +21,7 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
 
     const eventLabel = '';
     const eventTags = [
-        "hagar", 
+        "codex", 
     ];
 
     const request = req;
