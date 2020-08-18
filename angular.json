@@ -1050,7 +1050,7 @@
                 "output": "./igor-functions"
               },
               {
-                "input": "./apps/igor-functions/bin",
+                "input": "./apps/igor-functions/src/bin",
                 "glob": "**.*",
                 "output": "./igor-functions/bin"
               }
