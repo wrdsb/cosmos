@@ -23,6 +23,6 @@ export class GroupsListBriefComponent implements OnInit {
   }
 
   getGroups(): void {
-    this.hagarService.getGroups().subscribe(groups => (this.groups = groups));
+    this.hagarService.listGroups().subscribe(groups => (this.groups = groups));
   }
 }
