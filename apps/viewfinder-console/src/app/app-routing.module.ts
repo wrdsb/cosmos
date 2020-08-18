@@ -1,8 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
+import { RolesGuard } from "@cosmos/guards";
 
 const routes: Routes = [
+  {
+    path: 'google/groups',
+    loadChildren: () => import('@cosmos/google-groups').then(m => m.GoogleGroupsModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
   {
     path: 'profile',
     loadChildren: () => import('@cosmos/user-profiles').then(m => m.UserProfilesModule),
