@@ -9,8 +9,8 @@ import { GoogleGroupsService } from '../google-groups.service';
   styleUrls: ['./groups-list.component.scss']
 })
 export class GroupsListComponent implements OnInit {
-  private groups: IGORGroup[] = [];
-  private selectedGroup: IGORGroup;
+  groups: IGORGroup[] = [];
+  selectedGroup: IGORGroup;
 
   constructor(private groupsService: GoogleGroupsService) { }
 
