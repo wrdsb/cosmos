@@ -13,13 +13,13 @@ export class GroupsListFullComponent implements OnInit {
     'id',
     'displayName',
     'description',
-    'createdDateTime',
-    'deletedDateTime',
-    'visibility',
-    'onPremisesLastSyncDateTime',
-    'onPremisesSamAccountName',
-    'onPremisesSyncEnabled',
-    'securityEnabled',
+    //'createdDateTime',
+    //'deletedDateTime',
+    //'visibility',
+    //'onPremisesLastSyncDateTime',
+    //'onPremisesSamAccountName',
+    //'onPremisesSyncEnabled',
+    //'securityEnabled',
   ];
 
   ping: string;
