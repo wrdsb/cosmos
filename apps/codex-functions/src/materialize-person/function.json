@@ -49,5 +49,5 @@
             "direction": "out"
         }
     ],
-    "scriptFile": "../dist/materialize-person/index.js"
+    "scriptFile": "./index.js"
 }

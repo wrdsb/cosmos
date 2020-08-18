@@ -3,9 +3,9 @@
         {
             "name": "triggerMessage",
             "type": "queueTrigger",
-            "direction": "in",
             "queueName": "materialize-school-staff",
-            "connection": "wrdsbcodex_STORAGE"
+            "connection": "wrdsbcodex_STORAGE",
+            "direction": "in"
         },
         {
             "name": "skinnerSchoolStaff",
@@ -34,8 +34,15 @@
             "direction": "out",
             "queueName": "callbacks",
             "connection": "wrdsbcodex_STORAGE"
+        },
+        {
+            "name": "flynnEvent",
+            "type": "queue",
+            "queueName": "event-emitter",
+            "connection": "wrdsbcodex_STORAGE",
+            "direction": "out"
         }
     ],
     "disabled": false,
-    "scriptFile": "../dist/materialize-school-staff/index.js"
+    "scriptFile": "./index.js"
 }

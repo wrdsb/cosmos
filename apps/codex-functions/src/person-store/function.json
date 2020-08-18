@@ -3,9 +3,9 @@
         {
             "name": "triggerMessage",
             "type": "queueTrigger",
-            "direction": "in",
             "queueName": "person-store",
-            "connection": "wrdsbcodex_STORAGE"
+            "connection": "wrdsbcodex_STORAGE",
+            "direction": "in"
         },
         {
             "name": "recordOut",
@@ -37,5 +37,5 @@
             "connection": "wrdsbcodex_STORAGE"
         }
     ],
-    "scriptFile": "../dist/person-store/index.js"
+    "scriptFile": "./index.js"
 }
