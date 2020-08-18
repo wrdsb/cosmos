@@ -527,7 +527,10 @@
               "apps/viewfinder-console/src/favicon.ico",
               "apps/viewfinder-console/src/assets"
             ],
-            "styles": ["apps/viewfinder-console/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "apps/viewfinder-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -1021,7 +1024,37 @@
             "outputPath": "dist/apps/igor-functions",
             "main": "apps/igor-functions/src/main.ts",
             "tsConfig": "apps/igor-functions/tsconfig.app.json",
-            "assets": ["apps/igor-functions/src/assets"]
+            "webpackConfig": "apps/igor-functions/webpack.config.js",
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/igor-functions/src",
+                "glob": "**/function.json",
+                "output": "./igor-functions"
+              },
+              {
+                "input": "./apps/igor-functions/src",
+                "glob": "host.json",
+                "output": "./igor-functions"
+              },
+              {
+                "input": "./apps/igor-functions/src",
+                "glob": "proxies.json",
+                "output": "./igor-functions"
+              },
+              {
+                "input": "./apps/igor-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./igor-functions"
+              },
+              {
+                "input": "./apps/igor-functions/bin",
+                "glob": "**.*",
+                "output": "./igor-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
