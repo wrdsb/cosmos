@@ -26,8 +26,12 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
+    "zip:codex": "cd dist/codex-functions && bestzip ../codex-functions.zip *",
     "zip:hagar": "cd dist/hagar-functions && bestzip ../hagar-functions.zip *",
-    "zip:igor": "cd dist/igor-functions && bestzip ../igor-functions.zip *"
+    "zip:igor": "cd dist/igor-functions && bestzip ../igor-functions.zip *",
+    "deploy:codex": "az functionapp deployment source config-zip -g wrdsb-codex -n wrdsb-codex --src ./dist/codex-functions.zip",
+    "deploy:hagar": "az functionapp deployment source config-zip -g wrdsb-hagar -n wrdsb-hagar --src ./dist/hagar-functions.zip",
+    "deploy:igor": "az functionapp deployment source config-zip -g wrdsb-igor -n wrdsb-igor3 --src ./dist/igor-functions.zip"
   },
   "private": true,
   "dependencies": {
