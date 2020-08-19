@@ -1636,7 +1636,37 @@
             "outputPath": "dist/apps/codex-functions",
             "main": "apps/codex-functions/src/main.ts",
             "tsConfig": "apps/codex-functions/tsconfig.app.json",
-            "assets": ["apps/codex-functions/src/assets"]
+            "webpackConfig": "apps/codex-functions/webpack.config.js",
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/codex-functions/src",
+                "glob": "**/function.json",
+                "output": "./codex-functions"
+              },
+              {
+                "input": "./apps/codex-functions/src",
+                "glob": "host.json",
+                "output": "./codex-functions"
+              },
+              {
+                "input": "./apps/codex-functions/src",
+                "glob": "proxies.json",
+                "output": "./codex-functions"
+              },
+              {
+                "input": "./apps/codex-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./codex-functions"
+              },
+              {
+                "input": "./apps/codex-functions/src/bin",
+                "glob": "**.*",
+                "output": "./codex-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
