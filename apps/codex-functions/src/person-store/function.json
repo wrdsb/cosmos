@@ -8,18 +8,21 @@
             "direction": "in"
         },
         {
+            "name": "recordIn",
+            "type": "cosmosDB",
+            "databaseName": "codex",
+            "collectionName": "people",
+            "id": "{payload.id}",
+            "partitionKey": "{payload.id}",
+            "connectionStringSetting": "wrdsb-codex_CosmosDB",
+            "direction": "in"
+        },
+        {
             "name": "recordOut",
             "type": "cosmosDB",
             "databaseName": "codex",
             "collectionName": "people",
             "connectionStringSetting": "wrdsb-codex_CosmosDB",
-            "direction": "out"
-        },
-        {
-            "name": "sortingHat",
-            "type": "queue",
-            "queueName": "people-set-memberships-calculate",
-            "connection": "wrdsbsortinghat_STORAGE",
             "direction": "out"
         },
         {

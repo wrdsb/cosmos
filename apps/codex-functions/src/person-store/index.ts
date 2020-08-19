@@ -1,17 +1,15 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { CosmosClient } from "@azure/cosmos";
-import { createLogObject } from "../SharedCode/createLogObject";
-import { createLogBlob } from "../SharedCode/createLogBlob";
-import { createInvocationCallback } from "../SharedCode/createInvocationCallback";
-import { createStorageCallback } from "../SharedCode/createStorageCallback";
-import { createInvocationEvent } from "../SharedCode/createInvocationEvent";
-import { createStorageEvent } from "../SharedCode/createStorageEvent";
+import { AzureFunction, Context } from "@azure/functions"
+import { createLogObject } from "@cosmos/azure-functions-shared";
+import { storeLogBlob } from "@cosmos/azure-functions-shared";
+import { createCallbackMessage } from "@cosmos/azure-functions-shared";
+import { createEvent } from "@cosmos/azure-functions-shared";
+import { CodexPersonStoreFunctionRequest, CodexPersonStoreFunctionRequestPayload } from "@cosmos/types";
 
-const personStore: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const codexPersonStore: AzureFunction = async function (context: Context, triggerMessage: CodexPersonStoreFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-    
+
     const functionName = context.executionContext.functionName;
     const functionEventType = 'WRDSB.Codex.Person.Store';
     const functionEventID = `codex-functions-${functionName}-${functionInvocationID}`;
@@ -19,78 +17,77 @@ const personStore: AzureFunction = async function (context: Context, triggerMess
 
     const logStorageAccount = process.env['storageAccount'];
     const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-person-store-logs';
+    const logStorageContainer = 'function-codex-person-store-logs';
 
     const eventLabel = '';
     const eventTags = [
         "codex", 
     ];
 
-    const cosmosEndpoint = process.env['cosmosEndpoint'];
-    const cosmosKey = process.env['cosmosKey'];
-    const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainer = 'people';
-    const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, auth: {masterKey: cosmosKey}});
-
-    const triggerObject = context.bindings.triggerMessage;
-
+    const triggerObject = triggerMessage as CodexPersonStoreFunctionRequest;
     const operation = triggerObject.operation;
-    const payload = triggerObject.payload;
+    const payload = triggerObject.payload as CodexPersonStoreFunctionRequestPayload;
 
-    // fetch current records from Cosmos
-    const oldRecord = await getCosmosItem(cosmosClient, cosmosDatabase, cosmosContainer, payload).catch(err => {
-        context.log(err);
-    });
-
+    let oldRecord = context.bindings.recordIn;
     let newRecord;
-    let storageEventType;
-   
+    let result;
+
+    let statusCode;
+    let statusMessage;
+
     switch (operation) {
         case 'delete':
-            newRecord = doDelete(oldRecord, payload);
-            storageEventType = 'WRDSB.Codex.Person.Delete';
+            result = doDelete(oldRecord, payload);
+            statusCode = '200';
+            statusMessage = 'Success: Marked person record deleted.';
             break;
         case 'patch':
-            newRecord = doPatch(oldRecord, payload);
-            storageEventType = 'WRDSB.Codex.Person.Patch';
+            result = doPatch(oldRecord, payload);
+            statusCode = '200';
+            statusMessage = 'Success: Patched person record.';
             break;
         case 'replace':
-            newRecord = doReplace(oldRecord, payload);
-            storageEventType = 'WRDSB.Codex.Person.Replace';
+            result = doReplace(oldRecord, payload);
+            statusCode = '200';
+            statusMessage = 'Success: Replaced person record.';
             break;
         default:
             break;
     }
 
-    const storageEventID = `${storageEventType}-${functionInvocationID}`;
+    context.bindings.recordOut = result.newRecord;
+    const logPayload = result.event;
+    context.log(logPayload);
 
-    context.bindings.recordOut = newRecord;
-    context.bindings.sortingHat = newRecord;
-
-    const logPayload = {
-        operation: operation,
-        old_record: oldRecord,
-        new_record: newRecord
-    };
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await createLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
+    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
     context.log(logBlob);
 
-    const invocationCallback = await createInvocationCallback(logObject, 200);
-    const storageCallback = await createStorageCallback(logObject, 200);
-    context.bindings.callbackMessages = [JSON.stringify(invocationCallback), JSON.stringify(storageCallback)];
-    context.log(invocationCallback)
+    const callbackMessage = await createCallbackMessage(logObject, 200);
+    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
+    context.log(callbackMessage);
 
-    const invocationEvent = await createInvocationEvent(functionInvocationID, functionInvocationTime, functionInvocationTimestamp, functionName, functionEventType, functionEventID, functionLogID, logStorageAccount, logStorageContainer, eventLabel, eventTags);
-    const storageEvent = await createStorageEvent(functionInvocationID, functionInvocationTime, functionInvocationTimestamp, functionName, functionEventType, functionEventID, functionLogID, logStorageAccount, logStorageContainer, storageEventType, storageEventID);
-    context.bindings.flynnEvents = [JSON.stringify([invocationEvent]), JSON.stringify([storageEvent])];
+    const invocationEvent = await createEvent(
+        functionInvocationID,
+        functionInvocationTime,
+        functionInvocationTimestamp,
+        functionName,
+        functionEventType,
+        functionEventID,
+        functionLogID,
+        logStorageAccount,
+        logStorageContainer,
+        eventLabel,
+        eventTags
+    );
+    context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
     context.done(null, logBlob);
 
-
     function doDelete(oldRecord, payload)
     {
+        let event = {};
         let newRecord = {
             created_at: '',
             updated_at: '',
@@ -103,19 +100,29 @@ const personStore: AzureFunction = async function (context: Context, triggerMess
             newRecord = Object.assign(newRecord, payload);
             newRecord.created_at = functionInvocationTimestamp;
             newRecord.updated_at = functionInvocationTimestamp;
+
+            // mark the record as deleted
+            newRecord.deleted_at = functionInvocationTimestamp;
+            newRecord.deleted = true;
+
+            event = craftPersonDeleteEvent(oldRecord, newRecord);
+
         } else {
             newRecord = Object.assign(newRecord, oldRecord);
+
+            // mark the record as deleted
+            newRecord.deleted_at = functionInvocationTimestamp;
+            newRecord.deleted = true;
+
+            event = craftPersonDeleteEvent(oldRecord, newRecord);
         }
 
-        // mark the record as deleted
-        newRecord.deleted_at = functionInvocationTimestamp;
-        newRecord.deleted = true;
-
-        return newRecord;
+        return {event: event, newRecord: newRecord};
     }
 
     function doPatch(oldRecord, payload)
     {
+        let event = {};
         let newRecord = {
             created_at: '',
             updated_at: '',
@@ -126,22 +133,32 @@ const personStore: AzureFunction = async function (context: Context, triggerMess
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
             newRecord.created_at = functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocationTimestamp;
+    
+            // patching a record implicitly undeletes it
+            newRecord.deleted_at = '';
+            newRecord.deleted = false;
+    
+            event = craftPersonCreateEvent(oldRecord, newRecord);
+
         } else {
             // Merge request object into current record
             newRecord = Object.assign(newRecord, oldRecord, payload);
-        }
-        
-        newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocationTimestamp;
     
-        // patching a record implicitly undeletes it
-        newRecord.deleted_at = '';
-        newRecord.deleted = false;
+            // patching a record implicitly undeletes it
+            newRecord.deleted_at = '';
+            newRecord.deleted = false;
 
-        return newRecord;
+            event = craftPersonUpdateEvent(oldRecord, newRecord);
+        }
+
+        return {event: event, newRecord: newRecord};
     }
     
     function doReplace(oldRecord, payload)
     {
+        let event = {};
         let newRecord = {
             created_at: '',
             updated_at: '',
@@ -153,63 +170,103 @@ const personStore: AzureFunction = async function (context: Context, triggerMess
 
         if (!oldRecord) {
             newRecord.created_at = functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocationTimestamp;
+
+            // replacing a record implicitly undeletes it
+            newRecord.deleted_at = '';
+            newRecord.deleted = false;
+        
+            event = craftPersonCreateEvent(oldRecord, newRecord);
+
         } else {
             newRecord.created_at = oldRecord.created_at;
+            newRecord.updated_at = functionInvocationTimestamp;
+
+            // replacing a record implicitly undeletes it
+            newRecord.deleted_at = '';
+            newRecord.deleted = false;
+        
+            event = craftPersonUpdateEvent(oldRecord, newRecord);
         }
 
-        newRecord.updated_at = functionInvocationTimestamp;
+        return {event: event, newRecord: newRecord};
+    }
 
-        // replacing a record implicitly undeletes it
-        newRecord.deleted_at = '';
-        newRecord.deleted = false;
+    function craftPersonCreateEvent(old_record, new_record)
+    {
+        let event_type = 'Codex.Person.Create';
+        let source = 'create';
+        let schema = 'create';
+        let label = `Person ${new_record.id} created.`;
+        let payload = {
+            record: new_record
+        };
+
+        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        return event;
+    }
     
-        return newRecord;
+    function craftPersonUpdateEvent(old_record, new_record)
+    {
+        let event_type = 'Codex.Person.Update';
+        let source = 'update';
+        let schema = 'update';
+        let label = `Person ${new_record.id} updated.`;
+        let payload = {
+            old_record: old_record,
+            new_record: new_record,
+        };
+
+        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        return event;
     }
 
-    async function getCosmosItem(cosmosClient, cosmosDatabase, cosmosContainer, materializedPerson)
+    function craftPersonDeleteEvent(old_record, new_record)
     {
-        context.log('getCosmosItems');
-        let records_previous = [];
+        let event_type = 'Codex.Person.Delete';
+        let source = 'delete';
+        let schema = 'delete';
+        let label = `Person ${new_record.id} deleted.`;
+        let payload = {
+            record: old_record
+        };
 
-        let cosmosQuery = 'SELECT * FROM c where ';
-        
-        if (materializedPerson.ein) {
-            cosmosQuery = cosmosQuery + `c.ein = "${materializedPerson.ein}"`;
-        }
-
-        const querySpec = {
-            query: cosmosQuery
-        }
-        const queryOptions  = {
-            maxItemCount: -1,
-            enableCrossPartitionQuery: true
-        }
-
-        const queryIterator = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(querySpec, queryOptions);
-        
-        while (queryIterator.hasMoreResults()) {
-            const results = await queryIterator.executeNext();
-
-            records_previous = await consolidateCosmosItems(results.result, records_previous);
-
-            if (results === undefined) {
-                // no more results
-                break;
-            }   
-        }
-
-        return records_previous[0];
+        let event = craftEvent(old_record.id, source, schema, event_type, label, payload);
+        return event;
     }
 
-    async function consolidateCosmosItems(items: any[], consolidatedArray)
-    {
-        items.forEach(function(item) {
-            context.log('Found: ' + item);
-            consolidatedArray.push(item);
-        });
+    function craftEvent(recordID, source, schema, event_type, label, payload) {
+        let event = {
+            id: `${event_type}-${context.executionContext.invocationId}`,
+            time: functionInvocationTimestamp,
 
-        return consolidatedArray;
+            type: event_type,
+            source: `/codex/person/${recordID}/${source}`,
+            schemaURL: `ca.wrdsb.codex.person.${schema}.json`,
+
+            label: label,
+            tags: [
+                "codex", 
+                "codex_person_change",
+                "person_change"
+            ], 
+
+            data: {
+                function_name: context.executionContext.functionName,
+                invocation_id: context.executionContext.invocationId,
+                result: {
+                    payload: payload 
+                },
+            },
+
+            eventTypeVersion: "0.1",
+            specversion: "0.2",
+            contentType: "application/json"
+        };
+
+        // TODO: check message length
+        return event;
     }
 };
 
-export default personStore;
+export default codexPersonStore;
