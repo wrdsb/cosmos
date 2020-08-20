@@ -7,15 +7,16 @@ import { AllPingsComponent } from './all-pings/all-pings.component';
 
 @NgModule({
   declarations: [
+    AllPingsComponent,
     CodexPingComponent,
     HagarPingComponent,
-    IgorPingComponent,
-    AllPingsComponent
+    IgorPingComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
+    AllPingsComponent,
     CodexPingComponent,
     HagarPingComponent,
     IgorPingComponent
