@@ -5,6 +5,16 @@ import { RolesGuard } from "@cosmos/guards";
 
 const routes: Routes = [
   {
+    path: 'ping',
+    loadChildren: () => import('@cosmos/pings').then(m => m.PingsModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  {
     path: 'google/groups',
     loadChildren: () => import('@cosmos/google-groups').then(m => m.GoogleGroupsModule),
     data: {
