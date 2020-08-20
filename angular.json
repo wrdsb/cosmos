@@ -4443,6 +4443,35 @@
           "style": "scss"
         }
       }
+    },
+    "codex-personality-matrix": {
+      "root": "libs/codex-personality-matrix",
+      "sourceRoot": "libs/codex-personality-matrix/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/codex-personality-matrix/tsconfig.lib.json",
+              "libs/codex-personality-matrix/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/codex-personality-matrix/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/codex-personality-matrix/jest.config.js",
+            "tsConfig": "libs/codex-personality-matrix/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -308,6 +308,9 @@
     },
     "pings": {
       "tags": []
+    },
+    "codex-personality-matrix": {
+      "tags": []
     }
   }
 }

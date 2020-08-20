@@ -61,7 +61,10 @@
       "@cosmos/http-interceptors": ["libs/http-interceptors/src/index.ts"],
       "@cosmos/user-roles": ["libs/user-roles/src/index.ts"],
       "@cosmos/guards": ["libs/guards/src/index.ts"],
-      "@cosmos/pings": ["libs/pings/src/index.ts"]
+      "@cosmos/pings": ["libs/pings/src/index.ts"],
+      "@cosmos/codex-personality-matrix": [
+        "libs/codex-personality-matrix/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
