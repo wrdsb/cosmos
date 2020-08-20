@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PingFunctionResponse, PingFunctionResponsePayload } from "@cosmos/types";
 import { CodexService } from "@cosmos/codex-service";
 
 @Component({
@@ -8,7 +9,7 @@ import { CodexService } from "@cosmos/codex-service";
   styleUrls: ['./codex-ping.component.scss']
 })
 export class CodexPingComponent implements OnInit {
-  ping: string;
+  ping: PingFunctionResponse;
 
   constructor(private codexService: CodexService) { }
 

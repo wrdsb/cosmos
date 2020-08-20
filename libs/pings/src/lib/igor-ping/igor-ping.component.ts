@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PingFunctionResponse, PingFunctionResponsePayload } from "@cosmos/types";
 import { IGORService } from "@cosmos/igor-service";
 
 @Component({
@@ -8,7 +9,7 @@ import { IGORService } from "@cosmos/igor-service";
   styleUrls: ['./igor-ping.component.scss']
 })
 export class IgorPingComponent implements OnInit {
-  ping: string;
+  ping: PingFunctionResponse;
 
   constructor(private igorService: IGORService) { }
 

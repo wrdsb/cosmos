@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PingFunctionResponse, PingFunctionResponsePayload } from "@cosmos/types";
 import { HagarService } from '@cosmos/hagar-service';
 
 @Component({
@@ -8,7 +9,7 @@ import { HagarService } from '@cosmos/hagar-service';
   styleUrls: ['./hagar-ping.component.scss']
 })
 export class HagarPingComponent implements OnInit {
-  ping: string;
+  ping: PingFunctionResponse;
 
   constructor(private hagarService: HagarService) {}
 
