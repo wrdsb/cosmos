@@ -60,7 +60,8 @@
       "@cosmos/aad-groups": ["libs/aad-groups/src/index.ts"],
       "@cosmos/http-interceptors": ["libs/http-interceptors/src/index.ts"],
       "@cosmos/user-roles": ["libs/user-roles/src/index.ts"],
-      "@cosmos/guards": ["libs/guards/src/index.ts"]
+      "@cosmos/guards": ["libs/guards/src/index.ts"],
+      "@cosmos/pings": ["libs/pings/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

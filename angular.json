@@ -4411,6 +4411,38 @@
           "style": "scss"
         }
       }
+    },
+    "pings": {
+      "projectType": "library",
+      "root": "libs/pings",
+      "sourceRoot": "libs/pings/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pings/tsconfig.lib.json",
+              "libs/pings/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/pings/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/pings/jest.config.js",
+            "tsConfig": "libs/pings/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/pings/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
