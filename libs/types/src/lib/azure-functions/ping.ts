@@ -3,7 +3,7 @@ import * as Cosmos from "./common";
 interface PingFunctionRequest extends Cosmos.FunctionRequest {
 }
 
-interface PingFunctionResponse extends Cosmos.FunctionResponse {
+interface PingFunctionResponse {
     readonly payload: PingFunctionResponsePayload;
 }
 
@@ -19,7 +19,12 @@ interface PingFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
 interface PingFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
 }
 
-interface PingFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
+interface PingFunctionResponsePayload {
+    readonly message: string;
+    readonly chatter: string;
+    readonly status: number;
+    readonly timestamp: string;
+    readonly invocationEvent: Cosmos.FunctionInvocationEvent;
 }
 
 interface PingFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
