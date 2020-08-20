@@ -3,6 +3,8 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserAuthService } from '@cosmos/user-auth';
 
+import { PingFunctionResponse } from "@cosmos/types";
+
 import { AADGroup } from '@cosmos/types';
 import { AADUser } from '@cosmos/types';
 
@@ -32,7 +34,7 @@ export class HagarService {
     private msalService: UserAuthService
   ) {}
 
-  getPing(): Observable<string> {
+  getPing(): Observable<PingFunctionResponse> {
     console.log('ping hagar');
 
     this.httpOptions = {
@@ -40,7 +42,7 @@ export class HagarService {
         'Content-Type': 'application/json',
       })
     };
-    return this.http.get<string>(this.pingURL, this.httpOptions);
+    return this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions);
   }
 
   listGroups(): Observable<AADGroup[]> {

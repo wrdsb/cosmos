@@ -3,10 +3,12 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserAuthService } from '@cosmos/user-auth';
 
+import { PingFunctionResponse } from "@cosmos/types";
+
 import { IGORGroup } from '@cosmos/types';
 //import { AADUser } from '@cosmos/types';
 
-import { GROUPS } from './mocks/aad-groups';
+//import { GROUPS } from './mocks/aad-groups';
 //import { USERS } from './mocks/aad-users';
 
 @Injectable({
@@ -32,7 +34,7 @@ export class IGORService {
     private msalService: UserAuthService
   ) {}
 
-  getPing(): Observable<string> {
+  getPing(): Observable<PingFunctionResponse> {
     console.log('IGOR: ping');
 
     this.httpOptions = {
@@ -40,7 +42,7 @@ export class IGORService {
         'Content-Type': 'application/json',
       })
     };
-    return this.http.get<string>(this.pingURL, this.httpOptions);
+    return this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions);
   }
 
   listGroups(): Observable<IGORGroup[]> {
