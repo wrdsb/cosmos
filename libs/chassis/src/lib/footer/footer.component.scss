@@ -31,12 +31,26 @@
     text-decoration: none;
   }
 
+  .release-number {
+    padding-left: 20px;
+    font-family: 'Jura', sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
+  }
+
   ul {
     display: inline;
   }
 
   li {
     display: inline;
+    font-family: 'Jura', sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
   }
 
   .customWaffle+* {

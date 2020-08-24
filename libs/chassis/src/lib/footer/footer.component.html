@@ -60,11 +60,23 @@
         </button>
       </mat-menu>
 
+      <button mat-icon-button [matMenuTriggerFor]="statusMenu">
+        <mat-icon class="material-icons-outlined">visibility</mat-icon>
+      </button>
+      <mat-menu #statusMenu="matMenu" backdropClass="customWaffle">
+        <button mat-menu-item routerLink="/ping">
+          <mat-icon class="material-icons-outlined">contactless</mat-icon>
+          <span>Ping!</span>
+        </button>
+      </mat-menu>
+
       <span class="footer-spacer"></span>
 
       <ul *ngFor="let link of content.links">
-        <li><a href="{{ link.link }}">{{ link.name }}</a></li>
+          <li routerLink="{{ link.link }}">{{ link.name }}</li>
       </ul>
+
+      <span class="release-number">Release 20.35</span>
 
     </mat-toolbar>
   </footer>
