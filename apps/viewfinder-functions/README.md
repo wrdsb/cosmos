@@ -1,2 +1,2 @@
 # Viewfinder Functions
-Azure Functions app for the Houston service.
+Azure Functions app for the Viewfinder service.
