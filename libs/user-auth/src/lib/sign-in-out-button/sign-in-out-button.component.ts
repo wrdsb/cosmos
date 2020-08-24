@@ -22,7 +22,7 @@ export class SignInOutButtonComponent implements OnInit {
   }
 
   login() {
-    this.authService.loginPopup();
+    this.authService.loginRedirect();
   }
 
   logout() {
