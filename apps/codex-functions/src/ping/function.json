@@ -19,14 +19,14 @@
             "name": "callbackMessage",
             "type": "queue",
             "queueName": "callbacks",
-            "connection": "wrdsbhagar_STORAGE",
+            "connection": "wrdsbcodex_STORAGE",
             "direction": "out"
         },
         {
             "name": "flynnEvent",
             "type": "queue",
             "queueName": "event-emitter",
-            "connection": "wrdsbhagar_STORAGE",
+            "connection": "wrdsbcodex_STORAGE",
             "direction": "out"
         }
     ],

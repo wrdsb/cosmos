@@ -34,9 +34,16 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
         userRoles = decodedToken.roles as string[];
     }
 
-    let result = "pong";
+    let response = {
+        payload: {
+            status: 200,
+            message: "H.A.G.A.R. is up",
+            chatter: "H.A.G.A.R. here. What can I do for you?",
+            timestamp: functionInvocationTimestamp
+        }
+    };
 
-    const logPayload = result;
+    const logPayload = response;
 
     const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
     const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
@@ -62,23 +69,23 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
     context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
+    response.payload['invocationEvent'] = invocationEvent;
+
     if (!request.headers['x-ms-token-aad-id-token']) {
         context.res = {
             status: 401,
-            body: 'Unauthorized'
+            body: 'Unauthorized: Cannot verify your identity.'
         };
     }
     else if (userRoles.includes('cosmos-user-its')) {
         context.res = {
             status: 200,
-            body: {
-                invocationEvent: invocationEvent
-            }
+            body: response
         };
     } else {
         context.res = {
             status: 403,
-            body: 'Forbidden'
+            body: 'Forbidden: You are not permitted to ping H.A.G.A.R.'
         };
     }
 
