@@ -4,6 +4,7 @@ import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
 
 import { Menu } from "@cosmos/types";
+import { UserAuthService } from '@cosmos/user-auth';
 
 @Component({
   selector: 'cosmos-header',
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
   headerMenu: Menu;
 
   constructor(
+    private userAuthService: UserAuthService,
     private environmentService: EnvironmentService,
     private chassisService: ChassisService
   ) { }

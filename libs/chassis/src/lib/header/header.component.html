@@ -28,10 +28,19 @@
                 <mat-icon class="material-icons-outlined">settings</mat-icon>
             </button>
 
-            <button mat-icon-button class="material-icons" (click)="toggleAccountPanel()">
+            <button mat-icon-button [matMenuTriggerFor]="accountMenu">
                 <mat-icon class="material-icons-outlined">account_circle</mat-icon>
             </button>
-
+            <mat-menu #accountMenu="matMenu" backdropClass="customWaffle">
+                <button mat-menu-item routerLink="/profile">
+                    <mat-icon class="material-icons-outlined">account_circle</mat-icon>
+                    <span>Profile</span>
+                </button>
+                <button mat-menu-item>
+                    <span><cosmos-sign-in-out-button></cosmos-sign-in-out-button></span>
+                </button>
+            </mat-menu>
+        
         </mat-toolbar>
     </header>
 </ng-container>
