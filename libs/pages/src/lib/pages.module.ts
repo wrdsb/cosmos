@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { UserAuthModule, UserAuthService } from "@cosmos/user-auth";
 import { HomePageComponent } from './home-page/home-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
@@ -12,6 +13,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
   ],
   imports: [
     CommonModule,
+    UserAuthModule,
 
     RouterModule.forChild([
       {path: '', pathMatch: 'full', component: HomePageComponent},
