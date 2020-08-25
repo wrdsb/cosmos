@@ -1,3 +1,5 @@
+import { Observable } from "rxjs";
+
 export interface Environment {
   production: boolean;
   appName: string;
@@ -8,4 +10,17 @@ export interface Environment {
   aadRedirectUri: string;
   aadPostLogoutRedirectUri: string;
   aadNavigateToLoginRequestUrl: boolean;
+}
+
+export interface PingRequestState {
+  status: Status;
+  response?: string;
+  error?: string;
+}
+
+export enum Status {
+  UNKNOWN = 'UNKNOWN',
+  LOADING = 'LOADING',
+  SUCCESS = 'SUCCESS',
+  ERROR = 'ERROR'
 }
