@@ -31,7 +31,8 @@
     "zip:igor": "cd dist/igor-functions && bestzip ../igor-functions.zip *",
     "deploy:codex": "az functionapp deployment source config-zip -g wrdsb-codex -n wrdsb-codex --src ./dist/codex-functions.zip",
     "deploy:hagar": "az functionapp deployment source config-zip -g wrdsb-hagar -n wrdsb-hagar --src ./dist/hagar-functions.zip",
-    "deploy:igor": "az functionapp deployment source config-zip -g wrdsb-igor -n wrdsb-igor3 --src ./dist/igor-functions.zip"
+    "deploy:igor": "az functionapp deployment source config-zip -g wrdsb-igor -n wrdsb-igor3 --src ./dist/igor-functions.zip",
+    "deploy:viewfinder-console": "az storage blob upload-batch -s ./dist/apps/viewfinder-console/ -d '$web' --account-name wrdsbviewfinder"
   },
   "private": true,
   "dependencies": {
