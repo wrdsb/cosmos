@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { PingFunctionResponse, PingFunctionResponsePayload } from "@cosmos/types";
 import { IGORService } from "@cosmos/igor-service";
+import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({
   selector: 'cosmos-igor-ping',
@@ -9,15 +10,20 @@ import { IGORService } from "@cosmos/igor-service";
   styleUrls: ['./igor-ping.component.scss']
 })
 export class IgorPingComponent implements OnInit {
-  ping: PingFunctionResponse;
+  readonly Status = Status;
+  readonly pingState$;
+  readonly pingRequestState$;
 
-  constructor(private igorService: IGORService) { }
-
-  ngOnInit(): void {
-    this.getPing();
+  constructor(private igorService: IGORService) {
+    this.pingState$ = this.igorService.pingState$;
+    this.pingRequestState$ = this.igorService.pingRequestState$;
   }
 
-  getPing() {
-    this.igorService.getPing().subscribe(ping => (this.ping = ping));
+  ngOnInit(): void {
+    //this.doPing();
+  }
+
+  doPing() {
+    this.igorService.doPing();
   }
 }

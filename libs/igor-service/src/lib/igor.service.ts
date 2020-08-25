@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { catchError, retry, map, tap } from 'rxjs/operators';
+
 import { UserAuthService } from '@cosmos/user-auth';
 
-import { PingFunctionResponse } from "@cosmos/types";
+import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 import { IGORGroup } from '@cosmos/types';
 //import { AADUser } from '@cosmos/types';
@@ -18,36 +20,83 @@ export class IGORService {
   private pingURL = 'https://wrdsb-igor3.azurewebsites.net/api/ping';
   
   private googleGroupsCommandURL = 'https://wrdsb-igor3.azurewebsites.net/api/google-group-command';
-  private googleGroupsQueryURL = 'https://wrdsb-igor3.azurewebsites.net/api/google-group-query';
+  private googleGroupsQueryURL = 'https://wrdsb-igor3.azurewebsites.net/api/groups-query';
   private googleGroupsSearchURL = '';
 
   private usersURL = '';
 
-  httpOptions = {
+  private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
+    payload: {
+      message: "message",
+      chatter: "chatter",
+      status: 200,
+      timestamp: "timestamp"
+    }
+  });
+  private pingRequestState: BehaviorSubject<PingRequestState> = new BehaviorSubject({
+    status: Status.UNKNOWN,
+    response: 'response',
+    error: 'error'
+  });
+  public readonly pingState$: Observable<PingFunctionResponse> = this.pingState.asObservable();
+  public readonly pingRequestState$: Observable<PingRequestState> = this.pingRequestState.asObservable();
+
+  private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
   };
 
   constructor(
-    private http: HttpClient,
-    private msalService: UserAuthService
+    private http: HttpClient
   ) {}
 
-  getPing(): Observable<PingFunctionResponse> {
-    console.log('IGOR: ping');
+  doPing(): void {
+    console.log('Pinging IGOR...');
 
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };
-    return this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions);
+    this.pingRequestState.next({
+      status: Status.LOADING,
+      response: 'unknown',
+      error: 'unknown'
+    });
+
+    this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions)
+      .pipe(
+        tap(_ => console.log('tap')),
+        retry(2),
+        catchError(error => {
+          console.log('catch error');
+          this.pingRequestState.next({
+            status: Status.ERROR,
+            response: '',
+            error: error
+          });
+          this.pingState.next({
+            payload: {
+              message: "error",
+              chatter: "error",
+              status: 200,
+              timestamp: "timestamp"
+            }
+          });
+          throw 'error pinging IGOR';
+        }),
+        tap(_ => {
+          this.pingRequestState.next({
+            status: Status.SUCCESS,
+            response: 'success',
+            error: ''
+          });
+          console.log('success pinging IGOR');
+        })
+      )
+      .subscribe(response => this.pingState.next(response));
   }
 
-  listGroups(): Observable<IGORGroup[]> {
+  listGroups(list: string): Observable<IGORGroup[]> {
     let req = {
-      operation: 'list'
+      operation: 'list',
+      payload: list
     };
     console.log('IGOR: list groups');
 
