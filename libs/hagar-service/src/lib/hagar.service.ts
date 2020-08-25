@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserAuthService } from '@cosmos/user-auth';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { catchError, retry, tap } from 'rxjs/operators';
 
-import { PingFunctionResponse } from "@cosmos/types";
+import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 import { AADGroup } from '@cosmos/types';
-import { AADUser } from '@cosmos/types';
-
-import { GROUPS } from './mocks/aad-groups';
-import { USERS } from './mocks/aad-users';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +19,22 @@ export class HagarService {
   
   private usersURL = '';
 
+  private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
+    payload: {
+      message: "",
+      chatter: "",
+      status: 0,
+      timestamp: ""
+    }
+  });
+  private pingRequestState: BehaviorSubject<PingRequestState> = new BehaviorSubject({
+    status: Status.UNKNOWN,
+    response: 'response',
+    error: 'error'
+  });
+  public readonly pingState$: Observable<PingFunctionResponse> = this.pingState.asObservable();
+  public readonly pingRequestState$: Observable<PingRequestState> = this.pingRequestState.asObservable();
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -30,19 +42,49 @@ export class HagarService {
   };
 
   constructor(
-    private http: HttpClient,
-    private msalService: UserAuthService
+    private http: HttpClient
   ) {}
 
-  getPing(): Observable<PingFunctionResponse> {
-    console.log('ping hagar');
+  doPing(): void {
+    console.log('Pinging HAGAR...');
 
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };
-    return this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions);
+    this.pingRequestState.next({
+      status: Status.LOADING,
+      response: 'unknown',
+      error: 'unknown'
+    });
+
+    this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions)
+      .pipe(
+        tap(_ => console.log('tap')),
+        retry(2),
+        catchError(error => {
+          console.log('catch error');
+          this.pingRequestState.next({
+            status: Status.ERROR,
+            response: '',
+            error: error
+          });
+          this.pingState.next({
+            payload: {
+              message: "error",
+              chatter: "error",
+              status: 200,
+              timestamp: "timestamp"
+            }
+          });
+          throw 'error pinging HAGAR';
+        }),
+        tap(_ => {
+          this.pingRequestState.next({
+            status: Status.SUCCESS,
+            response: 'success',
+            error: ''
+          });
+          console.log('success pinging HAGAR');
+        })
+      )
+      .subscribe(response => this.pingState.next(response));
   }
 
   listGroups(): Observable<AADGroup[]> {
@@ -58,9 +100,5 @@ export class HagarService {
     };
     let groups = this.http.post<AADGroup[]>(this.aadGroupsQueryURL, req, this.httpOptions);
     return groups;
-  }
-
-  getUsers(): Observable<AADUser[]> {
-    return of(USERS);
   }
 }

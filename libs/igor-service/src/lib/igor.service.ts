@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { catchError, retry, map, tap } from 'rxjs/operators';
-
-import { UserAuthService } from '@cosmos/user-auth';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { catchError, retry, tap } from 'rxjs/operators';
 
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 import { IGORGroup } from '@cosmos/types';
-//import { AADUser } from '@cosmos/types';
-
-//import { GROUPS } from './mocks/aad-groups';
-//import { USERS } from './mocks/aad-users';
 
 @Injectable({
   providedIn: 'root'
@@ -27,10 +21,10 @@ export class IGORService {
 
   private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
     payload: {
-      message: "message",
-      chatter: "chatter",
-      status: 200,
-      timestamp: "timestamp"
+      message: "",
+      chatter: "",
+      status: 0,
+      timestamp: ""
     }
   });
   private pingRequestState: BehaviorSubject<PingRequestState> = new BehaviorSubject({
