@@ -1,20 +1,31 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { SharedKeyCredential, StorageURL, ServiceURL, ContainerURL, BlobURL, BlockBlobURL, Aborter } from "@azure/storage-blob";
+import { createLogObject } from "@cosmos/azure-functions-shared";
+import { storeLogBlob } from "@cosmos/azure-functions-shared";
+import { createCallbackMessage } from "@cosmos/azure-functions-shared";
+import { createEvent } from "@cosmos/azure-functions-shared";
 
 const materializeSchoolStaff: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
-    const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
+    const functionInvocationID = context.executionContext.invocationId;
+    const functionInvocationTime = new Date();
+    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
+
+    const functionName = context.executionContext.functionName;
+    const functionEventType = 'WRDSB.Codex.SchoolStaff.Materialize';
+    const functionEventID = `codex-functions-${functionName}-${functionInvocationID}`;
+    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
+
+    const logStorageAccount = process.env['storageAccount'];
+    const logStorageKey = process.env['storageKey'];
+    const logStorageContainer = 'function-materialize-school-staff-logs';
+
+    const eventLabel = '';
+    const eventTags = [
+        "codex", 
+    ];
 
     const storageAccount = process.env['storageAccount'];
     const storageKey = process.env['storageKey'];
     const blobContainer = 'school-staff';
-
-    const sharedKeyCredential = new SharedKeyCredential(storageAccount, storageKey);
-    const pipeline = StorageURL.newPipeline(sharedKeyCredential);
-    const serviceURL = new ServiceURL(
-        `https://${storageAccount}.blob.core.windows.net`,
-        pipeline
-    );
-    const containerURL = ContainerURL.fromServiceURL(serviceURL, blobContainer);
 
     let logObject = {
         path: "logs/materialize-school-staff.json",
@@ -42,57 +53,34 @@ const materializeSchoolStaff: AzureFunction = async function (context: Context, 
 
     Object.getOwnPropertyNames(blobsObject).forEach(async schoolCode => {
         logObject.totalBlobs++;
-        let uploadResponse = await createBlob(containerURL, schoolCode, blobsObject[schoolCode]);
-        logObject.uploadsStatus.push(uploadResponse);
+        //let uploadResponse = await createBlob(containerURL, schoolCode, blobsObject[schoolCode]);
+        //logObject.uploadsStatus.push(uploadResponse);
     });
 
     logObject.totalUploads = logObject.uploadsStatus.length;
 
-    let callbackMessage = await createEvent(logObject);
+    //let callbackMessage = await createEvent(logObject);
 
     context.bindings.allSchools = blobsObject;
     context.bindings.logObject = JSON.stringify(logObject);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
+    //context.bindings.callbackMessage = JSON.stringify(callbackMessage);
 
-    context.log(JSON.stringify(callbackMessage));
-    context.done(null, callbackMessage);
+    //context.log(JSON.stringify(callbackMessage));
+    //context.done(null, callbackMessage);
 
     async function createBlob(containerURL, schoolCode: string, data)
     {
         const blobName = schoolCode.toLowerCase() + '-school-staff.json';
-        const blobURL = BlobURL.fromContainerURL(containerURL, blobName);
-        const blockBlobURL = BlockBlobURL.fromBlobURL(blobURL);
+        //const blobURL = BlobURL.fromContainerURL(containerURL, blobName);
+        //const blockBlobURL = BlockBlobURL.fromBlobURL(blobURL);
         
-        const uploadBlobResponse = await blockBlobURL.upload(
-            Aborter.none,
-            JSON.stringify(data),
-            JSON.stringify(data).length
-        );
+        //const uploadBlobResponse = await blockBlobURL.upload(
+            //Aborter.none,
+            //JSON.stringify(data),
+            //JSON.stringify(data).length
+        //);
         
-        return uploadBlobResponse;
-    }
-
-    async function createEvent(logObject)
-    {
-        context.log('createEvent');
-
-        let event = {
-            id: 'skinner-functions-' + context.executionContext.functionName +'-'+ context.executionContext.invocationId,
-            eventType: 'Skinner.School.Staff.Materialize',
-            eventTime: execution_timestamp,
-            //subject: ,
-            data: {
-                event_type: 'function_invocation',
-                app: 'wrdsb-skinner',
-                function_name: context.executionContext.functionName,
-                invocation_id: context.executionContext.invocationId,
-                data: logObject,
-                timestamp: execution_timestamp
-            },
-            dataVersion: '1'
-        };
-
-        return event;
+        //return uploadBlobResponse;
     }
 };
 

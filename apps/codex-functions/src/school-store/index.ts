@@ -17,7 +17,7 @@ const codexSchoolStore: AzureFunction = async function (context: Context, trigge
 
     const logStorageAccount = process.env['storageAccount'];
     const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-codex-school-store-logs';
+    const logStorageContainer = 'function-school-store-logs';
 
     const eventLabel = '';
     const eventTags = [

@@ -17,7 +17,7 @@ const codexPersonStore: AzureFunction = async function (context: Context, trigge
 
     const logStorageAccount = process.env['storageAccount'];
     const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-codex-person-store-logs';
+    const logStorageContainer = 'function-person-store-logs';
 
     const eventLabel = '';
     const eventTags = [

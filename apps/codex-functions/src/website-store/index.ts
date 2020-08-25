@@ -17,7 +17,7 @@ const codexWebsiteStore: AzureFunction = async function (context: Context, trigg
 
     const logStorageAccount = process.env['storageAccount'];
     const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-codex-website-store-logs';
+    const logStorageContainer = 'function-website-store-logs';
 
     const eventLabel = '';
     const eventTags = [
