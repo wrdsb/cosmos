@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { IGORService } from "@cosmos/igor-service";
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";

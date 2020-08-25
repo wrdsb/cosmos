@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PingFunctionResponse, PingFunctionResponsePayload } from "@cosmos/types";
 import { CodexService } from "@cosmos/codex-service";
+import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({
   selector: 'cosmos-codex-ping',
@@ -9,15 +9,20 @@ import { CodexService } from "@cosmos/codex-service";
   styleUrls: ['./codex-ping.component.scss']
 })
 export class CodexPingComponent implements OnInit {
-  ping: PingFunctionResponse;
+  readonly Status = Status;
+  readonly pingState$;
+  readonly pingRequestState$;
 
-  constructor(private codexService: CodexService) { }
-
-  ngOnInit(): void {
-    this.getPing();
+  constructor(private codexService: CodexService) {
+    this.pingState$ = this.codexService.pingState$;
+    this.pingRequestState$ = this.codexService.pingRequestState$;
   }
 
-  getPing() {
-    this.codexService.getPing().subscribe(ping => (this.ping = ping));
+  ngOnInit(): void {
+    //this.doPing();
+  }
+
+  doPing() {
+    this.codexService.doPing();
   }
 }

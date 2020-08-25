@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PingFunctionResponse, PingFunctionResponsePayload } from "@cosmos/types";
 import { HagarService } from '@cosmos/hagar-service';
+import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({
   selector: 'cosmos-hagar-ping',
@@ -9,15 +9,20 @@ import { HagarService } from '@cosmos/hagar-service';
   styleUrls: ['./hagar-ping.component.scss']
 })
 export class HagarPingComponent implements OnInit {
-  ping: PingFunctionResponse;
+  readonly Status = Status;
+  readonly pingState$;
+  readonly pingRequestState$;
 
-  constructor(private hagarService: HagarService) {}
-
-  ngOnInit(): void {
-    this.getPing();
+  constructor(private hagarService: HagarService) {
+    this.pingState$ = this.hagarService.pingState$;
+    this.pingRequestState$ = this.hagarService.pingRequestState$;
   }
 
-  getPing() {
-    this.hagarService.getPing().subscribe(ping => (this.ping = ping));
+  ngOnInit(): void {
+    //this.doPing();
+  }
+
+  doPing() {
+    this.hagarService.doPing();
   }
 }

@@ -1,1 +1,18 @@
-{{ping.payload.message}}
+<ng-container *ngIf="(pingRequestState$ | async) as pingRequestState">
+    <ng-container [ngSwitch]="pingRequestState['status']">
+        <span *ngSwitchCase="Status.UNKNOWN">Unknown</span>
+        <span *ngSwitchCase="Status.LOADING">Pinging HAGAR...</span>
+        <span *ngSwitchCase="Status.ERROR">Error: {{pingRequestState$.error}}</span>
+        <span *ngSwitchCase="Status.SUCCESS">Success: {{pingRequestState$.response}}</span>
+    </ng-container>
+</ng-container>
+
+<div>
+    {{ pingRequestState$ | async | json }}
+</div>
+
+<div>
+    {{ pingState$ | async | json }}
+</div>
+
+<button (click)="doPing()">Ping!</button>
