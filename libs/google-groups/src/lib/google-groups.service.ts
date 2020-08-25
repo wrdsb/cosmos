@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { MessagesService } from '@cosmos/messages';
+import { CodexService } from "@cosmos/codex-service";
+import { IGORService } from "@cosmos/igor-service";
 
 import { GoogleGroup } from "@cosmos/types";
 import { IGORGroup } from "@cosmos/types";
@@ -13,12 +15,18 @@ import { GROUPS } from "@cosmos/mocks";
 export class GoogleGroupsService {
   private groups: GoogleGroup[] = [];
 
-  constructor(private messagesService: MessagesService) { }
+  constructor(
+    private messagesService: MessagesService,
+    private codexService: CodexService,
+    private igorService: IGORService
+  ) { }
 
-  getGroups(): Observable<GoogleGroup[]> {
-    // TODO: send the message _after_ fetching the heroes
-    this.messagesService.add('Google Groups Service: fetched Groups');
-    return of(GROUPS);
+  listGroups(list: string): Observable<GoogleGroup[]> {
+    //this.messagesService.add('Google Groups Service: fetched Groups');
+    //return of(GROUPS);
+
+    let groups = this.igorService.listGroups(list);
+    return groups;
   }
 
   getMock(): IGORGroup {

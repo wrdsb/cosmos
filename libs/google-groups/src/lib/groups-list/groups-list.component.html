@@ -1,9 +1,51 @@
-<h1>Groups List</h1>
-<ul class="google-groups">
-  <li *ngFor="let group of groups" (click)="onSelect(group)">
-    {{group.name}}
-  </li>
-</ul>
+<div class="widget">
+  <div class="widget-sidebar"></div>
+
+  <div class="widget-content">
+
+    <div class="widget-title">Google Groups</div>
+
+    <div class="widget-main">
+
+      <table mat-table [dataSource]="groups" class="mat-elevation-z8">
+        <!-- email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let group"> {{group.email}} </td>
+        </ng-container>
+
+        <!-- displayName Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let group"> {{group.name}} </td>
+        </ng-container>
+
+        <!-- description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let group"> {{group.description}} </td>
+        </ng-container>
+
+        <!-- adminCreated Column -->
+        <ng-container matColumnDef="adminCreated">
+          <th mat-header-cell *matHeaderCellDef> Admin Created? </th>
+          <td mat-cell *matCellDef="let group"> {{group.adminCreated}} </td>
+        </ng-container>
+
+        <!-- membership_automation_active Column -->
+        <ng-container matColumnDef="membership_automation_active">
+          <th mat-header-cell *matHeaderCellDef> Automated? </th>
+          <td mat-cell *matCellDef="let group"> {{group.membership_automation_active}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(group)"></tr>
+      </table>
+
+    </div>
+
+  </div>
+</div>
 
 <div *ngIf="selectedGroup">
   <h2>{{selectedGroup.name}} Details</h2>

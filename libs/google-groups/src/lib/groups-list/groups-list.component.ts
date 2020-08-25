@@ -9,7 +9,17 @@ import { GoogleGroupsService } from '../google-groups.service';
   styleUrls: ['./groups-list.component.scss']
 })
 export class GroupsListComponent implements OnInit {
-  groups: IGORGroup[] = [];
+  displayedColumns: string[] = [
+    'name',
+    'email',
+    'description',
+    'adminCreated',
+    'membership_automation_active',
+    //'owners',
+    //'managers'
+  ];
+
+  groups: IGORGroup[];
   selectedGroup: IGORGroup;
 
   constructor(private groupsService: GoogleGroupsService) { }
@@ -23,7 +33,7 @@ export class GroupsListComponent implements OnInit {
   }
 
   getGroups(): void {
-    this.groupsService.getGroups()
+    this.groupsService.listGroups('admin_created')
       .subscribe(groups => this.groups = groups);
   }
 }
