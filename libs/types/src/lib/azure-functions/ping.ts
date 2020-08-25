@@ -24,7 +24,7 @@ interface PingFunctionResponsePayload {
     readonly chatter: string;
     readonly status: number;
     readonly timestamp: string;
-    readonly invocationEvent: Cosmos.FunctionInvocationEvent;
+    readonly invocationEvent?: Cosmos.FunctionInvocationEvent;
 }
 
 interface PingFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
