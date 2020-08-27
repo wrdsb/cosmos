@@ -204,9 +204,9 @@ const GoogleGroupsMembershipsOneOffsCalculate: AzureFunction = async function (c
 
         rows.forEach(function(row) {
             let email = (row.EMAIL_ADDRESS) ? row.EMAIL_ADDRESS : null;
-            let jobCode = (row.JOBCODE) ? row.JOBCODE : null;
-            let groupCode = (row.EMP_GROUPCODE) ? row.EMP_GROUPCODE : null;
-            let locationCode = (row.LOCATIONCODE) ? row.LOCATIONCODE : null;
+            let jobCode = (row.JOB_CODE) ? row.JOB_CODE : null;
+            let groupCode = (row.EMP_GROUP_CODE) ? row.EMP_GROUP_CODE : null;
+            let locationCode = (row.LOCATION_CODE) ? row.LOCATION_CODE : null;
             let schoolCode = (row.SCHOOL_CODE) ? row.SCHOOL_CODE.toLowerCase() : null;
             let panel = (row.PANEL) ? row.PANEL : null;
             let activityCode = (row.ACTIVITY_CODE ) ? row.ACTIVITY_CODE : null;
@@ -287,16 +287,7 @@ const GoogleGroupsMembershipsOneOffsCalculate: AzureFunction = async function (c
                         groupKey:       "elementary-serts@wrdsb.ca"
                     };
                 }
-                if (financeJobCodes.includes(jobCode)) {
-                    members.financeStaff[email] = {
-                        email:          email,
-                        role:           "MEMBER",
-                        status:         "ACTIVE",
-                        type:           "USER",
-                        groupKey:       'finance-staff@wrdsb.ca'
-                    };
-                }
-                if (financeLocationCodes.includes(locationCode)) {
+                if ((financeJobCodes.includes(jobCode)) || (financeLocationCodes.includes(locationCode))) {
                     members.financeStaff[email] = {
                         email:          email,
                         role:           "MEMBER",
