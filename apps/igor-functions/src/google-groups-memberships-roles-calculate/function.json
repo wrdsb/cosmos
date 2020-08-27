@@ -1,0 +1,237 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "google-groups-memberships-roles-calculate",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "iamwpRaw",
+      "type": "blob",
+      "path": "hris/view-iamwp-raw.json",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "elementaryAdminJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "elementary_admin_job_codes",
+      "partitionKey": "elementary_admin_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "elementaryHeadSecretariesJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "elementary_head_secretaries_job_codes",
+      "partitionKey": "elementary_head_secretaries_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "elementaryCSecretariesJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "elementary_c_secretaries_job_codes",
+      "partitionKey": "elementary_c_secretaries_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "elementaryOTTeachersJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "elementary_ot_teachers_job_codes",
+      "partitionKey": "elementary_ot_teachers_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "elementaryTeachersGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "elementary_teachers_group_codes",
+      "partitionKey": "elementary_teachers_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "elementaryStaffingSupportJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "elementary_staffing_support_job_codes",
+      "partitionKey": "elementary_staffing_support_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "secondaryAdminJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "secondary_admin_job_codes",
+      "partitionKey": "secondary_admin_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "secondaryOfficeSupervisorsJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "secondary_office_supervisors_job_codes",
+      "partitionKey": "secondary_office_supervisors_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "secondaryOfficeAssistantsJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "secondary_office_assistants_job_codes",
+      "partitionKey": "secondary_office_assistants_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "secondaryCSecretariesJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "secondary_c_secretaries_job_codes",
+      "partitionKey": "secondary_c_secretaries_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "secondaryTeachersGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "secondary_teachers_group_codes",
+      "partitionKey": "secondary_teachers_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "secondaryOTTeachersGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "secondary_ot_teachers_group_codes",
+      "partitionKey": "secondary_ot_teachers_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "elementaryAdminOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/elementary-admin@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "elementaryHeadSecretariesOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/elementary-head-secretaries@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "elementaryCSecretariesOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/elementary-c-secretaries@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "elementaryTeachersOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/elementary-teachers@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "elementaryOTTeachersOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/elementary-ot-teachers@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "elementaryStaffingSupportOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/elementary-staffing-support@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "secondaryAdminOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/secondary-admin@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "secondaryOfficeSupervisorsOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/secondary-office-supervisors@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "secondaryOfficeAssistantsOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/secondary-office-assistants@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "secondaryCSecretariesOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/secondary-c-secretaries@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "secondaryTeachersOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/secondary-teachers@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "secondaryOTTeachersOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/secondary-ot-teachers@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "callbackMessage",
+      "type": "queue",
+      "queueName": "callbacks",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "flynnEvent",
+      "type": "queue",
+      "queueName": "event-emitter",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
