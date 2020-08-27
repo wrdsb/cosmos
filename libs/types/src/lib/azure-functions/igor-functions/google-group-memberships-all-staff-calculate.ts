@@ -1,0 +1,44 @@
+import * as Cosmos from "../common";
+
+interface GoogleGroupsMembershipsAllStaffCalculateFunctionRequest extends Cosmos.FunctionRequest {
+    readonly payload: GoogleGroupsMembershipsAllStaffCalculateFunctionRequestPayload;
+}
+
+interface GoogleGroupsMembershipsAllStaffCalculateFunctionResponse extends Cosmos.FunctionResponse {
+    readonly payload: GoogleGroupsMembershipsAllStaffCalculateFunctionResponsePayload;
+}
+
+interface GoogleGroupsMembershipsAllStaffCalculateFunctionLogObject extends Cosmos.FunctionLogObject {
+    readonly payload: GoogleGroupsMembershipsAllStaffCalculateFunctionResponsePayload;
+}
+
+interface GoogleGroupsMembershipsAllStaffCalculateFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
+
+interface GoogleGroupsMembershipsAllStaffCalculateFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
+    readonly data: GoogleGroupsMembershipsAllStaffCalculateFunctionInvocationEventPayload;
+}
+
+interface GoogleGroupsMembershipsAllStaffCalculateFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+}
+
+interface GoogleGroupsMembershipsAllStaffCalculateFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
+}
+
+interface GoogleGroupsMembershipsAllStaffCalculateFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
+
+interface GoogleGroupsMembershipsAllStaffCalculateFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
+
+interface GoogleGroupsMembershipsAllStaffCalculateFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
+
+export {
+    GoogleGroupsMembershipsAllStaffCalculateFunctionRequest,
+    GoogleGroupsMembershipsAllStaffCalculateFunctionResponse,
+    GoogleGroupsMembershipsAllStaffCalculateFunctionLogObject,
+    GoogleGroupsMembershipsAllStaffCalculateFunctionCallbackMessage,
+    GoogleGroupsMembershipsAllStaffCalculateFunctionInvocationEvent,
+    GoogleGroupsMembershipsAllStaffCalculateFunctionRequestPayload,
+    GoogleGroupsMembershipsAllStaffCalculateFunctionResponsePayload,
+    GoogleGroupsMembershipsAllStaffCalculateFunctionLogObjectPayload,
+    GoogleGroupsMembershipsAllStaffCalculateFunctionCallbackMessagePayload,
+    GoogleGroupsMembershipsAllStaffCalculateFunctionInvocationEventPayload
+}

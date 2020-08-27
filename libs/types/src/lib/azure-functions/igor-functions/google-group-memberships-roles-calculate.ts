@@ -1,0 +1,44 @@
+import * as Cosmos from "../common";
+
+interface GoogleGroupsMembershipsRolesCalculateFunctionRequest extends Cosmos.FunctionRequest {
+    readonly payload: GoogleGroupsMembershipsRolesCalculateFunctionRequestPayload;
+}
+
+interface GoogleGroupsMembershipsRolesCalculateFunctionResponse extends Cosmos.FunctionResponse {
+    readonly payload: GoogleGroupsMembershipsRolesCalculateFunctionResponsePayload;
+}
+
+interface GoogleGroupsMembershipsRolesCalculateFunctionLogObject extends Cosmos.FunctionLogObject {
+    readonly payload: GoogleGroupsMembershipsRolesCalculateFunctionResponsePayload;
+}
+
+interface GoogleGroupsMembershipsRolesCalculateFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
+
+interface GoogleGroupsMembershipsRolesCalculateFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
+    readonly data: GoogleGroupsMembershipsRolesCalculateFunctionInvocationEventPayload;
+}
+
+interface GoogleGroupsMembershipsRolesCalculateFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+}
+
+interface GoogleGroupsMembershipsRolesCalculateFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
+}
+
+interface GoogleGroupsMembershipsRolesCalculateFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
+
+interface GoogleGroupsMembershipsRolesCalculateFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
+
+interface GoogleGroupsMembershipsRolesCalculateFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
+
+export {
+    GoogleGroupsMembershipsRolesCalculateFunctionRequest,
+    GoogleGroupsMembershipsRolesCalculateFunctionResponse,
+    GoogleGroupsMembershipsRolesCalculateFunctionLogObject,
+    GoogleGroupsMembershipsRolesCalculateFunctionCallbackMessage,
+    GoogleGroupsMembershipsRolesCalculateFunctionInvocationEvent,
+    GoogleGroupsMembershipsRolesCalculateFunctionRequestPayload,
+    GoogleGroupsMembershipsRolesCalculateFunctionResponsePayload,
+    GoogleGroupsMembershipsRolesCalculateFunctionLogObjectPayload,
+    GoogleGroupsMembershipsRolesCalculateFunctionCallbackMessagePayload,
+    GoogleGroupsMembershipsRolesCalculateFunctionInvocationEventPayload
+}
