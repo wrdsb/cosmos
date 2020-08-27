@@ -25,13 +25,17 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
     ];
 
     const request = req;
+    let authenticated = false;
+    let authorized = false;
     let idToken = '';
     let userRoles = [];
 
     if (request.headers['x-ms-token-aad-id-token']) {
+        authenticated = true;
         idToken = request.headers['x-ms-token-aad-id-token'];
         let decodedToken = jwt_decode(idToken);
         userRoles = decodedToken.roles as string[];
+        authorized = userRoles.includes('cosmos-user-its') ? true : false;
     }
 
     let response = {
@@ -39,7 +43,10 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
             status: 200,
             message: "H.A.G.A.R. is up",
             chatter: "H.A.G.A.R. here. What can I do for you?",
-            timestamp: functionInvocationTimestamp
+            timestamp: functionInvocationTimestamp,
+            authenticated: authenticated,
+            authorized: authorized,
+            roles: userRoles
         }
     };
 
@@ -71,21 +78,56 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
 
     response.payload['invocationEvent'] = invocationEvent;
 
-    if (!request.headers['x-ms-token-aad-id-token']) {
+    if (!authenticated) {
         context.res = {
-            status: 401,
-            body: 'Unauthorized: Cannot verify your identity.'
+            status: 200,
+            body: {
+                payload: {
+                    status: 401,
+                    message: "Unauthorized: Cannot verify your identity.",
+                    chatter: "Unauthorized: Cannot verify your identity.",
+                    timestamp: functionInvocationTimestamp,
+                    authenticated: authenticated,
+                    authorized: authorized,
+                    roles: JSON.stringify(userRoles)
+                }
+            }
         };
     }
-    else if (userRoles.includes('cosmos-user-its')) {
+    else if (authenticated && !authorized) {
+        context.res = {
+            status: 200,
+            body: {
+                payload: {
+                    status: 403,
+                    message: "Forbidden: You are not permitted to ping H.A.G.A.R.",
+                    chatter: "Forbidden: You are not permitted to ping H.A.G.A.R.",
+                    timestamp: functionInvocationTimestamp,
+                    authenticated: authenticated,
+                    authorized: authorized,
+                    roles: JSON.stringify(userRoles)
+                }
+            }
+        };
+    } else if (authenticated && authorized) {
         context.res = {
             status: 200,
             body: response
         };
     } else {
         context.res = {
-            status: 403,
-            body: 'Forbidden: You are not permitted to ping H.A.G.A.R.'
+            status: 200,
+            body: {
+                payload: {
+                    status: 400,
+                    message: "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.",
+                    chatter: "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.",
+                    timestamp: functionInvocationTimestamp,
+                    authenticated: authenticated,
+                    authorized: authorized,
+                    roles: JSON.stringify(userRoles)
+                }
+            }
         };
     }
 
