@@ -36,11 +36,10 @@ const GoogleGroupsMembershipsStudentsCalculate: AzureFunction = async function (
 
     context.bindings.outputBlob = calculatedMembers;
 
-    const memberCounts = {
-        requestedSchoolCode: Object.getOwnPropertyNames(calculatedMembers).length
-    }
+    const memberCounts = Object.getOwnPropertyNames(calculatedMembers).length;
 
     const logPayload = {
+        requestedSchoolCode: requestedSchoolCode,
         memberCounts: memberCounts
     };
     context.log(logPayload);
@@ -80,7 +79,7 @@ const GoogleGroupsMembershipsStudentsCalculate: AzureFunction = async function (
             let schoolCode = (row.school_code) ? row.school_code.toLowerCase() : false;
             let oyap = (row.student_oyap === 'Y') ? true : false;
 
-            if (requestedSchoolCode == 'oyap') {
+            if (requestedSchoolCode === 'oyap') {
                 if (email && oyap) {
                     members[email] = {
                         email:          email,
@@ -91,7 +90,7 @@ const GoogleGroupsMembershipsStudentsCalculate: AzureFunction = async function (
                     };
                 }
             } else {
-                if (email && requestedSchoolCode == schoolCode) {
+                if (email && (requestedSchoolCode === schoolCode)) {
                     members[email] = {
                         email:          email,
                         role:           "MEMBER",
