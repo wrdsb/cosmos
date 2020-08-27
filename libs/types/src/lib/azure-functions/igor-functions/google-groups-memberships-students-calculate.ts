@@ -1,0 +1,45 @@
+import * as Cosmos from "../common";
+
+interface GoogleGroupsMembershipsStudentsCalculateFunctionRequest extends Cosmos.FunctionRequest {
+    readonly payload: GoogleGroupsMembershipsStudentsCalculateFunctionRequestPayload;
+}
+
+interface GoogleGroupsMembershipsStudentsCalculateFunctionResponse extends Cosmos.FunctionResponse {
+    readonly payload: GoogleGroupsMembershipsStudentsCalculateFunctionResponsePayload;
+}
+
+interface GoogleGroupsMembershipsStudentsCalculateFunctionLogObject extends Cosmos.FunctionLogObject {
+    readonly payload: GoogleGroupsMembershipsStudentsCalculateFunctionResponsePayload;
+}
+
+interface GoogleGroupsMembershipsStudentsCalculateFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
+
+interface GoogleGroupsMembershipsStudentsCalculateFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
+    readonly data: GoogleGroupsMembershipsStudentsCalculateFunctionInvocationEventPayload;
+}
+
+interface GoogleGroupsMembershipsStudentsCalculateFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+    readonly schoolCode: string;
+}
+
+interface GoogleGroupsMembershipsStudentsCalculateFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
+}
+
+interface GoogleGroupsMembershipsStudentsCalculateFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
+
+interface GoogleGroupsMembershipsStudentsCalculateFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
+
+interface GoogleGroupsMembershipsStudentsCalculateFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
+
+export {
+    GoogleGroupsMembershipsStudentsCalculateFunctionRequest,
+    GoogleGroupsMembershipsStudentsCalculateFunctionResponse,
+    GoogleGroupsMembershipsStudentsCalculateFunctionLogObject,
+    GoogleGroupsMembershipsStudentsCalculateFunctionCallbackMessage,
+    GoogleGroupsMembershipsStudentsCalculateFunctionInvocationEvent,
+    GoogleGroupsMembershipsStudentsCalculateFunctionRequestPayload,
+    GoogleGroupsMembershipsStudentsCalculateFunctionResponsePayload,
+    GoogleGroupsMembershipsStudentsCalculateFunctionLogObjectPayload,
+    GoogleGroupsMembershipsStudentsCalculateFunctionCallbackMessagePayload,
+    GoogleGroupsMembershipsStudentsCalculateFunctionInvocationEventPayload
+}
