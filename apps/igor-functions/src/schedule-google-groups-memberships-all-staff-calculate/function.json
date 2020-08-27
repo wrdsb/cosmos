@@ -1,0 +1,32 @@
+{
+  "bindings": [{
+      "name": "timer",
+      "type": "timerTrigger",
+      "schedule": "0 45 * * * *",
+      "direction": "in"
+    },
+    {
+      "name": "outputQueue",
+      "type": "queue",
+      "queueName": "google-groups-memberships-all-staff-calculate",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "callbackMessage",
+      "type": "queue",
+      "queueName": "callbacks",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "flynnEvent",
+      "type": "queue",
+      "queueName": "event-emitter",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
