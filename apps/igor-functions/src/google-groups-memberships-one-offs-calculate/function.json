@@ -1,0 +1,583 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "google-groups-memberships-one-offs-calculate",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "iamwpRaw",
+      "type": "blob",
+      "path": "hris/view-iamwp-raw.json",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "admissionsQnaJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "admissions_qna_job_codes",
+      "partitionKey": "admissions_qna_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "deceStaffGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "dece_staff_group_codes",
+      "partitionKey": "dece_staff_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "eaStaffJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "ea_staff_job_codes",
+      "partitionKey": "ea_staff_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "edDeploymentManagerJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "ed_deployment_manager_job_codes",
+      "partitionKey": "ed_deployment_manager_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "edDeploymentMemberJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "ed_deployment_member_job_codes",
+      "partitionKey": "ed_deployment_member_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "edInquiriesJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "ed_inquiries_job_codes",
+      "partitionKey": "ed_inquiries_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "edcLocationCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "edc_location_codes",
+      "partitionKey": "edc_location_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "elementarySertsJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "elementary_serts_job_codes",
+      "partitionKey": "elementary_serts_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "financeJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "finance_job_codes",
+      "partitionKey": "finance_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "financeLocationCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "finance_location_codes",
+      "partitionKey": "finance_location_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "grcHealthSafetyLocationCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "grc_health_safety_location_codes",
+      "partitionKey": "grc_health_safety_location_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "intranetLibraryJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "intranet_library_job_codes",
+      "partitionKey": "intranet_library_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "intranetTrilliumJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "intranet_trillium_job_codes",
+      "partitionKey": "intranet_trillium_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "itinerantSpecEdJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "itinerant_spec_ed_job_codes",
+      "partitionKey": "itinerant_spec_ed_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "itinerantSpecEdLocationCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "itinerant_spec_ed_location_codes",
+      "partitionKey": "itinerant_spec_ed_location_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "itsJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "its_job_codes",
+      "partitionKey": "its_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "itsLocationCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "its_location_codes",
+      "partitionKey": "its_location_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "itsManagerCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "its_staff_managers_job_codes",
+      "partitionKey": "its_staff_managers_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "procurementQnaJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "procurement_qna_job_codes",
+      "partitionKey": "procurement_qna_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "psychologistsJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "psychologists_job_codes",
+      "partitionKey": "psychologists_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "riskJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "risk_job_codes",
+      "partitionKey": "risk_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "schoolDayJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "school_day_job_codes",
+      "partitionKey": "school_day_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "secondarySertsJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "secondary_serts_job_codes",
+      "partitionKey": "secondary_serts_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "smacaElementaryGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "smaca_elementary_group_codes",
+      "partitionKey": "smaca_elementary_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "smacaSecondaryGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "smaca_secondary_group_codes",
+      "partitionKey": "smaca_secondary_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "socialWorkersJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "social_workers_job_codes",
+      "partitionKey": "social_workers_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "specialEducationLocationCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "special_education_location_codes",
+      "partitionKey": "special_education_location_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "specialEducationConsultantsJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "special_education_consultants_job_codes",
+      "partitionKey": "special_education_consultants_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "speechLanguageJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "speech_language_job_codes",
+      "partitionKey": "speech_language_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "systemLeadersJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "system_leaders_job_codes",
+      "partitionKey": "system_leaders_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "thrMessageBoardJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "thr_message_board_job_codes",
+      "partitionKey": "thr_message_board_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "tweaJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "twea_job_codes",
+      "partitionKey": "twea_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "wciHealthSafetyLocationCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "wci_health_safety_location_codes",
+      "partitionKey": "wci_health_safety_location_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "wrdsbManagersJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "wrdsb_managers_job_codes",
+      "partitionKey": "wrdsb_managers_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "admissionsQnaOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/admissions-qna@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "deceStaffOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/dece-staff@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "eaStaffOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/ea-staff@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "edDeploymentOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/ed-deployment@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "edInquiriesOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/ed-inquiries@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "edcStaffOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/edc-staff@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "elementarySertsOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/elementary-serts@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "financeStaffOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/finance-staff@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "grcHealthSafetyOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/grc-health-safety@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "intranetLibraryOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/intranet-library@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "intranetSpecialEducationOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/intranet-special-education@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "intranetTrilliumOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/intranet-trillium@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "itinerantSpecEdOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/itinerant-spec-ed@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "itsStaffOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/its-staff@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "procurementQnaOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/procurement-qna@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "psychologistsOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/psychologists@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "riskOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/risk@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "schoolDayOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/school-day@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "secondarySertsOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/secondary-serts@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "smacaElementaryQnaOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/smaca-elementary-qna@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "smacaSecondaryQnaOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/smaca-secondary-qna@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "socialWorkersOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/social-workers@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "specialEducationOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/special-education@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "specialEducationConsultantsOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/special-education-consultants@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "speechLanguageOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/speech-language@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "systemLeadersOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/system-leaders@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "thrMessageBoardOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/thr-message-board@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "tweaOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/twea@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "wciHealthSafetyOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/wci-health-safety@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "wrdsbManagersOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/wrdsb-managers@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "callbackMessage",
+      "type": "queue",
+      "queueName": "callbacks",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "flynnEvent",
+      "type": "queue",
+      "queueName": "event-emitter",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
