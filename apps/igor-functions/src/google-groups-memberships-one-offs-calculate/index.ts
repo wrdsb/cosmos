@@ -12,7 +12,7 @@ const GoogleGroupsMembershipsOneOffsCalculate: AzureFunction = async function (c
 
     const functionName = context.executionContext.functionName;
     const functionEventType = 'WRDSB.IGOR.Google.Group.Memberships.OneOffs.Calculate';
-    const functionEventID = `hagar-functions-${functionName}-${functionInvocationID}`;
+    const functionEventID = `igor-functions-${functionName}-${functionInvocationID}`;
     const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
 
     const logStorageAccount = process.env['storageAccount'];
@@ -31,44 +31,44 @@ const GoogleGroupsMembershipsOneOffsCalculate: AzureFunction = async function (c
 
     const rows = context.bindings.iamwpRaw;
 
-    const excluded_jobCodes = ['6106', '6118'];
-    const activity_codes = ['ACTIVE', 'ONLEAVE'];
+    const excludedJobCodes = ['6106', '6118'];
+    const activityCodes = ['ACTIVE', 'ONLEAVE'];
 
-    const admissionsQnaJobCodes = context.bindings.admissionsQnaJobCodes.jobCodes;
-    const deceStaffGroupCodes = context.bindings.deceStaffGroupCodes.groupCodes;
-    const eaStaffJobCodes = context.bindings.eaStaffJobCodes.jobCodes;
-    const edDeploymentManagerJobCodes = context.bindings.edDeploymentManagerJobCodes.jobCodes;
-    const edDeploymentMemberJobCodes = context.bindings.edDeploymentMemberJobCodes.jobCodes;
-    const edInquiriesJobCodes = context.bindings.edInquiriesJobCodes.jobCodes;
-    const edcLocationCodes = context.bindings.edcLocationCodes.locationCodes;
-    const elementarySertsJobCodes = context.bindings.elementarySertsJobCodes.jobCodes;
-    const financeJobCodes = context.bindings.financeJobCodes.jobCodes;
-    const financeLocationCodes = context.bindings.financeLocationCodes.locationCodes;
-    const grcHealthSafetyLocationCodes = context.bindings.grcHealthSafetyLocationCodes.locationCodes;
-    const itinerantSpecEdJobCodes = context.bindings.itinerantSpecEdJobCodes.jobCodes;
-    const itinerantSpecEdLocationCodes = context.bindings.itinerantSpecEdLocationCodes.locationCodes;
-    const itsJobCodes = context.bindings.itsJobCodes.jobCodes;
-    const itsLocationCodes = context.bindings.itsLocationCodes.jobCodes;
-    const itsStaffManagersJobCodes = context.bindings.itsManagerCodes.jobCodes;
-    const procurementQnaJobCodes = context.bindings.procurementQnaJobCodes.jobCodes;
-    const psychologistsJobCodes = context.bindings.psychologistsJobCodes.jobCodes;
-    const riskJobCodes = context.bindings.riskJobCodes.jobCodes;
-    const schoolDayJobCodes = context.bindings.schoolDayJobCodes.jobCodes;
-    const secondarySertsJobCodes = context.bindings.secondarySertsJobCodes.jobCodes;
-    const smacaElementaryGroupCodes = context.bindings.smacaElementaryGroupCodes.groupCodes;
-    const smacaSecondaryGroupCodes = context.bindings.smacaSecondaryGroupCodes.groupCodes;
-    const socialWorkersJobCodes = context.bindings.socialWorkersJobCodes.jobCodes;
-    const specialEducationLocationCodes = context.bindings.specialEducationLocationCodes.locationCodes;
-    const specialEducationConsultantsJobCodes = context.bindings.specialEducationConsultantsJobCodes.jobCodes;
-    const speechLanguageJobCodes = context.bindings.speechLanguageJobCodes.jobCodes;
-    const systemLeadersJobCodes = context.bindings.systemLeadersJobCodes.jobCodes;
-    const thrMessageBoardJobCodes = context.bindings.thrMessageBoardJobCodes.jobCodes;
-    const tweaJobCodes = context.bindings.tweaJobCodes.jobCodes;
-    const wciHealthSafetyLocationCodes = context.bindings.wciHealthSafetyLocationCodes.locationCodes;
-    const wrdsbManagersJobCodes = context.bindings.wrdsbManagersJobCodes.jobCodes;
-    const intranetItsLocationCodes = context.bindings.itsJobCodes.jobCodes;
-    const intranetLibraryJobCodes = context.bindings.intranetLibraryJobCodes.jobCodes;
-    const intranetTrilliumJobCodes = context.bindings.intranetTrilliumJobCodes.jobCodes;
+    const admissionsQnaJobCodes = context.bindings.admissionsQnaJobCodes.job_codes;
+    const deceStaffGroupCodes = context.bindings.deceStaffGroupCodes.group_codes;
+    const eaStaffJobCodes = context.bindings.eaStaffJobCodes.job_codes;
+    const edDeploymentManagerJobCodes = context.bindings.edDeploymentManagerJobCodes.job_codes;
+    const edDeploymentMemberJobCodes = context.bindings.edDeploymentMemberJobCodes.job_codes;
+    const edInquiriesJobCodes = context.bindings.edInquiriesJobCodes.job_codes;
+    const edcLocationCodes = context.bindings.edcLocationCodes.location_codes;
+    const elementarySertsJobCodes = context.bindings.elementarySertsJobCodes.job_codes;
+    const financeJobCodes = context.bindings.financeJobCodes.job_codes;
+    const financeLocationCodes = context.bindings.financeLocationCodes.location_codes;
+    const grcHealthSafetyLocationCodes = context.bindings.grcHealthSafetyLocationCodes.location_codes;
+    const itinerantSpecEdJobCodes = context.bindings.itinerantSpecEdJobCodes.job_codes;
+    const itinerantSpecEdLocationCodes = context.bindings.itinerantSpecEdLocationCodes.location_codes;
+    const itsJobCodes = context.bindings.itsJobCodes.job_codes;
+    const itsLocationCodes = context.bindings.itsLocationCodes.job_codes;
+    const itsStaffManagersJobCodes = context.bindings.itsManagerCodes.job_codes;
+    const procurementQnaJobCodes = context.bindings.procurementQnaJobCodes.job_codes;
+    const psychologistsJobCodes = context.bindings.psychologistsJobCodes.job_codes;
+    const riskJobCodes = context.bindings.riskJobCodes.job_codes;
+    const schoolDayJobCodes = context.bindings.schoolDayJobCodes.job_codes;
+    const secondarySertsJobCodes = context.bindings.secondarySertsJobCodes.job_codes;
+    const smacaElementaryGroupCodes = context.bindings.smacaElementaryGroupCodes.group_codes;
+    const smacaSecondaryGroupCodes = context.bindings.smacaSecondaryGroupCodes.group_codes;
+    const socialWorkersJobCodes = context.bindings.socialWorkersJobCodes.job_codes;
+    const specialEducationLocationCodes = context.bindings.specialEducationLocationCodes.location_codes;
+    const specialEducationConsultantsJobCodes = context.bindings.specialEducationConsultantsJobCodes.job_codes;
+    const speechLanguageJobCodes = context.bindings.speechLanguageJobCodes.job_codes;
+    const systemLeadersJobCodes = context.bindings.systemLeadersJobCodes.job_codes;
+    const thrMessageBoardJobCodes = context.bindings.thrMessageBoardJobCodes.job_codes;
+    const tweaJobCodes = context.bindings.tweaJobCodes.job_codes;
+    const wciHealthSafetyLocationCodes = context.bindings.wciHealthSafetyLocationCodes.location_codes;
+    const wrdsbManagersJobCodes = context.bindings.wrdsbManagersJobCodes.job_codes;
+    const intranetItsLocationCodes = context.bindings.itsJobCodes.job_codes;
+    const intranetLibraryJobCodes = context.bindings.intranetLibraryJobCodes.job_codes;
+    const intranetTrilliumJobCodes = context.bindings.intranetTrilliumJobCodes.job_codes;
 
     let calculatedMembers = await calculateMembers(rows);
 
@@ -168,7 +168,7 @@ const GoogleGroupsMembershipsOneOffsCalculate: AzureFunction = async function (c
     context.done(null, logBlob);
 
 
-    async function calculateMembers (rows) {
+    async function calculateMembers(rows) {
         let members = {
             admissionsQna: {},
             deceStaff: {},
@@ -212,10 +212,9 @@ const GoogleGroupsMembershipsOneOffsCalculate: AzureFunction = async function (c
             let activityCode = (row.ACTIVITY_CODE ) ? row.ACTIVITY_CODE : null;
 
             if (row.EMAIL_ADDRESS
-                && !excluded_jobCodes.includes(row.JOBCODE)
-                && activity_codes.includes(row.ACTIVITY_CODE)
+                && !excludedJobCodes.includes(jobCode)
+                && activityCodes.includes(activityCode)
             ) {
-
                 if (admissionsQnaJobCodes.includes(jobCode)) {
                     members.admissionsQna[email] = {
                         email:          email,
