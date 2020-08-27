@@ -12,7 +12,7 @@ const GoogleGroupsMembershipsRolesCalculate: AzureFunction = async function (con
 
     const functionName = context.executionContext.functionName;
     const functionEventType = 'WRDSB.IGOR.Google.Group.Memberships.Roles.Calculate';
-    const functionEventID = `hagar-functions-${functionName}-${functionInvocationID}`;
+    const functionEventID = `igor-functions-${functionName}-${functionInvocationID}`;
     const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
 
     const logStorageAccount = process.env['storageAccount'];
@@ -31,8 +31,8 @@ const GoogleGroupsMembershipsRolesCalculate: AzureFunction = async function (con
 
     const rows = context.bindings.iamwpRaw;
 
-    const excluded_job_codes = ['6106', '6118'];
-    const activity_codes = ['ACTIVE', 'ONLEAVE'];
+    const excludedJobCodes = ['6106', '6118'];
+    const activityCodes = ['ACTIVE', 'ONLEAVE'];
 
     const elementaryAdminJobCodes = context.bindings.elementaryAdminJobCodes.job_codes;
     const elementaryHeadSecretariesJobCodes = context.bindings.elementaryHeadSecretariesJobCodes.job_codes;
@@ -112,7 +112,7 @@ const GoogleGroupsMembershipsRolesCalculate: AzureFunction = async function (con
     context.done(null, logBlob);
 
 
-    async function calculateMembers (rows) {
+    async function calculateMembers(rows) {
         let members = {
             elementaryAdmin: {},
             elementaryHeadSecretaries: {},
@@ -139,8 +139,8 @@ const GoogleGroupsMembershipsRolesCalculate: AzureFunction = async function (con
             let activityCode = (row.ACTIVITY_CODE ) ? row.ACTIVITY_CODE : null;
 
             if (row.EMAIL_ADDRESS
-                && !excluded_job_codes.includes(jobCode)
-                && activity_codes.includes(activityCode)
+                && !excludedJobCodes.includes(jobCode)
+                && activityCodes.includes(activityCode)
             ) {
                 if (elementaryAdminJobCodes.includes(jobCode)) {
                     members.elementaryAdmin[email] = {

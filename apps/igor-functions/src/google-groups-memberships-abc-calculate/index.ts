@@ -12,7 +12,7 @@ const GoogleGroupsMembershipsABCCalculate: AzureFunction = async function (conte
 
     const functionName = context.executionContext.functionName;
     const functionEventType = 'WRDSB.IGOR.Google.Group.Memberships.ABC.Calculate';
-    const functionEventID = `hagar-functions-${functionName}-${functionInvocationID}`;
+    const functionEventID = `igor-functions-${functionName}-${functionInvocationID}`;
     const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
 
     const logStorageAccount = process.env['storageAccount'];
