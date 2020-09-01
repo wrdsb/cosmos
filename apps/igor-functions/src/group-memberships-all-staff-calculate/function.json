@@ -1,0 +1,69 @@
+{
+    "bindings": [{
+        "name": "triggerMessage",
+        "type": "queueTrigger",
+        "queueName": "group-memberships-all-staff-calculate",
+        "connection": "wrdsbigor_STORAGE",
+        "direction": "in"
+      },
+      {
+        "name": "iamwpRaw",
+        "type": "blob",
+        "path": "hris/view-iamwp-raw.json",
+        "connection": "wrdsbflenderson_STORAGE",
+        "direction": "in"
+      },
+      {
+        "name": "allStaffOutputBlob",
+        "type": "blob",
+        "path": "groups-memberships-ipps-now/all-staff@wrdsb.ca.json",
+        "connection": "wrdsbigor_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "bereavementsOutputBlob",
+        "type": "blob",
+        "path": "groups-memberships-ipps-now/bereavements@wrdsb.ca.json",
+        "connection": "wrdsbigor_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "retirementsOutputBlob",
+        "type": "blob",
+        "path": "groups-memberships-ipps-now/retirements@wrdsb.ca.json",
+        "connection": "wrdsbigor_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "severeWeatherOutputBlob",
+        "type": "blob",
+        "path": "groups-memberships-ipps-now/severe-weather@wrdsb.ca.json",
+        "connection": "wrdsbigor_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "staffOpportunitiesOutputBlob",
+        "type": "blob",
+        "path": "groups-memberships-ipps-now/staff-opportunities@wrdsb.ca.json",
+        "connection": "wrdsbigor_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "callbackMessage",
+        "type": "queue",
+        "queueName": "callbacks",
+        "connection": "wrdsbigor_STORAGE",
+        "direction": "out"
+      },
+      {
+        "name": "flynnEvent",
+        "type": "queue",
+        "queueName": "event-emitter",
+        "connection": "wrdsbigor_STORAGE",
+        "direction": "out"
+      }
+    ],
+    "disabled": false,
+    "scriptFile": "./index.js"
+  }
+  
