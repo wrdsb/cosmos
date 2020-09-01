@@ -1,0 +1,302 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "group-memberships-unions-calculate",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "iamwpRaw",
+      "type": "blob",
+      "path": "hris/view-iamwp-raw.json",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "camaGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "cama_group_codes",
+      "partitionKey": "cama_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "cywJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "cyw_job_codes",
+      "partitionKey": "cyw_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "deceGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "dece_group_codes",
+      "partitionKey": "dece_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "deceExcludedJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "dece_excluded_job_codes",
+      "partitionKey": "dece_excluded_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "deceObserverJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "dece_observer_job_codes",
+      "partitionKey": "dece_observer_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "eaaGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "eaa_group_codes",
+      "partitionKey": "eaa_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "eaaExcludedJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "eaa_excluded_job_codes",
+      "partitionKey": "eaa_excluded_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "essGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "ess_group_codes",
+      "partitionKey": "ess_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "etfoGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "etfo_group_codes",
+      "partitionKey": "etfo_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "osstfContractGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "osstf_contract_group_codes",
+      "partitionKey": "osstf_contract_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "osstfOtGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "osstf_ot_group_codes",
+      "partitionKey": "osstf_ot_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "psspGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "pssp_group_codes",
+      "partitionKey": "pssp_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "smacaGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "smaca_group_codes",
+      "partitionKey": "smaca_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "smacaElementaryGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "smaca_elementary_group_codes",
+      "partitionKey": "smaca_elementary_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "smacaSecondaryGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "smaca_secondary_group_codes",
+      "partitionKey": "smaca_secondary_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "camaOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/cama@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "cywOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/cyw@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "cywElementaryOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/cyw-elementary@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "cywSecondaryOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/cyw-secondary@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "deceOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/dece@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "deceInfoOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/dece-info@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "eaaOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/eaa@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "eaaElementaryOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/eaa-elementary@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "eaaSecondaryOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/eaa-secondary@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "essOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/ess@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "etfoOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/etfo@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "osstfContractOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/osstf-contract@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "osstfOTOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/osstf-ot@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "psspOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/pssp@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "smacaOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/smaca@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "smacaElementaryOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/smaca-elementary@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "smacaSecondaryOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/smaca-secondary@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "callbackMessage",
+      "type": "queue",
+      "queueName": "callbacks",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "flynnEvent",
+      "type": "queue",
+      "queueName": "event-emitter",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
