@@ -1,0 +1,151 @@
+{
+  "bindings": [{
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "name": "groupCreate",
+      "type": "queue",
+      "queueName": "group-create",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupDelete",
+      "type": "queue",
+      "queueName": "group-delete",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupGet",
+      "type": "queue",
+      "queueName": "group-get",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupMembershipsABCCalculate",
+      "type": "queue",
+      "queueName": "group-memberships-abc-calculate",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupMembershipsABCCalculateAll",
+      "type": "queue",
+      "queueName": "group-memberships-abc-calculate-all",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupMembershipsALLStaffCalculate",
+      "type": "queue",
+      "queueName": "group-memberships-all-staff-calculate",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupMembershipsOneOffsCalculate",
+      "type": "queue",
+      "queueName": "group-memberships-one-offs-calculate",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupMembershipsRolesCalculate",
+      "type": "queue",
+      "queueName": "group-memberships-roles-calculate",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupMembershipsStudentsCalculate",
+      "type": "queue",
+      "queueName": "group-memberships-students-calculate",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupMembershipsStudentsCalculateAll",
+      "type": "queue",
+      "queueName": "group-memberships-students-calculate-all",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupMembershipsUnionsCalculate",
+      "type": "queue",
+      "queueName": "group-memberships-unions-calculate",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupStore",
+      "type": "queue",
+      "queueName": "group-store",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupUpdate",
+      "type": "queue",
+      "queueName": "group-update",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupsCreateBulk",
+      "type": "queue",
+      "queueName": "groups-create-bulk",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupsGetAll",
+      "type": "queue",
+      "queueName": "groups-get-all",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupsList",
+      "type": "queue",
+      "queueName": "groups-list",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupsListParse",
+      "type": "queue",
+      "queueName": "groups-list-parse",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "groupsReconcile",
+      "type": "queue",
+      "queueName": "groups-reconcile",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
