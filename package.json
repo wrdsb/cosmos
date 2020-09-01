@@ -51,6 +51,7 @@
     "@azure/msal-angular": "^1.0.0",
     "@azure/search-documents": "^11.0.3",
     "@azure/storage-blob": "^12.1.2",
+    "@azure/storage-file-datalake": "^12.1.0-preview.1",
     "@azure/storage-queue": "^12.0.4",
     "@fortawesome/angular-fontawesome": "^0.6.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
