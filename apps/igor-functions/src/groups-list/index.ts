@@ -8,7 +8,7 @@ const groupsList: AzureFunction = async function (context: Context, triggerMessa
         functionApp: 'IGOR',
         functionName: context.executionContext.functionName,
         functionDataType: 'Group',
-        functionDataOperation: 'Command',
+        functionDataOperation: 'List',
         eventLabel: ''
     };
 
