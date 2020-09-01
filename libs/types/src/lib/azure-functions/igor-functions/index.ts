@@ -15,3 +15,5 @@ export * from './group-memberships-one-offs-calculate';
 export * from './group-memberships-unions-calculate';
 export * from './groups-memberships-students-calculate';
 export * from './groups-memberships-students-calculate-all';
+
+export * from './google-group-store';
