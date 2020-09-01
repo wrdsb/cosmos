@@ -37,6 +37,20 @@ interface FunctionResponse {
     readonly payload: FunctionResponsePayload;
 }
 
+interface FunctionInvocation {
+    functionInvocationID: string;
+    functionInvocationTimestamp: string;
+
+    functionApp: string;
+    functionName: string;
+    functionDataType: string;
+    functionDataOperation: string;
+
+    eventLabel: string;
+
+    logPayload?: string;
+}
+
 interface FunctionLogObject {
     id: FunctionLogID;
     function_name: FunctionName;
@@ -116,6 +130,7 @@ export {
 
     FunctionRequest,
     FunctionResponse,
+    FunctionInvocation,
     FunctionLogObject,
     FunctionCallbackMessage,
     FunctionInvocationEvent,
