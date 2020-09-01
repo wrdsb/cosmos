@@ -1,0 +1,33 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "groups-list",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "allGroupsArrayBlob",
+      "type": "blob",
+      "path": "groups-lists/all-groups-array.json",
+      "connection": "wrdsb-igor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "allGroupsObjectBlob",
+      "type": "blob",
+      "path": "groups-lists/all-groups-object.json",
+      "connection": "wrdsb-igor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
