@@ -221,14 +221,14 @@
       "name": "callbackMessage",
       "type": "queue",
       "queueName": "callbacks",
-      "connection": "wrdsbigor_STORAGE",
+      "connection": "wrdsbigor3_STORAGE",
       "direction": "out"
     },
     {
       "name": "flynnEvent",
       "type": "queue",
       "queueName": "event-emitter",
-      "connection": "wrdsbigor_STORAGE",
+      "connection": "wrdsbigor3_STORAGE",
       "direction": "out"
     }
   ],

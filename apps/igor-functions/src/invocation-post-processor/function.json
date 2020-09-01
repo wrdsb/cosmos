@@ -3,28 +3,21 @@
       "name": "triggerMessage",
       "type": "queueTrigger",
       "queueName": "invocation-post-processor",
-      "connection": "wrdsbigor_STORAGE",
+      "connection": "wrdsbigor3_STORAGE",
       "direction": "in"
-    },
-    {
-      "name": "logBlob",
-      "type": "blob",
-      "path": "groups-memberships-ipps-now/{payload.schoolCode}-admin@wrdsb.ca.json",
-      "connection": "wrdsbigor_STORAGE",
-      "direction": "out"
     },
     {
       "name": "callbackMessage",
       "type": "queue",
       "queueName": "callbacks",
-      "connection": "wrdsbigor_STORAGE",
+      "connection": "wrdsbigor3_STORAGE",
       "direction": "out"
     },
     {
       "name": "flynnEvent",
       "type": "queue",
       "queueName": "event-emitter",
-      "connection": "wrdsbigor_STORAGE",
+      "connection": "wrdsbigor3_STORAGE",
       "direction": "out"
     }
   ],

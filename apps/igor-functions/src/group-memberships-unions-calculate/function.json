@@ -3,7 +3,7 @@
       "name": "triggerMessage",
       "type": "queueTrigger",
       "queueName": "group-memberships-unions-calculate",
-      "connection": "wrdsbigor_STORAGE",
+      "connection": "wrdsbigor3_STORAGE",
       "direction": "in"
     },
     {
