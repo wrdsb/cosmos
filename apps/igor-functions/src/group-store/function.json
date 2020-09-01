@@ -8,6 +8,25 @@
       "direction": "in"
     },
     {
+      "name": "recordIn",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-groups",
+      "id" : "{email}",
+      "partitionKey": "{email}",
+      "connectionStringSetting": "wrdsb-igor_CosmosDB",
+      "direction": "in"
+    },
+    {
+      "name": "recordOut",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-groups",
+      "createIfNotExists": false,
+      "connectionStringSetting": "wrdsb-igor_CosmosDB",
+      "direction": "out"
+    },
+    {
       "name": "invocationPostProcessor",
       "type": "queue",
       "queueName": "invocation-post-processor",
