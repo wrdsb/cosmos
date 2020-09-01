@@ -1,0 +1,221 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "group-memberships-abc-calculate",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "iamwpRaw",
+      "type": "blob",
+      "path": "hris/view-iamwp-raw.json",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "abcAdminJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "abc_admin_job_codes",
+      "partitionKey": "abc_admin_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcAttendanceJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "abc_attendance_job_codes",
+      "partitionKey": "abc_attendance_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcBeforeafterJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "abc_beforeafter_job_codes",
+      "partitionKey": "abc_beforeafter_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcCourierJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "abc_courier_job_codes",
+      "partitionKey": "abc_courier_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcEasyconnectJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "abc_easyconnect_job_codes",
+      "partitionKey": "abc_easyconnect_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcItsJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "abc_its_job_codes",
+      "partitionKey": "abc_its_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcOfficeJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "abc_office_job_codes",
+      "partitionKey": "abc_office_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcOrdersJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "abc_orders_job_codes",
+      "partitionKey": "abc_orders_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcS4sJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "abc_s4s_job_codes",
+      "partitionKey": "abc_s4s_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "adminOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-admin@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "attendanceOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-attendance@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "beforeafterOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-beforeafter@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "easyconnectOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-easyconnect@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "itsOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-its@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "itunesOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-itunes@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "officeOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-office@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "ordersOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-orders@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "registrationsOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-registrations@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "s4sOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-s4s@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "staffOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-staff@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "staffDiscussionOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-staff-discussion@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "stswrOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}-stswr@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "publicOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/{payload.schoolCode}@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "callbackMessage",
+      "type": "queue",
+      "queueName": "callbacks",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "flynnEvent",
+      "type": "queue",
+      "queueName": "event-emitter",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
