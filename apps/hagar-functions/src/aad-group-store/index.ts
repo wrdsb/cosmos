@@ -29,7 +29,18 @@ const aadGroupStore: AzureFunction = async function (context: Context, triggerMe
     const payload = triggerObject.payload as AADGroupStoreFunctionRequestPayload;
 
     let oldRecord = context.bindings.recordIn;
-    let newRecord;
+    let newRecord = {
+        created_at: '',
+        updated_at: '',
+        deleted_at: '',
+        deleted: false,
+        businessOwner: "",
+        membershipAutomationActive: false,
+        automateMembers: false,
+        membersPeopleSets: [],
+        configurationAutomationActive: false,
+        configurationTemplates: false
+    };
     let result;
 
     let statusCode;
@@ -37,17 +48,17 @@ const aadGroupStore: AzureFunction = async function (context: Context, triggerMe
 
     switch (operation) {
         case 'delete':
-            result = doDelete(oldRecord, payload);
+            result = doDelete(oldRecord, newRecord, payload);
             statusCode = '200';
             statusMessage = 'Success: Marked group record deleted.';
             break;
         case 'patch':
-            result = doPatch(oldRecord, payload);
+            result = doPatch(oldRecord, newRecord, payload);
             statusCode = '200';
             statusMessage = 'Success: Patched group record.';
             break;
         case 'replace':
-            result = doReplace(oldRecord, payload);
+            result = doReplace(oldRecord, newRecord, payload);
             statusCode = '200';
             statusMessage = 'Success: Replaced group record.';
             break;
@@ -85,21 +96,9 @@ const aadGroupStore: AzureFunction = async function (context: Context, triggerMe
 
     context.done(null, logBlob);
 
-    function doDelete(oldRecord, payload)
+    function doDelete(oldRecord, newRecord, payload)
     {
         let event = {};
-        let newRecord = {
-            created_at: '',
-            updated_at: '',
-            deleted_at: '',
-            deleted: false,
-            businessOwner: "",
-            membershipAutomationActive: false,
-            automateMembers: false,
-            membersPeopleSets: [],
-            configurationAutomationActive: false,
-            configurationTemplates: false
-        };
 
         // check for existing record
         if (!oldRecord) {
@@ -126,21 +125,9 @@ const aadGroupStore: AzureFunction = async function (context: Context, triggerMe
         return {event: event, newRecord: newRecord};
     }
 
-    function doPatch(oldRecord, payload)
+    function doPatch(oldRecord, newRecord, payload)
     {
         let event = {};
-        let newRecord = {
-            created_at: '',
-            updated_at: '',
-            deleted_at: '',
-            deleted: false,
-            businessOwner: "",
-            membershipAutomationActive: false,
-            automateMembers: false,
-            membersPeopleSets: [],
-            configurationAutomationActive: false,
-            configurationTemplates: false
-        };
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
@@ -168,21 +155,9 @@ const aadGroupStore: AzureFunction = async function (context: Context, triggerMe
         return {event: event, newRecord: newRecord};
     }
     
-    function doReplace(oldRecord, payload)
+    function doReplace(oldRecord, newRecord, payload)
     {
         let event = {};
-        let newRecord = {
-            created_at: '',
-            updated_at: '',
-            deleted_at: '',
-            deleted: false,
-            businessOwner: "",
-            membershipAutomationActive: false,
-            automateMembers: false,
-            membersPeopleSets: [],
-            configurationAutomationActive: false,
-            configurationTemplates: false
-        };
 
         newRecord = Object.assign(newRecord, payload);
 
