@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 
@@ -14,7 +14,7 @@ export class IGORService {
   private pingURL = 'https://wrdsb-igor3.azurewebsites.net/api/ping';
   
   private googleGroupsCommandURL = 'https://wrdsb-igor3.azurewebsites.net/api/google-group-command';
-  private googleGroupsQueryURL = 'https://wrdsb-igor3.azurewebsites.net/api/groups-query';
+  private googleGroupsQueryURL = 'https://wrdsb-igor3.azurewebsites.net/api/group-query';
   private googleGroupsSearchURL = '';
 
   private usersURL = '';
@@ -88,18 +88,17 @@ export class IGORService {
   }
 
   listGroups(list: string): Observable<IGORGroup[]> {
-    let req = {
-      operation: 'list',
-      payload: list
-    };
     console.log('IGOR: list groups');
 
-    this.httpOptions = {
+    let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-      })
+      }),
+      params: new HttpParams()
+        .set('operation', 'list')
+        .set('payload', list)
     };
-    let groups = this.http.post<IGORGroup[]>(this.googleGroupsQueryURL, req, this.httpOptions);
+    let groups = this.http.get<IGORGroup[]>(this.googleGroupsQueryURL, httpOptions);
     return groups;
   }
 }
