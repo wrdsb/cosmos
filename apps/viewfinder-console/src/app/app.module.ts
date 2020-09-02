@@ -19,7 +19,8 @@ import { UserAuthModule } from "@cosmos/user-auth";
 import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
 import { PagesModule } from "@cosmos/pages";
-import { NotificationsModule } from '@cosmos/notifications'
+import { NotificationsModule } from '@cosmos/notifications';
+import { ServiceWorkerModule } from '@angular/service-worker'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NotificationsModule } from '@cosmos/notifications'
     ChassisModule,
     PanelsModule,
     PagesModule,
-    NotificationsModule
+    NotificationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
