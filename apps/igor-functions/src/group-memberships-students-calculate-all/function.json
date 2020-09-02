@@ -16,8 +16,8 @@
     {
       "name": "outputQueue",
       "type": "queue",
-      "queueName": "google-groups-memberships-students-calculate",
-      "connection": "wrdsbigor_STORAGE",
+      "queueName": "group-memberships-students-calculate",
+      "connection": "wrdsbigor3_STORAGE",
       "direction": "out"
     },
     {

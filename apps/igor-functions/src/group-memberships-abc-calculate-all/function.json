@@ -16,7 +16,7 @@
     {
       "name": "outputQueue",
       "type": "queue",
-      "queueName": "google-groups-memberships-abc-calculate",
+      "queueName": "group-memberships-abc-calculate",
       "connection": "wrdsbigor3_STORAGE",
       "direction": "out"
     },
