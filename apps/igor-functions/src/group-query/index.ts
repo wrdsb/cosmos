@@ -57,7 +57,7 @@ const groupQuery: AzureFunction = async function (context: Context, req: HttpReq
         //}
     //};
 
-    const query = req.body;
+    const query = req.query;
     const operation = query.operation;
     const payload = query.payload;
 
@@ -85,18 +85,14 @@ const groupQuery: AzureFunction = async function (context: Context, req: HttpReq
             }
             break;
         case 'find':
-            if (payload.id) {
-                cosmosQuery = `SELECT * FROM c where c.id = "${payload.id}"`;
-            } else if (payload.email) {
-                cosmosQuery = `SELECT * FROM c where c.email = "${payload.email}"`;
-            } else if (payload.name) {
-                cosmosQuery = `SELECT * FROM c where c.name = "${payload.name}"`;
+            if (payload) {
+                cosmosQuery = `SELECT * FROM c where c.email = "${payload}"`
             } else {
                 context.res = {
                     status: 400,
-                    body: "One of id, email, or name is required."
+                    body: "Please supply an email address in the query payload."
                 };
-                context.done("One of id, email, or name is required.");
+                context.done("Please supply an email address in the query payload.");
             }
             break;
         default:
