@@ -5,8 +5,7 @@
       "type": "httpTrigger",
       "authLevel": "anonymous",
       "methods": [
-        "get",
-        "post"
+        "get"
       ],
       "direction": "in"
     },
