@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1599157876984,
+  "timestamp": 1599159610587,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -44,7 +44,19 @@
       "patterns": []
     }
   ],
-  "dataGroups": [],
+  "dataGroups": [
+    {
+      "name": "igor-api",
+      "patterns": [
+        "https:\\/\\/wrdsb-igor3\\.azurewebsites\\.net\\/api\\/(?:.+\\/)?[^/]*\\.json"
+      ],
+      "strategy": "freshness",
+      "maxSize": 20,
+      "maxAge": 172800000,
+      "timeoutMs": 0,
+      "version": 1
+    }
+  ],
   "hashTable": {
     "/6-es2015.00e8e3907686d6143ec1.js": "20292ab5d6891bd1828b51becb14435a8a651d0a",
     "/6-es5.00e8e3907686d6143ec1.js": "867201f2e149b1f30a5a6d39463d381e77422898",
