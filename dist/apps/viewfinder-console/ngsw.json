@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1599159610587,
+  "timestamp": 1599160441422,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -48,7 +48,7 @@
     {
       "name": "igor-api",
       "patterns": [
-        "https:\\/\\/wrdsb-igor3\\.azurewebsites\\.net\\/api\\/(?:.+\\/)?[^/]*\\.json"
+        "https:\\/\\/wrdsb-igor3\\.azurewebsites\\.net\\/api\\/.*"
       ],
       "strategy": "freshness",
       "maxSize": 20,
