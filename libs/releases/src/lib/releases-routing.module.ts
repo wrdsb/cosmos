@@ -3,24 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 import { RolesGuard } from "@cosmos/guards";
 
-import { GroupsHomeComponent } from './groups-home/groups-home.component';
-import { GroupDetailComponent } from './group-detail/group-detail.component';
-import { GroupsListComponent } from './groups-list/groups-list.component';
+import { ReleasesHomeComponent } from "./releases-home/releases-home.component";
+import { ReleaseInfoComponent } from './release-info/release-info.component';
 
 const routes: Routes = [
   {
-    path: 'group',
-    component: GroupDetailComponent,
-    data: {
-      roles: ['cosmos-superuser', 'cosmos-user-its']
-    },
-    canActivate: [
-      MsalGuard, RolesGuard
-    ]
-  },
-  { 
-    path: 'list',
-    component: GroupsListComponent,
+    path: 'release',
+    component: ReleaseInfoComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -30,7 +19,7 @@ const routes: Routes = [
   },
   { 
     path: '',
-    component: GroupsHomeComponent,
+    component: ReleasesHomeComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -44,4 +33,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GoogleGroupsRoutingModule { }
+export class ReleasesRoutingModule { }

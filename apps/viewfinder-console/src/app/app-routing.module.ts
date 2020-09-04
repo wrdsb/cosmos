@@ -32,6 +32,13 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'releases',
+    loadChildren: () => import('@cosmos/releases').then(m => m.ReleasesModule),
+    canActivate: [
+      MsalGuard
+    ]
+  },
+  {
     path: '',
     loadChildren: () => import('@cosmos/pages').then(m => m.PagesModule)
   },
