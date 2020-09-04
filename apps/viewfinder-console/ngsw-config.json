@@ -25,5 +25,19 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "igor-api",
+      "urls": [
+        "https://wrdsb-igor3.azurewebsites.net/api/goup**"
+      ],
+      "cacheConfig": {
+        "maxSize": 20,
+        "maxAge": "2d",
+        "strategy": "freshness",
+        "timeout": "0u"
+      }
+    }
   ]
 }
