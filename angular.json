@@ -4475,6 +4475,38 @@
           }
         }
       }
+    },
+    "releases": {
+      "projectType": "library",
+      "root": "libs/releases",
+      "sourceRoot": "libs/releases/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/releases/tsconfig.lib.json",
+              "libs/releases/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/releases/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/releases/jest.config.js",
+            "tsConfig": "libs/releases/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/releases/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

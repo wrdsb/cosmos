@@ -64,7 +64,8 @@
       "@cosmos/pings": ["libs/pings/src/index.ts"],
       "@cosmos/codex-personality-matrix": [
         "libs/codex-personality-matrix/src/index.ts"
-      ]
+      ],
+      "@cosmos/releases": ["libs/releases/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
