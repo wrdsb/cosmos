@@ -1,0 +1,38 @@
+{
+    "bindings": [{
+        "name": "triggerMessage",
+        "type": "queueTrigger",
+        "queueName": "trillium-enrolment-store",
+        "connection": "wrdsbskinner_STORAGE",
+        "direction": "in"
+      },
+      {
+        "name": "recordIn",
+        "type": "cosmosDB",
+        "databaseName": "skinner",
+        "collectionName": "enrolments",
+        "id": "{payload.id}",
+        "partitionKey": "{payload.id}",
+        "connectionStringSetting": "wrdsb-skinner_COSMOSDB",
+        "direction": "in"
+      },
+      {
+        "name": "recordOut",
+        "type": "cosmosDB",
+        "databaseName": "skinner",
+        "collectionName": "enrolments",
+        "connectionStringSetting": "wrdsb-skinner_COSMOSDB",
+        "direction": "out"
+      },
+      {
+        "name": "invocationPostProcessor",
+        "type": "queue",
+        "queueName": "invocation-post-processor",
+        "connection": "wrdsbskinner_STORAGE",
+        "direction": "out"
+      }
+    ],
+    "disabled": false,
+    "scriptFile": "./index.js"
+  }
+  
