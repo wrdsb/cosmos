@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/schumajr/cosmos/apps/flenderson-functions/extensions.csproj": {}
+  },
+  "projects": {
+    "/home/schumajr/cosmos/apps/flenderson-functions/extensions.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/schumajr/cosmos/apps/flenderson-functions/extensions.csproj",
+        "projectName": "extensions",
+        "projectPath": "/home/schumajr/cosmos/apps/flenderson-functions/extensions.csproj",
+        "packagesPath": "/home/schumajr/.nuget/packages/",
+        "outputPath": "/home/schumajr/cosmos/apps/flenderson-functions/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/schumajr/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.Azure.WebJobs.Extensions.CosmosDB": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Microsoft.Azure.WebJobs.Extensions.EventHubs": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Azure.WebJobs.Extensions.Storage": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Azure.WebJobs.Script.ExtensionsMetadataGenerator": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
