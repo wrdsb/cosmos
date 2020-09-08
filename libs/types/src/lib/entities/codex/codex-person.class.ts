@@ -1,6 +1,6 @@
 import { Person } from "../conceptual/person.interface";
 import { IPPSRecord } from "../ipps/ipps-record.class";
-import { TrilliumRecord } from "../trillium/trillium-record.class";
+import { TrilliumRecord } from "../trillium/trillium-record";
 
 class CodexPerson implements Person {
     id: string;

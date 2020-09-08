@@ -1,2 +1,10 @@
-export * from './trillium-assignment.class';
-export * from './trillium-record.class';
+export * from './trillium-assignment';
+export * from './trillium-class';
+export * from './trillium-enrolment';
+export * from './trillium-record';
+export * from './trillium-school';
+export * from './trillium-staff';
+export * from './trillium-student';
+export * from './trillium-teacher';
+
+export * from './trillium-record';
