@@ -11,3 +11,6 @@ export * from './trillium-teacher-store';
 export * from './view-gclassroom-process';
 export * from './view-skinnerassignments-process';
 export * from './view-skinnerstaff-process';
+
+export * from './view-skinnerassignments-extract-assignments';
+export * from './view-skinnerstaff-extract-staff';
