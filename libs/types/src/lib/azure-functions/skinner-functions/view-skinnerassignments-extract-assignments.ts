@@ -1,0 +1,44 @@
+import * as Cosmos from "../common";
+
+interface ViewSkinnerAssignmentsExtractAssignmentsFunctionRequest extends Cosmos.FunctionRequest {
+    readonly payload: ViewSkinnerAssignmentsExtractAssignmentsFunctionRequestPayload;
+}
+
+interface ViewSkinnerAssignmentsExtractAssignmentsFunctionResponse extends Cosmos.FunctionResponse {
+    readonly payload: ViewSkinnerAssignmentsExtractAssignmentsFunctionResponsePayload;
+}
+
+interface ViewSkinnerAssignmentsExtractAssignmentsFunctionLogObject extends Cosmos.FunctionLogObject {
+    readonly payload: ViewSkinnerAssignmentsExtractAssignmentsFunctionResponsePayload;
+}
+
+interface ViewSkinnerAssignmentsExtractAssignmentsFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
+
+interface ViewSkinnerAssignmentsExtractAssignmentsFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
+    readonly data: ViewSkinnerAssignmentsExtractAssignmentsFunctionInvocationEventPayload;
+}
+
+interface ViewSkinnerAssignmentsExtractAssignmentsFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+}
+
+interface ViewSkinnerAssignmentsExtractAssignmentsFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
+}
+
+interface ViewSkinnerAssignmentsExtractAssignmentsFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
+
+interface ViewSkinnerAssignmentsExtractAssignmentsFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
+
+interface ViewSkinnerAssignmentsExtractAssignmentsFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
+
+export {
+    ViewSkinnerAssignmentsExtractAssignmentsFunctionRequest,
+    ViewSkinnerAssignmentsExtractAssignmentsFunctionResponse,
+    ViewSkinnerAssignmentsExtractAssignmentsFunctionLogObject,
+    ViewSkinnerAssignmentsExtractAssignmentsFunctionCallbackMessage,
+    ViewSkinnerAssignmentsExtractAssignmentsFunctionInvocationEvent,
+    ViewSkinnerAssignmentsExtractAssignmentsFunctionRequestPayload,
+    ViewSkinnerAssignmentsExtractAssignmentsFunctionResponsePayload,
+    ViewSkinnerAssignmentsExtractAssignmentsFunctionLogObjectPayload,
+    ViewSkinnerAssignmentsExtractAssignmentsFunctionCallbackMessagePayload,
+    ViewSkinnerAssignmentsExtractAssignmentsFunctionInvocationEventPayload
+}

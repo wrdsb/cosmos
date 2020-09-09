@@ -1,13 +1,13 @@
 interface TrilliumAssignment {
   id?: string;
-  ein: string;
-  school_code: string;
-  class_code: string;
+  staffNumber: string;
+  schoolCode: string;
+  classCode: string;
   block: string;
-  room_number: string;
-  created_at: string;
-  updated_at: string;
-  deleted_at: string;
+  roomNumber: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string;
   deleted: boolean
 }
 
