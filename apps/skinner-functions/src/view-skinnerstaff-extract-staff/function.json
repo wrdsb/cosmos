@@ -1,0 +1,48 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "view-skinnerstaff-extract-staff",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "viewRaw",
+            "type": "blob",
+            "path": "trillium/view-skinnerstaff-raw.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "staffNowArray",
+            "type": "blob",
+            "path": "trillium/staff-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "staffNowObject",
+            "type": "blob",
+            "path": "trillium/staff-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "triggerJobs",
+            "type": "queue",
+            "queueName": "job-enqueue",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "invocationPostProcessor",
+            "type": "queue",
+            "queueName": "invocation-post-processor",
+            "connection": "wrdsbigor3_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "./index.js"
+}
