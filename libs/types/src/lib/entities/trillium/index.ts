@@ -8,3 +8,6 @@ export * from './trillium-student';
 export * from './trillium-teacher';
 
 export * from './trillium-record';
+export * from './view-gclassroom-record';
+export * from './view-skinner-assignments-record';
+export * from './view-skinner-staff-record';
