@@ -22,32 +22,18 @@
             "direction": "out"
         },
         {
-            "name": "assignmentsNowArray",
-            "type": "blob",
-            "path": "trillium/assignments-now-array.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "assignmentsNowObject",
-            "type": "blob",
-            "path": "trillium/assignments-now-object.json",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "callbackMessage",
-            "type": "queue",
-            "direction": "out",
-            "queueName": "callbacks",
-            "connection": "wrdsbskinner_STORAGE"
-        },
-        {
             "name": "triggerJobs",
             "type": "queue",
             "queueName": "job-enqueue",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbigor3_STORAGE",
+          "direction": "out"
         }
     ],
     "disabled": false,

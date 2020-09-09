@@ -1,77 +1,56 @@
-import { AzureFunction, Context } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions";
+import { FunctionInvocation, ViewSkinnerAssignmentsProcessFunctionRequest, ViewSkinnerAssignmentsProcessFunctionRequestPayload, ViewSkinnerAssignmentsRecord } from "@cosmos/types";
 
-const viewSkinnerAssignmentsProcess: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
-    const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
+const viewSkinnerAssignmentsProcess: AzureFunction = async function (context: Context, triggerMessage: ViewSkinnerAssignmentsProcessFunctionRequest): Promise<void> {
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'Skinner',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'ViewSkinnerAssignments',
+        functionDataOperation: 'Process',
+        eventLabel: ''
+    } as FunctionInvocation;
 
-    const panamaBlob = context.bindings.panamaBlob;
+    const triggerObject = triggerMessage as ViewSkinnerAssignmentsProcessFunctionRequest;
+    const payload = triggerObject.payload as ViewSkinnerAssignmentsProcessFunctionRequestPayload;
 
-    const rows = panamaBlob;
+    const rows = context.bindings.panamaBlob;
 
-    let assignmentsArray = [];
-    let assignmentsObject = {};
+    let rowsArray = [];
 
     rows.forEach(function(row) {
-        let ein          = row.STAFF_NO ? row.STAFF_NO.trim() : "00000";
-        let school_code  = row.SCHOOL_CODE ? row.SCHOOL_CODE.trim() : "";
-        let class_code   = row.CLASS_CODE ? row.CLASS_CODE.trim() : "";
+        let staffNumber  = row.STAFF_NO ? row.STAFF_NO.trim() : "";
+        let schoolCode   = row.SCHOOL_CODE ? row.SCHOOL_CODE.trim() : "";
+        let classCode    = row.CLASS_CODE ? row.CLASS_CODE.trim() : "";
         let block        = row.BLOCK ? row.BLOCK.trim() : "";
-        let room_number  = row.ROOM_NO ? row.ROOM_NO.trim() : "";
+        let roomNumber   = row.ROOM_NO ? row.ROOM_NO.trim() : "";
 
-        let assignment = {
-            ein:         ein,
-            school_code: school_code,
-            class_code:  class_code,
+        let rowObject = {
+            staffNumber: staffNumber,
+            schoolCode:  schoolCode,
+            classCode:   classCode,
             block:       block,
-            room_number: room_number
-        };
+            roomNumber:  roomNumber
+        } as ViewSkinnerAssignmentsRecord;
 
-        if (assignment.ein !== "00000") {
-            assignmentsArray.push(assignment);
-            if (assignmentsObject[assignment.ein]) {
-                assignmentsObject[assignment.ein].assignments.push(assignment);
-            } else {
-                assignmentsObject[assignment.ein] = {
-                    id: assignment.ein,
-                    ein: assignment.ein,
-                    assignments: []
-                };
-                assignmentsObject[assignment.ein].assignments.push(assignment);
-            }
-        }
+        rowsArray.push(rowObject);
     });
 
     // Write out Skinner's local copy of Panama's raw data
-    context.bindings.viewRaw = JSON.stringify(panamaBlob);
-
-    // Write out arrays and objects to blobs
-    context.bindings.assignmentsNowArray = JSON.stringify(assignmentsArray);
-    context.bindings.assignmentsNowObject = JSON.stringify(assignmentsObject);
-
-    let callbackMessage = {
-        id: 'skinner-functions-' + context.executionContext.functionName +'-'+ context.executionContext.invocationId,
-        eventType: 'Skinner.View.SkinnerAssignments.Process',
-        eventTime: execution_timestamp,
-        //subject: ,
-        data: {
-            event_type: 'function_invocation',
-            app: 'wrdsb-skinner',
-            function_name: context.executionContext.functionName,
-            invocation_id: context.executionContext.invocationId,
-            data: {},
-            timestamp: execution_timestamp
-        },
-        dataVersion: '1'
-    };
-
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage.data);
+    context.bindings.viewRaw = JSON.stringify(rowsArray);
 
     const sis_assignments_reconcile_job =     {
         "job_type": "Skinner.Assignments.Differences.Reconcile"
     };
     context.bindings.triggerJobs = [JSON.stringify(sis_assignments_reconcile_job)];
 
-    context.log(JSON.stringify(callbackMessage));
-    context.done(null, callbackMessage);
+    const logPayload = "";
+    functionInvocation.logPayload = logPayload;
+    context.log(logPayload);
+
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 };
 
 export default viewSkinnerAssignmentsProcess;
