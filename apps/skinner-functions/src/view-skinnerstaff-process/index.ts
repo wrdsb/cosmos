@@ -7,7 +7,7 @@ const viewSkinnerStaffProcess: AzureFunction = async function (context: Context,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Skinner',
         functionName: context.executionContext.functionName,
-        functionDataType: 'ViewSkinnerAssignments',
+        functionDataType: 'ViewSkinnerStaff',
         functionDataOperation: 'Process',
         eventLabel: ''
     } as FunctionInvocation;

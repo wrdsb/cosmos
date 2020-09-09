@@ -7,7 +7,7 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Skinner',
         functionName: context.executionContext.functionName,
-        functionDataType: 'ViewSkinnerAssignments',
+        functionDataType: 'ViewGclassroom',
         functionDataOperation: 'Process',
         eventLabel: ''
     } as FunctionInvocation;
