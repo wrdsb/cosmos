@@ -1,39 +1,51 @@
-import { AzureFunction, Context } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions";
+import { FunctionInvocation, ViewGclassroomExtractStudentsFunctionRequest, ViewGclassroomExtractStudentsFunctionRequestPayload, ViewGclassroomRecord, TrilliumStudent } from "@cosmos/types";
 
-const viewGClassroomExtractStudents: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
-    const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
+const viewGclassroomExtractStudents: AzureFunction = async function (context: Context, triggerMessage: ViewGclassroomExtractStudentsFunctionRequest): Promise<void> {
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'Skinner',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'ViewGclassroom',
+        functionDataOperation: 'ExtractClasses',
+        eventLabel: ''
+    } as FunctionInvocation;
 
-    const panamaBlob = context.bindings.panamaBlob;
+    const triggerObject = triggerMessage as ViewGclassroomExtractStudentsFunctionRequest;
+    const payload = triggerObject.payload as ViewGclassroomExtractStudentsFunctionRequestPayload;
 
-    const rows = panamaBlob;
+    const objects = context.bindings.viewRaw;
 
     let studentsObject = {};
     let studentsArray = [];
 
-    rows.forEach(function(row) {
-        let school_code        = row.SCHOOL_CODE;
+    objects.forEach(function(record: ViewGclassroomRecord) {
+        let schoolCode        = record.schoolCode ? record.schoolCode : "";
 
-        let student_number     = row.STUDENT_NO;
-        let student_first_name = row.STUDENT_FIRST_NAME;
-        let student_last_name  = row.STUDENT_LAST_NAME;
-        let student_email      = row.STUDENT_EMAIL;
-        let student_oyap       = row.OYAP;
+        let studentNumber     = record.studentNumber ? record.studentNumber : "";
+        let studentFirstName  = record.studentFirstName ? record.studentFirstName : "";
+        let studentLastName   = record.studentLastName ? record.studentLastName : "";
+        let studentEmail      = record.studentEmail ? record.studentEmail : "";
+        let studentOyap       = record.studentOyap ? record.studentOyap : "";
 
-        let studentObjectID   = sanitizeID(student_number);
+        if (studentNumber !== "") {
+            let studentObjectID   = sanitizeID(studentNumber);
 
-        // Extract the 'student' object from the row
-        let studentObject = {
-            id:                 studentObjectID,
-            student_number:     student_number,
-            student_email:      student_email,
-            student_first_name: student_first_name,
-            student_last_name:  student_last_name,
-            school_code:        school_code,
-            student_oyap:       student_oyap
-        };
+            // Extract the 'student' object from the row
+            let studentObject = {
+                id:                studentObjectID,
+                studentNumber:     studentNumber,
+                studentEmail:      studentEmail,
+                studentFirstName:  studentFirstName,
+                studentLastName:   studentLastName,
+                schoolCode:        schoolCode,
+                studentOyap:       studentOyap
+            } as TrilliumStudent;
 
-        // Add/overwrite individual objects from this row to their collection objects
-        studentsObject[studentObject.id]     = studentObject;
+            // Add/overwrite individual objects from this row to their collection objects
+            studentsObject[studentObjectID] = studentObject;
+        }
     });
 
     // Add each student from studentsObject to studentsArray
@@ -45,26 +57,17 @@ const viewGClassroomExtractStudents: AzureFunction = async function (context: Co
     context.bindings.studentsNowArray = JSON.stringify(studentsArray);
     context.bindings.studentsNowObject = JSON.stringify(studentsObject);
 
-    let callbackMessage = {
-        id: 'skinner-functions-' + context.executionContext.functionName +'-'+ context.executionContext.invocationId,
-        eventType: 'Skinner.View.GClassroom.Extract.Students',
-        eventTime: execution_timestamp,
-        //subject: ,
-        data: {
-            event_type: 'function_invocation',
-            app: 'wrdsb-skinner',
-            function_name: context.executionContext.functionName,
-            invocation_id: context.executionContext.invocationId,
-            data: {},
-            timestamp: execution_timestamp
-        },
-        dataVersion: '1'
+    const sis_classes_reconcile_job = {
+        "job_type": "Skinner.Student.Differences.Reconcile"
     };
+    context.bindings.triggerJobs = [JSON.stringify(sis_classes_reconcile_job)];
 
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage.data);
+    const logPayload = "";
+    functionInvocation.logPayload = logPayload;
+    context.log(logPayload);
 
-    context.log(JSON.stringify(callbackMessage));
-    context.done(null, callbackMessage);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 
     function sanitizeID(id)
     {
@@ -80,4 +83,4 @@ const viewGClassroomExtractStudents: AzureFunction = async function (context: Co
     }
 };
 
-export default viewGClassroomExtractStudents;
+export default viewGclassroomExtractStudents;
