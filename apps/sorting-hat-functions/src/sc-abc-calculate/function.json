@@ -1,0 +1,40 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "sc-abc-calculate",
+      "connection": "wrdsbsortinghat_STORAGE"
+    },
+    {
+      "name": "classesNow",
+      "type": "blob",
+      "path": "trillium/classes-now-object.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "peopleNow",
+      "type": "blob",
+      "path": "hris/people-now-object.json",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "outputBlobObject",
+      "type": "blob",
+      "path": "set-memberhips-now/SC-{payload.schoolCode}-object.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "outputBlobArray",
+      "type": "blob",
+      "path": "set-memberhips-now/SC-{payload.schoolCode}-array.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
