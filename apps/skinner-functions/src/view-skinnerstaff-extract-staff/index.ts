@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { FunctionInvocation, ViewSkinnerStaffExtractStaffFunctionRequest, ViewSkinnerStaffExtractStaffFunctionRequestPayload, ViewSkinnerStaffRecord } from "@cosmos/types";
+import { FunctionInvocation, ViewSkinnerStaffExtractStaffFunctionRequest, ViewSkinnerStaffExtractStaffFunctionRequestPayload, ViewSkinnerStaffRecord, TrilliumStudent, TrilliumStaff } from "@cosmos/types";
 
 const viewSkinnerStaffExtractStaff: AzureFunction = async function (context: Context, triggerMessage: ViewSkinnerStaffExtractStaffFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -20,10 +20,27 @@ const viewSkinnerStaffExtractStaff: AzureFunction = async function (context: Con
     let staffArray = [];
     let staffObject = {};
 
-    objects.forEach(function(staff: ViewSkinnerStaffRecord) {
-        if (staff.staffNumber !== "") {
-            staffArray.push(staff);
-            staffObject[staff.staffNumber] = staff;
+    objects.forEach(function(record: ViewSkinnerStaffRecord) {
+        let staffNumber  = record.staffNumber ? record.staffNumber : "";
+        let schoolCode   = record.schoolCode ? record.schoolCode : "";
+        let schoolYear   = record.schoolYear ? record.schoolYear : "";
+        let staffType    = record.staffType ? record.staffType : "";
+        let status       = record.status ? record.status : "";
+
+        if (staffNumber !== "" && schoolCode !== "") {
+            let staffObjectID = `${staffNumber}-${schoolCode}`;
+
+            let staffObject = {
+                id: staffObjectID,
+                staffNumber: staffNumber,
+                schoolCode: schoolCode,
+                schoolYear: schoolYear,
+                staffType: staffType,
+                status: status
+            } as TrilliumStaff;
+
+            staffArray.push(staffObject);
+            staffObject[staffObjectID] = staffObject;
         }
     });
 
