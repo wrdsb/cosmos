@@ -32,8 +32,7 @@ const trilliumTeacherStore: AzureFunction = async function (context: Context, tr
     let newRecord = {
         id: '',
         school_code: '',
-        teacher_ein: '',
-        teacher_email: '',
+        staff_number: '',
         created_at: '',
         updated_at: '',
         deleted_at: '',

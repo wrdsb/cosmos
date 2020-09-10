@@ -31,7 +31,7 @@ const trilliumStaffStore: AzureFunction = async function (context: Context, trig
     let oldRecord = context.bindings.recordIn;
     let newRecord = {
         id: '',
-        ein: '',
+        staff_number: '',
         school_code: '',
         school_year: '',
         staff_type: '',
