@@ -31,7 +31,7 @@ const trilliumAssignmentStore: AzureFunction = async function (context: Context,
     let oldRecord = context.bindings.recordIn;
     let newRecord = {
         id: '',
-        ein: '',
+        staff_number: '',
         school_code: '',
         class_code: '',
         block: '',
