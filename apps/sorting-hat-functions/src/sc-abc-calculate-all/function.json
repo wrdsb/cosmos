@@ -1,0 +1,26 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "sc-abc-calculate-all",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "classesNow",
+      "type": "blob",
+      "path": "trillium/classes-now-object.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "outputQueue",
+      "type": "queue",
+      "queueName": "sc-abc-calculate",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
