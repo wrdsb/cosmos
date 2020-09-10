@@ -20,29 +20,29 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
     let rowsArray = [];
 
     rows.forEach(function(row) {
-        let schoolCode        = row.SCHOOL_CODE ? row.SCHOOL_CODE.trim() : "";
-        let classCode         = row.CLASS_CODE ? row.CLASS_CODE.trim() : "";
+        let school_code        = row.SCHOOL_CODE ? row.SCHOOL_CODE.trim() : "";
+        let class_code         = row.CLASS_CODE ? row.CLASS_CODE.trim() : "";
 
-        let studentNumber     = row.STUDENT_NO ? row.STUDENT_NO.trim() : "";
-        let studentFirstName  = row.STUDENT_FIRST_NAME ? row.STUDENT_FIRST_NAME.trim() : "";
-        let studentLastName   = row.STUDENT_LAST_NAME ? row.STUDENT_LAST_NAME.trim() : "";
-        let studentEmail      = row.STUDENT_EMAIL ? row.STUDENT_EMAIL.trim() : "";
-        let studentOyap       = row.OYAP ? row.OYAP.trim() : "";
+        let student_number     = row.STUDENT_NO ? row.STUDENT_NO.trim() : "";
+        let student_first_name  = row.STUDENT_FIRST_NAME ? row.STUDENT_FIRST_NAME.trim() : "";
+        let student_last_name   = row.STUDENT_LAST_NAME ? row.STUDENT_LAST_NAME.trim() : "";
+        let student_email      = row.STUDENT_EMAIL ? row.STUDENT_EMAIL.trim() : "";
+        let student_oyap       = row.OYAP ? row.OYAP.trim() : "";
 
-        let staffNumber       = row.STAFF_NO ? row.STAFF_NO.trim() : "";
+        let staff_number       = row.STAFF_NO ? row.STAFF_NO.trim() : "";
 
         // Build the row object from the data
         let rowObject = {
-            schoolCode:        schoolCode,
-            classCode:         classCode,
+            school_code:        school_code,
+            class_code:         class_code,
 
-            studentNumber:     studentNumber,
-            studentFirstName:  studentFirstName,
-            studentLastName:   studentLastName,
-            studentEmail:      studentEmail,
-            studentOyap:       studentOyap,
+            student_number:     student_number,
+            student_first_name:  student_first_name,
+            student_last_name:   student_last_name,
+            student_email:      student_email,
+            student_oyap:       student_oyap,
 
-            staffNumber:       staffNumber
+            staff_number:       staff_number
         } as ViewGclassroomRecord;
         
         rowsArray.push(rowObject);

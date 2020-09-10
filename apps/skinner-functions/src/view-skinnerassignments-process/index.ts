@@ -20,18 +20,18 @@ const viewSkinnerAssignmentsProcess: AzureFunction = async function (context: Co
     let rowsArray = [];
 
     rows.forEach(function(row) {
-        let staffNumber  = row.STAFF_NO ? row.STAFF_NO.trim() : "";
-        let schoolCode   = row.SCHOOL_CODE ? row.SCHOOL_CODE.trim() : "";
-        let classCode    = row.CLASS_CODE ? row.CLASS_CODE.trim() : "";
+        let staff_number  = row.STAFF_NO ? row.STAFF_NO.trim() : "";
+        let school_code   = row.SCHOOL_CODE ? row.SCHOOL_CODE.trim() : "";
+        let class_code    = row.CLASS_CODE ? row.CLASS_CODE.trim() : "";
         let block        = row.BLOCK ? row.BLOCK.trim() : "";
-        let roomNumber   = row.ROOM_NO ? row.ROOM_NO.trim() : "";
+        let room_number   = row.ROOM_NO ? row.ROOM_NO.trim() : "";
 
         let rowObject = {
-            staffNumber: staffNumber,
-            schoolCode:  schoolCode,
-            classCode:   classCode,
+            staff_number: staff_number,
+            school_code:  school_code,
+            class_code:   class_code,
             block:       block,
-            roomNumber:  roomNumber
+            room_number:  room_number
         } as ViewSkinnerAssignmentsRecord;
 
         rowsArray.push(rowObject);

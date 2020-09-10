@@ -21,20 +21,20 @@ const viewGclassroomExtractClasses: AzureFunction = async function (context: Con
     let classesArray = [];
 
     objects.forEach(function(record: ViewGclassroomRecord) {
-        let schoolCode   = record.schoolCode ? record.schoolCode : "";
-        let classCode    = record.classCode ? record.classCode : "";
-        let staffNumber  = record.staffNumber ? record.staffNumber : "";  
+        let school_code   = record.school_code ? record.school_code : "";
+        let class_code    = record.class_code ? record.class_code : "";
+        let staff_number  = record.staff_number ? record.staff_number : "";  
 
         // we don't care if a teacher is assigned yet
-        if (schoolCode !== "" && classCode !== "") {
-            let classObjectID = sanitizeID(`${schoolCode}-${classCode}`);
+        if (school_code !== "" && class_code !== "") {
+            let classObjectID = sanitizeID(`${school_code}-${class_code}`);
 
             // Extract the 'class' object from the row
             let classObject = {
                 id: classObjectID,
-                schoolCode: schoolCode,
-                classCode: classCode,
-                staffNumber: staffNumber
+                school_code: school_code,
+                class_code: class_code,
+                staff_number: staff_number
             } as TrilliumClass;
     
             // Add/overwrite individual objects from this row to their collection objects

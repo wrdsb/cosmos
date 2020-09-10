@@ -21,26 +21,26 @@ const viewGclassroomExtractStudents: AzureFunction = async function (context: Co
     let studentsArray = [];
 
     objects.forEach(function(record: ViewGclassroomRecord) {
-        let schoolCode        = record.schoolCode ? record.schoolCode : "";
+        let school_code        = record.school_code ? record.school_code : "";
 
-        let studentNumber     = record.studentNumber ? record.studentNumber : "";
-        let studentFirstName  = record.studentFirstName ? record.studentFirstName : "";
-        let studentLastName   = record.studentLastName ? record.studentLastName : "";
-        let studentEmail      = record.studentEmail ? record.studentEmail : "";
-        let studentOyap       = record.studentOyap ? record.studentOyap : "";
+        let student_number     = record.student_number ? record.student_number : "";
+        let student_first_name  = record.student_first_name ? record.student_first_name : "";
+        let student_last_name   = record.student_last_name ? record.student_last_name : "";
+        let student_email      = record.student_email ? record.student_email : "";
+        let student_oyap       = record.student_oyap ? record.student_oyap : "";
 
-        if (studentNumber !== "") {
-            let studentObjectID   = sanitizeID(studentNumber);
+        if (student_number !== "") {
+            let studentObjectID   = sanitizeID(student_number);
 
             // Extract the 'student' object from the row
             let studentObject = {
                 id:                studentObjectID,
-                studentNumber:     studentNumber,
-                studentEmail:      studentEmail,
-                studentFirstName:  studentFirstName,
-                studentLastName:   studentLastName,
-                schoolCode:        schoolCode,
-                studentOyap:       studentOyap
+                student_number:     student_number,
+                student_email:      student_email,
+                student_first_name:  student_first_name,
+                student_last_name:   student_last_name,
+                school_code:        school_code,
+                student_oyap:       student_oyap
             } as TrilliumStudent;
 
             // Add/overwrite individual objects from this row to their collection objects

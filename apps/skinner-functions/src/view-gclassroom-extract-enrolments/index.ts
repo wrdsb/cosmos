@@ -21,41 +21,41 @@ const viewGclassroomExtractEnrolments: AzureFunction = async function (context: 
     let enrolmentsSortedArrays = {};
 
     objects.forEach(function(record: ViewGclassroomRecord) {
-        let schoolCode        = record.schoolCode ? record.schoolCode : "";
-        let classCode         = record.classCode ? record.classCode : "";
+        let school_code        = record.school_code ? record.school_code : "";
+        let class_code         = record.class_code ? record.class_code : "";
 
-        let studentNumber     = record.studentNumber ? record.studentNumber : "";
-        let studentFirstName  = record.studentFirstName ? record.studentFirstName : "";
-        let studentLastName   = record.studentLastName ? record.studentLastName : "";
-        let studentEmail      = record.studentEmail ? record.studentEmail : "";
+        let student_number     = record.student_number ? record.student_number : "";
+        let student_first_name  = record.student_first_name ? record.student_first_name : "";
+        let student_last_name   = record.student_last_name ? record.student_last_name : "";
+        let student_email      = record.student_email ? record.student_email : "";
 
-        let staffNumber       = record.staffNumber ? record.staffNumber : "";
+        let staff_number       = record.staff_number ? record.staff_number : "";
 
-        if (schoolCode !== "" && classCode !== "" && studentNumber !== "") {
-            let classObjectID     = sanitizeID(`${schoolCode}-${classCode}`);
-            let enrolmentObjectID = sanitizeID(`${classObjectID}-${studentNumber}`);
+        if (school_code !== "" && class_code !== "" && student_number !== "") {
+            let classObjectID     = sanitizeID(`${school_code}-${class_code}`);
+            let enrolmentObjectID = sanitizeID(`${classObjectID}-${student_number}`);
     
             // Extract the 'enrolment' object from the row
             let enrolmentObject = {
                 id:                enrolmentObjectID,
-                schoolCode:        schoolCode,
-                classCode:         classCode,
-                studentNumber:     studentNumber,
-                studentFirstName:  studentFirstName,
-                studentLastName:   studentLastName,
-                studentEmail:      studentEmail,
-                staffNumber:       staffNumber
+                school_code:        school_code,
+                class_code:         class_code,
+                student_number:     student_number,
+                student_first_name:  student_first_name,
+                student_last_name:   student_last_name,
+                student_email:      student_email,
+                staff_number:       staff_number
             } as TrilliumEnrolment;
     
-            if (!enrolmentsSortedObject[enrolmentObject.schoolCode]) {
-                enrolmentsSortedObject[enrolmentObject.schoolCode] = {};
+            if (!enrolmentsSortedObject[enrolmentObject.school_code]) {
+                enrolmentsSortedObject[enrolmentObject.school_code] = {};
             }
-            if (!enrolmentsSortedArrays[enrolmentObject.schoolCode]) {
-                enrolmentsSortedArrays[enrolmentObject.schoolCode] = [];
+            if (!enrolmentsSortedArrays[enrolmentObject.school_code]) {
+                enrolmentsSortedArrays[enrolmentObject.school_code] = [];
             }
     
-            enrolmentsSortedObject[enrolmentObject.schoolCode][enrolmentObjectID] = enrolmentObject;
-            enrolmentsSortedArrays[enrolmentObject.schoolCode].push(enrolmentObject);
+            enrolmentsSortedObject[enrolmentObject.school_code][enrolmentObjectID] = enrolmentObject;
+            enrolmentsSortedArrays[enrolmentObject.school_code].push(enrolmentObject);
         }
     });
 
@@ -64,10 +64,10 @@ const viewGclassroomExtractEnrolments: AzureFunction = async function (context: 
     context.bindings.enrolmentsNowSortedObject = JSON.stringify(enrolmentsSortedObject);
 
     let sisEnrolmentsReconcileJobs = [];
-    Object.getOwnPropertyNames(enrolmentsSortedObject).forEach(schoolCode => {
+    Object.getOwnPropertyNames(enrolmentsSortedObject).forEach(school_code => {
         sisEnrolmentsReconcileJobs.push({
             job_type: "Skinner.Enrolment.Differences.Reconcile.Alpha",
-            alpha: schoolCode
+            alpha: school_code
         });
     }); 
     context.bindings.triggerJobs = JSON.stringify(sisEnrolmentsReconcileJobs);

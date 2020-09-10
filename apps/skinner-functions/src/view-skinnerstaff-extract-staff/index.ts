@@ -21,21 +21,21 @@ const viewSkinnerStaffExtractStaff: AzureFunction = async function (context: Con
     let staffObject = {};
 
     objects.forEach(function(record: ViewSkinnerStaffRecord) {
-        let staffNumber  = record.staffNumber ? record.staffNumber : "";
-        let schoolCode   = record.schoolCode ? record.schoolCode : "";
-        let schoolYear   = record.schoolYear ? record.schoolYear : "";
-        let staffType    = record.staffType ? record.staffType : "";
+        let staff_number  = record.staff_number ? record.staff_number : "";
+        let school_code   = record.school_code ? record.school_code : "";
+        let school_year   = record.school_year ? record.school_year : "";
+        let staff_type    = record.staff_type ? record.staff_type : "";
         let status       = record.status ? record.status : "";
 
-        if (staffNumber !== "" && schoolCode !== "") {
-            let staffObjectID = `${staffNumber}-${schoolCode}`;
+        if (staff_number !== "" && school_code !== "") {
+            let staffObjectID = `${staff_number}-${school_code}`;
 
             let staffObject = {
                 id: staffObjectID,
-                staffNumber: staffNumber,
-                schoolCode: schoolCode,
-                schoolYear: schoolYear,
-                staffType: staffType,
+                staff_number: staff_number,
+                school_code: school_code,
+                school_year: school_year,
+                staff_type: staff_type,
                 status: status
             } as TrilliumStaff;
 
