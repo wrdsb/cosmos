@@ -1,4 +1,4 @@
-import { fromEventPattern } from 'rxjs';
+import { fromEventPattern, from } from 'rxjs';
 
 export * from './trillium-assignment-store';
 export * from './trillium-class-store';
@@ -14,6 +14,7 @@ export * from './view-skinnerstaff-process';
 
 export * from './view-gclassroom-extract-classes';
 export * from './view-gclassroom-extract-enrolments';
+export * from './view-gclassroom-extract-schools';
 export * from './view-gclassroom-extract-students';
 export * from './view-gclassroom-extract-teachers';
 

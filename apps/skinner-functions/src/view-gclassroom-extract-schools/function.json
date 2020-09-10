@@ -1,0 +1,48 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "view-gclassroom-extract-schools",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "viewRaw",
+            "type": "blob",
+            "path": "trillium/view-gclassroom-raw.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "schoolsNowArray",
+            "type": "blob",
+            "path": "trillium/schools-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "schoolsNowObject",
+            "type": "blob",
+            "path": "trillium/schools-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "triggerJobs",
+            "type": "queue",
+            "queueName": "job-enqueue",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbigor3_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "./index.js"
+}
