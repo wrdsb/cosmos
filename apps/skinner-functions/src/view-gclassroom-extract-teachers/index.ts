@@ -21,17 +21,17 @@ const viewGclassroomExtractTeachers: AzureFunction = async function (context: Co
     let teachersArray = [];
 
     objects.forEach(function(record: ViewGclassroomRecord) {
-        let schoolCode  = record.schoolCode ? record.schoolCode : "";
-        let staffNumber = record.staffNumber ? record.staffNumber : "";
+        let school_code  = record.school_code ? record.school_code : "";
+        let staff_number = record.staff_number ? record.staff_number : "";
 
-        if (schoolCode !== "" && staffNumber !== "") {
-            let teacherObjectID   = sanitizeID(staffNumber);
+        if (school_code !== "" && staff_number !== "") {
+            let teacherObjectID   = sanitizeID(staff_number);
 
             // Extract the 'teacher' object from the row
             let teacherObject = {
                 id:          teacherObjectID,
-                schoolCode:  schoolCode,
-                staffNumber: staffNumber
+                school_code:  school_code,
+                staff_number: staff_number
             } as TrilliumTeacher;
             
             // Add/overwrite individual objects from this row to their collection objects
