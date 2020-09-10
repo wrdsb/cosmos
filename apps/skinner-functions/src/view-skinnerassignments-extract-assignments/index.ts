@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { FunctionInvocation, ViewSkinnerAssignmentsExtractAssignmentsFunctionRequest, ViewSkinnerAssignmentsExtractAssignmentsFunctionRequestPayload, ViewSkinnerAssignmentsRecord } from "@cosmos/types";
+import { FunctionInvocation, ViewSkinnerAssignmentsExtractAssignmentsFunctionRequest, ViewSkinnerAssignmentsExtractAssignmentsFunctionRequestPayload, ViewSkinnerAssignmentsRecord, TrilliumStaff, TrilliumAssignment } from "@cosmos/types";
 
 const viewSkinnerAssignmentsExtractAssignments: AzureFunction = async function (context: Context, triggerMessage: ViewSkinnerAssignmentsExtractAssignmentsFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -20,20 +20,36 @@ const viewSkinnerAssignmentsExtractAssignments: AzureFunction = async function (
     let assignmentsArray = [];
     let assignmentsObject = {};
 
-    objects.forEach(function(assignment: ViewSkinnerAssignmentsRecord) {
-        if (assignment.staffNumber !== "") {
+    objects.forEach(function(record: ViewSkinnerAssignmentsRecord) {
+        let staffNumber = record.staffNumber ? record.staffNumber : "";
+        let schoolCode = record.schoolCode ? record.schoolCode : "";
+        let classCode = record.classCode ? record.classCode : "";
+        let block = record.block ? record.block : "";
+        let roomNumber = record.roomNumber ? record.roomNumber : "";
+      
+        if (staffNumber !== "") {
+            let assignmentObjectID = `${staffNumber}-${schoolCode}-${classCode}`;
 
-            assignmentsArray.push(assignment);
+            let assignmentObject = {
+                id: assignmentObjectID,
+                staffNumber: staffNumber,
+                schoolCode: schoolCode,
+                classCode: classCode,
+                block: block,
+                roomNumber: roomNumber
+            } as TrilliumAssignment;
 
-            if (assignmentsObject[assignment.staffNumber]) {
-                assignmentsObject[assignment.staffNumber].assignments.push(assignment);
+            assignmentsArray.push(assignmentObject);
+
+            if (assignmentsObject[assignmentObject.staffNumber]) {
+                assignmentsObject[assignmentObject.staffNumber].assignments.push(assignmentObject);
             } else {
-                assignmentsObject[assignment.staffNumber] = {
-                    id: assignment.staffNumber,
-                    staffNumber: assignment.staffNumber,
+                assignmentsObject[assignmentObject.staffNumber] = {
+                    id: assignmentObject.staffNumber,
+                    staffNumber: assignmentObject.staffNumber,
                     assignments: []
                 };
-                assignmentsObject[assignment.staffNumber].assignments.push(assignment);
+                assignmentsObject[assignmentObject.staffNumber].assignments.push(assignmentObject);
             }
         }
     });
