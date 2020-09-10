@@ -8,11 +8,11 @@
             "direction": "in"
         },
         {
-            "name": "panamaBlob",
+            "name": "viewRaw",
             "type": "blob",
-            "path": "trillium-view-gclassroom/now.json",
-            "connection": "wrdsbpanama_STORAGE",
-            "direction": "in"
+            "path": "trillium/view-gclassroom-raw.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
         },
         {
             "name": "classesNowArray",
@@ -29,18 +29,18 @@
             "direction": "out"
         },
         {
-            "name": "callbackMessage",
-            "type": "queue",
-            "direction": "out",
-            "queueName": "callbacks",
-            "connection": "wrdsbskinner_STORAGE"
-        },
-        {
             "name": "triggerJobs",
             "type": "queue",
             "queueName": "job-enqueue",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbigor3_STORAGE",
+          "direction": "out"
         }
     ],
     "disabled": false,
