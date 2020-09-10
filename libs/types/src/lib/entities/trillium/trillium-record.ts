@@ -3,7 +3,7 @@ import { TrilliumAssignment } from "./trillium-assignment";
 
 interface TrilliumRecord extends SISRecord {
   id: string;
-  ein: string;
+  staff_number: string;
   school_code: string;
   school_year: string;
   staff_type: string;

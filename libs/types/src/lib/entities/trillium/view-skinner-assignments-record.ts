@@ -1,9 +1,9 @@
 interface ViewSkinnerAssignmentsRecord {
-  staffNumber: string;
-  schoolCode: string;
-  classCode: string;
+  staff_number: string;
+  school_code: string;
+  class_code: string;
   block: string;
-  roomNumber: string;
+  room_number: string;
 }
 
 export { ViewSkinnerAssignmentsRecord };

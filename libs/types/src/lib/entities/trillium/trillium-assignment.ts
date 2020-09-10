@@ -1,14 +1,14 @@
 interface TrilliumAssignment {
   id?: string;
-  staffNumber: string;
-  schoolCode: string;
-  classCode: string;
+  staff_number: string;
+  school_code: string;
+  class_code: string;
   block: string;
-  roomNumber: string;
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: string;
-  deleted: boolean
+  room_number: string;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string;
+  deleted?: boolean
 }
 
 export { TrilliumAssignment };

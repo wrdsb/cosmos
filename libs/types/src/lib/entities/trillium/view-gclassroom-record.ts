@@ -1,14 +1,14 @@
 interface ViewGclassroomRecord {
-  schoolCode: string;
-  classCode: string;
+  school_code: string;
+  class_code: string;
 
-  studentNumber: string;
-  studentFirstName: string;
-  studentLastName: string;
-  studentEmail: string;
-  studentOyap: string;
+  student_number: string;
+  student_first_name: string;
+  student_last_name: string;
+  student_email: string;
+  student_oyap: string;
 
-  staffNumber: string;
+  staff_number: string;
 }
 
 export { ViewGclassroomRecord };
