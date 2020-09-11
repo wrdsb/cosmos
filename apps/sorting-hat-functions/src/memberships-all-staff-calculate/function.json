@@ -13,6 +13,13 @@
             "path": "hris/view-iamwp-raw.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
+        },
+        {
+          "name": "outputBlob",
+          "type": "blob",
+          "path": "set-memberships-now/all-staff.json",
+          "connection": "wrdsbsortinghat_STORAGE",
+          "direction": "out"
         }
     ],
     "disabled": false,
