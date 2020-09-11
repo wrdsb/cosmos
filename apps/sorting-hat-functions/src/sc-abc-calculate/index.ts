@@ -78,10 +78,14 @@ const SCABCCalculate: AzureFunction = async function (context: Context, triggerM
     async function calculateMembers(classes) {
         let members = new Set();
 
-        classes.forEach(classObject => {
-            let teacherEIN = (classObject.teacher_ein) ? classObject.teacher_ein : "0";
+        classes.forEach(function(classObject) {
+            if (classObject.school_code && classObject.school_code === requestedSchoolCode) {
+                let teacherEIN = (classObject.teacher_ein) ? classObject.teacher_ein : "0";
 
-            members.add(teacherEIN);
+                if (teacherEIN !== "0") {
+                  members.add(teacherEIN);
+                }
+            }
         });
 
         return [...members];
@@ -90,17 +94,26 @@ const SCABCCalculate: AzureFunction = async function (context: Context, triggerM
     async function materializeMembers(members) {
         let materializedMembers = {};
 
-        members.forEach(ein => {
-            materializedMembers[ein] = {
-                id: ein,
-                staff_number: ein,
-                ein: ein,
-                email: people[ein].email,
-                username: people[ein].username,
-                name: people[ein].name,
-                sortable_name: people[ein].sortable_name,
-                first_name: people[ein].first_name,
-                last_name: people[ein].last_name
+        members.forEach(function(ein) {
+            if (people[ein]) {
+                let email = people[ein].email ? people[ein].email : "";
+                let username = people[ein].username ? people[ein].username : "";
+                let name = people[ein].name ? people[ein].name : "";
+                let sortableName = people[ein].sortable_name ? people[ein].sortable_name : "";
+                let firstName = people[ein].first_name ? people[ein].first_name : "";
+                let lastName = people[ein].last_name ? people[ein].last_name : "";
+    
+                materializedMembers[ein] = {
+                    id: ein,
+                    staffNumber: ein,
+                    ein: ein,
+                    email: email,
+                    username: username,
+                    name: name,
+                    sortableName: sortableName,
+                    firstName: firstName,
+                    lastName: lastName
+                }
             }
         });
 

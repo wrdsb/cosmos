@@ -9,7 +9,7 @@
     {
       "name": "classesNow",
       "type": "blob",
-      "path": "trillium/classes-now-object.json",
+      "path": "trillium/classes-now-array.json",
       "connection": "wrdsbskinner_STORAGE",
       "direction": "in"
     },
@@ -23,14 +23,14 @@
     {
       "name": "outputBlobObject",
       "type": "blob",
-      "path": "set-memberhips-now/SC-{payload.schoolCode}-object.json",
+      "path": "set-memberships-now/SC-{payload.schoolCode}-object.json",
       "connection": "wrdsbsortinghat_STORAGE",
       "direction": "out"
     },
     {
       "name": "outputBlobArray",
       "type": "blob",
-      "path": "set-memberhips-now/SC-{payload.schoolCode}-array.json",
+      "path": "set-memberships-now/SC-{payload.schoolCode}-array.json",
       "connection": "wrdsbsortinghat_STORAGE",
       "direction": "out"
     }
