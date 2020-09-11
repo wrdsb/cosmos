@@ -1,6 +1,17 @@
-import { AzureFunction, Context } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions";
+import { FunctionInvocation } from "@cosmos/types";
 
 const membershipsLegacyCalculateAll: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'SortingHat',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'LegacyMembership',
+        functionDataOperation: 'CalculateAll',
+        eventLabel: ''
+    } as FunctionInvocation;
+
     const legacySets = context.bindings.legacySets;
 
     let queueMessages = [];

@@ -1,6 +1,17 @@
-import { AzureFunction, Context } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions";
+import { FunctionInvocation } from "@cosmos/types";
 
 const ippsLocationsReconcile: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'SortingHat',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'PeopleSetMembership',
+        functionDataOperation: 'Calculate',
+        eventLabel: ''
+    } as FunctionInvocation;
+
     let yup = new Set();
     let maybe = new Set();
     let dunno = new Set();

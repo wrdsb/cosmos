@@ -1,6 +1,17 @@
 import { AzureFunction, Context } from "@azure/functions";
+import { FunctionInvocation } from "@cosmos/types";
 
 const MembershipsABCStudentsCalculate: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'SortingHat',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'ABCStudentMembership',
+        functionDataOperation: 'Calculate',
+        eventLabel: ''
+    } as FunctionInvocation;
+
     const triggerObject = triggerMessage;
     const payload = triggerObject.payload;
 

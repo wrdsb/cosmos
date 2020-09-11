@@ -1,6 +1,17 @@
-import { AzureFunction, Context } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions";
+import { FunctionInvocation } from "@cosmos/types";
 
 const membershipsLegacyCalculate: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'SortingHat',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'LegacyMembership',
+        functionDataOperation: 'Calculate',
+        eventLabel: ''
+    } as FunctionInvocation;
+
     const rows = context.bindings.iamwpRaw;
     const legacySetDefinition = context.bindings.legacySetDefinition;
 

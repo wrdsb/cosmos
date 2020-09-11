@@ -1,9 +1,16 @@
-import { AzureFunction, Context } from "@azure/functions"
-import { PeopleSetMembershipStoreFunctionRequest, PeopleSetMembershipStoreFunctionRequestPayload } from "@cosmos/types";
+import { AzureFunction, Context } from "@azure/functions";
+import { FunctionInvocation, PeopleSetMembershipStoreFunctionRequest, PeopleSetMembershipStoreFunctionRequestPayload } from "@cosmos/types";
 
 const peopleSetMembershipStore: AzureFunction = async function (context: Context, triggerMessage: PeopleSetMembershipStoreFunctionRequest): Promise<void> {
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'SortingHat',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'PeopleSetMemberhip',
+        functionDataOperation: 'Store',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const triggerObject = triggerMessage as PeopleSetMembershipStoreFunctionRequest;
     const operation = triggerObject.operation;
@@ -60,11 +67,11 @@ const peopleSetMembershipStore: AzureFunction = async function (context: Context
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
 
-            newRecord.created_at = functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocationTimestamp;
+            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             event = craftPeopleSetMembershipDeleteEvent(oldRecord, newRecord);
@@ -73,7 +80,7 @@ const peopleSetMembershipStore: AzureFunction = async function (context: Context
             newRecord = Object.assign(newRecord, oldRecord);
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocationTimestamp;
+            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             event = craftPeopleSetMembershipDeleteEvent(oldRecord, newRecord);
@@ -97,8 +104,8 @@ const peopleSetMembershipStore: AzureFunction = async function (context: Context
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
 
-            newRecord.created_at = functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -110,7 +117,7 @@ const peopleSetMembershipStore: AzureFunction = async function (context: Context
             // Merge request object into current record
             newRecord = Object.assign(newRecord, oldRecord, payload);
 
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -137,8 +144,8 @@ const peopleSetMembershipStore: AzureFunction = async function (context: Context
         newRecord = Object.assign(newRecord, payload);
 
         if (!oldRecord) {
-            newRecord.created_at = functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -148,7 +155,7 @@ const peopleSetMembershipStore: AzureFunction = async function (context: Context
 
         } else {
             newRecord.created_at = oldRecord.created_at;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -206,7 +213,7 @@ const peopleSetMembershipStore: AzureFunction = async function (context: Context
     function craftEvent(recordID, source, schema, event_type, label, payload) {
         let event = {
             id: `${event_type}-${context.executionContext.invocationId}`,
-            time: functionInvocationTimestamp,
+            time: functionInvocation.functionInvocationTimestamp,
 
             type: event_type,
             source: `/sorting-hat/people-set-membership/${recordID}/${source}`,

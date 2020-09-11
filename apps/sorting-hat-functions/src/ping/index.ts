@@ -1,9 +1,17 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import jwt_decode from 'jwt-decode';
+import { FunctionInvocation } from "@cosmos/types";
 
 const ping: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'SortingHat',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'Ping',
+        functionDataOperation: 'Ping',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const request = req;
     let authenticated = false;
@@ -24,7 +32,7 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
             status: 200,
             message: "Sorting Hat is up",
             chatter: "Sorting Hat here. What can I do for you?",
-            timestamp: functionInvocationTimestamp,
+            timestamp: functionInvocation.functionInvocationTimestamp,
             authenticated: authenticated,
             authorized: authorized,
             roles: userRoles
@@ -41,7 +49,7 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
                     status: 401,
                     message: "Unauthorized: Cannot verify your identity.",
                     chatter: "Unauthorized: Cannot verify your identity.",
-                    timestamp: functionInvocationTimestamp,
+                    timestamp: functionInvocation.functionInvocationTimestamp,
                     authenticated: authenticated,
                     authorized: authorized,
                     roles: JSON.stringify(userRoles)
@@ -57,7 +65,7 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
                     status: 403,
                     message: "Forbidden: You are not permitted to ping the Sorting Hat",
                     chatter: "Forbidden: You are not permitted to ping the Sorting Hat",
-                    timestamp: functionInvocationTimestamp,
+                    timestamp: functionInvocation.functionInvocationTimestamp,
                     authenticated: authenticated,
                     authorized: authorized,
                     roles: JSON.stringify(userRoles)
@@ -77,7 +85,7 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
                     status: 400,
                     message: "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.",
                     chatter: "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.",
-                    timestamp: functionInvocationTimestamp,
+                    timestamp: functionInvocation.functionInvocationTimestamp,
                     authenticated: authenticated,
                     authorized: authorized,
                     roles: JSON.stringify(userRoles)

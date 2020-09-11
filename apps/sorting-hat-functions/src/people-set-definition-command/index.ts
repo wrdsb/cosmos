@@ -1,9 +1,16 @@
-import { AzureFunction, Context } from "@azure/functions"
-import { PeopleSetDefinitionCommandFunctionRequest, PeopleSetDefinitionCommandFunctionRequestPayload } from "@cosmos/types";
+import { AzureFunction, Context } from "@azure/functions";
+import { FunctionInvocation, PeopleSetDefinitionCommandFunctionRequest, PeopleSetDefinitionCommandFunctionRequestPayload } from "@cosmos/types";
 
 const peopleSetDefinitionCommand: AzureFunction = async function (context: Context, req: PeopleSetDefinitionCommandFunctionRequest): Promise<void> {
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'SortingHat',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'PeopleSetDefinition',
+        functionDataOperation: 'Command',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const request = req as PeopleSetDefinitionCommandFunctionRequest;
 
@@ -68,11 +75,11 @@ const peopleSetDefinitionCommand: AzureFunction = async function (context: Conte
             newRecord = Object.assign(newRecord, payload);
             newRecord.constituent_sets = [].concat(...newRecord.definition);
 
-            newRecord.created_at = functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocationTimestamp;
+            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             event = craftPeopleSetDefinitionDeleteEvent(oldRecord, newRecord);
@@ -82,7 +89,7 @@ const peopleSetDefinitionCommand: AzureFunction = async function (context: Conte
             newRecord.constituent_sets = [].concat(...newRecord.definition);
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocationTimestamp;
+            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             event = craftPeopleSetDefinitionDeleteEvent(oldRecord, newRecord);
@@ -107,8 +114,8 @@ const peopleSetDefinitionCommand: AzureFunction = async function (context: Conte
             newRecord = Object.assign(newRecord, payload);
             newRecord.constituent_sets = [].concat(...newRecord.definition);
 
-            newRecord.created_at = functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -121,7 +128,7 @@ const peopleSetDefinitionCommand: AzureFunction = async function (context: Conte
             newRecord = Object.assign(newRecord, oldRecord, payload);
             newRecord.constituent_sets = [].concat(...newRecord.definition);
 
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -149,8 +156,8 @@ const peopleSetDefinitionCommand: AzureFunction = async function (context: Conte
         newRecord.constituent_sets = [].concat(...newRecord.definition);
 
         if (!oldRecord) {
-            newRecord.created_at = functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -160,7 +167,7 @@ const peopleSetDefinitionCommand: AzureFunction = async function (context: Conte
 
         } else {
             newRecord.created_at = oldRecord.created_at;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -176,7 +183,7 @@ const peopleSetDefinitionCommand: AzureFunction = async function (context: Conte
     {
         let newRecord = {
             created_at: oldRecord.created_at,
-            updated_at: functionInvocationTimestamp,
+            updated_at: functionInvocation.functionInvocationTimestamp,
             deleted_at: oldRecord.deleted_at,
             deleted: oldRecord.deleted,
             id: oldRecord.id,
@@ -257,7 +264,7 @@ const peopleSetDefinitionCommand: AzureFunction = async function (context: Conte
     function craftEvent(recordID, source, schema, event_type, label, payload) {
         let event = {
             id: `${event_type}-${context.executionContext.invocationId}`,
-            time: functionInvocationTimestamp,
+            time: functionInvocation.functionInvocationTimestamp,
 
             type: event_type,
             source: `/sorting-hat/people-set-definition/${recordID}/${source}`,

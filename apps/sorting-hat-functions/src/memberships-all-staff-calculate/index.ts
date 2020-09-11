@@ -1,6 +1,17 @@
-import { AzureFunction, Context } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions";
+import { FunctionInvocation } from "@cosmos/types";
 
 const membershipsAllStaffCalculate: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'SortingHat',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'AllStaffMembership',
+        functionDataOperation: 'Calculate',
+        eventLabel: ''
+    } as FunctionInvocation;
+
     const rows = context.bindings.iamwpRaw;
 
     const excluded_job_codes = ['6106', '6118'];
