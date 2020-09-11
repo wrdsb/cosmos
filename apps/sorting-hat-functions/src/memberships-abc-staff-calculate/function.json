@@ -254,6 +254,13 @@
       "path": "set-memberships-now/{payload.schoolCode}-stswr@wrdsb.ca.json",
       "connection": "wrdsbsortinghat_STORAGE",
       "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
     }
   ],
   "disabled": false,

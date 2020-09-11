@@ -19,6 +19,13 @@
       "path": "set-memberships-now/all-staff.json",
       "connection": "wrdsbsortinghat_STORAGE",
       "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
     }
   ],
   "disabled": false,

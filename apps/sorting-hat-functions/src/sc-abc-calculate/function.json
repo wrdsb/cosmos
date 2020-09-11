@@ -33,6 +33,13 @@
       "path": "set-memberships-now/SC-{payload.schoolCode}-array.json",
       "connection": "wrdsbsortinghat_STORAGE",
       "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
     }
   ],
   "disabled": false,

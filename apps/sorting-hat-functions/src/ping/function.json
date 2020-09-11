@@ -12,6 +12,13 @@
       "name": "res",
       "type": "http",
       "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
     }
   ],
   "scriptFile": "./index.js"

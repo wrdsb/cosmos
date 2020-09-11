@@ -19,6 +19,13 @@
       "queueName": "person-store",
       "connection": "wrdsbcodex_STORAGE",
       "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
     }
   ],
   "disabled": false,
