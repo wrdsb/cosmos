@@ -1,0 +1,261 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "memberships-abc-staff-calculate",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "iamwpRaw",
+      "type": "blob",
+      "path": "hris/view-iamwp-raw.json",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "classesNow",
+      "type": "blob",
+      "path": "trillium/classes-now-array.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "abcAdminJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-admin-job-codes",
+      "partitionKey": "abc-admin-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcAttendanceJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-attendance-job-codes",
+      "partitionKey": "abc-attendance-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcBeforeafterJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-beforeafter-job-codes",
+      "partitionKey": "abc-beforeafter-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcCourierJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-courier-job-codes",
+      "partitionKey": "abc-courier-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcEasyconnectJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-easyconnect-job-codes",
+      "partitionKey": "abc-easyconnect-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcItsJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-its-job-codes",
+      "partitionKey": "abc-its-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcItunesJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-itunes-job-codes",
+      "partitionKey": "abc-itunes-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcOfficeJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-office-job-codes",
+      "partitionKey": "abc-office-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcOrdersJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-orders-job-codes",
+      "partitionKey": "abc-orders-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcPublicJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-public-job-codes",
+      "partitionKey": "abc-public-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcRegistrationsJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-registrations-job-codes",
+      "partitionKey": "abc-registrations-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcS4sJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-s4s-job-codes",
+      "partitionKey": "abc-s4s-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "abcStswrJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "sorting-hat",
+      "collectionName": "people-set-definitions",
+      "id": "abc-stswr-job-codes",
+      "partitionKey": "abc-stswr-job-codes",
+      "connectionStringSetting": "wrdsb-sorting-hat_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "staffOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-staff@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "staffDiscussionOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-staff-discussion@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "adminOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-admin@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "attendanceOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-attendance@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "beforeafterOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-beforeafter@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "courierOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-courier@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "easyconnectOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-easyconnect@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "itsOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-its@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "itunesOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-itunes@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "officeOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-office@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "ordersOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-orders@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "publicOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "registrationsOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-registrations@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "s4sOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-s4s@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "stswrOutputBlob",
+      "type": "blob",
+      "path": "set-memberships-now/{payload.schoolCode}-stswr@wrdsb.ca.json",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
