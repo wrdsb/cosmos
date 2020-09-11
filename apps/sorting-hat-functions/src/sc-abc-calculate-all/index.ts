@@ -71,14 +71,14 @@ const SCABCCalculateAll: AzureFunction = async function (context: Context, trigg
         let schoolCodes = new Set();
 
         classes.forEach(function(classObject) {
-            let schoolCode = (classObject.school_code) ? classObject.school_code.toLowerCase() : 0;
+            let schoolCode = (classObject.school_code) ? classObject.school_code.toUpperCase() : 0;
 
             if (isNaN(schoolCode)) {
                 schoolCodes.add(schoolCode);
             }
         });
 
-        schoolCodes.forEach(schoolCode => {
+        schoolCodes.forEach(function (schoolCode) {
             let message = {
                 payload: {
                     schoolCode: schoolCode

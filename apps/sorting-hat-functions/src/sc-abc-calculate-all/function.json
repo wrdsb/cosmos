@@ -9,7 +9,7 @@
     {
       "name": "classesNow",
       "type": "blob",
-      "path": "trillium/classes-now-object.json",
+      "path": "trillium/classes-now-array.json",
       "connection": "wrdsbskinner_STORAGE",
       "direction": "in"
     },
