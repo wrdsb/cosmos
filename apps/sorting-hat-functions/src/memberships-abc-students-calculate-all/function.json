@@ -1,0 +1,26 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "memberships-abc-students-calculate-all",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "studentsNow",
+      "type": "blob",
+      "path": "trillium/students-now-array.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "outputQueue",
+      "type": "queue",
+      "queueName": "memberships-abc-students-calculate",
+      "connection": "wrdsbsortinghat_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
