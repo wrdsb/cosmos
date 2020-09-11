@@ -1,28 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { createLogObject } from "@cosmos/azure-functions-shared";
-import { storeLogBlob } from "@cosmos/azure-functions-shared";
-import { createCallbackMessage } from "@cosmos/azure-functions-shared";
-import { createEvent } from "@cosmos/azure-functions-shared";
 
 const ippsLocationsReconcile: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
-    const functionInvocationID = context.executionContext.invocationId;
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-
-    const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.SortingHat.IPPS.Locations.Reconcile';
-    const functionEventID = `sorting-hat-functions-${functionName}-${functionInvocationID}`;
-    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
-
-    const logStorageAccount = process.env['storageAccount'];
-    const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-ipps-locations-reconcile-logs';
-
-    const eventLabel = '';
-    const eventTags = [
-        "sorting-hat", 
-    ];
-
     let yup = new Set();
     let maybe = new Set();
     let dunno = new Set();
