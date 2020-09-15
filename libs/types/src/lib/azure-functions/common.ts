@@ -48,7 +48,7 @@ interface FunctionInvocation {
 
     eventLabel: string;
 
-    logPayload?: string;
+    logPayload?: any;
 }
 
 interface FunctionLogObject {
