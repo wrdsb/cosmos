@@ -59,7 +59,12 @@
 
         <!-- displayName Column -->
         <ng-container cdkColumnDef="name">
-          <th cdk-header-cell *cdkHeaderCellDef> Name </th>
+          <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('name')">
+            Name
+            <span *ngIf="sortKey$.value === 'name'">
+              {{ sortDirection$.value === 'asc' ? '↥' : '↧' }}
+            </span>
+          </th>
           <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group)"> {{group.name}} </td>
         </ng-container>
 

@@ -22,6 +22,9 @@ export class GroupsListComponent implements OnInit {
   groupsList$ = new BehaviorSubject<GoogleGroup[]>([]);
   groupsPage$ = new BehaviorSubject<GoogleGroup[]>([]);
 
+  sortKey$ = new BehaviorSubject<string>('name');
+  sortDirection$ = new BehaviorSubject<string>('asc');
+
   groupSelected: boolean = false;
   selectedGroup$ = new BehaviorSubject<GoogleGroup>(null);
 
@@ -46,22 +49,30 @@ export class GroupsListComponent implements OnInit {
   ngOnInit() {
     this.getGroups();
 
-    combineLatest(this.listGroupsResponse$, this.searchFormControl.valueChanges)
-      .subscribe(([changedGroupsList, searchTerm]) => {
+    combineLatest(this.listGroupsResponse$, this.searchFormControl.valueChanges, this.sortKey$, this.sortDirection$)
+      .subscribe(([changedGroupsList, searchTerm, sortKey, sortDirection]) => {
         const groupsArray = Object.values(changedGroupsList);
+        let filteredGroups: GoogleGroup[];
   
         if (!searchTerm) {
-          this.groupsList$.next(groupsArray);
-          return;
+          filteredGroups = groupsArray;
+        } else {
+          const filteredResults = groupsArray.filter(group => {
+            return Object.values(group).reduce((prev, curr) => {
+              return prev || curr.toString().toLowerCase().includes(searchTerm.toLowerCase());
+            }, false);
+          });
+
+          filteredGroups = filteredResults;
         }
 
-        const filteredResults = groupsArray.filter(group => {
-          return Object.values(group).reduce((prev, curr) => {
-            return prev || curr.toString().toLowerCase().includes(searchTerm.toLowerCase());
-          }, false);
+        const sortedGroups = filteredGroups.sort((a, b) => {
+          if(a[sortKey] > b[sortKey]) return sortDirection === 'asc' ? 1 : -1;
+          if(a[sortKey] < b[sortKey]) return sortDirection === 'asc' ? -1 : 1;
+          return 0;
         });
-
-        this.groupsList$.next(filteredResults);
+          
+        this.groupsList$.next(sortedGroups);
     });
 
     this.searchFormControl.setValue('');
@@ -72,6 +83,20 @@ export class GroupsListComponent implements OnInit {
         const onPage = allSources.slice(startingIndex, startingIndex + pageSize);
         this.groupsPage$.next(onPage);
     });
+  }
+
+  adjustSort(key: string) {
+    if (this.sortKey$.value === key) {
+      if (this.sortDirection$.value === 'asc') {
+        this.sortDirection$.next('desc');
+      } else {
+        this.sortDirection$.next('asc');
+      }
+      return;
+    }
+  
+    this.sortKey$.next(key);
+    this.sortDirection$.next('asc');
   }
 
   selectGroup(group: GoogleGroup): void {
