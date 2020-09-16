@@ -5,7 +5,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MsalInterceptor } from '@azure/msal-angular';
 
 import { CdkTableModule } from '@angular/cdk/table';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { MatButtonModule } from "@angular/material/button";
@@ -35,7 +34,6 @@ import { MembershipDetailComponent } from './membership-detail/membership-detail
     CommonModule,
 
     CdkTableModule,
-    NgbModule,
     FormsModule,
     ReactiveFormsModule,
 

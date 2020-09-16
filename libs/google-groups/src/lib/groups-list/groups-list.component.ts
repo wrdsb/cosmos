@@ -99,6 +99,14 @@ export class GroupsListComponent implements OnInit {
     this.sortDirection$.next('asc');
   }
 
+  pageUp(): void {
+    this.currentPage$.next(this.currentPage$.value - 1);
+  }
+
+  pageDown(): void {
+    this.currentPage$.next(this.currentPage$.value + 1);
+  }
+
   selectGroup(group: GoogleGroup): void {
     this.selectedGroup$.next(group);
     this.groupSelected = true;

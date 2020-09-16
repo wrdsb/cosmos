@@ -6,18 +6,6 @@
   {{ selectedGroup$ | async | json }}
 </div>
 
-<ngb-pagination
-  [boundaryLinks]=true
-  [directionLinks]=true
-  [ellipses]=true
-  [maxSize]=7
-  [rotate]=true
-  [collectionSize]="groupsList$.value.length"
-  [pageSize]="pageSize$.value"
-  [page]="currentPage$.value"
-  (pageChange)="currentPage$.next($event)">
-</ngb-pagination>
-
 <div class="row">
   <div class="col-6">
     <div class="form-inline">
@@ -40,12 +28,16 @@
     </div>
   </div>
 
+  <button mat-button (click)="pageUp()">Page Up</button>
+  Current Page: {{ currentPage$.value }}
+  <button mat-button (click)="pageDown()">Page Down</button>
+
 <div class="widget">
   <div class="widget-sidebar"></div>
 
   <div class="widget-content">
 
-    <div class="widget-title">Google Groups</div>
+    <div class="widget-title">Google Groups | {{ groupsList$.value.length }} total records</div>
 
     <div class="widget-main">
 
