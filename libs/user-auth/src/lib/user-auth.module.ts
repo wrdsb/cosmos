@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from "@angular/material/button";
 
 import { EnvironmentService } from "@cosmos/environment";
 import { GraphService } from '@cosmos/msgraph-service';
@@ -69,6 +70,7 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
   ],
   imports: [
     CommonModule,
+    MatButtonModule,
     MsalModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
