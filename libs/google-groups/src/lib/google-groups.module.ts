@@ -6,6 +6,7 @@ import { MsalInterceptor } from '@azure/msal-angular';
 
 import { CdkTableModule } from '@angular/cdk/table';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
@@ -35,6 +36,8 @@ import { MembershipDetailComponent } from './membership-detail/membership-detail
 
     CdkTableModule,
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     MatButtonModule,
     MatTableModule,

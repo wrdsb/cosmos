@@ -5,6 +5,7 @@ import { GoogleGroup, Status, GroupQueryFunctionResponse, ListGroupsRequestState
 
 import { GoogleGroupsService } from '../google-groups.service';
 import { IGORService } from '@cosmos/igor-service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'cosmos-google-groups-list',
@@ -32,6 +33,8 @@ export class GroupsListComponent implements OnInit {
     'membership_automation_active'
   ]);
 
+  searchFormControl = new FormControl();
+
   constructor(
     private groupsService: GoogleGroupsService,
     private igorService: IGORService
@@ -43,16 +46,32 @@ export class GroupsListComponent implements OnInit {
   ngOnInit() {
     this.getGroups();
 
-    this.listGroupsResponse$.subscribe(changedGroupsList => {
-      this.groupsList$.next(Object.values(changedGroupsList));
+    combineLatest(this.listGroupsResponse$, this.searchFormControl.valueChanges)
+      .subscribe(([changedGroupsList, searchTerm]) => {
+        const groupsArray = Object.values(changedGroupsList);
+  
+        if (!searchTerm) {
+          this.groupsList$.next(groupsArray);
+          return;
+        }
+
+        const filteredResults = groupsArray.filter(group => {
+          return Object.values(group).reduce((prev, curr) => {
+            return prev || curr.toString().toLowerCase().includes(searchTerm.toLowerCase());
+          }, false);
+        });
+
+        this.groupsList$.next(filteredResults);
     });
+
+    this.searchFormControl.setValue('');
 
     combineLatest(this.groupsList$, this.currentPage$, this.pageSize$)
       .subscribe(([allSources, currentPage, pageSize]) => {
         const startingIndex = (currentPage - 1) * pageSize;
         const onPage = allSources.slice(startingIndex, startingIndex + pageSize);
         this.groupsPage$.next(onPage);
-      });
+    });
   }
 
   selectGroup(group: GoogleGroup): void {

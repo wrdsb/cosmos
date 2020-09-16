@@ -18,6 +18,28 @@
   (pageChange)="currentPage$.next($event)">
 </ngb-pagination>
 
+<div class="row">
+  <div class="col-6">
+    <div class="form-inline">
+      <div class="form-group">
+        <div class="input-group mr-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search…"
+            [formControl]="searchFormControl">
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              (click)="searchFormControl.setValue('')">
+              x
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <div class="widget">
   <div class="widget-sidebar"></div>
 
