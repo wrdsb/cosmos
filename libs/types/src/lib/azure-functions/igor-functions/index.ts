@@ -1,3 +1,5 @@
+export * from './group-query';
+
 export * from './google-group-memberships-abc-calculate';
 export * from './google-group-memberships-abc-calculate-all';
 export * from './google-group-memberships-all-staff-calculate';
