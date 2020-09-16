@@ -18,6 +18,12 @@ export interface PingRequestState {
   error?: string;
 }
 
+export interface ListGroupsRequestState {
+  status: Status;
+  response?: string;
+  error?: string;
+}
+
 export enum Status {
   UNKNOWN = 'UNKNOWN',
   LOADING = 'LOADING',
