@@ -18,6 +18,7 @@ export class GroupsListComponent implements OnInit {
 
   currentPage$ = new BehaviorSubject<number>(1);
   pageSize$ = new BehaviorSubject<number>(20);
+  maxPage$ = new BehaviorSubject<number>(1);
 
   groupsList$ = new BehaviorSubject<GoogleGroup[]>([]);
   groupsPage$ = new BehaviorSubject<GoogleGroup[]>([]);
@@ -31,7 +32,6 @@ export class GroupsListComponent implements OnInit {
   displayedColumns$ = new BehaviorSubject<string[]>([
     'name',
     'email',
-    'description',
     'adminCreated',
     'membership_automation_active'
   ]);
@@ -73,6 +73,7 @@ export class GroupsListComponent implements OnInit {
         });
           
         this.groupsList$.next(sortedGroups);
+        this.maxPage$.next(Math.ceil(this.groupsList$.value.length / this.pageSize$.value));
     });
 
     this.searchFormControl.setValue('');
@@ -100,11 +101,21 @@ export class GroupsListComponent implements OnInit {
   }
 
   pageUp(): void {
-    this.currentPage$.next(this.currentPage$.value - 1);
+    const nextPage = this.currentPage$.value - 1;
+    if (this.nextPageValid(nextPage)) {
+      this.currentPage$.next(nextPage);
+    }
   }
 
   pageDown(): void {
-    this.currentPage$.next(this.currentPage$.value + 1);
+    const nextPage = this.currentPage$.value + 1;
+    if (this.nextPageValid(nextPage)) {
+      this.currentPage$.next(nextPage);
+    }
+  }
+
+  nextPageValid(nextPage): boolean {
+    return ( nextPage >= 1 && nextPage <= this.maxPage$.value ) ? true : false;
   }
 
   selectGroup(group: GoogleGroup): void {

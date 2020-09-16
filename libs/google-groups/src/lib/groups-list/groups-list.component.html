@@ -1,43 +1,25 @@
-<div>
-  {{ listGroupsRequestState$ | async | json }}
-</div>
-
-<div>
-  {{ selectedGroup$ | async | json }}
-</div>
-
-<div class="row">
-  <div class="col-6">
-    <div class="form-inline">
-      <div class="form-group">
-        <div class="input-group mr-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Search…"
-            [formControl]="searchFormControl">
-          <div class="input-group-append">
-            <button
-              class="btn btn-outline-secondary"
-              (click)="searchFormControl.setValue('')">
-              x
-            </button>
-          </div>
-        </div>
+<div class="form-inline">
+  <div class="form-group">
+    <div class="input-group mr-3">
+      <input type="text" class="form-control" placeholder="Search…" [formControl]="searchFormControl">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" (click)="searchFormControl.setValue('')">x</button>
       </div>
     </div>
   </div>
+</div>
 
-  <button mat-button (click)="pageUp()">Page Up</button>
-  Current Page: {{ currentPage$.value }}
-  <button mat-button (click)="pageDown()">Page Down</button>
-
+<button mat-button (click)="pageUp()">Page Up</button>
 <div class="widget">
   <div class="widget-sidebar"></div>
 
   <div class="widget-content">
 
-    <div class="widget-title">Google Groups | {{ groupsList$.value.length }} total records</div>
+    <div class="widget-title">
+      Google Groups |
+      {{ groupsList$.value.length }} total records |
+      Showing Page {{ currentPage$.value }} of {{ maxPage$.value }}
+    </div>
 
     <div class="widget-main">
 
@@ -85,6 +67,15 @@
     </div>
 
   </div>
+</div>
+<button mat-button (click)="pageDown()">Page Down</button>
+
+<div>
+  {{ listGroupsRequestState$ | async | json }}
+</div>
+
+<div>
+  {{ selectedGroup$ | async | json }}
 </div>
 
 <div *ngIf="groupSelected">
