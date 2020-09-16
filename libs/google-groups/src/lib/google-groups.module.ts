@@ -4,6 +4,10 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MsalInterceptor } from '@azure/msal-angular';
 
+import { CdkTableModule } from '@angular/cdk/table';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
 
 import { GoogleGroupsRoutingModule } from './google-groups-routing.module';
@@ -28,6 +32,11 @@ import { MembershipDetailComponent } from './membership-detail/membership-detail
   ],
   imports: [
     CommonModule,
+
+    CdkTableModule,
+    NgbModule,
+
+    MatButtonModule,
     MatTableModule,
 
     GoogleGroupsRoutingModule
