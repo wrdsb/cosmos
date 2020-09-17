@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { Howl, Howler } from 'howler';
 
 import { GoogleGroup, Status, GroupQueryFunctionResponse, ListGroupsRequestState } from '@cosmos/types';
 
@@ -125,5 +126,16 @@ export class GroupsListComponent implements OnInit {
 
   getGroups(): void {
     this.igorService.listGroups('admin_created');
+
+    let sound = new Howl({
+      src: ['assets/loading-google-groups.mp3'],
+      onend: function() {
+        console.log('Finished!');
+      },
+      onloaderror: function() {
+        console.log('Error!');
+      }
+    });
+    sound.play();
   }
 }
