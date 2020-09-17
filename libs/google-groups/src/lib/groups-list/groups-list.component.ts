@@ -20,8 +20,18 @@ export class GroupsListComponent implements OnInit {
   pageSize$ = new BehaviorSubject<number>(20);
   maxPage$ = new BehaviorSubject<number>(1);
 
-  groupsList$ = new BehaviorSubject<GoogleGroup[]>([]);
-  groupsPage$ = new BehaviorSubject<GoogleGroup[]>([]);
+  groupsList$ = new BehaviorSubject<GoogleGroup[]>([
+    {
+      name: "Loading...",
+      email: "Loading..."      
+    }
+  ]);
+  groupsPage$ = new BehaviorSubject<GoogleGroup[]>([
+    {
+      name: "Loading...",
+      email: "Loading..."      
+    }
+  ]);
 
   sortKey$ = new BehaviorSubject<string>('name');
   sortDirection$ = new BehaviorSubject<string>('asc');

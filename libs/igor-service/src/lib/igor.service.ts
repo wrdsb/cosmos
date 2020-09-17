@@ -38,7 +38,12 @@ export class IGORService {
 
 
   private listGroupsResponse: BehaviorSubject<GroupQueryFunctionResponse> = new BehaviorSubject({
-    payload: []
+    payload: [
+      {
+        name: "Loading...",
+        email: "Loading..."      
+      }
+    ]
   });
   private listGroupsRequestState: BehaviorSubject<ListGroupsRequestState> = new BehaviorSubject({
     status: Status.UNKNOWN,
