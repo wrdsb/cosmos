@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { Howl, Howler } from 'howler';
+import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
+import { faStar as faStarFilled} from "@fortawesome/free-solid-svg-icons";
 
 import { GoogleGroup, Status, GroupQueryFunctionResponse, ListGroupsRequestState } from '@cosmos/types';
 
@@ -14,6 +16,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./groups-list.component.scss']
 })
 export class GroupsListComponent implements OnInit {
+  faStarEmpty = faStarEmpty;
+  faStarFilled = faStarFilled;
+
   listGroupsRequestState$: Observable<ListGroupsRequestState>;
   listGroupsResponse$: Observable<GroupQueryFunctionResponse>;
 

@@ -51,13 +51,21 @@
         <!-- adminCreated Column -->
         <ng-container cdkColumnDef="adminCreated">
           <th cdk-header-cell *cdkHeaderCellDef> Admin Created? </th>
-          <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group)"> {{group.adminCreated}} </td>
+          <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group)">
+            <ng-container *ngIf="group.adminCreated; then thenBlock else elseBlock"></ng-container>
+            <ng-template #thenBlock><fa-icon [icon]="faStarFilled"></fa-icon></ng-template>
+            <ng-template #elseBlock><fa-icon [icon]="faStarEmpty"></fa-icon></ng-template>
+          </td>
         </ng-container>
 
         <!-- membership_automation_active Column -->
         <ng-container cdkColumnDef="membership_automation_active">
           <th cdk-header-cell *cdkHeaderCellDef> Automated? </th>
-          <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group)"> {{group.membership_automation_active}} </td>
+          <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group)">
+            <ng-container *ngIf="group.membership_automation_active; then thenBlock else elseBlock"></ng-container>
+            <ng-template #thenBlock><fa-icon [icon]="faStarFilled"></fa-icon></ng-template>
+            <ng-template #elseBlock><fa-icon [icon]="faStarEmpty"></fa-icon></ng-template>
+          </td>
         </ng-container>
 
         <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
