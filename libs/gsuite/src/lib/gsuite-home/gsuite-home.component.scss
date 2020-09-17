@@ -1,0 +1,36 @@
+.buttons-list {
+    flex: 1 1 0px;
+  
+    height: 100%;
+  
+    font-family: 'Jura', sans-serif;
+    font-size: 25px;
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gsuite-button {
+    margin: 25px;
+    padding: 25px;
+    border: 3px solid #2671A8;
+    border-radius: 15%;
+    background-color: #1F3D73;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    font-family: 'Jura', sans-serif;
+    font-size: 25px;
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
+  
+    cursor: pointer;
+  }
+  
