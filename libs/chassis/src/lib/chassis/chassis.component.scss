@@ -38,3 +38,19 @@ cosmos-footer {
 .mat-drawer:not(.mat-drawer-side) {
   box-shadow: none;
 }
+
+.sign-in-page {
+  flex: 1 1 0px;
+
+  height: 100%;
+
+  font-family: 'Jura', sans-serif;
+  font-size: 25px;
+  font-weight: normal;
+  color: white;
+  text-decoration: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

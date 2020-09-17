@@ -6,6 +6,7 @@ import { EnvironmentService } from "@cosmos/environment";
 import { GraphService } from '@cosmos/msgraph-service';
 
 import { SignInOutButtonComponent } from './sign-in-out-button/sign-in-out-button.component';
+import { BigSignInOutButtonComponent } from './big-sign-in-out-button/big-sign-in-out-button.component';
 
 import {
   MsalModule,
@@ -66,7 +67,8 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
 
 @NgModule({
   declarations: [
-    SignInOutButtonComponent
+    SignInOutButtonComponent,
+    BigSignInOutButtonComponent
   ],
   imports: [
     CommonModule,
@@ -93,7 +95,8 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
     MsalService
   ],
   exports: [
-    SignInOutButtonComponent
+    SignInOutButtonComponent,
+    BigSignInOutButtonComponent
   ]
 })
 export class UserAuthModule {}

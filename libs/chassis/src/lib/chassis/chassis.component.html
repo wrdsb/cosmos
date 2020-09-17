@@ -1,4 +1,9 @@
-<ng-container>
+<ng-container *ngIf="!loggedIn">
+  <div class="sign-in-page">
+    <cosmos-big-sign-in-out-button></cosmos-big-sign-in-out-button>
+  </div>
+</ng-container>
+<ng-container *ngIf="loggedIn">
   <mat-sidenav-container fullscreen [hasBackdrop]="false" class="console-container">
 
     <mat-sidenav #sidebarOuterLeft mode="over" position="start" fixedInViewport="false" closed>

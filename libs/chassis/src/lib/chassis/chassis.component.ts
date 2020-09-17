@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MsalService } from '@azure/msal-angular';
 import { ChassisService } from "../chassis.service";
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -13,12 +14,16 @@ export class ChassisComponent implements OnInit, AfterViewInit {
   @ViewChild('sidebarInnerLeft') public sidebarInnerLeft: MatSidenav;
   @ViewChild('sidebarInnerRight') public sidebarInnerRight: MatSidenav;
 
+  loggedIn = false;
+
   constructor(
+    private authService: MsalService,
     private chassisService: ChassisService
   ) { }
 
   ngOnInit(): void {
     console.log('init chassis');
+    this.checkoutAccount();
   }
 
   ngAfterViewInit(): void {
@@ -28,4 +33,15 @@ export class ChassisComponent implements OnInit, AfterViewInit {
     this.chassisService.setSidebarInnerRight(this.sidebarInnerRight);
   }
 
+  checkoutAccount() {
+    this.loggedIn = !!this.authService.getAccount();
+  }
+
+  login() {
+    this.authService.loginRedirect();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }
