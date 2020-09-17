@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
+import { UserAuthService } from '@cosmos/user-auth';
 
 import { Menu } from '@cosmos/types';
 
@@ -11,6 +12,8 @@ import { Menu } from '@cosmos/types';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  appName = this.environmentService.appName;
+
   enabled: boolean;
   enabled$ = this.chassisService.footerEnabled$;
 
@@ -23,6 +26,7 @@ export class FooterComponent implements OnInit {
   footerMenu: Menu;
 
   constructor(
+    private userAuthService: UserAuthService,
     private environmentService: EnvironmentService,
     private chassisService: ChassisService
   ) { }
@@ -52,5 +56,40 @@ export class FooterComponent implements OnInit {
       this.content = content
     );
     console.log(`footer content: ${this.content}`);
+  }
+
+  toggleSidebarOuterLeft() {
+    this.chassisService.toggleSidebarOuterLeft();
+    console.log('toggle sidebarOuterLeft');
+  }
+
+  toggleNotificationsPanel() {
+    this.chassisService.setsidebarOuterRightContent('Notifications');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleHelpPanel() {
+    this.chassisService.setsidebarOuterRightContent('Help');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleFeedbackPanel() {
+    this.chassisService.setsidebarOuterRightContent('Feedback');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleSettingsPanel() {
+    this.chassisService.setsidebarOuterRightContent('Settings');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
+  }
+
+  toggleAccountPanel() {
+    this.chassisService.setsidebarOuterRightContent('Account');
+    this.chassisService.toggleSidebarOuterRight();
+    console.log('toggle sidebarOuterRight');
   }
 }

@@ -12,8 +12,6 @@ import { UserAuthService } from '@cosmos/user-auth';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  appName = this.environmentService.appName;
-
   enabled: boolean;
   enabled$ = this.chassisService.headerEnabled$;
 
@@ -56,40 +54,5 @@ export class HeaderComponent implements OnInit {
       this.content = content
     );
     console.log(`header content: ${this.content}`);
-  }
-
-  toggleSidebarOuterLeft() {
-    this.chassisService.toggleSidebarOuterLeft();
-    console.log('toggle sidebarOuterLeft');
-  }
-
-  toggleNotificationsPanel() {
-    this.chassisService.setsidebarOuterRightContent('Notifications');
-    this.chassisService.toggleSidebarOuterRight();
-    console.log('toggle sidebarOuterRight');
-  }
-
-  toggleHelpPanel() {
-    this.chassisService.setsidebarOuterRightContent('Help');
-    this.chassisService.toggleSidebarOuterRight();
-    console.log('toggle sidebarOuterRight');
-  }
-
-  toggleFeedbackPanel() {
-    this.chassisService.setsidebarOuterRightContent('Feedback');
-    this.chassisService.toggleSidebarOuterRight();
-    console.log('toggle sidebarOuterRight');
-  }
-
-  toggleSettingsPanel() {
-    this.chassisService.setsidebarOuterRightContent('Settings');
-    this.chassisService.toggleSidebarOuterRight();
-    console.log('toggle sidebarOuterRight');
-  }
-
-  toggleAccountPanel() {
-    this.chassisService.setsidebarOuterRightContent('Account');
-    this.chassisService.toggleSidebarOuterRight();
-    console.log('toggle sidebarOuterRight');
   }
 }
