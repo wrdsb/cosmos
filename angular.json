@@ -4567,6 +4567,38 @@
           "style": "scss"
         }
       }
+    },
+    "gsuite": {
+      "projectType": "library",
+      "root": "libs/gsuite",
+      "sourceRoot": "libs/gsuite/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/gsuite/tsconfig.lib.json",
+              "libs/gsuite/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/gsuite/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/gsuite/jest.config.js",
+            "tsConfig": "libs/gsuite/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/gsuite/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

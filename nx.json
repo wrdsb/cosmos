@@ -314,6 +314,9 @@
     },
     "releases": {
       "tags": []
+    },
+    "gsuite": {
+      "tags": []
     }
   }
 }
