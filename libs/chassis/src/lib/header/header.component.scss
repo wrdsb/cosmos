@@ -8,11 +8,49 @@
   font-family: 'Jura', sans-serif;
 
   .mat-toolbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     background-color: transparent;
   }
 
   .header-spacer {
     flex: 1 1 auto;
+  }
+
+  .header-button {
+    flex: 1 1 0px;
+
+    margin: 5px;
+    height: 100%;
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    background-color: #2671A8;
+
+    font-family: 'Jura', sans-serif;
+    font-size: 25px;
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    --notchSize: 20px;
+
+    clip-path: polygon(
+      0% var(--notchSize), 
+      var(--notchSize) 0%, 
+      100% 0%,
+      100% 0%,
+      100% 100%,
+      100% 100%,
+      0% 100%,
+      0% 100%
+    );
   }
 
   a {
