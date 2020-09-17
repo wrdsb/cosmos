@@ -20,7 +20,8 @@ import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
 import { PagesModule } from "@cosmos/pages";
 import { NotificationsModule } from '@cosmos/notifications';
-import { ServiceWorkerModule } from '@angular/service-worker'
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ServiceWorkerModule } from '@angular/service-worker'
     PanelsModule,
     PagesModule,
     NotificationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    FontAwesomeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
