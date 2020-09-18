@@ -68,13 +68,13 @@ const groupQuery: AzureFunction = async function (context: Context, req: HttpReq
             if (payload) {
                 switch (payload) {
                     case 'admin_created':
-                        cosmosQuery = 'SELECT c.name, c.email, c.description, c.adminCreated, c.membership_automation_active FROM c where c.adminCreated = true';
+                        cosmosQuery = 'SELECT * FROM c where c.adminCreated = true';
                         break;
                     case 'automated':
-                        cosmosQuery = 'SELECT c.name, c.email, c.description, c.adminCreated, c.membership_automation_active FROM c where c.membership_automation_active = true';
+                        cosmosQuery = 'SELECT * FROM c where c.membership_automation_active = true';
                         break;
                     case 'all':
-                        cosmosQuery = 'SELECT c.name, c.email, c.description, c.adminCreated, c.membership_automation_active FROM c';
+                        cosmosQuery = 'SELECT * FROM c';
                         break;
                     default:
                         cosmosQuery = 'SELECT c.name, c.email, c.description, c.adminCreated, c.membership_automation_active FROM c';
