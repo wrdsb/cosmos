@@ -10,8 +10,50 @@
 
     padding: 10px;
     overflow: auto;
+
+    font-family: 'Jura', sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.widget-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
 table {
     width: 100%;
+}
+
+.groups-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.list {
+    flex: 1 1 auto;
+}
+
+.detail {
+    flex: 1 1 auto;
+}
+
+.detail-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.detail-attribute {
+    font-weight: bold;
 }

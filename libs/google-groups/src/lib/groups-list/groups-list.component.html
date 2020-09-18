@@ -1,92 +1,238 @@
-<div class="form-inline">
-  <div class="form-group">
-    <div class="input-group mr-3">
-      <input type="text" class="form-control" placeholder="Search…" [formControl]="searchFormControl">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" (click)="searchFormControl.setValue('')">x</button>
+<div class="groups-list">
+  <div class="widget list">
+
+    <div class="widget-sidebar"></div>
+
+    <div>
+      <div>
+      </div>
+    </div>
+  
+    <div class="widget-content">
+
+      <div class="widget-header">
+        <div class="widget-title">
+          Google Groups
+        </div>
+
+        <div class="widget-info">
+          {{ groupsList$.value.length }} total records |
+          Showing Page {{ currentPage$.value }} of {{ maxPage$.value }}
+        </div>
+      </div>
+
+      <div class="widget-main">
+        <div>
+          <input type="text" class="form-control" placeholder="Search…" [formControl]="searchFormControl">
+          <button (click)="searchFormControl.setValue('')">Clear</button>
+        </div>
+
+        <button mat-button (click)="pageUp()">Page Up</button>
+
+        <table cdk-table [dataSource]="groupsPage$">
+
+          <!-- email Column -->
+          <ng-container cdkColumnDef="email">
+            <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('email')">
+              Email
+              <span *ngIf="sortKey$.value === 'email'">
+                <ng-container *ngIf="sortDirection$.value === 'asc'; then thenBlock else elseBlock"></ng-container>
+                <ng-template #thenBlock><fa-icon [icon]="angleUpIcon" size="lg"></fa-icon></ng-template>
+                <ng-template #elseBlock><fa-icon [icon]="angleDownIcon" size="lg"></fa-icon></ng-template>
+              </span>
+            </th>
+            <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group.email)"> {{group.email}} </td>
+          </ng-container>
+
+          <!-- displayName Column -->
+          <ng-container cdkColumnDef="name">
+            <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('name')">
+              Name
+              <span *ngIf="sortKey$.value === 'name'">
+                <ng-container *ngIf="sortDirection$.value === 'asc'; then thenBlock else elseBlock"></ng-container>
+                <ng-template #thenBlock><fa-icon [icon]="angleUpIcon" size="lg"></fa-icon></ng-template>
+                <ng-template #elseBlock><fa-icon [icon]="angleDownIcon" size="lg"></fa-icon></ng-template>
+              </span>
+            </th>
+            <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group.email)"> {{group.name}} </td>
+          </ng-container>
+
+          <!-- adminCreated Column -->
+          <ng-container cdkColumnDef="adminCreated">
+            <th cdk-header-cell *cdkHeaderCellDef> Admin<br /> Created? </th>
+            <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group.email)">
+              <ng-container *ngIf="group.adminCreated; then thenBlock else elseBlock"></ng-container>
+              <ng-template #thenBlock><fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon></ng-template>
+              <ng-template #elseBlock><fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></ng-template>
+            </td>
+          </ng-container>
+
+          <!-- membership_automation_active Column -->
+          <ng-container cdkColumnDef="membership_automation_active">
+            <th cdk-header-cell *cdkHeaderCellDef> Automated? </th>
+            <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group.email)">
+              <ng-container *ngIf="group.membership_automation_active; then thenBlock else elseBlock"></ng-container>
+              <ng-template #thenBlock><fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon></ng-template>
+              <ng-template #elseBlock><fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></ng-template>
+            </td>
+          </ng-container>
+
+          <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
+          <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
+        </table>
+
+        <button mat-button (click)="pageDown()">Page Down</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="widget detail">
+    <div *ngIf="groupSelected">
+      <div class="widget-header">
+        <div class="widget-title">
+          {{selectedGroup$.value.name}}
+        </div>
+
+        <div class="widget-info">
+          <span routerLink="/google/groups/{{selectedGroup$.value.id}}">View Details</span>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <span class="detail-attribute">IGOR ID:</span>
+        <span class="detail-value">{{selectedGroup$.value.id}}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="detail-attribute">Name:</span>
+        <span class="detail-value">{{selectedGroup$.value.name}}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="detail-attribute">Email:</span>
+        <span class="detail-value">{{selectedGroup$.value.email}}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">Description:</span>
+        <span class="detail-value">{{selectedGroup$.value.description}}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">Admin Created:</span>
+        <span class="detail-value">{{selectedGroup$.value.adminCreated}}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">Automated:</span>
+        <span class="detail-value">{{selectedGroup$.value.membership_automation_active}}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">Allow External Members:</span>
+        <span class="detail-value">{{ selectedGroup$.value.allowExternalMembers }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">Allow Web Posting:</span>
+        <span class="detail-value">{{ selectedGroup$.value.allowWebPosting }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="detail-attribute">includeInGlobalAddressList:</span>
+        <span class="detail-value">{{ selectedGroup$.value.includeInGlobalAddressList }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">membersCanPostAsTheGroup:</span>
+        <span class="detail-value">{{ selectedGroup$.value.membersCanPostAsTheGroup }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">spamModerationLevel:</span>
+        <span class="detail-value">{{ selectedGroup$.value.spamModerationLevel }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanApproveMembers:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanApproveMembers }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanContactOwner:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanContactOwner }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanDiscoverGroup:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanDiscoverGroup }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanJoin:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanJoin }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanLeaveGroup:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanLeaveGroup }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanModerateMembers:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanModerateMembers }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanPostMessage:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanPostMessage }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanViewGroup:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanViewGroup }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanViewMembership:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanViewMembership }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">showInGroupDirectory:</span>
+        <span class="detail-value">{{ selectedGroup$.value.showInGroupDirectory }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanAdd:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanAdd }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanBanUsers:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanBanUsers }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanDeleteAnyPost:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanDeleteAnyPost }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanInvite:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanInvite }}</span>
+      </div>
+      
+      <div class="detail-row">
+        <span class="detail-attribute">whoCanModifyMembers:</span>
+        <span class="detail-value">{{ selectedGroup$.value.whoCanModifyMembers }}</span>
       </div>
     </div>
   </div>
+
 </div>
-
-<button mat-button (click)="pageUp()">Page Up</button>
-<div class="widget">
-  <div class="widget-sidebar"></div>
-
-  <div class="widget-content">
-
-    <div class="widget-title">
-      Google Groups |
-      {{ groupsList$.value.length }} total records |
-      Showing Page {{ currentPage$.value }} of {{ maxPage$.value }}
-    </div>
-
-    <div class="widget-main">
-
-      <table cdk-table [dataSource]="groupsPage$">
-
-        <!-- email Column -->
-        <ng-container cdkColumnDef="email">
-          <th cdk-header-cell *cdkHeaderCellDef> Email </th>
-          <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group)"> {{group.email}} </td>
-        </ng-container>
-
-        <!-- displayName Column -->
-        <ng-container cdkColumnDef="name">
-          <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('name')">
-            Name
-            <span *ngIf="sortKey$.value === 'name'">
-              {{ sortDirection$.value === 'asc' ? '↥' : '↧' }}
-            </span>
-          </th>
-          <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group)"> {{group.name}} </td>
-        </ng-container>
-
-        <!-- description Column -->
-        <ng-container cdkColumnDef="description">
-          <th cdk-header-cell *cdkHeaderCellDef> Description </th>
-          <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group)"> {{group.description}} </td>
-        </ng-container>
-
-        <!-- adminCreated Column -->
-        <ng-container cdkColumnDef="adminCreated">
-          <th cdk-header-cell *cdkHeaderCellDef> Admin Created? </th>
-          <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group)">
-            <ng-container *ngIf="group.adminCreated; then thenBlock else elseBlock"></ng-container>
-            <ng-template #thenBlock><fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon></ng-template>
-            <ng-template #elseBlock><fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></ng-template>
-          </td>
-        </ng-container>
-
-        <!-- membership_automation_active Column -->
-        <ng-container cdkColumnDef="membership_automation_active">
-          <th cdk-header-cell *cdkHeaderCellDef> Automated? </th>
-          <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group)">
-            <ng-container *ngIf="group.membership_automation_active; then thenBlock else elseBlock"></ng-container>
-            <ng-template #thenBlock><fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon></ng-template>
-            <ng-template #elseBlock><fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></ng-template>
-          </td>
-        </ng-container>
-
-        <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
-        <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
-      </table>
-
-    </div>
-
-  </div>
-</div>
-<button mat-button (click)="pageDown()">Page Down</button>
 
 <div>
   {{ listGroupsRequestState$ | async | json }}
-</div>
-
-<div>
-  {{ selectedGroup$ | async | json }}
-</div>
-
-<div *ngIf="groupSelected">
-  <h2>{{selectedGroup$.value.name}} Details</h2>
-  <div><span>id: </span>{{selectedGroup$.value.id}}</div>
 </div>

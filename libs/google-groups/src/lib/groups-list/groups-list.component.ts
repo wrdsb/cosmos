@@ -4,6 +4,7 @@ import { Howl, Howler } from 'howler';
 import { faCircle as FalseIcon } from "@fortawesome/free-regular-svg-icons";
 import { faAdjust as MaybeIcon } from "@fortawesome/free-solid-svg-icons";
 import { faCircle as TrueIcon } from "@fortawesome/free-solid-svg-icons";
+import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import { GoogleGroup, Status, GroupQueryFunctionResponse, ListGroupsRequestState } from '@cosmos/types';
 
@@ -20,6 +21,9 @@ export class GroupsListComponent implements OnInit {
   FalseIcon = FalseIcon;
   MaybeIcon = MaybeIcon;
   TrueIcon = TrueIcon;
+
+  angleUpIcon = faAngleUp;
+  angleDownIcon = faAngleDown;
 
   listGroupsRequestState$: Observable<ListGroupsRequestState>;
   listGroupsResponse$: Observable<GroupQueryFunctionResponse>;
@@ -90,6 +94,7 @@ export class GroupsListComponent implements OnInit {
           return 0;
         });
           
+        console.log(JSON.stringify(sortedGroups[1]));
         this.groupsList$.next(sortedGroups);
         this.maxPage$.next(Math.ceil(this.groupsList$.value.length / this.pageSize$.value));
     });
@@ -136,8 +141,10 @@ export class GroupsListComponent implements OnInit {
     return ( nextPage >= 1 && nextPage <= this.maxPage$.value ) ? true : false;
   }
 
-  selectGroup(group: GoogleGroup): void {
-    this.selectedGroup$.next(group);
+  selectGroup(groupEmail: string): void {
+    console.log(`Show details for ${groupEmail}`);
+    let nextGroup = this.groupsList$.value.find(group => group.email === groupEmail);
+    this.selectedGroup$.next(nextGroup);
     this.groupSelected = true;
   }
 
