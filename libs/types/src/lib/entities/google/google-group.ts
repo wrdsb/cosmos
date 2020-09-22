@@ -15,7 +15,20 @@ export interface GoogleGroup {
     owners_people_sets?: PeopleSetDefinition[];
 
     configuration_automation_active?: boolean;
-    configuration_templates?: string;
+    configuration_templates?: string[];
+
+    owners?: string[];
+    managers?: string[];
+    members?: string[];
+    
+    staffOwned?: boolean;
+    studentOwned?: boolean;
+    
+    staffManaged?: boolean;
+    studentManaged?: boolean;
+
+    staffMembership?: boolean;
+    studentMembership?: boolean;
 
     google_id?: string;
     etag?: string;
