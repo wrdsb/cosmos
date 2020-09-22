@@ -14,7 +14,6 @@ export class GroupDetailComponent implements OnInit {
   constructor(private groupsService: GoogleGroupsService) { }
 
   ngOnInit() {
-    this.group = this.groupsService.getMock();
   }
 
 }
