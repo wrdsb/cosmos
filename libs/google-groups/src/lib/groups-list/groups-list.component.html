@@ -7,7 +7,7 @@
       <div>
       </div>
     </div>
-  
+
     <div class="widget-content">
 
       <div class="widget-header">
@@ -37,11 +37,15 @@
               Email
               <span *ngIf="sortKey$.value === 'email'">
                 <ng-container *ngIf="sortDirection$.value === 'asc'; then thenBlock else elseBlock"></ng-container>
-                <ng-template #thenBlock><fa-icon [icon]="angleUpIcon" size="lg"></fa-icon></ng-template>
-                <ng-template #elseBlock><fa-icon [icon]="angleDownIcon" size="lg"></fa-icon></ng-template>
+                <ng-template #thenBlock>
+                  <fa-icon [icon]="angleUpIcon" size="lg"></fa-icon>
+                </ng-template>
+                <ng-template #elseBlock>
+                  <fa-icon [icon]="angleDownIcon" size="lg"></fa-icon>
+                </ng-template>
               </span>
             </th>
-            <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group.email)"> {{group.email}} </td>
+            <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.email)"> {{group.email}} </td>
           </ng-container>
 
           <!-- displayName Column -->
@@ -50,30 +54,42 @@
               Name
               <span *ngIf="sortKey$.value === 'name'">
                 <ng-container *ngIf="sortDirection$.value === 'asc'; then thenBlock else elseBlock"></ng-container>
-                <ng-template #thenBlock><fa-icon [icon]="angleUpIcon" size="lg"></fa-icon></ng-template>
-                <ng-template #elseBlock><fa-icon [icon]="angleDownIcon" size="lg"></fa-icon></ng-template>
+                <ng-template #thenBlock>
+                  <fa-icon [icon]="angleUpIcon" size="lg"></fa-icon>
+                </ng-template>
+                <ng-template #elseBlock>
+                  <fa-icon [icon]="angleDownIcon" size="lg"></fa-icon>
+                </ng-template>
               </span>
             </th>
-            <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group.email)"> {{group.name}} </td>
+            <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.email)"> {{group.name}} </td>
           </ng-container>
 
           <!-- adminCreated Column -->
           <ng-container cdkColumnDef="adminCreated">
             <th cdk-header-cell *cdkHeaderCellDef> Admin<br /> Created? </th>
-            <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group.email)">
+            <td cdk-cell  class="clickable"*cdkCellDef="let group" (click)="selectGroup(group.email)">
               <ng-container *ngIf="group.adminCreated; then thenBlock else elseBlock"></ng-container>
-              <ng-template #thenBlock><fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon></ng-template>
-              <ng-template #elseBlock><fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></ng-template>
+              <ng-template #thenBlock>
+                <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
+              </ng-template>
+              <ng-template #elseBlock>
+                <fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+              </ng-template>
             </td>
           </ng-container>
 
           <!-- membership_automation_active Column -->
           <ng-container cdkColumnDef="membership_automation_active">
             <th cdk-header-cell *cdkHeaderCellDef> Automated? </th>
-            <td cdk-cell *cdkCellDef="let group" (click)="selectGroup(group.email)">
+            <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.email)">
               <ng-container *ngIf="group.membership_automation_active; then thenBlock else elseBlock"></ng-container>
-              <ng-template #thenBlock><fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon></ng-template>
-              <ng-template #elseBlock><fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></ng-template>
+              <ng-template #thenBlock>
+                <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
+              </ng-template>
+              <ng-template #elseBlock>
+                <fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+              </ng-template>
             </td>
           </ng-container>
 
@@ -113,120 +129,82 @@
         <span class="detail-attribute">Email:</span>
         <span class="detail-value">{{selectedGroup$.value.email}}</span>
       </div>
-      
+
       <div class="detail-row">
         <span class="detail-attribute">Description:</span>
         <span class="detail-value">{{selectedGroup$.value.description}}</span>
       </div>
-      
+
       <div class="detail-row">
         <span class="detail-attribute">Admin Created:</span>
         <span class="detail-value">{{selectedGroup$.value.adminCreated}}</span>
       </div>
-      
+
       <div class="detail-row">
         <span class="detail-attribute">Automated:</span>
         <span class="detail-value">{{selectedGroup$.value.membership_automation_active}}</span>
       </div>
-      
+
       <div class="detail-row">
-        <span class="detail-attribute">Allow External Members:</span>
-        <span class="detail-value">{{ selectedGroup$.value.allowExternalMembers }}</span>
-      </div>
-      
-      <div class="detail-row">
-        <span class="detail-attribute">Allow Web Posting:</span>
-        <span class="detail-value">{{ selectedGroup$.value.allowWebPosting }}</span>
+        <span class="detail-attribute">Business Owner:</span>
+        <span class="detail-value">{{ selectedGroup$.value.businessOwner }}</span>
       </div>
 
       <div class="detail-row">
-        <span class="detail-attribute">includeInGlobalAddressList:</span>
-        <span class="detail-value">{{ selectedGroup$.value.includeInGlobalAddressList }}</span>
+        <span class="detail-attribute">Owners:</span>
+        <span class="detail-value">
+          <ul *ngIf="selectedGroup$.value.owners && selectedGroup$.value.owners.length > 0">
+            <li *ngFor="let owner of selectedGroup$.value.owners">
+              {{ owner }}
+            </li>
+          </ul>
+        </span>
       </div>
-      
+
       <div class="detail-row">
-        <span class="detail-attribute">membersCanPostAsTheGroup:</span>
-        <span class="detail-value">{{ selectedGroup$.value.membersCanPostAsTheGroup }}</span>
+        <span class="detail-attribute">Managers:</span>
+        <span class="detail-value">
+          <ul *ngIf="selectedGroup$.value.managers && selectedGroup$.value.managers.length > 0">
+            <li *ngFor="let manager of selectedGroup$.value.managers">
+              {{ manager }}
+            </li>
+          </ul>
+        </span>
       </div>
-      
+
       <div class="detail-row">
-        <span class="detail-attribute">spamModerationLevel:</span>
-        <span class="detail-value">{{ selectedGroup$.value.spamModerationLevel }}</span>
+        <span class="detail-attribute">Staff Owned:</span>
+        <span class="detail-value">{{ selectedGroup$.value.staffOwned }}</span>
       </div>
-      
+
       <div class="detail-row">
-        <span class="detail-attribute">whoCanApproveMembers:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanApproveMembers }}</span>
+        <span class="detail-attribute">Student Owned:</span>
+        <span class="detail-value">{{ selectedGroup$.value.studentOwned }}</span>
       </div>
-      
+
       <div class="detail-row">
-        <span class="detail-attribute">whoCanContactOwner:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanContactOwner }}</span>
+        <span class="detail-attribute">Staff Managed:</span>
+        <span class="detail-value">{{ selectedGroup$.value.staffManaged }}</span>
       </div>
-      
+
       <div class="detail-row">
-        <span class="detail-attribute">whoCanDiscoverGroup:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanDiscoverGroup }}</span>
+        <span class="detail-attribute">Student Managed:</span>
+        <span class="detail-value">{{ selectedGroup$.value.studentManaged }}</span>
       </div>
-      
+
       <div class="detail-row">
-        <span class="detail-attribute">whoCanJoin:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanJoin }}</span>
+        <span class="detail-attribute">Staff Membership:</span>
+        <span class="detail-value">{{ selectedGroup$.value.staffMembership }}</span>
       </div>
-      
+
       <div class="detail-row">
-        <span class="detail-attribute">whoCanLeaveGroup:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanLeaveGroup }}</span>
+        <span class="detail-attribute">Student Membership:</span>
+        <span class="detail-value">{{ selectedGroup$.value.studentMembership }}</span>
       </div>
-      
+
       <div class="detail-row">
-        <span class="detail-attribute">whoCanModerateMembers:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanModerateMembers }}</span>
-      </div>
-      
-      <div class="detail-row">
-        <span class="detail-attribute">whoCanPostMessage:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanPostMessage }}</span>
-      </div>
-      
-      <div class="detail-row">
-        <span class="detail-attribute">whoCanViewGroup:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanViewGroup }}</span>
-      </div>
-      
-      <div class="detail-row">
-        <span class="detail-attribute">whoCanViewMembership:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanViewMembership }}</span>
-      </div>
-      
-      <div class="detail-row">
-        <span class="detail-attribute">showInGroupDirectory:</span>
-        <span class="detail-value">{{ selectedGroup$.value.showInGroupDirectory }}</span>
-      </div>
-      
-      <div class="detail-row">
-        <span class="detail-attribute">whoCanAdd:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanAdd }}</span>
-      </div>
-      
-      <div class="detail-row">
-        <span class="detail-attribute">whoCanBanUsers:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanBanUsers }}</span>
-      </div>
-      
-      <div class="detail-row">
-        <span class="detail-attribute">whoCanDeleteAnyPost:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanDeleteAnyPost }}</span>
-      </div>
-      
-      <div class="detail-row">
-        <span class="detail-attribute">whoCanInvite:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanInvite }}</span>
-      </div>
-      
-      <div class="detail-row">
-        <span class="detail-attribute">whoCanModifyMembers:</span>
-        <span class="detail-value">{{ selectedGroup$.value.whoCanModifyMembers }}</span>
+        <span class="detail-attribute">Is Open:</span>
+        <span class="detail-value">{{ selectedGroup$.value.isOpen }}</span>
       </div>
     </div>
   </div>
