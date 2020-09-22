@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { FunctionInvocation, GoogleGroupStoreFunctionRequest, GoogleGroupStoreFunctionRequestPayload } from "@cosmos/types";
+import { FunctionInvocation, GoogleGroupStoreFunctionRequest, GoogleGroupStoreFunctionRequestPayload, GoogleGroup } from "@cosmos/types";
 
 const groupStore: AzureFunction = async function (context: Context, triggerMessage: GoogleGroupStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -31,8 +31,17 @@ const groupStore: AzureFunction = async function (context: Context, triggerMessa
         mangers_people_sets: [],
         owners_people_sets: [],
         configurationAutomationActive: false,
-        configurationTemplates: false
-    };
+        configurationTemplates: [],
+        owners: [],
+        managers: [],
+        members: [],
+        staffOwned: false,
+        studentOwned: false,
+        staffManaged: false,
+        studentManaged: false,
+        staffMembership: false,
+        studentMembership: false
+    } as GoogleGroup;
     let result;
 
     let statusCode;
