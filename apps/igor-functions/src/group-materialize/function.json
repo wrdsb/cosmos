@@ -1,0 +1,49 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "group-materialize",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "groupRecord",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-groups",
+      "id": "{payload.email}",
+      "partitionKey": "{payload.email}",
+      "connectionStringSetting": "wrdsb-igor_CosmosDB",
+      "direction": "in"
+    },
+    {
+      "name": "groupMemberships",
+      "type": "blob",
+      "path": "groups-memberships-actual-now/{payload.email}.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "materializedGroupRecord",
+      "type": "queue",
+      "queueName": "group-store",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "materializedGroupBlob",
+      "type": "blob",
+      "path": "groups-materialized/{payload.email}.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
