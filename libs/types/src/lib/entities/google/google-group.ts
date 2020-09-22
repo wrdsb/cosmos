@@ -4,6 +4,7 @@ export interface GoogleGroup {
     id?: string;
 
     business_owner?: string;
+    businessOwner?: string;
 
     membership_automation_active?: boolean;
     automate_managers?: boolean;
@@ -29,6 +30,8 @@ export interface GoogleGroup {
 
     staffMembership?: boolean;
     studentMembership?: boolean;
+
+    isOpen?: boolean;
 
     google_id?: string;
     etag?: string;
