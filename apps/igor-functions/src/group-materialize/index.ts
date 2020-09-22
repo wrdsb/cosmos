@@ -15,7 +15,7 @@ const groupMaterialize: AzureFunction = async function (context: Context, trigge
     const triggerObject = triggerMessage as GoogleGroupMaterializeFunctionRequest;
     const payload = triggerObject.payload as GoogleGroupMaterializeFunctionRequestPayload;
 
-    const oldRecord = context.bindings.groupRecord;
+    const oldRecord = context.bindings.groupRecord as GoogleGroup;
     const groupMemberships = context.bindings.groupMemberships.actual;
 
     let owners = [];
@@ -28,6 +28,8 @@ const groupMaterialize: AzureFunction = async function (context: Context, trigge
     let studentManaged = false;
     let staffMembership = false;
     let studentMembership = false;
+
+    let isOpen = false;
    
     const memberships = Object.getOwnPropertyNames(groupMemberships);
 
@@ -68,9 +70,14 @@ const groupMaterialize: AzureFunction = async function (context: Context, trigge
         staffManaged: staffManaged,
         studentManaged: studentManaged,
         staffMembership: staffMembership,
-        studentMembership: studentMembership
-    };
+        studentMembership: studentMembership,
+        isOpen: isOpen
+    } as GoogleGroup;
     cosmosRecord = Object.assign(cosmosRecord, oldRecord);
+
+    if (cosmosRecord.whoCanViewGroup === 'ALL_IN_DOMAIN_CAN_VIEW' || cosmosRecord.whoCanViewGroup === 'ANYONE_CAN_VIEW') {
+        cosmosRecord.isOpen = true;
+    }
 
     const storeMessage = {
         operation: 'patch',

@@ -40,7 +40,8 @@ const groupStore: AzureFunction = async function (context: Context, triggerMessa
         staffManaged: false,
         studentManaged: false,
         staffMembership: false,
-        studentMembership: false
+        studentMembership: false,
+        isOpen: false
     } as GoogleGroup;
     let result;
 
