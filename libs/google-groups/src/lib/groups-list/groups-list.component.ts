@@ -94,9 +94,9 @@ export class GroupsListComponent implements OnInit {
           return 0;
         });
           
-        console.log(JSON.stringify(sortedGroups[1]));
         this.groupsList$.next(sortedGroups);
         this.maxPage$.next(Math.ceil(this.groupsList$.value.length / this.pageSize$.value));
+        this.currentPage$.next(1);
     });
 
     this.searchFormControl.setValue('');
