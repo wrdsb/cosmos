@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { Howl, Howler } from 'howler';
 import { faCircle as FalseIcon } from "@fortawesome/free-regular-svg-icons";
@@ -11,6 +12,7 @@ import { GoogleGroup, Status, GroupQueryFunctionResponse, ListGroupsRequestState
 import { GoogleGroupsService } from '../google-groups.service';
 import { IGORService } from '@cosmos/igor-service';
 import { FormControl } from '@angular/forms';
+import { GroupMetaDialogComponent } from "../group-meta-dialog/group-meta-dialog.component";
 
 @Component({
   selector: 'cosmos-google-groups-list',
@@ -48,9 +50,6 @@ export class GroupsListComponent implements OnInit {
   sortKey$ = new BehaviorSubject<string>('name');
   sortDirection$ = new BehaviorSubject<string>('asc');
 
-  groupSelected: boolean = false;
-  selectedGroup$ = new BehaviorSubject<GoogleGroup>(null);
-
   displayedColumns$ = new BehaviorSubject<string[]>([
     'name',
     'email',
@@ -60,12 +59,21 @@ export class GroupsListComponent implements OnInit {
 
   searchFormControl = new FormControl();
 
+  public groupSelected$: Observable<boolean>;
+  public selectedGroup$: Observable<GoogleGroup>;
+
+  groupMetaDialogRef: MatDialogRef<GroupMetaDialogComponent>;
+
   constructor(
     private groupsService: GoogleGroupsService,
-    private igorService: IGORService
+    private igorService: IGORService,
+    public dialog: MatDialog
   ) {
     this.listGroupsRequestState$ = this.igorService.listGroupsRequestState$;
     this.listGroupsResponse$ = this.igorService.listGroupsResponse$;
+
+    this.groupSelected$ = this.groupsService.groupSelected$;
+    this.selectedGroup$ = this.groupsService.selectedGroup$;
   }
 
   ngOnInit() {
@@ -144,8 +152,15 @@ export class GroupsListComponent implements OnInit {
   selectGroup(groupEmail: string): void {
     console.log(`Show details for ${groupEmail}`);
     let nextGroup = this.groupsList$.value.find(group => group.email === groupEmail);
-    this.selectedGroup$.next(nextGroup);
-    this.groupSelected = true;
+    this.groupsService.selectGroup(nextGroup);
+    this.groupMetaDialogRef = this.dialog.open(GroupMetaDialogComponent, {
+      data: nextGroup
+    });
+  }
+
+  deselectGroup(): void {
+    console.log(`Deselect selected group`);
+    this.groupsService.deselectGroup();
   }
 
   getGroups(): void {

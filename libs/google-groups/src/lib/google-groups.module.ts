@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
+import { MatDialogModule } from "@angular/material/dialog";
 
 import { GoogleGroupsRoutingModule } from './google-groups-routing.module';
 
@@ -19,14 +20,17 @@ import { GroupsSearchComponent } from './groups-search/groups-search.component';
 
 import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { GroupsListComponent } from './groups-list/groups-list.component';
+import { GroupMetaDialogComponent } from "./group-meta-dialog/group-meta-dialog.component";
 
 import { MembershipsListComponent } from './memberships-list/memberships-list.component';
 import { MembershipDetailComponent } from './membership-detail/membership-detail.component';
+
 
 @NgModule({
   declarations: [
     GroupDetailComponent,
     GroupsListComponent,
+    GroupMetaDialogComponent,
     GroupsHomeComponent,
     GroupsSearchComponent,
     MembershipsListComponent,
@@ -43,13 +47,18 @@ import { MembershipDetailComponent } from './membership-detail/membership-detail
     
     MatButtonModule,
     MatTableModule,
+    MatDialogModule,
 
     GoogleGroupsRoutingModule
   ],
   exports: [
     GroupDetailComponent,
     GroupsListComponent,
+    GroupMetaDialogComponent,
     GroupsHomeComponent
+  ],
+  entryComponents: [
+    GroupMetaDialogComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true }

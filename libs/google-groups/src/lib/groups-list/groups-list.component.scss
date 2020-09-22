@@ -42,22 +42,6 @@ table {
     flex: 1 1 auto;
 }
 
-.detail {
-    flex: 1 1 auto;
-}
-
-.detail-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.detail-attribute {
-    font-weight: bold;
-}
-
 .clickable {
     cursor: pointer;
 }
