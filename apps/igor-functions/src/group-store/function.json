@@ -12,8 +12,8 @@
       "type": "cosmosDB",
       "databaseName": "igor",
       "collectionName": "groups-groups",
-      "id" : "{email}",
-      "partitionKey": "{email}",
+      "id" : "{payload.email}",
+      "partitionKey": "{payload.email}",
       "connectionStringSetting": "wrdsb-igor_CosmosDB",
       "direction": "in"
     },
