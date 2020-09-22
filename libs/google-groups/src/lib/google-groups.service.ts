@@ -35,7 +35,7 @@ export class GoogleGroupsService {
       owners_people_sets: [],
 
       configuration_automation_active: true,
-      configuration_templates: '',
+      configuration_templates: [],
 
       google_id: '017dp8vu2oqr4lq',
       etag: '"nM32qckM4XsKqhG-zylXvkNQRY8/UiI5pz7y-TQVoLQLz8rK-yrKCoc"',
