@@ -43,7 +43,8 @@
     "deploy:skinner": "az functionapp deployment source config-zip -g wrdsb-skinner -n wrdsb-skinner --src ./dist/skinner-functions.zip",
     "deploy:skinner-beta": "az functionapp deployment source config-zip -g wrdsb-skinner -n wrdsb-skinner-beta --src ./dist/skinner-functions-beta.zip",
     "deploy:sorting-hat": "az functionapp deployment source config-zip -g wrdsb-sorting-hat -n wrdsb-sorting-hat --src ./dist/sorting-hat-functions.zip",
-    "deploy:viewfinder-console": "az storage blob upload-batch -s ./dist/apps/viewfinder-console/ -d '$web' --account-name wrdsbviewfinder"
+    "deploy:viewfinder-console": "az storage blob upload-batch -s ./dist/apps/viewfinder-console/ -d '$web' --account-name wrdsbviewfinder",
+    "monitor:igor": "func azure functionapp logstream wrdsb-igor3"
   },
   "private": true,
   "dependencies": {
@@ -84,7 +85,7 @@
     "azure-storage": "^2.8.1",
     "core-js": "^2.5.4",
     "cz-conventional-changelog": "^3.0.2",
-    "googleapis": "^39.2.0",
+    "googleapis": "^59.0.0",
     "howler": "^2.2.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.20",
@@ -107,10 +108,11 @@
     "@nrwl/jest": "9.2.3",
     "@nrwl/node": "9.2.3",
     "@nrwl/workspace": "9.2.3",
+    "@types/gapi": "0.0.39",
     "@types/jest": "25.1.4",
     "@types/lodash": "^4.14.136",
     "@types/node": "^13.11.1",
-    "bestzip": "^2.1.6",
+    "bestzip": "^2.1.7",
     "codelyzer": "^5.1.2",
     "cypress": "^4.12.1",
     "dotenv": "6.2.0",
