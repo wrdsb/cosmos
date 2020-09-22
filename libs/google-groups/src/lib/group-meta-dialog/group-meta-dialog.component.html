@@ -1,0 +1,101 @@
+<h1 mat-dialog-title>{{group.name}}</h1>
+
+<div mat-dialog-content class="detail">
+
+  <div class="detail-row">
+    <span class="detail-attribute">IGOR ID:</span>
+    <span class="detail-value">{{group.id}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Name:</span>
+    <span class="detail-value">{{group.name}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Email:</span>
+    <span class="detail-value">{{group.email}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Description:</span>
+    <span class="detail-value">{{group.description}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Admin Created:</span>
+    <span class="detail-value">{{group.adminCreated}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Automated:</span>
+    <span class="detail-value">{{group.membership_automation_active}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Business Owner:</span>
+    <span class="detail-value">{{ group.businessOwner }}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Owners:</span>
+    <span class="detail-value">
+      <ul *ngIf="group.owners && group.owners.length > 0">
+        <li *ngFor="let owner of group.owners">
+          {{ owner }}
+        </li>
+      </ul>
+    </span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Managers:</span>
+    <span class="detail-value">
+      <ul *ngIf="group.managers && group.managers.length > 0">
+        <li *ngFor="let manager of group.managers">
+          {{ manager }}
+        </li>
+      </ul>
+    </span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Staff Owned:</span>
+    <span class="detail-value">{{ group.staffOwned }}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Student Owned:</span>
+    <span class="detail-value">{{ group.studentOwned }}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Staff Managed:</span>
+    <span class="detail-value">{{ group.staffManaged }}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Student Managed:</span>
+    <span class="detail-value">{{ group.studentManaged }}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Staff Membership:</span>
+    <span class="detail-value">{{ group.staffMembership }}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Student Membership:</span>
+    <span class="detail-value">{{ group.studentMembership }}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Is Open:</span>
+    <span class="detail-value">{{ group.isOpen }}</span>
+  </div>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="true">Close</button>
+</div>
