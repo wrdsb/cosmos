@@ -1,0 +1,34 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "groups-materialize-all",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "groups",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-groups",
+      "sqlQuery": "SELECT c.email from c",
+      "connectionStringSetting": "wrdsb-igor_CosmosDB",
+      "direction": "in"
+    },
+    {
+      "name": "outputQueue",
+      "type": "queue",
+      "queueName": "group-materialize",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
