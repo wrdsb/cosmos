@@ -3,11 +3,6 @@
 
     <div class="widget-sidebar"></div>
 
-    <div>
-      <div>
-      </div>
-    </div>
-
     <div class="widget-content">
 
       <div class="widget-header">
@@ -15,19 +10,21 @@
           Google Groups
         </div>
 
-        <div class="widget-info">
-          {{ groupsList$.value.length }} total records |
-          Showing Page {{ currentPage$.value }} of {{ maxPage$.value }}
-        </div>
-      </div>
-
-      <div class="widget-main">
         <div>
           <input type="text" class="form-control" placeholder="Search…" [formControl]="searchFormControl">
           <button (click)="searchFormControl.setValue('')">Clear</button>
         </div>
 
-        <button mat-button (click)="pageUp()">Page Up</button>
+        <div class="widget-info">
+          {{ groupsList$.value.length }} total records |
+          Showing Page {{ currentPage$.value }} of {{ maxPage$.value }}&nbsp;&nbsp;
+        </div>
+      </div>
+
+      <div class="widget-main">
+        <div>
+          <button mat-flat-button color="primary" (click)="pageUp()">Page Up</button>
+        </div>
 
         <table cdk-table [dataSource]="groupsPage$">
 
@@ -68,7 +65,7 @@
           <!-- adminCreated Column -->
           <ng-container cdkColumnDef="adminCreated">
             <th cdk-header-cell *cdkHeaderCellDef> Admin<br /> Created? </th>
-            <td cdk-cell  class="clickable"*cdkCellDef="let group" (click)="selectGroup(group.email)">
+            <td cdk-cell class="clickable boolean" *cdkCellDef="let group" (click)="selectGroup(group.email)">
               <ng-container *ngIf="group.adminCreated; then thenBlock else elseBlock"></ng-container>
               <ng-template #thenBlock>
                 <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
@@ -82,7 +79,7 @@
           <!-- membership_automation_active Column -->
           <ng-container cdkColumnDef="membership_automation_active">
             <th cdk-header-cell *cdkHeaderCellDef> Automated? </th>
-            <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.email)">
+            <td cdk-cell class="clickable boolean" *cdkCellDef="let group" (click)="selectGroup(group.email)">
               <ng-container *ngIf="group.membership_automation_active; then thenBlock else elseBlock"></ng-container>
               <ng-template #thenBlock>
                 <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
@@ -97,7 +94,7 @@
           <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
         </table>
 
-        <button mat-button (click)="pageDown()">Page Down</button>
+        <button mat-flat-button color="primary" (click)="pageDown()">Page Down</button>
       </div>
 
     </div>

@@ -40,7 +40,7 @@
   <div class="detail-row">
     <span class="detail-attribute">Owners:</span>
     <span class="detail-value">
-      <ul *ngIf="group.owners && group.owners.length > 0">
+      <ul class="users-list" *ngIf="group.owners && group.owners.length > 0">
         <li *ngFor="let owner of group.owners">
           {{ owner }}
         </li>
@@ -51,7 +51,7 @@
   <div class="detail-row">
     <span class="detail-attribute">Managers:</span>
     <span class="detail-value">
-      <ul *ngIf="group.managers && group.managers.length > 0">
+      <ul class="users-list" *ngIf="group.managers && group.managers.length > 0">
         <li *ngFor="let manager of group.managers">
           {{ manager }}
         </li>

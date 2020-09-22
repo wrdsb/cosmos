@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatButtonModule } from "@angular/material/button";
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { Howl, Howler } from 'howler';
 import { faCircle as FalseIcon } from "@fortawesome/free-regular-svg-icons";
@@ -154,6 +155,7 @@ export class GroupsListComponent implements OnInit {
     let nextGroup = this.groupsList$.value.find(group => group.email === groupEmail);
     this.groupsService.selectGroup(nextGroup);
     this.groupMetaDialogRef = this.dialog.open(GroupMetaDialogComponent, {
+      width: '800px',
       data: nextGroup
     });
   }
