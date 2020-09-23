@@ -12,8 +12,8 @@
     overflow: auto;
 
     font-family: 'Jura', sans-serif;
-    font-size: 20px;
-    font-weight: normal;
+    font-size: 18px;
+    font-weight: 400;
     color: white;
     text-decoration: none;
     line-height: 1.5;
@@ -66,4 +66,10 @@ table {
 
 .cdk-column-membership_automation_active {
     text-align: center;
+}
+
+.page-button {
+    padding-left: 8px;
+    padding-right: 8px;
+    cursor: pointer;
 }
