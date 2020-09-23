@@ -7,7 +7,7 @@
 
       <div class="widget-header">
         <div class="widget-title">
-          Google Groups
+          Admin Created Google Groups
         </div>
 
         <div>
@@ -23,7 +23,10 @@
 
       <div class="widget-main">
         <div>
-          <button mat-flat-button color="primary" (click)="pageUp()">Page Up</button>
+          <span class="page-button"><fa-icon (click)="pageBeginning()" [icon]="beginningIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></span>
+          <span class="page-button"><fa-icon (click)="pageUp()" [icon]="backwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></span>
+          <span class="page-button"><fa-icon (click)="pageDown()" [icon]="forwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></span>
+          <span class="page-button"><fa-icon (click)="pageEnd()" [icon]="endIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></span>
         </div>
 
         <table cdk-table [dataSource]="groupsPage$">
@@ -94,7 +97,12 @@
           <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
         </table>
 
-        <button mat-flat-button color="primary" (click)="pageDown()">Page Down</button>
+        <div>
+          <span class="page-button"><fa-icon (click)="pageBeginning()" [icon]="beginningIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></span>
+          <span class="page-button"><fa-icon (click)="pageUp()" [icon]="backwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></span>
+          <span class="page-button"><fa-icon (click)="pageDown()" [icon]="forwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></span>
+          <span class="page-button"><fa-icon (click)="pageEnd()" [icon]="endIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon></span>
+        </div>
       </div>
 
     </div>

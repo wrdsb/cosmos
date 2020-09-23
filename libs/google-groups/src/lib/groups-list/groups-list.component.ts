@@ -7,6 +7,7 @@ import { faCircle as FalseIcon } from "@fortawesome/free-regular-svg-icons";
 import { faAdjust as MaybeIcon } from "@fortawesome/free-solid-svg-icons";
 import { faCircle as TrueIcon } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
 import { GoogleGroup, Status, GroupQueryFunctionResponse, ListGroupsRequestState } from '@cosmos/types';
 
@@ -27,6 +28,11 @@ export class GroupsListComponent implements OnInit {
 
   angleUpIcon = faAngleUp;
   angleDownIcon = faAngleDown;
+
+  beginningIcon = faFastBackward;
+  backwardIcon = faBackward;
+  forwardIcon = faForward;
+  endIcon = faFastForward;
 
   listGroupsRequestState$: Observable<ListGroupsRequestState>;
   listGroupsResponse$: Observable<GroupQueryFunctionResponse>;
@@ -132,6 +138,10 @@ export class GroupsListComponent implements OnInit {
     this.sortDirection$.next('asc');
   }
 
+  pageBeginning(): void {
+    this.currentPage$.next(1);
+  }
+
   pageUp(): void {
     const nextPage = this.currentPage$.value - 1;
     if (this.nextPageValid(nextPage)) {
@@ -144,6 +154,10 @@ export class GroupsListComponent implements OnInit {
     if (this.nextPageValid(nextPage)) {
       this.currentPage$.next(nextPage);
     }
+  }
+
+  pageEnd(): void {
+    this.currentPage$.next(this.maxPage$.value);
   }
 
   nextPageValid(nextPage): boolean {
