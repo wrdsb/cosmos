@@ -1,67 +1,83 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { createLogObject } from "@cosmos/azure-functions-shared";
-import { storeLogBlob } from "@cosmos/azure-functions-shared";
-import { createCallbackMessage } from "@cosmos/azure-functions-shared";
-import { createEvent } from "@cosmos/azure-functions-shared";
+import { AzureFunction, Context, HttpRequest } from "@azure/functions";
+import jwt_decode from 'jwt-decode';
+import { FunctionInvocation } from "@cosmos/types";
 
 const ping: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    const functionInvocationID = context.executionContext.invocationId;
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-
-    const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.Viewfinder.Ping';
-    const functionEventID = `viewfinder-functions-${functionName}-${functionInvocationID}`;
-    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
-
-    const logStorageAccount = process.env['storageAccount'];
-    const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-ping-logs';
-
-    const eventLabel = '';
-    const eventTags = [
-        "viewfinder", 
-    ];
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'Viewfinder',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'Ping',
+        functionDataOperation: 'Ping',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const request = req;
+    let authenticated = false;
+    let authorized = false;
+    let idToken = '';
+    let userName = '';
+    let userEmail = '';
+    let userRoles = [];
 
-    const operation = request.body.operation;
-    const payload = request.body.payload;
+    if (request.headers['x-ms-token-aad-id-token']) {
+        authenticated = true;
+        idToken = request.headers['x-ms-token-aad-id-token'];
+        let decodedToken = jwt_decode(idToken);
+        userName = decodedToken.name,
+        userEmail = decodedToken.email;
+        userRoles = decodedToken.roles as string[];
+        authorized = userRoles.includes('cosmos-user-its') ? true : false;
+    }
 
-    let result = "pong";
-
-    const logPayload = result;
-
-    const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    context.log(logBlob);
-
-    const callbackMessage = await createCallbackMessage(logObject, 200);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    context.log(callbackMessage);
-
-    const invocationEvent = await createEvent(
-        functionInvocationID,
-        functionInvocationTime,
-        functionInvocationTimestamp,
-        functionName,
-        functionEventType,
-        functionEventID,
-        functionLogID,
-        logStorageAccount,
-        logStorageContainer,
-        eventLabel,
-        eventTags
-    );
-    context.bindings.flynnEvent = JSON.stringify(invocationEvent);
-    context.log(invocationEvent);
-
-    context.res = {
-        status: 200,
-        body: invocationEvent
+    let response = {
+        payload: {
+            status: 200,
+            message: "",
+            chatter: "",
+            timestamp: functionInvocation.functionInvocationTimestamp,
+            authenticated: authenticated,
+            authorized: authorized,
+            userName: userName,
+            userEmail: userEmail,
+            userRoles: userRoles
+        }
     };
 
-    context.done(null, logBlob);
+    if (!authenticated) {
+        response.payload.status = 401;
+        response.payload.message = "Unauthorized: Cannot verify your identity.";
+        response.payload.chatter = "Unauthorized: Cannot verify your identity.";
+    }
+    else if (authenticated && !authorized) {
+        response.payload.status = 403;
+        response.payload.message = "Forbidden: You are not permitted to ping Viewfinder";
+        response.payload.chatter = "Forbidden: You are not permitted to ping Viewfinder";
+    }
+    else if (authenticated && authorized) {
+        response.payload.status = 200;
+        response.payload.message = "Viewfinder is up";
+        response.payload.chatter = "Viewfinder here. What can I do for you?";
+    }
+    else {
+        response.payload.status = 400;
+        response.payload.message = "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.";
+        response.payload.chatter = "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.";
+    }
+
+    context.res = {
+        status: response.payload.status,
+        body: response
+    }
+
+    const logPayload = response;
+    context.log(logPayload);
+
+    functionInvocation.logPayload = logPayload;
+    context.log(functionInvocation);
+
+    context.done(null, functionInvocation);
 };
 
 export default ping;
