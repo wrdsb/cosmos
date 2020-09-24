@@ -1,4 +1,4 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import jwt_decode from 'jwt-decode';
 import { FunctionInvocation } from "@cosmos/types";
 
@@ -17,12 +17,16 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
     let authenticated = false;
     let authorized = false;
     let idToken = '';
+    let userName = '';
+    let userEmail = '';
     let userRoles = [];
 
     if (request.headers['x-ms-token-aad-id-token']) {
         authenticated = true;
         idToken = request.headers['x-ms-token-aad-id-token'];
         let decodedToken = jwt_decode(idToken);
+        userName = decodedToken.name,
+        userEmail = decodedToken.email;
         userRoles = decodedToken.roles as string[];
         authorized = userRoles.includes('cosmos-user-its') ? true : false;
     }
@@ -30,71 +34,50 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
     let response = {
         payload: {
             status: 200,
-            message: "Sorting Hat is up",
-            chatter: "Sorting Hat here. What can I do for you?",
+            message: "",
+            chatter: "",
             timestamp: functionInvocation.functionInvocationTimestamp,
             authenticated: authenticated,
             authorized: authorized,
-            roles: userRoles
+            userName: userName,
+            userEmail: userEmail,
+            userRoles: userRoles
         }
     };
 
-    const logPayload = response;
-
     if (!authenticated) {
-        context.res = {
-            status: 200,
-            body: {
-                payload: {
-                    status: 401,
-                    message: "Unauthorized: Cannot verify your identity.",
-                    chatter: "Unauthorized: Cannot verify your identity.",
-                    timestamp: functionInvocation.functionInvocationTimestamp,
-                    authenticated: authenticated,
-                    authorized: authorized,
-                    roles: JSON.stringify(userRoles)
-                }
-            }
-        };
+        response.payload.status = 401;
+        response.payload.message = "Unauthorized: Cannot verify your identity.";
+        response.payload.chatter = "Unauthorized: Cannot verify your identity.";
     }
     else if (authenticated && !authorized) {
-        context.res = {
-            status: 200,
-            body: {
-                payload: {
-                    status: 403,
-                    message: "Forbidden: You are not permitted to ping the Sorting Hat",
-                    chatter: "Forbidden: You are not permitted to ping the Sorting Hat",
-                    timestamp: functionInvocation.functionInvocationTimestamp,
-                    authenticated: authenticated,
-                    authorized: authorized,
-                    roles: JSON.stringify(userRoles)
-                }
-            }
-        };
-    } else if (authenticated && authorized) {
-        context.res = {
-            status: 200,
-            body: response
-        };
-    } else {
-        context.res = {
-            status: 200,
-            body: {
-                payload: {
-                    status: 400,
-                    message: "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.",
-                    chatter: "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.",
-                    timestamp: functionInvocation.functionInvocationTimestamp,
-                    authenticated: authenticated,
-                    authorized: authorized,
-                    roles: JSON.stringify(userRoles)
-                }
-            }
-        };
+        response.payload.status = 403;
+        response.payload.message = "Forbidden: You are not permitted to ping the Sorting Hat";
+        response.payload.chatter = "Forbidden: You are not permitted to ping the Sorting Hat";
+    }
+    else if (authenticated && authorized) {
+        response.payload.status = 200;
+        response.payload.message = "The Sorting Hat is up";
+        response.payload.chatter = "Sorting Hat here. What can I do for you?";
+    }
+    else {
+        response.payload.status = 400;
+        response.payload.message = "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.";
+        response.payload.chatter = "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.";
     }
 
-    context.done(null, logPayload);
+    context.res = {
+        status: response.payload.status,
+        body: response
+    }
+
+    const logPayload = response;
+    context.log(logPayload);
+
+    functionInvocation.logPayload = logPayload;
+    context.log(functionInvocation);
+
+    context.done(null, functionInvocation);
 };
 
 export default ping;
