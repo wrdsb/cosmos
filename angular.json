@@ -2434,7 +2434,37 @@
             "outputPath": "dist/apps/viewfinder-functions",
             "main": "apps/viewfinder-functions/src/main.ts",
             "tsConfig": "apps/viewfinder-functions/tsconfig.app.json",
-            "assets": ["apps/viewfinder-functions/src/assets"]
+            "webpackConfig": "apps/viewfinder-functions/webpack.config.js",
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/viewfinder-functions/src",
+                "glob": "**/function.json",
+                "output": "./viewfinder-functions"
+              },
+              {
+                "input": "./apps/viewfinder-functions/src",
+                "glob": "host.json",
+                "output": "./viewfinder-functions"
+              },
+              {
+                "input": "./apps/viewfinder-functions/src",
+                "glob": "proxies.json",
+                "output": "./viewfinder-functions"
+              },
+              {
+                "input": "./apps/viewfinder-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./viewfinder-functions"
+              },
+              {
+                "input": "./apps/viewfinder-functions/src/bin",
+                "glob": "**.*",
+                "output": "./viewfinder-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
