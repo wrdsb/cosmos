@@ -1,34 +1,26 @@
 {
-    "bindings": [
-        {
-            "name": "req",
-            "type": "httpTrigger",
-            "authLevel": "anonymous",
-            "methods": [
-                "get",
-                "post"
-            ],
-            "direction": "in"
-        },
-        {
-            "name": "res",
-            "type": "http",
-            "direction": "out"
-        },
-        {
-            "name": "callbackMessage",
-            "type": "queue",
-            "queueName": "callbacks",
-            "connection": "wrdsbhagar_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "flynnEvent",
-            "type": "queue",
-            "queueName": "event-emitter",
-            "connection": "wrdsbhagar_STORAGE",
-            "direction": "out"
-        }
+    "bindings": [{
+        "name": "req",
+        "type": "httpTrigger",
+        "authLevel": "anonymous",
+        "methods": [
+          "get"
+        ],
+        "direction": "in"
+      },
+      {
+        "name": "res",
+        "type": "http",
+        "direction": "out"
+      },
+      {
+        "name": "invocationPostProcessor",
+        "type": "queue",
+        "queueName": "invocation-post-processor",
+        "connection": "wrdsbhagar_STORAGE",
+        "direction": "out"
+      }
     ],
     "scriptFile": "./index.js"
-}
+  }
+  
