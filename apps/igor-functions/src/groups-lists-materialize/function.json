@@ -1,0 +1,68 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "groups-lists-materialize",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "groups",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-groups",
+      "connectionStringSetting": "wrdsb-igor_CosmosDB",
+      "direction": "in"
+    },
+    {
+      "name": "adminCreatedSlim",
+      "type": "blob",
+      "path": "groups-lists/admin-created-slim.json",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "automatedSlim",
+      "type": "blob",
+      "path": "groups-lists/automated-slim.json",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "allSlim",
+      "type": "blob",
+      "path": "groups-lists/all-slim.json",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "adminCreatedFull",
+      "type": "blob",
+      "path": "groups-lists/admin-created-full.json",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "automatedFull",
+      "type": "blob",
+      "path": "groups-lists/automated-full.json",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "allFull",
+      "type": "blob",
+      "path": "groups-lists/all-full.json",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
