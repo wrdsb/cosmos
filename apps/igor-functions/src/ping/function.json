@@ -1,6 +1,5 @@
 {
-  "bindings": [
-    {
+  "bindings": [{
       "name": "req",
       "type": "httpTrigger",
       "authLevel": "anonymous",
@@ -13,21 +12,14 @@
       "name": "res",
       "type": "http",
       "direction": "out"
-  },
-  {
-      "name": "callbackMessage",
+    },
+    {
+      "name": "invocationPostProcessor",
       "type": "queue",
-      "queueName": "callbacks",
+      "queueName": "invocation-post-processor",
       "connection": "wrdsbigor3_STORAGE",
       "direction": "out"
-  },
-  {
-      "name": "flynnEvent",
-      "type": "queue",
-      "queueName": "event-emitter",
-      "connection": "wrdsbigor3_STORAGE",
-      "direction": "out"
-  }
-],
+    }
+  ],
   "scriptFile": "./index.js"
 }
