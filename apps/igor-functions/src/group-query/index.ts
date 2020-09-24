@@ -1,29 +1,18 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
 import jwt_decode from 'jwt-decode';
-import { createLogObject } from "@cosmos/azure-functions-shared";
-import { storeLogBlob } from "@cosmos/azure-functions-shared";
-import { createCallbackMessage } from "@cosmos/azure-functions-shared";
-import { createEvent } from "@cosmos/azure-functions-shared";
+import { FunctionInvocation } from "@cosmos/types";
 
 const groupQuery: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    const functionInvocationID = context.executionContext.invocationId;
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-
-    const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.IGOR.Group.Query';
-    const functionEventID = `igor-functions-${functionName}-${functionInvocationID}`;
-    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
-
-    const logStorageAccount = process.env['storageAccount'];
-    const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-group-query-logs';
-
-    const eventLabel = '';
-    const eventTags = [
-        "igor", 
-    ];
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'IGOR',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'Group',
+        functionDataOperation: 'Query',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
@@ -62,31 +51,54 @@ const groupQuery: AzureFunction = async function (context: Context, req: HttpReq
     const payload = query.payload;
 
     let cosmosQuery = "";
+    let records = [];
     
     switch (operation) {
         case 'list':
             if (payload) {
                 switch (payload) {
                     case 'admin_created':
-                        cosmosQuery = 'SELECT * FROM c where c.adminCreated = true';
+                        records = context.bindings.adminCreatedSlim;
+                        break;
+                    case 'admin_created_slim':
+                        records = context.bindings.adminCreatedSlim;
+                        break;
+                    case 'admin_created_full':
+                        records = context.bindings.adminCreatedFull;
                         break;
                     case 'automated':
-                        cosmosQuery = 'SELECT * FROM c where c.membership_automation_active = true';
+                        records = context.bindings.automatedSlim;
+                        break;
+                    case 'automated_slim':
+                        records = context.bindings.automatedSlim;
+                        break;
+                    case 'automated_full':
+                        records = context.bindings.automatedFull;
                         break;
                     case 'all':
-                        cosmosQuery = 'SELECT * FROM c';
+                        records = context.bindings.allSlim;
+                        break;
+                    case 'all_slim':
+                        records = context.bindings.allSlim;
+                        break;
+                    case 'all_full':
+                        records = context.bindings.allFull;
                         break;
                     default:
-                        cosmosQuery = 'SELECT c.name, c.email, c.description, c.adminCreated, c.membership_automation_active FROM c';
+                        records = context.bindings.adminCreatedSlim;
                         break;
                 }
             } else {
-                cosmosQuery = 'SELECT c.name, c.email, c.description, c.adminCreated, c.membership_automation_active FROM c';
+                records = context.bindings.adminCreatedSlim;
             }
             break;
         case 'find':
             if (payload) {
                 cosmosQuery = `SELECT * FROM c where c.email = "${payload}"`
+                const querySpec = {
+                    query: cosmosQuery
+                }
+                records = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer, querySpec);
             } else {
                 context.res = {
                     status: 400,
@@ -99,43 +111,6 @@ const groupQuery: AzureFunction = async function (context: Context, req: HttpReq
             break;
     }
 
-    const querySpec = {
-        query: cosmosQuery
-    }
-
-    const records = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer, querySpec);
-
-    const logPayload = {
-        operation: operation,
-        payload: payload,
-        records: records
-    }
-    const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    context.log(logBlob);
-
-    const callbackMessage = await createCallbackMessage(logObject, 200);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    context.log(callbackMessage);
-
-    const invocationEvent = await createEvent(
-        functionInvocationID,
-        functionInvocationTime,
-        functionInvocationTimestamp,
-        functionName,
-        functionEventType,
-        functionEventID,
-        functionLogID,
-        logStorageAccount,
-        logStorageContainer,
-        eventLabel,
-        eventTags
-    );
-    context.bindings.flynnEvent = JSON.stringify(invocationEvent);
-    context.log(invocationEvent);
-
-    //response.payload['invocationEvent'] = invocationEvent;
-
     if (!authenticated) {
         context.res = {
             status: 200,
@@ -144,7 +119,7 @@ const groupQuery: AzureFunction = async function (context: Context, req: HttpReq
                     status: 401,
                     message: "Unauthorized: Cannot verify your identity.",
                     chatter: "Unauthorized: Cannot verify your identity.",
-                    timestamp: functionInvocationTimestamp,
+                    timestamp: functionInvocation.functionInvocationTimestamp,
                     authenticated: authenticated,
                     authorized: authorized,
                     roles: JSON.stringify(userRoles)
@@ -160,7 +135,7 @@ const groupQuery: AzureFunction = async function (context: Context, req: HttpReq
                     status: 403,
                     message: "Forbidden: You are not permitted to query I.G.O.R.",
                     chatter: "Forbidden: You are not permitted to query I.G.O.R.",
-                    timestamp: functionInvocationTimestamp,
+                    timestamp: functionInvocation.functionInvocationTimestamp,
                     authenticated: authenticated,
                     authorized: authorized,
                     roles: JSON.stringify(userRoles)
@@ -180,7 +155,7 @@ const groupQuery: AzureFunction = async function (context: Context, req: HttpReq
                     status: 400,
                     message: "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.",
                     chatter: "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.",
-                    timestamp: functionInvocationTimestamp,
+                    timestamp: functionInvocation.functionInvocationTimestamp,
                     authenticated: authenticated,
                     authorized: authorized,
                     roles: JSON.stringify(userRoles)
@@ -189,7 +164,12 @@ const groupQuery: AzureFunction = async function (context: Context, req: HttpReq
         };
     }
 
-    context.done(null, logBlob);
+    const logPayload = "";
+    functionInvocation.logPayload = logPayload;
+    context.log(logPayload);
+
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 
 
     async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer, querySpec)
