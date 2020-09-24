@@ -1644,7 +1644,37 @@
             "outputPath": "dist/apps/houston-functions",
             "main": "apps/houston-functions/src/main.ts",
             "tsConfig": "apps/houston-functions/tsconfig.app.json",
-            "assets": ["apps/houston-functions/src/assets"]
+            "webpackConfig": "apps/houston-functions/webpack.config.js",
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/houston-functions/src",
+                "glob": "**/function.json",
+                "output": "./houston-functions"
+              },
+              {
+                "input": "./apps/houston-functions/src",
+                "glob": "host.json",
+                "output": "./houston-functions"
+              },
+              {
+                "input": "./apps/houston-functions/src",
+                "glob": "proxies.json",
+                "output": "./houston-functions"
+              },
+              {
+                "input": "./apps/houston-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./houston-functions"
+              },
+              {
+                "input": "./apps/houston-functions/src/bin",
+                "glob": "**.*",
+                "output": "./houston-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
