@@ -1,0 +1,32 @@
+{
+  "bindings": [{
+      "name": "req",
+      "type": "httpTrigger",
+      "authLevel": "anonymous",
+      "methods": [
+        "get"
+      ],
+      "direction": "in"
+    },
+    {
+      "name": "groupsList",
+      "type": "blob",
+      "path": "groups-lists/admin-created-slim.json",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
