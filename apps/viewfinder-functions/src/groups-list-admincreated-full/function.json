@@ -24,7 +24,7 @@
       "name": "invocationPostProcessor",
       "type": "queue",
       "queueName": "invocation-post-processor",
-      "connection": "wrdsbigor3_STORAGE",
+      "connection": "wrdsbviewfinder_STORAGE",
       "direction": "out"
     }
   ],
