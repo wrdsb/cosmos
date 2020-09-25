@@ -35,7 +35,7 @@ const groupsListAllFull: AzureFunction = async function (context: Context, req: 
     }
 
     let response = {
-        payload: {
+        header: {
             status: 200,
             message: "",
             chatter: "",
@@ -45,33 +45,34 @@ const groupsListAllFull: AzureFunction = async function (context: Context, req: 
             userName: userName,
             userEmail: userEmail,
             userRoles: userRoles
-        }
+        },
+        payload: []
     };
 
     if (!authenticated) {
-        response.payload.status = 401;
-        response.payload.message = "Unauthorized: Cannot verify your identity.";
-        response.payload.chatter = "Unauthorized: Cannot verify your identity.";
+        response.header.status = 401;
+        response.header.message = "Unauthorized: Cannot verify your identity.";
+        response.header.chatter = "Unauthorized: Cannot verify your identity.";
     }
     else if (authenticated && !authorized) {
-        response.payload.status = 403;
-        response.payload.message = "Forbidden: You are not permitted to query Viewfinder";
-        response.payload.chatter = "Forbidden: You are not permitted to query Viewfinder";
+        response.header.status = 403;
+        response.header.message = "Forbidden: You are not permitted to query Viewfinder";
+        response.header.chatter = "Forbidden: You are not permitted to query Viewfinder";
     }
     else if (authenticated && authorized) {
-        response.payload.status = 200;
-        response.payload.message = "all-full.json";
-        response.payload.chatter = "all-full.json";
-        response.payload['records'] = records;
+        response.header.status = 200;
+        response.header.message = "all-full.json";
+        response.header.chatter = "all-full.json";
+        response.payload = records;
     }
     else {
-        response.payload.status = 400;
-        response.payload.message = "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.";
-        response.payload.chatter = "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.";
+        response.header.status = 400;
+        response.header.message = "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.";
+        response.header.chatter = "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.";
     }
 
     context.res = {
-        status: response.payload.status,
+        status: response.header.status,
         body: response
     }
 
