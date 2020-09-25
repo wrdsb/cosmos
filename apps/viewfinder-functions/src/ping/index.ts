@@ -25,8 +25,8 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
         authenticated = true;
         idToken = request.headers['x-ms-token-aad-id-token'];
         let decodedToken = jwt_decode(idToken);
-        userName = decodedToken.name,
-        userEmail = decodedToken.email;
+        userName = decodedToken.name;
+        userEmail = decodedToken.unique_name;
         userRoles = decodedToken.roles as string[];
         authorized = userRoles.includes('cosmos-user-its') ? true : false;
     }
