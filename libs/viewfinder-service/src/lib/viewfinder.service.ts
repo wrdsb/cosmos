@@ -85,4 +85,29 @@ export class ViewfinderService {
       )
       .subscribe(response => this.pingState.next(response));
   }
+
+  doSearch() {
+    console.log('viewfinder google-groups-search');
+
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    let body = {
+      payload: {
+        //count: true,
+        //select: '*',
+        //filter: '',
+        //facets: '',
+        //orderby: '',
+        //search: '',
+        //skip: '',
+        //top: ''
+      }
+    };
+
+    return this.http.post<GoogleGroup[]>(this.googleGroupsSearchURL, body, this.httpOptions);
+  }
 }
