@@ -76,9 +76,11 @@ const membershipsABCCalculate: AzureFunction = async function (context: Context,
     const logPayload = {
         memberCounts: memberCounts
     };
+    functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    context.done(null, logPayload);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 
 
     async function calculateMembers(rows) {

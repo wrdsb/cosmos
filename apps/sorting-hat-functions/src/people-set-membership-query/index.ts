@@ -17,8 +17,11 @@ const peopleSetMembershipQuery: AzureFunction = async function (context: Context
     let result = "";
 
     const logPayload = result;
+    functionInvocation.logPayload = logPayload;
+    context.log(logPayload);
 
-    context.done(null, logPayload);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 };
 
 export default peopleSetMembershipQuery;

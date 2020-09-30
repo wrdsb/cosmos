@@ -30,9 +30,11 @@ const MembershipsABCStudentsCalculate: AzureFunction = async function (context: 
         requestedSchoolCode: requestedSchoolCode,
         memberCounts: memberCounts
     };
+    functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    context.done(null, logPayload);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 
     async function calculateMembers(rows) {
         let members = {};

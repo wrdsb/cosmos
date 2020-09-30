@@ -95,8 +95,11 @@ const membershipsLegacyCalculate: AzureFunction = async function (context: Conte
     context.bindings.setMembershipsCSV = membersCSV;
 
     const logPayload = membersByEmail;
+    functionInvocation.logPayload = logPayload;
+    context.log(logPayload);
 
-    context.done(null, logPayload);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 };
 
 export default membershipsLegacyCalculate;

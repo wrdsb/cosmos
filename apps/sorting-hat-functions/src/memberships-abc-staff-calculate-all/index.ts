@@ -22,9 +22,11 @@ const membershipsABCStaffCalculateAll: AzureFunction = async function (context: 
     const logPayload = {
         queueMessages: queueMessages
     };
+    functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    context.done(null, logPayload);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 
     
     async function prepareMessages(ippsRows, trilliumClasses) {

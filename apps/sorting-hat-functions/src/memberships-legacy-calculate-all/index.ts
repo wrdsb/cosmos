@@ -28,8 +28,11 @@ const membershipsLegacyCalculateAll: AzureFunction = async function (context: Co
     const logPayload = {
         queueMessages: queueMessages
     }
+    functionInvocation.logPayload = logPayload;
+    context.log(logPayload);
 
-    context.done(null, logPayload);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 };
 
 export default membershipsLegacyCalculateAll;

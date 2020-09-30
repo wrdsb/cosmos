@@ -26,9 +26,11 @@ const MembershipsABCStudentsCalculateAll: AzureFunction = async function (contex
     const logPayload = {
         queueMessages: queueMessages
     };
+    functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    context.done(null, logPayload);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
     
     async function prepareMessages(rows) {
         let messages = [];

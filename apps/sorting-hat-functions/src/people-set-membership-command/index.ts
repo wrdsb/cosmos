@@ -19,8 +19,11 @@ const peopleSetMembershipCommand: AzureFunction = async function (context: Conte
     let result = "";
 
     const logPayload = result;
+    functionInvocation.logPayload = logPayload;
+    context.log(logPayload);
 
-    context.done(null, logPayload);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 };
 
 export default peopleSetMembershipCommand;

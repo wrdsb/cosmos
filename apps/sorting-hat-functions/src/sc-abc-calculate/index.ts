@@ -35,9 +35,11 @@ const SCABCCalculate: AzureFunction = async function (context: Context, triggerM
     context.bindings.outputBlobArray = materializedMembersArray;
 
     const logPayload = "";
+    functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    context.done(null, logPayload);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 
     
     async function calculateMembers(classes) {

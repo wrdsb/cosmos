@@ -63,6 +63,13 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
         }
     }
 
+    let logPayload = "";
+    functionInvocation.logPayload = logPayload;
+    context.log(logPayload);
+
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
+
     function flattenPerson(person) {
         let flattened = {
             job_codes: [],

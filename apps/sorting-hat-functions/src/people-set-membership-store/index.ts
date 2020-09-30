@@ -45,8 +45,11 @@ const peopleSetMembershipStore: AzureFunction = async function (context: Context
 
     context.bindings.recordOut = result.newRecord;
     const logPayload = result.event;
+    functionInvocation.logPayload = logPayload;
+    context.log(logPayload);
 
-    context.done(null, logPayload);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 
     // TODO inject event crafting function so we can generalize this function
     // and still publish custom events
