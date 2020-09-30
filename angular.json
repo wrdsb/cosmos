@@ -4659,6 +4659,38 @@
           "style": "scss"
         }
       }
+    },
+    "viewfinder-service": {
+      "projectType": "library",
+      "root": "libs/viewfinder-service",
+      "sourceRoot": "libs/viewfinder-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/viewfinder-service/tsconfig.lib.json",
+              "libs/viewfinder-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/viewfinder-service/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/viewfinder-service/jest.config.js",
+            "tsConfig": "libs/viewfinder-service/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/viewfinder-service/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
