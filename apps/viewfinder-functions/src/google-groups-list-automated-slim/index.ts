@@ -2,14 +2,14 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import jwt_decode from 'jwt-decode';
 import { FunctionInvocation } from "@cosmos/types";
 
-const groupsListAllSlim: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const googleGroupsListAutomatedSlim: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Viewfinder',
         functionName: context.executionContext.functionName,
-        functionDataType: 'GroupsList',
-        functionDataOperation: 'Query',
+        functionDataType: 'GoogleGroup',
+        functionDataOperation: 'List',
         eventLabel: ''
     } as FunctionInvocation;
 
@@ -60,8 +60,8 @@ const groupsListAllSlim: AzureFunction = async function (context: Context, req: 
     }
     else if (authenticated && authorized) {
         response.header.status = 200;
-        response.header.message = "all-slim.json";
-        response.header.chatter = "all-slim.json";
+        response.header.message = "automated-slim.json";
+        response.header.chatter = "automated-slim.json";
         response.payload = records;
     }
     else {
@@ -84,4 +84,4 @@ const groupsListAllSlim: AzureFunction = async function (context: Context, req: 
     context.done(null, functionInvocation);
 };
 
-export default groupsListAllSlim;
+export default googleGroupsListAutomatedSlim;

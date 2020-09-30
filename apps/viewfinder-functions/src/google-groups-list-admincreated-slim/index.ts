@@ -2,14 +2,14 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import jwt_decode from 'jwt-decode';
 import { FunctionInvocation } from "@cosmos/types";
 
-const groupsListAdminCreatedFull: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const googleGroupsListAdminCreatedSlim: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Viewfinder',
         functionName: context.executionContext.functionName,
-        functionDataType: 'GroupsList',
-        functionDataOperation: 'Query',
+        functionDataType: 'GoogleGroup',
+        functionDataOperation: 'List',
         eventLabel: ''
     } as FunctionInvocation;
 
@@ -60,8 +60,8 @@ const groupsListAdminCreatedFull: AzureFunction = async function (context: Conte
     }
     else if (authenticated && authorized) {
         response.header.status = 200;
-        response.header.message = "admin-created-full.json";
-        response.header.chatter = "admin-created-full.json";
+        response.header.message = "admin-created-slim.json";
+        response.header.chatter = "admin-created-slim.json";
         response.payload = records;
     }
     else {
@@ -84,4 +84,4 @@ const groupsListAdminCreatedFull: AzureFunction = async function (context: Conte
     context.done(null, functionInvocation);
 };
 
-export default groupsListAdminCreatedFull;
+export default googleGroupsListAdminCreatedSlim;

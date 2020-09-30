@@ -2,14 +2,14 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import jwt_decode from 'jwt-decode';
 import { FunctionInvocation } from "@cosmos/types";
 
-const groupsListAutomatedFull: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const googleGroupsListAdminCreatedFull: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Viewfinder',
         functionName: context.executionContext.functionName,
-        functionDataType: 'GroupsList',
-        functionDataOperation: 'Query',
+        functionDataType: 'GoogleGroup',
+        functionDataOperation: 'List',
         eventLabel: ''
     } as FunctionInvocation;
 
@@ -60,8 +60,8 @@ const groupsListAutomatedFull: AzureFunction = async function (context: Context,
     }
     else if (authenticated && authorized) {
         response.header.status = 200;
-        response.header.message = "automated-full.json";
-        response.header.chatter = "automated-full.json";
+        response.header.message = "admin-created-full.json";
+        response.header.chatter = "admin-created-full.json";
         response.payload = records;
     }
     else {
@@ -84,4 +84,4 @@ const groupsListAutomatedFull: AzureFunction = async function (context: Context,
     context.done(null, functionInvocation);
 };
 
-export default groupsListAutomatedFull;
+export default googleGroupsListAdminCreatedFull;
