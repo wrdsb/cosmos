@@ -1,5 +1,4 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { CosmosClient } from "@azure/cosmos";
 import jwt_decode from 'jwt-decode';
 import { FunctionInvocation } from "@cosmos/types";
 
