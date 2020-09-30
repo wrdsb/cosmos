@@ -1,1 +1,1 @@
-export * from './lib/viewfinder-service.module';
+export * from './lib/viewfinder.service';
