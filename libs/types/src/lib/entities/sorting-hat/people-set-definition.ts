@@ -6,14 +6,14 @@ interface PeopleSetDefinition {
     type: PeopleSetType;
 
     name: string;
-    short_name: string;
-    aliases: string[];
+    short_name?: string;
+    aliases?: string[];
 
-    categories: string[];
-    tags: string[];
+    categories?: string[];
+    tags?: string[];
 
-    definition: PeopleSetsCollection[];
-    constituent_sets: PeopleSetsCollection;
+    definition?: PeopleSetsCollection[];
+    constituent_sets?: PeopleSetsCollection;
 
     created_at: string;
     updated_at: string;
