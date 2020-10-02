@@ -6,17 +6,20 @@ class CodexPerson implements Person {
     id: string;
     ein: string;
     email: string;
-    pal: string;
+    username: string;
 
     name: string;
     first_name: string;
     last_name: string;
     sortable_name: string;
 
-    people_set_memberships: Array<string>;
+    people_set_memberships: string[];
+    people_set_names: string[];
 
-    school_codes: Array<string>;
-    location_codes: Array<string>;
+    school_codes: string[];
+    location_codes: string[];
+    job_codes: string[];
+    ipps_home_location: string;
 
     ippsRecord: IPPSRecord;
     trilliumRecord: TrilliumRecord;
