@@ -66,7 +66,6 @@ const googleGroupsSearch: AzureFunction = async function (context: Context, req:
     } as SearchRequestOptions<keyof GoogleGroup>;
 
     if (payload.includeTotalCount) { options.includeTotalCount = payload.includeTotalCount; }
-    if (payload.select)            { options.select = payload.select; }
     if (payload.filter)            { options.filter = payload.filter; }
     if (payload.facets)            { options.facets = payload.facets; }
     if (payload.orderby)           { options.orderBy = payload.orderby; }
