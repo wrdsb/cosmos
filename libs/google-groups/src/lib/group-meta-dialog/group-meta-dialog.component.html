@@ -1,3 +1,5 @@
+<ng-container *ngIf="selectedGroup$ | async as group">
+
 <h1 mat-dialog-title>{{group.name}}</h1>
 
 <div mat-dialog-content class="detail">
@@ -99,3 +101,5 @@
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="true">Close</button>
 </div>
+
+</ng-container>

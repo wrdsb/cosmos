@@ -41,7 +41,7 @@
             <th cdk-header-cell *cdkHeaderCellDef>
               Email
             </th>
-            <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.email)"> {{group.email}} </td>
+            <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.id)"> {{group.email}} </td>
           </ng-container>
 
           <!-- displayName Column -->
@@ -49,13 +49,13 @@
             <th cdk-header-cell *cdkHeaderCellDef>
               Name
             </th>
-            <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.email)"> {{group.name}} </td>
+            <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.id)"> {{group.name}} </td>
           </ng-container>
 
           <!-- adminCreated Column -->
           <ng-container cdkColumnDef="adminCreated">
             <th cdk-header-cell *cdkHeaderCellDef> Admin<br /> Created? </th>
-            <td cdk-cell class="clickable boolean" *cdkCellDef="let group" (click)="selectGroup(group.email)">
+            <td cdk-cell class="clickable boolean" *cdkCellDef="let group" (click)="selectGroup(group.id)">
               <ng-container *ngIf="group.adminCreated; then thenBlock else elseBlock"></ng-container>
               <ng-template #thenBlock>
                 <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
@@ -69,7 +69,7 @@
           <!-- membership_automation_active Column -->
           <ng-container cdkColumnDef="membership_automation_active">
             <th cdk-header-cell *cdkHeaderCellDef> Automated? </th>
-            <td cdk-cell class="clickable boolean" *cdkCellDef="let group" (click)="selectGroup(group.email)">
+            <td cdk-cell class="clickable boolean" *cdkCellDef="let group" (click)="selectGroup(group.id)">
               <ng-container *ngIf="group.membership_automation_active; then thenBlock else elseBlock"></ng-container>
               <ng-template #thenBlock>
                 <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>

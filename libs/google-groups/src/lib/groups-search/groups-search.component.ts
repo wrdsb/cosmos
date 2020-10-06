@@ -53,6 +53,7 @@ export class GroupsSearchComponent implements OnInit {
   public searchResponse$: Observable<SearchFunctionResponse>;
   public totalRecords$: Observable<number>;
   public maxPage$: Observable<number>;
+
   public groupsPage$: Observable<GoogleGroup[]>;
 
   public groupSelected$: Observable<boolean>;
@@ -66,7 +67,7 @@ export class GroupsSearchComponent implements OnInit {
   ) {
     this.searchResponse$ = this.groupsService.searchResponse$;
     this.totalRecords$ = this.searchResponse$.pipe(map(response => response.payload.count));
-    this.groupsPage$ = this.searchResponse$.pipe(map(response => response.payload.documents));
+    this.groupsPage$ = this.groupsService.groupsList$;
     this.maxPage$ = this.totalRecords$.pipe(map(totalRecords => Math.ceil(totalRecords / this.pageSize.value)));
     this.maxPage$.subscribe(this.maxPage);
 
@@ -121,13 +122,13 @@ export class GroupsSearchComponent implements OnInit {
     return ( nextPage >= 1 && nextPage <= this.maxPage.value ) ? true : false;
   }
 
-  selectGroup(groupEmail: string): void {
-    console.log(`Show details for ${groupEmail}`);
-    let nextGroup = this.groupsPage$.find(group => group.email === groupEmail);
-    this.groupsService.selectGroup(nextGroup);
+  selectGroup(groupID: string): void {
+    console.log(`Show details for ${groupID}`);
+
+    this.groupsService.selectGroup(groupID);
+
     this.groupMetaDialogRef = this.dialog.open(GroupMetaDialogComponent, {
-      width: '800px',
-      data: nextGroup
+      width: '800px'
     });
   }
 
