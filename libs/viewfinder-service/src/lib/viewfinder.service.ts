@@ -17,6 +17,7 @@ export class ViewfinderService {
   
   private googleGroupsQueryURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-group-query';
   private googleGroupsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-groups-search';
+  private googleCalendarsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-calendars-search';
 
   private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
     payload: {
@@ -97,7 +98,7 @@ export class ViewfinderService {
 
 
   searchGoogleGroups(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: doSearch()');
+    console.log('Viewfinder Service: searchGoogleGroups()');
     console.log('Searching Viewfinder...');
 
     let defaultSearchRequestOptions = {
@@ -119,13 +120,55 @@ export class ViewfinderService {
       error: 'unknown'
     });
 
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
+    return this.http.post<SearchFunctionResponse>(this.googleGroupsSearchURL, searchFunctionRequest, this.httpOptions)
+      .pipe(
+        tap(_ => console.log('searh request')),
+        retry(2),
+        catchError(error => {
+          console.log('catch search request error');
+          this.searchRequestState.next({
+            status: Status.ERROR,
+            response: '',
+            error: error
+          });
+          throw 'error searching Viewfinder';
+        }),
+        tap(_ => {
+          this.searchRequestState.next({
+            status: Status.SUCCESS,
+            response: 'success',
+            error: ''
+          });
+          console.log('success searching Viewfinder');
+        })
+      );
+  }
+
+
+  searchGoogleCalendars(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
+    console.log('Viewfinder Service: searchGoogleCalendars()');
+    console.log('Searching Viewfinder...');
+
+    let defaultSearchRequestOptions = {
+      includeTotalCount: true,
+      orderBy: ["summary asc"],
+      skip: 0,
+      top: 20,
+    } as SearchFunctionRequestPayload;
+
+    let searchRequestOptions = Object.assign(defaultSearchRequestOptions, query);
+    
+    let searchFunctionRequest = {
+      payload: searchRequestOptions
     };
 
-    return this.http.post<SearchFunctionResponse>(this.googleGroupsSearchURL, searchFunctionRequest, this.httpOptions)
+    this.searchRequestState.next({
+      status: Status.LOADING,
+      response: 'unknown',
+      error: 'unknown'
+    });
+
+    return this.http.post<SearchFunctionResponse>(this.googleCalendarsSearchURL, searchFunctionRequest, this.httpOptions)
       .pipe(
         tap(_ => console.log('searh request')),
         retry(2),
