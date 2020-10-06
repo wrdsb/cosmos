@@ -27,6 +27,7 @@ interface SearchFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
     skip?: number;
     top?: number;
     select?: string[];
+    searchFields?: string[];
 }
 
 interface SearchFunctionResponseHeader {
