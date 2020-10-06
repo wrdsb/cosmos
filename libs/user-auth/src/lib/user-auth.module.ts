@@ -31,6 +31,7 @@ export const protectedResourceMap: [string, string[]][] = [
 
   ['https://wrdsb-viewfinder.azurewebsites.net/api/ping', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]],
   ['https://wrdsb-viewfinder.azurewebsites.net/api/google-groups-search', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]],
+  ['https://wrdsb-viewfinder.azurewebsites.net/api/google-calendars-search', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]],
 
   ['https://graph.microsoft.com/v1.0/me', ['user.read']]
 ];
