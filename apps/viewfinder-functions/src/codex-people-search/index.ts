@@ -75,6 +75,7 @@ const codexPersonSearch: AzureFunction = async function (context: Context, req: 
     if (payload.skip)              { options.skip = payload.skip; }
     if (payload.top)               { options.top = payload.top; }
     if (payload.select)            { options.select = payload.select; }
+    if (payload.searchFields)      { options.searchFields = payload.searchFields; }
 
     const searchClient = new SearchClient<CodexPerson>(
         searchURL,
