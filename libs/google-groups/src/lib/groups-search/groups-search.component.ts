@@ -88,6 +88,7 @@ export class GroupsSearchComponent implements OnInit {
       .subscribe(searchTerm => {
         console.log(searchTerm);
         this.currentSearch.next(searchTerm);
+        this.currentPage.next(1);
         this.searchGroups();
       });
   }
