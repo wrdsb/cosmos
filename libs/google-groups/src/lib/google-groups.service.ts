@@ -12,7 +12,12 @@ import { GoogleGroup, SearchFunctionRequestPayload, SearchFunctionResponse, Sear
   providedIn: 'root'
 })
 export class GoogleGroupsService {
-  private groups: GoogleGroup[] = [];
+  private searchRequestState: BehaviorSubject<SearchRequestState> = new BehaviorSubject({
+    status: Status.UNKNOWN,
+    response: 'response',
+    error: 'error'
+  });
+  public readonly searchRequestState$: Observable<SearchRequestState> = this.searchRequestState.asObservable();
 
   private searchResponse: BehaviorSubject<SearchFunctionResponse> = new BehaviorSubject({
     header: {
@@ -23,19 +28,15 @@ export class GoogleGroupsService {
     },
     payload: {}
   });
-  private searchRequestState: BehaviorSubject<SearchRequestState> = new BehaviorSubject({
-    status: Status.UNKNOWN,
-    response: 'response',
-    error: 'error'
-  });
   public readonly searchResponse$: Observable<SearchFunctionResponse> = this.searchResponse.asObservable();
-  public readonly searchRequestState$: Observable<SearchRequestState> = this.searchRequestState.asObservable();
-  //private groupsList: BehaviorSubject<GoogleGroup[]> = new BehaviorSubject([]);
+
+  private groupsList: BehaviorSubject<GoogleGroup[]> = new BehaviorSubject([]);
+  public readonly groupsList$: Observable<GoogleGroup[]> = this.groupsList.asObservable();
 
   private groupSelected: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  private selectedGroup: BehaviorSubject<GoogleGroup> = new BehaviorSubject<GoogleGroup>(null);
-
   public readonly groupSelected$: Observable<boolean> = this.groupSelected.asObservable();
+
+  private selectedGroup: BehaviorSubject<GoogleGroup> = new BehaviorSubject<GoogleGroup>(null);
   public readonly selectedGroup$: Observable<GoogleGroup> = this.selectedGroup.asObservable();
 
   constructor(
@@ -43,27 +44,67 @@ export class GoogleGroupsService {
     private viewfinderService: ViewfinderService
   ) {}
 
-  findGroup(options?: SearchFunctionRequestPayload): void {
-    console.log('Google Groups Service: doSearch()');
-    this.viewfinderService.doSearch(options);
-  }
-  
-  selectGroup(group: GoogleGroup) {
-    group.owners = (group.owners) ? group.owners : []
-    group.managers = (group.managers) ? group.managers : []
 
-    this.groupSelected.next(true);
-    this.selectedGroup.next(group);
-    console.log(`${this.selectedGroup.value.email} selected`);
+  selectGroup(groupID: string): void {
+    this.findGroup(groupID);
   }
+
 
   deselectGroup() {
     this.groupSelected.next(false);
     this.selectedGroup.next(null);
   }
 
+
+  findGroup(groupID): void {
+    console.log('Google Groups Service: findGroup()');
+
+    this.searchRequestState.next({
+      status: Status.LOADING,
+      response: 'unknown',
+      error: 'unknown'
+    });
+
+    this.viewfinderService.findGoogleGroup(groupID)
+      .pipe(
+        tap(_ => console.log('Google Groups Service: find request')),
+        retry(2),
+        catchError(error => {
+          console.log('Google Groups Service: catch find request error');
+          this.searchRequestState.next({
+            status: Status.ERROR,
+            response: '',
+            error: error
+          });
+          this.searchResponse.next({
+            header: {
+              status: 200,
+              message: "error",
+              chatter: "error",
+              timestamp: "timestamp"
+            },
+            payload: {}
+          });
+          throw 'Google Groups Service: error finding Google Group';
+        }),
+        tap(_ => {
+          this.searchRequestState.next({
+            status: Status.SUCCESS,
+            response: 'success',
+            error: ''
+          });
+          console.log('Google Groups Service: success finding Google Group');
+        })
+      )
+      .subscribe((response) => {
+        this.groupSelected.next(true);
+        this.selectedGroup.next(response.payload.documents[0] as GoogleGroup);
+      });
+  }
+
+  
   searchGroups(query?: SearchFunctionRequestPayload): void {
-    console.log('Google Groups Service: doSearch()');
+    console.log('Google Groups Service: searchGroups()');
 
     let defaultSearchRequestOptions = {
       includeTotalCount: true,
@@ -82,10 +123,10 @@ export class GoogleGroupsService {
 
     this.viewfinderService.searchGoogleGroups(searchRequestOptions)
       .pipe(
-        tap(_ => console.log('searh request')),
+        tap(_ => console.log('Google Groups Service: search request')),
         retry(2),
         catchError(error => {
-          console.log('catch search request error');
+          console.log('Google Groups Service: catch search request error');
           this.searchRequestState.next({
             status: Status.ERROR,
             response: '',
@@ -100,7 +141,7 @@ export class GoogleGroupsService {
             },
             payload: {}
           });
-          throw 'error searching Viewfinder';
+          throw 'Google Groups Service: error searching Viewfinder';
         }),
         tap(_ => {
           this.searchRequestState.next({
@@ -108,9 +149,12 @@ export class GoogleGroupsService {
             response: 'success',
             error: ''
           });
-          console.log('success searching Viewfinder');
+          console.log('Google Groups Service: success searching Viewfinder');
         })
       )
-      .subscribe(response => this.searchResponse.next(response));
+      .subscribe((response) => {
+        this.searchResponse.next(response);
+        this.groupsList.next(response.payload.documents as GoogleGroup[]);
+      });
   }
 }
