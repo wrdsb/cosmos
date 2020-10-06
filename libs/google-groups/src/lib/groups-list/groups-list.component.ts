@@ -165,13 +165,6 @@ export class GroupsListComponent implements OnInit {
   }
 
   selectGroup(groupEmail: string): void {
-    console.log(`Show details for ${groupEmail}`);
-    let nextGroup = this.groupsList$.value.find(group => group.email === groupEmail);
-    this.groupsService.selectGroup(nextGroup);
-    this.groupMetaDialogRef = this.dialog.open(GroupMetaDialogComponent, {
-      width: '800px',
-      data: nextGroup
-    });
   }
 
   deselectGroup(): void {
