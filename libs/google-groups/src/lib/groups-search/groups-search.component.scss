@@ -1,0 +1,75 @@
+:host {
+    display: grid;
+}
+
+.widget {
+    display: grid;
+
+    border: 2px solid #6D6D6B;
+    border-top: 14px solid #6D6D6B;
+
+    padding: 10px;
+    overflow: auto;
+
+    font-family: 'Jura', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.widget-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    color: #0A1A43;
+    background-color: #29C2D7;
+}
+
+table {
+    width: 100%;
+}
+
+.groups-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.list {
+    flex: 1 1 auto;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.cdk-row {
+    background-color: #1F3D73;
+}
+
+.cdk-column-email {
+    width: 30%;
+}
+
+.cdk-column-name {
+    width: 45%;
+}
+
+.cdk-column-adminCreated {
+    text-align: center;
+}
+
+.cdk-column-membership_automation_active {
+    text-align: center;
+}
+
+.page-button {
+    padding-left: 8px;
+    padding-right: 8px;
+    cursor: pointer;
+}
