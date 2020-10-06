@@ -7,16 +7,15 @@ import { Status } from "@cosmos/types";
 import { PingFunctionResponse, PingRequestState } from "@cosmos/types";
 import { SearchFunctionRequest, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
 
-import { GoogleGroup } from '@cosmos/types';
-
 @Injectable({
   providedIn: 'root'
 })
 export class ViewfinderService {
   private pingURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/ping';
   
-  private googleGroupsQueryURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-group-query';
+  private googleGroupsFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-group-find';
   private googleGroupsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-groups-search';
+  
   private googleCalendarsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-calendars-search';
 
   private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
@@ -96,6 +95,38 @@ export class ViewfinderService {
       .subscribe(response => this.pingState.next(response));
   }
 
+  findGoogleGroup(groupID: string): Observable<SearchFunctionResponse> {
+    console.log('Viewfinder Service: findGoogleGroup()');
+
+    let searchFunctionRequest = {
+      payload: {
+        id: groupID
+      }
+    };
+
+    return this.http.post<SearchFunctionResponse>(this.googleGroupsFindURL, searchFunctionRequest, this.httpOptions)
+    .pipe(
+      tap(_ => console.log('Viewfinder Service: Google Group find request')),
+      retry(2),
+      catchError(error => {
+        console.log('Viewfinder Service: catch find request error');
+        this.searchRequestState.next({
+          status: Status.ERROR,
+          response: '',
+          error: error
+        });
+        throw 'Viewfinder Service: error finding via Viewfinder';
+      }),
+      tap(_ => {
+        this.searchRequestState.next({
+          status: Status.SUCCESS,
+          response: 'success',
+          error: ''
+        });
+        console.log('Viewfinder Service: success searching via Viewfinder');
+      })
+    );
+}
 
   searchGoogleGroups(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
     console.log('Viewfinder Service: searchGoogleGroups()');
@@ -103,7 +134,6 @@ export class ViewfinderService {
 
     let defaultSearchRequestOptions = {
       includeTotalCount: true,
-      orderBy: ["email asc"],
       skip: 0,
       top: 20,
     } as SearchFunctionRequestPayload;
