@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 
-import { PingFunctionResponse, PingRequestState, Status, GoogleGroupStoreFunctionRequestPayload } from "@cosmos/types";
-import { GroupQueryFunctionResponse, ListGroupsRequestState } from "@cosmos/types";
+import { Status } from "@cosmos/types";
+import { PingFunctionResponse, PingRequestState } from "@cosmos/types";
+import { SearchFunctionRequest, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
 
 import { GoogleGroup } from '@cosmos/types';
 
@@ -14,7 +15,6 @@ import { GoogleGroup } from '@cosmos/types';
 export class ViewfinderService {
   private pingURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/ping';
   
-  private googleGroupsCommandURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-group-command';
   private googleGroupsQueryURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-group-query';
   private googleGroupsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-groups-search';
 
@@ -34,6 +34,13 @@ export class ViewfinderService {
   public readonly pingState$: Observable<PingFunctionResponse> = this.pingState.asObservable();
   public readonly pingRequestState$: Observable<PingRequestState> = this.pingRequestState.asObservable();
 
+  private searchRequestState: BehaviorSubject<SearchRequestState> = new BehaviorSubject({
+    status: Status.UNKNOWN,
+    response: 'response',
+    error: 'error'
+  });
+  public readonly searchRequestState$: Observable<SearchRequestState> = this.searchRequestState.asObservable();
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -44,7 +51,9 @@ export class ViewfinderService {
     private http: HttpClient
   ) {}
 
+
   doPing(): void {
+    console.log('Viewfinder Service: doPing()');
     console.log('Pinging Viewfinder...');
 
     this.pingRequestState.next({
@@ -55,10 +64,10 @@ export class ViewfinderService {
 
     this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions)
       .pipe(
-        tap(_ => console.log('tap')),
+        tap(_ => console.log('ping request')),
         retry(2),
         catchError(error => {
-          console.log('catch error');
+          console.log('catch ping request error');
           this.pingRequestState.next({
             status: Status.ERROR,
             response: '',
@@ -86,8 +95,29 @@ export class ViewfinderService {
       .subscribe(response => this.pingState.next(response));
   }
 
-  doSearch() {
-    console.log('viewfinder google-groups-search');
+
+  searchGoogleGroups(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
+    console.log('Viewfinder Service: doSearch()');
+    console.log('Searching Viewfinder...');
+
+    let defaultSearchRequestOptions = {
+      includeTotalCount: true,
+      orderBy: ["email asc"],
+      skip: 0,
+      top: 20,
+    } as SearchFunctionRequestPayload;
+
+    let searchRequestOptions = Object.assign(defaultSearchRequestOptions, query);
+    
+    let searchFunctionRequest = {
+      payload: searchRequestOptions
+    };
+
+    this.searchRequestState.next({
+      status: Status.LOADING,
+      response: 'unknown',
+      error: 'unknown'
+    });
 
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -95,19 +125,27 @@ export class ViewfinderService {
       })
     };
 
-    let body = {
-      payload: {
-        //count: true,
-        //select: '*',
-        //filter: '',
-        //facets: '',
-        //orderby: '',
-        //search: '',
-        //skip: '',
-        //top: ''
-      }
-    };
-
-    return this.http.post<GoogleGroup[]>(this.googleGroupsSearchURL, body, this.httpOptions);
+    return this.http.post<SearchFunctionResponse>(this.googleGroupsSearchURL, searchFunctionRequest, this.httpOptions)
+      .pipe(
+        tap(_ => console.log('searh request')),
+        retry(2),
+        catchError(error => {
+          console.log('catch search request error');
+          this.searchRequestState.next({
+            status: Status.ERROR,
+            response: '',
+            error: error
+          });
+          throw 'error searching Viewfinder';
+        }),
+        tap(_ => {
+          this.searchRequestState.next({
+            status: Status.SUCCESS,
+            response: 'success',
+            error: ''
+          });
+          console.log('success searching Viewfinder');
+        })
+      );
   }
 }
