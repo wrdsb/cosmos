@@ -4691,6 +4691,38 @@
           "style": "scss"
         }
       }
+    },
+    "google-calendar": {
+      "projectType": "library",
+      "root": "libs/google-calendar",
+      "sourceRoot": "libs/google-calendar/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/google-calendar/tsconfig.lib.json",
+              "libs/google-calendar/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/google-calendar/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/google-calendar/jest.config.js",
+            "tsConfig": "libs/google-calendar/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/google-calendar/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

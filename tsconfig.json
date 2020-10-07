@@ -67,7 +67,8 @@
       ],
       "@cosmos/releases": ["libs/releases/src/index.ts"],
       "@cosmos/gsuite": ["libs/gsuite/src/index.ts"],
-      "@cosmos/viewfinder-service": ["libs/viewfinder-service/src/index.ts"]
+      "@cosmos/viewfinder-service": ["libs/viewfinder-service/src/index.ts"],
+      "@cosmos/google-calendar": ["libs/google-calendar/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

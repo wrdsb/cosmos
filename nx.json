@@ -320,6 +320,9 @@
     },
     "viewfinder-service": {
       "tags": []
+    },
+    "google-calendar": {
+      "tags": []
     }
   }
 }
