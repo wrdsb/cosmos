@@ -15,7 +15,8 @@ export class ViewfinderService {
   
   private googleGroupsFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-group-find';
   private googleGroupsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-groups-search';
-  
+
+  private googleCalendarFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-calendar-find';
   private googleCalendarsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-calendars-search';
 
   private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
@@ -126,7 +127,7 @@ export class ViewfinderService {
         console.log('Viewfinder Service: success searching via Viewfinder');
       })
     );
-}
+  }
 
   searchGoogleGroups(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
     console.log('Viewfinder Service: searchGoogleGroups()');
@@ -172,6 +173,40 @@ export class ViewfinderService {
           console.log('success searching Viewfinder');
         })
       );
+  }
+
+
+  findGoogleCalendar(calendarID: string): Observable<SearchFunctionResponse> {
+    console.log('Viewfinder Service: findGoogleCalendar()');
+
+    let searchFunctionRequest = {
+      payload: {
+        id: calendarID
+      }
+    };
+
+    return this.http.post<SearchFunctionResponse>(this.googleCalendarFindURL, searchFunctionRequest, this.httpOptions)
+    .pipe(
+      tap(_ => console.log('Viewfinder Service: Google Calendar find request')),
+      retry(2),
+      catchError(error => {
+        console.log('Viewfinder Service: catch find request error');
+        this.searchRequestState.next({
+          status: Status.ERROR,
+          response: '',
+          error: error
+        });
+        throw 'Viewfinder Service: error finding via Viewfinder';
+      }),
+      tap(_ => {
+        this.searchRequestState.next({
+          status: Status.SUCCESS,
+          response: 'success',
+          error: ''
+        });
+        console.log('Viewfinder Service: success searching via Viewfinder');
+      })
+    );
   }
 
 
