@@ -7,6 +7,16 @@ import { GSuiteHomeComponent } from "./gsuite-home/gsuite-home.component";
 
 const routes: Routes = [
   {
+    path: 'calendar',
+    loadChildren: () => import('@cosmos/google-calendar').then(m => m.GoogleCalendarModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  {
     path: 'groups',
     loadChildren: () => import('@cosmos/google-groups').then(m => m.GoogleGroupsModule),
     data: {
