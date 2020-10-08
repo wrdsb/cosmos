@@ -1,1 +1,86 @@
-<p>calendar-search works!</p>
+<div class="calendars-list">
+    <div class="widget list">
+      <div class="widget-content">
+  
+        <div class="widget-header">
+          <div class="widget-title">
+            Search Google Calendars
+          </div>
+  
+          <div>
+            <input type="text" class="form-control" placeholder="Search…" [formControl]="searchFormControl">
+            <button (click)="searchFormControl.setValue('')">Clear</button>
+          </div>
+  
+          <div class="widget-info">
+            {{ totalRecords$ | async }} total records |
+            Showing Page {{ currentPage.value }} of {{ maxPage$ | async }}&nbsp;&nbsp;
+          </div>
+        </div>
+  
+        <div class="widget-main">
+          <div>
+            <span class="page-button">
+              <fa-icon (click)="pageBeginning()" [icon]="beginningIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+            </span>
+            <span class="page-button">
+              <fa-icon (click)="pageUp()" [icon]="backwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+            </span>
+            <span class="page-button">
+              <fa-icon (click)="pageDown()" [icon]="forwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+            </span>
+            <span class="page-button">
+              <fa-icon (click)="pageEnd()" [icon]="endIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+            </span>
+          </div>
+  
+          <table cdk-table [dataSource]="calendarsPage$">
+  
+            <!-- id Column -->
+            <ng-container cdkColumnDef="id">
+              <th cdk-header-cell *cdkHeaderCellDef>
+                ID
+              </th>
+              <td cdk-cell class="clickable" *cdkCellDef="let calendar" (click)="selectCalendar(calendar.id)"> {{calendar.id}} </td>
+            </ng-container>
+            
+            <!-- summary Column -->
+            <ng-container cdkColumnDef="summary">
+              <th cdk-header-cell *cdkHeaderCellDef>
+                Name
+              </th>
+              <td cdk-cell class="clickable" *cdkCellDef="let calendar" (click)="selectCalendar(calendar.id)"> {{calendar.summary}} </td>
+            </ng-container>
+  
+            <!-- description Column -->
+            <ng-container cdkColumnDef="description">
+              <th cdk-header-cell *cdkHeaderCellDef>
+                Description
+              </th>
+              <td cdk-cell class="clickable" *cdkCellDef="let calendar" (click)="selectCalendar(calendar.id)"> {{calendar.description}} </td>
+            </ng-container>
+  
+            <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
+            <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
+          </table>
+  
+          <div>
+            <span class="page-button">
+              <fa-icon (click)="pageBeginning()" [icon]="beginningIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+            </span>
+            <span class="page-button">
+              <fa-icon (click)="pageUp()" [icon]="backwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+            </span>
+            <span class="page-button">
+              <fa-icon (click)="pageDown()" [icon]="forwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+            </span>
+            <span class="page-button">
+              <fa-icon (click)="pageEnd()" [icon]="endIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+            </span>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
