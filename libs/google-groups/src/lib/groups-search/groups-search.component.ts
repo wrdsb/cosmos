@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatButtonModule } from "@angular/material/button";
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -12,7 +11,7 @@ import { faFastBackward, faBackward, faForward, faFastForward } from "@fortaweso
 
 import { GoogleGroup, SearchFunctionRequestPayload, SearchFunctionResponse } from "@cosmos/types";
 import { GoogleGroupsService } from '../google-groups.service';
-import { map, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { GroupMetaDialogComponent } from "../group-meta-dialog/group-meta-dialog.component";
 
 @Component({
