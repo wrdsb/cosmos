@@ -51,7 +51,7 @@ const googleCalendarsSearch: AzureFunction = async function (context: Context, r
             "summary",
             "description",
             "location",
-            "timezone"
+            "timeZone"
         ]
     } as SearchRequestOptions<keyof GoogleCalendar>;
 
@@ -74,7 +74,9 @@ const googleCalendarsSearch: AzureFunction = async function (context: Context, r
 
     let documents = [];
     for await (const result of searchResults.results) {
-        documents.push(result.document);
+        let document = result.document;
+        document.id = Buffer.from(document.id, 'base64').toString();
+        documents.push(document);
     }
 
     let response = {

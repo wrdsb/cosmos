@@ -84,7 +84,9 @@ const googleGroupsSearch: AzureFunction = async function (context: Context, req:
 
     let documents = [];
     for await (const result of searchResults.results) {
-        documents.push(result.document);
+        let document = result.document;
+        document.id = Buffer.from(document.id, 'base64').toString();
+        documents.push(document);
     }
 
     let response = {
