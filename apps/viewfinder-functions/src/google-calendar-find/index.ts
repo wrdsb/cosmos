@@ -3,19 +3,24 @@ import { SearchClient, AzureKeyCredential, SearchRequestOptions } from "@azure/s
 import jwt_decode from 'jwt-decode';
 import { FunctionInvocation, GoogleCalendar } from "@cosmos/types";
 
-const googleCalendarsSearch: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const googleCalendarFind: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Viewfinder',
         functionName: context.executionContext.functionName,
         functionDataType: 'GoogleCalendar',
-        functionDataOperation: 'Search',
+        functionDataOperation: 'Find',
         eventLabel: ''
     } as FunctionInvocation;
 
     const request = req;
     const payload = request.body.payload;
+    const documentID = payload.id;
+
+    context.log(payload);
+    context.log(documentID);
+
     let authenticated = false;
     let authorized = false;
     let idToken = '';
@@ -37,48 +42,19 @@ const googleCalendarsSearch: AzureFunction = async function (context: Context, r
     const searchURL = 'https://wrdsb-codex.search.windows.net';
     const searchIndex = 'igor-calendar-calendars';
 
-    const search = payload.search ? payload.search : '*';
-    
-    let options = {
-        includeTotalCount: true,
-        facets: null,
-        filter: null,
-        orderBy: ["id asc"],
-        skip: 0,
-        top: 20,
-        select: [
-            "id",
-            "summary",
-            "description",
-            "location",
-            "timeZone"
-        ]
-    } as SearchRequestOptions<keyof GoogleCalendar>;
-
-    if (payload.includeTotalCount) { options.includeTotalCount = payload.includeTotalCount; }
-    if (payload.filter)            { options.filter = payload.filter; }
-    if (payload.facets)            { options.facets = payload.facets; }
-    if (payload.orderby)           { options.orderBy = payload.orderby; }
-    if (payload.skip)              { options.skip = payload.skip; }
-    if (payload.top)               { options.top = payload.top; }
-    if (payload.select)            { options.select = payload.select; }
-    if (payload.searchFields)      { options.searchFields = payload.searchFields; }
-
     const searchClient = new SearchClient<GoogleCalendar>(
         searchURL,
         searchIndex,
         new AzureKeyCredential(searchKey)
     );
 
-    let searchResults = await searchClient.search(search, options);
+    let searchResults = await searchClient.getDocument(documentID);
 
     let documents = [];
-    for await (const result of searchResults.results) {
-        let document = result.document;
-        document['searchID'] = document.id;
-        document.id = Buffer.from(document.id, 'base64').toString();
-        documents.push(document);
-    }
+    let document = searchResults;
+    document['searchID'] = document.id;
+    document.id = Buffer.from(document.id, 'base64').toString();
+    documents.push();
 
     let response = {
         header: {
@@ -110,7 +86,6 @@ const googleCalendarsSearch: AzureFunction = async function (context: Context, r
         response.header.message = "";
         response.header.chatter = "";
         response.payload = {
-            count: searchResults.count,
             documents: documents
         }
     }
@@ -134,4 +109,4 @@ const googleCalendarsSearch: AzureFunction = async function (context: Context, r
     context.done(null, functionInvocation);
 };
 
-export default googleCalendarsSearch;
+export default googleCalendarFind;

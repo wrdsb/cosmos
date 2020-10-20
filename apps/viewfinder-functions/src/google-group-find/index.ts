@@ -16,8 +16,10 @@ const googleGroupFind: AzureFunction = async function (context: Context, req: Ht
 
     const request = req;
     const payload = request.body.payload;
+    const documentID = payload.id;
 
     context.log(payload);
+    context.log(documentID);
 
     let authenticated = false;
     let authorized = false;
@@ -46,10 +48,13 @@ const googleGroupFind: AzureFunction = async function (context: Context, req: Ht
         new AzureKeyCredential(searchKey)
     );
 
-    let searchResults = await searchClient.getDocument(payload.id);
+    let searchResults = await searchClient.getDocument(documentID);
 
     let documents = [];
-    documents.push(searchResults);
+    let document = searchResults;
+    document['searchID'] = document.id;
+    document.id = Buffer.from(document.id, 'base64').toString();
+    documents.push();
 
     let response = {
         header: {
