@@ -1,1 +1,28 @@
-<p>calendar-meta-dialog works!</p>
+<ng-container *ngIf="selectedCalendar$ | async as calendar">
+
+  <h1 mat-dialog-title>{{calendar.summary}}</h1>
+
+  <div mat-dialog-content class="detail">
+
+    <div class="detail-row">
+      <span class="detail-attribute">Name (Summary):</span>
+      <span class="detail-value">{{calendar.summary}}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-attribute">Description:</span>
+      <span class="detail-value">{{calendar.description}}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-attribute">Calendar ID:</span>
+      <span class="detail-value">{{calendar.id}}</span>
+    </div>
+
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Close</button>
+  </div>
+
+</ng-container>
