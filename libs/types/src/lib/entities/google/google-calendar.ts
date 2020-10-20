@@ -1,5 +1,6 @@
 export interface GoogleCalendar {
     id?: string;
+    searchID?: string;
 
     kind?: string;
 

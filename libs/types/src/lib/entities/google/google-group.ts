@@ -2,6 +2,7 @@ import { PeopleSetDefinition } from "../sorting-hat";
 
 export interface GoogleGroup {
     id?: string;
+    searchID?: string;
 
     business_owner?: string;
     businessOwner?: string;
