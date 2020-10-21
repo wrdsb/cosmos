@@ -70,7 +70,8 @@
       "@cosmos/viewfinder-service": ["libs/viewfinder-service/src/index.ts"],
       "@cosmos/google-calendar": ["libs/google-calendar/src/index.ts"],
       "@cosmos/people": ["libs/people/src/index.ts"],
-      "@cosmos/schools": ["libs/schools/src/index.ts"]
+      "@cosmos/schools": ["libs/schools/src/index.ts"],
+      "@cosmos/aad": ["libs/aad/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
