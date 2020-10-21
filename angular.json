@@ -4851,6 +4851,38 @@
           "style": "scss"
         }
       }
+    },
+    "teamviewer": {
+      "projectType": "library",
+      "root": "libs/teamviewer",
+      "sourceRoot": "libs/teamviewer/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/teamviewer/tsconfig.lib.json",
+              "libs/teamviewer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/teamviewer/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/teamviewer/jest.config.js",
+            "tsConfig": "libs/teamviewer/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/teamviewer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
