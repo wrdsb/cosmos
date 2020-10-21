@@ -4883,6 +4883,38 @@
           "style": "scss"
         }
       }
+    },
+    "trillium": {
+      "projectType": "library",
+      "root": "libs/trillium",
+      "sourceRoot": "libs/trillium/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/trillium/tsconfig.lib.json",
+              "libs/trillium/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/trillium/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/trillium/jest.config.js",
+            "tsConfig": "libs/trillium/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/trillium/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

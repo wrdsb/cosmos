@@ -73,7 +73,8 @@
       "@cosmos/schools": ["libs/schools/src/index.ts"],
       "@cosmos/aad": ["libs/aad/src/index.ts"],
       "@cosmos/ipps": ["libs/ipps/src/index.ts"],
-      "@cosmos/teamviewer": ["libs/teamviewer/src/index.ts"]
+      "@cosmos/teamviewer": ["libs/teamviewer/src/index.ts"],
+      "@cosmos/trillium": ["libs/trillium/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
