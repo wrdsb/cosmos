@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'google',
-    loadChildren: () => import('@cosmos/gsuite').then(m => m.GSuiteModule),
+    loadChildren: () => import('@cosmos/google').then(m => m.GoogleModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },

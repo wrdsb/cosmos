@@ -4,22 +4,22 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MsalInterceptor } from '@azure/msal-angular';
 
-import { GSuiteRoutingModule } from './gsuite-routing.module';
-import { GSuiteHomeComponent } from './gsuite-home/gsuite-home.component';
+import { GoogleRoutingModule } from './google-routing.module';
+import { GoogleHomeComponent } from './google-home/google-home.component';
 
 @NgModule({
   declarations: [
-    GSuiteHomeComponent
+    GoogleHomeComponent
   ],
   imports: [
     CommonModule,
-    GSuiteRoutingModule
+    GoogleRoutingModule
   ],
   exports: [
-    GSuiteHomeComponent
+    GoogleHomeComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true }
   ]
 })
-export class GSuiteModule {}
+export class GoogleModule {}

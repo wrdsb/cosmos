@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GSuiteHomeComponent } from './gsuite-home.component';
+import { GoogleHomeComponent } from './google-home.component';
 
-describe('GSuiteHomeComponent', () => {
-  let component: GSuiteHomeComponent;
-  let fixture: ComponentFixture<GSuiteHomeComponent>;
+describe('GoogleHomeComponent', () => {
+  let component: GoogleHomeComponent;
+  let fixture: ComponentFixture<GoogleHomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GSuiteHomeComponent ]
+      declarations: [ GoogleHomeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GSuiteHomeComponent);
+    fixture = TestBed.createComponent(GoogleHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

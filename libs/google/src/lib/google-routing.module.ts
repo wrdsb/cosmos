@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 import { RolesGuard } from "@cosmos/guards";
 
-import { GSuiteHomeComponent } from "./gsuite-home/gsuite-home.component";
+import { GoogleHomeComponent } from "./google-home/google-home.component";
 
 const routes: Routes = [
   {
@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   { 
     path: '',
-    component: GSuiteHomeComponent,
+    component: GoogleHomeComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -43,4 +43,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class GSuiteRoutingModule { }
+export class GoogleRoutingModule { }

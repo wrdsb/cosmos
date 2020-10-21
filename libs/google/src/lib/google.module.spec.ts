@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { GSuiteModule } from './gsuite.module';
+import { GoogleModule } from './google.module';
 
-describe('GSuiteModule', () => {
+describe('GoogleModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [GSuiteModule]
+      imports: [GoogleModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(GSuiteModule).toBeDefined();
+    expect(GoogleModule).toBeDefined();
   });
 });
