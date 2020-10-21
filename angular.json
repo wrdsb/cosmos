@@ -4819,6 +4819,38 @@
           "style": "scss"
         }
       }
+    },
+    "ipps": {
+      "projectType": "library",
+      "root": "libs/ipps",
+      "sourceRoot": "libs/ipps/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ipps/tsconfig.lib.json",
+              "libs/ipps/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ipps/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ipps/jest.config.js",
+            "tsConfig": "libs/ipps/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ipps/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
