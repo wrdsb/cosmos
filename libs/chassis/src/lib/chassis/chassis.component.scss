@@ -44,10 +44,10 @@ cosmos-footer {
 
   height: 100%;
 
-  font-family: 'Jura', sans-serif;
+  font-family: var(--default-font-family);
   font-size: 25px;
   font-weight: normal;
-  color: white;
+  color: var(--text);
   text-decoration: none;
 
   display: flex;
