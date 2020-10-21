@@ -1,0 +1,29 @@
+:host {
+    display: grid;
+}
+
+.widget {
+    display: grid;
+
+    border: 2px solid #6D6D6B;
+    border-top: 14px solid #6D6D6B;
+
+    padding: 10px;
+    overflow: auto;
+
+    font-family: var(--default-font-family);
+    font-size: var(--body-font-size);
+    font-weight: var(--body-font-wieght);
+    color: var(--body-text);
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.widget-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    color: #0A1A43;
+    background-color: #29C2D7;
+}
