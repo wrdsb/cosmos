@@ -2,26 +2,6 @@
   <header class="header" [class.showHeader]="visible" [class.hideHeader]="visible === false">
     <mat-toolbar color="primary" class='mat-toolbar-single-row'>
 
-      <button mat-button [matMenuTriggerFor]="peopleMenu">
-        People
-      </button>
-      <mat-menu #peopleMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/people">
-          <mat-icon class="material-icons-outlined">contactless</mat-icon>
-          <span>People Dashboard</span>
-        </button>
-      </mat-menu>
-
-      <button mat-button [matMenuTriggerFor]="schoolsMenu">
-        Schools
-      </button>
-      <mat-menu #schoolsMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/schools">
-          <mat-icon class="material-icons-outlined">contactless</mat-icon>
-          <span>Schools Dashboard</span>
-        </button>
-      </mat-menu>
-
       <button mat-button [matMenuTriggerFor]="aadMenu">
         AAD
       </button>
@@ -57,6 +37,26 @@
         <button mat-menu-item routerLink="/ipps">
           <mat-icon class="material-icons-outlined">contactless</mat-icon>
           <span>IPPS Dashboard</span>
+        </button>
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="peopleMenu">
+        People
+      </button>
+      <mat-menu #peopleMenu="matMenu" backdropClass="customWaffle">
+        <button mat-menu-item routerLink="/people">
+          <mat-icon class="material-icons-outlined">contactless</mat-icon>
+          <span>People Dashboard</span>
+        </button>
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="schoolsMenu">
+        Schools
+      </button>
+      <mat-menu #schoolsMenu="matMenu" backdropClass="customWaffle">
+        <button mat-menu-item routerLink="/schools">
+          <mat-icon class="material-icons-outlined">contactless</mat-icon>
+          <span>Schools Dashboard</span>
         </button>
       </mat-menu>
 
