@@ -5,6 +5,7 @@ body {
 body {
   margin: 0;
   padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 :root {
@@ -15,9 +16,6 @@ body {
   --gray4: #454e56;
   --gray5: #2a2e35;
   --gray6: #12181b;
-  --blue: #0084a5;
-  --purple: #a82dd1;
-  --yellow: #fff565;
 }
 
 .cosmos-theme-light {
