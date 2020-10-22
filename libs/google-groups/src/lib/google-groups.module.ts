@@ -16,6 +16,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatDividerModule } from "@angular/material/divider";
+import { MatRadioModule } from "@angular/material/radio";
 
 import { GoogleGroupsRoutingModule } from './google-groups-routing.module';
 
@@ -56,6 +57,7 @@ import { MembershipDetailComponent } from './membership-detail/membership-detail
     MatSlideToggleModule,
     MatButtonToggleModule,
     MatDividerModule,
+    MatRadioModule,
 
     GoogleGroupsRoutingModule
   ],

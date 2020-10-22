@@ -14,8 +14,74 @@ $accent: map-get($app-theme, accent);
   display: grid;
 }
 
-.googleGroupsSearch {
+.google-groups-search {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.search-panel {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.panel-group {
+  margin-bottom: 1rem;
+  margin-right: 5rem;
+
+  width: 80%;
+  height: 100%;
+
+  background-color: var(--gray1);
+
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.panel-group-label {
+  font-size: 120%;
+  font-weight: normal;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  padding-right: 2rem;
+}
+
+.panel-field {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.panel-field-label {
+  display: inline;
+}
+
+.panel-field-control {
+  display: inline;
+}
+
+.groups-list {
+  flex-grow: 3;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
 
 table {
@@ -30,30 +96,45 @@ table {
   cursor: pointer;
 }
 
-.cdk-row {
-  /*background-color: #1F3D73;*/
+th {
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: normal;
+  text-align: -internal-center;
 }
 
 .cdk-column-email {
-  width: 30%;
 }
 
 .cdk-column-name {
-  width: 45%;
 }
 
 .cdk-column-adminCreated {
+  width: 12%;
   text-align: center;
 }
 
 .cdk-column-membership_automation_active {
+  width: 12%;
   text-align: center;
+}
+
+.cdk-row {
+  line-height: 2em;
+}
+
+.cdk-row:nth-child(odd) {
+  background-color: var(--gray1);
+}
+
+.paginator {
 }
 
 .page-button {
   padding-left: 8px;
   padding-right: 8px;
   cursor: pointer;
+  color: var(--gray3);
 }
 
 .mat-button-toggle {
@@ -66,6 +147,10 @@ table {
   color: mat-color($accent, default-contrast);
 }
 
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
 .input-full-width {
-    width: 100%;
+  width: 100%;
 }

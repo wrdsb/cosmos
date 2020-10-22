@@ -1,59 +1,158 @@
 <h1>Search Google Groups</h1>
 
-<div class="googleGroupsSearch">
-  <div class="searchPanel">
-    <div>
-      {{ totalRecords$ | async }} total records
-    </div>
-    <div>
-      <mat-form-field class="input-full-width" floatLabel="never">
-        <mat-label>Search...</mat-label>
-        <input matInput type="text" [formControl]="searchFormControl">
-        <button mat-button *ngIf="searchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchFormControl.setValue('')">
-          <fa-icon [icon]="CloseIcon"></fa-icon>
-        </button>
-      </mat-form-field>
+<div class="google-groups-search">
+  <div class="search-panel">
+
+    <div class="panel-group">
+      <div class="panel-field">
+        <div class="panel-field-label">Admin Created</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="adminCreated" aria-label="Admin Created">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="panel-field">
+        <div class="panel-field-label">Automated</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="automated" aria-label="Automated">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="panel-field">
+        <div class="panel-field-label">Messages visible to non-members</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="open" aria-label="Open">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
     </div>
 
-    <mat-divider></mat-divider>
-    
-    <div>
-      <p>Admin Created?</p>
-      <mat-button-toggle-group name="adminCreated" aria-label="Admin Created?">
-        <mat-button-toggle value="either">?</mat-button-toggle>
-        <mat-button-toggle value="true">Yes</mat-button-toggle>
-        <mat-button-toggle value="false">No</mat-button-toggle>
-      </mat-button-toggle-group>
+    <div class="panel-group">
+      <div class="panel-group-label">Search by:</div>
+      <div class="panel-field">
+        <mat-form-field class="input-full-width" floatLabel="never">
+          <mat-label>Name or email</mat-label>
+          <input matInput type="text" [formControl]="searchFormControl">
+          <button mat-button *ngIf="searchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchFormControl.setValue('')">
+            <fa-icon [icon]="CloseIcon"></fa-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="panel-field">
+        <mat-form-field class="input-full-width" floatLabel="never">
+          <mat-label>Owners and Managers</mat-label>
+          <input matInput type="text" [formControl]="searchFormControl">
+          <button mat-button *ngIf="searchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchFormControl.setValue('')">
+            <fa-icon [icon]="CloseIcon"></fa-icon>
+          </button>
+        </mat-form-field>
+      </div>
     </div>
 
-    <div>
-      <p>Automated?</p>
-      <mat-button-toggle-group name="automated" aria-label="Automated?">
-        <mat-button-toggle value="either">?</mat-button-toggle>
-        <mat-button-toggle value="true">Yes</mat-button-toggle>
-        <mat-button-toggle value="false">No</mat-button-toggle>
-      </mat-button-toggle-group>
+    <div class="panel-group">
+      <div class="panel-field">
+        <div class="panel-field-label">Staff Owned</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="staffOwned" aria-label="Staff owned">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="panel-field">
+        <div class="panel-field-label">Student Owned</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="studentOwned" aria-label="Automated?">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="panel-field">
+        <div class="panel-field-label">Staff Managed</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="staffManaged" aria-label="Automated?">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="panel-field">
+        <div class="panel-field-label">Student Managed</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="studentManaged" aria-label="Automated?">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="panel-field">
+        <div class="panel-field-label">Staff Membership</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="staffMembership" aria-label="Automated?">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="panel-field">
+        <div class="panel-field-label">Student Membership</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="studentMembership" aria-label="Automated?">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <div class="groups-list">
-    <div>
-      Showing Page {{ currentPage.value }} of {{ maxPage$ | async }}&nbsp;&nbsp;
-    </div>
+    <div class="list-header">
+      <div class="search-results">
+        <div>Results: {{ totalRecords$ | async }} total records</div>
+      </div>
 
-    <div>
-      <span class="page-button">
-        <fa-icon (click)="pageBeginning()" [icon]="beginningIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
-      </span>
-      <span class="page-button">
-        <fa-icon (click)="pageUp()" [icon]="backwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
-      </span>
-      <span class="page-button">
-        <fa-icon (click)="pageDown()" [icon]="forwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
-      </span>
-      <span class="page-button">
-        <fa-icon (click)="pageEnd()" [icon]="endIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
-      </span>
+      <div class="paginator">
+        <span>
+          Showing Page {{ currentPage.value }} of {{ maxPage$ | async }}&nbsp;&nbsp;
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageBeginning()" [icon]="beginningIcon" size="lg"></fa-icon>
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageUp()" [icon]="backwardIcon" size="lg"></fa-icon>
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageDown()" [icon]="forwardIcon" size="lg"></fa-icon>
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageEnd()" [icon]="endIcon" size="lg"></fa-icon>
+        </span>
+      </div>
     </div>
 
     <table cdk-table [dataSource]="groupsPage$">
@@ -76,7 +175,7 @@
 
       <!-- adminCreated Column -->
       <ng-container cdkColumnDef="adminCreated">
-        <th cdk-header-cell *cdkHeaderCellDef> Admin<br /> Created? </th>
+        <th cdk-header-cell *cdkHeaderCellDef> Admin Created </th>
         <td cdk-cell class="clickable boolean" *cdkCellDef="let group" (click)="selectGroup(group.searchID)">
           <ng-container *ngIf="group.adminCreated; then thenBlock else elseBlock"></ng-container>
           <ng-template #thenBlock>
@@ -90,7 +189,7 @@
 
       <!-- membership_automation_active Column -->
       <ng-container cdkColumnDef="membership_automation_active">
-        <th cdk-header-cell *cdkHeaderCellDef> Automated? </th>
+        <th cdk-header-cell *cdkHeaderCellDef> Automated </th>
         <td cdk-cell class="clickable boolean" *cdkCellDef="let group" (click)="selectGroup(group.searchID)">
           <ng-container *ngIf="group.membership_automation_active; then thenBlock else elseBlock"></ng-container>
           <ng-template #thenBlock>
@@ -105,21 +204,6 @@
       <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
       <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
     </table>
-
-    <div>
-      <span class="page-button">
-        <fa-icon (click)="pageBeginning()" [icon]="beginningIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
-      </span>
-      <span class="page-button">
-        <fa-icon (click)="pageUp()" [icon]="backwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
-      </span>
-      <span class="page-button">
-        <fa-icon (click)="pageDown()" [icon]="forwardIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
-      </span>
-      <span class="page-button">
-        <fa-icon (click)="pageEnd()" [icon]="endIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
-      </span>
-    </div>
 
   </div>
 </div>
