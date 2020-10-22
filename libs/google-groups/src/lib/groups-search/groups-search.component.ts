@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
 import { Observable, BehaviorSubject } from 'rxjs';
 
+import { faWindowClose as CloseIcon } from "@fortawesome/free-solid-svg-icons";
 import { faCircle as FalseIcon } from "@fortawesome/free-regular-svg-icons";
 import { faAdjust as MaybeIcon } from "@fortawesome/free-solid-svg-icons";
 import { faCircle as TrueIcon } from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +21,8 @@ import { GroupMetaDialogComponent } from "../group-meta-dialog/group-meta-dialog
   styleUrls: ['./groups-search.component.scss']
 })
 export class GroupsSearchComponent implements OnInit {
+  CloseIcon = CloseIcon;
+
   FalseIcon = FalseIcon;
   MaybeIcon = MaybeIcon;
   TrueIcon = TrueIcon;

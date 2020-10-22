@@ -12,6 +12,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from "@angular/material/input";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatDividerModule } from "@angular/material/divider";
 
 import { GoogleGroupsRoutingModule } from './google-groups-routing.module';
 
@@ -48,6 +52,10 @@ import { MembershipDetailComponent } from './membership-detail/membership-detail
     MatButtonModule,
     MatTableModule,
     MatDialogModule,
+    MatInputModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule,
+    MatDividerModule,
 
     GoogleGroupsRoutingModule
   ],
