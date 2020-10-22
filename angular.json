@@ -274,7 +274,7 @@
               "apps/hagar-console/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/hagar-console/src/styles.scss"
             ],
             "scripts": []
@@ -529,7 +529,7 @@
               "apps/viewfinder-console/src/manifest.webmanifest"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/viewfinder-console/src/styles.scss"
             ],
             "scripts": []
