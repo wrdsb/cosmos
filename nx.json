@@ -341,6 +341,9 @@
     },
     "trillium": {
       "tags": []
+    },
+    "devices": {
+      "tags": []
     }
   }
 }
