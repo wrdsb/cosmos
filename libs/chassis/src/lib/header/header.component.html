@@ -12,6 +12,16 @@
         </button>
       </mat-menu>
 
+      <button mat-button [matMenuTriggerFor]="devicesMenu">
+        Devices
+      </button>
+      <mat-menu #devicesMenu="matMenu" backdropClass="customWaffle">
+        <button mat-menu-item routerLink="/devices">
+          <mat-icon class="material-icons-outlined">contactless</mat-icon>
+          <span>Devices Dashboard</span>
+        </button>
+      </mat-menu>
+
       <button mat-button [matMenuTriggerFor]="googleMenu">
         Google
       </button>

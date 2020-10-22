@@ -15,6 +15,16 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'devices',
+    loadChildren: () => import('@cosmos/devices').then(m => m.DevicesModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  {
     path: 'google',
     loadChildren: () => import('@cosmos/google').then(m => m.GoogleModule),
     data: {
