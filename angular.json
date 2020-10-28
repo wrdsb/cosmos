@@ -5349,8 +5349,36 @@
             "outputPath": "dist/apps/quartermaster-functions",
             "main": "apps/quartermaster-functions/src/main.ts",
             "tsConfig": "apps/quartermaster-functions/tsconfig.app.json",
+            "webpackConfig": "apps/quartermaster-functions/webpack.config.js",
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
             "assets": [
-              "apps/quartermaster-functions/src/assets"
+              {
+                "input": "./apps/quartermaster-functions/src",
+                "glob": "**/function.json",
+                "output": "./quartermaster-functions"
+              },
+              {
+                "input": "./apps/quartermaster-functions/src",
+                "glob": "host.json",
+                "output": "./quartermaster-functions"
+              },
+              {
+                "input": "./apps/quartermaster-functions/src",
+                "glob": "proxies.json",
+                "output": "./quartermaster-functions"
+              },
+              {
+                "input": "./apps/quartermaster-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./quartermaster-functions"
+              },
+              {
+                "input": "./apps/quartermaster-functions/src/bin",
+                "glob": "**.*",
+                "output": "./quartermaster-functions/bin"
+              }
             ]
           },
           "configurations": {
