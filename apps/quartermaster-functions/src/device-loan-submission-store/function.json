@@ -1,0 +1,45 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "device-loan-submission-store",
+      "connection": "wrdsbwrdsb_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "recordIn",
+      "type": "cosmosDB",
+      "databaseName": "quartermaster",
+      "collectionName": "device-loan-submissions",
+      "id" : "{payload.id}",
+      "partitionKey": "{payload.id}",
+      "connectionStringSetting": "wrdsb-quartermaster_CosmosDB",
+      "direction": "in"
+    },
+    {
+      "name": "recordOut",
+      "type": "cosmosDB",
+      "databaseName": "quartermaster",
+      "collectionName": "device-loan-submissions",
+      "createIfNotExists": false,
+      "connectionStringSetting": "wrdsb-quartermaster_CosmosDB",
+      "direction": "out"
+    },
+    {
+      "name": "deviceLoansStore",
+      "type": "queue",
+      "queueName": "device-loans-store",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
