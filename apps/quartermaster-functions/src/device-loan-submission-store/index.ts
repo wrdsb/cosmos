@@ -17,29 +17,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
     const operation = triggerObject.operation;
     const payload = triggerObject.payload as DeviceLoanSubmissionStoreFunctionRequestPayload;
 
-    const payloadForHash = JSON.stringify({
-        serialNumber:           payload.serialNumber,
-        submittedAssetID:       payload.submittedAssetID,
-        correctedAssetID:       payload.correctedAssetID,
-        deviceType:             payload.deviceType,
-        locationName:           payload.locationName,
-        loanedBy:               payload.loanedBy,
-        loanedToName:           payload.loanedToName,
-        loanedToNumber:         payload.loanedToNumber,
-        loanedToEmail:          payload.loanedToEmail,
-        loanedToRole:           payload.loanedToRole,
-        receivedBy:             payload.receivedBy,
-        isSEADevice:            payload.isSEADevice,
-        addedToSchoolInventory: payload.addedToSchoolInventory,
-        peripheralsProvided:    payload.peripheralsProvided,
-        timestamp:              payload.timestamp,
-        notes:                  payload.notes
-        });
-    const payloadHash = createHash('md5').update(payloadForHash).digest('hex');
-
     const oldRecord = context.bindings.recordIn;
-    const oldHash = oldRecord.changeDetectionHash;
-    const changedDetected = (oldHash === payloadHash) ? false : true;
 
     let newRecord = {
         created_at: '',
@@ -95,10 +73,10 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             break;
     }
 
-    if (changedDetected) {
+    if (result.changedDetected) {
         context.bindings.recordOut = result.newRecord;
 
-        context.bindings.deviceLoansStore = {
+        context.bindings.deviceLoanStore = {
             operation: 'patch',
             payload: {
                 assetID: result.newRecord.correctedAssetID,
@@ -118,17 +96,19 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
 
     function doDelete(oldRecord, newRecord, payload) {
         let event = {};
+        let changedDetected = true;
 
         // check for existing record
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.changeDetectionHash = payloadHash;
             newRecord.created_at = functionInvocation.functionInvocationTimestamp;
             newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // mark the record as deleted
             newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
+
+            newRecord.changeDetectionHash = makeHash(newRecord);
 
             event = craftDeleteEvent(oldRecord, newRecord);
 
@@ -139,37 +119,46 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
+            newRecord.changeDetectionHash = makeHash(newRecord);
+
             event = craftDeleteEvent(oldRecord, newRecord);
         }
 
-        return {event: event, newRecord: newRecord};
+        return {changedDetected: changedDetected, event: event, newRecord: newRecord};
     }
 
     function doPatch(oldRecord, newRecord, payload) {
         let event = {};
+        let changedDetected = false;
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.changeDetectionHash = payloadHash;
             newRecord.created_at = functionInvocation.functionInvocationTimestamp;
             newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
             newRecord.deleted_at = '';
             newRecord.deleted = false;
-    
-            event = craftCreateEvent(oldRecord, newRecord);
+
+            newRecord.changeDetectionHash = makeHash(newRecord);
+
+            changedDetected = true;
+            event = craftCreateEvent(newRecord);
 
         } else {
-            if (changedDetected) {
-                // Merge request object into current record
-                newRecord = Object.assign(newRecord, oldRecord, payload);
-                newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
-        
-                // patching a record implicitly undeletes it
-                newRecord.deleted_at = '';
-                newRecord.deleted = false;
+            // Merge request object into current record
+            newRecord = Object.assign(newRecord, oldRecord, payload);
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+    
+            // patching a record implicitly undeletes it
+            newRecord.deleted_at = '';
+            newRecord.deleted = false;
 
+            newRecord.changeDetectionHash = makeHash(newRecord);
+
+            changedDetected = (oldRecord.changeDetectionHash === newRecord.changeDetectionHash) ? false : true;
+
+            if (changedDetected) {
                 event = craftUpdateEvent(oldRecord, newRecord);
             } else {
                 newRecord = oldRecord;
@@ -177,35 +166,41 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             }
         }
 
-        return {event: event, newRecord: newRecord};
+        return {changedDetected: changedDetected, event: event, newRecord: newRecord};
     }
     
     function doReplace(oldRecord, newRecord, payload) {
         let event = {};
+        let changedDetected = false;
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.changeDetectionHash = payloadHash;
             newRecord.created_at = functionInvocation.functionInvocationTimestamp;
             newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
             newRecord.deleted_at = '';
             newRecord.deleted = false;
-        
-            event = craftCreateEvent(oldRecord, newRecord);
+
+            newRecord.changeDetectionHash = makeHash(newRecord);
+
+            changedDetected = true;
+            event = craftCreateEvent(newRecord);
 
         } else {
-            if (changedDetected) {
-                newRecord = Object.assign(newRecord, payload);
-                newRecord.changeDetectionHash = payloadHash;
-                newRecord.created_at = oldRecord.created_at;
-                newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord = Object.assign(newRecord, payload);
+            newRecord.created_at = oldRecord.created_at;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
-                // replacing a record implicitly undeletes it
-                newRecord.deleted_at = '';
-                newRecord.deleted = false;
-        
+            // replacing a record implicitly undeletes it
+            newRecord.deleted_at = '';
+            newRecord.deleted = false;
+
+            newRecord.changeDetectionHash = makeHash(newRecord);
+
+            changedDetected = (oldRecord.changeDetectionHash === newRecord.changeDetectionHash) ? false : true;
+    
+            if (changedDetected) {
                 event = craftUpdateEvent(oldRecord, newRecord);
             } else {
                 newRecord = oldRecord;
@@ -213,10 +208,10 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             }
         }
 
-        return {event: event, newRecord: newRecord};
+        return {changedDetected: changedDetected, event: event, newRecord: newRecord};
     }
 
-    function craftCreateEvent(old_record, new_record) {
+    function craftCreateEvent(new_record) {
         let event_type = 'Quartermaster.DeviceLoanSubmission.Create';
         let source = 'create';
         let schema = 'create';
@@ -288,6 +283,29 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
 
         // TODO: check message length
         return event;
+    }
+
+    function makeHash(deviceLoanSubmission: DeviceLoanSubmission): string {
+        const objectForHash = JSON.stringify({
+            serialNumber:           deviceLoanSubmission.serialNumber,
+            submittedAssetID:       deviceLoanSubmission.submittedAssetID,
+            correctedAssetID:       deviceLoanSubmission.correctedAssetID,
+            deviceType:             deviceLoanSubmission.deviceType,
+            locationName:           deviceLoanSubmission.locationName,
+            loanedBy:               deviceLoanSubmission.loanedBy,
+            loanedToName:           deviceLoanSubmission.loanedToName,
+            loanedToNumber:         deviceLoanSubmission.loanedToNumber,
+            loanedToEmail:          deviceLoanSubmission.loanedToEmail,
+            loanedToRole:           deviceLoanSubmission.loanedToRole,
+            receivedBy:             deviceLoanSubmission.receivedBy,
+            isSEADevice:            deviceLoanSubmission.isSEADevice,
+            addedToSchoolInventory: deviceLoanSubmission.addedToSchoolInventory,
+            peripheralsProvided:    deviceLoanSubmission.peripheralsProvided,
+            timestamp:              deviceLoanSubmission.timestamp,
+            notes:                  deviceLoanSubmission.notes
+        });
+        const objectHash = createHash('md5').update(objectForHash).digest('hex');
+        return objectHash;
     }
 };
 
