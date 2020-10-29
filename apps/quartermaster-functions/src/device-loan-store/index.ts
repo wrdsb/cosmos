@@ -29,8 +29,8 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         serialNumber: '',
         deviceType: '',
         locationName: '',
-        loans: [],
-        returns: []
+        loans: {},
+        returns: {}
     } as DeviceLoan;
 
     let result;
@@ -125,7 +125,22 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
 
         } else {
             // Merge request object into current record
-            newRecord = Object.assign(newRecord, oldRecord, payload);
+            newRecord = Object.assign(newRecord, oldRecord);
+
+            Object.getOwnPropertyNames(payload).forEach(function (property) {
+                if (property != 'loans' && property != 'returns') {
+                    newRecord[property] = payload[property];
+                }
+            });
+
+            Object.getOwnPropertyNames(payload.loans).forEach(function (property) {
+                newRecord.loans[property] = payload.loans[property];
+            });
+
+            Object.getOwnPropertyNames(payload.returns).forEach(function (property) {
+                newRecord.returns[property] = payload.returns[property];
+            });
+
             newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
         
             // patching a record implicitly undeletes it
