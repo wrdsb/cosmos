@@ -27,9 +27,9 @@
       "direction": "out"
     },
     {
-      "name": "deviceLoansStore",
+      "name": "deviceLoanStore",
       "type": "queue",
-      "queueName": "device-loans-store",
+      "queueName": "device-loan-store",
       "connection": "wrdsbquartermaster_STORAGE",
       "direction": "out"
     },
