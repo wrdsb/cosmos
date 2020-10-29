@@ -47,7 +47,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         peripheralsProvided: '',
         timestamp: '',
         notes: ''
-        } as DeviceLoanSubmission;
+    } as DeviceLoanSubmission;
 
     let result;
     let statusCode;
@@ -89,6 +89,10 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         const logPayload = result.event;
         functionInvocation.logPayload = logPayload;
         context.log(logPayload);
+    } else {
+        const logPayload = {};
+        functionInvocation.logPayload = logPayload;
+        context.log('No change detected.');
     }
     
     context.log(functionInvocation);
