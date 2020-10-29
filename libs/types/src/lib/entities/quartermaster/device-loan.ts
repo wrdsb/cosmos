@@ -6,11 +6,17 @@ export interface DeviceLoan {
     updated_at?: string;
     deleted_at?: string;
     deleted?: boolean;
+
     id?: string;
+    changeDetectionHash?: string;
+
     assetID?: string;
     serialNumber?: string;
+
     deviceType?: string;
+
     locationName?: string;
+
     loans?: DeviceLoanSubmission[];
     returns?: DeviceReturnSubmission[];
 }

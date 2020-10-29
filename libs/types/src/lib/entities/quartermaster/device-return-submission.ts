@@ -26,5 +26,4 @@ export interface DeviceReturnSubmission {
     peripheralsProvided?: string;
     timestamp?: string;
     notes?: string;
-
 }
