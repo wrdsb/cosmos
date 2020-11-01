@@ -29,9 +29,9 @@ const viewGclassroomExtractTeachers: AzureFunction = async function (context: Co
 
             // Extract the 'teacher' object from the row
             let teacherObject = {
-                id:          teacherObjectID,
-                school_code:  school_code,
-                staff_number: staff_number
+                id:            teacherObjectID,
+                school_code:   school_code,
+                staff_number:  staff_number
             } as TrilliumTeacher;
             
             // Add/overwrite individual objects from this row to their collection objects

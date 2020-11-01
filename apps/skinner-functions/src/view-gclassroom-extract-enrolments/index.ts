@@ -21,15 +21,16 @@ const viewGclassroomExtractEnrolments: AzureFunction = async function (context: 
     let enrolmentsSortedArrays = {};
 
     objects.forEach(function(record: ViewGclassroomRecord) {
-        let school_code        = record.school_code ? record.school_code : "";
-        let class_code         = record.class_code ? record.class_code : "";
+        let school_code         = record.school_code ? record.school_code : "";
+        let class_code          = record.class_code ? record.class_code : "";
 
-        let student_number     = record.student_number ? record.student_number : "";
+        let student_number      = record.student_number ? record.student_number : "";
+        let student_grade       = record.student_grade ? record.student_grade : "";
         let student_first_name  = record.student_first_name ? record.student_first_name : "";
         let student_last_name   = record.student_last_name ? record.student_last_name : "";
-        let student_email      = record.student_email ? record.student_email : "";
+        let student_email       = record.student_email ? record.student_email : "";
 
-        let staff_number       = record.staff_number ? record.staff_number : "";
+        let staff_number        = record.staff_number ? record.staff_number : "";
 
         if (school_code !== "" && class_code !== "" && student_number !== "") {
             let classObjectID     = sanitizeID(`${school_code}-${class_code}`);
@@ -37,14 +38,15 @@ const viewGclassroomExtractEnrolments: AzureFunction = async function (context: 
     
             // Extract the 'enrolment' object from the row
             let enrolmentObject = {
-                id:                enrolmentObjectID,
-                school_code:        school_code,
-                class_code:         class_code,
-                student_number:     student_number,
+                id:                  enrolmentObjectID,
+                school_code:         school_code,
+                class_code:          class_code,
+                student_number:      student_number,
+                student_grade:       student_grade,
                 student_first_name:  student_first_name,
                 student_last_name:   student_last_name,
-                student_email:      student_email,
-                staff_number:       staff_number
+                student_email:       student_email,
+                staff_number:        staff_number
             } as TrilliumEnrolment;
     
             if (!enrolmentsSortedObject[enrolmentObject.school_code]) {

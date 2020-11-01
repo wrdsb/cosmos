@@ -23,7 +23,8 @@ const viewGclassroomExtractClasses: AzureFunction = async function (context: Con
     objects.forEach(function(record: ViewGclassroomRecord) {
         let school_code   = record.school_code ? record.school_code : "";
         let class_code    = record.class_code ? record.class_code : "";
-        let staff_number  = record.staff_number ? record.staff_number : "";  
+        let class_grades  = record.student_grade ? [record.student_grade] : [];
+        let staff_number  = record.staff_number ? record.staff_number : "";
 
         // we don't care if a teacher is assigned yet
         if (school_code !== "" && class_code !== "") {
@@ -34,8 +35,17 @@ const viewGclassroomExtractClasses: AzureFunction = async function (context: Con
                 id: classObjectID,
                 school_code: school_code,
                 class_code: class_code,
+                class_grades: class_grades,
                 staff_number: staff_number
             } as TrilliumClass;
+
+            if (classesObject[classObjectID] && classesObject[classObjectID][class_grades]) {
+                let merged_grades = new Set([
+                    ...classesObject[classObjectID][class_grades],
+                    ...classObject.class_grades
+                ]);
+                classObject.class_grades = Array.from(merged_grades);
+            }
     
             // Add/overwrite individual objects from this row to their collection objects
             classesObject[classObjectID] = classObject;
