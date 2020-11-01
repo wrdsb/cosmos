@@ -78,6 +78,7 @@ const GroupMembershipsStudentsCalculate: AzureFunction = async function (context
             let email = (row.student_email) ? row.student_email : false;
             let schoolCode = (row.school_code) ? row.school_code.toLowerCase() : false;
             let oyap = (row.student_oyap === 'Y') ? true : false;
+            let shsm = (row.shsm_sector !== null) ? true : false;
 
             if (requestedSchoolCode === 'oyap') {
                 if (email && oyap) {
@@ -87,6 +88,16 @@ const GroupMembershipsStudentsCalculate: AzureFunction = async function (context
                         status:         "ACTIVE",
                         type:           "USER",
                         groupKey:       'oyap-students@wrdsb.ca'
+                    };
+                }
+            } else if (requestedSchoolCode === 'shsm') {
+                if (email && shsm) {
+                    members[email] = {
+                        email:          email,
+                        role:           "MEMBER",
+                        status:         "ACTIVE",
+                        type:           "USER",
+                        groupKey:       'shsm-students@wrdsb.ca'
                     };
                 }
             } else {
