@@ -1,0 +1,33 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "group-memberships-shsm-calculate",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "studentsNow",
+      "type": "blob",
+      "path": "trillium/students-now-array.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "outputBlob",
+      "type": "blob",
+      "path": "groups-memberships-trillium-now/shsm-students-{payload.sector}@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
