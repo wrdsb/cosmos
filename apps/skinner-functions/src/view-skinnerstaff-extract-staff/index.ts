@@ -61,4 +61,4 @@ const viewSkinnerStaffExtractStaff: AzureFunction = async function (context: Con
     context.done(null, functionInvocation);
 };
 
-export default viewSkinnerStaffProcess;
+export default viewSkinnerStaffExtractStaff;
