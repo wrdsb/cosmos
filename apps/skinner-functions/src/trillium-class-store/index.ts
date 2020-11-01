@@ -33,6 +33,7 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
         id: '',
         school_code: '',
         class_code: '',
+        class_grades: [],
         staff_number: '',
         teacher_ein: '',
         teacher_email: '',
