@@ -54,6 +54,7 @@
     "monitor:houston": "func azure functionapp logstream wrdsb-houston",
     "monitor:igor": "func azure functionapp logstream wrdsb-igor3",
     "monitor:quartermaster": "func azure functionapp logstream wrdsb-quartermaster",
+    "monitor:skinner": "func azure functionapp logstream wrdsb-skinner2",
     "monitor:viewfinder": "func azure functionapp logstream wrdsb-viewfinder"
   },
   "private": true,
