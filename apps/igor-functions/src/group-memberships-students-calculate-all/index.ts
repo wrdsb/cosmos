@@ -96,6 +96,13 @@ const GroupMembershipsStudentsCalculateAll: AzureFunction = async function (cont
         };
         messages.push(oyapMessage);
 
+        let shsmMessage = {
+            payload: {
+                schoolCode: 'shsm'
+            }
+        };
+        messages.push(shsmMessage);
+
         return messages;
     }
 }
