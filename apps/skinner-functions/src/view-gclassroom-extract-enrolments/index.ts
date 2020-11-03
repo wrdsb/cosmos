@@ -65,14 +65,14 @@ const viewGclassroomExtractEnrolments: AzureFunction = async function (context: 
     context.bindings.enrolmentsNowSortedArrays = JSON.stringify(enrolmentsSortedArrays);
     context.bindings.enrolmentsNowSortedObject = JSON.stringify(enrolmentsSortedObject);
 
-    let sisEnrolmentsReconcileJobs = [];
+    let enrolmentsABCReconcileJobs = [];
     Object.getOwnPropertyNames(enrolmentsSortedObject).forEach(school_code => {
-        sisEnrolmentsReconcileJobs.push({
-            job_type: "Skinner.Enrolment.Differences.Reconcile.Alpha",
+        enrolmentsABCReconcileJobs.push({
+            job_type: "Skinner.Enrolments.Reconcile.Alpha",
             alpha: school_code
         });
     }); 
-    context.bindings.triggerJobs = JSON.stringify(sisEnrolmentsReconcileJobs);
+    context.bindings.triggerJobs = JSON.stringify(enrolmentsABCReconcileJobs);
 
     const logPayload = "";
     functionInvocation.logPayload = logPayload;
