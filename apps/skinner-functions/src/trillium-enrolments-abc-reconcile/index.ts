@@ -1,4 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions"
+import { CosmosClient } from "@azure/cosmos";
 import { FunctionInvocation, TrilliumEnrolmentsABCReconcileFunctionRequest, TrilliumEnrolmentsABCReconcileFunctionRequestPayload, ViewGclassroomRecord, TrilliumEnrolment } from "@cosmos/types";
 import { isEqual } from "lodash";
 
@@ -8,25 +9,36 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Skinner',
         functionName: context.executionContext.functionName,
-        functionDataType: 'ViewGclassroom',
-        functionDataOperation: 'ExtractEnrolments',
+        functionDataType: 'TrilliumEnrolment',
+        functionDataOperation: 'ABCReconcile',
         eventLabel: ''
     } as FunctionInvocation;
+
+    const cosmosEndpoint = process.env['cosmosEndpoint'];
+    const cosmosKey = process.env['cosmosKey'];
+    const cosmosDatabase = process.env['cosmosDatabase'];
+    const cosmosContainer = 'enrolments';
+    const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     const triggerObject = triggerMessage as TrilliumEnrolmentsABCReconcileFunctionRequest;
     const payload = triggerObject.payload as TrilliumEnrolmentsABCReconcileFunctionRequestPayload;
     const alpha = payload.alpha;
     const alphaLowercase =  alpha.toLowerCase();
+    const alphaUpcase =  alpha.toUpperCase();
 
     // give our bindings more human-readable names
-    const recordsNow = context.bindings.recordsNow[alpha];
-    const cosmosRecords = context.bindings.cosmosRecords;
+    const recordsNow = context.bindings.recordsNow[alphaUpcase];
 
-    context.log('Reconcile enrolments for ' + alpha + ': ' + Object.getOwnPropertyNames(cosmosRecords).length);
+    // fetch current records from Cosmos
+    const recordsPrevious = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer, alpha).catch(err => {
+        context.log(err);
+    });
+
+    context.log('Reconcile enrolments for ' + alpha + ': ' + Object.getOwnPropertyNames(recordsPrevious).length);
 
     // object to store our total diff as we build it
     let calculation = {
-        records_previous: cosmosRecords,
+        records_previous: recordsPrevious,
         records_now: recordsNow,
         differences: {
             created_records: [],
@@ -44,11 +56,13 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
 
     let totalDifferences = creates.length + updates.length + deletes.length;
 
-    context.bindings.queueCreates = creates;
-    context.bindings.queueUpdates = updates;
-    context.bindings.queueDeletes = deletes;
+    context.bindings.queueStore = creates.concat(updates, deletes);
 
-    const logPayload = "";
+    const logPayload = {
+        alpah: alphaLowercase,
+        totalDifferences: totalDifferences,
+        differences: calculation.differences
+    };
     functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
@@ -56,8 +70,7 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
     context.done(null, functionInvocation);
 
 
-    async function findCreatesAndUpdates(calculation)
-    {
+    async function findCreatesAndUpdates(calculation) {
         context.log('findCreatesAndUpdates');
 
         let records_previous = calculation.records_previous;
@@ -128,8 +141,7 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
         return calculation;
     }
 
-    async function findDeletes(calculation)
-    {
+    async function findDeletes(calculation) {
         context.log('findDeletes');
 
         let records_previous = calculation.records_previous;
@@ -149,50 +161,112 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
         return calculation;
     }
 
-    async function processCreates(created_records)
-    {
+    async function processCreates(created_records) {
         context.log('processCreates');
 
         // array for the results being returned
         let messages = [];
 
         created_records.forEach(function (record) {
-            let message = record;
+            let message = {
+                operation: "replace",
+                payload: record
+            };
             messages.push(JSON.stringify(message));
         });
 
         return messages;
     }
 
-    async function processUpdates(updated_records)
-    {
+    async function processUpdates(updated_records) {
         context.log('processUpdates');
 
         // array for the results being returned
         let messages = [];
 
         updated_records.forEach(function (record) {
-            let message = record.now;
+            let message = {
+                operation: "replace",
+                payload: record.now
+            };
             messages.push(JSON.stringify(message));
         });
 
         return messages;
     }
 
-    async function processDeletes(deleted_records)
-    {
+    async function processDeletes(deleted_records) {
         context.log('processDeletes');
 
         // array for the results being returned
         let messages = [];
 
         deleted_records.forEach(function (record) {
-            let message = record;
+            let message = {
+                operation: "delete",
+                payload: record
+            };
             messages.push(JSON.stringify(message));
         });
 
         return messages;
     }
+
+    async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer, alpha) {
+        context.log('getCosmosItems');
+
+        let records_previous = {};
+        let alphaUpcase =  alpha.toUpperCase();
+
+        const querySpec = {
+            query: `SELECT * FROM c WHERE startswith(c.id, "${alphaUpcase}") and c.deleted = false`
+        }
+
+        const queryOptions  = {
+            maxItemCount: -1,
+            enableCrossPartitionQuery: true
+        }
+
+        try {
+            const { resources } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(querySpec).fetchAll();
+
+            for (const item of resources) {
+                if (!item.deleted) {
+                    let enrolment = {
+                        id: item.id,
+                        school_code: item.school_code,
+                        class_code: item.class_code,
+                        student_number: item.student_number,
+                        student_first_name: item.student_first_name,
+                        student_last_name: item.student_last_name,
+                        student_email: item.student_email,
+                        teacher_ein: item.teacher_ein,
+                        teacher_email: item.teacher_email
+    
+                        // these fields are not present in the data from trillium
+                        //created_at: item.created_at,
+                        //updated_at: item.updated_at,
+                        //deleted_at: item.deleted_at,
+                        //deleted: item.deleted
+                    };
+        
+                    records_previous[item.id] = enrolment;
+                }
+            }
+    
+            return records_previous;
+        } catch (error) {
+            context.log(error);
+    
+            context.res = {
+                status: 500,
+                body: error
+            };
+    
+            context.done(error);
+        }
+    }
+
 };
 
 export default trilliumEnrolmentsABCReconcile;

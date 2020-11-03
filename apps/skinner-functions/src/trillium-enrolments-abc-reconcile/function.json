@@ -14,15 +14,6 @@
       "direction": "in"
     },
     {
-      "name": "cosmosRecords",
-      "type": "cosmosDB",
-      "databaseName": "skinner",
-      "collectionName": "enrolments",
-      "sqlQuery": "SELECT * FROM c WHERE startswith(c.id, {alpha}) and c.deleted = false",
-      "connectionStringSetting": "",
-      "direction": "in"
-    },
-    {
       "name": "queueStore",
       "type": "queue",
       "queueName": "trillium-enrolment-store",
