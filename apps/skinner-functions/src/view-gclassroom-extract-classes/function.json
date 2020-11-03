@@ -12,7 +12,7 @@
             "type": "blob",
             "path": "trillium/view-gclassroom-raw.json",
             "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
+            "direction": "in"
         },
         {
             "name": "classesNowArray",
