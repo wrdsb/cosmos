@@ -78,7 +78,7 @@ const GroupMembershipsStudentsCalculate: AzureFunction = async function (context
             let email = (row.student_email) ? row.student_email : false;
             let schoolCode = (row.school_code) ? row.school_code.toLowerCase() : false;
             let oyap = (row.student_oyap === 'Y') ? true : false;
-            let shsm = (row.shsm_sector !== null) ? true : false;
+            let shsm = (row.student_shsm_sector.length > 1) ? true : false;
 
             if (requestedSchoolCode === 'oyap') {
                 if (email && oyap) {
