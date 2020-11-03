@@ -8,6 +8,34 @@
             "direction": "in"
         },
         {
+            "name": "viewSkinnerAssignmentsProcessTrigger",
+            "type": "queue",
+            "queueName": "view-skinnerassignments-process",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewSkinnerStaffProcessTrigger",
+            "type": "queue",
+            "queueName": "view-skinnerstaff-process",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewSkinnerAssignmentsExtractAssignmentsTrigger",
+            "type": "queue",
+            "queueName": "view-skinnerassignments-extract-assignments",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewSkinnerStaffExtractStaffTrigger",
+            "type": "queue",
+            "queueName": "view-skinnerstaff-extract-staff",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "viewGClassroomProcessTrigger",
             "type": "queue",
             "queueName": "view-gclassroom-process",
@@ -29,6 +57,13 @@
             "direction": "out"
         },
         {
+            "name": "viewGClassroomExtractSchoolsTrigger",
+            "type": "queue",
+            "queueName": "view-gclassroom-extract-schools",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "viewGClassroomExtractStudentsTrigger",
             "type": "queue",
             "queueName": "view-gclassroom-extract-students",
@@ -43,37 +78,58 @@
             "direction": "out"
         },
         {
-            "name": "viewSkinnerStaffProcessTrigger",
+            "name": "trilliumAssignmentsReconcileTrigger",
             "type": "queue",
-            "queueName": "view-skinnerstaff-process",
+            "queueName": "trillium-assignments-reconcile",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
         {
-            "name": "sisAssignmentsReconcileTrigger",
+            "name": "trilliumClassesReconcileTrigger",
             "type": "queue",
-            "queueName": "sis-assignments-reconcile",
+            "queueName": "trillium-classes-reconcile",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
         {
-            "name": "sisClassesReconcileTrigger",
+            "name": "trilliumEnrolmentsReconcileAlphaTrigger",
             "type": "queue",
-            "queueName": "sis-classes-reconcile",
+            "queueName": "trillium-enrolments-abc-reconcile",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
         {
-            "name": "sisEnrolmentsReconcileTrigger",
+            "name": "trilliumEnrolmentsABCReconcileAllTrigger",
             "type": "queue",
-            "queueName": "sis-enrolments-reconcile",
+            "queueName": "trillium-enrolments-abc-reconcile-all",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
         {
-            "name": "sisStaffReconcileTrigger",
+            "name": "trilliumSchoolsReconcileTrigger",
             "type": "queue",
-            "queueName": "sis-staff-reconcile",
+            "queueName": "trillium-schools-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "trilliumStaffReconcileTrigger",
+            "type": "queue",
+            "queueName": "trillium-staff-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "trilliumStudentsReconcileTrigger",
+            "type": "queue",
+            "queueName": "trillium-students-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "trilliumTeachersReconcileTrigger",
+            "type": "queue",
+            "queueName": "trillium-teachers-reconcile",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
