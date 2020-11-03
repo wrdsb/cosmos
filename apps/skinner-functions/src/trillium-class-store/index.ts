@@ -1,28 +1,16 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { createLogObject } from "@cosmos/azure-functions-shared";
-import { storeLogBlob } from "@cosmos/azure-functions-shared";
-import { createCallbackMessage } from "@cosmos/azure-functions-shared";
-import { createEvent } from "@cosmos/azure-functions-shared";
-import { TrilliumClassStoreFunctionRequest, TrilliumClassStoreFunctionRequestPayload, TrilliumClass } from "@cosmos/types";
+import { FunctionInvocation, TrilliumClassStoreFunctionRequest, TrilliumClassStoreFunctionRequestPayload, TrilliumClass } from "@cosmos/types";
 
 const trilliumClassStore: AzureFunction = async function (context: Context, triggerMessage: TrilliumClassStoreFunctionRequest): Promise<void> {
-    const functionInvocationID = context.executionContext.invocationId;
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-
-    const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.Skinner.Class.Store';
-    const functionEventID = `skinner-functions-${functionName}-${functionInvocationID}`;
-    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
-
-    const logStorageAccount = process.env['storageAccount'];
-    const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-class-store-logs';
-
-    const eventLabel = '';
-    const eventTags = [
-        "skinner", 
-    ];
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'Skinner',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'TrilliumClass',
+        functionDataOperation: 'Store',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const triggerObject = triggerMessage as TrilliumClassStoreFunctionRequest;
     const operation = triggerObject.operation;
@@ -68,47 +56,26 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
     }
 
     context.bindings.recordOut = result.newRecord;
+
     const logPayload = result.event;
+    functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    context.log(logBlob);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 
-    const callbackMessage = await createCallbackMessage(logObject, 200);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    context.log(callbackMessage);
 
-    const invocationEvent = await createEvent(
-        functionInvocationID,
-        functionInvocationTime,
-        functionInvocationTimestamp,
-        functionName,
-        functionEventType,
-        functionEventID,
-        functionLogID,
-        logStorageAccount,
-        logStorageContainer,
-        eventLabel,
-        eventTags
-    );
-    context.bindings.flynnEvent = JSON.stringify(invocationEvent);
-    context.log(invocationEvent);
-
-    context.done(null, logBlob);
-
-    function doDelete(oldRecord, newRecord, payload)
-    {
+    function doDelete(oldRecord, newRecord, payload) {
         let event = {};
 
         // check for existing record
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocationTimestamp;
+            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             event = craftClassDeleteEvent(oldRecord, newRecord);
@@ -117,7 +84,7 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
             newRecord = Object.assign(newRecord, oldRecord);
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocationTimestamp;
+            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             event = craftClassDeleteEvent(oldRecord, newRecord);
@@ -126,14 +93,13 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
         return {event: event, newRecord: newRecord};
     }
 
-    function doPatch(oldRecord, newRecord, payload)
-    {
+    function doPatch(oldRecord, newRecord, payload) {
         let event = {};
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -144,7 +110,7 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
         } else {
             // Merge request object into current record
             newRecord = Object.assign(newRecord, oldRecord, payload);
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -156,15 +122,14 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
         return {event: event, newRecord: newRecord};
     }
     
-    function doReplace(oldRecord, newRecord, payload)
-    {
+    function doReplace(oldRecord, newRecord, payload) {
         let event = {};
 
         newRecord = Object.assign(newRecord, payload);
 
         if (!oldRecord) {
-            newRecord.created_at = functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -174,7 +139,7 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
 
         } else {
             newRecord.created_at = oldRecord.created_at;
-            newRecord.updated_at = functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
             newRecord.deleted_at = '';
@@ -186,8 +151,7 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
         return {event: event, newRecord: newRecord};
     }
 
-    function craftClassCreateEvent(old_record, new_record)
-    {
+    function craftClassCreateEvent(old_record, new_record) {
         let event_type = 'Skinner.Class.Create';
         let source = 'create';
         let schema = 'create';
@@ -200,8 +164,7 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
         return event;
     }
     
-    function craftClassUpdateEvent(old_record, new_record)
-    {
+    function craftClassUpdateEvent(old_record, new_record) {
         let event_type = 'Skinner.Class.Update';
         let source = 'update';
         let schema = 'update';
@@ -215,8 +178,7 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
         return event;
     }
 
-    function craftClassDeleteEvent(old_record, new_record)
-    {
+    function craftClassDeleteEvent(old_record, new_record) {
         let event_type = 'Skinner.Class.Delete';
         let source = 'delete';
         let schema = 'delete';
@@ -232,7 +194,7 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
     function craftEvent(recordID, source, schema, event_type, label, payload) {
         let event = {
             id: `${event_type}-${context.executionContext.invocationId}`,
-            time: functionInvocationTimestamp,
+            time: functionInvocation.functionInvocationTimestamp,
 
             type: event_type,
             source: `/skinner/class/${recordID}/${source}`,
