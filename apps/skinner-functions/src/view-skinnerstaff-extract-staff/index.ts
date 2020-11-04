@@ -28,10 +28,10 @@ const viewSkinnerStaffExtractStaff: AzureFunction = async function (context: Con
         let status       = record.status ? record.status : "";
 
         if (staff_number !== "" && school_code !== "") {
-            let staffObjectID = `${staff_number}-${school_code}`;
+            let thisStaffObjectID = `${staff_number}-${school_code}`;
 
-            let staffObject = {
-                id: staffObjectID,
+            let thisStaffObject = {
+                id: thisStaffObjectID,
                 staff_number: staff_number,
                 school_code: school_code,
                 school_year: school_year,
@@ -39,8 +39,8 @@ const viewSkinnerStaffExtractStaff: AzureFunction = async function (context: Con
                 status: status
             } as TrilliumStaff;
 
-            staffArray.push(staffObject);
-            staffObject[staffObjectID] = staffObject;
+            staffArray.push(thisStaffObject);
+            staffObject[thisStaffObjectID] = thisStaffObject;
         }
     });
 
@@ -48,10 +48,10 @@ const viewSkinnerStaffExtractStaff: AzureFunction = async function (context: Con
     context.bindings.staffNowArray = JSON.stringify(staffArray);
     context.bindings.staffNowObject = JSON.stringify(staffObject);
 
-    const sis_staff_reconcile_job =     {
-        "job_type": "Skinner.Staff.Differences.Reconcile"
+    const skinner_trillium_staff_reconcile_job = {
+        "job_type": "Skinner.Trillium.Staff.Reconcile"
     };
-    context.bindings.triggerJobs = [JSON.stringify(sis_staff_reconcile_job)];
+    context.bindings.triggerJobs = [JSON.stringify(skinner_trillium_staff_reconcile_job)];
 
     const logPayload = "";
     functionInvocation.logPayload = logPayload;
