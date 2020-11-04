@@ -41,10 +41,10 @@ const viewSkinnerStaffProcess: AzureFunction = async function (context: Context,
     // Write out Skinner's local copy of Panama's raw data
     context.bindings.viewRaw = JSON.stringify(rowsArray);
 
-    const sis_staff_reconcile_job =     {
-        "job_type": "Skinner.Staff.Differences.Reconcile"
+    const skinner_view_skinnerstaff_extract_staff_job =  {
+        "job_type": "Skinner.View.SkinnerStaff.Extract.Staff"
     };
-    context.bindings.triggerJobs = [JSON.stringify(sis_staff_reconcile_job)];
+    context.bindings.triggerJobs = [JSON.stringify(skinner_view_skinnerstaff_extract_staff_job)];
 
     const logPayload = "";
     functionInvocation.logPayload = logPayload;

@@ -40,10 +40,10 @@ const viewSkinnerAssignmentsProcess: AzureFunction = async function (context: Co
     // Write out Skinner's local copy of Panama's raw data
     context.bindings.viewRaw = JSON.stringify(rowsArray);
 
-    const sis_assignments_reconcile_job =     {
-        "job_type": "Skinner.Assignments.Differences.Reconcile"
+    const skinner_view_skinnerassignments_extract_assignments_job = {
+        "job_type": "Skinner.View.SkinnerAssignments.Extract.Assignments"
     };
-    context.bindings.triggerJobs = [JSON.stringify(sis_assignments_reconcile_job)];
+    context.bindings.triggerJobs = [JSON.stringify(skinner_view_skinnerassignments_extract_assignments_job)];
 
     const logPayload = "";
     functionInvocation.logPayload = logPayload;

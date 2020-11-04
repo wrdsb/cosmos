@@ -55,23 +55,27 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
     // Write out Skinner's local copy of Panama's raw data
     context.bindings.viewRaw = JSON.stringify(rowsArray);
 
-    const extract_classes_job = {
+    const skinner_view_gclassroom_extract_classes_job = {
         "job_type": "Skinner.View.GClassroom.Extract.Classes"
     };
-    const extract_enrolments_job = {
+    const skinner_view_gclassroom_extract_enrolments_job = {
         "job_type": "Skinner.View.GClassroom.Extract.Enrolments"
     };
-    const extract_students_job = {
+    const skinner_view_gclassroom_extract_schools_job = {
+        "job_type": "Skinner.View.GClassroom.Extract.Schools"
+    };
+    const skinner_view_gclassroom_extract_students_job = {
         "job_type": "Skinner.View.GClassroom.Extract.Students"
     };
-    const extract_teachers_job = {
+    const skinner_view_gclassroom_extract_teachers_job = {
         "job_type": "Skinner.View.GClassroom.Extract.Teachers"
     };
     context.bindings.triggerJobs = [
-        JSON.stringify(extract_classes_job),
-        JSON.stringify(extract_enrolments_job),
-        JSON.stringify(extract_students_job),
-        JSON.stringify(extract_teachers_job)
+        JSON.stringify(skinner_view_gclassroom_extract_classes_job),
+        JSON.stringify(skinner_view_gclassroom_extract_enrolments_job),
+        JSON.stringify(skinner_view_gclassroom_extract_schools_job),
+        JSON.stringify(skinner_view_gclassroom_extract_students_job),
+        JSON.stringify(skinner_view_gclassroom_extract_teachers_job)
     ];
 
     const logPayload = "";
