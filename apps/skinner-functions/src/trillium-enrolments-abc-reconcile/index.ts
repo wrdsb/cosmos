@@ -1,7 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
 import { FunctionInvocation, TrilliumEnrolmentsABCReconcileFunctionRequest, TrilliumEnrolmentsABCReconcileFunctionRequestPayload, ViewGclassroomRecord, TrilliumEnrolment } from "@cosmos/types";
-import { isEqual } from "lodash";
 
 const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: Context, triggerMessage: TrilliumEnrolmentsABCReconcileFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -82,7 +81,7 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
 
         // loop through all records in records_now, looking for updates and creates
         Object.getOwnPropertyNames(records_now).forEach(function (record_id) {
-            let new_record = {
+            const new_record = {
                 id:                  records_now[record_id].id,
                 school_code:         records_now[record_id].school_code,
                 class_code:          records_now[record_id].class_code,
@@ -106,7 +105,7 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
                 calculation.differences.created_records.push(new_record);
             } else {
                 // get the corresponding record in records_previous
-                let old_record = {
+                const old_record = {
                     id:                  records_previous[record_id].id,
                     school_code:         records_previous[record_id].school_code,
                     class_code:          records_previous[record_id].class_code,
@@ -126,8 +125,19 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
                     //deleted
                 }; 
     
-                // Compare old and new records using Lodash _.isEqual, which performs a deep comparison
-                let records_equal = isEqual(old_record, new_record);
+                // Compare old and new records
+                let records_equal = true;
+                
+                records_equal = (records_equal && new_record.id === old_record.id) ? true : false; 
+                records_equal = (records_equal && new_record.school_code === old_record.school_code) ? true : false; 
+                records_equal = (records_equal && new_record.class_code === old_record.class_code) ? true : false; 
+                records_equal = (records_equal && new_record.student_number === old_record.student_number) ? true : false; 
+                records_equal = (records_equal && new_record.student_grade === old_record.student_grade) ? true : false; 
+                records_equal = (records_equal && new_record.student_last_name === old_record.student_last_name) ? true : false; 
+                records_equal = (records_equal && new_record.student_email === old_record.student_email) ? true : false; 
+                records_equal = (records_equal && new_record.teacher_ein === old_record.teacher_ein) ? true : false; 
+                records_equal = (records_equal && new_record.teacher_email === old_record.teacher_email) ? true : false; 
+                records_equal = (records_equal && new_record.staff_number === old_record.staff_number) ? true : false; 
     
                 // if record changed, record the change
                 if (!records_equal) {
