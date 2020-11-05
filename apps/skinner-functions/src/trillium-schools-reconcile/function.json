@@ -1,0 +1,33 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "trillium-schools-reconcile",
+      "connection": "wrdsbskinner_STORAGE"
+    },
+    {
+      "name": "recordsNow",
+      "type": "blob",
+      "path": "trillium/schools-now-object.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "queueStore",
+      "type": "queue",
+      "queueName": "trillium-school-store",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
