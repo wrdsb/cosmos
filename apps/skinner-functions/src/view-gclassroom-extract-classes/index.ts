@@ -16,6 +16,7 @@ const viewGclassroomExtractClasses: AzureFunction = async function (context: Con
     const payload = triggerObject.payload as ViewGclassroomExtractClassesFunctionRequestPayload;
 
     const objects = context.bindings.viewRaw;
+    const people = context.bindings.peopleNow;
 
     let classesObject = {};
     let classesArray = [];
@@ -25,6 +26,13 @@ const viewGclassroomExtractClasses: AzureFunction = async function (context: Con
         let class_code    = record.class_code ? record.class_code : "";
         let class_grades  = record.student_grade ? [record.student_grade] : [];
         let staff_number  = record.staff_number ? record.staff_number : "";
+        let teacher_email = "";
+        let teacher_name = "";
+
+        if (people[staff_number]) {
+            teacher_email = people[staff_number].email;
+            teacher_name = people[staff_number].name;
+        }
 
         // we don't care if a teacher is assigned yet
         if (school_code !== "" && class_code !== "") {
@@ -36,7 +44,9 @@ const viewGclassroomExtractClasses: AzureFunction = async function (context: Con
                 school_code: school_code,
                 class_code: class_code,
                 class_grades: class_grades,
-                staff_number: staff_number
+                staff_number: staff_number,
+                teacher_email: teacher_email,
+                teacher_name: teacher_name
             } as TrilliumClass;
 
             if (classesObject[classObjectID] && classesObject[classObjectID][class_grades]) {
