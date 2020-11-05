@@ -11,6 +11,7 @@ export * from './trillium-teacher-store';
 export * from './trillium-classes-reconcile';
 export * from './trillium-enrolments-abc-reconcile';
 export * from './trillium-schools-reconcile';
+export * from './trillium-staff-reconcile';
 
 export * from './view-gclassroom-process';
 export * from './view-skinnerassignments-process';
