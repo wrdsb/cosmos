@@ -25,6 +25,7 @@ const trilliumClassStore: AzureFunction = async function (context: Context, trig
         staff_number: '',
         teacher_ein: '',
         teacher_email: '',
+        teacher_name: '',
         created_at: '',
         updated_at: '',
         deleted_at: '',
