@@ -8,6 +8,7 @@ export * from './trillium-staff-store';
 export * from './trillium-student-store';
 export * from './trillium-teacher-store';
 
+export * from './trillium-assignments-reconcile';
 export * from './trillium-classes-reconcile';
 export * from './trillium-enrolments-abc-reconcile';
 export * from './trillium-schools-reconcile';
