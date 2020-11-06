@@ -25,7 +25,7 @@ const viewSkinnerStaffExtractStaff: AzureFunction = async function (context: Con
         let school_code   = record.school_code ? record.school_code : "";
         let school_year   = record.school_year ? record.school_year : "";
         let staff_type    = record.staff_type ? record.staff_type : "";
-        let status       = record.status ? record.status : "";
+        let status        = record.status ? record.status : "";
 
         if (staff_number !== "" && school_code !== "") {
             let thisStaffObjectID = `${staff_number}-${school_code}`;

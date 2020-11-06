@@ -24,7 +24,7 @@ const viewSkinnerStaffProcess: AzureFunction = async function (context: Context,
         let school_code   = row.SCHOOL_CODE ? row.SCHOOL_CODE.trim() : "";
         let school_year   = row.SCHOOL_YEAR ? row.SCHOOL_YEAR.trim() : "";
         let staff_type    = row.STAFF_TYPE ? row.STAFF_TYPE.trim() : "";
-        let status       = row.STATUS ? row.STATUS.trim() : "";
+        let status        = row.STATUS ? row.STATUS.trim() : "";
 
         // Extract the 'class' object from the row
         let rowObject = {
@@ -32,7 +32,7 @@ const viewSkinnerStaffProcess: AzureFunction = async function (context: Context,
             school_code:    school_code,
             school_year:    school_year,
             staff_type:     staff_type,
-            status:        status
+            status:         status
         } as ViewSkinnerStaffRecord;
 
         rowsArray.push(rowObject);
