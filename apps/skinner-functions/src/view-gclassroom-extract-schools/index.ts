@@ -17,11 +17,11 @@ const viewGclassroomExtractSchools: AzureFunction = async function (context: Con
 
     const objects = context.bindings.viewRaw;
 
-    let SchoolsObject = {};
-    let SchoolsArray = [];
+    let schoolsObject = {};
+    let schoolsArray = [];
 
     objects.forEach(function(record: ViewGclassroomRecord) {
-        let school_code   = record.school_code ? record.school_code : "";
+        let school_code = record.school_code ? record.school_code : "";
 
         // we don't care if a teacher is assigned yet
         if (school_code !== "") {
@@ -34,18 +34,18 @@ const viewGclassroomExtractSchools: AzureFunction = async function (context: Con
             } as TrilliumSchool;
     
             // Add/overwrite individual objects from this row to their collection objects
-            SchoolsObject[schoolObjectID] = schoolObject;
+            schoolsObject[schoolObjectID] = schoolObject;
         }
     });
 
     // Add each school from SchoolsObject to SchoolsArray
-    Object.getOwnPropertyNames(SchoolsObject).forEach(function (schoolID) {
-        SchoolsArray.push(SchoolsObject[schoolID]);
+    Object.getOwnPropertyNames(schoolsObject).forEach(function (schoolID) {
+        schoolsArray.push(schoolsObject[schoolID]);
     });    
 
     // Write out arrays and objects to blobs
-    context.bindings.SchoolsNowArray = JSON.stringify(SchoolsArray);
-    context.bindings.SchoolsNowObject = JSON.stringify(SchoolsObject);
+    context.bindings.schoolsNowArray = JSON.stringify(schoolsArray);
+    context.bindings.schoolsNowObject = JSON.stringify(schoolsObject);
 
     const skinner_trillium_schools_reconcile_job = {
         "job_type": "Skinner.Trillium.Schools.Reconcile"
