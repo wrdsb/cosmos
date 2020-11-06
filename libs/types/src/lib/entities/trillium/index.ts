@@ -3,6 +3,7 @@ export * from './trillium-class';
 export * from './trillium-enrolment';
 export * from './trillium-record';
 export * from './trillium-school';
+export * from './trillium-staff-assignments';
 export * from './trillium-staff';
 export * from './trillium-student';
 export * from './trillium-teacher';

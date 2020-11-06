@@ -42,14 +42,14 @@ const viewSkinnerAssignmentsExtractAssignments: AzureFunction = async function (
             assignmentsArray.push(assignmentObject);
 
             if (assignmentsObject[assignmentObject.staff_number]) {
-                assignmentsObject[assignmentObject.staff_number].assignments.push(assignmentObject);
+                assignmentsObject[assignmentObject.staff_number].assignments[assignmentObjectID] = assignmentObject;
             } else {
                 assignmentsObject[assignmentObject.staff_number] = {
                     id: assignmentObject.staff_number,
                     staff_number: assignmentObject.staff_number,
-                    assignments: []
+                    assignments: {}
                 };
-                assignmentsObject[assignmentObject.staff_number].assignments.push(assignmentObject);
+                assignmentsObject[assignmentObject.staff_number].assignments[assignmentObjectID] = assignmentObject;
             }
         }
     });

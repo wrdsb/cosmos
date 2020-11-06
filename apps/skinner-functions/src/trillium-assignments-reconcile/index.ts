@@ -80,10 +80,7 @@ const trilliumAssignmentsReconcile: AzureFunction = async function (context: Con
             const new_record = {
                 id:            records_now[record_id].id,
                 staff_number:  records_now[record_id].staff_number,
-                school_code:   records_now[record_id].school_code,
-                class_code:    records_now[record_id].class_code,
-                block:         records_now[record_id].block,
-                room_number:   records_now[record_id].room_number
+                assignments:   records_now[record_id].assignments
 
                 // these fields are not present in the data from trillium, so we don't map them
                 //created_at
@@ -99,10 +96,7 @@ const trilliumAssignmentsReconcile: AzureFunction = async function (context: Con
                 const old_record = {
                     id:            records_previous[record_id].id,
                     staff_number:  records_previous[record_id].staff_number,
-                    school_code:   records_previous[record_id].school_code,
-                    class_code:    records_previous[record_id].class_code,
-                    block:         records_previous[record_id].block,
-                    room_number:   records_previous[record_id].room_number
+                    assignments:   records_now[record_id].assignments
     
                     // these fields are not present in the data from trillium, so we don't map them
                     //created_at
@@ -116,11 +110,9 @@ const trilliumAssignmentsReconcile: AzureFunction = async function (context: Con
                 
                 records_equal = (records_equal && new_record.id === old_record.id) ? true : false;
                 records_equal = (records_equal && new_record.staff_number === old_record.staff_number) ? true : false;
-                records_equal = (records_equal && new_record.school_code === old_record.school_code) ? true : false;
-                records_equal = (records_equal && new_record.class_code === old_record.class_code) ? true : false;
-                records_equal = (records_equal && new_record.block === old_record.block) ? true : false;
-                records_equal = (records_equal && new_record.room_number === old_record.room_number) ? true : false;
-    
+
+                records_equal = (records_equal && assignmentsCompare(new_record.assignments, old_record.assignments)) ? true : false;
+
                 // if record changed, record the change
                 if (!records_equal) {
                     calculation.differences.updated_records.push({
@@ -131,6 +123,28 @@ const trilliumAssignmentsReconcile: AzureFunction = async function (context: Con
             }
         });
         return calculation;
+    }
+
+    function assignmentsCompare(firstObject, secondObject) {
+        let identical = true;
+
+        if (Object.getOwnPropertyNames(firstObject).length !== Object.getOwnPropertyNames(secondObject).length) {
+            identical = false;
+        };
+
+        Object.getOwnPropertyNames(firstObject).forEach(function (firstID) {
+            if (!Object.getOwnPropertyNames(secondObject).includes(firstID)) {
+                identical = false;
+            }
+        });
+
+        Object.getOwnPropertyNames(secondObject).forEach(function (secondID) {
+            if (!Object.getOwnPropertyNames(firstObject).includes(secondID)) {
+                identical = false;
+            }
+        });
+
+        return identical;
     }
 
     async function findDeletes(calculation) {

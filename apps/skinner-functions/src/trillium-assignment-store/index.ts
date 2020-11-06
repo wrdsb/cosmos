@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { FunctionInvocation, TrilliumAssignmentStoreFunctionRequest, TrilliumAssignmentStoreFunctionRequestPayload, TrilliumAssignment } from "@cosmos/types";
+import { FunctionInvocation, TrilliumAssignmentStoreFunctionRequest, TrilliumAssignmentStoreFunctionRequestPayload, TrilliumStaffAssignment, TrilliumAssignment } from "@cosmos/types";
 
 const trilliumAssignmentStore: AzureFunction = async function (context: Context, triggerMessage: TrilliumAssignmentStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -20,15 +20,12 @@ const trilliumAssignmentStore: AzureFunction = async function (context: Context,
     let newRecord = {
         id: '',
         staff_number: '',
-        school_code: '',
-        class_code: '',
-        block: '',
-        room_number: '',
+        assignments: {},
         created_at: '',
         updated_at: '',
         deleted_at: '',
         deleted: false
-    } as TrilliumAssignment;
+    } as TrilliumStaffAssignment;
     let result;
 
     let statusCode;
