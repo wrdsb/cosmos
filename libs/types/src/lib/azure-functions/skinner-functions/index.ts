@@ -16,6 +16,8 @@ export * from './trillium-staff-reconcile';
 export * from './trillium-students-reconcile';
 export * from './trillium-teachers-reconcile';
 
+export * from './trillium-staff-reap';
+
 export * from './view-gclassroom-process';
 export * from './view-skinnerassignments-process';
 export * from './view-skinnerstaff-process';
