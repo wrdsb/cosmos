@@ -7,7 +7,7 @@ const trilliumStaffStore: AzureFunction = async function (context: Context, trig
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Skinner',
         functionName: context.executionContext.functionName,
-        functionDataType: 'TrilliumEnrolment',
+        functionDataType: 'TrilliumStaff',
         functionDataOperation: 'Store',
         eventLabel: ''
     } as FunctionInvocation;
