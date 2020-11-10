@@ -1,0 +1,41 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "view-ats-asset-process",
+            "connection": "wrdsbquartermaster_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "panamaBlob",
+            "type": "blob",
+            "path": "ats-view-hd-asset/now.json",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "viewRaw",
+            "type": "blob",
+            "path": "ats/view-ats-asset-raw.json",
+            "connection": "wrdsbquartermaster_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "triggerJobs",
+            "type": "queue",
+            "queueName": "job-enqueue",
+            "connection": "wrdsbquartermaster_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbquartermaster_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "disabled": false,
+    "scriptFile": "./index.js"
+}
