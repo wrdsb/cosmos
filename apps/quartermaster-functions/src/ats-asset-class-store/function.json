@@ -1,0 +1,38 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "ats-asset-class-store",
+      "connection": "wrdsbwrdsb_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "recordIn",
+      "type": "cosmosDB",
+      "databaseName": "quartermaster",
+      "collectionName": "ats-asset-classes",
+      "id" : "{payload.id}",
+      "partitionKey": "{payload.id}",
+      "connectionStringSetting": "wrdsb-quartermaster_CosmosDB",
+      "direction": "in"
+    },
+    {
+      "name": "recordOut",
+      "type": "cosmosDB",
+      "databaseName": "quartermaster",
+      "collectionName": "ats-asset-classes",
+      "createIfNotExists": false,
+      "connectionStringSetting": "wrdsb-quartermaster_CosmosDB",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
