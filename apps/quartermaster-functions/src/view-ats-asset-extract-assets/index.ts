@@ -62,6 +62,7 @@ const viewATSAssetExtractAssets: AzureFunction = async function (context: Contex
             let thisObjectID = asset_id;
 
             let thisObject = {
+                id: thisObjectID,
                 asset_id: asset_id,
                 asset_class_code: asset_class_code,
                 asset_type_code: asset_type_code,
