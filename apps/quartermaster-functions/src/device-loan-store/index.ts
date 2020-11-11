@@ -8,7 +8,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Quartermaster',
         functionName: context.executionContext.functionName,
-        functionDataType: 'DeviceLoanSubmission',
+        functionDataType: 'DeviceLoan',
         functionDataOperation: 'Store',
         eventLabel: ''
     } as FunctionInvocation;
