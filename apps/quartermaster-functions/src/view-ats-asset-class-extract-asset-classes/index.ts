@@ -5,7 +5,7 @@ const viewATSAssetClassExtractAssetClasses: AzureFunction = async function (cont
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
-        functionApp: 'Skinner',
+        functionApp: 'Quartermaster',
         functionName: context.executionContext.functionName,
         functionDataType: 'ViewATSAssetClass',
         functionDataOperation: 'ExtractAssetClasses',
@@ -30,6 +30,7 @@ const viewATSAssetClassExtractAssetClasses: AzureFunction = async function (cont
 
             let thisObject = {
                 id: thisObjectID,
+                asset_class_code: asset_class_code,
                 full_description: full_description,
                 short_description: short_description
             } as ATSAssetClass;
@@ -43,10 +44,10 @@ const viewATSAssetClassExtractAssetClasses: AzureFunction = async function (cont
     context.bindings.recordsNowArray = JSON.stringify(recordsArray);
     context.bindings.recordsNowObject = JSON.stringify(recordsObject);
 
-    const quartermaster_ats_asset_class_reconcile_job = {
-        "job_type": "Quartermaster.ATS.AssetClass.Reconcile"
+    const quartermaster_ats_asset_classes_reconcile_job = {
+        "job_type": "Quartermaster.ATS.AssetClasses.Reconcile"
     };
-    context.bindings.triggerJobs = [JSON.stringify(quartermaster_ats_asset_class_reconcile_job)];
+    context.bindings.triggerJobs = [JSON.stringify(quartermaster_ats_asset_classes_reconcile_job)];
 
     const logPayload = "";
     functionInvocation.logPayload = logPayload;
