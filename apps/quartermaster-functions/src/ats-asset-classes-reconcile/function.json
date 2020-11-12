@@ -1,0 +1,33 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "ats-asset-classes-reconcile",
+      "connection": "wrdsbquartermaster_STORAGE"
+    },
+    {
+      "name": "recordsNow",
+      "type": "blob",
+      "path": "ats/asset-classes-now-object.json",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "queueStore",
+      "type": "queue",
+      "queueName": "ats-asset-class-store",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
