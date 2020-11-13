@@ -17,6 +17,6 @@ export interface DeviceLoan {
 
     locationName?: string;
 
-    loans?: DeviceLoanSubmission[];
-    returns?: DeviceReturnSubmission[];
+    loans?: any;
+    returns?: any;
 }
