@@ -1,0 +1,44 @@
+import * as Cosmos from "../common";
+
+interface ViewATSAssetClassTypeExtractAssetClassTypesFunctionRequest extends Cosmos.FunctionRequest {
+    readonly payload: ViewATSAssetClassTypeExtractAssetClassTypesFunctionRequestPayload;
+}
+
+interface ViewATSAssetClassTypeExtractAssetClassTypesFunctionResponse extends Cosmos.FunctionResponse {
+    readonly payload: ViewATSAssetClassTypeExtractAssetClassTypesFunctionResponsePayload;
+}
+
+interface ViewATSAssetClassTypeExtractAssetClassTypesFunctionLogObject extends Cosmos.FunctionLogObject {
+    readonly payload: ViewATSAssetClassTypeExtractAssetClassTypesFunctionResponsePayload;
+}
+
+interface ViewATSAssetClassTypeExtractAssetClassTypesFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
+
+interface ViewATSAssetClassTypeExtractAssetClassTypesFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
+    readonly data: ViewATSAssetClassTypeExtractAssetClassTypesFunctionInvocationEventPayload;
+}
+
+interface ViewATSAssetClassTypeExtractAssetClassTypesFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+}
+
+interface ViewATSAssetClassTypeExtractAssetClassTypesFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
+}
+
+interface ViewATSAssetClassTypeExtractAssetClassTypesFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
+
+interface ViewATSAssetClassTypeExtractAssetClassTypesFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
+
+interface ViewATSAssetClassTypeExtractAssetClassTypesFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
+
+export {
+    ViewATSAssetClassTypeExtractAssetClassTypesFunctionRequest,
+    ViewATSAssetClassTypeExtractAssetClassTypesFunctionResponse,
+    ViewATSAssetClassTypeExtractAssetClassTypesFunctionLogObject,
+    ViewATSAssetClassTypeExtractAssetClassTypesFunctionCallbackMessage,
+    ViewATSAssetClassTypeExtractAssetClassTypesFunctionInvocationEvent,
+    ViewATSAssetClassTypeExtractAssetClassTypesFunctionRequestPayload,
+    ViewATSAssetClassTypeExtractAssetClassTypesFunctionResponsePayload,
+    ViewATSAssetClassTypeExtractAssetClassTypesFunctionLogObjectPayload,
+    ViewATSAssetClassTypeExtractAssetClassTypesFunctionCallbackMessagePayload,
+    ViewATSAssetClassTypeExtractAssetClassTypesFunctionInvocationEventPayload
+}
