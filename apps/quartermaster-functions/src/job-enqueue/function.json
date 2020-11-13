@@ -1,0 +1,104 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "job-enqueue",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "viewATSAssetTypeProcessTrigger",
+      "type": "queueTrigger",
+      "queueName": "view-ats-asset-type-process",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "viewATSAssetTypeExtractAssetTypesTrigger",
+      "type": "queueTrigger",
+      "queueName": "view-ats-asset-type-extract-asset-types",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "viewATSAssetProcessTrigger",
+      "type": "queueTrigger",
+      "queueName": "view-ats-asset-process",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "viewATSAssetExtractAssetsTrigger",
+      "type": "queueTrigger",
+      "queueName": "view-ats-asset-extract-assets",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "viewATSAssetClassTypeProcessTrigger",
+      "type": "queueTrigger",
+      "queueName": "view-ats-asset-class-type-process",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "viewATSAssetClassTypeExtractAssetClassTypesTrigger",
+      "type": "queueTrigger",
+      "queueName": "view-ats-asset-class-type-extract-asset-class-types",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "viewATSAssetClassProcessTrigger",
+      "type": "queueTrigger",
+      "queueName": "view-ats-asset-class-process",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "viewATSAssetClassExtractAssetClassesTrigger",
+      "type": "queueTrigger",
+      "queueName": "view-ats-asset-class-extract-asset-classes",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "atsAssetsReconcileTrigger",
+      "type": "queueTrigger",
+      "queueName": "ats-assets-reconcile",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "atsAssetTypesReconcileTrigger",
+      "type": "queueTrigger",
+      "queueName": "ats-asset-types-reconcile",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "atsAssetClassesReconcileTrigger",
+      "type": "queueTrigger",
+      "queueName": "ats-asset-classes-reconcile",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "atsAssetClassTypesReconcileTrigger",
+      "type": "queueTrigger",
+      "queueName": "ats-asset-class-types-reconcile",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
