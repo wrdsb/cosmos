@@ -1,10 +1,11 @@
 {
-  "bindings": [{
+  "bindings": [
+    {
       "name": "triggerMessage",
       "type": "queueTrigger",
-      "direction": "in",
       "queueName": "ats-assets-reconcile",
-      "connection": "wrdsbquartermaster_STORAGE"
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
     },
     {
       "name": "recordsNow",
