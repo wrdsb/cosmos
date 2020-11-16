@@ -29,6 +29,13 @@
             "direction": "out"
         },
         {
+            "name": "viewSkinnerAssignmentsExtractStaffAssignmentsTrigger",
+            "type": "queue",
+            "queueName": "view-skinnerassignments-extract-staff-assignments",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "viewSkinnerStaffExtractStaffTrigger",
             "type": "queue",
             "queueName": "view-skinnerstaff-extract-staff",
@@ -81,6 +88,13 @@
             "name": "trilliumAssignmentsReconcileTrigger",
             "type": "queue",
             "queueName": "trillium-assignments-reconcile",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "trilliumStaffAssignmentsReconcileTrigger",
+            "type": "queue",
+            "queueName": "trillium-staff-assignments-reconcile",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
@@ -141,6 +155,5 @@
             "connection": "wrdsbskinner_STORAGE"
         }
     ],
-    "disabled": false,
     "scriptFile": "./index.js"
 }
