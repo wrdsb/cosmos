@@ -13,6 +13,7 @@ export * from './trillium-classes-reconcile';
 export * from './trillium-enrolments-abc-reconcile';
 export * from './trillium-schools-reconcile';
 export * from './trillium-staff-reconcile';
+export * from './trillium-staff-assignments-reconcile';
 export * from './trillium-students-reconcile';
 export * from './trillium-teachers-reconcile';
 
