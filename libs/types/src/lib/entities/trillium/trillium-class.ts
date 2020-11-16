@@ -3,7 +3,6 @@ interface TrilliumClass {
   school_code: string;
   class_code: string;
   class_grades?: string[];
-  teacher_ein?: string;
   teacher_email?: string;
   teacher_name?: string;
   staff_number?: string;

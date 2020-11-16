@@ -47,7 +47,7 @@ const SCABCCalculate: AzureFunction = async function (context: Context, triggerM
 
         classes.forEach(function(classObject) {
             if (classObject.school_code && classObject.school_code === requestedSchoolCode) {
-                let teacherEIN = (classObject.teacher_ein) ? classObject.teacher_ein : "0";
+                let teacherEIN = (classObject.staff_number) ? classObject.staff_number : "0";
 
                 if (teacherEIN !== "0") {
                   members.add(teacherEIN);
