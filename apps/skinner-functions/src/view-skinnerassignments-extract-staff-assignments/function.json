@@ -1,0 +1,47 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "view-skinnerassignments-extract-staff-assignments",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "viewRaw",
+            "type": "blob",
+            "path": "trillium/view-skinnerassignments-raw.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "staffAssignmentsNowArray",
+            "type": "blob",
+            "path": "trillium/staff-assignments-now-array.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "staffAssignmentsNowObject",
+            "type": "blob",
+            "path": "trillium/staff-assignments-now-object.json",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "triggerJobs",
+            "type": "queue",
+            "queueName": "job-enqueue",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "invocationPostProcessor",
+            "type": "queue",
+            "queueName": "invocation-post-processor",
+            "connection": "wrdsbskinner_STORAGE",
+            "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
