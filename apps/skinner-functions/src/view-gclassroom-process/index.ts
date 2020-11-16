@@ -31,7 +31,8 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
         let student_oyap        = row.OYAP ? row.OYAP.trim() : "";
         let student_shsm_sector = row.SHSM_SECTOR ? row.SHSM_SECTOR.trim() : "";
 
-        let staff_number        = row.TEACHER_EIN ? row.TEACHER_EIN.trim() : "";
+        let teacher_ein         = row.TEACHER_EIN ? row.TEACHER_EIN.trim() : "";
+        let staff_number        = row.STAFF_NUMBER ? row.STAFF_NUMBER.trim() : teacher_ein;
 
         // Build the row object from the data
         let rowObject = {
