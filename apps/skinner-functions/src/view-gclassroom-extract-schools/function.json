@@ -43,6 +43,5 @@
           "direction": "out"
         }
     ],
-    "disabled": false,
     "scriptFile": "./index.js"
 }

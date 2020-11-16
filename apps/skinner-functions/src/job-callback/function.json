@@ -8,6 +8,5 @@
             "direction": "in"
         }
     ],
-    "disabled": false,
     "scriptFile": "./index.js"
 }
