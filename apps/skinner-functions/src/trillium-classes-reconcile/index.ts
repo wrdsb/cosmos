@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
+import { createHash } from "crypto";
 import { FunctionInvocation, TrilliumClassesReconcileFunctionRequest, TrilliumClassesReconcileFunctionRequestPayload, ViewGclassroomRecord, TrilliumClass } from "@cosmos/types";
 
 const trilliumClassesReconcile: AzureFunction = async function (context: Context, triggerMessage: TrilliumClassesReconcileFunctionRequest): Promise<void> {
@@ -83,7 +84,6 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
                 class_code:          records_now[record_id].class_code,
                 class_grades:        records_now[record_id].class_grades,
                 staff_number:        records_now[record_id].staff_number,
-                teacher_ein:         records_now[record_id].staff_number,
                 teacher_email:       records_now[record_id].teacher_email,
                 teacher_name:        records_now[record_id].teacher_name
 
@@ -92,7 +92,7 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
                 //updated_at
                 //deleted_at
                 //deleted
-            };
+            } as TrilliumClass;
     
             if (!records_previous || !records_previous[record_id]) {
                 calculation.differences.created_records.push(new_record);
@@ -104,7 +104,6 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
                     class_code:          records_previous[record_id].class_code,
                     class_grades:        records_previous[record_id].class_grades,
                     staff_number:        records_previous[record_id].staff_number,
-                    teacher_ein:         records_previous[record_id].teacher_ein,
                     teacher_email:       records_previous[record_id].teacher_email,
                     teacher_name:        records_previous[record_id].teacher_name
     
@@ -113,20 +112,15 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
                     //updated_at
                     //deleted_at
                     //deleted
-                }; 
+                } as TrilliumClass; 
     
-                // Compare old and new records
-                let records_equal = true;
-                
-                records_equal = (records_equal && new_record.id === old_record.id) ? true : false;
-                records_equal = (records_equal && new_record.school_code === old_record.school_code) ? true : false;
-                records_equal = (records_equal && new_record.class_code === old_record.class_code) ? true : false;
-                records_equal = (records_equal && new_record.staff_number === old_record.staff_number) ? true : false;
-                records_equal = (records_equal && new_record.teacher_ein === old_record.teacher_ein) ? true : false;
-                records_equal = (records_equal && new_record.teacher_email === old_record.teacher_email) ? true : false;
-                records_equal = (records_equal && new_record.teacher_name === old_record.teacher_name) ? true : false;
+                // Re-calculate the change detection hashes locally,
+                // because different functions may have different change detection standards
+                const newRecordChangeDetectionHash = makeHash(new_record);
+                const oldRecordChangeDetectionHash = makeHash(old_record);
 
-                records_equal = (records_equal && arrayCompare(new_record.class_grades, old_record.class_grades)) ? true : false;
+                // Compare old and new records
+                const records_equal = (newRecordChangeDetectionHash === oldRecordChangeDetectionHash) ? true : false;
     
                 // if record changed, record the change
                 if (!records_equal) {
@@ -275,6 +269,18 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
         }
     }
 
+    function makeHash(objectToHash: TrilliumClass): string {
+        const objectForHash = JSON.stringify({
+            school_code: objectToHash.school_code,
+            class_code: objectToHash.class_code,
+            class_grades: objectToHash.class_grades,
+            staff_number: objectToHash.staff_number,
+            teacher_email: objectToHash.teacher_email,
+            teacher_name: objectToHash.teacher_name
+        });
+        const objectHash = createHash('md5').update(objectForHash).digest('hex');
+        return objectHash;
+    }
 };
 
 export default trilliumClassesReconcile;

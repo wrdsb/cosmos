@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
+import { createHash } from "crypto";
 import { FunctionInvocation, TrilliumEnrolmentsABCReconcileFunctionRequest, TrilliumEnrolmentsABCReconcileFunctionRequestPayload, ViewGclassroomRecord, TrilliumEnrolment } from "@cosmos/types";
 
 const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: Context, triggerMessage: TrilliumEnrolmentsABCReconcileFunctionRequest): Promise<void> {
@@ -90,8 +91,6 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
                 student_first_name:  records_now[record_id].student_first_name,
                 student_last_name:   records_now[record_id].student_last_name,
                 student_email:       records_now[record_id].student_email,
-                teacher_ein:         records_now[record_id].teacher_ein,
-                teacher_email:       records_now[record_id].teacher_email,
                 staff_number:        records_now[record_id].staff_number
 
                 // these fields are not present in the data from trillium, so we don't map them
@@ -99,7 +98,7 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
                 //updated_at
                 //deleted_at
                 //deleted
-            };
+            } as TrilliumEnrolment;
     
             if (!records_previous || !records_previous[record_id]) {
                 calculation.differences.created_records.push(new_record);
@@ -114,8 +113,6 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
                     student_first_name:  records_previous[record_id].student_first_name,
                     student_last_name:   records_previous[record_id].student_last_name,
                     student_email:       records_previous[record_id].student_email,
-                    teacher_ein:         records_previous[record_id].teacher_ein,
-                    teacher_email:       records_previous[record_id].teacher_email,
                     staff_number:        records_previous[record_id].staff_number
 
                     // these fields are not present in the data from trillium, so we don't map them
@@ -123,21 +120,15 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
                     //updated_at
                     //deleted_at
                     //deleted
-                }; 
+                } as TrilliumEnrolment; 
     
+                // Re-calculate the change detection hashes locally,
+                // because different functions may have different change detection standards
+                const newRecordChangeDetectionHash = makeHash(new_record);
+                const oldRecordChangeDetectionHash = makeHash(old_record);
+
                 // Compare old and new records
-                let records_equal = true;
-                
-                records_equal = (records_equal && new_record.id === old_record.id) ? true : false; 
-                records_equal = (records_equal && new_record.school_code === old_record.school_code) ? true : false; 
-                records_equal = (records_equal && new_record.class_code === old_record.class_code) ? true : false; 
-                records_equal = (records_equal && new_record.student_number === old_record.student_number) ? true : false; 
-                records_equal = (records_equal && new_record.student_grade === old_record.student_grade) ? true : false; 
-                records_equal = (records_equal && new_record.student_last_name === old_record.student_last_name) ? true : false; 
-                records_equal = (records_equal && new_record.student_email === old_record.student_email) ? true : false; 
-                records_equal = (records_equal && new_record.teacher_ein === old_record.teacher_ein) ? true : false; 
-                records_equal = (records_equal && new_record.teacher_email === old_record.teacher_email) ? true : false; 
-                records_equal = (records_equal && new_record.staff_number === old_record.staff_number) ? true : false; 
+                const records_equal = (newRecordChangeDetectionHash === oldRecordChangeDetectionHash) ? true : false;
     
                 // if record changed, record the change
                 if (!records_equal) {
@@ -250,15 +241,14 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
                         student_first_name: item.student_first_name,
                         student_last_name: item.student_last_name,
                         student_email: item.student_email,
-                        teacher_ein: item.teacher_ein,
-                        teacher_email: item.teacher_email
+                        staff_number: item.staff_number
     
                         // these fields are not present in the data from trillium
                         //created_at: item.created_at,
                         //updated_at: item.updated_at,
                         //deleted_at: item.deleted_at,
                         //deleted: item.deleted
-                    };
+                    } as TrilliumEnrolment;
         
                     records_previous[item.id] = enrolment;
                 }
@@ -277,6 +267,18 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
         }
     }
 
+    function makeHash(objectToHash: TrilliumEnrolment): string {
+        const objectForHash = JSON.stringify({
+            school_code: objectToHash.school_code,
+            class_code: objectToHash.class_code,
+            student_number: objectToHash.student_number,
+            student_first_name: objectToHash.student_first_name,
+            student_last_name: objectToHash.student_last_name,
+            student_email: objectToHash.student_email
+        });
+        const objectHash = createHash('md5').update(objectForHash).digest('hex');
+        return objectHash;
+    }
 };
 
 export default trilliumEnrolmentsABCReconcile;

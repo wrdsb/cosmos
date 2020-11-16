@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
+import { createHash } from "crypto";
 import { FunctionInvocation, TrilliumAssignmentsReconcileFunctionRequest, TrilliumAssignmentsReconcileFunctionRequestPayload, TrilliumAssignment } from "@cosmos/types";
 
 const trilliumAssignmentsReconcile: AzureFunction = async function (context: Context, triggerMessage: TrilliumAssignmentsReconcileFunctionRequest): Promise<void> {
@@ -80,14 +81,17 @@ const trilliumAssignmentsReconcile: AzureFunction = async function (context: Con
             const new_record = {
                 id:            records_now[record_id].id,
                 staff_number:  records_now[record_id].staff_number,
-                assignments:   records_now[record_id].assignments
-
+                school_code:   records_now[record_id].school_code,
+                class_code:    records_now[record_id].class_code,
+                block:         records_now[record_id].block,
+                room_number:   records_now[record_id].room_number
+              
                 // these fields are not present in the data from trillium, so we don't map them
                 //created_at
                 //updated_at
                 //deleted_at
                 //deleted
-            };
+            } as TrilliumAssignment;
     
             if (!records_previous || !records_previous[record_id]) {
                 calculation.differences.created_records.push(new_record);
@@ -96,22 +100,25 @@ const trilliumAssignmentsReconcile: AzureFunction = async function (context: Con
                 const old_record = {
                     id:            records_previous[record_id].id,
                     staff_number:  records_previous[record_id].staff_number,
-                    assignments:   records_now[record_id].assignments
-    
+                    school_code:   records_previous[record_id].school_code,
+                    class_code:    records_previous[record_id].class_code,
+                    block:         records_previous[record_id].block,
+                    room_number:   records_previous[record_id].room_number
+        
                     // these fields are not present in the data from trillium, so we don't map them
                     //created_at
                     //updated_at
                     //deleted_at
                     //deleted
-                }; 
+                } as TrilliumAssignment; 
     
-                // Compare old and new records
-                let records_equal = true;
-                
-                records_equal = (records_equal && new_record.id === old_record.id) ? true : false;
-                records_equal = (records_equal && new_record.staff_number === old_record.staff_number) ? true : false;
+                // Re-calculate the change detection hashes locally,
+                // because different functions may have different change detection standards
+                const newRecordChangeDetectionHash = makeHash(new_record);
+                const oldRecordChangeDetectionHash = makeHash(old_record);
 
-                records_equal = (records_equal && assignmentsCompare(new_record.assignments, old_record.assignments)) ? true : false;
+                // Compare old and new records
+                const records_equal = (newRecordChangeDetectionHash === oldRecordChangeDetectionHash) ? true : false;
 
                 // if record changed, record the change
                 if (!records_equal) {
@@ -123,28 +130,6 @@ const trilliumAssignmentsReconcile: AzureFunction = async function (context: Con
             }
         });
         return calculation;
-    }
-
-    function assignmentsCompare(firstObject, secondObject) {
-        let identical = true;
-
-        if (Object.getOwnPropertyNames(firstObject).length !== Object.getOwnPropertyNames(secondObject).length) {
-            identical = false;
-        };
-
-        Object.getOwnPropertyNames(firstObject).forEach(function (firstID) {
-            if (!Object.getOwnPropertyNames(secondObject).includes(firstID)) {
-                identical = false;
-            }
-        });
-
-        Object.getOwnPropertyNames(secondObject).forEach(function (secondID) {
-            if (!Object.getOwnPropertyNames(firstObject).includes(secondID)) {
-                identical = false;
-            }
-        });
-
-        return identical;
     }
 
     async function findDeletes(calculation) {
@@ -269,6 +254,17 @@ const trilliumAssignmentsReconcile: AzureFunction = async function (context: Con
         }
     }
 
+    function makeHash(objectToHash: TrilliumAssignment): string {
+        const objectForHash = JSON.stringify({
+            staff_number: objectToHash.staff_number,
+            school_code: objectToHash.school_code,
+            class_code: objectToHash.class_code,
+            block: objectToHash.block,
+            room_number: objectToHash.room_number
+        });
+        const objectHash = createHash('md5').update(objectForHash).digest('hex');
+        return objectHash;
+    }
 };
 
 export default trilliumAssignmentsReconcile;

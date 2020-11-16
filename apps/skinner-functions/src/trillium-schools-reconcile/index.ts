@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
+import { createHash } from "crypto";
 import { FunctionInvocation, TrilliumSchoolsReconcileFunctionRequest, TrilliumSchoolsReconcileFunctionRequestPayload, TrilliumSchool } from "@cosmos/types";
 
 const trilliumSchoolsReconcile: AzureFunction = async function (context: Context, triggerMessage: TrilliumSchoolsReconcileFunctionRequest): Promise<void> {
@@ -103,11 +104,13 @@ const trilliumSchoolsReconcile: AzureFunction = async function (context: Context
                     //deleted
                 }; 
     
+                // Re-calculate the change detection hashes locally,
+                // because different functions may have different change detection standards
+                const newRecordChangeDetectionHash = makeHash(new_record);
+                const oldRecordChangeDetectionHash = makeHash(old_record);
+
                 // Compare old and new records
-                let records_equal = true;
-                
-                records_equal = (records_equal && new_record.id === old_record.id) ? true : false;
-                records_equal = (records_equal && new_record.school_code === old_record.school_code) ? true : false;
+                const records_equal = (newRecordChangeDetectionHash === oldRecordChangeDetectionHash) ? true : false;
     
                 // if record changed, record the change
                 if (!records_equal) {
@@ -239,6 +242,13 @@ const trilliumSchoolsReconcile: AzureFunction = async function (context: Context
         }
     }
 
+    function makeHash(objectToHash: TrilliumSchool): string {
+        const objectForHash = JSON.stringify({
+            school_code: objectToHash.school_code
+        });
+        const objectHash = createHash('md5').update(objectForHash).digest('hex');
+        return objectHash;
+    }
 };
 
 export default trilliumSchoolsReconcile;

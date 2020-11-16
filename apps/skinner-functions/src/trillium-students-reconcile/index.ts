@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
+import { createHash } from "crypto";
 import { FunctionInvocation, TrilliumStudentsReconcileFunctionRequest, TrilliumStudentsReconcileFunctionRequestPayload, TrilliumStudent } from "@cosmos/types";
 
 const trilliumStudentsReconcile: AzureFunction = async function (context: Context, triggerMessage: TrilliumStudentsReconcileFunctionRequest): Promise<void> {
@@ -117,19 +118,13 @@ const trilliumStudentsReconcile: AzureFunction = async function (context: Contex
                     //deleted
                 }; 
     
-                // Compare old and new records
-                let records_equal = true;
-                
-                records_equal = (records_equal && new_record.id === old_record.id) ? true : false;
-                records_equal = (records_equal && new_record.student_number === old_record.student_number) ? true : false;
-                records_equal = (records_equal && new_record.student_grade === old_record.student_grade) ? true : false;
-                records_equal = (records_equal && new_record.student_email === old_record.student_email) ? true : false;
-                records_equal = (records_equal && new_record.student_first_name === old_record.student_first_name) ? true : false;
-                records_equal = (records_equal && new_record.student_last_name === old_record.student_last_name) ? true : false;
-                records_equal = (records_equal && new_record.school_code === old_record.school_code) ? true : false;
-                records_equal = (records_equal && new_record.student_oyap === old_record.student_oyap) ? true : false;
-                records_equal = (records_equal && new_record.student_shsm_sector === old_record.student_shsm_sector) ? true : false;
+                // Re-calculate the change detection hashes locally,
+                // because different functions may have different change detection standards
+                const newRecordChangeDetectionHash = makeHash(new_record);
+                const oldRecordChangeDetectionHash = makeHash(old_record);
 
+                // Compare old and new records
+                const records_equal = (newRecordChangeDetectionHash === oldRecordChangeDetectionHash) ? true : false;
     
                 // if record changed, record the change
                 if (!records_equal) {
@@ -268,6 +263,20 @@ const trilliumStudentsReconcile: AzureFunction = async function (context: Contex
         }
     }
 
+    function makeHash(objectToHash: TrilliumStudent): string {
+        const objectForHash = JSON.stringify({
+            student_number: objectToHash.student_number,
+            student_grade: objectToHash.student_grade,
+            student_email: objectToHash.student_email,
+            student_first_name: objectToHash.student_first_name,
+            student_last_name: objectToHash.student_last_name,
+            school_code: objectToHash.school_code,
+            student_oyap: objectToHash.student_oyap,
+            student_shsm_sector: objectToHash.student_shsm_sector
+        });
+        const objectHash = createHash('md5').update(objectForHash).digest('hex');
+        return objectHash;
+    }
 };
 
 export default trilliumStudentsReconcile;

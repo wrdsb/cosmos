@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
+import { createHash } from "crypto";
 import { FunctionInvocation, TrilliumTeachersReconcileFunctionRequest, TrilliumTeachersReconcileFunctionRequestPayload, TrilliumTeacher } from "@cosmos/types";
 
 const trilliumTeachersReconcile: AzureFunction = async function (context: Context, triggerMessage: TrilliumTeachersReconcileFunctionRequest): Promise<void> {
@@ -105,12 +106,13 @@ const trilliumTeachersReconcile: AzureFunction = async function (context: Contex
                     //deleted
                 }; 
     
+                // Re-calculate the change detection hashes locally,
+                // because different functions may have different change detection standards
+                const newRecordChangeDetectionHash = makeHash(new_record);
+                const oldRecordChangeDetectionHash = makeHash(old_record);
+
                 // Compare old and new records
-                let records_equal = true;
-                
-                records_equal = (records_equal && new_record.id === old_record.id) ? true : false;
-                records_equal = (records_equal && new_record.school_code === old_record.school_code) ? true : false;
-                records_equal = (records_equal && new_record.staff_number === old_record.staff_number) ? true : false;
+                const records_equal = (newRecordChangeDetectionHash === oldRecordChangeDetectionHash) ? true : false;
 
                 // if record changed, record the change
                 if (!records_equal) {
@@ -243,6 +245,14 @@ const trilliumTeachersReconcile: AzureFunction = async function (context: Contex
         }
     }
 
+    function makeHash(objectToHash: TrilliumTeacher): string {
+        const objectForHash = JSON.stringify({
+            school_code: objectToHash.school_code,
+            staff_number: objectToHash.staff_number
+        });
+        const objectHash = createHash('md5').update(objectForHash).digest('hex');
+        return objectHash;
+    }
 };
 
 export default trilliumTeachersReconcile;

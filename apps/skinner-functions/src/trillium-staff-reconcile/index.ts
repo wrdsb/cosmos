@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
+import { createHash } from "crypto";
 import { FunctionInvocation, TrilliumStaffReconcileFunctionRequest, TrilliumStaffReconcileFunctionRequestPayload, TrilliumStaff } from "@cosmos/types";
 
 const trilliumStaffReconcile: AzureFunction = async function (context: Context, triggerMessage: TrilliumStaffReconcileFunctionRequest): Promise<void> {
@@ -111,15 +112,13 @@ const trilliumStaffReconcile: AzureFunction = async function (context: Context, 
                     //deleted
                 }; 
     
+                // Re-calculate the change detection hashes locally,
+                // because different functions may have different change detection standards
+                const newRecordChangeDetectionHash = makeHash(new_record);
+                const oldRecordChangeDetectionHash = makeHash(old_record);
+
                 // Compare old and new records
-                let records_equal = true;
-                
-                records_equal = (records_equal && new_record.id === old_record.id) ? true : false;
-                records_equal = (records_equal && new_record.staff_number === old_record.staff_number) ? true : false;
-                records_equal = (records_equal && new_record.school_code === old_record.school_code) ? true : false;
-                records_equal = (records_equal && new_record.school_year === old_record.school_year) ? true : false;
-                records_equal = (records_equal && new_record.staff_type === old_record.staff_type) ? true : false;
-                records_equal = (records_equal && new_record.status === old_record.status) ? true : false;
+                const records_equal = (newRecordChangeDetectionHash === oldRecordChangeDetectionHash) ? true : false;
 
                 // if record changed, record the change
                 if (!records_equal) {
@@ -255,6 +254,17 @@ const trilliumStaffReconcile: AzureFunction = async function (context: Context, 
         }
     }
 
+    function makeHash(objectToHash: TrilliumStaff): string {
+        const objectForHash = JSON.stringify({
+            staff_number: objectToHash.staff_number,
+            school_code: objectToHash.school_code,
+            school_year: objectToHash.school_year,
+            staff_type: objectToHash.staff_type,
+            status: objectToHash.status
+        });
+        const objectHash = createHash('md5').update(objectForHash).digest('hex');
+        return objectHash;
+    }
 };
 
 export default trilliumStaffReconcile;
