@@ -28,6 +28,16 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
 
                 break;
 
+            case "Skinner.View.SkinnerAssignments.Extract.StaffAssignments":
+                context.bindings.viewSkinnerAssignmentsExtractStaffAssignmentsTrigger = createSkinnerViewSkinnerAssignmentsExtractStaffAssignmentsJob();
+
+                context.bindings.callbackMessage = JSON.stringify({
+                    status: 202,
+                    body: "Accepted. Queued Skinner.View.SkinnerAssignments.Extract.StaffAssignments job."
+                });
+
+                break;
+
             case "Skinner.View.SkinnerStaff.Process":
                 context.bindings.viewSkinnerStaffProcessTrigger = createSkinnerViewSkinnerStaffProcessJob();
 
@@ -114,6 +124,16 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 context.bindings.callbackMessage = JSON.stringify({
                     status: 202,
                     body: "Accepted. Queued Skinner.Trillium.Assignments.Reconcile job."
+                });
+
+                break;
+    
+            case "Skinner.Trillium.StaffAssignments.Reconcile":
+                context.bindings.trilliumStaffAssignmentsReconcileTrigger = createSkinnerTrilliumStaffAssignmentsReconcileJob();
+
+                context.bindings.callbackMessage = JSON.stringify({
+                    status: 202,
+                    body: "Accepted. Queued Skinner.Trillium.StaffAssignments.Reconcile job."
                 });
 
                 break;
@@ -216,6 +236,12 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
         return JSON.stringify(triggerMessage);
     }
 
+    function createSkinnerViewSkinnerAssignmentsExtractStaffAssignmentsJob(): string {
+        let triggerMessage = {};
+
+        return JSON.stringify(triggerMessage);
+    }
+
     function createSkinnerViewSkinnerStaffProcessJob(): string {
         let triggerMessage = {};
 
@@ -265,6 +291,12 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
     }
 
     function createSkinnerTrilliumAssignmentsReconcileJob(): string {
+        let triggerMessage = {};
+
+        return JSON.stringify(triggerMessage);
+    }
+
+    function createSkinnerTrilliumStaffAssignmentsReconcileJob(): string {
         let triggerMessage = {};
 
         return JSON.stringify(triggerMessage);
