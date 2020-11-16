@@ -27,7 +27,7 @@ const viewGclassroomExtractClasses: AzureFunction = async function (context: Con
         let class_grades  = record.student_grade ? [record.student_grade] : [];
         let staff_number  = record.staff_number ? record.staff_number : "";
         let teacher_email = "";
-        let teacher_name = "";
+        let teacher_name  = "";
 
         if (people[staff_number]) {
             teacher_email = people[staff_number].email;
