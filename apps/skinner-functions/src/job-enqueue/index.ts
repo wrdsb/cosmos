@@ -159,7 +159,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 break;
 
             case "Skinner.Trillium.Enrolments.Reconcile.All":
-                context.bindings.trilliumEnrolmentsReconcileAllTrigger = createSkinnerTrilliumEnrolmentsReconcileAllJob();
+                context.bindings.trilliumEnrolmentsABCReconcileAllTrigger = createSkinnerTrilliumEnrolmentsReconcileAllJob();
 
                 context.bindings.callbackMessage = JSON.stringify({
                     status: 202,
