@@ -394,4 +394,4 @@ const atsAssetsReconcile: AzureFunction = async function (context: Context, trig
     }
 };
 
-export default atsAssetClassesReconcile;
+export default atsAssetsReconcile;

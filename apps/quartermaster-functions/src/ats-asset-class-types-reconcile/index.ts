@@ -263,4 +263,4 @@ const atsAssetClassTypesReconcile: AzureFunction = async function (context: Cont
     }
 };
 
-export default atsAssetClassesReconcile;
+export default atsAssetClassTypesReconcile;
