@@ -22,8 +22,8 @@ const trilliumEnrolmentsABCReconcileAll: AzureFunction = async function (context
         queueMessages: queueMessages
     };
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 

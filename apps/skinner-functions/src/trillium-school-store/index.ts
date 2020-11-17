@@ -54,8 +54,8 @@ const trilliumSchoolStore: AzureFunction = async function (context: Context, tri
 
     const logPayload = result.event;
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 

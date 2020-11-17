@@ -60,12 +60,12 @@ const trilliumEnrolmentsABCReconcile: AzureFunction = async function (context: C
 
     const logPayload = {
         alpah: alphaLowercase,
-        totalDifferences: totalDifferences,
-        differences: calculation.differences
+        totalDifferences: totalDifferences
+        //differences: calculation.differences
     };
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 

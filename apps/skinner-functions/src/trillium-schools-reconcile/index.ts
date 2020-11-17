@@ -60,8 +60,8 @@ const trilliumSchoolsReconcile: AzureFunction = async function (context: Context
         differences: calculation.differences
     };
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 

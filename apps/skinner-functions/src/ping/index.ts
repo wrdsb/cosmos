@@ -73,11 +73,10 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
     }
 
     const logPayload = response;
-    context.log(logPayload);
-
     functionInvocation.logPayload = logPayload;
-    context.log(functionInvocation);
 
+    context.bindings.invocationPostProcessor = functionInvocation;
+    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

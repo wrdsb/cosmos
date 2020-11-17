@@ -53,8 +53,8 @@ const viewSkinnerAssignmentsProcess: AzureFunction = async function (context: Co
 
     const logPayload = "";
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 };

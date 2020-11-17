@@ -58,8 +58,8 @@ const trilliumStaffStore: AzureFunction = async function (context: Context, trig
 
     const logPayload = result.event;
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 
