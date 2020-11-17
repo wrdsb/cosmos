@@ -68,21 +68,17 @@ const viewGClassroomProcess: AzureFunction = async function (context: Context, t
     const skinner_view_gclassroom_extract_students_job = {
         "job_type": "Skinner.View.GClassroom.Extract.Students"
     };
-    const skinner_view_gclassroom_extract_teachers_job = {
-        "job_type": "Skinner.View.GClassroom.Extract.Teachers"
-    };
     context.bindings.triggerJobs = [
         JSON.stringify(skinner_view_gclassroom_extract_classes_job),
         JSON.stringify(skinner_view_gclassroom_extract_enrolments_job),
         JSON.stringify(skinner_view_gclassroom_extract_schools_job),
-        JSON.stringify(skinner_view_gclassroom_extract_students_job),
-        JSON.stringify(skinner_view_gclassroom_extract_teachers_job)
+        JSON.stringify(skinner_view_gclassroom_extract_students_job)
     ];
 
     const logPayload = "";
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
