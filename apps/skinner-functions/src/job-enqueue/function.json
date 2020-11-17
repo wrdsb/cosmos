@@ -78,13 +78,6 @@
             "direction": "out"
         },
         {
-            "name": "viewGClassroomExtractTeachersTrigger",
-            "type": "queue",
-            "queueName": "view-gclassroom-extract-teachers",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
             "name": "trilliumAssignmentsReconcileTrigger",
             "type": "queue",
             "queueName": "trillium-assignments-reconcile",
@@ -137,13 +130,6 @@
             "name": "trilliumStudentsReconcileTrigger",
             "type": "queue",
             "queueName": "trillium-students-reconcile",
-            "connection": "wrdsbskinner_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "trilliumTeachersReconcileTrigger",
-            "type": "queue",
-            "queueName": "trillium-teachers-reconcile",
             "connection": "wrdsbskinner_STORAGE",
             "direction": "out"
         },
