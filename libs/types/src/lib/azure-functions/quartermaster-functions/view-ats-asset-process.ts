@@ -1,44 +1,44 @@
 import * as Cosmos from "../common";
 
-interface ViewATSAssetFunctionRequest extends Cosmos.FunctionRequest {
-    readonly payload: ViewATSAssetFunctionRequestPayload;
+interface ViewATSAssetProcessFunctionRequest extends Cosmos.FunctionRequest {
+    readonly payload: ViewATSAssetProcessFunctionRequestPayload;
 }
 
-interface ViewATSAssetFunctionResponse extends Cosmos.FunctionResponse {
-    readonly payload: ViewATSAssetFunctionResponsePayload;
+interface ViewATSAssetProcessFunctionResponse extends Cosmos.FunctionResponse {
+    readonly payload: ViewATSAssetProcessFunctionResponsePayload;
 }
 
-interface ViewATSAssetFunctionLogObject extends Cosmos.FunctionLogObject {
-    readonly payload: ViewATSAssetFunctionResponsePayload;
+interface ViewATSAssetProcessFunctionLogObject extends Cosmos.FunctionLogObject {
+    readonly payload: ViewATSAssetProcessFunctionResponsePayload;
 }
 
-interface ViewATSAssetFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
+interface ViewATSAssetProcessFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
 
-interface ViewATSAssetFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
-    readonly data: ViewATSAssetFunctionInvocationEventPayload;
+interface ViewATSAssetProcessFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
+    readonly data: ViewATSAssetProcessFunctionInvocationEventPayload;
 }
 
-interface ViewATSAssetFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+interface ViewATSAssetProcessFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
 }
 
-interface ViewATSAssetFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
+interface ViewATSAssetProcessFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
 }
 
-interface ViewATSAssetFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
+interface ViewATSAssetProcessFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
 
-interface ViewATSAssetFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
+interface ViewATSAssetProcessFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
 
-interface ViewATSAssetFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
+interface ViewATSAssetProcessFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
 
 export {
-    ViewATSAssetFunctionRequest,
-    ViewATSAssetFunctionResponse,
-    ViewATSAssetFunctionLogObject,
-    ViewATSAssetFunctionCallbackMessage,
-    ViewATSAssetFunctionInvocationEvent,
-    ViewATSAssetFunctionRequestPayload,
-    ViewATSAssetFunctionResponsePayload,
-    ViewATSAssetFunctionLogObjectPayload,
-    ViewATSAssetFunctionCallbackMessagePayload,
-    ViewATSAssetFunctionInvocationEventPayload
+    ViewATSAssetProcessFunctionRequest,
+    ViewATSAssetProcessFunctionResponse,
+    ViewATSAssetProcessFunctionLogObject,
+    ViewATSAssetProcessFunctionCallbackMessage,
+    ViewATSAssetProcessFunctionInvocationEvent,
+    ViewATSAssetProcessFunctionRequestPayload,
+    ViewATSAssetProcessFunctionResponsePayload,
+    ViewATSAssetProcessFunctionLogObjectPayload,
+    ViewATSAssetProcessFunctionCallbackMessagePayload,
+    ViewATSAssetProcessFunctionInvocationEventPayload
 }
