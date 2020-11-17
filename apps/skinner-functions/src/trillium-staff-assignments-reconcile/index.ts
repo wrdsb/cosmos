@@ -56,8 +56,8 @@ const trilliumStaffAssignmentsReconcile: AzureFunction = async function (context
     context.bindings.queueStore = creates.concat(updates, deletes);
 
     const logPayload = {
-        totalDifferences: totalDifferences,
-        differences: calculation.differences
+        totalDifferences: totalDifferences
+        //differences: calculation.differences
     };
     functionInvocation.logPayload = logPayload;
 
