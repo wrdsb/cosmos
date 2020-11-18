@@ -1,27 +1,16 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { createLogObject } from "../SharedCode/createLogObject";
-import { createLogBlob } from "../SharedCode/createLogBlob";
-import { createCallbackMessage } from "../SharedCode/createCallbackMessage";
-import { createEvent } from "../SharedCode/createEvent";
+import { FunctionInvocation } from "@cosmos/types";
 
 const eventListener: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    const functionInvocationID = context.executionContext.invocationId;
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-
-    const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.Panama.Event.Listen';
-    const functionEventID = `panama-functions-${functionName}-${functionInvocationID}`;
-    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
-
-    const logStorageAccount = process.env['storageAccount'];
-    const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-event-listener-logs';
-
-    const eventLabel = '';
-    const eventTags = [
-        "panama", 
-    ];
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'Panama',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'Event',
+        functionDataOperation: 'Listen',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const event = req.body.event;
 
@@ -67,27 +56,11 @@ const eventListener: AzureFunction = async function (context: Context, req: Http
         queueMessage: queueMessage,
         queueTriggered: queueTriggered
     };
+    functionInvocation.logPayload = logPayload;
 
-    // Log function invocation and results
-    const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await createLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    context.log(logBlob);
-
-    // Callback for internal consumption
-    const callbackMessage = await createCallbackMessage(logObject, logPayload.status);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    context.log(callbackMessage);
-    
-    // Fire event for external consumption
-    const invocationEvent = await createEvent(functionInvocationID, functionInvocationTime, functionInvocationTimestamp, functionName, functionEventType, functionEventID, functionLogID, statusCode, statusMessage, logStorageAccount, logStorageContainer, eventLabel, eventTags);
-    context.bindings.flynnEvent = JSON.stringify(invocationEvent);
-    context.log(invocationEvent);
-
-    context.res = {
-        status: 200,
-        body: logPayload
-    };
-    context.done(null, logBlob);
+    context.bindings.invocationPostProcessor = functionInvocation;
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 };
 
 export default eventListener;

@@ -1,30 +1,19 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { createLogObject } from "../SharedCode/createLogObject";
-import { createLogBlob } from "../SharedCode/createLogBlob";
-import { createCallbackMessage } from "../SharedCode/createCallbackMessage";
-import { createEvent } from "../SharedCode/createEvent";
+import { FunctionInvocation } from "@cosmos/types";
 
-const eventEmitter: AzureFunction = AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
-    const functionInvocationID = context.executionContext.invocationId;
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-
-    const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.Panama.Event.Emit';
-    const functionEventID = `panama-functions-${functionName}-${functionInvocationID}`;
-    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
-
-    const logStorageAccount = process.env['storageAccount'];
-    const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-event-emitter-logs';
+const eventEmitter: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'Panama',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'Event',
+        functionDataOperation: 'Emit',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env['SENDGRID_API_KEY']);
-
-    const eventLabel = '';
-    const eventTags = [
-        "panama", 
-    ];
 
     const event = context.bindings.triggerMessage;
     const eventType = event.type;
@@ -152,17 +141,11 @@ const eventEmitter: AzureFunction = AzureFunction = async function (context: Con
         });
     }
 
-    // Log function invocation and results
-    const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await createLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    context.log(logBlob);
+    functionInvocation.logPayload = logPayload;
 
-    // Callback for internal consumption
-    const callbackMessage = await createCallbackMessage(logObject, logPayload.status);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    context.log(callbackMessage);
-    
-    context.done(null, logBlob);
+    context.bindings.invocationPostProcessor = functionInvocation;
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 };
 
 export default eventEmitter;
