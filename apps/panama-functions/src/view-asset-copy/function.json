@@ -1,0 +1,32 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "view-asset-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "incomingBlob",
+      "type": "blob",
+      "path": "ats-view-hd-asset/incoming.json",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "outgoingBlob",
+      "type": "blob",
+      "path": "ats-view-hd-asset/now.json",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
