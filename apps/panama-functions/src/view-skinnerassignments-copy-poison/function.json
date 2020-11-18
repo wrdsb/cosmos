@@ -22,5 +22,5 @@
             "direction": "out"
         }
     ],
-    "scriptFile": "../dist/view-skinnerassignments-copy-poison/index.js"
+    "scriptFile": "./index.js"
 }

@@ -22,5 +22,5 @@
             "direction": "out"
         }
     ],
-    "scriptFile": "../dist/view-skinnerstaff-copy-poison/index.js"
+    "scriptFile": "./index.js"
 }

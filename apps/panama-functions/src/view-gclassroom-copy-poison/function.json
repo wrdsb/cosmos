@@ -22,5 +22,5 @@
             "direction": "out"
         }
     ],
-    "scriptFile": "../dist/view-gclassroom-copy-poison/index.js"
+    "scriptFile": "./index.js"
 }
