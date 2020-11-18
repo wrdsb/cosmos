@@ -1,26 +1,18 @@
 {
-    "bindings": [
-        {
-            "name": "triggerMessage",
-            "type": "queueTrigger",
-            "queueName": "view-staffdir-copy-poison",
-            "connection": "wrdsbpanama_STORAGE",
-            "direction": "in"
-        },
-        {
-            "name": "callbackMessage",
-            "type": "queue",
-            "queueName": "callbacks",
-            "connection": "wrdsbpanama_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "flynnEvent",
-            "type": "queue",
-            "queueName": "event-emitter",
-            "connection": "wrdsbpanama_STORAGE",
-            "direction": "out"
-        }
-    ],
-    "scriptFile": "./index.js"
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "view-staffdir-copy-poison",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
 }
