@@ -9,6 +9,34 @@
       ]
     },
     {
+      "name": "triggerViewAssetCopy",
+      "type": "queue",
+      "queueName": "view-asset-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewAssetClassCopy",
+      "type": "queue",
+      "queueName": "view-asset-class-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewAssetClassTypeCopy",
+      "type": "queue",
+      "queueName": "view-asset-class-type-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewAssetTypeCopy",
+      "type": "queue",
+      "queueName": "view-asset-type-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "triggerViewGClassroomCopy",
       "type": "queue",
       "queueName": "view-gclassroom-copy",

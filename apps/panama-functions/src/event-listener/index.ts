@@ -18,6 +18,26 @@ const eventListener: AzureFunction = async function (context: Context, req: Http
     let queueMessage = '';
 
     switch (event) {
+        case 'Panama.View.Asset.Extract':
+            queueTriggered = 'view-asset-copy';
+            queueMessage = JSON.stringify({"job_type": "Panama.View.Asset.Copy"});
+            context.bindings.triggerViewAssetCopy = queueMessage;
+            break;
+        case 'Panama.View.AssetClass.Extract':
+            queueTriggered = 'view-asset-class-copy';
+            queueMessage = JSON.stringify({"job_type": "Panama.View.AssetClass.Copy"});
+            context.bindings.triggerViewAssetClassCopy = queueMessage;
+            break;
+        case 'Panama.View.AssetClassType.Extract':
+            queueTriggered = 'view-asset-class-type-copy';
+            queueMessage = JSON.stringify({"job_type": "Panama.View.AssetClassType.Copy"});
+            context.bindings.triggerViewAssetClassTypeCopy = queueMessage;
+            break;
+        case 'Panama.View.AssetType.Extract':
+            queueTriggered = 'view-asset-type-copy';
+            queueMessage = JSON.stringify({"job_type": "Panama.View.AssetType.Copy"});
+            context.bindings.triggerViewAssetTypeCopy = queueMessage;
+            break;
         case 'Panama.View.GClassroom.Extract':
             queueTriggered = 'view-gclassroom-copy';
             queueMessage = JSON.stringify({"job_type": "Panama.View.GClassroom.Copy"});
