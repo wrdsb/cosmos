@@ -1578,8 +1578,36 @@
             "outputPath": "dist/apps/panama-functions",
             "main": "apps/panama-functions/src/main.ts",
             "tsConfig": "apps/panama-functions/tsconfig.app.json",
+            "webpackConfig": "apps/panama-functions/webpack.config.js",
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
             "assets": [
-              "apps/panama-functions/src/assets"
+              {
+                "input": "./apps/panama-functions/src",
+                "glob": "**/function.json",
+                "output": "./panama-functions"
+              },
+              {
+                "input": "./apps/panama-functions/src",
+                "glob": "host.json",
+                "output": "./panama-functions"
+              },
+              {
+                "input": "./apps/panama-functions/src",
+                "glob": "proxies.json",
+                "output": "./panama-functions"
+              },
+              {
+                "input": "./apps/panama-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./panama-functions"
+              },
+              {
+                "input": "./apps/panama-functions/src/bin",
+                "glob": "**.*",
+                "output": "./panama-functions/bin"
+              }
             ]
           },
           "configurations": {
