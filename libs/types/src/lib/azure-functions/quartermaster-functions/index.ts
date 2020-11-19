@@ -1,6 +1,8 @@
 export * from './device-loan-store';
 export * from './device-loan-submission-store';
 
+export * from './device-loan-materialize';
+
 export * from './ats-asset-store';
 export * from './ats-asset-class-store';
 export * from './ats-asset-type-store';
