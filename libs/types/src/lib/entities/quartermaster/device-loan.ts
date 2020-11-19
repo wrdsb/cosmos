@@ -11,10 +11,8 @@ export interface DeviceLoan {
     changeDetectionHash?: string;
 
     assetID?: string;
-    serialNumber?: string;
 
     deviceType?: string;
-
     locationName?: string;
 
     loans?: any;
