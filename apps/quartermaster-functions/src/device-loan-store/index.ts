@@ -1,8 +1,8 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, DeviceLoanSubmissionStoreFunctionRequest, DeviceLoanSubmissionStoreFunctionRequestPayload, DeviceLoan } from "@cosmos/types";
+import { FunctionInvocation, DeviceLoanStoreFunctionRequest, DeviceLoanStoreFunctionRequestPayload, DeviceLoan } from "@cosmos/types";
 
-const deviceLoanSubmissionStore: AzureFunction = async function (context: Context, triggerMessage: DeviceLoanSubmissionStoreFunctionRequest): Promise<void> {
+const deviceLoanStore: AzureFunction = async function (context: Context, triggerMessage: DeviceLoanStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -13,9 +13,9 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         eventLabel: ''
     } as FunctionInvocation;
 
-    const triggerObject = triggerMessage as DeviceLoanSubmissionStoreFunctionRequest;
+    const triggerObject = triggerMessage as DeviceLoanStoreFunctionRequest;
     const operation = triggerObject.operation;
-    const payload = triggerObject.payload as DeviceLoanSubmissionStoreFunctionRequestPayload;
+    const payload = triggerObject.payload as DeviceLoanStoreFunctionRequestPayload;
 
     const oldRecord = context.bindings.recordIn;
 
@@ -26,7 +26,6 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         deleted: false,
         id: '',
         assetID: '',
-        serialNumber: '',
         deviceType: '',
         locationName: '',
         loans: {},
@@ -205,10 +204,10 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
     }
 
     function craftCreateEvent(new_record) {
-        let event_type = 'Quartermaster.DeviceLoanSubmission.Create';
+        let event_type = 'Quartermaster.DeviceLoan.Create';
         let source = 'create';
         let schema = 'create';
-        let label = `DeviceLoanSubmission ${new_record.id} created.`;
+        let label = `DeviceLoan ${new_record.id} created.`;
         let payload = {
             record: new_record
         };
@@ -219,10 +218,10 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
     
     function craftUpdateEvent(old_record, new_record)
     {
-        let event_type = 'Quartermaster.DeviceLoanSubmission.Update';
+        let event_type = 'Quartermaster.DeviceLoan.Update';
         let source = 'update';
         let schema = 'update';
-        let label = `DeviceLoanSubmission ${new_record.id} updated.`;
+        let label = `DeviceLoan ${new_record.id} updated.`;
         let payload = {
             old_record: old_record,
             new_record: new_record,
@@ -234,10 +233,10 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
 
     function craftDeleteEvent(old_record, new_record)
     {
-        let event_type = 'Quartermaster.DeviceLoanSubmission.Delete';
+        let event_type = 'Quartermaster.DeviceLoan.Delete';
         let source = 'delete';
         let schema = 'delete';
-        let label = `DeviceLoanSubmission ${new_record.id} deleted.`;
+        let label = `DeviceLoan ${new_record.id} deleted.`;
         let payload = {
             record: old_record
         };
@@ -252,13 +251,13 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             time: functionInvocation.functionInvocationTimestamp,
 
             type: event_type,
-            source: `/quartermaster/device-loan-submission/${recordID}/${source}`,
-            schemaURL: `ca.wrdsb.quartermaster.device-loan-submission.${schema}.json`,
+            source: `/quartermaster/device-loan-/${recordID}/${source}`,
+            schemaURL: `ca.wrdsb.quartermaster.device-loan-.${schema}.json`,
 
             label: label,
             tags: [
                 "quartermaster", 
-                "device_loan_submission_change"
+                "device_loan__change"
             ], 
 
             data: {
@@ -281,7 +280,6 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
     function makeHash(deviceLoan: DeviceLoan): string {
         const objectForHash = JSON.stringify({
             assetID:      deviceLoan.assetID,
-            serialNumber: deviceLoan.serialNumber,
             deviceType:   deviceLoan.deviceType,
             locationName: deviceLoan.locationName,
             loans:        deviceLoan.loans,
@@ -292,4 +290,4 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
     }
 };
 
-export default deviceLoanSubmissionStore;
+export default deviceLoanStore;
