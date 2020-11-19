@@ -18,7 +18,7 @@ const viewAssetClassTypeCopy: AzureFunction = async function (context: Context, 
 
     const incomingBlob = context.bindings.incomingBlob;
 
-    if (incomingBlob.length < 500) {
+    if (incomingBlob.length < 10) {
         statusCode = "404"
         statusMessage = "Error: Too few source records. Aborting.";
     } else {
