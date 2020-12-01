@@ -178,7 +178,7 @@ module.exports = function (context, req) {
 
     syndication_targets.forEach(syndication_target => {
         var wp_install = syndication_target.split('-')[0];
-        var wp_site_slug = syndication_target.split('-')[1];
+        var wp_site_slug = syndication_target.replace(`${wp_install}-`, '');
 
         var syndication = {
             "wp_domain": `${wp_install}.wrdsb.ca`,
