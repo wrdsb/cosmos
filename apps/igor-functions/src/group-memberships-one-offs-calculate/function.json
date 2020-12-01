@@ -114,6 +114,36 @@
       "direction": "in"
     },
     {
+      "name": "googleWorkspaceEnterpriseAccessJobCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "google_workspace_enterprise_access_job_codes",
+      "partitionKey": "google_workspace_enterprise_access_job_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "googleWorkspaceEnterpriseAccessGroupCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "google_workspace_enterprise_access_group_codes",
+      "partitionKey": "google_workspace_enterprise_access_group_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
+      "name": "googleWorkspaceEnterpriseAccessLocationCodes",
+      "type": "cosmosDB",
+      "databaseName": "igor",
+      "collectionName": "groups-memberships-definitions",
+      "id": "google_workspace_enterprise_access_location_codes",
+      "partitionKey": "google_workspace_enterprise_access_location_codes",
+      "connectionStringSetting": "wrdsb-igor_COSMOSDB",
+      "direction": "in"
+    },
+    {
       "name": "grcHealthSafetyLocationCodes",
       "type": "cosmosDB",
       "databaseName": "igor",
@@ -406,6 +436,13 @@
       "name": "financeStaffOutputBlob",
       "type": "blob",
       "path": "groups-memberships-ipps-now/finance-staff@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "googleWorkspaceEnterpriseAccessOutputBlob",
+      "type": "blob",
+      "path": "groups-memberships-ipps-now/google-workspace-enterprise-access@wrdsb.ca.json",
       "connection": "wrdsbigor_STORAGE",
       "direction": "out"
     },

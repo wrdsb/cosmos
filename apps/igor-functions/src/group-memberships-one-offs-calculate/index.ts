@@ -44,6 +44,9 @@ const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context:
     const elementarySertsJobCodes = context.bindings.elementarySertsJobCodes.job_codes;
     const financeJobCodes = context.bindings.financeJobCodes.job_codes;
     const financeLocationCodes = context.bindings.financeLocationCodes.location_codes;
+    const googleWorkspaceEnterpriseAccessJobCodes = context.bindings.googleWorkspaceEnterpriseAccessJobCodes.job_codes;
+    const googleWorkspaceEnterpriseAccessGroupCodes = context.bindings.googleWorkspaceEnterpriseAccessGroupCodes.group_codes;
+    const googleWorkspaceEnterpriseAccessLocationCodes = context.bindings.googleWorkspaceEnterpriseAccessLocationCodes.location_codes;
     const grcHealthSafetyLocationCodes = context.bindings.grcHealthSafetyLocationCodes.location_codes;
     const itinerantSpecEdJobCodes = context.bindings.itinerantSpecEdJobCodes.job_codes;
     const itinerantSpecEdLocationCodes = context.bindings.itinerantSpecEdLocationCodes.location_codes;
@@ -80,6 +83,7 @@ const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context:
     context.bindings.edcStaffOutputBlob = calculatedMembers.edcStaff;
     context.bindings.elementarySertsOutputBlob = calculatedMembers.elementarySerts;
     context.bindings.financeStaffOutputBlob = calculatedMembers.financeStaff;
+    context.bindings.googleWorkspaceEnterpriseAccessOutputBlob = calculatedMembers.googleWorkspaceEnterpriseAccess;
     context.bindings.grcHealthSafetyOutputBlob = calculatedMembers.grcHealthSafety;
     context.bindings.intranetLibraryOutputBlob = calculatedMembers.intranetLibrary;
     context.bindings.intranetSpecialEducationOutputBlob = calculatedMembers.intranetSpecialEducation;
@@ -112,6 +116,7 @@ const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context:
         edcStaff: Object.getOwnPropertyNames(calculatedMembers.edcStaff).length,
         elementarySerts: Object.getOwnPropertyNames(calculatedMembers.elementarySerts).length,
         financeStaff: Object.getOwnPropertyNames(calculatedMembers.financeStaff).length,
+        googleWorkspaceEnterpriseAccess: Object.getOwnPropertyNames(calculatedMembers.googleWorkspaceEnterpriseAccess).length,
         grcHealthSafety: Object.getOwnPropertyNames(calculatedMembers.grcHealthSafety).length,
         intranetLibrary: Object.getOwnPropertyNames(calculatedMembers.intranetLibrary).length,
         intranetSpecialEducation: Object.getOwnPropertyNames(calculatedMembers.intranetSpecialEducation).length,
@@ -178,6 +183,7 @@ const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context:
             edcStaff: {},
             elementarySerts: {},
             financeStaff: {},
+            googleWorkspaceEnterpriseAccess: {},
             grcHealthSafety: {},
             intranetLibrary: {},
             intranetSpecialEducation: {},
@@ -294,6 +300,15 @@ const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context:
                         status:         "ACTIVE",
                         type:           "USER",
                         groupKey:       'finance-staff@wrdsb.ca'
+                    };
+                }
+                if ((googleWorkspaceEnterpriseAccessJobCodes.includes(jobCode)) || (googleWorkspaceEnterpriseAccessGroupCodes.includes(groupCode)) || (googleWorkspaceEnterpriseAccessLocationCodes.includes(locationCode))) {
+                    members.googleWorkspaceEnterpriseAccess[email] = {
+                        email:          email,
+                        role:           "MEMBER",
+                        status:         "ACTIVE",
+                        type:           "USER",
+                        groupKey:       'google-workspace-enterprise-access@wrdsb.ca'
                     };
                 }
                 if (grcHealthSafetyLocationCodes.includes(locationCode)) {
