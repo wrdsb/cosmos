@@ -92,6 +92,5 @@
             "connection": "wrdsbflenderson_STORAGE"
         }
     ],
-    "disabled": false,
-    "scriptFile": "../dist/view-iamwp-process/index.js"
+    "scriptFile": "./index.js"
 }

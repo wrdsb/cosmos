@@ -40,6 +40,5 @@
             "connection": "wrdsbflenderson_STORAGE"
         }
     ],
-    "disabled": false,
-    "scriptFile": "../dist/group-store/index.js"
+    "scriptFile": "./index.js"
 }

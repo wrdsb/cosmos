@@ -36,6 +36,5 @@
             "connection": "wrdsbflenderson_STORAGE"
         }
     ],
-    "disabled": false,
-    "scriptFile": "../dist/hris-locations-reconcile/index.js"
+    "scriptFile": "./index.js"
 }

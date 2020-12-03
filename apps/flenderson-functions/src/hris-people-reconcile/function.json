@@ -43,6 +43,5 @@
             "connection": "wrdsbflenderson_STORAGE"
         }
     ],
-    "disabled": false,
-    "scriptFile": "../dist/hris-people-reconcile/index.js"
+    "scriptFile": "./index.js"
 }

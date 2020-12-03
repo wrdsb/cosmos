@@ -36,6 +36,5 @@
             "connection": "wrdsbflenderson_STORAGE"
         }
     ],
-    "disabled": false,
-    "scriptFile": "../dist/hris-groups-reconcile/index.js"
+    "scriptFile": "./index.js"
 }

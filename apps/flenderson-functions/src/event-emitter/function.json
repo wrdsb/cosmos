@@ -43,6 +43,5 @@
             "connection": "wrdsbflenderson_STORAGE"
         }
     ],
-    "disabled": true,
-    "scriptFile": "../dist/event-emitter/index.js"
+    "scriptFile": "./index.js"
 }
