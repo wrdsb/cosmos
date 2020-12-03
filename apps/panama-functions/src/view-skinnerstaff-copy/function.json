@@ -21,6 +21,13 @@
       "direction": "out"
     },
     {
+      "name": "eventEmitter",
+      "type": "queue",
+      "queueName": "event-emitter",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "invocationPostProcessor",
       "type": "queue",
       "queueName": "invocation-post-processor",

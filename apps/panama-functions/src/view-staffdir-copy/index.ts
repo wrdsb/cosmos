@@ -37,6 +37,10 @@ const viewStaffDirCopy: AzureFunction = async function (context: Context, trigge
     };
     functionInvocation.logPayload = logPayload;
 
+    // Fire event for external consumption
+    const invocationEvent = {type: 'WRDSB.Panama.View.StaffDir.Copy', data: {status: statusCode}};
+    context.bindings.eventEmitter = JSON.stringify(invocationEvent);
+    
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
