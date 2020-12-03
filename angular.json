@@ -1518,8 +1518,36 @@
             "outputPath": "dist/apps/flenderson-functions",
             "main": "apps/flenderson-functions/src/main.ts",
             "tsConfig": "apps/flenderson-functions/tsconfig.app.json",
+            "webpackConfig": "apps/flenderson-functions/webpack.config.js",
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
             "assets": [
-              "apps/flenderson-functions/src/assets"
+              {
+                "input": "./apps/flenderson-functions/src",
+                "glob": "**/function.json",
+                "output": "./flenderson-functions"
+              },
+              {
+                "input": "./apps/flenderson-functions/src",
+                "glob": "host.json",
+                "output": "./flenderson-functions"
+              },
+              {
+                "input": "./apps/flenderson-functions/src",
+                "glob": "proxies.json",
+                "output": "./flenderson-functions"
+              },
+              {
+                "input": "./apps/flenderson-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./flenderson-functions"
+              },
+              {
+                "input": "./apps/flenderson-functions/src/bin",
+                "glob": "**.*",
+                "output": "./flenderson-functions/bin"
+              }
             ]
           },
           "configurations": {
