@@ -1370,8 +1370,36 @@
             "outputPath": "dist/apps/skyline-functions",
             "main": "apps/skyline-functions/src/main.ts",
             "tsConfig": "apps/skyline-functions/tsconfig.app.json",
+            "webpackConfig": "apps/skyline-functions/webpack.config.js",
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
             "assets": [
-              "apps/skyline-functions/src/assets"
+              {
+                "input": "./apps/skyline-functions/src",
+                "glob": "**/function.json",
+                "output": "./skyline-functions"
+              },
+              {
+                "input": "./apps/skyline-functions/src",
+                "glob": "host.json",
+                "output": "./skyline-functions"
+              },
+              {
+                "input": "./apps/skyline-functions/src",
+                "glob": "proxies.json",
+                "output": "./skyline-functions"
+              },
+              {
+                "input": "./apps/skyline-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./skyline-functions"
+              },
+              {
+                "input": "./apps/skyline-functions/src/bin",
+                "glob": "**.*",
+                "output": "./skyline-functions/bin"
+              }
             ]
           },
           "configurations": {
