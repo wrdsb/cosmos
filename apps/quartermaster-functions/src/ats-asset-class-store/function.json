@@ -4,7 +4,7 @@
       "name": "triggerMessage",
       "type": "queueTrigger",
       "queueName": "ats-asset-class-store",
-      "connection": "wrdsbwrdsb_STORAGE",
+      "connection": "wrdsbquartermaster_STORAGE",
       "direction": "in"
     },
     {

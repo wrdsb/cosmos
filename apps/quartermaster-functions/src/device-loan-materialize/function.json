@@ -4,7 +4,7 @@
       "name": "triggerMessage",
       "type": "queueTrigger",
       "queueName": "device-loan-materialize",
-      "connection": "wrdsbwrdsb_STORAGE",
+      "connection": "wrdsbquartermaster_STORAGE",
       "direction": "in"
     },
     {
