@@ -17,4 +17,13 @@ export interface DeviceLoan {
 
     loans?: any;
     returns?: any;
+
+    schoolInventoryRecord?: any;
+    hasInventoryRecord?: boolean;
+
+    wasLoaned?: boolean;
+    wasReturned?: boolean;
+    totalLoans?: number;
+    totalReturns?: number;
+    isLoaned?: boolean;
 }
