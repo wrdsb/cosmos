@@ -18,6 +18,7 @@ const deviceLoanMaterialize: AzureFunction = async function (context: Context, t
     const cosmosDatabase = process.env['cosmosDatabase'];
     const cosmosContainerLoans = 'device-loan-submissions';
     const cosmosContainerReturns = 'device-return-submissions';
+    const cosmosContainerSchoolInventory = 'school-inventory';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     const triggerObject = triggerMessage as DeviceLoanMaterializeFunctionRequest;
@@ -25,25 +26,62 @@ const deviceLoanMaterialize: AzureFunction = async function (context: Context, t
     const deviceAssetID = payload.assetID;
 
     let deviceRecord = {
-        id: '',
-        assetID: '',
-        deviceType: '',
-        locationName: '',
+        id: deviceAssetID,
+        assetID: deviceAssetID,
+        wasLoaned: false,
+        wasReturned: false,
+        totalLoans: 0,
+        totalReturns: 0,
+        isLoaned: false,
+        schoolInventoryRecord: {},
+        hasInventoryRecord: false,
         loans: {},
         returns: {}
     } as DeviceLoan;
 
     context.log('Materialize Device Loans for Asset ID ' + deviceAssetID);
     
-    // fetch current records from Cosmos
+    // fetch current loan submission records from Cosmos
     deviceRecord.loans = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainerLoans).catch(err => {
         context.log(err);
     });
 
-    // fetch current records from Cosmos
+    // fetch current return submission records from Cosmos
     deviceRecord.returns = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainerReturns).catch(err => {
         context.log(err);
     });
+
+    // fetch current school inventory records from Cosmos
+    deviceRecord.schoolInventoryRecord = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainerSchoolInventory).catch(err => {
+        context.log(err);
+    });
+
+    const loanIDs = Object.getOwnPropertyNames(deviceRecord.loans);
+    const returnIDs = Object.getOwnPropertyNames(deviceRecord.returns);
+    const inventoryID = Object.getOwnPropertyNames(deviceRecord.schoolInventoryRecord)[0] ? Object.getOwnPropertyNames(deviceRecord.schoolInventoryRecord)[0] : false;
+
+    if (loanIDs.length > 0) {
+        deviceRecord.wasLoaned = true;
+        deviceRecord.totalLoans = loanIDs.length;
+        deviceRecord.deviceType = deviceRecord.loans[loanIDs[0]].deviceType;
+        deviceRecord.locationName = deviceRecord.loans[loanIDs[0]].locationName;
+    } else if (returnIDs.length > 0) {
+        deviceRecord.wasReturned = true;
+        deviceRecord.totalReturns = returnIDs.length;
+        deviceRecord.deviceType = deviceRecord.returns[returnIDs[0]].deviceType;
+        deviceRecord.locationName = deviceRecord.returns[returnIDs[0]].locationName;
+    }
+
+    if (inventoryID) {
+        deviceRecord.hasInventoryRecord = true;
+        if (deviceRecord.wasLoaned && deviceRecord.schoolInventoryRecord[inventoryID].returned === "FALSE") {
+            deviceRecord.isLoaned = true;
+        }
+    } else {
+        if (deviceRecord.totalLoans > deviceRecord.totalReturns) {
+            deviceRecord.isLoaned = true;
+        }
+    }
 
     context.bindings.deviceLoanStore = {
         operation: 'patch',
@@ -59,12 +97,21 @@ const deviceLoanMaterialize: AzureFunction = async function (context: Context, t
 
 
     async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer) {
-        context.log(`getDeviceLoanSubmissions: {assetID: ${deviceAssetID}`);
+        context.log(`get ${cosmosContainer} records: {assetID: ${deviceAssetID}}`);
 
         let cosmosItems = {};
+        let querySpec = {
+            query: "SELECT c.id FROM c"
+        };
 
-        const querySpec = {
-            query: `SELECT * FROM c WHERE c.deleted = false and c.correctedAssetID = '${deviceAssetID}'`
+        if (cosmosContainer === 'school-inventory') {
+            querySpec = {
+                query: `SELECT * FROM c WHERE c.assetID = '${deviceAssetID}'`
+            }
+        } else {
+            querySpec = {
+                query: `SELECT * FROM c WHERE c.correctedAssetID = '${deviceAssetID}'`
+            }
         }
 
         const queryOptions  = {
@@ -83,7 +130,7 @@ const deviceLoanMaterialize: AzureFunction = async function (context: Context, t
     
             return cosmosItems;
         } catch (error) {
-            context.log(error);
+            context.log(`caught cosmos error: ${error}`);
     
             context.res = {
                 status: 500,
