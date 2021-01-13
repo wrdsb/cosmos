@@ -1,0 +1,25 @@
+{
+  "bindings": [{
+      "name": "req",
+      "type": "httpTrigger",
+      "authLevel": "anonymous",
+      "methods": [
+        "get"
+      ],
+      "direction": "in"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbviewfinder_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
