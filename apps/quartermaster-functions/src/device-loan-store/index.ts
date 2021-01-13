@@ -29,7 +29,14 @@ const deviceLoanStore: AzureFunction = async function (context: Context, trigger
         deviceType: '',
         locationName: '',
         loans: {},
-        returns: {}
+        returns: {},
+        schoolInventoryRecord: {},
+        hasInventoryRecord: false,
+        wasLoaned: false,
+        wasReturned: false,
+        totalLoans: 0,
+        totalReturns: 0,
+        isLoaned: false
     } as DeviceLoan;
 
     let result;
@@ -38,16 +45,19 @@ const deviceLoanStore: AzureFunction = async function (context: Context, trigger
 
     switch (operation) {
         case 'delete':
+            context.log('Mark record deleted:');
             result = doDelete(oldRecord, newRecord, payload);
             statusCode = '200';
             statusMessage = 'Success: Marked record deleted.';
             break;
         case 'patch':
+            context.log('Patch record:');
             result = doPatch(oldRecord, newRecord, payload);
             statusCode = '200';
             statusMessage = 'Success: Patched record.';
             break;
         case 'replace':
+            context.log('Replace record:');
             result = doReplace(oldRecord, newRecord, payload);
             statusCode = '200';
             statusMessage = 'Success: Replaced record.';
@@ -77,6 +87,7 @@ const deviceLoanStore: AzureFunction = async function (context: Context, trigger
 
         // check for existing record
         if (!oldRecord) {
+            context.log('No old record detected...');
             newRecord = Object.assign(newRecord, payload);
             newRecord.created_at = functionInvocation.functionInvocationTimestamp;
             newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
@@ -109,6 +120,7 @@ const deviceLoanStore: AzureFunction = async function (context: Context, trigger
         let changedDetected = false;
 
         if (!oldRecord) {
+            context.log('No old record detected...');
             newRecord = Object.assign(newRecord, payload);
             newRecord.created_at = functionInvocation.functionInvocationTimestamp;
             newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
@@ -158,7 +170,7 @@ const deviceLoanStore: AzureFunction = async function (context: Context, trigger
             }
         }
 
-        return {event: event, newRecord: newRecord};
+        return {changedDetected: changedDetected, event: event, newRecord: newRecord};
     }
     
     function doReplace(oldRecord, newRecord, payload) {
@@ -166,6 +178,7 @@ const deviceLoanStore: AzureFunction = async function (context: Context, trigger
         let changedDetected = false;
 
         if (!oldRecord) {
+            context.log('No old record detected...');
             newRecord = Object.assign(newRecord, payload);
             newRecord.created_at = functionInvocation.functionInvocationTimestamp;
             newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
@@ -279,11 +292,18 @@ const deviceLoanStore: AzureFunction = async function (context: Context, trigger
 
     function makeHash(deviceLoan: DeviceLoan): string {
         const objectForHash = JSON.stringify({
-            assetID:      deviceLoan.assetID,
-            deviceType:   deviceLoan.deviceType,
-            locationName: deviceLoan.locationName,
-            loans:        deviceLoan.loans,
-            returns:      deviceLoan.returns
+            assetID:                deviceLoan.assetID,
+            deviceType:             deviceLoan.deviceType,
+            locationName:           deviceLoan.locationName,
+            loans:                  deviceLoan.loans,
+            returns:                deviceLoan.returns,
+            schoolInventoryRecord:  deviceLoan.schoolInventoryRecord,
+            hasInventoryRecord:     deviceLoan.hasInventoryRecord,
+            wasLoaned:              deviceLoan.wasLoaned,
+            wasReturned:            deviceLoan.wasReturned,
+            totalLoans:             deviceLoan.totalLoans,
+            totalReturns:           deviceLoan.totalReturns,
+            isLoaned:               deviceLoan.isLoaned
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash
