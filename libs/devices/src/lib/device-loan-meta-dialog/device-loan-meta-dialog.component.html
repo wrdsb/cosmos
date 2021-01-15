@@ -1,0 +1,58 @@
+<ng-container *ngIf="selectedLoan$ | async as loan">
+
+<h1 mat-dialog-title>Device {{loan.assetID}}</h1>
+
+<div mat-dialog-content class="detail">
+
+  <div class="detail-row">
+    <span class="detail-attribute">Asset ID:</span>
+    <span class="detail-value">{{loan.assetID}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Device Type:</span>
+    <span class="detail-value">{{loan.deviceType}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Location Name:</span>
+    <span class="detail-value">{{loan.locationName}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">On Loan:</span>
+    <span class="detail-value">{{loan.isLoaned}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Has Inventory Record:</span>
+    <span class="detail-value">{{loan.hasInventoryRecord}}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Was Loaned:</span>
+    <span class="detail-value">{{ loan.wasLoaned }}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Was Returned:</span>
+    <span class="detail-value">{{ loan.wasReturned }}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Total Loans:</span>
+    <span class="detail-value">{{ loan.totalLoans }}</span>
+  </div>
+
+  <div class="detail-row">
+    <span class="detail-attribute">Total Returns:</span>
+    <span class="detail-value">{{ loan.totalReturns }}</span>
+  </div>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="true">Close</button>
+</div>
+
+</ng-container>
