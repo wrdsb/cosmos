@@ -1,0 +1,323 @@
+<h1>Search Device Loans</h1>
+
+<div class="records-search">
+  <div class="search-panel">
+
+    <div class="panel-group">
+      <div class="panel-field">
+        <div class="panel-field-label">On Loan</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="onLoan" aria-label="On Loan" [formControl]="onLoanFilterFormControl">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="panel-field">
+        <div class="panel-field-label">Was Loaned</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="wasLoaned" aria-label="Was Loaned" [formControl]="wasLoanedFilterFormControl">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="panel-field">
+        <div class="panel-field-label">In Inventory</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="hasInventoryRecord" aria-label="In Inventory" [formControl]="hasInventoryRecordFilterFormControl">
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false">No</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-group">
+      <div class="panel-field">
+        <div class="panel-field-label">Device Type</div>
+        <div class="panel-field-control">
+          <mat-radio-group name="deviceType" aria-label="Device Type" [formControl]="deviceTypeFilterFormControl">
+            <mat-radio-button value="iPad">iPad</mat-radio-button>
+            <mat-radio-button value="Chromebook">Chromebook</mat-radio-button>
+            <mat-radio-button value="other">Other</mat-radio-button>
+            <mat-radio-button value="all">Any</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-group">
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <mat-select name="deviceType" aria-label="Device Type" [formControl]="locationNameFilterFormControl">
+          <mat-option value="all">Any</mat-option>
+          <mat-option value="151 Weber">151 Weber</mat-option>
+          <mat-option value="256 Hespeler">256 Hespeler</mat-option>
+          <mat-option value="BCI">BCI</mat-option>
+          <mat-option value="FHCI">FHCI</mat-option>
+          <mat-option value="GCI">GCI</mat-option>
+          <mat-option value="GPSS">GPSS</mat-option>
+          <mat-option value="HHSS">HHSS</mat-option>
+          <mat-option value="JHSS">JHSS</mat-option>
+          <mat-option value="KCI & VS">KCI & VS</mat-option>
+          <mat-option value="SSS">SSS</mat-option>
+          <mat-option value="WCI">WCI</mat-option>
+          <mat-option value="AR Kaufman">AR Kaufman</mat-option>
+          <mat-option value="Abraham Erb">Abraham Erb</mat-option>
+          <mat-option value="Alpine">Alpine</mat-option>
+          <mat-option value="Avenue Road">Avenue Road</mat-option>
+          <mat-option value="Ayr">Ayr</mat-option>
+          <mat-option value="Baden">Baden</mat-option>
+          <mat-option value="Blair Road">Blair Road</mat-option>
+          <mat-option value="Breslau">Breslau</mat-option>
+          <mat-option value="Bridgeport">Bridgeport</mat-option>
+          <mat-option value="Brigadoon">Brigadoon</mat-option>
+          <mat-option value="Cedar Creek">Cedar Creek</mat-option>
+          <mat-option value="Cedarbrae">Cedarbrae</mat-option>
+          <mat-option value="Centennial (C)">Centennial (C)</mat-option>
+          <mat-option value="Centennial (W)">Centennial (W)</mat-option>
+          <mat-option value="Central">Central</mat-option>
+          <mat-option value="Chalmers Street">Chalmers Street</mat-option>
+          <mat-option value="Chicopee Hills">Chicopee Hills</mat-option>
+          <mat-option value="Clemens Mill">Clemens Mill</mat-option>
+          <mat-option value="Conestogo">Conestogo</mat-option>
+          <mat-option value="Coronation">Coronation</mat-option>
+          <mat-option value="Country Hills">Country Hills</mat-option>
+          <mat-option value="Courtland Ave">Courtland Ave</mat-option>
+          <mat-option value="Crestview">Crestview</mat-option>
+          <mat-option value="Doon">Doon</mat-option>
+          <mat-option value="Driftwood Park">Driftwood Park</mat-option>
+          <mat-option value="Edna Staebler">Edna Staebler</mat-option>
+          <mat-option value="Elgin Street">Elgin Street</mat-option>
+          <mat-option value="Elizabeth Ziegler">Elizabeth Ziegler</mat-option>
+          <mat-option value="Empire">Empire</mat-option>
+          <mat-option value="Floradale">Floradale</mat-option>
+          <mat-option value="Forest Glen">Forest Glen</mat-option>
+          <mat-option value="Forest Hill">Forest Hill</mat-option>
+          <mat-option value="Franklin">Franklin</mat-option>
+          <mat-option value="Glencairn">Glencairn</mat-option>
+          <mat-option value="Grand View (C)">Grand View (C)</mat-option>
+          <mat-option value="Grand View (NH)">Grand View (NH)</mat-option>
+          <mat-option value="GROH">GROH</mat-option>
+          <mat-option value="Hespeler">Hespeler</mat-option>
+          <mat-option value="Highland">Highland</mat-option>
+          <mat-option value="Hillcrest">Hillcrest</mat-option>
+          <mat-option value="Howard Robertson">Howard Robertson</mat-option>
+          <mat-option value="JF Carmichael">JF Carmichael</mat-option>
+          <mat-option value="Janet Metcalfe">Janet Metcalfe</mat-option>
+          <mat-option value="Jean Steckle">Jean Steckle</mat-option>
+          <mat-option value="John Darling">John Darling</mat-option>
+          <mat-option value="John Mahood">John Mahood</mat-option>
+          <mat-option value="JW Gerth">JW Gerth</mat-option>
+          <mat-option value="Keatsway">Keatsway</mat-option>
+          <mat-option value="King Edward">King Edward</mat-option>
+          <mat-option value="Lackner Woods">Lackner Woods</mat-option>
+          <mat-option value="Laurelwood">Laurelwood</mat-option>
+          <mat-option value="Laurentian">Laurentian</mat-option>
+          <mat-option value="Lester B Pearson">Lester B Pearson</mat-option>
+          <mat-option value="Lexington">Lexington</mat-option>
+          <mat-option value="Lincoln Heights">Lincoln Heights</mat-option>
+          <mat-option value="Linwood">Linwood</mat-option>
+          <mat-option value="Macgregor">Macgregor</mat-option>
+          <mat-option value="Mackenzie King">Mackenzie King</mat-option>
+          <mat-option value="Manchester">Manchester</mat-option>
+          <mat-option value="Margaret Ave">Margaret Ave</mat-option>
+          <mat-option value="Mary Johnston">Mary Johnston</mat-option>
+          <mat-option value="Meadowlane">Meadowlane</mat-option>
+          <mat-option value="Millen Woods">Millen Woods</mat-option>
+          <mat-option value="Moffat Creek">Moffat Creek</mat-option>
+          <mat-option value="N. A. MacEachern">N. A. MacEachern</mat-option>
+          <mat-option value="New Dundee">New Dundee</mat-option>
+          <mat-option value="Northlake Woods">Northlake Woods</mat-option>
+          <mat-option value="Park Manor">Park Manor</mat-option>
+          <mat-option value="Parkway">Parkway</mat-option>
+          <mat-option value="Pioneer Park">Pioneer Park</mat-option>
+          <mat-option value="Preston">Preston</mat-option>
+          <mat-option value="Prueter">Prueter</mat-option>
+          <mat-option value="Queen Elizabeth">Queen Elizabeth</mat-option>
+          <mat-option value="Queensmount">Queensmount</mat-option>
+          <mat-option value="Riverside">Riverside</mat-option>
+          <mat-option value="Rockway">Rockway</mat-option>
+          <mat-option value="Ryerson">Ryerson</mat-option>
+          <mat-option value="St Andrews">St Andrews</mat-option>
+          <mat-option value="St. Andrews">St. Andrews</mat-option>
+          <mat-option value="St Jacobs">St Jacobs</mat-option>
+          <mat-option value="St. Jacobs">St. Jacobs</mat-option>
+          <mat-option value="Saginaw">Saginaw</mat-option>
+          <mat-option value="Sandhills">Sandhills</mat-option>
+          <mat-option value="Sandowne">Sandowne</mat-option>
+          <mat-option value="Sheppard">Sheppard</mat-option>
+          <mat-option value="Silverheights">Silverheights</mat-option>
+          <mat-option value="Sir Adam Beck">Sir Adam Beck</mat-option>
+          <mat-option value="Smithson">Smithson</mat-option>
+          <mat-option value="Southridge">Southridge</mat-option>
+          <mat-option value="Stanley Park">Stanley Park</mat-option>
+          <mat-option value="Stewart Ave">Stewart Ave</mat-option>
+          <mat-option value="Suddaby">Suddaby</mat-option>
+          <mat-option value="Sunnyside">Sunnyside</mat-option>
+          <mat-option value="Tait Street">Tait Street</mat-option>
+          <mat-option value="Trillium">Trillium</mat-option>
+          <mat-option value="Vista Hills">Vista Hills</mat-option>
+          <mat-option value="WT Townshend">WT Townshend</mat-option>
+          <mat-option value="Wellesley">Wellesley</mat-option>
+          <mat-option value="Westheights">Westheights</mat-option>
+          <mat-option value="Westmount">Westmount</mat-option>
+          <mat-option value="Westvale">Westvale</mat-option>
+          <mat-option value="William G. Davis">William G. Davis</mat-option>
+          <mat-option value="Williamsburg">Williamsburg</mat-option>
+          <mat-option value="Wilson Ave">Wilson Ave</mat-option>
+          <mat-option value="Winston Churchill">Winston Churchill</mat-option>
+          <mat-option value="Woodland Park">Woodland Park</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="panel-group">
+      <div class="panel-group-label">Search by:</div>
+      <div class="panel-field">
+        <mat-form-field class="input-full-width" floatLabel="never">
+          <mat-label>Asset ID</mat-label>
+          <input matInput type="text" [formControl]="assetIDSearchFormControl">
+          <button mat-button *ngIf="assetIDSearchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="assetIDSearchFormControl.setValue('')">
+            <fa-icon [icon]="CloseIcon"></fa-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="panel-field">
+        <mat-form-field class="input-full-width" floatLabel="never">
+          <mat-label>Any Field</mat-label>
+          <input matInput type="text" [formControl]="anyFieldSearchFormControl">
+          <button mat-button *ngIf="anyFieldSearchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="anyFieldSearchFormControl.setValue('')">
+            <fa-icon [icon]="CloseIcon"></fa-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="records-list">
+    <div class="list-header">
+      <div class="search-results">
+        <div>Results: {{ totalRecords$ | async }} total records</div>
+      </div>
+
+      <div class="paginator">
+        <span>
+          Showing Page {{ currentPage.value }} of {{ maxPage$ | async }}&nbsp;&nbsp;
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageBeginning()" [icon]="beginningIcon" size="lg"></fa-icon>
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageUp()" [icon]="backwardIcon" size="lg"></fa-icon>
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageDown()" [icon]="forwardIcon" size="lg"></fa-icon>
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageEnd()" [icon]="endIcon" size="lg"></fa-icon>
+        </span>
+      </div>
+    </div>
+
+    <table cdk-table [dataSource]="loansPage$">
+
+      <!-- assetID Column -->
+      <ng-container cdkColumnDef="assetID">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Asset ID
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)"> {{loan.assetID}} </td>
+      </ng-container>
+
+      <!-- deviceType Column -->
+      <ng-container cdkColumnDef="deviceType">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Device Type
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)"> {{loan.deviceType}} </td>
+      </ng-container>
+
+      <!-- locationName Column -->
+      <ng-container cdkColumnDef="locationName">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Location Name
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)"> {{loan.locationName}} </td>
+      </ng-container>
+
+      <!-- isLoaned Column -->
+      <ng-container cdkColumnDef="isLoaned">
+        <th cdk-header-cell *cdkHeaderCellDef> On Loan </th>
+        <td cdk-cell class="clickable boolean" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)">
+          <ng-container *ngIf="loan.isLoaned; then thenBlock else elseBlock"></ng-container>
+          <ng-template #thenBlock>
+            <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
+          </ng-template>
+          <ng-template #elseBlock>
+            <fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <!-- hasInventoryRecord Column -->
+      <ng-container cdkColumnDef="hasInventoryRecord">
+        <th cdk-header-cell *cdkHeaderCellDef> In Inventory </th>
+        <td cdk-cell class="clickable boolean" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)">
+          <ng-container *ngIf="loan.hasInventoryRecord; then thenBlock else elseBlock"></ng-container>
+          <ng-template #thenBlock>
+            <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
+          </ng-template>
+          <ng-template #elseBlock>
+            <fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <!-- wasLoaned Column -->
+      <ng-container cdkColumnDef="wasLoaned">
+        <th cdk-header-cell *cdkHeaderCellDef> Was Loaned </th>
+        <td cdk-cell class="clickable boolean" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)">
+          <ng-container *ngIf="loan.wasLoaned; then thenBlock else elseBlock"></ng-container>
+          <ng-template #thenBlock>
+            <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
+          </ng-template>
+          <ng-template #elseBlock>
+            <fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
+          </ng-template>
+        </td>
+      </ng-container>
+      
+      <!-- totalLoans Column -->
+      <ng-container cdkColumnDef="totalLoans">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Total Loans
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)"> {{loan.totalLoans}} </td>
+      </ng-container>
+
+      <!-- recordActions Column -->
+      <ng-container cdkColumnDef="recordActions">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Actions
+        </th>
+        <td cdk-cell *cdkCellDef="let loan">
+          <button mat-flat-button color="primary">Loans</button>
+          &nbsp;&nbsp;&nbsp;
+          <button mat-flat-button color="primary">Inventory</button>
+        </td>
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
+    </table>
+
+  </div>
+</div>
