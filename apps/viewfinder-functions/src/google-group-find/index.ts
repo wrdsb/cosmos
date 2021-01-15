@@ -49,7 +49,6 @@ const googleGroupFind: AzureFunction = async function (context: Context, req: Ht
     );
 
     let searchResults = await searchClient.getDocument(documentID);
-    context.log(searchResults);
 
     let documents = [];
     let document = searchResults;
