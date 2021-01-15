@@ -116,6 +116,7 @@ const deviceLoansSearch: AzureFunction = async function (context: Context, req: 
         response.header.chatter = "";
         response.payload = {
             count: searchResults.count,
+            facets: searchResults.facets,
             documents: documents
         }
     }
