@@ -49,12 +49,13 @@ const deviceLoanFind: AzureFunction = async function (context: Context, req: Htt
     );
 
     let searchResults = await searchClient.getDocument(documentID);
+    context.log(searchResults);
 
     let documents = [];
     let document = searchResults;
     document['searchID'] = document.id;
     document.id = Buffer.from(document.id, 'base64').toString();
-    documents.push();
+    documents.push(document);
 
     let response = {
         header: {
