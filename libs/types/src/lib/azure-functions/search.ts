@@ -22,7 +22,7 @@ interface SearchFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
     search?: string;
     includeTotalCount?: boolean;
     filter?: string;
-    facets?: string;
+    facets?: string[];
     orderby?: string[];
     skip?: number;
     top?: number;
@@ -44,6 +44,7 @@ interface SearchFunctionResponseHeader {
 
 interface SearchFunctionResponsePayload {
     readonly count?: number;
+    readonly facets?: any;
     readonly documents?: any[];
 }
 
