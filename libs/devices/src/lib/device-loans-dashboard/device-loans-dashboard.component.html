@@ -1,1 +1,67 @@
-<p>device-loans-dashboard works!</p>
+<h1>Device Loans Dashboard</h1>
+
+<div class="records-search">
+  <div class="search-panel">
+  </div>
+
+  <div class="records-list">
+    <table cdk-table [dataSource]="loansPerSchool$">
+
+      <!-- school Column -->
+      <ng-container cdkColumnDef="school">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          School
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let loansPerSchool"> {{loansPerSchool.school}} </td>
+      </ng-container>
+
+      <!-- ipads Column -->
+      <ng-container cdkColumnDef="ipads">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          iPads on Loan
+        </th>
+        <td cdk-cell class="clickable cdk-column-numeric" *cdkCellDef="let loansPerSchool"> {{loansPerSchool.ipads}} </td>
+      </ng-container>
+
+      <!-- chromebooks Column -->
+      <ng-container cdkColumnDef="chromebooks">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Chromebooks on Loan
+        </th>
+        <td cdk-cell class="clickable cdk-column-numeric" *cdkCellDef="let loansPerSchool"> {{loansPerSchool.chromebooks}} </td>
+      </ng-container>
+
+      <!-- otherDevice Column -->
+      <ng-container cdkColumnDef="otherDevices">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Other Devices on Loan
+        </th>
+        <td cdk-cell class="clickable cdk-column-numeric" *cdkCellDef="let loansPerSchool"> {{loansPerSchool.otherDevices}} </td>
+      </ng-container>
+
+      <!-- total Column -->
+      <ng-container cdkColumnDef="total">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Total
+        </th>
+        <td cdk-cell class="clickable cdk-column-numeric" *cdkCellDef="let loansPerSchool"> {{loansPerSchool.total}} </td>
+      </ng-container>
+
+      <!-- recordActions Column -->
+      <ng-container cdkColumnDef="recordActions">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Actions
+        </th>
+        <td cdk-cell *cdkCellDef="let loan">
+          <button mat-flat-button color="primary">Loans</button>
+          &nbsp;&nbsp;&nbsp;
+          <button mat-flat-button color="primary">Inventory</button>
+        </td>
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
+    </table>
+
+  </div>
+</div>
