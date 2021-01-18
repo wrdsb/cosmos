@@ -41,9 +41,8 @@ export class DeviceLoansSearchComponent implements OnInit {
     'locationName',
     'isLoaned',
     'hasInventoryRecord',
-    //'wasLoaned',
-    //'totalLoans',
-    //'recordActions'
+    'totalLoans',
+    'recordActions'
   ]);
 
   onLoanFilterFormControl = new FormControl();
@@ -97,7 +96,7 @@ export class DeviceLoansSearchComponent implements OnInit {
     this.selectedLoan$ = this.deviceLoansService.selectedLoan$;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.searchLoans();
   }
 

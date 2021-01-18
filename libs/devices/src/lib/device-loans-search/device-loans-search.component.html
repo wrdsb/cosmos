@@ -281,20 +281,6 @@
         </td>
       </ng-container>
 
-      <!-- wasLoaned Column -->
-      <ng-container cdkColumnDef="wasLoaned">
-        <th cdk-header-cell *cdkHeaderCellDef> Was Loaned </th>
-        <td cdk-cell class="clickable boolean" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)">
-          <ng-container *ngIf="loan.wasLoaned; then thenBlock else elseBlock"></ng-container>
-          <ng-template #thenBlock>
-            <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
-          </ng-template>
-          <ng-template #elseBlock>
-            <fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
-          </ng-template>
-        </td>
-      </ng-container>
-      
       <!-- totalLoans Column -->
       <ng-container cdkColumnDef="totalLoans">
         <th cdk-header-cell *cdkHeaderCellDef>
