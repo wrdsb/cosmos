@@ -7,57 +7,63 @@
       </button>
       <mat-menu #appsMenu="matMenu" backdropClass="customWaffle">
         <button mat-menu-item>
-          <mat-icon>dialpad</mat-icon>
+          <mat-icon>headset_mic</mat-icon>
           <span>Houston</span>
         </button>
         <button mat-menu-item>
-          <mat-icon>bar_chart</mat-icon>
+          <mat-icon>gps_fixed</mat-icon>
           <span>Viewfinder</span>
         </button>
-        <button mat-menu-item>
-          <mat-icon>all_inclusive</mat-icon>
-          <span>Codex</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>scatter_plot</mat-icon>
-          <span>Sorting Hat</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>voicemail</mat-icon>
-          <span>Panama</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>school</mat-icon>
-          <span>Flenderson</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>school</mat-icon>
-          <span>Skinner</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>H.A.G.A.R.</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>I.G.O.R.</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>R.A.D.A.R.</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>mediation</mat-icon>
-          <span>Flynn</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>share</mat-icon>
-          <span>Relay</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>dialpad</mat-icon>
-          <span>Skyline</span>
-        </button>
+        <ng-container *ngIf="!this.environmentService.production">
+          <button mat-menu-item>
+            <mat-icon>all_inclusive</mat-icon>
+            <span>Codex</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>scatter_plot</mat-icon>
+            <span>Sorting Hat</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>voicemail</mat-icon>
+            <span>Panama</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>school</mat-icon>
+            <span>Flenderson</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>school</mat-icon>
+            <span>Skinner</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>H.A.G.A.R.</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>I.G.O.R.</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>R.A.D.A.R.</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>mediation</mat-icon>
+            <span>Flynn</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>share</mat-icon>
+            <span>Relay</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>query_stats</mat-icon>
+            <span>Skyline</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>biotech</mat-icon>
+            <span>Perceptor</span>
+          </button>
+        </ng-container>
       </mat-menu>
 
       <button mat-icon-button [matMenuTriggerFor]="statusMenu">
@@ -70,21 +76,23 @@
         </button>
       </mat-menu>
 
-      <button mat-icon-button class="material-icons" (click)="toggleNotificationsPanel()">
-        <mat-icon class="material-icons-outlined">notifications</mat-icon>
-      </button>
+      <ng-container *ngIf="!this.environmentService.production">
+        <button mat-icon-button class="material-icons" (click)="toggleNotificationsPanel()">
+          <mat-icon class="material-icons-outlined">notifications</mat-icon>
+        </button>
 
-      <button mat-icon-button class="material-icons" (click)="toggleHelpPanel()">
-          <mat-icon class="material-icons-outlined">help_outline</mat-icon>
-      </button>
+        <button mat-icon-button class="material-icons" (click)="toggleHelpPanel()">
+            <mat-icon class="material-icons-outlined">help_outline</mat-icon>
+        </button>
 
-      <button mat-icon-button class="material-icons" (click)="toggleFeedbackPanel()">
-          <mat-icon class="material-icons-outlined">feedback</mat-icon>
-      </button>
+        <button mat-icon-button class="material-icons" (click)="toggleFeedbackPanel()">
+            <mat-icon class="material-icons-outlined">feedback</mat-icon>
+        </button>
 
-      <button mat-icon-button class="material-icons" (click)="toggleSettingsPanel()">
-          <mat-icon class="material-icons-outlined">settings</mat-icon>
-      </button>
+        <button mat-icon-button class="material-icons" (click)="toggleSettingsPanel()">
+            <mat-icon class="material-icons-outlined">settings</mat-icon>
+        </button>
+      </ng-container>
 
       <button mat-icon-button [matMenuTriggerFor]="accountMenu">
         <mat-icon class="material-icons-outlined">account_circle</mat-icon>
@@ -105,7 +113,7 @@
 
       <span class="footer-spacer"></span>
 
-      <span routerLink="/releases" class="release-number">Release 20.41</span>
+      <span routerLink="/releases" class="release-number">Release 21.03.03</span>
 
     </mat-toolbar>
   </footer>

@@ -27,7 +27,7 @@ export class FooterComponent implements OnInit {
 
   constructor(
     private userAuthService: UserAuthService,
-    private environmentService: EnvironmentService,
+    public environmentService: EnvironmentService,
     private chassisService: ChassisService
   ) { }
 
