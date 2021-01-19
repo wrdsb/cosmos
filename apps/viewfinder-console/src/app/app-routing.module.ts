@@ -15,7 +15,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'devices',
+    path: 'device-loans',
     loadChildren: () => import('@cosmos/devices').then(m => m.DevicesModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
