@@ -56,7 +56,7 @@ export class ATSAssetsService {
   }
 
 
-  findasset(assetID): void {
+  findAsset(assetID): void {
     console.log('ATS Assets Service: findAsset()');
 
     this.searchRequestState.next({

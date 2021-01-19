@@ -5,11 +5,13 @@ import { ATSRoutingModule } from "./ats-routing.module";
 
 import { ATSHomeComponent } from './home/home.component';
 import { AssetsSearchComponent } from "./assets-search/assets-search.component";
+import { AssetDetailDialogComponent } from './asset-detail-dialog/asset-detail-dialog.component';
 
 @NgModule({
   declarations: [
     ATSHomeComponent,
-    AssetsSearchComponent
+    AssetsSearchComponent,
+    AssetDetailDialogComponent
   ],
   imports: [
     CommonModule,
