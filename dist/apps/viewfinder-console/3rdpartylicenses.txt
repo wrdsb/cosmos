@@ -336,9 +336,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-cosmos
-MIT
-
 css-loader
 MIT
 Copyright JS Foundation and other contributors
