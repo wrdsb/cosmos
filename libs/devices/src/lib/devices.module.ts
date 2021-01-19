@@ -26,7 +26,7 @@ import { DeviceLoansDashboardComponent } from './device-loans-dashboard/device-l
 import { DeviceLoansSearchComponent } from './device-loans-search/device-loans-search.component';
 
 import { DeviceLoanMetaDialogComponent } from "./device-loan-meta-dialog/device-loan-meta-dialog.component";
-import { DeviceInventoryComponent } from './device-inventory/device-inventory.component';
+import { DevicesInventoryComponent } from './inventory/devices-inventory.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { DeviceInventoryComponent } from './device-inventory/device-inventory.co
     DeviceLoansSearchComponent,
     DeviceLoanMetaDialogComponent,
     DeviceLoansDashboardComponent,
-    DeviceInventoryComponent
+    DevicesInventoryComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +61,8 @@ import { DeviceInventoryComponent } from './device-inventory/device-inventory.co
     DevicesHomeComponent,
     DeviceLoansSearchComponent,
     DeviceLoanMetaDialogComponent,
-    DeviceLoansDashboardComponent
+    DeviceLoansDashboardComponent,
+    DevicesInventoryComponent
   ],
   entryComponents: [
     DeviceLoanMetaDialogComponent
