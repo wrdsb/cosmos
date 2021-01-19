@@ -1,9 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AtsHomeComponent } from './ats-home/ats-home.component';
+
+import { ATSRoutingModule } from "./ats-routing.module";
+
+import { ATSHomeComponent } from './home/home.component';
+import { AssetsSearchComponent } from "./assets-search/assets-search.component";
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [AtsHomeComponent],
+  declarations: [
+    ATSHomeComponent,
+    AssetsSearchComponent
+  ],
+  imports: [
+    CommonModule,
+    ATSRoutingModule
+  ],
+  exports: [
+    ATSHomeComponent,
+    AssetsSearchComponent
+  ]
 })
 export class AtsModule {}
