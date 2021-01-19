@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuartermasterHomeComponent } from './quartermaster-home.component';
+import { QuartermasterHomeComponent } from './home.component';
 
 describe('QuartermasterHomeComponent', () => {
   let component: QuartermasterHomeComponent;
