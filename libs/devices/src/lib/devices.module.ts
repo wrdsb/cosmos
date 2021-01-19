@@ -26,13 +26,15 @@ import { DeviceLoansDashboardComponent } from './device-loans-dashboard/device-l
 import { DeviceLoansSearchComponent } from './device-loans-search/device-loans-search.component';
 
 import { DeviceLoanMetaDialogComponent } from "./device-loan-meta-dialog/device-loan-meta-dialog.component";
+import { DeviceInventoryComponent } from './device-inventory/device-inventory.component';
 
 @NgModule({
   declarations: [
     DevicesHomeComponent,
     DeviceLoansSearchComponent,
     DeviceLoanMetaDialogComponent,
-    DeviceLoansDashboardComponent
+    DeviceLoansDashboardComponent,
+    DeviceInventoryComponent
   ],
   imports: [
     CommonModule,
