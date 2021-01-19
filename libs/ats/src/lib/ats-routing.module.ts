@@ -34,4 +34,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class DevicesRoutingModule { }
+export class ATSRoutingModule { }
