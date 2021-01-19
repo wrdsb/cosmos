@@ -15,6 +15,16 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'ats',
+    loadChildren: () => import('@cosmos/ats').then(m => m.AtsModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  {
     path: 'device-loans',
     loadChildren: () => import('@cosmos/devices').then(m => m.DevicesModule),
     data: {
@@ -69,6 +79,16 @@ const routes: Routes = [
     loadChildren: () => import('@cosmos/user-profiles').then(m => m.UserProfilesModule),
     canActivate: [
       MsalGuard
+    ]
+  },
+  {
+    path: 'quartermaster',
+    loadChildren: () => import('@cosmos/quartermaster').then(m => m.QuartermasterModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
     ]
   },
   {
