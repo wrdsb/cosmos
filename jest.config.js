@@ -85,5 +85,6 @@ module.exports = {
     '<rootDir>/libs/trillium',
     '<rootDir>/libs/devices',
     '<rootDir>/apps/quartermaster-functions',
+    '<rootDir>/libs/quartermaster',
   ],
 };
