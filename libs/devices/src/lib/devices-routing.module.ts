@@ -6,19 +6,8 @@ import { RolesGuard } from "@cosmos/guards";
 import { DevicesHomeComponent } from "./home/devices-home.component";
 import { DeviceLoansDashboardComponent } from "./device-loans-dashboard/device-loans-dashboard.component";
 import { DeviceLoansSearchComponent } from "./device-loans-search/device-loans-search.component";
-import { AssetsSearchComponent } from './assets-search/assets-search.component';
 
 const routes: Routes = [
-  { 
-    path: 'assets/search',
-    component: AssetsSearchComponent,
-    data: {
-      roles: ['cosmos-superuser', 'cosmos-user-its']
-    },
-    canActivate: [
-      MsalGuard, RolesGuard
-    ]
-  },
   { 
     path: 'device-loans/dashboard',
     component: DeviceLoansDashboardComponent,
