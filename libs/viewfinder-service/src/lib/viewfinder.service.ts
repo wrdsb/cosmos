@@ -22,6 +22,13 @@ export class ViewfinderService {
   private quartermasterDeviceLoanFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/device-loan-find';
   private quartermasterDeviceLoansSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/device-loans-search';
 
+  private atsAssetFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/ats-asset-find';
+  private atsAssetsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/ats-assets-search';
+
+  private quartermasterAssetFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/quartermaster-asset-find';
+  private quartermasterAssetsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/quartermaster-assets-search';
+
+
   private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
     payload: {
       message: "",
@@ -127,7 +134,7 @@ export class ViewfinderService {
           response: 'success',
           error: ''
         });
-        console.log('Viewfinder Service: success searching via Viewfinder');
+        console.log('Viewfinder Service: success finding via Viewfinder');
       })
     );
   }
@@ -207,7 +214,7 @@ export class ViewfinderService {
           response: 'success',
           error: ''
         });
-        console.log('Viewfinder Service: success searching via Viewfinder');
+        console.log('Viewfinder Service: success finding via Viewfinder');
       })
     );
   }
@@ -289,7 +296,7 @@ export class ViewfinderService {
           response: 'success',
           error: ''
         });
-        console.log('Viewfinder Service: success searching via Viewfinder');
+        console.log('Viewfinder Service: success finding via Viewfinder');
       })
     );
   }
@@ -318,6 +325,168 @@ export class ViewfinderService {
     });
 
     return this.http.post<SearchFunctionResponse>(this.quartermasterDeviceLoansSearchURL, searchFunctionRequest, this.httpOptions)
+      .pipe(
+        tap(_ => console.log('searh request')),
+        retry(2),
+        catchError(error => {
+          console.log('catch search request error');
+          this.searchRequestState.next({
+            status: Status.ERROR,
+            response: '',
+            error: error
+          });
+          throw 'error searching Viewfinder';
+        }),
+        tap(_ => {
+          this.searchRequestState.next({
+            status: Status.SUCCESS,
+            response: 'success',
+            error: ''
+          });
+          console.log('success searching Viewfinder');
+        })
+      );
+  }
+
+
+  findATSAsset(assetID: string): Observable<SearchFunctionResponse> {
+    console.log('Viewfinder Service: findATSAsset()');
+
+    let searchFunctionRequest = {
+      payload: {
+        id: assetID
+      }
+    };
+
+    return this.http.post<SearchFunctionResponse>(this.atsAssetFindURL, searchFunctionRequest, this.httpOptions)
+    .pipe(
+      tap(_ => console.log('Viewfinder Service: ATS Asset find request')),
+      retry(2),
+      catchError(error => {
+        console.log('Viewfinder Service: catch find request error');
+        this.searchRequestState.next({
+          status: Status.ERROR,
+          response: '',
+          error: error
+        });
+        throw 'Viewfinder Service: error finding via Viewfinder';
+      }),
+      tap(_ => {
+        this.searchRequestState.next({
+          status: Status.SUCCESS,
+          response: 'success',
+          error: ''
+        });
+        console.log('Viewfinder Service: success finding via Viewfinder');
+      })
+    );
+  }
+
+
+  searchATSAssets(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
+    console.log('Viewfinder Service: searchATSAssets()');
+    console.log('Searching Viewfinder...');
+
+    let defaultSearchRequestOptions = {
+      includeTotalCount: true,
+      skip: 0,
+      top: 20,
+    } as SearchFunctionRequestPayload;
+
+    let searchRequestOptions = Object.assign(defaultSearchRequestOptions, query);
+    
+    let searchFunctionRequest = {
+      payload: searchRequestOptions
+    };
+
+    this.searchRequestState.next({
+      status: Status.LOADING,
+      response: 'unknown',
+      error: 'unknown'
+    });
+
+    return this.http.post<SearchFunctionResponse>(this.atsAssetsSearchURL, searchFunctionRequest, this.httpOptions)
+      .pipe(
+        tap(_ => console.log('searh request')),
+        retry(2),
+        catchError(error => {
+          console.log('catch search request error');
+          this.searchRequestState.next({
+            status: Status.ERROR,
+            response: '',
+            error: error
+          });
+          throw 'error searching Viewfinder';
+        }),
+        tap(_ => {
+          this.searchRequestState.next({
+            status: Status.SUCCESS,
+            response: 'success',
+            error: ''
+          });
+          console.log('success searching Viewfinder');
+        })
+      );
+  }
+
+
+  findQuartermasterAsset(assetID: string): Observable<SearchFunctionResponse> {
+    console.log('Viewfinder Service: findQuartermasterAsset()');
+
+    let searchFunctionRequest = {
+      payload: {
+        id: assetID
+      }
+    };
+
+    return this.http.post<SearchFunctionResponse>(this.quartermasterAssetFindURL, searchFunctionRequest, this.httpOptions)
+    .pipe(
+      tap(_ => console.log('Viewfinder Service: Quartermaster Asset find request')),
+      retry(2),
+      catchError(error => {
+        console.log('Viewfinder Service: catch find request error');
+        this.searchRequestState.next({
+          status: Status.ERROR,
+          response: '',
+          error: error
+        });
+        throw 'Viewfinder Service: error finding via Viewfinder';
+      }),
+      tap(_ => {
+        this.searchRequestState.next({
+          status: Status.SUCCESS,
+          response: 'success',
+          error: ''
+        });
+        console.log('Viewfinder Service: success finding via Viewfinder');
+      })
+    );
+  }
+
+
+  searchQuartermasterAssets(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
+    console.log('Viewfinder Service: searchQuartermasterAssets()');
+    console.log('Searching Viewfinder...');
+
+    let defaultSearchRequestOptions = {
+      includeTotalCount: true,
+      skip: 0,
+      top: 20,
+    } as SearchFunctionRequestPayload;
+
+    let searchRequestOptions = Object.assign(defaultSearchRequestOptions, query);
+    
+    let searchFunctionRequest = {
+      payload: searchRequestOptions
+    };
+
+    this.searchRequestState.next({
+      status: Status.LOADING,
+      response: 'unknown',
+      error: 'unknown'
+    });
+
+    return this.http.post<SearchFunctionResponse>(this.quartermasterAssetsSearchURL, searchFunctionRequest, this.httpOptions)
       .pipe(
         tap(_ => console.log('searh request')),
         retry(2),
