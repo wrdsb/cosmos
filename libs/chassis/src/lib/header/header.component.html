@@ -12,8 +12,22 @@
         </button>
       </mat-menu>
 
+      <button mat-button [matMenuTriggerFor]="atsMenu">
+        ATS
+      </button>
+      <mat-menu #atsMenu="matMenu" backdropClass="customWaffle">
+        <button mat-menu-item routerLink="/ats">
+          <mat-icon class="material-icons">dashboard</mat-icon>
+          <span>ATS Dashboard</span>
+        </button>
+        <button mat-menu-item routerLink="/ats/assets/search">
+          <mat-icon class="material-icons">search</mat-icon>
+          <span>Assets Search</span>
+        </button>
+      </mat-menu>
+
       <button mat-button [matMenuTriggerFor]="devicesMenu">
-        Devices
+        Device Loans
       </button>
       <mat-menu #devicesMenu="matMenu" backdropClass="customWaffle">
         <button mat-menu-item routerLink="/device-loans">
@@ -61,6 +75,20 @@
         <button mat-menu-item routerLink="/people">
           <mat-icon class="material-icons">dashboard</mat-icon>
           <span>People Dashboard</span>
+        </button>
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="quartermasterMenu">
+        Quartermaster
+      </button>
+      <mat-menu #quartermasterMenu="matMenu" backdropClass="customWaffle">
+        <button mat-menu-item routerLink="/quartermaster">
+          <mat-icon class="material-icons">dashboard</mat-icon>
+          <span>Quartermaster Dashboard</span>
+        </button>
+        <button mat-menu-item routerLink="/quartermaster/assets/search">
+          <mat-icon class="material-icons">search</mat-icon>
+          <span>Assets Search</span>
         </button>
       </mat-menu>
 
