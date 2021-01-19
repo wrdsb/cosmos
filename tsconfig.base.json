@@ -76,7 +76,8 @@
       "@cosmos/teamviewer": ["libs/teamviewer/src/index.ts"],
       "@cosmos/trillium": ["libs/trillium/src/index.ts"],
       "@cosmos/devices": ["libs/devices/src/index.ts"],
-      "@cosmos/quartermaster": ["libs/quartermaster/src/index.ts"]
+      "@cosmos/quartermaster": ["libs/quartermaster/src/index.ts"],
+      "@cosmos/ats": ["libs/ats/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

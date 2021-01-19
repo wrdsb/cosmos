@@ -86,5 +86,6 @@ module.exports = {
     '<rootDir>/libs/devices',
     '<rootDir>/apps/quartermaster-functions',
     '<rootDir>/libs/quartermaster',
+    '<rootDir>/libs/ats',
   ],
 };

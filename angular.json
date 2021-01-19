@@ -4980,6 +4980,32 @@
           }
         }
       }
+    },
+    "ats": {
+      "projectType": "library",
+      "root": "libs/ats",
+      "sourceRoot": "libs/ats/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ats/tsconfig.lib.json",
+              "libs/ats/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ats/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ats"],
+          "options": {
+            "jestConfig": "libs/ats/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

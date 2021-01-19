@@ -162,7 +162,8 @@
     "trillium": { "tags": [] },
     "devices": { "tags": [] },
     "quartermaster-functions": { "tags": [] },
-    "quartermaster": { "tags": [] }
+    "quartermaster": { "tags": [] },
+    "ats": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
