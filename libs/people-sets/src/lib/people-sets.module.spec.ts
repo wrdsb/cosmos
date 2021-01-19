@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { PeopleSetsModule } from './people-sets.module';
 
 describe('PeopleSetsModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [PeopleSetsModule]
     }).compileComponents();

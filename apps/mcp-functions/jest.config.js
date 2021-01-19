@@ -1,5 +1,6 @@
 module.exports = {
-  name: 'mcp-functions',
-  preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/mcp-functions'
+  preset: '../../jest.preset.js',
+  coverageDirectory: '../../coverage/apps/mcp-functions',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'mcp-functions',
 };

@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { IppsModule } from './ipps.module';
 
 describe('IppsModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [IppsModule]
     }).compileComponents();

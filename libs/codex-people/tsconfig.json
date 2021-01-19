@@ -1,7 +1,16 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "types": ["node", "jest"]
   },
-  "include": ["**/*.ts", "../types/src/lib/hris-record.interface.ts", "../types/src/lib/ipps-position.class.ts", "../types/src/lib/ipps-record.class.ts", "../types/src/lib/people.mocks.ts", "../types/src/lib/person.interface.ts", "../types/src/lib/position.interface.ts", "../types/src/lib/sis-record.interface.ts", "../types/src/lib/trillium-assignment.class.ts", "../types/src/lib/sparkrock-position.class.ts", "../types/src/lib/sparkrock-record.class.ts", "../types/src/lib/teaching-assignment.interface.ts", "../types/src/lib/trillium-record.class.ts", "../types/src/lib/codex-person.class.ts"]
+  "include": [],
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
 }

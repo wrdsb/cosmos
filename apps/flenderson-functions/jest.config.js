@@ -1,5 +1,6 @@
 module.exports = {
-  name: 'flenderson-functions',
-  preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/flenderson-functions'
+  preset: '../../jest.preset.js',
+  coverageDirectory: '../../coverage/apps/flenderson-functions',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'flenderson-functions',
 };

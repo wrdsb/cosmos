@@ -1,5 +1,6 @@
 module.exports = {
-  name: 'crankcase-functions',
-  preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/crankcase-functions'
+  preset: '../../jest.preset.js',
+  coverageDirectory: '../../coverage/apps/crankcase-functions',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'crankcase-functions',
 };

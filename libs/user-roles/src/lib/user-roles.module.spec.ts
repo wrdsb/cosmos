@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { UserRolesModule } from './user-roles.module';
 
 describe('UserRolesModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [UserRolesModule]
     }).compileComponents();

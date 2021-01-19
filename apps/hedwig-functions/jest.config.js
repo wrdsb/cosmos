@@ -1,5 +1,6 @@
 module.exports = {
-  name: 'hedwig-functions',
-  preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/hedwig-functions'
+  preset: '../../jest.preset.js',
+  coverageDirectory: '../../coverage/apps/hedwig-functions',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'hedwig-functions',
 };

@@ -1,5 +1,6 @@
 module.exports = {
-  name: 'lamson-functions',
-  preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/lamson-functions'
+  preset: '../../jest.preset.js',
+  coverageDirectory: '../../coverage/apps/lamson-functions',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'lamson-functions',
 };

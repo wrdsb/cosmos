@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { AppSettingsModule } from './app-settings.module';
 
 describe('AppSettingsModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [AppSettingsModule]
     }).compileComponents();

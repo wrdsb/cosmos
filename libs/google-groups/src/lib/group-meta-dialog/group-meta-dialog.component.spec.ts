@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { GroupMetaDialogComponent } from './group-meta-dialog.component';
 
@@ -6,7 +6,7 @@ describe('GroupMetaDialogComponent', () => {
   let component: GroupMetaDialogComponent;
   let fixture: ComponentFixture<GroupMetaDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ GroupMetaDialogComponent ]
     })

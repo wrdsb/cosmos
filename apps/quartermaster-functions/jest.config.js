@@ -1,5 +1,6 @@
 module.exports = {
-  name: 'quartermaster-functions',
-  preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/quartermaster-functions'
+  preset: '../../jest.preset.js',
+  coverageDirectory: '../../coverage/apps/quartermaster-functions',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'quartermaster-functions',
 };

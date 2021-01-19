@@ -1,5 +1,6 @@
 module.exports = {
-  name: 'hagar-functions',
-  preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/hagar-functions'
+  preset: '../../jest.preset.js',
+  coverageDirectory: '../../coverage/apps/hagar-functions',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'hagar-functions',
 };

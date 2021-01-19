@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { UserLoopComponent } from './user-loop.component';
 
@@ -6,7 +6,7 @@ describe('UserLoopComponent', () => {
   let component: UserLoopComponent;
   let fixture: ComponentFixture<UserLoopComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ UserLoopComponent ]
     })

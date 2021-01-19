@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { IgorConsolePrivateModule } from './igor-console-private.module';
 
 describe('IgorConsolePrivateModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [IgorConsolePrivateModule]
     }).compileComponents();

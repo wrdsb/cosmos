@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { SignalrLoopsModule } from './signalr-loops.module';
 
 describe('SignalrLoopsModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SignalrLoopsModule]
     }).compileComponents();

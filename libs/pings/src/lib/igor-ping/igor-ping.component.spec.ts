@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { IgorPingComponent } from './igor-ping.component';
 
@@ -6,7 +6,7 @@ describe('IgorPingComponent', () => {
   let component: IgorPingComponent;
   let fixture: ComponentFixture<IgorPingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ IgorPingComponent ]
     })

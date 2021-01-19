@@ -1,5 +1,6 @@
 module.exports = {
-  name: 'panama-functions',
-  preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/panama-functions'
+  preset: '../../jest.preset.js',
+  coverageDirectory: '../../coverage/apps/panama-functions',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'panama-functions',
 };

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HagarPingComponent } from './hagar-ping.component';
 
@@ -6,7 +6,7 @@ describe('HagarPingComponent', () => {
   let component: HagarPingComponent;
   let fixture: ComponentFixture<HagarPingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ HagarPingComponent ]
     })

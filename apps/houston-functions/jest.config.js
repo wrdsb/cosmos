@@ -1,5 +1,6 @@
 module.exports = {
-  name: 'houston-functions',
-  preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/apps/houston-functions'
+  preset: '../../jest.preset.js',
+  coverageDirectory: '../../coverage/apps/houston-functions',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'houston-functions',
 };

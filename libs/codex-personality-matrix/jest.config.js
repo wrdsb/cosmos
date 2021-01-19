@@ -1,9 +1,10 @@
 module.exports = {
-  name: 'codex-personality-matrix',
-  preset: '../../jest.config.js',
+  preset: '../../jest.preset.js',
   transform: {
-    '^.+\\.[tj]sx?$': 'ts-jest'
+    '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  coverageDirectory: '../../coverage/libs/codex-personality-matrix'
+  coverageDirectory: '../../coverage/libs/codex-personality-matrix',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'codex-personality-matrix',
 };

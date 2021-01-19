@@ -1,17 +1,21 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
     "outDir": "dist",
     "sourceMap": true,
     "strict": false,
-    "types": [
-      "node",
-      "jest"
-    ]
+    "types": ["node", "jest"]
   },
-  "include": [
-    "**/*.ts"
+  "include": [],
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
   ]
 }
