@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { DevicesHomeComponent } from './devices-home.component';
+import { DeviceLoansHomeComponent } from './device-loans-home.component';
 
-describe('DevicesHomeComponent', () => {
-  let component: DevicesHomeComponent;
-  let fixture: ComponentFixture<DevicesHomeComponent>;
+describe('DeviceLoansHomeComponent', () => {
+  let component: DeviceLoansHomeComponent;
+  let fixture: ComponentFixture<DeviceLoansHomeComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DevicesHomeComponent ]
+      declarations: [ DeviceLoansHomeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DevicesHomeComponent);
+    fixture = TestBed.createComponent(DeviceLoansHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

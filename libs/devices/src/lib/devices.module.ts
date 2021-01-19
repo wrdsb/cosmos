@@ -21,7 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { DevicesRoutingModule } from './devices-routing.module';
 
-import { DevicesHomeComponent } from './home/devices-home.component';
+import { DeviceLoansHomeComponent } from './device-loans-home/device-loans-home.component';
 import { DeviceLoansDashboardComponent } from './device-loans-dashboard/device-loans-dashboard.component';
 import { DeviceLoansSearchComponent } from './device-loans-search/device-loans-search.component';
 
@@ -29,7 +29,7 @@ import { DeviceLoanMetaDialogComponent } from "./device-loan-meta-dialog/device-
 
 @NgModule({
   declarations: [
-    DevicesHomeComponent,
+    DeviceLoansHomeComponent,
     DeviceLoansSearchComponent,
     DeviceLoanMetaDialogComponent,
     DeviceLoansDashboardComponent
@@ -56,7 +56,7 @@ import { DeviceLoanMetaDialogComponent } from "./device-loan-meta-dialog/device-
     DevicesRoutingModule
   ],
   exports: [
-    DevicesHomeComponent,
+    DeviceLoansHomeComponent,
     DeviceLoansSearchComponent,
     DeviceLoanMetaDialogComponent,
     DeviceLoansDashboardComponent

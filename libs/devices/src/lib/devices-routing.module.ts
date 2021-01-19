@@ -3,13 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 import { RolesGuard } from "@cosmos/guards";
 
-import { DevicesHomeComponent } from "./home/devices-home.component";
+import { DeviceLoansHomeComponent } from "./device-loans-home/device-loans-home.component";
 import { DeviceLoansDashboardComponent } from "./device-loans-dashboard/device-loans-dashboard.component";
 import { DeviceLoansSearchComponent } from "./device-loans-search/device-loans-search.component";
 
 const routes: Routes = [
   { 
-    path: 'device-loans/dashboard',
+    path: 'dashboard',
     component: DeviceLoansDashboardComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
@@ -19,7 +19,7 @@ const routes: Routes = [
     ]
   },
   { 
-    path: 'device-loans/search',
+    path: 'search',
     component: DeviceLoansSearchComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   { 
     path: '',
-    component: DevicesHomeComponent,
+    component: DeviceLoansHomeComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
