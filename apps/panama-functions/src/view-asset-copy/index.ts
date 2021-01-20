@@ -1,7 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { FunctionInvocation } from "@cosmos/types";
 
-const viewAssetCopy: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const viewAssetCopy: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -23,7 +23,7 @@ const viewAssetCopy: AzureFunction = async function (context: Context, triggerMe
         statusMessage = "Error: Too few source records. Aborting.";
     } else {
         statusCode = "200";
-        statusMessage = "Success: Copied ats-view-hd-asset/incoming.json to ats-view-hd-asset/now.json.";
+        statusMessage = `Success: Copied ats-view-hd-asset/${triggerMessage.incomingBlob} to ats-view-hd-asset/${triggerMessage.outgoingBlob}.`;
 
         // Copy blob contents
         context.bindings.outgoingBlob = incomingBlob;
@@ -32,8 +32,8 @@ const viewAssetCopy: AzureFunction = async function (context: Context, triggerMe
     logPayload = {
         status: statusCode,
         message: statusMessage,
-        incomingBlob: "ats-view-hd-asset/incoming.json",
-        outgoingBlob: "ats-view-hd-asset/now.json"
+        incomingBlob: `ats-view-hd-asset/${triggerMessage.incomingBlob}`,
+        outgoingBlob: `ats-view-hd-asset/${triggerMessage.outgoingBlob}`
     };
     functionInvocation.logPayload = logPayload;
 
