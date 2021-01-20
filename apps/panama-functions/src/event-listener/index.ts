@@ -18,9 +18,85 @@ const eventListener: AzureFunction = async function (context: Context, req: Http
     let queueMessage = '';
 
     switch (event) {
+        case 'Panama.View.AssetChecksum.Extract':
+            queueTriggered = 'view-asset-copy';
+            queueMessage = JSON.stringify({
+                jobType: "Panama.View.AssetChecksum.Copy",
+                incomingBlob: "incomingChecksum.json",
+                outgoingBlob: "nowChecksum.json"
+            });
+            context.bindings.triggerViewAssetCopy = queueMessage;
+            break;
         case 'Panama.View.Asset.Extract':
             queueTriggered = 'view-asset-copy';
-            queueMessage = JSON.stringify({"job_type": "Panama.View.Asset.Copy"});
+            queueMessage = JSON.stringify({
+                jobType: "Panama.View.Asset.Copy",
+                incomingBlob: "incoming.json",
+                outgoingBlob: "now.json"
+            });
+            context.bindings.triggerViewAssetCopy = queueMessage;
+            break;
+        case 'Panama.View.Asset.Extract50k':
+            queueTriggered = 'view-asset-copy';
+            queueMessage = JSON.stringify({
+                jobType: "Panama.View.Asset.Copy50k",
+                incomingBlob: "incoming50.json",
+                outgoingBlob: "now50.json"
+            });
+            context.bindings.triggerViewAssetCopy = queueMessage;
+            break;
+        case 'Panama.View.Asset.Extract100k':
+            queueTriggered = 'view-asset-copy';
+            queueMessage = JSON.stringify({
+                jobType: "Panama.View.Asset.Copy100k",
+                incomingBlob: "incoming100.json",
+                outgoingBlob: "now100.json"
+            });
+            context.bindings.triggerViewAssetCopy = queueMessage;
+            break;
+        case 'Panama.View.Asset.Extract150k':
+            queueTriggered = 'view-asset-copy';
+            queueMessage = JSON.stringify({
+                jobType: "Panama.View.Asset.Copy150k",
+                incomingBlob: "incoming150.json",
+                outgoingBlob: "now150.json"
+            });
+            context.bindings.triggerViewAssetCopy = queueMessage;
+            break;
+        case 'Panama.View.Asset.Extract200k':
+            queueTriggered = 'view-asset-copy';
+            queueMessage = JSON.stringify({
+                jobType: "Panama.View.Asset.Copy200k",
+                incomingBlob: "incoming200.json",
+                outgoingBlob: "now200.json"
+            });
+            context.bindings.triggerViewAssetCopy = queueMessage;
+            break;
+        case 'Panama.View.Asset.Extract250k':
+            queueTriggered = 'view-asset-copy';
+            queueMessage = JSON.stringify({
+                jobType: "Panama.View.Asset.Copy250k",
+                incomingBlob: "incoming250.json",
+                outgoingBlob: "now250.json"
+            });
+            context.bindings.triggerViewAssetCopy = queueMessage;
+            break;
+        case 'Panama.View.Asset.Extract300k':
+            queueTriggered = 'view-asset-copy';
+            queueMessage = JSON.stringify({
+                jobType: "Panama.View.Asset.Copy300k",
+                incomingBlob: "incoming300.json",
+                outgoingBlob: "now300.json"
+            });
+            context.bindings.triggerViewAssetCopy = queueMessage;
+            break;
+        case 'Panama.View.Asset.Extract350k':
+            queueTriggered = 'view-asset-copy';
+            queueMessage = JSON.stringify({
+                jobType: "Panama.View.Asset.Copy350k",
+                incomingBlob: "incoming350.json",
+                outgoingBlob: "now350.json"
+            });
             context.bindings.triggerViewAssetCopy = queueMessage;
             break;
         case 'Panama.View.AssetClass.Extract':
