@@ -87,5 +87,6 @@ module.exports = {
     '<rootDir>/apps/quartermaster-functions',
     '<rootDir>/libs/quartermaster',
     '<rootDir>/libs/ats',
+    '<rootDir>/apps/spyglass-functions',
   ],
 };

@@ -163,7 +163,8 @@
     "devices": { "tags": [] },
     "quartermaster-functions": { "tags": [] },
     "quartermaster": { "tags": [] },
-    "ats": { "tags": [] }
+    "ats": { "tags": [] },
+    "spyglass-functions": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
