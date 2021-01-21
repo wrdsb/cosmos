@@ -2476,10 +2476,10 @@
       "sourceRoot": "apps/viewfinder-functions/src",
       "projectType": "application",
       "prefix": "viewfinder-functions",
-      "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/viewfinder-functions",
             "main": "apps/viewfinder-functions/src/main.ts",
@@ -2528,8 +2528,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -2538,22 +2537,18 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "apps/viewfinder-functions/tsconfig.app.json",
-              "apps/viewfinder-functions/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/viewfinder-functions/**/*"]
+            "lintFilePatterns": ["apps/viewfinder-functions/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/viewfinder-functions"],
           "options": {
             "jestConfig": "apps/viewfinder-functions/jest.config.js",
             "passWithNoTests": true
-          },
-          "outputs": ["coverage/apps/viewfinder-functions"]
+          }
         }
       }
     },
@@ -5002,6 +4997,57 @@
           "outputs": ["coverage/libs/ats"],
           "options": {
             "jestConfig": "libs/ats/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "spyglass-functions": {
+      "root": "apps/spyglass-functions",
+      "sourceRoot": "apps/spyglass-functions/src",
+      "projectType": "application",
+      "prefix": "spyglass-functions",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/spyglass-functions",
+            "main": "apps/spyglass-functions/src/main.ts",
+            "tsConfig": "apps/spyglass-functions/tsconfig.app.json",
+            "assets": ["apps/spyglass-functions/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/spyglass-functions/src/environments/environment.ts",
+                  "with": "apps/spyglass-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "spyglass-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/spyglass-functions/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/spyglass-functions"],
+          "options": {
+            "jestConfig": "apps/spyglass-functions/jest.config.js",
             "passWithNoTests": true
           }
         }
