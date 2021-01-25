@@ -8,6 +8,7 @@ import { AllPingsComponent } from "./all-pings/all-pings.component";
 import { CodexPingComponent } from './codex-ping/codex-ping.component';
 import { HagarPingComponent } from './hagar-ping/hagar-ping.component';
 import { IgorPingComponent } from './igor-ping/igor-ping.component';
+import { QuartermasterPingComponent } from "./quartermaster-ping/quartermaster-ping.component";
 import { ViewfinderPingComponent } from './viewfinder-ping/viewfinder-ping.component';
 
 const routes: Routes = [
@@ -34,6 +35,16 @@ const routes: Routes = [
   {
     path: 'igor',
     component: IgorPingComponent,
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  {
+    path: 'quartermaster',
+    component: QuartermasterPingComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
