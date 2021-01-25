@@ -1,6 +1,14 @@
 module.exports = {
-  preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/apps/viewfinder-functions',
-  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
   displayName: 'viewfinder-functions',
+  preset: '../../jest.preset.js',
+  globals: {
+    'ts-jest': {
+      tsConfig: '<rootDir>/tsconfig.spec.json'
+    }
+  },
+  transform: {
+    '^.+\\.[tj]s$': 'ts-jest',
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../../coverage/apps/viewfinder-functions',
 };
