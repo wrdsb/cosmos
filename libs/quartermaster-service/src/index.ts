@@ -1,1 +1,1 @@
-export * from './lib/quartermaster-service.module';
+export * from './lib/quartermaster.service';
