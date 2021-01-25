@@ -5052,6 +5052,35 @@
           }
         }
       }
+    },
+    "quartermaster-service": {
+      "projectType": "library",
+      "root": "libs/quartermaster-service",
+      "sourceRoot": "libs/quartermaster-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/quartermaster-service/tsconfig.lib.json",
+              "libs/quartermaster-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/quartermaster-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/quartermaster-service"],
+          "options": {
+            "jestConfig": "libs/quartermaster-service/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

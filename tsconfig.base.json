@@ -77,7 +77,10 @@
       "@cosmos/trillium": ["libs/trillium/src/index.ts"],
       "@cosmos/devices": ["libs/devices/src/index.ts"],
       "@cosmos/quartermaster": ["libs/quartermaster/src/index.ts"],
-      "@cosmos/ats": ["libs/ats/src/index.ts"]
+      "@cosmos/ats": ["libs/ats/src/index.ts"],
+      "@cosmos/quartermaster-service": [
+        "libs/quartermaster-service/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
