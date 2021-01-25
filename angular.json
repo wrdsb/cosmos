@@ -2478,13 +2478,13 @@
       "prefix": "viewfinder-functions",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/viewfinder-functions",
-            "main": "apps/viewfinder-functions/src/main.ts",
             "tsConfig": "apps/viewfinder-functions/tsconfig.app.json",
             "webpackConfig": "apps/viewfinder-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
