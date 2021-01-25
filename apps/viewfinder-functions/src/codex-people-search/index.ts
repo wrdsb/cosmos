@@ -2,6 +2,7 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { SearchClient, AzureKeyCredential, SearchRequestOptions } from "@azure/search-documents";
 import jwt_decode from 'jwt-decode';
 import { FunctionInvocation, CodexPerson } from "@cosmos/types";
+import { stringify } from "querystring";
 
 const codexPersonSearch: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const functionInvocation = {
@@ -14,6 +15,11 @@ const codexPersonSearch: AzureFunction = async function (context: Context, req: 
         eventLabel: ''
     } as FunctionInvocation;
 
+    interface MSALToken {
+        name: string;
+        unique_name: string;
+        roles: string[];
+    };
     const request = req;
     const payload = request.body.payload;
     let authenticated = false;
@@ -26,7 +32,7 @@ const codexPersonSearch: AzureFunction = async function (context: Context, req: 
     if (request.headers['x-ms-token-aad-id-token']) {
         authenticated = true;
         idToken = request.headers['x-ms-token-aad-id-token'];
-        let decodedToken = jwt_decode(idToken);
+        let decodedToken = jwt_decode(idToken) as MSALToken;
         userName = decodedToken.name;
         userEmail = decodedToken.unique_name;
         userRoles = decodedToken.roles as string[];
