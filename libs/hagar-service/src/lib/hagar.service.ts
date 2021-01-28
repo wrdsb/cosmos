@@ -11,6 +11,9 @@ import { AADGroup } from '@cosmos/types';
   providedIn: 'root'
 })
 export class HagarService {
+  private apiTargetAppName = 'HAGAR';
+  private serviceName = `${this.apiTargetAppName} Service`;
+
   private pingURL = 'https://wrdsb-hagar.azurewebsites.net/api/ping';
   
   private aadGroupsCommandURL = 'https://wrdsb-hagar.azurewebsites.net/api/aad-group-command';
@@ -46,7 +49,8 @@ export class HagarService {
   ) {}
 
   doPing(): void {
-    console.log('Pinging HAGAR...');
+    console.log(`${this.serviceName}: doPing()`);
+    console.log(`Pinging ${this.apiTargetAppName}...`);
 
     this.pingRequestState.next({
       status: Status.LOADING,
@@ -56,10 +60,10 @@ export class HagarService {
 
     this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions)
       .pipe(
-        tap(_ => console.log('tap')),
+        tap(_ => console.log('ping request')),
         retry(2),
         catchError(error => {
-          console.log('catch error');
+          console.log('catch ping request error');
           this.pingRequestState.next({
             status: Status.ERROR,
             response: '',
@@ -73,7 +77,7 @@ export class HagarService {
               timestamp: "timestamp"
             }
           });
-          throw 'error pinging HAGAR';
+          throw `error pinging ${this.apiTargetAppName}`;
         }),
         tap(_ => {
           this.pingRequestState.next({
@@ -81,7 +85,7 @@ export class HagarService {
             response: 'success',
             error: ''
           });
-          console.log('success pinging HAGAR');
+          console.log(`success pinging ${this.apiTargetAppName}`);
         })
       )
       .subscribe(response => this.pingState.next(response));

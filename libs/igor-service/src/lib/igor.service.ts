@@ -12,6 +12,9 @@ import { GoogleGroup } from '@cosmos/types';
   providedIn: 'root'
 })
 export class IGORService {
+  private apiTargetAppName = 'IGOR';
+  private serviceName = `${this.apiTargetAppName} Service`;
+
   private pingURL = 'https://wrdsb-igor3.azurewebsites.net/api/ping';
   
   private googleGroupsCommandURL = 'https://wrdsb-igor3.azurewebsites.net/api/google-group-command';
@@ -64,7 +67,8 @@ export class IGORService {
   ) {}
 
   doPing(): void {
-    console.log('Pinging IGOR...');
+    console.log(`${this.serviceName}: doPing()`);
+    console.log(`Pinging ${this.apiTargetAppName}...`);
 
     this.pingRequestState.next({
       status: Status.LOADING,
@@ -74,10 +78,10 @@ export class IGORService {
 
     this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions)
       .pipe(
-        tap(_ => console.log('tap')),
+        tap(_ => console.log('ping request')),
         retry(2),
         catchError(error => {
-          console.log('catch error');
+          console.log('catch ping request error');
           this.pingRequestState.next({
             status: Status.ERROR,
             response: '',
@@ -91,7 +95,7 @@ export class IGORService {
               timestamp: "timestamp"
             }
           });
-          throw 'error pinging IGOR';
+          throw `error pinging ${this.apiTargetAppName}`;
         }),
         tap(_ => {
           this.pingRequestState.next({
@@ -99,7 +103,7 @@ export class IGORService {
             response: 'success',
             error: ''
           });
-          console.log('success pinging IGOR');
+          console.log(`success pinging ${this.apiTargetAppName}`);
         })
       )
       .subscribe(response => this.pingState.next(response));

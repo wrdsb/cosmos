@@ -11,6 +11,9 @@ import { SearchFunctionRequest, SearchFunctionRequestPayload, SearchFunctionResp
   providedIn: 'root'
 })
 export class ViewfinderService {
+  private apiTargetAppName = 'Viewfinder';
+  private serviceName = `${this.apiTargetAppName} Service`;
+
   private pingURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/ping';
   
   private googleGroupsFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-group-find';
@@ -27,7 +30,6 @@ export class ViewfinderService {
 
   private quartermasterAssetFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/quartermaster-asset-find';
   private quartermasterAssetsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/quartermaster-assets-search';
-
 
   private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
     payload: {
@@ -64,8 +66,8 @@ export class ViewfinderService {
 
 
   doPing(): void {
-    console.log('Viewfinder Service: doPing()');
-    console.log('Pinging Viewfinder...');
+    console.log(`${this.serviceName}: doPing()`);
+    console.log(`Pinging ${this.apiTargetAppName}...`);
 
     this.pingRequestState.next({
       status: Status.LOADING,
@@ -92,7 +94,7 @@ export class ViewfinderService {
               timestamp: "timestamp"
             }
           });
-          throw 'error pinging Viewfinder';
+          throw `error pinging ${this.apiTargetAppName}`;
         }),
         tap(_ => {
           this.pingRequestState.next({
@@ -100,7 +102,7 @@ export class ViewfinderService {
             response: 'success',
             error: ''
           });
-          console.log('success pinging Viewfinder');
+          console.log(`success pinging ${this.apiTargetAppName}`);
         })
       )
       .subscribe(response => this.pingState.next(response));

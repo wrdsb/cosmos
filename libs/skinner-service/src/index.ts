@@ -1,1 +1,1 @@
-export * from './lib/skinner-service.module';
+export * from './lib/skinner.service';

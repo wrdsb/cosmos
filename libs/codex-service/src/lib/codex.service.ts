@@ -11,6 +11,9 @@ import { GoogleGroup } from "@cosmos/types";
   providedIn: 'root'
 })
 export class CodexService {
+  private apiTargetAppName = 'Codex';
+  private serviceName = `${this.apiTargetAppName} Service`;
+
   private pingURL = 'https://wrdsb-codex.azurewebsites.net/api/ping';
 
   private searchURL = 'https://wrdsb-codex.azurewebsites.net/api/igor-groups-groups-search';
@@ -42,7 +45,8 @@ export class CodexService {
   ) {}
 
   doPing(): void {
-    console.log('Pinging Codex...');
+    console.log(`${this.serviceName}: doPing()`);
+    console.log(`Pinging ${this.apiTargetAppName}...`);
 
     this.pingRequestState.next({
       status: Status.LOADING,
@@ -52,10 +56,10 @@ export class CodexService {
 
     this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions)
       .pipe(
-        tap(_ => console.log('tap')),
+        tap(_ => console.log('ping request')),
         retry(2),
         catchError(error => {
-          console.log('catch error');
+          console.log('catch ping request error');
           this.pingRequestState.next({
             status: Status.ERROR,
             response: '',
@@ -69,7 +73,7 @@ export class CodexService {
               timestamp: "timestamp"
             }
           });
-          throw 'error pinging Codex';
+          throw `error pinging ${this.apiTargetAppName}`;
         }),
         tap(_ => {
           this.pingRequestState.next({
@@ -77,7 +81,7 @@ export class CodexService {
             response: 'success',
             error: ''
           });
-          console.log('success pinging Codex');
+          console.log(`success pinging ${this.apiTargetAppName}`);
         })
       )
       .subscribe(response => this.pingState.next(response));

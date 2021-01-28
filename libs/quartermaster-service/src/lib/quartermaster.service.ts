@@ -9,6 +9,9 @@ import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
   providedIn: 'root'
 })
 export class QuartermasterService {
+  private apiTargetAppName = 'Quartermaster';
+  private serviceName = `${this.apiTargetAppName} Service`;
+
   private pingURL = 'https://wrdsb-quartermaster.azurewebsites.net/api/ping';
 
   private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
@@ -38,7 +41,8 @@ export class QuartermasterService {
   ) {}
 
   doPing(): void {
-    console.log('Pinging Quartermaster...');
+    console.log(`${this.serviceName}: doPing()`);
+    console.log(`Pinging ${this.apiTargetAppName}...`);
 
     this.pingRequestState.next({
       status: Status.LOADING,
@@ -48,10 +52,10 @@ export class QuartermasterService {
 
     this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions)
       .pipe(
-        tap(_ => console.log('tap')),
+        tap(_ => console.log('ping request')),
         retry(2),
         catchError(error => {
-          console.log('catch error');
+          console.log('catch ping request error');
           this.pingRequestState.next({
             status: Status.ERROR,
             response: '',
@@ -65,7 +69,7 @@ export class QuartermasterService {
               timestamp: "timestamp"
             }
           });
-          throw 'error pinging Quartermaster';
+          throw `error pinging ${this.apiTargetAppName}`;
         }),
         tap(_ => {
           this.pingRequestState.next({
@@ -73,7 +77,7 @@ export class QuartermasterService {
             response: 'success',
             error: ''
           });
-          console.log('success pinging Quartermaster');
+          console.log(`success pinging ${this.apiTargetAppName}`);
         })
       )
       .subscribe(response => this.pingState.next(response));
