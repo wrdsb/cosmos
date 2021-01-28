@@ -29,6 +29,8 @@ export const protectedResourceMap: [string, string[]][] = [
   ['https://wrdsb-igor3.azurewebsites.net/api/ping', [ 'https://wrdsb-igor3.azurewebsites.net/user_impersonation' ]],
   ['https://wrdsb-igor3.azurewebsites.net/api/group-query', [ 'https://wrdsb-igor3.azurewebsites.net/user_impersonation' ]],
 
+  ['https://wrdsb-quartermaster.azurewebsites.net/api/ping', [ 'https://wrdsb-quartermaster.azurewebsites.net/user_impersonation' ]],
+
   ['https://wrdsb-viewfinder.azurewebsites.net/api/ping', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]],
 
   ['https://wrdsb-viewfinder.azurewebsites.net/api/google-calendar-find', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]],
