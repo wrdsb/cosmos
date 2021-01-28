@@ -91,5 +91,6 @@ module.exports = {
     '<rootDir>/libs/quartermaster-service',
     '<rootDir>/libs/flenderson-service',
     '<rootDir>/libs/houston-service',
+    '<rootDir>/libs/panama-service',
   ],
 };

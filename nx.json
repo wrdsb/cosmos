@@ -167,7 +167,8 @@
     "spyglass-functions": { "tags": [] },
     "quartermaster-service": { "tags": [] },
     "flenderson-service": { "tags": [] },
-    "houston-service": { "tags": [] }
+    "houston-service": { "tags": [] },
+    "panama-service": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }

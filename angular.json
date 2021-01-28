@@ -5132,6 +5132,32 @@
           }
         }
       }
+    },
+    "panama-service": {
+      "projectType": "library",
+      "root": "libs/panama-service",
+      "sourceRoot": "libs/panama-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/panama-service/tsconfig.lib.json",
+              "libs/panama-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/panama-service/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/panama-service"],
+          "options": {
+            "jestConfig": "libs/panama-service/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
