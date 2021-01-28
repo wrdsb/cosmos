@@ -1,1 +1,1 @@
-export * from './lib/flenderson-service.module';
+export * from './lib/flenderson.service';
