@@ -1,14 +1,14 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { PingsModule } from './pings.module';
+import { PingsUiModule } from './pings-ui.module';
 
-describe('PingsModule', () => {
+describe('PingsUiModule', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [PingsModule]
+      imports: [PingsUiModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(PingsModule).toBeDefined();
+    expect(PingsUiModule).toBeDefined();
   });
 });

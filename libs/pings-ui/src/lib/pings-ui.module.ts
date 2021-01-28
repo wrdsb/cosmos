@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PingsRoutingModule } from "./pings-routing.module";
+import { PingsUiRoutingModule } from "./pings-ui-routing.module";
 
 import { AllPingsComponent } from './all-pings/all-pings.component';
 
@@ -22,7 +22,7 @@ import { ViewfinderPingComponent } from './viewfinder-ping/viewfinder-ping.compo
   ],
   imports: [
     CommonModule,
-    PingsRoutingModule
+    PingsUiRoutingModule
   ],
   exports: [
     AllPingsComponent,
@@ -33,4 +33,4 @@ import { ViewfinderPingComponent } from './viewfinder-ping/viewfinder-ping.compo
     ViewfinderPingComponent
   ]
 })
-export class PingsModule {}
+export class PingsUiModule {}

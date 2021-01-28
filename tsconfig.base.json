@@ -61,7 +61,6 @@
       "@cosmos/http-interceptors": ["libs/http-interceptors/src/index.ts"],
       "@cosmos/user-roles": ["libs/user-roles/src/index.ts"],
       "@cosmos/guards": ["libs/guards/src/index.ts"],
-      "@cosmos/pings": ["libs/pings/src/index.ts"],
       "@cosmos/codex-personality-matrix": [
         "libs/codex-personality-matrix/src/index.ts"
       ],
@@ -84,7 +83,9 @@
       "@cosmos/flenderson-service": ["libs/flenderson-service/src/index.ts"],
       "@cosmos/houston-service": ["libs/houston-service/src/index.ts"],
       "@cosmos/panama-service": ["libs/panama-service/src/index.ts"],
-      "@cosmos/skinner-service": ["libs/skinner-service/src/index.ts"]
+      "@cosmos/skinner-service": ["libs/skinner-service/src/index.ts"],
+      "@cosmos/pings-ui": ["libs/pings-ui/src/index.ts"],
+      "@cosmos/pings-service": ["libs/pings-service/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

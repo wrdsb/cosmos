@@ -71,7 +71,6 @@ module.exports = {
     '<rootDir>/libs/http-interceptors',
     '<rootDir>/libs/user-roles',
     '<rootDir>/libs/guards',
-    '<rootDir>/libs/pings',
     '<rootDir>/libs/codex-personality-matrix',
     '<rootDir>/libs/releases',
     '<rootDir>/libs/google',
@@ -93,5 +92,7 @@ module.exports = {
     '<rootDir>/libs/houston-service',
     '<rootDir>/libs/panama-service',
     '<rootDir>/libs/skinner-service',
+    '<rootDir>/libs/pings-ui',
+    '<rootDir>/libs/pings-service',
   ],
 };

@@ -4460,37 +4460,6 @@
         }
       }
     },
-    "pings": {
-      "projectType": "library",
-      "root": "libs/pings",
-      "sourceRoot": "libs/pings/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/pings/tsconfig.lib.json",
-              "libs/pings/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/pings/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/pings/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": ["coverage/libs/pings"]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "codex-personality-matrix": {
       "root": "libs/codex-personality-matrix",
       "sourceRoot": "libs/codex-personality-matrix/src",
@@ -5180,6 +5149,58 @@
           "outputs": ["coverage/libs/skinner-service"],
           "options": {
             "jestConfig": "libs/skinner-service/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pings-ui": {
+      "projectType": "library",
+      "root": "libs/pings-ui",
+      "sourceRoot": "libs/pings-ui/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pings-ui/tsconfig.lib.json",
+              "libs/pings-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/pings-ui/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pings-ui"],
+          "options": {
+            "jestConfig": "libs/pings-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pings-service": {
+      "projectType": "library",
+      "root": "libs/pings-service",
+      "sourceRoot": "libs/pings-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pings-service/tsconfig.lib.json",
+              "libs/pings-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/pings-service/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pings-service"],
+          "options": {
+            "jestConfig": "libs/pings-service/jest.config.js",
             "passWithNoTests": true
           }
         }

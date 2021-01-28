@@ -148,7 +148,6 @@
     "http-interceptors": { "tags": [] },
     "user-roles": { "tags": [] },
     "guards": { "tags": [] },
-    "pings": { "tags": [] },
     "codex-personality-matrix": { "tags": [] },
     "releases": { "tags": [] },
     "google": { "tags": [] },
@@ -169,7 +168,9 @@
     "flenderson-service": { "tags": [] },
     "houston-service": { "tags": [] },
     "panama-service": { "tags": [] },
-    "skinner-service": { "tags": [] }
+    "skinner-service": { "tags": [] },
+    "pings-ui": { "tags": [] },
+    "pings-service": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
