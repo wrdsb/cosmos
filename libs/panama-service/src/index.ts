@@ -1,1 +1,1 @@
-export * from './lib/panama-service.module';
+export * from './lib/panama.service';
