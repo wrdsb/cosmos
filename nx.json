@@ -165,7 +165,8 @@
     "quartermaster": { "tags": [] },
     "ats": { "tags": [] },
     "spyglass-functions": { "tags": [] },
-    "quartermaster-service": { "tags": [] }
+    "quartermaster-service": { "tags": [] },
+    "flenderson-service": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }

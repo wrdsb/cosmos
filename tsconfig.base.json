@@ -80,7 +80,8 @@
       "@cosmos/ats": ["libs/ats/src/index.ts"],
       "@cosmos/quartermaster-service": [
         "libs/quartermaster-service/src/index.ts"
-      ]
+      ],
+      "@cosmos/flenderson-service": ["libs/flenderson-service/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

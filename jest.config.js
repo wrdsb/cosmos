@@ -89,5 +89,6 @@ module.exports = {
     '<rootDir>/libs/ats',
     '<rootDir>/apps/spyglass-functions',
     '<rootDir>/libs/quartermaster-service',
+    '<rootDir>/libs/flenderson-service',
   ],
 };
