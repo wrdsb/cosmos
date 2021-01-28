@@ -23,13 +23,23 @@ export const protectedResourceMap: [string, string[]][] = [
   ['https://wrdsb-codex.azurewebsites.net/api/ping', [ 'https://wrdsb-codex.azurewebsites.net/user_impersonation' ]],
   ['https://wrdsb-codex.azurewebsites.net/api/igor-groups-groups-search', [ 'https://wrdsb-codex.azurewebsites.net/user_impersonation' ]],
 
+  ['https://wrdsb-flenderson.azurewebsites.net/api/ping', [ 'https://wrdsb-hagar.azurewebsites.net/user_impersonation' ]],
+
   ['https://wrdsb-hagar.azurewebsites.net/api/ping', [ 'https://wrdsb-hagar.azurewebsites.net/user_impersonation' ]],
   ['https://wrdsb-hagar.azurewebsites.net/api/aad-group-query', [ 'https://wrdsb-hagar.azurewebsites.net/user_impersonation' ]],
+
+  ['https://wrdsb-houston.azurewebsites.net/api/ping', [ 'https://wrdsb-hagar.azurewebsites.net/user_impersonation' ]],
 
   ['https://wrdsb-igor3.azurewebsites.net/api/ping', [ 'https://wrdsb-igor3.azurewebsites.net/user_impersonation' ]],
   ['https://wrdsb-igor3.azurewebsites.net/api/group-query', [ 'https://wrdsb-igor3.azurewebsites.net/user_impersonation' ]],
 
+  ['https://wrdsb-panama.azurewebsites.net/api/ping', [ 'https://wrdsb-quartermaster.azurewebsites.net/user_impersonation' ]],
+
   ['https://wrdsb-quartermaster.azurewebsites.net/api/ping', [ 'https://wrdsb-quartermaster.azurewebsites.net/user_impersonation' ]],
+
+  ['https://wrdsb-skinner2.azurewebsites.net/api/ping', [ 'https://wrdsb-quartermaster.azurewebsites.net/user_impersonation' ]],
+
+  ['https://wrdsb-sorting-hat.azurewebsites.net/api/ping', [ 'https://wrdsb-quartermaster.azurewebsites.net/user_impersonation' ]],
 
   ['https://wrdsb-viewfinder.azurewebsites.net/api/ping', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]],
 
