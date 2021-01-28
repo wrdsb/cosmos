@@ -14,6 +14,12 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
     } as FunctionInvocation;
 
     const request = req;
+
+    interface MSALToken {
+        name: string;
+        unique_name: string;
+        roles: string[];
+    };
     let authenticated = false;
     let authorized = false;
     let idToken = '';
@@ -24,7 +30,7 @@ const ping: AzureFunction = async function (context: Context, req: HttpRequest):
     if (request.headers['x-ms-token-aad-id-token']) {
         authenticated = true;
         idToken = request.headers['x-ms-token-aad-id-token'];
-        let decodedToken = jwt_decode(idToken);
+        let decodedToken = jwt_decode(idToken) as MSALToken;
         userName = decodedToken.name,
         userEmail = decodedToken.unique_name;
         userRoles = decodedToken.roles as string[];
