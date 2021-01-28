@@ -92,5 +92,6 @@ module.exports = {
     '<rootDir>/libs/flenderson-service',
     '<rootDir>/libs/houston-service',
     '<rootDir>/libs/panama-service',
+    '<rootDir>/libs/skinner-service',
   ],
 };

@@ -168,7 +168,8 @@
     "quartermaster-service": { "tags": [] },
     "flenderson-service": { "tags": [] },
     "houston-service": { "tags": [] },
-    "panama-service": { "tags": [] }
+    "panama-service": { "tags": [] },
+    "skinner-service": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }

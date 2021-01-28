@@ -5158,6 +5158,32 @@
           }
         }
       }
+    },
+    "skinner-service": {
+      "projectType": "library",
+      "root": "libs/skinner-service",
+      "sourceRoot": "libs/skinner-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/skinner-service/tsconfig.lib.json",
+              "libs/skinner-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/skinner-service/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/skinner-service"],
+          "options": {
+            "jestConfig": "libs/skinner-service/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
