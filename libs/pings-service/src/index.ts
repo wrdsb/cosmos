@@ -1,1 +1,1 @@
-export * from './lib/pings-service.module';
+export * from './lib/pings.service';
