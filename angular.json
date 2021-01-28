@@ -4866,15 +4866,14 @@
       "sourceRoot": "apps/quartermaster-functions/src",
       "projectType": "application",
       "prefix": "quartermaster-functions",
-      "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
           "options": {
             "outputPath": "dist/apps/quartermaster-functions",
-            "main": "apps/quartermaster-functions/src/main.ts",
             "tsConfig": "apps/quartermaster-functions/tsconfig.app.json",
             "webpackConfig": "apps/quartermaster-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
