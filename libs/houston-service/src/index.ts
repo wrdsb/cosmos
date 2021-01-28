@@ -1,1 +1,1 @@
-export * from './lib/houston-service.module';
+export * from './lib/houston.service';
