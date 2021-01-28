@@ -81,7 +81,8 @@
       "@cosmos/quartermaster-service": [
         "libs/quartermaster-service/src/index.ts"
       ],
-      "@cosmos/flenderson-service": ["libs/flenderson-service/src/index.ts"]
+      "@cosmos/flenderson-service": ["libs/flenderson-service/src/index.ts"],
+      "@cosmos/houston-service": ["libs/houston-service/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

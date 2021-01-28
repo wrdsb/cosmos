@@ -5106,6 +5106,32 @@
           }
         }
       }
+    },
+    "houston-service": {
+      "projectType": "library",
+      "root": "libs/houston-service",
+      "sourceRoot": "libs/houston-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/houston-service/tsconfig.lib.json",
+              "libs/houston-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/houston-service/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/houston-service"],
+          "options": {
+            "jestConfig": "libs/houston-service/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -166,7 +166,8 @@
     "ats": { "tags": [] },
     "spyglass-functions": { "tags": [] },
     "quartermaster-service": { "tags": [] },
-    "flenderson-service": { "tags": [] }
+    "flenderson-service": { "tags": [] },
+    "houston-service": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
