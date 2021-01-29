@@ -10,6 +10,11 @@ import { HagarPingComponent } from './hagar-ping/hagar-ping.component';
 import { IgorPingComponent } from './igor-ping/igor-ping.component';
 import { QuartermasterPingComponent } from "./quartermaster-ping/quartermaster-ping.component";
 import { ViewfinderPingComponent } from './viewfinder-ping/viewfinder-ping.component';
+import { SortingHatPingComponent } from './sorting-hat-ping/sorting-hat-ping.component';
+import { SkinnerPingComponent } from './skinner-ping/skinner-ping.component';
+import { PanamaPingComponent } from './panama-ping/panama-ping.component';
+import { HoustonPingComponent } from './houston-ping/houston-ping.component';
+import { FlendersonPingComponent } from './flenderson-ping/flenderson-ping.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,12 @@ import { ViewfinderPingComponent } from './viewfinder-ping/viewfinder-ping.compo
     HagarPingComponent,
     IgorPingComponent,
     QuartermasterPingComponent,
-    ViewfinderPingComponent
+    ViewfinderPingComponent,
+    SortingHatPingComponent,
+    SkinnerPingComponent,
+    PanamaPingComponent,
+    HoustonPingComponent,
+    FlendersonPingComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +40,12 @@ import { ViewfinderPingComponent } from './viewfinder-ping/viewfinder-ping.compo
     HagarPingComponent,
     IgorPingComponent,
     QuartermasterPingComponent,
-    ViewfinderPingComponent
+    ViewfinderPingComponent,
+    SortingHatPingComponent,
+    SkinnerPingComponent,
+    PanamaPingComponent,
+    HoustonPingComponent,
+    FlendersonPingComponent
   ]
 })
 export class PingsUiModule {}
