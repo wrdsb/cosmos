@@ -56,7 +56,7 @@ const routes: Routes = [
   },
   {
     path: 'ping',
-    loadChildren: () => import('@cosmos/pings').then(m => m.PingsModule),
+    loadChildren: () => import('@cosmos/pings-ui').then(m => m.PingsUiModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
