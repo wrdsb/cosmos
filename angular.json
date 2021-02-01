@@ -914,12 +914,13 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/sorting-hat-functions",
-            "main": "apps/sorting-hat-functions/src/main.ts",
             "tsConfig": "apps/sorting-hat-functions/tsconfig.app.json",
             "webpackConfig": "apps/sorting-hat-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
@@ -963,8 +964,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1003,12 +1003,13 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/igor-functions",
-            "main": "apps/igor-functions/src/main.ts",
             "tsConfig": "apps/igor-functions/tsconfig.app.json",
             "webpackConfig": "apps/igor-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
@@ -1052,8 +1053,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1089,12 +1089,13 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/hagar-functions",
-            "main": "apps/hagar-functions/src/main.ts",
             "tsConfig": "apps/hagar-functions/tsconfig.app.json",
             "webpackConfig": "apps/hagar-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
@@ -1138,8 +1139,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1175,14 +1175,43 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/flynn",
-            "main": "apps/flynn/src/main.ts",
-            "tsConfig": "apps/flynn/tsconfig.app.json",
-            "webpackConfig": "apps/flynn/webpack.config.js",
+            "outputPath": "dist/apps/flynn-functions",
+            "tsConfig": "apps/flynn-functions/tsconfig.app.json",
+            "webpackConfig": "apps/flynn-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
             "sourceMap": false,
-            "assets": ["apps/flynn/src/assets"]
+            "assets": [
+              {
+                "input": "./apps/flynn-functions/src",
+                "glob": "**/function.json",
+                "output": "./flynn-functions"
+              },
+              {
+                "input": "./apps/flynn-functions/src",
+                "glob": "host.json",
+                "output": "./flynn-functions"
+              },
+              {
+                "input": "./apps/flynn-functions/src",
+                "glob": "proxies.json",
+                "output": "./flynn-functions"
+              },
+              {
+                "input": "./apps/flynn-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./flynn-functions"
+              },
+              {
+                "input": "./apps/flynn-functions/src/bin",
+                "glob": "**.*",
+                "output": "./flynn-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -1191,13 +1220,12 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/flynn/src/environments/environment.ts",
-                  "with": "apps/flynn/src/environments/environment.prod.ts"
+                  "replace": "apps/flynn-functions/src/environments/environment.ts",
+                  "with": "apps/flynn-functions/src/environments/environment.prod.ts"
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1233,12 +1261,13 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/skyline-functions",
-            "main": "apps/skyline-functions/src/main.ts",
             "tsConfig": "apps/skyline-functions/tsconfig.app.json",
-            "webpackConfig": "apps/skyline-functions/webpack.config.js",
+            "webpackConfig": "apps/skyliner-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
@@ -1282,8 +1311,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1319,12 +1347,13 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/skinner-functions",
-            "main": "apps/skinner-functions/src/main.ts",
             "tsConfig": "apps/skinner-functions/tsconfig.app.json",
             "webpackConfig": "apps/skinner-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
@@ -1368,8 +1397,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1405,12 +1433,13 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/flenderson-functions",
-            "main": "apps/flenderson-functions/src/main.ts",
             "tsConfig": "apps/flenderson-functions/tsconfig.app.json",
             "webpackConfig": "apps/flenderson-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
@@ -1454,8 +1483,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1491,12 +1519,13 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/panama-functions",
-            "main": "apps/panama-functions/src/main.ts",
             "tsConfig": "apps/panama-functions/tsconfig.app.json",
             "webpackConfig": "apps/panama-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
@@ -1540,8 +1569,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1577,12 +1605,43 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/radar-functions",
-            "main": "apps/radar-functions/src/main.ts",
             "tsConfig": "apps/radar-functions/tsconfig.app.json",
-            "assets": ["apps/radar-functions/src/assets"]
+            "webpackConfig": "apps/radar-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/radar-functions/src",
+                "glob": "**/function.json",
+                "output": "./radar-functions"
+              },
+              {
+                "input": "./apps/radar-functions/src",
+                "glob": "host.json",
+                "output": "./radar-functions"
+              },
+              {
+                "input": "./apps/radar-functions/src",
+                "glob": "proxies.json",
+                "output": "./radar-functions"
+              },
+              {
+                "input": "./apps/radar-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./radar-functions"
+              },
+              {
+                "input": "./apps/radar-functions/src/bin",
+                "glob": "**.*",
+                "output": "./radar-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -1596,8 +1655,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1633,12 +1691,43 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/lamson-functions",
-            "main": "apps/lamson-functions/src/main.ts",
             "tsConfig": "apps/lamson-functions/tsconfig.app.json",
-            "assets": ["apps/lamson-functions/src/assets"]
+            "webpackConfig": "apps/lamson-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/lamson-functions/src",
+                "glob": "**/function.json",
+                "output": "./lamson-functions"
+              },
+              {
+                "input": "./apps/lamson-functions/src",
+                "glob": "host.json",
+                "output": "./lamson-functions"
+              },
+              {
+                "input": "./apps/lamson-functions/src",
+                "glob": "proxies.json",
+                "output": "./lamson-functions"
+              },
+              {
+                "input": "./apps/lamson-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./lamson-functions"
+              },
+              {
+                "input": "./apps/lamson-functions/src/bin",
+                "glob": "**.*",
+                "output": "./lamson-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -1652,8 +1741,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1689,12 +1777,13 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/houston-functions",
-            "main": "apps/houston-functions/src/main.ts",
             "tsConfig": "apps/houston-functions/tsconfig.app.json",
             "webpackConfig": "apps/houston-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
@@ -1738,8 +1827,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -1775,12 +1863,13 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/codex-functions",
-            "main": "apps/codex-functions/src/main.ts",
             "tsConfig": "apps/codex-functions/tsconfig.app.json",
             "webpackConfig": "apps/codex-functions/webpack.config.js",
+            "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
             "sourceMap": false,
@@ -1824,8 +1913,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -2683,12 +2771,43 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/claptrap-functions",
-            "main": "apps/claptrap-functions/src/main.ts",
             "tsConfig": "apps/claptrap-functions/tsconfig.app.json",
-            "assets": ["apps/claptrap-functions/src/assets"]
+            "webpackConfig": "apps/claptrap-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/claptrap-functions/src",
+                "glob": "**/function.json",
+                "output": "./claptrap-functions"
+              },
+              {
+                "input": "./apps/claptrap-functions/src",
+                "glob": "host.json",
+                "output": "./claptrap-functions"
+              },
+              {
+                "input": "./apps/claptrap-functions/src",
+                "glob": "proxies.json",
+                "output": "./claptrap-functions"
+              },
+              {
+                "input": "./apps/claptrap-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./claptrap-functions"
+              },
+              {
+                "input": "./apps/claptrap-functions/src/bin",
+                "glob": "**.*",
+                "output": "./claptrap-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -2702,8 +2821,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -2862,12 +2980,43 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/mcp-functions",
-            "main": "apps/mcp-functions/src/main.ts",
             "tsConfig": "apps/mcp-functions/tsconfig.app.json",
-            "assets": ["apps/mcp-functions/src/assets"]
+            "webpackConfig": "apps/mcp-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/mcp-functions/src",
+                "glob": "**/function.json",
+                "output": "./mcp-functions"
+              },
+              {
+                "input": "./apps/mcp-functions/src",
+                "glob": "host.json",
+                "output": "./mcp-functions"
+              },
+              {
+                "input": "./apps/mcp-functions/src",
+                "glob": "proxies.json",
+                "output": "./mcp-functions"
+              },
+              {
+                "input": "./apps/mcp-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./mcp-functions"
+              },
+              {
+                "input": "./apps/mcp-functions/src/bin",
+                "glob": "**.*",
+                "output": "./mcp-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -2881,8 +3030,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -3041,12 +3189,43 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/relay-functions",
-            "main": "apps/relay-functions/src/main.ts",
             "tsConfig": "apps/relay-functions/tsconfig.app.json",
-            "assets": ["apps/relay-functions/src/assets"]
+            "webpackConfig": "apps/relay-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/relay-functions/src",
+                "glob": "**/function.json",
+                "output": "./relay-functions"
+              },
+              {
+                "input": "./apps/relay-functions/src",
+                "glob": "host.json",
+                "output": "./relay-functions"
+              },
+              {
+                "input": "./apps/relay-functions/src",
+                "glob": "proxies.json",
+                "output": "./relay-functions"
+              },
+              {
+                "input": "./apps/relay-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./relay-functions"
+              },
+              {
+                "input": "./apps/relay-functions/src/bin",
+                "glob": "**.*",
+                "output": "./relay-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -3060,8 +3239,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -3220,12 +3398,43 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/babbage-functions",
-            "main": "apps/babbage-functions/src/main.ts",
             "tsConfig": "apps/babbage-functions/tsconfig.app.json",
-            "assets": ["apps/babbage-functions/src/assets"]
+            "webpackConfig": "apps/babbage-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/babbage-functions/src",
+                "glob": "**/function.json",
+                "output": "./babbage-functions"
+              },
+              {
+                "input": "./apps/babbage-functions/src",
+                "glob": "host.json",
+                "output": "./babbage-functions"
+              },
+              {
+                "input": "./apps/babbage-functions/src",
+                "glob": "proxies.json",
+                "output": "./babbage-functions"
+              },
+              {
+                "input": "./apps/babbage-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./babbage-functions"
+              },
+              {
+                "input": "./apps/babbage-functions/src/bin",
+                "glob": "**.*",
+                "output": "./babbage-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -3239,8 +3448,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -3399,12 +3607,43 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/hedwig-functions",
-            "main": "apps/hedwig-functions/src/main.ts",
             "tsConfig": "apps/hedwig-functions/tsconfig.app.json",
-            "assets": ["apps/hedwig-functions/src/assets"]
+            "webpackConfig": "apps/hedwig-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/hedwig-functions/src",
+                "glob": "**/function.json",
+                "output": "./hedwig-functions"
+              },
+              {
+                "input": "./apps/hedwig-functions/src",
+                "glob": "host.json",
+                "output": "./hedwig-functions"
+              },
+              {
+                "input": "./apps/hedwig-functions/src",
+                "glob": "proxies.json",
+                "output": "./hedwig-functions"
+              },
+              {
+                "input": "./apps/hedwig-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./hedwig-functions"
+              },
+              {
+                "input": "./apps/hedwig-functions/src/bin",
+                "glob": "**.*",
+                "output": "./hedwig-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -3418,8 +3657,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -3822,12 +4060,43 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/crankcase-functions",
-            "main": "apps/crankcase-functions/src/main.ts",
             "tsConfig": "apps/crankcase-functions/tsconfig.app.json",
-            "assets": ["apps/crankcase-functions/src/assets"]
+            "webpackConfig": "apps/crankcase-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/crankcase-functions/src",
+                "glob": "**/function.json",
+                "output": "./crankcase-functions"
+              },
+              {
+                "input": "./apps/crankcase-functions/src",
+                "glob": "host.json",
+                "output": "./crankcase-functions"
+              },
+              {
+                "input": "./apps/crankcase-functions/src",
+                "glob": "proxies.json",
+                "output": "./crankcase-functions"
+              },
+              {
+                "input": "./apps/crankcase-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./crankcase-functions"
+              },
+              {
+                "input": "./apps/crankcase-functions/src/bin",
+                "glob": "**.*",
+                "output": "./crankcase-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -3841,8 +4110,7 @@
                 }
               ]
             }
-          },
-          "outputs": ["{options.outputPath}"]
+          }
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -4977,13 +5245,43 @@
       "prefix": "spyglass-functions",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/spyglass-functions",
-            "main": "apps/spyglass-functions/src/main.ts",
             "tsConfig": "apps/spyglass-functions/tsconfig.app.json",
-            "assets": ["apps/spyglass-functions/src/assets"]
+            "webpackConfig": "apps/spyglass-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/spyglass-functions/src",
+                "glob": "**/function.json",
+                "output": "./spyglass-functions"
+              },
+              {
+                "input": "./apps/spyglass-functions/src",
+                "glob": "host.json",
+                "output": "./spyglass-functions"
+              },
+              {
+                "input": "./apps/spyglass-functions/src",
+                "glob": "proxies.json",
+                "output": "./spyglass-functions"
+              },
+              {
+                "input": "./apps/spyglass-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./spyglass-functions"
+              },
+              {
+                "input": "./apps/spyglass-functions/src/bin",
+                "glob": "**.*",
+                "output": "./spyglass-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
