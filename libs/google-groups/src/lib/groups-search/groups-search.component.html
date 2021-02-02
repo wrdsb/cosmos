@@ -7,7 +7,7 @@
       <div class="panel-field">
         <div class="panel-field-label">Admin Created</div>
         <div class="panel-field-control">
-          <mat-radio-group name="adminCreated" aria-label="Admin Created">
+          <mat-radio-group name="adminCreated" aria-label="Admin Created" [formControl]="adminCreatedFilterFormControl">
             <mat-radio-button value="true">Yes</mat-radio-button>
             <mat-radio-button value="false">No</mat-radio-button>
             <mat-radio-button value="all">All</mat-radio-button>
@@ -16,9 +16,9 @@
       </div>
 
       <div class="panel-field">
-        <div class="panel-field-label">Automated</div>
+        <div class="panel-field-label">Membership Automated</div>
         <div class="panel-field-control">
-          <mat-radio-group name="automated" aria-label="Automated">
+          <mat-radio-group name="automated" aria-label="Automated" [formControl]="membershipAutomatedFilterFormControl">
             <mat-radio-button value="true">Yes</mat-radio-button>
             <mat-radio-button value="false">No</mat-radio-button>
             <mat-radio-button value="all">All</mat-radio-button>
@@ -29,7 +29,7 @@
       <div class="panel-field">
         <div class="panel-field-label">Messages visible to non-members</div>
         <div class="panel-field-control">
-          <mat-radio-group name="open" aria-label="Open">
+          <mat-radio-group name="open" aria-label="Open" [formControl]="isOpenFilterFormControl">
             <mat-radio-button value="true">Yes</mat-radio-button>
             <mat-radio-button value="false">No</mat-radio-button>
             <mat-radio-button value="all">All</mat-radio-button>
@@ -43,8 +43,8 @@
       <div class="panel-field">
         <mat-form-field class="input-full-width" floatLabel="never">
           <mat-label>Name or email</mat-label>
-          <input matInput type="text" [formControl]="searchFormControl">
-          <button mat-button *ngIf="searchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchFormControl.setValue('')">
+          <input matInput type="text" [formControl]="groupNameEmailSearchFormControl">
+          <button mat-button *ngIf="groupNameEmailSearchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="groupNameEmailSearchFormControl.setValue('')">
             <fa-icon [icon]="CloseIcon"></fa-icon>
           </button>
         </mat-form-field>
@@ -52,8 +52,17 @@
       <div class="panel-field">
         <mat-form-field class="input-full-width" floatLabel="never">
           <mat-label>Owners and Managers</mat-label>
-          <input matInput type="text" [formControl]="searchFormControl">
-          <button mat-button *ngIf="searchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchFormControl.setValue('')">
+          <input matInput type="text" [formControl]="ownerManagerSearchFormControl">
+          <button mat-button *ngIf="ownerManagerSearchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="ownerManagerSearchFormControl.setValue('')">
+            <fa-icon [icon]="CloseIcon"></fa-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="panel-field">
+        <mat-form-field class="input-full-width" floatLabel="never">
+          <mat-label>Any Field</mat-label>
+          <input matInput type="text" [formControl]="anyFieldSearchFormControl">
+          <button mat-button *ngIf="anyFieldSearchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="anyFieldSearchFormControl.setValue('')">
             <fa-icon [icon]="CloseIcon"></fa-icon>
           </button>
         </mat-form-field>
@@ -64,7 +73,7 @@
       <div class="panel-field">
         <div class="panel-field-label">Staff Owned</div>
         <div class="panel-field-control">
-          <mat-radio-group name="staffOwned" aria-label="Staff owned">
+          <mat-radio-group name="staffOwned" aria-label="Staff owned" [formControl]="staffOwnedFilterFormControl">
             <mat-radio-button value="true">Yes</mat-radio-button>
             <mat-radio-button value="false">No</mat-radio-button>
             <mat-radio-button value="all">All</mat-radio-button>
@@ -75,7 +84,7 @@
       <div class="panel-field">
         <div class="panel-field-label">Student Owned</div>
         <div class="panel-field-control">
-          <mat-radio-group name="studentOwned" aria-label="Automated?">
+          <mat-radio-group name="studentOwned" aria-label="Student owned" [formControl]="studentOwnedFilterFormControl">
             <mat-radio-button value="true">Yes</mat-radio-button>
             <mat-radio-button value="false">No</mat-radio-button>
             <mat-radio-button value="all">All</mat-radio-button>
@@ -86,7 +95,7 @@
       <div class="panel-field">
         <div class="panel-field-label">Staff Managed</div>
         <div class="panel-field-control">
-          <mat-radio-group name="staffManaged" aria-label="Automated?">
+          <mat-radio-group name="staffManaged" aria-label="Staff managed" [formControl]="staffManagedFilterFormControl">
             <mat-radio-button value="true">Yes</mat-radio-button>
             <mat-radio-button value="false">No</mat-radio-button>
             <mat-radio-button value="all">All</mat-radio-button>
@@ -97,7 +106,7 @@
       <div class="panel-field">
         <div class="panel-field-label">Student Managed</div>
         <div class="panel-field-control">
-          <mat-radio-group name="studentManaged" aria-label="Automated?">
+          <mat-radio-group name="studentManaged" aria-label="Student Managed" [formControl]="studentManagedFilterFormControl">
             <mat-radio-button value="true">Yes</mat-radio-button>
             <mat-radio-button value="false">No</mat-radio-button>
             <mat-radio-button value="all">All</mat-radio-button>
@@ -108,7 +117,7 @@
       <div class="panel-field">
         <div class="panel-field-label">Staff Membership</div>
         <div class="panel-field-control">
-          <mat-radio-group name="staffMembership" aria-label="Automated?">
+          <mat-radio-group name="staffMembership" aria-label="Staff membership" [formControl]="staffMembershipFilterFormControl">
             <mat-radio-button value="true">Yes</mat-radio-button>
             <mat-radio-button value="false">No</mat-radio-button>
             <mat-radio-button value="all">All</mat-radio-button>
@@ -119,7 +128,7 @@
       <div class="panel-field">
         <div class="panel-field-label">Student Membership</div>
         <div class="panel-field-control">
-          <mat-radio-group name="studentMembership" aria-label="Automated?">
+          <mat-radio-group name="studentMembership" aria-label="Student Membership" [formControl]="studentMembershipFilterFormControl">
             <mat-radio-button value="true">Yes</mat-radio-button>
             <mat-radio-button value="false">No</mat-radio-button>
             <mat-radio-button value="all">All</mat-radio-button>
@@ -199,6 +208,30 @@
             <fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
           </ng-template>
         </td>
+      </ng-container>
+
+      <!-- createdAt Column -->
+      <ng-container cdkColumnDef="createdAt">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Created
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.searchID)"> {{group.created_at}} </td>
+      </ng-container>
+
+      <!-- lastActiveAt Column -->
+      <ng-container cdkColumnDef="lastActiveAt">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Last Active
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.searchID)"> {{group.lastActiveAt}} </td>
+      </ng-container>
+
+      <!-- directMembersCount -->
+      <ng-container cdkColumnDef="directMembersCount">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Members
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let group" (click)="selectGroup(group.searchID)"> {{group.directMembersCount}} </td>
       </ng-container>
 
       <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
