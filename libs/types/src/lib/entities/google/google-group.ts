@@ -4,6 +4,12 @@ export interface GoogleGroup {
     id?: string;
     searchID?: string;
 
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
+    deleted?: boolean;
+    lastActiveAt?: string;
+
     business_owner?: string;
     businessOwner?: string;
 
@@ -31,6 +37,8 @@ export interface GoogleGroup {
 
     staffMembership?: boolean;
     studentMembership?: boolean;
+
+    directMembersCount?: string;
 
     isOpen?: boolean;
 
