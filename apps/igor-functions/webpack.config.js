@@ -55,7 +55,9 @@ module.exports = (config, context) => {
         resolve: {
             extensions: ['.tsx', '.ts', '.js'],
             plugins: [
-                new TsconfigPathsPlugin()
+                new TsconfigPathsPlugin({
+                    configFile: 'apps/igor-functions/tsconfig.app.json'
+                })
             ]
         },
         /**
