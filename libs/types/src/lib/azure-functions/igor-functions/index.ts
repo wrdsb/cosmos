@@ -19,6 +19,9 @@ export * from './group-memberships-unions-calculate';
 export * from './groups-memberships-students-calculate';
 export * from './groups-memberships-students-calculate-all';
 
+export * from './google-group-create';
 export * from './google-group-materialize';
 export * from './google-group-store';
+
+export * from './google-groups-list';
 export * from './google-groups-materialize-all';
