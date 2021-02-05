@@ -1,0 +1,26 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "asset-assignment-history-materialize-all",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "assetAssignmentHistoryMaterialize",
+      "type": "queue",
+      "queueName": "asset-assignment-history-materialize",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
