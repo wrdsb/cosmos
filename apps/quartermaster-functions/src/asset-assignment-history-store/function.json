@@ -1,0 +1,38 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "device-assignment-history-store",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "recordIn",
+      "type": "cosmosDB",
+      "databaseName": "quartermaster",
+      "collectionName": "device-assignment-histories",
+      "id" : "{payload.assetID}",
+      "partitionKey": "{payload.assetID}",
+      "connectionStringSetting": "wrdsb-quartermaster_CosmosDB",
+      "direction": "in"
+    },
+    {
+      "name": "recordOut",
+      "type": "cosmosDB",
+      "databaseName": "quartermaster",
+      "collectionName": "device-assignment-histories",
+      "createIfNotExists": false,
+      "connectionStringSetting": "wrdsb-quartermaster_CosmosDB",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
