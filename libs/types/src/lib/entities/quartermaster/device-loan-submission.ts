@@ -26,4 +26,8 @@ export interface DeviceLoanSubmission {
     peripheralsProvided?: string;
     timestamp?: string;
     notes?: string;
+
+    wasReturned?: boolean;
+    returnedAt?: string;
+    returnedBy?: string;
 }

@@ -1,12 +1,7 @@
-export interface Device {
-    created_at?: string;
-    updated_at?: string;
-    deleted_at?: string;
-    deleted?: boolean;
- 
-    id?: string;
+import { Asset } from "./asset";
+
+export interface Device extends Asset {
     assetID?: string;
-    changeDetectionHash?: string;
  
     status?: string;
 
