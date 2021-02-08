@@ -45,7 +45,7 @@ const viewATSAssetClassExtractAssetClasses: AzureFunction = async function (cont
     context.bindings.recordsNowObject = JSON.stringify(recordsObject);
 
     const quartermaster_ats_asset_classes_reconcile_job = {
-        "job_type": "Quartermaster.ATS.AssetClasses.Reconcile"
+        "jobType": "Quartermaster.ATS.AssetClasses.Reconcile"
     };
     context.bindings.triggerJobs = [JSON.stringify(quartermaster_ats_asset_classes_reconcile_job)];
 
