@@ -280,22 +280,12 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
 
     function makeHash(assetAssignment: AssetAssignment): string {
         const objectForHash = JSON.stringify({
-            serialNumber:           assetAssignment.serialNumber,
-            submittedAssetID:       assetAssignment.submittedAssetID,
-            correctedAssetID:       assetAssignment.correctedAssetID,
-            assetType:              assetAssignment.assetType,
-            locationName:           assetAssignment.locationName,
-            assignedBy:             assetAssignment.assignedBy,
-            assignedToName:         assetAssignment.assignedToName,
-            assignedToNumber:       assetAssignment.assignedToNumber,
-            assignedToEmail:        assetAssignment.assignedToEmail,
-            assignedToRole:         assetAssignment.assignedToRole,
-            receivedBy:             assetAssignment.receivedBy,
-            isSEAAsset:             assetAssignment.isSEAAsset,
-            addedToSchoolInventory: assetAssignment.addedToSchoolInventory,
-            peripheralsProvided:    assetAssignment.peripheralsProvided,
-            timestamp:              assetAssignment.timestamp,
-            notes:                  assetAssignment.notes
+            assetID:                  assetAssignment.assetID,
+            assignedBy:               assetAssignment.assignedBy,
+            assignedTo:               assetAssignment.assignedTo,
+            receivedBy:               assetAssignment.receivedBy,
+            untrackedAssestsIncluded: assetAssignment.untrackedAssestsIncluded,
+            notes:                    assetAssignment.notes
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;
