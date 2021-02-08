@@ -26,17 +26,12 @@ const assetAssignmentHistoryStore: AzureFunction = async function (context: Cont
         deleted: false,
         id: '',
         assetID: '',
-        assetType: '',
-        locationName: '',
-        loans: {},
-        returns: {},
-        schoolInventoryRecord: {},
-        hasInventoryRecord: false,
-        wasLoaned: false,
-        wasReturned: false,
-        totalLoans: 0,
-        totalReturns: 0,
-        isLoaned: false
+        assetAssignments: [],
+        wasAssigned: false,
+        wasUnassigned: false,
+        totalAssignments: 0,
+        totalUnassignments: 0,
+        isAssigned: false
     } as AssetAssignmentHistory;
 
     let result;
@@ -292,18 +287,13 @@ const assetAssignmentHistoryStore: AzureFunction = async function (context: Cont
 
     function makeHash(assetAssignmentHistory: AssetAssignmentHistory): string {
         const objectForHash = JSON.stringify({
-            assetID:                assetAssignmentHistory.assetID,
-            assetType:             assetAssignmentHistory.assetType,
-            locationName:           assetAssignmentHistory.locationName,
-            loans:                  assetAssignmentHistory.loans,
-            returns:                assetAssignmentHistory.returns,
-            schoolInventoryRecord:  assetAssignmentHistory.schoolInventoryRecord,
-            hasInventoryRecord:     assetAssignmentHistory.hasInventoryRecord,
-            wasLoaned:              assetAssignmentHistory.wasLoaned,
-            wasReturned:            assetAssignmentHistory.wasReturned,
-            totalLoans:             assetAssignmentHistory.totalLoans,
-            totalReturns:           assetAssignmentHistory.totalReturns,
-            isLoaned:               assetAssignmentHistory.isLoaned
+            assetID:            assetAssignmentHistory.assetID,
+            assetAssignments:   assetAssignmentHistory.assetAssignments,
+            wasAssigned:        assetAssignmentHistory.wasAssigned,
+            wasUnassigned:      assetAssignmentHistory.wasUnassigned,
+            totalAssignments:   assetAssignmentHistory.totalAssignments,
+            totalUnassignments: assetAssignmentHistory.totalUnassignments,
+            isAssigned:         assetAssignmentHistory.isAssigned
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash
