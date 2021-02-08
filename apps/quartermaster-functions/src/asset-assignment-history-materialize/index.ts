@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { CosmosClient } from "@azure/cosmos";
-import { FunctionInvocation, AssetAssignmentHistoryMaterializeFunctionRequest, AssetAssignmentHistoryMaterializeFunctionRequestPayload, AssetAssignmentHistory } from "@cosmos/types";
+import { FunctionInvocation, AssetAssignmentHistoryMaterializeFunctionRequest, AssetAssignmentHistoryMaterializeFunctionRequestPayload, AssetAssignmentHistory, AssetAssignment } from "@cosmos/types";
 
 const assetAssignmentHistoryMaterialize: AzureFunction = async function (context: Context, triggerMessage: AssetAssignmentHistoryMaterializeFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -16,79 +16,33 @@ const assetAssignmentHistoryMaterialize: AzureFunction = async function (context
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainerLoans = 'asset-loan-submissions';
-    const cosmosContainerReturns = 'asset-return-submissions';
-    const cosmosContainerSchoolInventory = 'school-inventory';
+    const cosmosContainer = 'asset-loan-submissions';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     const triggerObject = triggerMessage as AssetAssignmentHistoryMaterializeFunctionRequest;
     const payload = triggerObject.payload as AssetAssignmentHistoryMaterializeFunctionRequestPayload;
     const assetAssetID = payload.assetID;
 
-    let assetRecord = {
+    let assignmentHistory = {
         id: assetAssetID,
         assetID: assetAssetID,
-        wasLoaned: false,
-        wasReturned: false,
-        totalLoans: 0,
-        totalReturns: 0,
-        isLoaned: false,
-        schoolInventoryRecord: {},
-        hasInventoryRecord: false,
-        loans: {},
-        returns: {}
+        wasAssigned: false,
+        wasUnassigned: false,
+        totalAssignments: 0,
+        totalUnassignments: 0,
+        isAssigned: false
     } as AssetAssignmentHistory;
 
-    context.log('Materialize Asset Loans for Asset ID ' + assetAssetID);
+    context.log('Materialize Assignment History for Asset ID ' + assetAssetID);
     
-    // fetch current loan submission records from Cosmos
-    assetRecord.loans = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainerLoans).catch(err => {
-        context.log(err);
-    });
-
-    // fetch current return submission records from Cosmos
-    assetRecord.returns = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainerReturns).catch(err => {
-        context.log(err);
-    });
-
-    // fetch current school inventory records from Cosmos
-    assetRecord.schoolInventoryRecord = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainerSchoolInventory).catch(err => {
-        context.log(err);
-    });
-
-    const loanIDs = Object.getOwnPropertyNames(assetRecord.loans);
-    const returnIDs = Object.getOwnPropertyNames(assetRecord.returns);
-    const inventoryID = Object.getOwnPropertyNames(assetRecord.schoolInventoryRecord)[0] ? Object.getOwnPropertyNames(assetRecord.schoolInventoryRecord)[0] : false;
-
-    if (loanIDs.length > 0) {
-        assetRecord.wasLoaned = true;
-        assetRecord.totalLoans = loanIDs.length;
-        assetRecord.assetType = assetRecord.loans[loanIDs[0]].assetType;
-        assetRecord.locationName = assetRecord.loans[loanIDs[0]].locationName;
-    } else if (returnIDs.length > 0) {
-        assetRecord.wasReturned = true;
-        assetRecord.totalReturns = returnIDs.length;
-        assetRecord.assetType = assetRecord.returns[returnIDs[0]].assetType;
-        assetRecord.locationName = assetRecord.returns[returnIDs[0]].locationName;
-    }
-
-    if (inventoryID) {
-        assetRecord.hasInventoryRecord = true;
-        if (assetRecord.wasLoaned && assetRecord.schoolInventoryRecord[inventoryID].returned === "FALSE") {
-            assetRecord.isLoaned = true;
-        }
-    } else {
-        if (assetRecord.totalLoans > assetRecord.totalReturns) {
-            assetRecord.isLoaned = true;
-        }
-    }
+    assignmentHistory.assetAssignments = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer);
 
     context.bindings.assetAssignmentHistoryStore = {
         operation: 'patch',
-        payload: assetRecord
+        payload: assignmentHistory
     };
 
-    const logPayload = assetRecord;
+    const logPayload = assignmentHistory;
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
@@ -96,23 +50,13 @@ const assetAssignmentHistoryMaterialize: AzureFunction = async function (context
     context.done(null, functionInvocation);
 
 
-    async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer) {
+    async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer): Promise<AssetAssignment[]> {
         context.log(`get ${cosmosContainer} records: {assetID: ${assetAssetID}}`);
 
-        let cosmosItems = {};
+        let cosmosItems = [];
         let querySpec = {
-            query: "SELECT c.id FROM c"
+            query: `SELECT * FROM c WHERE c.correctedAssetID = '${assetAssetID}'`
         };
-
-        if (cosmosContainer === 'school-inventory') {
-            querySpec = {
-                query: `SELECT * FROM c WHERE c.assetID = '${assetAssetID}'`
-            }
-        } else {
-            querySpec = {
-                query: `SELECT * FROM c WHERE c.correctedAssetID = '${assetAssetID}'`
-            }
-        }
 
         const queryOptions  = {
             maxItemCount: -1,
@@ -124,7 +68,21 @@ const assetAssignmentHistoryMaterialize: AzureFunction = async function (context
 
             for (const item of resources) {
                 if (!item.deleted) {
-                    cosmosItems[item.id] = item;
+                    let assetAssignment = {
+                        created_at: item.created_at,
+                        updated_at: item.updated_at,
+                        deleted_at: item.deleted_at,
+                        deleted: item.deleted,
+                        id: item.id,
+                        changeDetectionHash: item.changeDetectionHash,
+                        assetID: item.assetID,
+                        assignedBy: item.assignedBy,
+                        assignedTo: item.assignedTo,
+                        receivedBy: item.receivedBy,
+                        untrackedAssestsIncluded: item.untrackedAssestsIncluded,
+                        notes: item.notes
+                    } as AssetAssignment;
+                    cosmosItems.push(assetAssignment);
                 }
             }
     
