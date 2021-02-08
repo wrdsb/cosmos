@@ -1,7 +1,12 @@
-export * from './device-loan-store';
 export * from './device-loan-submission-store';
 
-export * from './device-loan-materialize';
+export * from './asset-assignment-store';
+
+export * from './asset-assignment-history-store';
+export * from './asset-assignment-history-materialize';
+export * from './asset-assignment-history-materialize-all';
+
+export * from './asset-entitlement-store';
 
 export * from './ats-asset-store';
 export * from './ats-asset-class-store';
