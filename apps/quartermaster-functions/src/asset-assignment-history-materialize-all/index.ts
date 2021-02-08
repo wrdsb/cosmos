@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { CosmosClient } from "@azure/cosmos";
-import { FunctionInvocation, AssetAssignmentHistoryMaterializeFunctionRequest } from "@cosmos/types";
+import { FunctionInvocation, AssetAssignmentHistoryMaterializeAllFunctionRequest, AssetAssignmentHistoryMaterializeAllFunctionRequestPayload, AssetAssignmentHistoryMaterializeFunctionRequest } from "@cosmos/types";
 
 const assetAssignmentHistoryMaterializeAll: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
