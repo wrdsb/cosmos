@@ -1,12 +1,28 @@
 import { AzureFunction, Context } from "@azure/functions"
+import { DeviceLoanSubmissionStoreFunctionRequest } from "@cosmos/types";
 
 const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
-    const jobType = triggerMessage.job_type;
+    const jobType = triggerMessage.jobType;
+    const operation = triggerMessage.operation;
+    const payload = triggerMessage.payload;
 
     if (jobType) {
         switch (jobType) {
+            case "Quartermaster.DeviceLoanSubmission.Store":
+                context.bindings.deviceLoanSubmissionStore = {
+                    operation: operation,
+                    payload: payload
+                } as DeviceLoanSubmissionStoreFunctionRequest;
+
+                context.bindings.invocationPostProcessor = JSON.stringify({
+                    status: 202,
+                    body: "Accepted. Queued Quartermaster.DeviceLoanSubmission.Store job."
+                });
+
+                break;
+
             case "Quartermaster.View.ATSAsset.Process":
                 context.bindings.viewATSAssetProcessTrigger = createViewATSAssetProcessJob();
                 
