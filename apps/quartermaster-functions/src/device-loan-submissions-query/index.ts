@@ -17,7 +17,7 @@ const deviceLoanSubmissionsQuery: AzureFunction = async function (context: Conte
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainer = 'classes';
+    const cosmosContainer = 'device-loan-submissions';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     const request = req;
