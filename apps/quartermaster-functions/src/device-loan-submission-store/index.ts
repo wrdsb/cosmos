@@ -46,7 +46,11 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         addedToSchoolInventory: false,
         peripheralsProvided: '',
         timestamp: '',
-        notes: ''
+        notes: '',
+
+        wasReturned: false,
+        returnedAt: '',
+        returnedBy: ''
     } as DeviceLoanSubmission;
 
     let result;
@@ -75,16 +79,6 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
 
     if (result.changedDetected) {
         context.bindings.recordOut = result.newRecord;
-
-        context.bindings.deviceLoanStore = {
-            operation: 'patch',
-            payload: {
-                assetID: result.newRecord.correctedAssetID,
-                loans: [
-                    result.newRecord
-                ]
-            }
-        }
 
         const logPayload = result.event;
         functionInvocation.logPayload = logPayload;
@@ -306,7 +300,10 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             addedToSchoolInventory: deviceLoanSubmission.addedToSchoolInventory,
             peripheralsProvided:    deviceLoanSubmission.peripheralsProvided,
             timestamp:              deviceLoanSubmission.timestamp,
-            notes:                  deviceLoanSubmission.notes
+            notes:                  deviceLoanSubmission.notes,
+            wasReturned:            deviceLoanSubmission.wasReturned,
+            returnedAt:             deviceLoanSubmission.returnedAt,
+            returnedBy:             deviceLoanSubmission.returnedBy
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;
