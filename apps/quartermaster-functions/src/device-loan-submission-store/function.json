@@ -27,13 +27,6 @@
       "direction": "out"
     },
     {
-      "name": "deviceLoanStore",
-      "type": "queue",
-      "queueName": "device-loan-store",
-      "connection": "wrdsbquartermaster_STORAGE",
-      "direction": "out"
-    },
-    {
       "name": "invocationPostProcessor",
       "type": "queue",
       "queueName": "invocation-post-processor",
