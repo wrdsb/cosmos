@@ -26,16 +26,7 @@ const assetEntitlementStore: AzureFunction = async function (context: Context, t
         deleted: false,
 
         id: '',
-        changeDetectionHash: '',
-
-        assetID: '',
-
-        assignedBy: '',
-        assignedTo: '',
-        receivedBy: '',
-
-        untrackedAssestsIncluded: '',
-        notes: ''
+        changeDetectionHash: ''
     } as AssetEntitlement;
 
     let result;
@@ -280,22 +271,7 @@ const assetEntitlementStore: AzureFunction = async function (context: Context, t
 
     function makeHash(assetEntitlement: AssetEntitlement): string {
         const objectForHash = JSON.stringify({
-            serialNumber:           assetEntitlement.serialNumber,
-            submittedAssetID:       assetEntitlement.submittedAssetID,
-            correctedAssetID:       assetEntitlement.correctedAssetID,
-            assetType:              assetEntitlement.assetType,
-            locationName:           assetEntitlement.locationName,
-            assignedBy:             assetEntitlement.assignedBy,
-            assignedToName:         assetEntitlement.assignedToName,
-            assignedToNumber:       assetEntitlement.assignedToNumber,
-            assignedToEmail:        assetEntitlement.assignedToEmail,
-            assignedToRole:         assetEntitlement.assignedToRole,
-            receivedBy:             assetEntitlement.receivedBy,
-            isSEAAsset:             assetEntitlement.isSEAAsset,
-            addedToSchoolInventory: assetEntitlement.addedToSchoolInventory,
-            peripheralsProvided:    assetEntitlement.peripheralsProvided,
-            timestamp:              assetEntitlement.timestamp,
-            notes:                  assetEntitlement.notes
+            //serialNumber:           assetEntitlement.serialNumber,
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;
