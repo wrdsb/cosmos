@@ -33,7 +33,10 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         submittedAssetID: '',
         correctedAssetID: '',
         deviceType: '',
+
         locationName: '',
+        locationCode: '',
+        schoolCode: '',
 
         loanedBy: '',
         loanedToName: '',
@@ -106,8 +109,9 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
+            newRecord.schoolCode = getSchoolCode(newRecord.locationName);
             newRecord.changeDetectionHash = makeHash(newRecord);
-
+            
             event = craftDeleteEvent(oldRecord, newRecord);
 
         } else {
@@ -117,6 +121,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
+            newRecord.schoolCode = getSchoolCode(newRecord.locationName);
             newRecord.changeDetectionHash = makeHash(newRecord);
 
             event = craftDeleteEvent(oldRecord, newRecord);
@@ -138,6 +143,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             newRecord.deleted_at = '';
             newRecord.deleted = false;
 
+            newRecord.schoolCode = getSchoolCode(newRecord.locationName);
             newRecord.changeDetectionHash = makeHash(newRecord);
 
             changedDetected = true;
@@ -152,6 +158,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             newRecord.deleted_at = '';
             newRecord.deleted = false;
 
+            newRecord.schoolCode = getSchoolCode(newRecord.locationName);
             newRecord.changeDetectionHash = makeHash(newRecord);
 
             changedDetected = (oldRecord.changeDetectionHash === newRecord.changeDetectionHash) ? false : true;
@@ -180,6 +187,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             newRecord.deleted_at = '';
             newRecord.deleted = false;
 
+            newRecord.schoolCode = getSchoolCode(newRecord.locationName);
             newRecord.changeDetectionHash = makeHash(newRecord);
 
             changedDetected = true;
@@ -194,6 +202,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             newRecord.deleted_at = '';
             newRecord.deleted = false;
 
+            newRecord.schoolCode = getSchoolCode(newRecord.locationName);
             newRecord.changeDetectionHash = makeHash(newRecord);
 
             changedDetected = (oldRecord.changeDetectionHash === newRecord.changeDetectionHash) ? false : true;
@@ -290,6 +299,8 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             correctedAssetID:       deviceLoanSubmission.correctedAssetID,
             deviceType:             deviceLoanSubmission.deviceType,
             locationName:           deviceLoanSubmission.locationName,
+            locationCode:           deviceLoanSubmission.locationCode,
+            schoolCode:             deviceLoanSubmission.schoolCode,
             loanedBy:               deviceLoanSubmission.loanedBy,
             loanedToName:           deviceLoanSubmission.loanedToName,
             loanedToNumber:         deviceLoanSubmission.loanedToNumber,
@@ -307,6 +318,167 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;
+    }
+
+    function getSchoolCode(fullName: string): string {
+        let codes = {
+            '151 Weber': '',
+            '256 Hespeler': '',
+            'Abraham Erb': 'ABE',
+            'Alpine': 'ALP',
+            'AR Kaufman': 'ARK',
+            'BCI': 'BCI',
+            'Avenue Road': 'AVE',
+            'Blair OEC': 'BOC',
+            'Ayr': 'AYR',
+            'Baden': 'BDN',
+            'Breslau': 'BRE',
+            'Blairview': '',
+            'Blair Road': 'BLR',
+            'Bridgeport North': '',
+            'Brigadoon': 'BGD',
+            'Bridgeport  ': 'BRP',
+            'BridgesN(WCI)': '',
+            'BridgesS(PHS)': '',
+            'CAMA': '',
+            'Camp Heidelberg': 'CAH',
+            'Cedar Creek': 'CDC',
+            'Cedarbrae': 'CED',
+            'Centennial (C)': 'CNC',
+            'Centennial (W)': 'CNW',
+            'Central': 'CTR',
+            'Chalmers Street': 'CHA',
+            'CHCI': 'CHC',
+            'Chicopee Hills': 'CHI',
+            'Clemens Mill': 'CLE',
+            'Communications': '',
+            'Conestogo': 'CON',
+            'Coronation': 'COR',
+            'Country Hills': 'COH',
+            'Courtland Ave': 'CRL',
+            'Crestview': 'CRE',
+            'Doon': 'DOO',
+            'Driftwood Park': 'DPK',
+            'Elizabeth Ziegler': 'ELZ',
+            'ECI': 'ECI',
+            'Edna Staebler': 'EST',
+            'EDSS': 'EDS',
+            'Education Centre': '',
+            'Elgin Street': 'ELG',
+            'Empire': 'EMP',
+            'Erbsville': '',
+            'Facility Services': '',
+            'FHCI': 'FHC',
+            'Finance': '',
+            'Floradale': 'FLO',
+            'Forest Glen': 'FGL',
+            'Forest Hill': 'FHL',
+            'Franklin': 'FRA',
+            'Glencairn': 'GCP',
+            'GPSS': 'GPS',
+            'Grand View (C)': 'GVC',
+            'Grand View (NH)': 'GVN',
+            'Grandview Hills': '',
+            'GRCI': 'GRC',
+            'GROH': 'GRO',
+            'GCI': 'GCI',
+            'Hatts Off': '',
+            'Hespeler': 'HES',
+            'HHSS': 'HRH',
+            'Highland': 'HIG',
+            'Hillcrest': 'HIL',
+            'Howard Robertson': 'HOW',
+            'Human Resources': '',
+            'ITS': '',
+            'JW Gerth': 'JWG',
+            'Janet Metcalfe': 'JME',
+            'Jean Steckle': 'JST',
+            'JF Carmichael': 'JFC',
+            'JHSS': 'JHS',
+            'John Darling': 'JDP',
+            'John Mahood': 'JMA',
+            'KCI & VS': 'KCI',
+            'Keatsway': 'KEA',
+            'King Edward': 'KED',
+            'Lackner Woods': 'LKW',
+            'Laurel OEC': '',
+            'Laurelwood': 'LRW',
+            'Laurentian': 'LAU',
+            'Lester B Pearson': 'LBP',
+            'Lexington': 'LEX',
+            'Lincoln Heights': 'LNH',
+            'Linwood': 'LIN',
+            'Macgregor': 'MCG',
+            'Mackenzie King': 'MCK',
+            'Manchester': 'MAN',
+            'Margaret Ave': 'MRG',
+            'Mary Johnston': 'MJP',
+            'Meadowlane': 'MEA',
+            'Millen Woods': 'MIL',
+            'Moffat Creek': 'MOF',
+            'New Dundee': 'NDD',
+            'N. A. MacEachern': 'NAM',
+            'Northlake Woods': 'NLW',
+            'Park Manor': 'PKM',
+            'Parkway': 'PKW',
+            'PHS': 'PHS',
+            'Pinegrove': '',
+            'Pioneer Park': 'PIO',
+            'Preston': 'PRE',
+            'Learning Services': '',
+            'Prueter': 'PRU',
+            'Queen Elizabeth': 'QEL',
+            'Queensmount': 'QSM',
+            'Ray of Hope - YJS': '',
+            'Riverside': 'RIV',
+            'Rockway': 'ROC',
+            'Rosemount': 'RMT',
+            'Ryerson': 'RYE',
+            'Health & Wellness': '',
+            'Saginaw': 'SAG',
+            'Sandhills': 'SHL',
+            'Sandowne': 'SND',
+            'Security': '',
+            'Sheppard': 'SHE',
+            'Silverheights': 'SIL',
+            'Sir Adam Beck': 'SAB',
+            'SJAMSS': 'JAM',
+            'Smithson': 'SMI',
+            'St Andrews': 'STA',
+            'St Jacobs': 'STJ',
+            'Southridge': 'SRG',
+            'Special Education': '',
+            'SSS': 'SSS',
+            'St. Andrews': '',
+            'St. Jacobs': 'STJ',
+            'St. Monica': '',
+            'Stanley Park': 'STN',
+            'Stewart Ave': 'STW',
+            'STSWR': '',
+            'Suddaby': 'SUD',
+            'Sunbeam Centre': '',
+            'Sunnyside': 'SUN',
+            'Tait Street': 'TAI',
+            'Trillium': 'TRI',
+            'Vista Hills': 'VIS',
+            'Winston Churchill': 'WCP',
+            'WCI': 'WCI',
+            'Wellesley': 'WEL',
+            'Westheights': 'WSH',
+            'Westmount': 'WSM',
+            'Westvale': 'WSV',
+            'Williamsburg': 'WLM',
+            'Wilson Ave': 'WLS',
+            'William G. Davis': 'WGD',
+            'WODSS': 'WOD',
+            'Woodland Park': 'WPK',
+            'Wrigley OEC': '',
+            'WT Townshend': 'WTT',
+        };
+        let code = codes[fullName];
+        code = (code.length > 0) ? code : '';
+
+        return code;
     }
 };
 
