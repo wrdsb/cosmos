@@ -1,7 +1,7 @@
 export interface DeviceLoanSubmission {
-    created_at?: string;
-    updated_at?: string;
-    deleted_at?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    deletedAt?: string;
     deleted?: boolean;
 
     id?: string;
@@ -12,7 +12,10 @@ export interface DeviceLoanSubmission {
     submittedAssetID?: string;
     correctedAssetID?: string;
     deviceType?: string;
+
     locationName?: string;
+    locationCode?: string;
+    schoolCode?: string;
 
     loanedBy?: string;
     loanedToName?: string;
