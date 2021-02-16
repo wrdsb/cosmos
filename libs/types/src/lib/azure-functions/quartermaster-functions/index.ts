@@ -1,4 +1,5 @@
 export * from './device-loan-submission-store';
+export * from './device-loan-submission-command';
 
 export * from './asset-assignment-store';
 
