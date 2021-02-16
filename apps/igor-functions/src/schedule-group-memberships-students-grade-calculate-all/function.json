@@ -1,0 +1,17 @@
+{
+  "bindings": [{
+      "name": "timer",
+      "type": "timerTrigger",
+      "schedule": "0 5 * * * *",
+      "direction": "in"
+    },
+    {
+      "name": "outputQueue",
+      "type": "queue",
+      "queueName": "group-memberships-students-grade-calculate-all",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
