@@ -2,7 +2,7 @@
   "bindings": [{
       "name": "triggerMessage",
       "type": "queueTrigger",
-      "queueName": "group-memberships-students-calculate-all",
+      "queueName": "group-memberships-students-abc-calculate-all",
       "connection": "wrdsbigor3_STORAGE",
       "direction": "in"
     },
@@ -16,21 +16,7 @@
     {
       "name": "outputQueue",
       "type": "queue",
-      "queueName": "group-memberships-students-calculate",
-      "connection": "wrdsbigor3_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "callbackMessage",
-      "type": "queue",
-      "queueName": "callbacks",
-      "connection": "wrdsbigor3_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "flynnEvent",
-      "type": "queue",
-      "queueName": "event-emitter",
+      "queueName": "group-memberships-students-abc-calculate",
       "connection": "wrdsbigor3_STORAGE",
       "direction": "out"
     }
