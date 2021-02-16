@@ -1,0 +1,22 @@
+{
+  "bindings": [
+    {
+      "name": "changedRecords",
+      "type": "cosmosDBTrigger",
+      "databaseName": "quartermaster",
+      "collectionName": "device-loan-submissions",
+      "connectionStringSetting": "wrdsb-quartermaster_CosmosDB",
+      "leaseCollectionName": "device-loan-submission-change-process",
+      "createLeaseCollectionIfNotExists": true,
+      "direction": "in",
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
