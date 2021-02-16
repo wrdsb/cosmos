@@ -3,36 +3,36 @@ import { createLogObject } from "@cosmos/azure-functions-shared";
 import { storeLogBlob } from "@cosmos/azure-functions-shared";
 import { createCallbackMessage } from "@cosmos/azure-functions-shared";
 import { createEvent } from "@cosmos/azure-functions-shared";
-import { GroupMembershipsStudentsCalculateFunctionRequest, GroupMembershipsStudentsCalculateFunctionRequestPayload } from "@cosmos/types";
+import { GoogleGroupsMembershipsStudentsABCCalculateFunctionRequest, GoogleGroupsMembershipsStudentsABCCalculateFunctionRequestPayload } from "@cosmos/types";
 
-const GroupMembershipsStudentsCalculate: AzureFunction = async function (context: Context, triggerMessage: GroupMembershipsStudentsCalculateFunctionRequest): Promise<void> {
+const GroupMembershipsStudentsABCCalculate: AzureFunction = async function (context: Context, triggerMessage: GoogleGroupsMembershipsStudentsABCCalculateFunctionRequest): Promise<void> {
     const functionInvocationID = context.executionContext.invocationId;
     const functionInvocationTime = new Date();
     const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.IGOR.Google.Group.Memberships.Students.Calculate';
+    const functionEventType = 'WRDSB.IGOR.Google.Group.Memberships.StudentsABC.Calculate';
     const functionEventID = `igor-functions-${functionName}-${functionInvocationID}`;
     const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
 
     const logStorageAccount = process.env['storageAccount'];
     const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-group-memberships-students-calculate-logs';
+    const logStorageContainer = 'function-group-memberships-students-abc-calculate-logs';
 
     const eventLabel = '';
     const eventTags = [
         "igor", 
     ];
 
-    const triggerObject = triggerMessage as GroupMembershipsStudentsCalculateFunctionRequest;
-    const payload = triggerObject.payload as GroupMembershipsStudentsCalculateFunctionRequestPayload;
+    const triggerObject = triggerMessage as GoogleGroupsMembershipsStudentsABCCalculateFunctionRequest;
+    const payload = triggerObject.payload as GoogleGroupsMembershipsStudentsABCCalculateFunctionRequestPayload;
 
     context.log(payload);
 
     const requestedSchoolCode = payload.schoolCode.toLowerCase();
     const rows = context.bindings.studentsNow;
 
-    let calculatedMembers = await calculateMembers(rows);
+    const calculatedMembers = await calculateMembers(rows);
 
     context.bindings.outputBlob = calculatedMembers;
 
@@ -43,14 +43,6 @@ const GroupMembershipsStudentsCalculate: AzureFunction = async function (context
         memberCounts: memberCounts
     };
     context.log(logPayload);
-
-    const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    context.log(logBlob);
-
-    const callbackMessage = await createCallbackMessage(logObject, 200);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    context.log(callbackMessage);
 
     const invocationEvent = await createEvent(
         functionInvocationID,
@@ -65,20 +57,19 @@ const GroupMembershipsStudentsCalculate: AzureFunction = async function (context
         eventLabel,
         eventTags
     );
-    context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
-    context.done(null, logBlob);
+    context.done(null, invocationEvent);
 
 
     async function calculateMembers(rows) {
-        let members = {};
+        const members = {};
 
         rows.forEach(function(row) {
-            let email = (row.student_email) ? row.student_email : false;
-            let schoolCode = (row.school_code) ? row.school_code.toLowerCase() : false;
-            let oyap = (row.student_oyap === 'Y') ? true : false;
-            let shsm = (row.student_shsm_sector.length > 1) ? true : false;
+            const email = (row.student_email) ? row.student_email : false;
+            const schoolCode = (row.school_code) ? row.school_code.toLowerCase() : false;
+            const oyap = (row.student_oyap === 'Y') ? true : false;
+            const shsm = (row.student_shsm_sector.length > 1) ? true : false;
 
             if (requestedSchoolCode === 'oyap') {
                 if (email && oyap) {
@@ -116,4 +107,4 @@ const GroupMembershipsStudentsCalculate: AzureFunction = async function (context
     }
 }
 
-export default GroupMembershipsStudentsCalculate;
+export default GroupMembershipsStudentsABCCalculate;

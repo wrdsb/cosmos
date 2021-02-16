@@ -2,7 +2,7 @@
   "bindings": [{
       "name": "triggerMessage",
       "type": "queueTrigger",
-      "queueName": "group-memberships-students-calculate",
+      "queueName": "group-memberships-students-abc-calculate",
       "connection": "wrdsbigor3_STORAGE",
       "direction": "in"
     },
@@ -18,20 +18,6 @@
       "type": "blob",
       "path": "groups-memberships-trillium-now/{payload.schoolCode}-students@wrdsb.ca.json",
       "connection": "wrdsbigor_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "callbackMessage",
-      "type": "queue",
-      "queueName": "callbacks",
-      "connection": "wrdsbigor3_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "flynnEvent",
-      "type": "queue",
-      "queueName": "event-emitter",
-      "connection": "wrdsbigor3_STORAGE",
       "direction": "out"
     }
   ],
