@@ -1,4 +1,4 @@
-export * from './conceptual';
+export * from './cosmos';
 
 export * from './aad';
 export * from './codex';
