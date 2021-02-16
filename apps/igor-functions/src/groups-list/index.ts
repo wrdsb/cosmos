@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
-const { google } = require('googleapis');
+import { admin_directory_v1 } from 'googleapis';
+import { FunctionInvocation, GoogleGroupsListFunctionRequest, GoogleGroupsListFunctionRequestPayload, GoogleGroup } from "@cosmos/types";
 
 const groupsList: AzureFunction = async function (context: Context, triggerMessage): Promise<void> {
     const functionInvocation = {
@@ -10,14 +11,19 @@ const groupsList: AzureFunction = async function (context: Context, triggerMessa
         functionDataType: 'Group',
         functionDataOperation: 'List',
         eventLabel: ''
-    };
+    } as FunctionInvocation;
 
-    const userAddress = 'igor@googleapps.wrdsb.ca';
+    const triggerObject = triggerMessage as GoogleGroupsListFunctionRequest;
+    const payload = triggerObject.payload as GoogleGroupsListFunctionRequestPayload;
+
+    const { google } = require('googleapis');
+
     const clientEmail = process.env.client_email;
+    const privateKey = process.env.private_key;
+    const userAddress = 'igor@wrdsb.ca';
 
     // *sigh* because Azure Functions application settings can't handle newlines, let's add them ourselves:
-    let privateKey = process.env.private_key;
-    privateKey = privateKey.split('\\n').join("\n");
+    const apiKey = privateKey.split('\\n').join("\n");
 
     const scopes = [
         'https://www.googleapis.com/auth/admin.directory.group',
@@ -29,107 +35,83 @@ const groupsList: AzureFunction = async function (context: Context, triggerMessa
     let groupsAllArray = [];
 
     // prep our credentials for G Suite APIs
-    const jwtClient = new google.auth.JWT(
-        clientEmail,
-        null,
-        privateKey,
-        scopes,
-        userAddress
-    );
-
-    const params = {
-        auth: jwtClient,
-        alt: "json",
-        customer: process.env.CUSTOMER_ID,
-        maxResults: 200
-    };
-
-    jwtClient.authorize(function(err, tokens) {
-        if (err) {
-            context.res = {
-                status: 500,
-                body: err
-            };
-            context.done(err);
-            return;
-        }
-        getGroups(params, function() {
-            const message = 'Final results: Got ' + groupsAllArray.length + ' groups.';
-            const eventType = "ca.wrdsb.igor.google_group.list";
-            const flynnEvent = {
-                eventID: `${eventType}-${context.executionContext.invocationId}`,
-                eventType: eventType,
-                source: `/google/groups`,
-                schemaURL: "https://mcp.wrdsb.io/schemas/igor/group_list-event.json",
-                extensions: { 
-                    label: "IGOR lists Google Groups",
-                    tags: [
-                        "igor",
-                        "google_group",
-                        "google_groups",
-                        "list"
-                    ]
-                },
-                data: {
-                    function_name: context.executionContext.functionName,
-                    invocation_id: context.executionContext.invocationId,
-                    payload: {
-                        blobs: [
-                            {
-                                name: "all-groups-array",
-                                storage_account: "wrdsb-igor3_STORAGE",
-                                path: "groups-lists/all-groups-array.json"
-                            },
-                            {
-                                name: "all-groups-object",
-                                storage_account: "wrdsb-igor3_STORAGE",
-                                path: "groups-lists/all-groups-object.json"
-                            }
-                        ]
-                    },
-                    message: message
-                },
-                eventTime: functionInvocation.functionInvocationTimestamp,
-                eventTypeVersion: "0.1",
-                cloudEventsVersion: "0.1",
-                contentType: "application/json"
-            };
-
-            context.bindings.allGroupsArrayBlob = JSON.stringify(groupsAllArray);
-            context.bindings.allGroupsObjectBlob = JSON.stringify(groupsAllObject);
-
-            context.log(message);
-            context.log(flynnEvent);
-            context.done(null, message);
-        });
+    const auth = new google.auth.JWT({
+        email: clientEmail,
+        key: apiKey,
+        scopes: scopes,
+        subject: userAddress
     });
 
-    function getGroups(params, callback) {
-        google.groups.list(params, function(err, result) {
-            if (err) {
-                context.res = {
-                    status: 500,
-                    body: err
-                };
-                context.done(err);
-                return;
-            }
+    // obtain the directory client
+    const directory = await google.admin({
+        version: 'directory_v1',
+        auth
+    });
+    
+    const params = {
+        alt: "json",
 
-            context.log('Got ' + result.groups.length + ' groups.');
+        // The unique ID for the customer's G Suite account. 
+        // In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain.
+        // As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`.
+        // The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)
+        customer: process.env.CUSTOMER_ID,
 
-            result.groups.forEach(function(group) {
-                groupsAllObject[group.email] = group;
-                groupsAllArray.push(group);
-            });
+        // Maximum number of results to return. Max allowed value is 200.
+        maxResults: 200,
 
-            if (result.nextPageToken) {
-                params.pageToken = result.nextPageToken;
-                getGroups(params, callback);
-            } else {
-                callback();
-            }
+        // The domain name. Use this field to get fields from only one domain.
+        // To return all domains for a customer account, use the `customer` query parameter instead.
+        // domain: "placeholder-value",
 
+        // Column to use for sorting results
+        // orderBy: "placeholder-value",
+
+        // Whether to return results in ascending or descending order. Only of use when orderBy is also used
+        // sortOrder: "placeholder-value",
+
+        // Token to specify next page in the list
+        // pageToken: "placeholder-value",
+
+        // Query string search. Should be of the form &quot;&quot;.
+        // Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-groups
+        // query: "placeholder-value",
+
+        // Email or immutable ID of the user if only those groups are to be listed, the given user is a member of.
+        // If it"s an ID, it should match with the ID of the user object.
+        // userKey: "placeholder-value",
+    };
+
+    await getGroups(params).catch();
+
+    const message = 'Final results: Got ' + groupsAllArray.length + ' groups.';
+
+    const logPayload = message;
+    functionInvocation.logPayload = logPayload;
+
+    context.bindings.allGroupsArrayBlob = JSON.stringify(groupsAllArray);
+    context.bindings.allGroupsObjectBlob = JSON.stringify(groupsAllObject);
+
+    context.bindings.invocationPostProcessor = functionInvocation;
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
+
+    
+    async function getGroups(params) {
+        let result = await directory.groups.list(params);
+        context.log(result);
+        let groups = result.data.groups;
+        context.log('Got ' + groups.length + ' groups.');
+
+        groups.forEach(function(group) {
+            groupsAllObject[group.email] = group;
+            groupsAllArray.push(group);
         });
+
+        if (result.data.nextPageToken) {
+            params.pageToken = result.data.nextPageToken;
+            await getGroups(params);
+        }
     }
 };
 
