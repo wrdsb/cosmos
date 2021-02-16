@@ -56,7 +56,7 @@ module.exports = (config, context) => {
             extensions: ['.tsx', '.ts', '.js'],
             plugins: [
                 new TsconfigPathsPlugin({
-                    configFile: 'apps/viewfinder-functions/tsconfig.app.json'
+                    configFile: 'apps/quartermaster-functions/tsconfig.app.json'
                 })
             ]
         },

@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "composite": true,
-    "outDir": "../../dist/apps/viewfinder-functions",
+    "outDir": "../../dist/apps/quartermaster-functions",
     "types": ["node"]
   },
   "exclude": ["**/*.spec.ts"],
