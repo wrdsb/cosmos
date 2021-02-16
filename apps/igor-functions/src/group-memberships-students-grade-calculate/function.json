@@ -1,0 +1,26 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "group-memberships-students-grade-calculate",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "studentsNow",
+      "type": "blob",
+      "path": "trillium/students-now-array.json",
+      "connection": "wrdsbskinner_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "outputBlob",
+      "type": "blob",
+      "path": "groups-memberships-trillium-now/wrdsb-grade-{payload.grade}@wrdsb.ca.json",
+      "connection": "wrdsbigor_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "./index.js"
+}
