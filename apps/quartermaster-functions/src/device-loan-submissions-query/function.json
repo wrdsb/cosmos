@@ -2,9 +2,9 @@
   "bindings": [{
       "name": "req",
       "type": "httpTrigger",
-      "authLevel": "anonymous",
+      "authLevel": "function",
       "methods": [
-        "get"
+        "post"
       ],
       "direction": "in"
     },
