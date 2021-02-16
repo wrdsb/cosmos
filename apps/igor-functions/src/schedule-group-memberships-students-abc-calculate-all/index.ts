@@ -35,14 +35,6 @@ const ScheduleGroupMembershipsStudentsCalculateAll: AzureFunction = async functi
     };
     context.log(logPayload);
 
-    const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    context.log(logBlob);
-
-    const callbackMessage = await createCallbackMessage(logObject, 200);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    context.log(callbackMessage);
-
     const invocationEvent = await createEvent(
         functionInvocationID,
         functionInvocationTime,
@@ -56,10 +48,9 @@ const ScheduleGroupMembershipsStudentsCalculateAll: AzureFunction = async functi
         eventLabel,
         eventTags
     );
-    context.bindings.flynnEvent = JSON.stringify(invocationEvent);
     context.log(invocationEvent);
 
-    context.done(null, logBlob);
+    context.done(null, invocationEvent);
 }
 
 export default ScheduleGroupMembershipsStudentsCalculateAll;
