@@ -337,7 +337,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             'Blair Road': 'BLR',
             'Bridgeport North': '',
             'Brigadoon': 'BGD',
-            'Bridgeport  ': 'BRP',
+            'Bridgeport': 'BRP',
             'BridgesN(WCI)': '',
             'BridgesS(PHS)': '',
             'CAMA': '',
@@ -475,9 +475,8 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             'Wrigley OEC': '',
             'WT Townshend': 'WTT',
         };
-        let code = codes[fullName];
-        code = (code.length > 0) ? code : '';
-
+        let code = (codes[fullName]) ? codes[fullName] : '';
+        
         return code;
     }
 };
