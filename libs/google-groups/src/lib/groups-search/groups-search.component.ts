@@ -38,7 +38,7 @@ export class GroupsSearchComponent implements OnInit {
   displayedColumns$ = new BehaviorSubject<string[]>([
     'name',
     'email',
-    'directMembersCount',
+    //'directMembersCount',
     'adminCreated',
     'membership_automation_active',
     'createdAt',
