@@ -1,1 +1,1 @@
-export * from './codex-person.class';
+export * from './codex-person';
