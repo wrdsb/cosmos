@@ -8,6 +8,13 @@
       "direction": "in"
     },
     {
+      "name": "allGroupsArrayBlob",
+      "type": "blob",
+      "path": "groups-lists/all-groups-array.json",
+      "connection": "wrdsbigor3_STORAGE",
+      "direction": "in"
+    },
+    {
       "name": "invocationPostProcessor",
       "type": "queue",
       "queueName": "invocation-post-processor",
