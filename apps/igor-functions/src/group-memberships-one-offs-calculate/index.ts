@@ -338,7 +338,7 @@ const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context:
                         groupKey:       "intranet-library@wrdsb.ca"
                     };
                 }
-                if (elementarySertsJobCodes.includes(jobCode) && panel == 'E') {
+                if (elementarySertsJobCodes.includes(jobCode)) {
                     members.intranetSpecialEducation[email] = {
                         email:          email,
                         role:           "MEMBER",
@@ -347,7 +347,7 @@ const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context:
                         groupKey:       "intranet-special-education@wrdsb.ca"
                     };
                 }
-                if (secondarySertsJobCodes.includes(jobCode) && panel == 'S') {
+                if (secondarySertsJobCodes.includes(jobCode)) {
                     members.intranetSpecialEducation[email] = {
                         email:          email,
                         role:           "MEMBER",
