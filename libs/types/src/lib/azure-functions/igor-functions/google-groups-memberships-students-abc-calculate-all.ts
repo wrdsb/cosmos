@@ -1,0 +1,44 @@
+import * as Cosmos from "../common";
+
+interface GoogleGroupsMembershipsStudentsABCCalculateAllFunctionRequest extends Cosmos.FunctionRequest {
+    readonly payload: GoogleGroupsMembershipsStudentsABCCalculateAllFunctionRequestPayload;
+}
+
+interface GoogleGroupsMembershipsStudentsABCCalculateAllFunctionResponse extends Cosmos.FunctionResponse {
+    readonly payload: GoogleGroupsMembershipsStudentsABCCalculateAllFunctionResponsePayload;
+}
+
+interface GoogleGroupsMembershipsStudentsABCCalculateAllFunctionLogObject extends Cosmos.FunctionLogObject {
+    readonly payload: GoogleGroupsMembershipsStudentsABCCalculateAllFunctionResponsePayload;
+}
+
+interface GoogleGroupsMembershipsStudentsABCCalculateAllFunctionCallbackMessage extends Cosmos.FunctionCallbackMessage {}
+
+interface GoogleGroupsMembershipsStudentsABCCalculateAllFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
+    readonly data: GoogleGroupsMembershipsStudentsABCCalculateAllFunctionInvocationEventPayload;
+}
+
+interface GoogleGroupsMembershipsStudentsABCCalculateAllFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+}
+
+interface GoogleGroupsMembershipsStudentsABCCalculateAllFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
+}
+
+interface GoogleGroupsMembershipsStudentsABCCalculateAllFunctionLogObjectPayload extends Cosmos.FunctionLogObjectPayload {}
+
+interface GoogleGroupsMembershipsStudentsABCCalculateAllFunctionCallbackMessagePayload extends Cosmos.FunctionCallbackMessagePayload {}
+
+interface GoogleGroupsMembershipsStudentsABCCalculateAllFunctionInvocationEventPayload extends Cosmos.FunctionInvocationEventPayload {}
+
+export {
+    GoogleGroupsMembershipsStudentsABCCalculateAllFunctionRequest,
+    GoogleGroupsMembershipsStudentsABCCalculateAllFunctionResponse,
+    GoogleGroupsMembershipsStudentsABCCalculateAllFunctionLogObject,
+    GoogleGroupsMembershipsStudentsABCCalculateAllFunctionCallbackMessage,
+    GoogleGroupsMembershipsStudentsABCCalculateAllFunctionInvocationEvent,
+    GoogleGroupsMembershipsStudentsABCCalculateAllFunctionRequestPayload,
+    GoogleGroupsMembershipsStudentsABCCalculateAllFunctionResponsePayload,
+    GoogleGroupsMembershipsStudentsABCCalculateAllFunctionLogObjectPayload,
+    GoogleGroupsMembershipsStudentsABCCalculateAllFunctionCallbackMessagePayload,
+    GoogleGroupsMembershipsStudentsABCCalculateAllFunctionInvocationEventPayload
+}
