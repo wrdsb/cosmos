@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, IPPSPersonStoreFunctionRequest, IPPSPersonStoreFunctionRequestOperation, IPPSPersonStoreFunctionRequestPayload, IPPSPerson } from "@cosmos/types";
+import { FunctionInvocation, IPPSPersonStoreFunctionRequest, StoreFunctionOperation, IPPSPersonStoreFunctionRequestPayload, IPPSPerson } from "@cosmos/types";
 
 const ippsPersonStore: AzureFunction = async function (context: Context, triggerMessage: IPPSPersonStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -14,7 +14,7 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
     } as FunctionInvocation;
 
     const triggerObject = triggerMessage as IPPSPersonStoreFunctionRequest;
-    const operation = triggerObject.operation as IPPSPersonStoreFunctionRequestOperation;
+    const operation = triggerObject.operation as StoreFunctionOperation;
     const payload = triggerObject.payload as IPPSPersonStoreFunctionRequestPayload;
 
     const oldRecord = context.bindings.recordIn;

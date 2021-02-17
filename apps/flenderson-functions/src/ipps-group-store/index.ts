@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, IPPSEmployeeGroupStoreFunctionRequest, IPPSEmployeeGroupStoreFunctionRequestOperation, IPPSEmployeeGroupStoreFunctionRequestPayload, IPPSEmployeeGroup } from "@cosmos/types";
+import { FunctionInvocation, IPPSEmployeeGroupStoreFunctionRequest, StoreFunctionOperation, IPPSEmployeeGroupStoreFunctionRequestPayload, IPPSEmployeeGroup } from "@cosmos/types";
 
 const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, triggerMessage: IPPSEmployeeGroupStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -14,7 +14,7 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
     } as FunctionInvocation;
 
     const triggerObject = triggerMessage as IPPSEmployeeGroupStoreFunctionRequest;
-    const operation = triggerObject.operation as IPPSEmployeeGroupStoreFunctionRequestOperation;
+    const operation = triggerObject.operation as StoreFunctionOperation;
     const payload = triggerObject.payload as IPPSEmployeeGroupStoreFunctionRequestPayload;
 
     let oldRecord = context.bindings.recordIn;

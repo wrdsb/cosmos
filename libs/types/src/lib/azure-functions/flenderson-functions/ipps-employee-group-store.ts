@@ -1,7 +1,7 @@
 import * as Cosmos from "../common";
 
 interface IPPSEmployeeGroupStoreFunctionRequest {
-    readonly operation: IPPSEmployeeGroupStoreFunctionRequestOperation;
+    readonly operation: Cosmos.StoreFunctionOperation;
     readonly payload: IPPSEmployeeGroupStoreFunctionRequestPayload;
 }
 
@@ -22,9 +22,6 @@ interface IPPSEmployeeGroupStoreFunctionInvocationEvent extends Cosmos.FunctionI
 interface IPPSEmployeeGroupStoreFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
 }
 
-interface IPPSEmployeeGroupStoreFunctionRequestOperation extends Cosmos.FunctionRequestPayload {
-}
-
 interface IPPSEmployeeGroupStoreFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
 }
 
@@ -40,7 +37,6 @@ export {
     IPPSEmployeeGroupStoreFunctionLogObject,
     IPPSEmployeeGroupStoreFunctionCallbackMessage,
     IPPSEmployeeGroupStoreFunctionInvocationEvent,
-    IPPSEmployeeGroupStoreFunctionRequestOperation,
     IPPSEmployeeGroupStoreFunctionRequestPayload,
     IPPSEmployeeGroupStoreFunctionResponsePayload,
     IPPSEmployeeGroupStoreFunctionLogObjectPayload,

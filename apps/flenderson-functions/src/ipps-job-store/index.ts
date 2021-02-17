@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, IPPSJobStoreFunctionRequest, IPPSJobStoreFunctionRequestOperation, IPPSJobStoreFunctionRequestPayload, IPPSJob } from "@cosmos/types";
+import { FunctionInvocation, IPPSJobStoreFunctionRequest, StoreFunctionOperation, IPPSJobStoreFunctionRequestPayload, IPPSJob } from "@cosmos/types";
 
 const ippsJobStore: AzureFunction = async function (context: Context, triggerMessage: IPPSJobStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -14,7 +14,7 @@ const ippsJobStore: AzureFunction = async function (context: Context, triggerMes
     } as FunctionInvocation;
 
     const triggerObject = triggerMessage as IPPSJobStoreFunctionRequest;
-    const operation = triggerObject.operation as IPPSJobStoreFunctionRequestOperation;
+    const operation = triggerObject.operation as StoreFunctionOperation;
     const payload = triggerObject.payload as IPPSJobStoreFunctionRequestPayload;
 
     let oldRecord = context.bindings.recordIn;
