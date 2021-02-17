@@ -17,63 +17,91 @@
         {
             "name": "viewRaw",
             "type": "blob",
-            "path": "hris/view-iamwp-raw.json",
+            "path": "ipps/view-iamwp-raw.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "peopleNowArray",
             "type": "blob",
-            "path": "hris/people-now-array.json",
+            "path": "ipps/people-now-array.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "peopleNowObject",
             "type": "blob",
-            "path": "hris/people-now-object.json",
+            "path": "ipps/people-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "jobsNowArray",
             "type": "blob",
-            "path": "hris/jobs-now-array.json",
+            "path": "ipps/jobs-now-array.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "jobsNowObject",
             "type": "blob",
-            "path": "hris/jobs-now-object.json",
+            "path": "ipps/jobs-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "groupsNowArray",
             "type": "blob",
-            "path": "hris/groups-now-array.json",
+            "path": "ipps/groups-now-array.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "groupsNowObject",
             "type": "blob",
-            "path": "hris/groups-now-object.json",
+            "path": "ipps/groups-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "locationsNowArray",
             "type": "blob",
-            "path": "hris/locations-now-array.json",
+            "path": "ipps/locations-now-array.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "locationsNowObject",
             "type": "blob",
-            "path": "hris/locations-now-object.json",
+            "path": "ipps/locations-now-object.json",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "triggerIPPSEmployeeGroupsReconcile",
+            "type": "queue",
+            "queueName": "ipps-groups-reconcile",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "triggerIPPSJobsReconcile",
+            "type": "queue",
+            "queueName": "ipps-jobs-reconcile",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "triggerIPPSLocationsReconcile",
+            "type": "queue",
+            "queueName": "ipps-locations-reconcile",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "triggerIPPSPeopleReconcile",
+            "type": "queue",
+            "queueName": "ipps-people-reconcile",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         }
