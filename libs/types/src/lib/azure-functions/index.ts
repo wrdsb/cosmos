@@ -3,6 +3,7 @@ export * from './ping';
 export * from './search';
 
 export * from './codex-functions';
+export * from './flenderson-functions';
 export * from './hagar-functions';
 export * from './igor-functions';
 export * from './quartermaster-functions';
