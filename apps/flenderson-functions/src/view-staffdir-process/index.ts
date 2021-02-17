@@ -77,7 +77,7 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
     functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    context.bindings.triggerHRISPeopleReconcile = JSON.stringify(functionInvocation);
+    context.bindings.triggerIPPSPeopleReconcile = JSON.stringify(functionInvocation);
 
     context.log(functionInvocation);
     context.done(null, functionInvocation);

@@ -17,21 +17,28 @@
         {
             "name": "viewRaw",
             "type": "blob",
-            "path": "hris/view-staffdir-raw.json",
+            "path": "ipps/view-staffdir-raw.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "directoryNowArray",
             "type": "blob",
-            "path": "hris/directory-now-array.json",
+            "path": "ipps/directory-now-array.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "directoryNowObject",
             "type": "blob",
-            "path": "hris/directory-now-object.json",
+            "path": "ipps/directory-now-object.json",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "triggerIPPSPeopleReconcile",
+            "type": "queue",
+            "queueName": "ipps-people-reconcile",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         }
