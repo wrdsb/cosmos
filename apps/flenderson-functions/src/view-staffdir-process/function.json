@@ -34,20 +34,6 @@
             "path": "hris/directory-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
-        },
-        {
-            "name": "callbackMessage",
-            "type": "queue",
-            "direction": "out",
-            "queueName": "callbacks",
-            "connection": "wrdsbflenderson_STORAGE"
-        },
-        {
-            "name": "flynnEvent",
-            "type": "queue",
-            "direction": "out",
-            "queueName": "event-emitter",
-            "connection": "wrdsbflenderson_STORAGE"
         }
     ],
     "scriptFile": "./index.js"
