@@ -4,7 +4,7 @@
             "name": "triggerMessage",
             "type": "queueTrigger",
             "direction": "in",
-            "queueName": "ipps-group-store",
+            "queueName": "ipps-employee-group-store",
             "connection": "wrdsbflenderson_STORAGE"
         },
         {
