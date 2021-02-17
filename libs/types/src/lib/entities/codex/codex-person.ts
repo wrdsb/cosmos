@@ -1,30 +1,36 @@
 import { CosmosPerson } from "@cosmos/types";
 
 import { IPPSPerson } from "@cosmos/types";
-
-import { IPPSRecord } from "@cosmos/types";
 import { TrilliumRecord } from "@cosmos/types";
 
 interface CodexPerson extends CosmosPerson {
-    id: string;
-    ein: string;
-    email: string;
-    username: string;
+    // Fields from CosmosPerson
+    // id: string;
+    // createdAt: string;
+    // updatedAt: string;
+    // deletedAt: string;
+    // deleted: boolean
 
-    name: string;
-    first_name: string;
-    last_name: string;
-    sortable_name: string;
+    // email?: string;
+    // username?: string;
+    // employeeID?: string;
+    // staffNumber?: string;
 
-    people_set_memberships: string[];
+    // firstName?: string;
+    // lastName?: string;
+    // fullName?: string;
+    // sortableName?: string;
+
     people_set_names: string[];
+    people_set_memberships: string[];
+    
+    ippsEIN: string;
+    ippsLocationCodes: string[];
+    ippsSchoolCodes: string[];
+    ippsJobCodes: string[];
+    ippsHomeLocation: string;
+    ippsPerson: IPPSPerson;
 
-    school_codes: string[];
-    location_codes: string[];
-    job_codes: string[];
-    ipps_home_location: string;
-
-    ippsRecord: IPPSRecord;
     trilliumRecord: TrilliumRecord;
 
     its_field_tech_for: string[];
