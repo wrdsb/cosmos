@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, DeviceLoanSubmissionStoreFunctionRequest, DeviceLoanSubmissionStoreFunctionRequestPayload, DeviceLoanSubmission } from "@cosmos/types";
+import { FunctionInvocation, DeviceLoanSubmissionStoreFunctionRequest, StoreFunctionOperation, DeviceLoanSubmissionStoreFunctionRequestPayload, DeviceLoanSubmission } from "@cosmos/types";
 
 const deviceLoanSubmissionStore: AzureFunction = async function (context: Context, triggerMessage: DeviceLoanSubmissionStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -14,12 +14,12 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
     } as FunctionInvocation;
 
     const triggerObject = triggerMessage as DeviceLoanSubmissionStoreFunctionRequest;
-    const operation = triggerObject.operation;
+    const operation = triggerObject.operation as StoreFunctionOperation;
     const payload = triggerObject.payload as DeviceLoanSubmissionStoreFunctionRequestPayload;
 
     const oldRecord = context.bindings.recordIn;
 
-    let newRecord = {
+    const newRecord = {
         created_at: '',
         updated_at: '',
         deleted_at: '',
@@ -95,9 +95,10 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 
+
     function doDelete(oldRecord, newRecord, payload) {
         let event = {};
-        let changedDetected = true;
+        const changedDetected = true;
 
         // check for existing record
         if (!oldRecord) {
@@ -112,7 +113,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             newRecord.schoolCode = getSchoolCode(newRecord.locationName);
             newRecord.changeDetectionHash = makeHash(newRecord);
             
-            event = craftDeleteEvent(oldRecord, newRecord);
+            event = craftDeleteEvent(oldRecord);
 
         } else {
             newRecord = Object.assign(newRecord, oldRecord);
@@ -124,7 +125,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             newRecord.schoolCode = getSchoolCode(newRecord.locationName);
             newRecord.changeDetectionHash = makeHash(newRecord);
 
-            event = craftDeleteEvent(oldRecord, newRecord);
+            event = craftDeleteEvent(oldRecord);
         }
 
         return {changedDetected: changedDetected, event: event, newRecord: newRecord};
@@ -219,50 +220,50 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
     }
 
     function craftCreateEvent(new_record) {
-        let event_type = 'Quartermaster.DeviceLoanSubmission.Create';
-        let source = 'create';
-        let schema = 'create';
-        let label = `DeviceLoanSubmission ${new_record.id} created.`;
-        let payload = {
+        const event_type = 'Quartermaster.DeviceLoanSubmission.Create';
+        const source = 'create';
+        const schema = 'create';
+        const label = `DeviceLoanSubmission ${new_record.id} created.`;
+        const payload = {
             record: new_record
         };
 
-        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
         return event;
     }
     
     function craftUpdateEvent(old_record, new_record)
     {
-        let event_type = 'Quartermaster.DeviceLoanSubmission.Update';
-        let source = 'update';
-        let schema = 'update';
-        let label = `DeviceLoanSubmission ${new_record.id} updated.`;
-        let payload = {
+        const event_type = 'Quartermaster.DeviceLoanSubmission.Update';
+        const source = 'update';
+        const schema = 'update';
+        const label = `DeviceLoanSubmission ${new_record.id} updated.`;
+        const payload = {
             old_record: old_record,
             new_record: new_record,
         };
 
-        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
         return event;
     }
 
-    function craftDeleteEvent(old_record, new_record)
+    function craftDeleteEvent(old_record)
     {
-        let event_type = 'Quartermaster.DeviceLoanSubmission.Delete';
-        let source = 'delete';
-        let schema = 'delete';
-        let label = `DeviceLoanSubmission ${new_record.id} deleted.`;
-        let payload = {
+        const event_type = 'Quartermaster.DeviceLoanSubmission.Delete';
+        const source = 'delete';
+        const schema = 'delete';
+        const label = `DeviceLoanSubmission ${old_record.id} deleted.`;
+        const payload = {
             record: old_record
         };
 
-        let event = craftEvent(old_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(old_record.id, source, schema, event_type, label, payload);
         return event;
     }
 
     function craftEvent(recordID, source, schema, event_type, label, payload) {
-        let event = {
-            id: `${event_type}-${context.executionContext.invocationId}`,
+        const event = {
+            id: `${event_type}-${functionInvocation.functionInvocationID}`,
             time: functionInvocation.functionInvocationTimestamp,
 
             type: event_type,
@@ -276,8 +277,8 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             ], 
 
             data: {
-                function_name: context.executionContext.functionName,
-                invocation_id: context.executionContext.invocationId,
+                function_name: functionInvocation.functionName,
+                invocation_id: functionInvocation.functionInvocationID,
                 result: {
                     payload: payload 
                 },
@@ -321,7 +322,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
     }
 
     function getSchoolCode(fullName: string): string {
-        let codes = {
+        const codes = {
             '151 Weber': '',
             '256 Hespeler': '',
             'Abraham Erb': 'ABE',
@@ -475,7 +476,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             'Wrigley OEC': '',
             'WT Townshend': 'WTT',
         };
-        let code = (codes[fullName]) ? codes[fullName] : '';
+        const code = (codes[fullName]) ? codes[fullName] : '';
         
         return code;
     }
