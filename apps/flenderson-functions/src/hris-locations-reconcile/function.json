@@ -4,20 +4,20 @@
             "name": "triggerMessage",
             "type": "queueTrigger",
             "direction": "in",
-            "queueName": "hris-locations-reconcile",
+            "queueName": "ipps-locations-reconcile",
             "connection": "wrdsbflenderson_STORAGE"
         },
         {
             "name": "locationsNow",
             "type": "blob",
-            "path": "hris/locations-now-object.json",
+            "path": "ipps/locations-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },
         {
             "name": "queueLocationStore",
             "type": "queue",
-            "queueName": "location-store",
+            "queueName": "ipps-location-store",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         }

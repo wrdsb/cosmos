@@ -4,27 +4,27 @@
             "name": "triggerMessage",
             "type": "queueTrigger",
             "direction": "in",
-            "queueName": "hris-people-reconcile",
+            "queueName": "ipps-people-reconcile",
             "connection": "wrdsbflenderson_STORAGE"
         },
         {
             "name": "peopleNow",
             "type": "blob",
-            "path": "hris/people-now-object.json",
+            "path": "ipps/people-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },
         {
             "name": "directoryNow",
             "type": "blob",
-            "path": "hris/directory-now-object.json",
+            "path": "ipps/directory-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },
         {
             "name": "queuePersonStore",
             "type": "queue",
-            "queueName": "person-store",
+            "queueName": "ipps-person-store",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         }

@@ -4,20 +4,20 @@
             "name": "triggerMessage",
             "type": "queueTrigger",
             "direction": "in",
-            "queueName": "hris-jobs-reconcile",
+            "queueName": "ipps-jobs-reconcile",
             "connection": "wrdsbflenderson_STORAGE"
         },
         {
             "name": "jobsNow",
             "type": "blob",
-            "path": "hris/jobs-now-object.json",
+            "path": "ipps/jobs-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },
         {
             "name": "queueJobStore",
             "type": "queue",
-            "queueName": "job-store",
+            "queueName": "ipps-job-store",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         }

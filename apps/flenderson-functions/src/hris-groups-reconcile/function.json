@@ -4,20 +4,20 @@
             "name": "triggerMessage",
             "type": "queueTrigger",
             "direction": "in",
-            "queueName": "hris-groups-reconcile",
+            "queueName": "ipps-groups-reconcile",
             "connection": "wrdsbflenderson_STORAGE"
         },
         {
             "name": "groupsNow",
             "type": "blob",
-            "path": "hris/groups-now-object.json",
+            "path": "ipps/groups-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },
         {
             "name": "queueGroupStore",
             "type": "queue",
-            "queueName": "group-store",
+            "queueName": "ipps-group-store",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         }
