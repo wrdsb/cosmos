@@ -1,132 +1,111 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
-import { isEqual } from "lodash";
-import { create } from "domain";
-import { createLogObject } from "@cosmos/azure-functions-shared";
-import { storeLogBlob } from "@cosmos/azure-functions-shared";
-import { createCallbackMessage } from "@cosmos/azure-functions-shared";
-import { createEvent } from "@cosmos/azure-functions-shared";
+import { createHash } from "crypto";
+import { FunctionInvocation, IPPSPeopleReconcileFunctionRequest, IPPSPeopleReconcileFunctionRequestPayload, IPPSPerson, IPPSAssignment } from "@cosmos/types";
 
-const hrisPeopleReconcile: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
-    const functionInvocationID = context.executionContext.invocationId;
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-
-    const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.Flenderson.HRIS.People.Reconcile';
-    const functionEventID = `flenderson-functions-${functionName}-${functionInvocationID}`;
-    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
-
-    const logStorageAccount = process.env['storageAccount'];
-    const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-hris-people-reconcile-logs';
-
-    const eventLabel = '';
-    const eventTags = [
-        "flenderson", 
-    ];
+const ippsPeopleReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSPeopleReconcileFunctionRequest): Promise<void> {
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'Flenderson',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'IPPSPerson',
+        functionDataOperation: 'Reconcile',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
     const cosmosContainer = 'people';
-    const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, auth: {masterKey: cosmosKey}});
+    const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
+
+    const triggerObject = triggerMessage as IPPSPeopleReconcileFunctionRequest;
+    const payload = triggerObject.payload as IPPSPeopleReconcileFunctionRequestPayload;
 
     // give our bindings more human-readable names
-    const people_now = context.bindings.peopleNow;
-    const directory_now = context.bindings.directoryNow;
-    let totalPeople = Object.getOwnPropertyNames(people_now).length;
+    const peopleNow = context.bindings.peopleNow;
+    const directoryNow = context.bindings.directoryNow;
 
+    // ensure we have a full data set
+    let totalPeople = Object.getOwnPropertyNames(peopleNow).length;
     if (totalPeople < 5000) {
         context.done('Too few records. Aborting.');
     }
 
-    let records_now = await materializePeople(people_now, directory_now);
+    let recordsNow = await materializePeople(peopleNow, directoryNow);
 
     // fetch current records from Cosmos
-    const records_previous = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer).catch(err => {
+    const recordsPrevious = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer).catch(err => {
         context.log(err);
     });
 
     // object to store our total diff as we build it
     let calculation = {
-        records_previous: records_previous,
-        records_now: records_now,
+        recordsPrevious: recordsPrevious,
+        recordsNow: recordsNow,
         differences: {
-            created_records: [],
-            updated_records: [],
-            deleted_records: []
+            createdRecords: [],
+            updatedRecords: [],
+            deletedRecords: []
         }
     };
 
     calculation = await findCreatesAndUpdates(calculation);
     calculation = await findDeletes(calculation);
 
-    let creates = await processCreates(calculation.differences.created_records);
-    let updates = await processUpdates(calculation.differences.updated_records);
-    let deletes = await processDeletes(calculation.differences.deleted_records);
+    let creates = await processCreates(calculation.differences.createdRecords);
+    let updates = await processUpdates(calculation.differences.updatedRecords);
+    let deletes = await processDeletes(calculation.differences.deletedRecords);
 
-    let differences = await processDifferences(calculation.differences);
-    let totalDifferences = await calculateTotalDifferences(calculation);
+    let totalDifferences = creates.length + updates.length + deletes.length;
 
-    if (totalDifferences > 0) {
-        context.bindings.queuePersonStore = creates.concat(updates, deletes);
-    }
+    context.bindings.queueStore = creates.concat(updates, deletes);
 
-    const statusCode = '200';
-    const statusMessage = 'Success: Reconciled all person records.';
+    const logPayload = {
+        totalDifferences: totalDifferences
+        //differences: calculation.differences
+    };
+    functionInvocation.logPayload = logPayload;
 
-    const logPayload = calculation;
-    const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    context.log(logBlob);
+    context.bindings.invocationPostProcessor = functionInvocation;
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 
-    const callbackMessage = await createCallbackMessage(logObject, 200);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    context.log(callbackMessage);
-
-    const invocationEvent = await createEvent(
-        functionInvocationID,
-        functionInvocationTime,
-        functionInvocationTimestamp,
-        functionName,
-        functionEventType,
-        functionEventID,
-        functionLogID,
-        logStorageAccount,
-        logStorageContainer,
-        eventLabel,
-        eventTags
-    );
-    context.bindings.flynnEvent = JSON.stringify(invocationEvent);
-    context.log(invocationEvent);
-
-    context.done(null, logBlob);
 
     async function materializePeople(people, directory)
     {
         let materializedPeople = {};
 
-        Object.getOwnPropertyNames(people).forEach(function (person_id) {
-            let personRecord = people[person_id];
+        Object.getOwnPropertyNames(people).forEach(function (personID) {
+            let personRecord = people[personID];
             let directoryRecord = directory[personRecord.email];
 
             let materializedPerson = {
-                id:             personRecord.id,
-                ein:            personRecord.ein,
-                email:          personRecord.email,
-                username:       personRecord.username,
-                first_name:     personRecord.first_name,
-                last_name:      personRecord.last_name,
-                name:           `${personRecord.first_name} ${personRecord.last_name}`,
-                sortable_name:  `${personRecord.last_name}, ${personRecord.first_name}`,
-                positions:      personRecord.positions,
-                directory:      null,
-                phone:          null,
-                extension:      null,
-                mbxnumber:      null
-            };
-    
+                id:            personRecord.id,
+                email:         personRecord.email,
+                username:      personRecord.username,
+                employeeID:    personRecord.ein,
+                firstName:     personRecord.first_name,
+                lastName:      personRecord.last_name,
+                ein:           personRecord.ein,
+                fullName:      `${personRecord.first_name} ${personRecord.last_name}`,
+                sortableName:  `${personRecord.last_name}, ${personRecord.first_name}`,
+                homeLocation:  personRecord.home_location,
+                directory:     null,
+                phone:         null,
+                extension:     null,
+                mbxnumber:     null
+            } as IPPSPerson;
+
+            personRecord.positions.forEach(function (position) {
+                let assignment = position as IPPSAssignment;
+                materializedPerson.assignments.push(assignment);
+                materializedPerson.locationCodes.push(assignment.locationCode);
+                materializedPerson.schoolCodes.push(assignment.schoolCode);
+                materializedPerson.jobCodes.push(assignment.jobCode);
+            });
+
             if (directoryRecord) {
                 (directoryRecord.directory) ? materializedPerson.directory = directoryRecord.directory : materializedPerson.directory = '';
                 (directoryRecord.phone_no) ? materializedPerson.phone = directoryRecord.phone_no : materializedPerson.phone = '';
@@ -140,70 +119,127 @@ const hrisPeopleReconcile: AzureFunction = async function (context: Context, tri
         return materializedPeople;
     }
 
-    async function findCreatesAndUpdates(calculation)
-    {
+    async function findCreatesAndUpdates(calculation) {
         context.log('findCreatesAndUpdates');
 
-        let records_previous = calculation.records_previous;
-        let records_now = calculation.records_now;
+        let recordsPrevious = calculation.recordsPrevious;
+        let recordsNow = calculation.recordsNow;
 
-        // loop through all records in records_now, looking for updates and creates
-        Object.getOwnPropertyNames(records_now).forEach(function (record_id) {
-            let new_record = records_now[record_id];      // get the full person record from records_now
-            let old_record = records_previous[record_id]; // get the corresponding record in records_previous
+        if (!recordsNow) {
+            return calculation;
+        }
+
+        // loop through all records in recordsNow, looking for updates and creates
+        Object.getOwnPropertyNames(recordsNow).forEach(function (recordID) {
+            const newRecord = {
+                id:             recordsNow[recordID].id,
+                email:          recordsNow[recordID].email,
+                username:       recordsNow[recordID].username,
+                employeeID:     recordsNow[recordID].employeeID,
+                staffNumber:    recordsNow[recordID].staffNumber,
+                firstName:      recordsNow[recordID].firstName,
+                lastName:       recordsNow[recordID].lastName,
+                fullName:       recordsNow[recordID].fullName,
+                sortableName:   recordsNow[recordID].sortableName,
+                ein:            recordsNow[recordID].ein,
+                locationCodes:  recordsNow[recordID].locationCodes,
+                schoolCodes:    recordsNow[recordID].schoolCodes,
+                jobCodes:       recordsNow[recordID].jobCodes,
+                homeLocation:   recordsNow[recordID].homeLocation,
+                directory:      recordsNow[recordID].directory,
+                phone:          recordsNow[recordID].phone,
+                extension:      recordsNow[recordID].extension,
+                mbxnumber:      recordsNow[recordID].mbxnumber,
+                assignments:    recordsNow[recordID].assignments
+
+                // these fields are not present in the data from ipps, so we don't map them
+                //createdAt
+                //updatedAt
+                //deletedAt
+                //deleted
+            } as IPPSPerson;
     
-            // if we found a corresponding record in records_previous, look for changes
-            if (old_record) {
-                // Compare old and new records using Lodash _.isEqual, which performs a deep comparison
-                let records_equal = isEqual(old_record, new_record);
+            if (!recordsPrevious || !recordsPrevious[recordID]) {
+                calculation.differences.createdRecords.push(newRecord);
+            } else {
+                // get the corresponding record in recordsPrevious
+                const oldRecord = {
+                    id:             recordsPrevious[recordID].id,
+                    email:          recordsPrevious[recordID].email,
+                    username:       recordsPrevious[recordID].username,
+                    employeeID:     recordsPrevious[recordID].employeeID,
+                    staffNumber:    recordsPrevious[recordID].staffNumber,
+                    firstName:      recordsPrevious[recordID].firstName,
+                    lastName:       recordsPrevious[recordID].lastName,
+                    fullName:       recordsPrevious[recordID].fullName,
+                    sortableName:   recordsPrevious[recordID].sortableName,
+                    ein:            recordsPrevious[recordID].ein,
+                    locationCodes:  recordsPrevious[recordID].locationCodes,
+                    schoolCodes:    recordsPrevious[recordID].schoolCodes,
+                    jobCodes:       recordsPrevious[recordID].jobCodes,
+                    homeLocation:   recordsPrevious[recordID].homeLocation,
+                    directory:      recordsPrevious[recordID].directory,
+                    phone:          recordsPrevious[recordID].phone,
+                    extension:      recordsPrevious[recordID].extension,
+                    mbxnumber:      recordsPrevious[recordID].mbxnumber,
+                    assignments:    recordsPrevious[recordID].assignments
+        
+                    // these fields are not present in the data from ipps, so we don't map them
+                    //createdAt
+                    //updatedAt
+                    //deletedAt
+                    //deleted
+                } as IPPSPerson; 
+    
+                // Re-calculate the change detection hashes locally,
+                // because different functions may have different change detection standards
+                const newRecordChangeDetectionHash = makeHash(newRecord);
+                const oldRecordChangeDetectionHash = makeHash(oldRecord);
+
+                // Compare old and new records
+                const recordsEqual = (newRecordChangeDetectionHash === oldRecordChangeDetectionHash) ? true : false;
     
                 // if record changed, record the change
-                if (!records_equal) {
-                    calculation.differences.updated_records.push({
-                        previous: old_record,
-                        now: new_record
+                if (!recordsEqual) {
+                    calculation.differences.updatedRecords.push({
+                        previous: oldRecord,
+                        now: newRecord
                     });
                 }
-   
-            // if we don't find a corresponding record in records_previous, they're new
-            } else {
-                calculation.differences.created_records.push(new_record);
             }
         });
-
         return calculation;
     }
 
-    async function findDeletes(calculation)
-    {
+    async function findDeletes(calculation) {
         context.log('findDeletes');
 
-        let records_previous = calculation.records_previous;
-        let records_now = calculation.records_now;
+        let recordsPrevious = calculation.recordsPrevious;
+        let recordsNow = calculation.recordsNow;
 
-        // loop through all records in records_previous, looking for deletes
-        Object.getOwnPropertyNames(records_previous).forEach(function (record_id) {
-            let new_record = records_now[record_id];
-    
-            if (!new_record) {
-                // the record was deleted
-                calculation.differences.deleted_records.push(records_previous[record_id]);
+        if (!recordsPrevious) {
+            return calculation;
+        }
+
+        // loop through all records in recordsPrevious, looking for deletes
+        Object.getOwnPropertyNames(recordsPrevious).forEach(function (recordID) {
+            if (!recordsNow || !recordsNow[recordID]) {
+                calculation.differences.deletedRecords.push(recordsPrevious[recordID]);
             }
         });
 
         return calculation;
     }
 
-    async function processCreates(created_records)
-    {
+    async function processCreates(createdRecords) {
         context.log('processCreates');
 
         // array for the results being returned
         let messages = [];
 
-        created_records.forEach(function (record) {
+        createdRecords.forEach(function (record) {
             let message = {
-                operation: 'replace',
+                operation: "replace",
                 payload: record
             };
             messages.push(JSON.stringify(message));
@@ -212,16 +248,15 @@ const hrisPeopleReconcile: AzureFunction = async function (context: Context, tri
         return messages;
     }
 
-    async function processUpdates(updated_records)
-    {
+    async function processUpdates(updatedRecords) {
         context.log('processUpdates');
 
         // array for the results being returned
         let messages = [];
 
-        updated_records.forEach(function (record) {
+        updatedRecords.forEach(function (record) {
             let message = {
-                operation: 'replace',
+                operation: "replace",
                 payload: record.now
             };
             messages.push(JSON.stringify(message));
@@ -230,16 +265,15 @@ const hrisPeopleReconcile: AzureFunction = async function (context: Context, tri
         return messages;
     }
 
-    async function processDeletes(deleted_records)
-    {
+    async function processDeletes(deletedRecords) {
         context.log('processDeletes');
 
         // array for the results being returned
         let messages = [];
 
-        deleted_records.forEach(function (record) {
+        deletedRecords.forEach(function (record) {
             let message = {
-                operation: 'delete',
+                operation: "delete",
                 payload: record
             };
             messages.push(JSON.stringify(message));
@@ -248,102 +282,94 @@ const hrisPeopleReconcile: AzureFunction = async function (context: Context, tri
         return messages;
     }
 
-    async function processDifferences(differences)
-    {
-        context.log('processDifferences');
-
-        // array for the results being returned
-        let messages = [];
-
-        differences.created_records.forEach(function (record) {
-            let message = {
-                operation: 'create',
-                payload: record
-            };
-            messages.push(JSON.stringify(message));
-        });
-
-        differences.updated_records.forEach(function (record) {
-            let message = {
-                operation: 'update',
-                payload: record
-            };
-            messages.push(JSON.stringify(message));
-        });
-
-        differences.deleted_records.forEach(function (record) {
-            let message = {
-                operation: 'delete',
-                payload: record
-            };
-            messages.push(JSON.stringify(message));
-        });
-
-        return messages;
-    }
-
-    async function calculateTotalDifferences (calculation)
-    {
-        let creates = calculation.differences.created_records.length;
-        let updates = calculation.differences.updated_records.length;
-        let deletes = calculation.differences.deleted_records.length;
-        let totalDifferences = creates + updates + deletes;
-
-        return totalDifferences;
-    }
-
-    async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer)
-    {
+    async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer) {
         context.log('getCosmosItems');
 
-        let records_previous = {};
+        let recordsPrevious = {};
 
         const querySpec = {
-            query: `SELECT * FROM c`
+            query: `SELECT * FROM c WHERE c.deleted = false`
         }
+
         const queryOptions  = {
             maxItemCount: -1,
             enableCrossPartitionQuery: true
         }
 
-        const queryIterator = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(querySpec, queryOptions);
+        try {
+            const { resources } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(querySpec).fetchAll();
+
+            for (const item of resources) {
+                if (!item.deleted) {
+                    let recordObject = {
+                        id:             item.id,
+                        email:          item.email,
+                        username:       item.username,
+                        employeeID:     item.employeeID,
+                        staffNumber:    item.staffNumber,
+                        firstName:      item.firstName,
+                        lastName:       item.lastName,
+                        fullName:       item.fullName,
+                        sortableName:   item.sortableName,
+                        ein:            item.ein,
+                        locationCodes:  item.locationCodes,
+                        schoolCodes:    item.schoolCodes,
+                        jobCodes:       item.jobCodes,
+                        homeLocation:   item.homeLocation,
+                        directory:      item.directory,
+                        phone:          item.phone,
+                        extension:      item.extension,
+                        mbxnumber:      item.mbxnumber,
+                        assignments:    item.assignments
+    
+                        // these fields are not present in the data from ipps
+                        //createdAt: item.createdAt,
+                        //updatedAt: item.updatedAt,
+                        //deletedAt: item.deletedAt,
+                        //deleted: item.deleted
+                    } as IPPSPerson;
         
-        while (queryIterator.hasMoreResults()) {
-            const results = await queryIterator.executeNext();
-
-            records_previous = await consolidateCosmosItems(results.result, records_previous);
-
-            if (results === undefined) {
-                // no more results
-                break;
-            }   
+                    recordsPrevious[item.id] = recordObject;
+                }
+            }
+    
+            return recordsPrevious;
+        } catch (error) {
+            context.log(error);
+    
+            context.res = {
+                status: 500,
+                body: error
+            };
+    
+            context.done(error);
         }
-
-        return records_previous;
     }
 
-    async function consolidateCosmosItems(items: any[], consolidatedObject)
-    {
-        items.forEach(function(item) {
-            if (!item.deleted) {
-                // These fields are not present in the data from the HRIS
-                // They are added by Flenderson when the person is created/updated/deleted
-                delete item.created_at;
-                delete item.updated_at;
-                delete item.deleted_at;
-                delete item.deleted;
-                delete item._rid;
-                delete item._self;
-                delete item._etag;
-                delete item._attachments;
-                delete item._ts;
-
-                consolidatedObject[item.id] = item;
-            }
+    function makeHash(objectToHash: IPPSPerson): string {
+        const objectForHash = JSON.stringify({
+            email:          objectToHash.email,
+            username:       objectToHash.username,
+            employeeID:     objectToHash.employeeID,
+            staffNumber:    objectToHash.staffNumber,
+            firstName:      objectToHash.firstName,
+            lastName:       objectToHash.lastName,
+            fullName:       objectToHash.fullName,
+            sortableName:   objectToHash.sortableName,
+            ein:            objectToHash.ein,
+            locationCodes:  objectToHash.locationCodes,
+            schoolCodes:    objectToHash.schoolCodes,
+            jobCodes:       objectToHash.jobCodes,
+            homeLocation:   objectToHash.homeLocation,
+            directory:      objectToHash.directory,
+            phone:          objectToHash.phone,
+            extension:      objectToHash.extension,
+            mbxnumber:      objectToHash.mbxnumber,
+            assignments:    objectToHash.assignments
         });
-
-        return consolidatedObject;
+        const objectHash = createHash('md5').update(objectForHash).digest('hex');
+        return objectHash;
     }
 };
 
-export default hrisPeopleReconcile;
+export default ippsPeopleReconcile;
