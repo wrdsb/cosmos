@@ -26,6 +26,13 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
     // give our bindings more human-readable names
     const recordsNow = context.bindings.recordsNow;
 
+    // TODO: check data set
+    // ensure we have a full data set
+    // let totalRecords = Object.getOwnPropertyNames(recordsNow).length;
+    // if (totalRecords < 50) {
+        // context.done('Too few records. Aborting.');
+    // }
+
     // fetch current records from Cosmos
     const recordsPrevious = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer).catch(err => {
         context.log(err);
@@ -35,21 +42,21 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
 
     // object to store our total diff as we build it
     let calculation = {
-        records_previous: recordsPrevious,
-        records_now: recordsNow,
+        recordsPrevious: recordsPrevious,
+        recordsNow: recordsNow,
         differences: {
-            created_records: [],
-            updated_records: [],
-            deleted_records: []
+            createdRecords: [],
+            updatedRecords: [],
+            deletedRecords: []
         }
     };
 
     calculation = await findCreatesAndUpdates(calculation);
     calculation = await findDeletes(calculation);
 
-    let creates = await processCreates(calculation.differences.created_records);
-    let updates = await processUpdates(calculation.differences.updated_records);
-    let deletes = await processDeletes(calculation.differences.deleted_records);
+    let creates = await processCreates(calculation.differences.createdRecords);
+    let updates = await processUpdates(calculation.differences.updatedRecords);
+    let deletes = await processDeletes(calculation.differences.deletedRecords);
 
     let totalDifferences = creates.length + updates.length + deletes.length;
 
@@ -69,23 +76,23 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
     async function findCreatesAndUpdates(calculation) {
         context.log('findCreatesAndUpdates');
 
-        let records_previous = calculation.records_previous;
-        let records_now = calculation.records_now;
+        let recordsPrevious = calculation.recordsPrevious;
+        let recordsNow = calculation.recordsNow;
 
-        if (!records_now) {
+        if (!recordsNow) {
             return calculation;
         }
 
-        // loop through all records in records_now, looking for updates and creates
-        Object.getOwnPropertyNames(records_now).forEach(function (record_id) {
-            const new_record = {
-                id:                  records_now[record_id].id,
-                school_code:         records_now[record_id].school_code,
-                class_code:          records_now[record_id].class_code,
-                class_grades:        records_now[record_id].class_grades,
-                staff_number:        records_now[record_id].staff_number,
-                teacher_email:       records_now[record_id].teacher_email,
-                teacher_name:        records_now[record_id].teacher_name
+        // loop through all records in recordsNow, looking for updates and creates
+        Object.getOwnPropertyNames(recordsNow).forEach(function (recordID) {
+            const newRecord = {
+                id:                  recordsNow[recordID].id,
+                school_code:         recordsNow[recordID].school_code,
+                class_code:          recordsNow[recordID].class_code,
+                class_grades:        recordsNow[recordID].class_grades,
+                staff_number:        recordsNow[recordID].staff_number,
+                teacher_email:       recordsNow[recordID].teacher_email,
+                teacher_name:        recordsNow[recordID].teacher_name
 
                 // these fields are not present in the data from trillium, so we don't map them
                 //created_at
@@ -94,18 +101,18 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
                 //deleted
             } as TrilliumClass;
     
-            if (!records_previous || !records_previous[record_id]) {
-                calculation.differences.created_records.push(new_record);
+            if (!recordsPrevious || !recordsPrevious[recordID]) {
+                calculation.differences.createdRecords.push(newRecord);
             } else {
-                // get the corresponding record in records_previous
-                const old_record = {
-                    id:                  records_previous[record_id].id,
-                    school_code:         records_previous[record_id].school_code,
-                    class_code:          records_previous[record_id].class_code,
-                    class_grades:        records_previous[record_id].class_grades,
-                    staff_number:        records_previous[record_id].staff_number,
-                    teacher_email:       records_previous[record_id].teacher_email,
-                    teacher_name:        records_previous[record_id].teacher_name
+                // get the corresponding record in recordsPrevious
+                const oldRecord = {
+                    id:                  recordsPrevious[recordID].id,
+                    school_code:         recordsPrevious[recordID].school_code,
+                    class_code:          recordsPrevious[recordID].class_code,
+                    class_grades:        recordsPrevious[recordID].class_grades,
+                    staff_number:        recordsPrevious[recordID].staff_number,
+                    teacher_email:       recordsPrevious[recordID].teacher_email,
+                    teacher_name:        recordsPrevious[recordID].teacher_name
     
                     // these fields are not present in the data from trillium, so we don't map them
                     //created_at
@@ -116,17 +123,17 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
     
                 // Re-calculate the change detection hashes locally,
                 // because different functions may have different change detection standards
-                const newRecordChangeDetectionHash = makeHash(new_record);
-                const oldRecordChangeDetectionHash = makeHash(old_record);
+                const newRecordChangeDetectionHash = makeHash(newRecord);
+                const oldRecordChangeDetectionHash = makeHash(oldRecord);
 
                 // Compare old and new records
-                const records_equal = (newRecordChangeDetectionHash === oldRecordChangeDetectionHash) ? true : false;
+                const recordsEqual = (newRecordChangeDetectionHash === oldRecordChangeDetectionHash) ? true : false;
     
                 // if record changed, record the change
-                if (!records_equal) {
-                    calculation.differences.updated_records.push({
-                        previous: old_record,
-                        now: new_record
+                if (!recordsEqual) {
+                    calculation.differences.updatedRecords.push({
+                        previous: oldRecord,
+                        now: newRecord
                     });
                 }
             }
@@ -149,30 +156,30 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
     async function findDeletes(calculation) {
         context.log('findDeletes');
 
-        let records_previous = calculation.records_previous;
-        let records_now = calculation.records_now;
+        let recordsPrevious = calculation.recordsPrevious;
+        let recordsNow = calculation.recordsNow;
 
-        if (!records_previous) {
+        if (!recordsPrevious) {
             return calculation;
         }
 
-        // loop through all records in records_previous, looking for deletes
-        Object.getOwnPropertyNames(records_previous).forEach(function (record_id) {
-            if (!records_now || !records_now[record_id]) {
-                calculation.differences.deleted_records.push(records_previous[record_id]);
+        // loop through all records in recordsPrevious, looking for deletes
+        Object.getOwnPropertyNames(recordsPrevious).forEach(function (recordID) {
+            if (!recordsNow || !recordsNow[recordID]) {
+                calculation.differences.deletedRecords.push(recordsPrevious[recordID]);
             }
         });
 
         return calculation;
     }
 
-    async function processCreates(created_records) {
+    async function processCreates(createdRecords) {
         context.log('processCreates');
 
         // array for the results being returned
         let messages = [];
 
-        created_records.forEach(function (record) {
+        createdRecords.forEach(function (record) {
             let message = {
                 operation: "replace",
                 payload: record
@@ -183,13 +190,13 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
         return messages;
     }
 
-    async function processUpdates(updated_records) {
+    async function processUpdates(updatedRecords) {
         context.log('processUpdates');
 
         // array for the results being returned
         let messages = [];
 
-        updated_records.forEach(function (record) {
+        updatedRecords.forEach(function (record) {
             let message = {
                 operation: "replace",
                 payload: record.now
@@ -200,13 +207,13 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
         return messages;
     }
 
-    async function processDeletes(deleted_records) {
+    async function processDeletes(deletedRecords) {
         context.log('processDeletes');
 
         // array for the results being returned
         let messages = [];
 
-        deleted_records.forEach(function (record) {
+        deletedRecords.forEach(function (record) {
             let message = {
                 operation: "delete",
                 payload: record
@@ -220,7 +227,7 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
     async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer) {
         context.log('getCosmosItems');
 
-        let records_previous = {};
+        let recordsPrevious = {};
 
         const querySpec = {
             query: `SELECT * FROM c WHERE c.deleted = false`
@@ -252,11 +259,11 @@ const trilliumClassesReconcile: AzureFunction = async function (context: Context
                         //deleted: item.deleted
                     } as TrilliumClass;
         
-                    records_previous[item.id] = classObject;
+                    recordsPrevious[item.id] = classObject;
                 }
             }
     
-            return records_previous;
+            return recordsPrevious;
         } catch (error) {
             context.log(error);
     
