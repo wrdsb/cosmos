@@ -1,5 +1,5 @@
-import { SISRecord } from "../conceptual/sis-record.interface";
-import { TrilliumAssignment } from "./trillium-assignment";
+import { SISRecord } from "@cosmos/types";
+import { TrilliumAssignment } from "@cosmos/types";
 
 interface TrilliumRecord extends SISRecord {
   id: string;
