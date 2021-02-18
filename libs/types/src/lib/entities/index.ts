@@ -8,6 +8,6 @@ export * from './igor';
 export * from './ipps';
 export * from './quartermaster';
 export * from './sorting-hat';
-export * from './sparkrock';
+//export * from './sparkrock';
 export * from './team-viewer';
 export * from './trillium';
