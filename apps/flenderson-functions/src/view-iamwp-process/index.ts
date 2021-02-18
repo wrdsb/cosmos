@@ -135,10 +135,12 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
 
     // Write out Flenderson's local copy of Panama's raw data
     context.bindings.viewRaw = JSON.stringify(panamaBlob);
+    context.bindings.viewRawHRIS = JSON.stringify(panamaBlob);
 
     // Write out arrays and objects to blobs
     context.bindings.peopleNowArray = JSON.stringify(peopleArray);
     context.bindings.peopleNowObject = JSON.stringify(peopleObject);
+    context.bindings.peopleNowObjectHRIS = JSON.stringify(peopleObject);
 
     context.bindings.jobsNowArray = JSON.stringify(jobsArray);
     context.bindings.jobsNowObject = JSON.stringify(jobsObject);
