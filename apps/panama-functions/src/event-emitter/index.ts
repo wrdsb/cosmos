@@ -43,113 +43,125 @@ const eventEmitter: AzureFunction = async function (context: Context, triggerMes
     } else {
         switch (eventType) {
             case 'WRDSB.Panama.View.AssetChecksum.Copy':
-                queueTriggered = 'view-ats-asset-checksum-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.Asset.Checksum.Process",
+                    jobType: "WRDSB.Quartermaster.View.Asset.Checksum.Process",
                     blobFile: "nowChecksum.json"
                 });
-                context.bindings.triggerViewATSAssetChecksumProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.Asset.Copy':
-                queueTriggered = 'view-ats-asset-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.Asset.Process",
+                    jobType: "WRDSB.Quartermaster.View.Asset.Process",
                     blobFile: "now.json"
                 });
-                context.bindings.triggerViewATSAssetProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'wRDSB.Panama.View.Asset.Copy50k':
-                queueTriggered = 'view-ats-asset-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.Asset.Process",
+                    jobType: "WRDSB.Quartermaster.View.Asset.Process",
                     blobFile: "now50.json"
                 });
-                context.bindings.triggerViewATSAssetProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.Asset.Copy100k':
-                queueTriggered = 'view-ats-asset-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.Asset.Process",
+                    jobType: "WRDSB.Quartermaster.View.Asset.Process",
                     blobFile: "now100.json"
                 });
-                context.bindings.triggerViewATSAssetProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.Asset.Copy150k':
-                queueTriggered = 'view-ats-asset-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.Asset.Process",
+                    jobType: "WRDSB.Quartermaster.View.Asset.Process",
                     blobFile: "now150.json"
                 });
-                context.bindings.triggerViewATSAssetProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.Asset.Copy200k':
-                queueTriggered = 'view-ats-asset-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.Asset.Process",
+                    jobType: "WRDSB.Quartermaster.View.Asset.Process",
                     blobFile: "now200.json"
                 });
-                context.bindings.triggerViewATSAssetProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.Asset.Copy250k':
-                queueTriggered = 'view-ats-asset-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.Asset.Process",
+                    jobType: "WRDSB.Quartermaster.View.Asset.Process",
                     blobFile: "now250.json"
                 });
-                context.bindings.triggerViewATSAssetProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.Asset.Copy300k':
-                queueTriggered = 'view-ats-asset-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.Asset.Process",
+                    jobType: "WRDSB.Quartermaster.View.Asset.Process",
                     blobFile: "now300.json"
                 });
-                context.bindings.triggerViewATSAssetProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.Asset.Copy350k':
-                queueTriggered = 'view-ats-asset-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.Asset.Process",
+                    jobType: "WRDSB.Quartermaster.View.Asset.Process",
                     blobFile: "now350.json"
                 });
-                context.bindings.triggerViewATSAssetProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.AssetClass.Copy':
-                queueTriggered = 'view-ats-asset-class-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.AssetClass.Process",
+                    jobType: "WRDSB.Quartermaster.View.AssetClass.Process",
                     blobFile: "now.json"
                 });
-                context.bindings.triggerViewATSAssetClassProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.AssetClassType.Copy':
-                queueTriggered = 'view-ats-asset-class-type-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.AssetClassType.Process",
+                    jobType: "WRDSB.Quartermaster.View.AssetClassType.Process",
                     blobFile: "now.json"
                 });
-                context.bindings.triggerViewATSAssetClassTypeProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.AssetType.Copy':
-                queueTriggered = 'view-ats-asset-type-process';
+                queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = JSON.stringify({
-                    jobType: "Quartermaster.View.AssetType.Process",
+                    jobType: "WRDSB.Quartermaster.View.AssetType.Process",
                     blobFile: "now.json"
                 });
-                context.bindings.triggerViewATSAssetTypeProcess = queueMessage;
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.GClassroom.Copy':
                 queueTriggered = 'view-gclassroom-process';
                 queueMessage = JSON.stringify({
@@ -158,6 +170,7 @@ const eventEmitter: AzureFunction = async function (context: Context, triggerMes
                 context.bindings.triggerViewGClassroomProcess = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.IAMWP.Copy':
                 queueTriggered = 'view-iamwp-process';
                 queueMessage = JSON.stringify({
@@ -166,6 +179,7 @@ const eventEmitter: AzureFunction = async function (context: Context, triggerMes
                 context.bindings.triggerViewIAMWPProcess = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.SkinnerAssignments.Copy':
                 queueTriggered = 'view-skinnerassignments-process';
                 queueMessage = JSON.stringify({
@@ -174,6 +188,7 @@ const eventEmitter: AzureFunction = async function (context: Context, triggerMes
                 context.bindings.triggerViewSkinnerAssignmentsProcess = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.SkinnerStaff.Copy':
                 queueTriggered = 'view-skinnerstaff-process';
                 queueMessage = JSON.stringify({
@@ -182,6 +197,7 @@ const eventEmitter: AzureFunction = async function (context: Context, triggerMes
                 context.bindings.triggerViewSkinnerStaffProcess = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.StaffDir.Copy':
                 queueTriggered = 'view-staffdir-process';
                 queueMessage = JSON.stringify({
@@ -190,26 +206,32 @@ const eventEmitter: AzureFunction = async function (context: Context, triggerMes
                 context.bindings.triggerViewStaffDirProcess = queueMessage;
                 sentQueueMessage = true;
                 break;
+
             case 'WRDSB.Panama.View.GClassroom.Copy.Poison':
                 html = JSON.stringify(event);
                 sendNotification = true;
                 break;
+
             case 'WRDSB.Panama.View.IAMWP.Copy.Poison':
                 html = JSON.stringify(event);
                 sendNotification = true;
                 break;
+
             case 'WRDSB.Panama.View.SkinnerAssignments.Copy.Poison':
                 html = JSON.stringify(event);
                 sendNotification = true;
                 break;
+
             case 'WRDSB.Panama.View.SkinnerStaff.Copy.Poison':
                 html = JSON.stringify(event);
                 sendNotification = true;
                 break;
+
             case 'WRDSB.Panama.View.StaffDir.Copy.Poison':
                 html = JSON.stringify(event);
                 sendNotification = true;
                 break;
+
             default:
                 break;
         }
