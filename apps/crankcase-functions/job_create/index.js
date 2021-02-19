@@ -27,7 +27,7 @@ module.exports = function (context) {
     // Create Job object ...
     var job = {
         job_number: context.executionContext.invocationId,
-        job_type: job_request.service + ':' + job_request.operation,
+        jobType: job_request.service + ':' + job_request.operation,
         status: "created",
         service: job_request.service,
         operation: job_request.operation,

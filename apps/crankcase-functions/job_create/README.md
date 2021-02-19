@@ -14,7 +14,7 @@ data.callback
 
 ## Job
 { job_number: '93c41524-4ec1-4c84-b691-b12f6d58f6ca',
-  job_type: 'wrdsb-igor:group_read',
+  jobType: 'wrdsb-igor:group_read',
   status: 'created',
   service: 'wrdsb-igor',
   operation: 'group_read',

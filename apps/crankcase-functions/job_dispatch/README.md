@@ -11,7 +11,7 @@ Makes outbound HTTP requests based on job queue items, and updates jobs table it
 2018-04-09T11:53:23.600 [Info] popReceipt =  AgAAAAMAAAAAAAAAvyE8wvrP0wE=
 2018-04-09T11:53:23.600 [Info] dequeueCount =  1
 2018-04-09T11:53:23.618 [Info] { job_number: 'c58719da-5a90-4a30-a065-d1d4fb8e519e',
-  job_type: 'someService_someOpp',
+  jobType: 'someService_someOpp',
   status: 'created',
   service: 'someService',
   operation: 'someOpp',
@@ -35,7 +35,7 @@ Makes outbound HTTP requests based on job queue items, and updates jobs table it
    { queueMessage: 'c58719da-5a90-4a30-a065-d1d4fb8e519e',
      originalJob: 
       { job_number: 'c58719da-5a90-4a30-a065-d1d4fb8e519e',
-        job_type: 'someService_someOpp',
+        jobType: 'someService_someOpp',
         status: 'created',
         service: 'someService',
         operation: 'someOpp',
