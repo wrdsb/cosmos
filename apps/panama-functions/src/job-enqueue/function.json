@@ -1,0 +1,86 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "job-enqueue",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "triggerViewAssetCopy",
+      "type": "queue",
+      "queueName": "view-asset-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewAssetClassCopy",
+      "type": "queue",
+      "queueName": "view-asset-class-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewAssetClassTypeCopy",
+      "type": "queue",
+      "queueName": "view-asset-class-type-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewAssetTypeCopy",
+      "type": "queue",
+      "queueName": "view-asset-type-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewGClassroomCopy",
+      "type": "queue",
+      "queueName": "view-gclassroom-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewIAMWPCopy",
+      "type": "queue",
+      "queueName": "view-iamwp-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewSkinnerAssignmentsCopy",
+      "type": "queue",
+      "queueName": "view-skinnerassignments-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewSkinnerStaffCopy",
+      "type": "queue",
+      "queueName": "view-skinnerstaff-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewStaffDirCopy",
+      "type": "queue",
+      "queueName": "view-staffdir-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
