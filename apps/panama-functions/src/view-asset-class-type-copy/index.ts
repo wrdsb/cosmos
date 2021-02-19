@@ -1,7 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { FunctionInvocation } from "@cosmos/types";
 
-const viewAssetClassTypeCopy: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const viewAssetClassTypeCopy: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -12,7 +12,7 @@ const viewAssetClassTypeCopy: AzureFunction = async function (context: Context, 
         eventLabel: ''
     } as FunctionInvocation;
 
-    let logPayload;
+    const jobType = triggerMessage.jobType;
     let statusCode;
     let statusMessage;
 
@@ -29,13 +29,17 @@ const viewAssetClassTypeCopy: AzureFunction = async function (context: Context, 
         context.bindings.outgoingBlob = incomingBlob;
     }
 
-    logPayload = {
+    const logPayload = {
         status: statusCode,
         message: statusMessage,
         incomingBlob: "ats-view-hd-asset-class-type/incoming.json",
         outgoingBlob: "ats-view-hd-asset-class-type/now.json"
     };
     functionInvocation.logPayload = logPayload;
+
+    // Fire event for external consumption
+    const invocationEvent = {type: jobType, data: {status: statusCode}};
+    context.bindings.eventEmitter = JSON.stringify(invocationEvent);
 
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
