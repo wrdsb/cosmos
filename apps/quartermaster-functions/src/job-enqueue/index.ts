@@ -1,14 +1,14 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { FunctionInvocation, DeviceLoanSubmissionStoreFunctionRequest } from "@cosmos/types";
 
-const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage): Promise<void> {
+const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
-        functionApp: 'Panama',
+        functionApp: 'Quartermaster',
         functionName: context.executionContext.functionName,
-        functionDataType: 'Event',
-        functionDataOperation: 'Emit',
+        functionDataType: 'Job',
+        functionDataOperation: 'Enqueue',
         eventLabel: ''
     } as FunctionInvocation;
 
@@ -30,7 +30,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
     let logPayload = {
         status: '',
         message: '',
-        queueMessage: '',
+        queueMessage: {},
         queueTriggered: '',
         error: '',
         result: ''
@@ -201,8 +201,8 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
             subject: 'Poison Message Notification',
             to: process.env['SENDGRID_TO'],
             from: {
-                email: 'errors@panama.wrdsb.io',
-                name: 'Panama Errors'
+                email: 'errors@quartermaster.wrdsb.io',
+                name: 'Quartermaster Errors'
             },
             html: html
         };
