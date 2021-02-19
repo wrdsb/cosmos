@@ -1,7 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { FunctionInvocation } from "@cosmos/types";
 
-const viewSkinnerStaffCopy: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
+const viewSkinnerStaffCopy: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -12,7 +12,7 @@ const viewSkinnerStaffCopy: AzureFunction = async function (context: Context, tr
         eventLabel: ''
     } as FunctionInvocation;
 
-    let logPayload;
+    const jobType = triggerMessage.jobType;
     let statusCode;
     let statusMessage;
 
@@ -29,7 +29,7 @@ const viewSkinnerStaffCopy: AzureFunction = async function (context: Context, tr
         context.bindings.outgoingBlob = incomingBlob;
     }
 
-    logPayload = {
+    const logPayload = {
         status: statusCode,
         message: statusMessage,
         incomingBlob: "trillium-view-skinnerstaff/incoming.json",
@@ -38,7 +38,7 @@ const viewSkinnerStaffCopy: AzureFunction = async function (context: Context, tr
     functionInvocation.logPayload = logPayload;
 
     // Fire event for external consumption
-    const invocationEvent = {type: 'WRDSB.Panama.View.SkinnerStaff.Copy', data: {status: statusCode}};
+    const invocationEvent = {type: jobType, data: {status: statusCode}};
     context.bindings.eventEmitter = JSON.stringify(invocationEvent);
 
     context.bindings.invocationPostProcessor = functionInvocation;
