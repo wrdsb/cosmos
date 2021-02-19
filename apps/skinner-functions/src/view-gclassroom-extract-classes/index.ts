@@ -72,7 +72,7 @@ const viewGclassroomExtractClasses: AzureFunction = async function (context: Con
     context.bindings.classesNowObject = JSON.stringify(classesObject);
 
     const skinner_trillium_classes_reconcile_job = {
-        "job_type": "Skinner.Trillium.Classes.Reconcile"
+        jobType: "Skinner.Trillium.Classes.Reconcile"
     };
     context.bindings.triggerJobs = [JSON.stringify(skinner_trillium_classes_reconcile_job)];
 

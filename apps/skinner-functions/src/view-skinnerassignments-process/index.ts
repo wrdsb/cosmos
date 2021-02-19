@@ -41,10 +41,10 @@ const viewSkinnerAssignmentsProcess: AzureFunction = async function (context: Co
     context.bindings.viewRaw = JSON.stringify(rowsArray);
 
     const skinner_view_skinnerassignments_extract_assignments_job = {
-        "job_type": "Skinner.View.SkinnerAssignments.Extract.Assignments"
+        jobType: "Skinner.View.SkinnerAssignments.Extract.Assignments"
     };
     const skinner_view_skinnerassignments_extract_staff_assignments_job = {
-        "job_type": "Skinner.View.SkinnerAssignments.Extract.StaffAssignments"
+        jobType: "Skinner.View.SkinnerAssignments.Extract.StaffAssignments"
     };
     context.bindings.triggerJobs = [
         JSON.stringify(skinner_view_skinnerassignments_extract_assignments_job),

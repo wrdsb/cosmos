@@ -42,7 +42,7 @@ const viewSkinnerStaffProcess: AzureFunction = async function (context: Context,
     context.bindings.viewRaw = JSON.stringify(rowsArray);
 
     const skinner_view_skinnerstaff_extract_staff_job =  {
-        "job_type": "Skinner.View.SkinnerStaff.Extract.Staff"
+        jobType: "Skinner.View.SkinnerStaff.Extract.Staff"
     };
     context.bindings.triggerJobs = [JSON.stringify(skinner_view_skinnerstaff_extract_staff_job)];
 

@@ -59,7 +59,7 @@ const viewSkinnerAssignmentsExtractAssignments: AzureFunction = async function (
     context.bindings.assignmentsNowObject = JSON.stringify(assignmentsObject);
 
     const skinner_trillium_assignments_reconcile_job = {
-        "job_type": "Skinner.Trillium.Assignments.Reconcile"
+        jobType: "Skinner.Trillium.Assignments.Reconcile"
     };
     context.bindings.triggerJobs = [JSON.stringify(skinner_trillium_assignments_reconcile_job)];
 

@@ -3,7 +3,7 @@ import { AzureFunction, Context } from "@azure/functions"
 const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage): Promise<void> {
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
-    const jobType = triggerMessage.job_type;
+    const jobType = triggerMessage.jobType;
     const alpha = triggerMessage.alpha;
 
     if (jobType) {
@@ -211,7 +211,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
             default:
                 context.bindings.callbackMessage = JSON.stringify({
                     status: 422,
-                    body: "Unprocessable Entity. Cannot find the specified job_type."
+                    body: "Unprocessable Entity. Cannot find the specified jobType."
                 });
 
                 break;
@@ -220,7 +220,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
     else {
         context.bindings.callbackMessage = JSON.stringify({
             status: 400,
-            body: "Please pass a valid job_type in the request body."
+            body: "Please pass a valid jobType in the request body."
         });
     }
 

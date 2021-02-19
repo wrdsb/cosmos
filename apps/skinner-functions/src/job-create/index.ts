@@ -4,7 +4,7 @@ const jobCreate: AzureFunction = async function (context: Context, req: HttpRequ
     const execution_timestamp = (new Date()).toJSON();  // format: 2012-04-23T18:25:43.511Z
 
     const body = req.body;
-    const jobType = body.job_type;
+    const jobType = body.jobType;
     const alpha = body.alpha;
 
     if (jobType) {
@@ -24,7 +24,7 @@ const jobCreate: AzureFunction = async function (context: Context, req: HttpRequ
     else {
         context.res = {
             status: 400,
-            body: "Please pass a valid job_type in the request body."
+            body: "Please pass a valid jobType in the request body."
         };
     }
 };

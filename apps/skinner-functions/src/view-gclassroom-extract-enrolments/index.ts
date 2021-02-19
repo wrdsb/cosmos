@@ -66,7 +66,7 @@ const viewGclassroomExtractEnrolments: AzureFunction = async function (context: 
     context.bindings.enrolmentsNowSortedObject = JSON.stringify(enrolmentsSortedObject);
 
     const skinner_trillium_enrolments_reconcile_all_job = {
-        "job_type": "Skinner.Trillium.Enrolments.Reconcile.All"
+        jobType: "Skinner.Trillium.Enrolments.Reconcile.All"
     };
     context.bindings.triggerJobs = [JSON.stringify(skinner_trillium_enrolments_reconcile_all_job)];
 
