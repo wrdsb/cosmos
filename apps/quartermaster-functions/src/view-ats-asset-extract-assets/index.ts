@@ -111,7 +111,7 @@ const viewATSAssetExtractAssets: AzureFunction = async function (context: Contex
     context.bindings.recordsNowObject = JSON.stringify(recordsObject);
 
     const quartermaster_ats_assets_reconcile_job = {
-        "jobType": "Quartermaster.ATS.Assets.Reconcile"
+        jobType: "WRDSB.Quartermaster.ATS.Assets.Reconcile"
     };
     context.bindings.triggerJobs = [JSON.stringify(quartermaster_ats_assets_reconcile_job)];
 

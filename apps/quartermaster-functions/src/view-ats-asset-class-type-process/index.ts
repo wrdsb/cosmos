@@ -38,7 +38,7 @@ const viewATSAssetClassTypeProcess: AzureFunction = async function (context: Con
     context.bindings.viewRaw = JSON.stringify(rowsArray);
 
     const view_ats_asset_class_type_extract_asset_class_type_job =  {
-        "jobType": "Quartermaster.View.ATSAssetClassType.Extract.AssetClassType"
+        jobType: "WRDSB.Quartermaster.View.AssetClassType.Extract.AssetClassTypes"
     };
     context.bindings.triggerJobs = [JSON.stringify(view_ats_asset_class_type_extract_asset_class_type_job)];
 
