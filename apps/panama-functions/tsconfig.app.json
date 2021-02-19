@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "composite": true,
-    "outDir": "../../dist/apps/quartermaster-functions",
+    "outDir": "../../dist/apps/panama-functions",
     "types": ["node"]
   },
   "exclude": ["**/*.spec.ts"],
