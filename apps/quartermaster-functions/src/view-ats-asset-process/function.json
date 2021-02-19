@@ -10,14 +10,14 @@
         {
             "name": "panamaBlob",
             "type": "blob",
-            "path": "ats-view-hd-asset/now.json",
+            "path": "ats-view-hd-asset/{blobFile}",
             "connection": "wrdsbpanama_STORAGE",
             "direction": "in"
         },
         {
             "name": "viewRaw",
             "type": "blob",
-            "path": "ats/view-ats-asset-raw.json",
+            "path": "ats/view-ats-asset-raw-{blobFile}",
             "connection": "wrdsbquartermaster_STORAGE",
             "direction": "out"
         },

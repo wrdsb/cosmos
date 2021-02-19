@@ -10,7 +10,7 @@
         {
             "name": "panamaBlob",
             "type": "blob",
-            "path": "ats-view-hd-asset-class/now.json",
+            "path": "ats-view-hd-asset-class/{blobFile}",
             "connection": "wrdsbpanama_STORAGE",
             "direction": "in"
         },
