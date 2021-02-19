@@ -17,8 +17,8 @@ const viewATSAssetTypeExtractAssetTypes: AzureFunction = async function (context
 
     const objects = context.bindings.viewRaw;
 
-    let recordsArray = [];
-    let recordsObject = {};
+    const recordsArray = [];
+    const recordsObject = {};
 
     objects.forEach(function(record: ViewATSAssetTypeRecord) {
         const asset_type_code  = record.asset_type_code ? record.asset_type_code : "";
@@ -27,9 +27,9 @@ const viewATSAssetTypeExtractAssetTypes: AzureFunction = async function (context
         const engraved_id_type = record.engraved_id_type ? record.engraved_id_type : "";
 
         if (asset_type_code !== "" ) {
-            let thisObjectID = asset_type_code;
+            const thisObjectID = asset_type_code;
 
-            let thisObject = {
+            const thisObject = {
                 id: thisObjectID,
                 asset_type_code: asset_type_code,
                 full_description: full_description,

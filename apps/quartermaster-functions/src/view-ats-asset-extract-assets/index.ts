@@ -17,8 +17,8 @@ const viewATSAssetExtractAssets: AzureFunction = async function (context: Contex
 
     const objects = context.bindings.viewRaw;
 
-    let recordsArray = [];
-    let recordsObject = {};
+    const recordsArray = [];
+    const recordsObject = {};
 
     objects.forEach(function(record: ViewATSAssetRecord) {
         const asset_id = record.asset_id ? record.asset_id : "";
@@ -59,9 +59,9 @@ const viewATSAssetExtractAssets: AzureFunction = async function (context: Contex
         const room = record.room ? record.room : "";
 
         if (asset_id !== "") {
-            let thisObjectID = asset_id;
+            const thisObjectID = asset_id;
 
-            let thisObject = {
+            const thisObject = {
                 id: thisObjectID,
                 asset_id: asset_id,
                 asset_class_code: asset_class_code,

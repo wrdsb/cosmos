@@ -17,8 +17,8 @@ const viewATSAssetClassExtractAssetClasses: AzureFunction = async function (cont
 
     const objects = context.bindings.viewRaw;
 
-    let recordsArray = [];
-    let recordsObject = {};
+    const recordsArray = [];
+    const recordsObject = {};
 
     objects.forEach(function(record: ViewATSAssetClassRecord) {
         const asset_class_code  = record.asset_class_code ? record.asset_class_code : "";
@@ -26,9 +26,9 @@ const viewATSAssetClassExtractAssetClasses: AzureFunction = async function (cont
         const short_description = record.short_description ? record.short_description : "";
 
         if (asset_class_code !== "" ) {
-            let thisObjectID = asset_class_code;
+            const thisObjectID = asset_class_code;
 
-            let thisObject = {
+            const thisObject = {
                 id: thisObjectID,
                 asset_class_code: asset_class_code,
                 full_description: full_description,

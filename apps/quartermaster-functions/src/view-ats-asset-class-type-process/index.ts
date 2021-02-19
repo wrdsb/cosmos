@@ -17,7 +17,7 @@ const viewATSAssetClassTypeProcess: AzureFunction = async function (context: Con
 
     const rows = context.bindings.panamaBlob;
 
-    let rowsArray = [];
+    const rowsArray = [];
 
     rows.forEach(function(row) {
         const asset_class_code = row.ASSET_CLASS_CODE ? row.ASSET_CLASS_CODE.trim() : "";
@@ -25,7 +25,7 @@ const viewATSAssetClassTypeProcess: AzureFunction = async function (context: Con
         const engraved_id_prefix = row.ENGRAVED_ID_PREFIX ? row.ENGRAVED_ID_PREFIX.trim() : "";
     
         // Extract the 'class' object from the row
-        let rowObject = {
+        const rowObject = {
             asset_class_code: asset_class_code,
             asset_type_code: asset_type_code,
             engraved_id_prefix: engraved_id_prefix

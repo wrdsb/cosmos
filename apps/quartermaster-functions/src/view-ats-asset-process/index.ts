@@ -17,7 +17,7 @@ const viewATSAssetProcess: AzureFunction = async function (context: Context, tri
 
     const rows = context.bindings.panamaBlob;
 
-    let rowsArray = [];
+    const rowsArray = [];
 
     rows.forEach(function(row) {
         const asset_id = row.ASSET_ID ? Math.floor(row.ASSET_ID).toString().trim() : "";
@@ -58,7 +58,7 @@ const viewATSAssetProcess: AzureFunction = async function (context: Context, tri
         const room = row.ROOM ? row.ROOM.trim() : "";
     
         // Extract the 'class' object from the row
-        let rowObject = {
+        const rowObject = {
             asset_id: asset_id,
             asset_class_code: asset_class_code,
             asset_type_code: asset_type_code,
