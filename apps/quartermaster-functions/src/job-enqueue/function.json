@@ -15,16 +15,9 @@
       "direction": "out"
     },
     {
-      "name": "viewATSAssetTypeProcessTrigger",
+      "name": "viewATSAssetChecksumProcessTrigger",
       "type": "queue",
-      "queueName": "view-ats-asset-type-process",
-      "connection": "wrdsbquartermaster_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "viewATSAssetTypeExtractAssetTypesTrigger",
-      "type": "queue",
-      "queueName": "view-ats-asset-type-extract-asset-types",
+      "queueName": "view-ats-asset-checksum-process",
       "connection": "wrdsbquartermaster_STORAGE",
       "direction": "out"
     },
@@ -36,9 +29,16 @@
       "direction": "out"
     },
     {
-      "name": "viewATSAssetExtractAssetsTrigger",
+      "name": "viewATSAssetClassProcessTrigger",
       "type": "queue",
-      "queueName": "view-ats-asset-extract-assets",
+      "queueName": "view-ats-asset-class-process",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "viewATSAssetTypeProcessTrigger",
+      "type": "queue",
+      "queueName": "view-ats-asset-type-process",
       "connection": "wrdsbquartermaster_STORAGE",
       "direction": "out"
     },
@@ -50,16 +50,9 @@
       "direction": "out"
     },
     {
-      "name": "viewATSAssetClassTypeExtractAssetClassTypesTrigger",
+      "name": "viewATSAssetExtractAssetsTrigger",
       "type": "queue",
-      "queueName": "view-ats-asset-class-type-extract-asset-class-types",
-      "connection": "wrdsbquartermaster_STORAGE",
-      "direction": "out"
-    },
-    {
-      "name": "viewATSAssetClassProcessTrigger",
-      "type": "queue",
-      "queueName": "view-ats-asset-class-process",
+      "queueName": "view-ats-asset-extract-assets",
       "connection": "wrdsbquartermaster_STORAGE",
       "direction": "out"
     },
@@ -71,6 +64,20 @@
       "direction": "out"
     },
     {
+      "name": "viewATSAssetTypeExtractAssetTypesTrigger",
+      "type": "queue",
+      "queueName": "view-ats-asset-type-extract-asset-types",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "viewATSAssetClassTypeExtractAssetClassTypesTrigger",
+      "type": "queue",
+      "queueName": "view-ats-asset-class-type-extract-asset-class-types",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "atsAssetsReconcileTrigger",
       "type": "queue",
       "queueName": "ats-assets-reconcile",
@@ -78,16 +85,16 @@
       "direction": "out"
     },
     {
-      "name": "atsAssetTypesReconcileTrigger",
+      "name": "atsAssetClassesReconcileTrigger",
       "type": "queue",
-      "queueName": "ats-asset-types-reconcile",
+      "queueName": "ats-asset-classes-reconcile",
       "connection": "wrdsbquartermaster_STORAGE",
       "direction": "out"
     },
     {
-      "name": "atsAssetClassesReconcileTrigger",
+      "name": "atsAssetTypesReconcileTrigger",
       "type": "queue",
-      "queueName": "ats-asset-classes-reconcile",
+      "queueName": "ats-asset-types-reconcile",
       "connection": "wrdsbquartermaster_STORAGE",
       "direction": "out"
     },
