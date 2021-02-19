@@ -12,7 +12,7 @@ const viewStaffDirCopy: AzureFunction = async function (context: Context, trigge
         eventLabel: ''
     } as FunctionInvocation;
 
-    const jobType = triggerMessage.jobType;
+    const jobType = 'WRDSB.Panama.View.StaffDir.Copy';
     let statusCode;
     let statusMessage;
 
@@ -37,10 +37,7 @@ const viewStaffDirCopy: AzureFunction = async function (context: Context, trigge
     };
     functionInvocation.logPayload = logPayload;
 
-    // Fire event for external consumption
-    const invocationEvent = {type: jobType, data: {status: statusCode}};
-    context.bindings.eventEmitter = JSON.stringify(invocationEvent);
-    
+    context.bindings.jobRelay = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);

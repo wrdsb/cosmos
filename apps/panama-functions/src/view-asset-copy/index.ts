@@ -37,10 +37,7 @@ const viewAssetCopy: AzureFunction = async function (context: Context, triggerMe
     };
     functionInvocation.logPayload = logPayload;
 
-    // Fire event for external consumption
-    const invocationEvent = {type: jobType, data: {status: statusCode}};
-    context.bindings.eventEmitter = JSON.stringify(invocationEvent);
-
+    context.bindings.jobRelay = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
