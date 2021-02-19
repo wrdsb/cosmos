@@ -102,56 +102,56 @@ const eventListener: AzureFunction = async function (context: Context, req: Http
         case 'Panama.View.AssetClass.Extract':
             queueTriggered = 'view-asset-class-copy';
             queueMessage = JSON.stringify({
-                job_type: "WRDSB.Panama.View.AssetClass.Copy"
+                jobType: "WRDSB.Panama.View.AssetClass.Copy"
             });
             context.bindings.triggerViewAssetClassCopy = queueMessage;
             break;
         case 'Panama.View.AssetClassType.Extract':
             queueTriggered = 'view-asset-class-type-copy';
             queueMessage = JSON.stringify({
-                job_type: "WRDSB.Panama.View.AssetClassType.Copy"
+                jobType: "WRDSB.Panama.View.AssetClassType.Copy"
             });
             context.bindings.triggerViewAssetClassTypeCopy = queueMessage;
             break;
         case 'Panama.View.AssetType.Extract':
             queueTriggered = 'view-asset-type-copy';
             queueMessage = JSON.stringify({
-                job_type: "WRDSB.Panama.View.AssetType.Copy"
+                jobType: "WRDSB.Panama.View.AssetType.Copy"
             });
             context.bindings.triggerViewAssetTypeCopy = queueMessage;
             break;
         case 'Panama.View.GClassroom.Extract':
             queueTriggered = 'view-gclassroom-copy';
             queueMessage = JSON.stringify({
-                job_type: "WRDSB.Panama.View.GClassroom.Copy"
+                jobType: "WRDSB.Panama.View.GClassroom.Copy"
             });
             context.bindings.triggerViewGClassroomCopy = queueMessage;
             break;
         case 'Panama.View.IAMWP.Extract':
             queueTriggered = 'view-iamwp-copy';
             queueMessage = JSON.stringify({
-                job_type: "WRDSB.Panama.View.IAMWP.Copy"
+                jobType: "WRDSB.Panama.View.IAMWP.Copy"
             });
             context.bindings.triggerViewIAMWPCopy = queueMessage;
             break;
         case 'Panama.View.SkinnerAssignments.Extract':
             queueTriggered = 'view-skinnerassignments-copy';
             queueMessage = JSON.stringify({
-                job_type: "WRDSB.Panama.View.SkinnerAssignments.Copy"
+                jobType: "WRDSB.Panama.View.SkinnerAssignments.Copy"
             });
             context.bindings.triggerViewSkinnerAssignmentsCopy = queueMessage;
             break;
         case 'Panama.View.SkinnerStaff.Extract':
             queueTriggered = 'view-skinnerstaff-copy';
             queueMessage = JSON.stringify({
-                job_type: "WRDSB.Panama.View.SkinnerStaff.Copy"
+                jobType: "WRDSB.Panama.View.SkinnerStaff.Copy"
             });
             context.bindings.triggerViewSkinnerStaffCopy = queueMessage;
             break;
         case 'Panama.View.StaffDir.Extract':
             queueTriggered = 'view-staffdir-copy';
             queueMessage = JSON.stringify({
-                job_type: "WRDSB.Panama.View.StaffDir.Copy"
+                jobType: "WRDSB.Panama.View.StaffDir.Copy"
             });
             context.bindings.triggerViewStaffDirCopy = queueMessage;
             break;
