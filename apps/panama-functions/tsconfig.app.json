@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "composite": true,
+    "outDir": "../../dist/apps/quartermaster-functions",
     "types": ["node"]
   },
   "exclude": ["**/*.spec.ts"],
