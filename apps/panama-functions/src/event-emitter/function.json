@@ -7,6 +7,41 @@
       "direction": "in"
     },
     {
+      "name": "triggerViewATSAssetChecksumProcess",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "view-ats-asset-checksum-process",
+      "connection": "wrdsbquartermaster_STORAGE"
+    },
+    {
+      "name": "triggerViewATSAssetProcess",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "view-ats-asset-process",
+      "connection": "wrdsbquartermaster_STORAGE"
+    },
+    {
+      "name": "triggerViewATSAssetClassProcess",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "view-ats-asset-class-process",
+      "connection": "wrdsbquartermaster_STORAGE"
+    },
+    {
+      "name": "triggerViewATSAssetClassTypeProcess",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "view-ats-asset-class-type-process",
+      "connection": "wrdsbquartermaster_STORAGE"
+    },
+    {
+      "name": "triggerViewATSAssetTypeProcess",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "view-ats-asset-type-process",
+      "connection": "wrdsbquartermaster_STORAGE"
+    },
+    {
       "name": "triggerViewGClassroomProcess",
       "type": "queue",
       "direction": "out",
