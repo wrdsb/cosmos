@@ -1,0 +1,25 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "job-relay",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "quartermasterJobEnqueue",
+      "type": "queue",
+      "queueName": "job-enqueue",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
