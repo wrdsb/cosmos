@@ -24,7 +24,7 @@
       "name": "invocationPostProcessor",
       "type": "queue",
       "queueName": "invocation-post-processor",
-      "connection": "wrdsbviewfinder_STORAGE",
+      "connection": "wrdsbquartermaster_STORAGE",
       "direction": "out"
     }
   ],
