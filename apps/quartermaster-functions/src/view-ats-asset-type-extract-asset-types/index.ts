@@ -12,6 +12,8 @@ const viewATSAssetTypeExtractAssetTypes: AzureFunction = async function (context
         eventLabel: ''
     } as FunctionInvocation;
 
+    const jobType = 'WRDSB.Quartermaster.View.AssetType.Extract.AssetTypes';
+
     const triggerObject = triggerMessage as ViewATSAssetTypeExtractAssetTypesFunctionRequest;
     const payload = triggerObject.payload as ViewATSAssetTypeExtractAssetTypesFunctionRequestPayload;
 
@@ -46,15 +48,11 @@ const viewATSAssetTypeExtractAssetTypes: AzureFunction = async function (context
     context.bindings.recordsNowArray = JSON.stringify(recordsArray);
     context.bindings.recordsNowObject = JSON.stringify(recordsObject);
 
-    const quartermaster_ats_asset_types_reconcile_job = {
-        jobType: "WRDSB.Quartermaster.ATS.AssetTypes.Reconcile"
-    };
-    context.bindings.triggerJobs = [JSON.stringify(quartermaster_ats_asset_types_reconcile_job)];
-
     const logPayload = "";
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 };

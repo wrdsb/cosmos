@@ -13,6 +13,7 @@ const viewATSAssetExtractAssets: AzureFunction = async function (context: Contex
     } as FunctionInvocation;
 
     const triggerObject = triggerMessage as ViewATSAssetExtractAssetsFunctionRequest;
+    const jobType = triggerObject.jobType;
     const payload = triggerObject.payload as ViewATSAssetExtractAssetsFunctionRequestPayload;
 
     const objects = context.bindings.viewRaw;
@@ -110,15 +111,11 @@ const viewATSAssetExtractAssets: AzureFunction = async function (context: Contex
     context.bindings.recordsNowArray = JSON.stringify(recordsArray);
     context.bindings.recordsNowObject = JSON.stringify(recordsObject);
 
-    const quartermaster_ats_assets_reconcile_job = {
-        jobType: "WRDSB.Quartermaster.ATS.Assets.Reconcile"
-    };
-    context.bindings.triggerJobs = [JSON.stringify(quartermaster_ats_assets_reconcile_job)];
-
     const logPayload = "";
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 };

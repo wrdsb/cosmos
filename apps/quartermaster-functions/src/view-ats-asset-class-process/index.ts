@@ -12,6 +12,8 @@ const viewATSAssetClassProcess: AzureFunction = async function (context: Context
         eventLabel: ''
     } as FunctionInvocation;
 
+    const jobType = 'WRDSB.Quartermaster.View.AssetClass.Process';
+
     const triggerObject = triggerMessage as ViewATSAssetClassProcessFunctionRequest;
     const payload = triggerObject.payload as ViewATSAssetClassProcessFunctionRequestPayload;
 
@@ -37,15 +39,11 @@ const viewATSAssetClassProcess: AzureFunction = async function (context: Context
     // Write out Quartermaster's local copy of Panama's raw data
     context.bindings.viewRaw = JSON.stringify(rowsArray);
 
-    const view_ats_asset_class_extract_asset_class_job =  {
-        jobType: "WRDSB.Quartermaster.View.AssetClass.Extract.AssetClasses"
-    };
-    context.bindings.triggerJobs = [JSON.stringify(view_ats_asset_class_extract_asset_class_job)];
-
     const logPayload = "";
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
