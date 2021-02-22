@@ -22,9 +22,9 @@
             "direction": "out"
         },
         {
-            "name": "triggerJobs",
+            "name": "jobRelay",
             "type": "queue",
-            "queueName": "job-enqueue",
+            "queueName": "job-relay",
             "connection": "wrdsbquartermaster_STORAGE",
             "direction": "out"
         },

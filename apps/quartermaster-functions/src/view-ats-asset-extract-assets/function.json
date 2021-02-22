@@ -10,28 +10,28 @@
         {
             "name": "viewRaw",
             "type": "blob",
-            "path": "ats/view-ats-asset-raw.json",
+            "path": "ats/view-ats-asset-raw-{blobFile}",
             "connection": "wrdsbquartermaster_STORAGE",
             "direction": "in"
         },
         {
             "name": "assetNowArray",
             "type": "blob",
-            "path": "ats/asset-now-array.json",
+            "path": "ats/asset-array-{blobFile}",
             "connection": "wrdsbquartermaster_STORAGE",
             "direction": "out"
         },
         {
             "name": "assetNowObject",
             "type": "blob",
-            "path": "ats/asset-now-object.json",
+            "path": "ats/asset-object-{blobFile}",
             "connection": "wrdsbquartermaster_STORAGE",
             "direction": "out"
         },
         {
-            "name": "triggerJobs",
+            "name": "jobRelay",
             "type": "queue",
-            "queueName": "job-enqueue",
+            "queueName": "job-relay",
             "connection": "wrdsbquartermaster_STORAGE",
             "direction": "out"
         },
