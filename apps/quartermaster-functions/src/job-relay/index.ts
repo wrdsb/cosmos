@@ -128,6 +128,14 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
+            case "WRDSB.Quartermaster.View.AssetClass.Extract.AssetClasses":
+                queueTriggered = 'quartermaster:job-enqueue';
+                queueMessage = {
+                    jobType: "WRDSB.Quartermaster.ATS.AssetClasses.Reconcile"
+                };
+                context.bindings.quartermasterJobEnqueue = queueMessage;
+                break;
+
             case 'WRDSB.Quartermaster.View.AssetClassType.Process':
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
@@ -137,11 +145,27 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
+            case "WRDSB.Quartermaster.View.AssetClassType.Extract.AssetClassTypes":
+                queueTriggered = 'quartermaster:job-enqueue';
+                queueMessage = {
+                    jobType: "WRDSB.Quartermaster.ATS.AssetClassTypes.Reconcile"
+                };
+                context.bindings.quartermasterJobEnqueue = queueMessage;
+                break;
+
             case 'WRDSB.Quartermaster.View.AssetType.Process':
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.AssetType.Extract.AssetTypes",
                     blobFile: "now.json"
+                };
+                context.bindings.quartermasterJobEnqueue = queueMessage;
+                break;
+
+            case "WRDSB.Quartermaster.View.AssetType.Extract.AssetTypes":
+                queueTriggered = 'quartermaster:job-enqueue';
+                queueMessage = {
+                    jobType: "WRDSB.Quartermaster.ATS.AssetTypes.Reconcile"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
