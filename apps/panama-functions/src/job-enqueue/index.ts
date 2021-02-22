@@ -15,10 +15,10 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env['SENDGRID_API_KEY']);
 
-    const jobType = triggerMessage.jobType;
-    const operation = triggerMessage.operation;
-    const payload = triggerMessage.payload;
-    const blobFile = triggerMessage.blobFile;
+    const jobType = (triggerMessage.jobType) ? triggerMessage.jobType : null ;
+    const operation = (triggerMessage.operation) ? triggerMessage.operation : null;
+    const payload = (triggerMessage.payload) ? triggerMessage.payload : null;
+    const blobFile = (triggerMessage.blobFile) ? triggerMessage.blobFile : null;
 
     let queueTriggered = '';
     let queueMessage = {};
