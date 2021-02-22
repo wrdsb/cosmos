@@ -47,11 +47,11 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
     calculation = await findCreatesAndUpdates(calculation);
     calculation = await findDeletes(calculation);
 
-    let creates = await processCreates(calculation.differences.created_records);
-    let updates = await processUpdates(calculation.differences.updated_records);
-    let deletes = await processDeletes(calculation.differences.deleted_records);
+    const creates = await processCreates(calculation.differences.created_records);
+    const updates = await processUpdates(calculation.differences.updated_records);
+    const deletes = await processDeletes(calculation.differences.deleted_records);
 
-    let totalDifferences = creates.length + updates.length + deletes.length;
+    const totalDifferences = creates.length + updates.length + deletes.length;
 
     context.bindings.queueStore = creates.concat(updates, deletes);
 
@@ -69,8 +69,8 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
     async function findCreatesAndUpdates(calculation) {
         context.log('findCreatesAndUpdates');
 
-        let records_previous = calculation.records_previous;
-        let records_now = calculation.records_now;
+        const records_previous = calculation.records_previous;
+        const records_now = calculation.records_now;
 
         if (!records_now) {
             return calculation;
@@ -133,8 +133,8 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
     async function findDeletes(calculation) {
         context.log('findDeletes');
 
-        let records_previous = calculation.records_previous;
-        let records_now = calculation.records_now;
+        const records_previous = calculation.records_previous;
+        const records_now = calculation.records_now;
 
         if (!records_previous) {
             return calculation;
@@ -154,10 +154,10 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
         context.log('processCreates');
 
         // array for the results being returned
-        let messages = [];
+        const messages = [];
 
         created_records.forEach(function (record) {
-            let message = {
+            const message = {
                 operation: "replace",
                 payload: record
             };
@@ -171,10 +171,10 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
         context.log('processUpdates');
 
         // array for the results being returned
-        let messages = [];
+        const messages = [];
 
         updated_records.forEach(function (record) {
-            let message = {
+            const message = {
                 operation: "replace",
                 payload: record.now
             };
@@ -188,10 +188,10 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
         context.log('processDeletes');
 
         // array for the results being returned
-        let messages = [];
+        const messages = [];
 
         deleted_records.forEach(function (record) {
-            let message = {
+            const message = {
                 operation: "delete",
                 payload: record
             };
@@ -204,7 +204,7 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
     async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer) {
         context.log('getCosmosItems');
 
-        let records_previous = {};
+        const records_previous = {};
 
         const querySpec = {
             query: `SELECT * FROM c WHERE c.deleted = false`
@@ -220,7 +220,7 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
 
             for (const item of resources) {
                 if (!item.deleted) {
-                    let dbObject = {
+                    const dbObject = {
                         id: item.id,
                         changeDetectionHash: item.changeDetectionHash,
                 
