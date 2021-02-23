@@ -12,8 +12,8 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
         eventLabel: ''
     } as FunctionInvocation;
 
-    const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey(process.env['SENDGRID_API_KEY']);
+    //const sgMail = require('@sendgrid/mail');
+    //sgMail.setApiKey(process.env['SENDGRID_API_KEY']);
 
     const jobType = triggerMessage.jobType;
     const operation = triggerMessage.operation;
@@ -36,7 +36,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
         error: '',
         result: ''
     };
-    let notification = {};
+    const notification = {};
 
     if (jobType) {
         switch (jobType) {
@@ -102,7 +102,8 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 queueTriggered = 'view-ats-asset-extract-assets';
                 queueMessage = {
                     jobType: 'WRDSB.Quartermaster.View.Asset.Extract.Assets',
-                    incomingBlob: incomingBlob
+                    incomingBlob: incomingBlob,
+                    offset: offset
                 };
                 context.bindings.viewATSAssetExtractAssetsTrigger = queueMessage;
                 sentQueueMessage = true;
@@ -198,38 +199,38 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
         };
     }
 
-    if (sendNotification) {
-        notification = {
-            subject: 'Poison Message Notification',
-            to: process.env['SENDGRID_TO'],
-            from: {
-                email: 'errors@quartermaster.wrdsb.io',
-                name: 'Quartermaster Errors'
-            },
-            html: html
-        };
-        sgMail.send(notification, (error, result) => {
-            if (error) {
-                logPayload = {
-                    status: "500",
-                    message: 'Failed to send email notification.',
-                    queueMessage: '',
-                    queueTriggered: '',
-                    result: '',
-                    error: error,
-                };
-            } else {
-                logPayload = {
-                    status: "200",
-                    message: 'Sent email notification',
-                    queueMessage: '',
-                    queueTriggered: '',
-                    result: result,
-                    error: error
-                };
-            }
-        });
-    }
+    // if (sendNotification) {
+        // notification = {
+            // subject: 'Poison Message Notification',
+            // to: process.env['SENDGRID_TO'],
+            // from: {
+                // email: 'errors@quartermaster.wrdsb.io',
+                // name: 'Quartermaster Errors'
+            // },
+            // html: html
+        // };
+        // sgMail.send(notification, (error, result) => {
+            // if (error) {
+                // logPayload = {
+                    // status: "500",
+                    // message: 'Failed to send email notification.',
+                    // queueMessage: '',
+                    // queueTriggered: '',
+                    // result: '',
+                    // error: error,
+                // };
+            // } else {
+                // logPayload = {
+                    // status: "200",
+                    // message: 'Sent email notification',
+                    // queueMessage: '',
+                    // queueTriggered: '',
+                    // result: result,
+                    // error: error
+                // };
+            // }
+        // });
+    // }
 
     functionInvocation.logPayload = logPayload;
 
