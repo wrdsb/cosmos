@@ -10,21 +10,21 @@
         {
             "name": "viewRaw",
             "type": "blob",
-            "path": "ats/view-ats-asset-raw-{blobFile}",
+            "path": "{incomingBlob}",
             "connection": "wrdsbquartermaster_STORAGE",
             "direction": "in"
         },
         {
-            "name": "assetNowArray",
+            "name": "recordsNowArray",
             "type": "blob",
-            "path": "ats/asset-array-{blobFile}",
+            "path": "ats/asset-array{offset}.json",
             "connection": "wrdsbquartermaster_STORAGE",
             "direction": "out"
         },
         {
-            "name": "assetNowObject",
+            "name": "recordsNowObject",
             "type": "blob",
-            "path": "ats/asset-object-{blobFile}",
+            "path": "ats/asset-object{offset}.json",
             "connection": "wrdsbquartermaster_STORAGE",
             "direction": "out"
         },
