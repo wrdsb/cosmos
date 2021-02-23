@@ -18,7 +18,6 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
     const jobType = triggerMessage.jobType;
     const operation = triggerMessage.operation;
     const payload = triggerMessage.payload;
-    const blobFile = triggerMessage.blobFile;
 
     let queueTriggered = '';
     let queueMessage = {};
@@ -53,7 +52,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.Asset.Checksum.Process",
-                    blobFile: "nowChecksum.json"
+                    incomingBlob: "nowChecksum.json"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -72,7 +71,8 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.Asset.Process",
-                    blobFile: "now.json"
+                    incomingBlob: "ats-view-hd-asset/now.json",
+                    offset: "0"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -91,7 +91,8 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.Asset.Process",
-                    blobFile: "now50.json"
+                    incomingBlob: "ats-view-hd-asset/now50.json",
+                    offset: "50"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -110,7 +111,8 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.Asset.Process",
-                    blobFile: "now100.json"
+                    incomingBlob: "ats-view-hd-asset/now100.json",
+                    offset: "100"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -129,7 +131,8 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.Asset.Process",
-                    blobFile: "now150.json"
+                    incomingBlob: "ats-view-hd-asset/now150.json",
+                    offset: "150"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -148,7 +151,8 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.Asset.Process",
-                    blobFile: "now200.json"
+                    incomingBlob: "ats-view-hd-asset/now200.json",
+                    offset: "200"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -167,7 +171,8 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.Asset.Process",
-                    blobFile: "now250.json"
+                    incomingBlob: "ats-view-hd-asset/now250.json",
+                    offset: "250"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -186,7 +191,8 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.Asset.Process",
-                    blobFile: "now300.json"
+                    incomingBlob: "ats-view-hd-asset/now300.json",
+                    offset: "300"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -205,7 +211,8 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.Asset.Process",
-                    blobFile: "now350.json"
+                    incomingBlob: "ats-view-hd-asset/now350.json",
+                    offset: "350"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -222,7 +229,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.AssetClass.Process",
-                    blobFile: "now.json"
+                    incomingBlob: "ats-view-hd-asset-class/now.json"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -239,7 +246,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.AssetClassType.Process",
-                    blobFile: "now.json"
+                    incomingBlob: "ats-view-hd-asset-class-type/now.json"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -256,7 +263,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.AssetType.Process",
-                    blobFile: "now.json"
+                    incomingBlob: "ats-view-hd-asset-type/now.json"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
