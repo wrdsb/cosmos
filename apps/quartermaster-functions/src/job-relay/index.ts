@@ -12,20 +12,21 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
         eventLabel: ''
     } as FunctionInvocation;
 
-    const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey(process.env['SENDGRID_API_KEY']);
+    //const sgMail = require('@sendgrid/mail');
+    //sgMail.setApiKey(process.env['SENDGRID_API_KEY']);
 
     const jobType = triggerMessage.jobType;
     const operation = triggerMessage.operation;
     const payload = triggerMessage.payload;
-    const blobFile = triggerMessage.blobFile;
+    const incomingBlob = triggerMessage.incomingBlob;
+    const offset = triggerMessage.offset;
 
     let queueTriggered = '';
     let queueMessage = {};
-    let sentQueueMessage = false;
+    const sentQueueMessage = false;
 
-    let html = '';
-    let sendNotification = false;
+    const html = '';
+    const sendNotification = false;
 
     let logPayload = {
         status: '',
@@ -35,7 +36,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
         error: '',
         result: ''
     };
-    let notification = {};
+    const notification = {};
 
     if (jobType) {
         switch (jobType) {
@@ -49,72 +50,19 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 break;
 
             case 'WRDSB.Quartermaster.View.Asset.Process':
-                //queueTriggered = 'quartermaster:job-enqueue';
-                //queueMessage = {
-                    //jobType: "",
-                    //blobFile: ""
-                //};
-                //context.bindings.quartermasterJobEnqueue = queueMessage;
+                queueTriggered = 'quartermaster:job-enqueue';
+                queueMessage = {
+                    jobType: "WRDSB.Quartermaster.View.Asset.Extract.Assets",
+                    incomingBlob: `ats/view-ats-asset-raw${offset}.json`,
+                    offset: offset
+                };
+                context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
-            case 'WRDSB.Quartermaster.View.Asset.Process50k':
+            case "WRDSB.Quartermaster.View.Asset.Extract.Assets":
                 //queueTriggered = 'quartermaster:job-enqueue';
                 //queueMessage = {
-                    //blobFile: "now50.json"
-                //};
-                //context.bindings.quartermasterJobEnqueue = queueMessage;
-                break;
-
-            case 'WRDSB.Quartermaster.View.Asset.Process100k':
-                //queueTriggered = 'quartermaster:job-enqueue';
-                //queueMessage = {
-                    //jobType: "",
-                    //blobFile: "now100.json"
-                //};
-                //context.bindings.quartermasterJobEnqueue = queueMessage;
-                break;
-
-            case 'WRDSB.Quartermaster.View.Asset.Process150k':
-                //queueTriggered = 'quartermaster:job-enqueue';
-                //queueMessage = {
-                    //jobType: "",
-                    //blobFile: "now150.json"
-                //};
-                //context.bindings.quartermasterJobEnqueue = queueMessage;
-                break;
-
-            case 'WRDSB.Quartermaster.View.Asset.Process200k':
-                //queueTriggered = 'quartermaster:job-enqueue';
-                //queueMessage = {
-                    //jobType: "",
-                    //blobFile: "now200.json"
-                //};
-                //context.bindings.quartermasterJobEnqueue = queueMessage;
-                break;
-
-            case 'WRDSB.Quartermaster.View.Asset.Process250k':
-                //queueTriggered = 'quartermaster:job-enqueue';
-                //queueMessage = {
-                    //jobType: "",
-                    //blobFile: "now250.json"
-                //};
-                //context.bindings.quartermasterJobEnqueue = queueMessage;
-                break;
-
-            case 'WRDSB.Quartermaster.View.Asset.Process300k':
-                //queueTriggered = 'quartermaster:job-enqueue';
-                //queueMessage = {
-                    //jobType: "",
-                    //blobFile: "now300.json"
-                //};
-                //context.bindings.quartermasterJobEnqueue = queueMessage;
-                break;
-
-            case 'WRDSB.Quartermaster.View.Asset.Process350k':
-                //queueTriggered = 'quartermaster:job-enqueue';
-                //queueMessage = {
-                    //jobType: "",
-                    //blobFile: "now350.json"
+                    //jobType: "WRDSB.Quartermaster.ATS.AssetClasses.Reconcile"
                 //};
                 //context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -122,8 +70,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
             case 'WRDSB.Quartermaster.View.AssetClass.Process':
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.View.AssetClass.Extract.AssetClasses",
-                    blobFile: "now.json"
+                    jobType: "WRDSB.Quartermaster.View.AssetClass.Extract.AssetClasses"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -139,8 +86,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
             case 'WRDSB.Quartermaster.View.AssetClassType.Process':
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.View.AssetClassType.Extract.AssetClassTypes",
-                    blobFile: "now.json"
+                    jobType: "WRDSB.Quartermaster.View.AssetClassType.Extract.AssetClassTypes"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -156,8 +102,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
             case 'WRDSB.Quartermaster.View.AssetType.Process':
                 queueTriggered = 'quartermaster:job-enqueue';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.View.AssetType.Extract.AssetTypes",
-                    blobFile: "now.json"
+                    jobType: "WRDSB.Quartermaster.View.AssetType.Extract.AssetTypes"
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
@@ -196,38 +141,38 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
         };
     }
 
-    if (sendNotification) {
-        notification = {
-            subject: 'Poison Message Notification',
-            to: process.env['SENDGRID_TO'],
-            from: {
-                email: 'errors@panama.wrdsb.io',
-                name: 'Panama Errors'
-            },
-            html: html
-        };
-        sgMail.send(notification, (error, result) => {
-            if (error) {
-                logPayload = {
-                    status: "500",
-                    message: 'Failed to send email notification.',
-                    queueMessage: '',
-                    queueTriggered: '',
-                    result: '',
-                    error: error,
-                };
-            } else {
-                logPayload = {
-                    status: "200",
-                    message: 'Sent email notification',
-                    queueMessage: '',
-                    queueTriggered: '',
-                    result: result,
-                    error: error
-                };
-            }
-        });
-    }
+    //if (sendNotification) {
+        //notification = {
+            //subject: 'Poison Message Notification',
+            //to: process.env['SENDGRID_TO'],
+            //from: {
+                //email: 'errors@panama.wrdsb.io',
+                //name: 'Panama Errors'
+            //},
+            //html: html
+        //};
+        //sgMail.send(notification, (error, result) => {
+            //if (error) {
+                //logPayload = {
+                    //status: "500",
+                    //message: 'Failed to send email notification.',
+                    //queueMessage: '',
+                    //queueTriggered: '',
+                    //result: '',
+                    //error: error,
+                //};
+            //} else {
+                //logPayload = {
+                    //status: "200",
+                    //message: 'Sent email notification',
+                    //queueMessage: '',
+                    //queueTriggered: '',
+                    //result: result,
+                    //error: error
+                //};
+            //}
+        //});
+    //}
 
     functionInvocation.logPayload = logPayload;
 
