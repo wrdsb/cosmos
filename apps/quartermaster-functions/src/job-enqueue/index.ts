@@ -18,7 +18,8 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
     const jobType = triggerMessage.jobType;
     const operation = triggerMessage.operation;
     const payload = triggerMessage.payload;
-    const blobFile = triggerMessage.blobFile;
+    const incomingBlob = triggerMessage.incomingBlob;
+    const offset = triggerMessage.offset;
 
     let queueTriggered = '';
     let queueMessage = {};
@@ -50,7 +51,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 queueTriggered = 'view-ats-asset-checksum-process';
                 queueMessage = {
                     jobType: "WRDSB.Quartermaster.View.Asset.Checksum.Process",
-                    incomingBlob: blobFile
+                    incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetChecksumProcessTrigger = queueMessage;
                 sentQueueMessage = true;
@@ -60,7 +61,8 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 queueTriggered = 'view-ats-asset-process';
                 queueMessage = {
                     jobType: 'WRDSB.Quartermaster.View.Asset.Process',
-                    incomingBlob: blobFile
+                    incomingBlob: incomingBlob,
+                    offset: offset
                 };
                 context.bindings.viewATSAssetProcessTrigger = queueMessage;
                 sentQueueMessage = true;
@@ -70,7 +72,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 queueTriggered = 'view-ats-asset-class-process';
                 queueMessage = {
                     jobType: 'WRDSB.Quartermaster.View.AssetClass.Process',
-                    incomingBlob: blobFile
+                    incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetClassProcessTrigger = queueMessage;
                 sentQueueMessage = true;
@@ -80,7 +82,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 queueTriggered = 'view-ats-asset-type-process';
                 queueMessage = {
                     jobType: 'WRDSB.Quartermaster.View.AssetType.Process',
-                    incomingBlob: blobFile
+                    incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetTypeProcessTrigger = queueMessage;
                 sentQueueMessage = true;
@@ -90,7 +92,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 queueTriggered = 'view-ats-asset-class-type-process';
                 queueMessage = {
                     jobType: 'WRDSB.Quartermaster.View.AssetClassType.Process',
-                    incomingBlob: blobFile
+                    incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetClassTypeProcessTrigger = queueMessage;
                 sentQueueMessage = true;
@@ -100,7 +102,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 queueTriggered = 'view-ats-asset-extract-assets';
                 queueMessage = {
                     jobType: 'WRDSB.Quartermaster.View.Asset.Extract.Assets',
-                    incomingBlob: blobFile
+                    incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetExtractAssetsTrigger = queueMessage;
                 sentQueueMessage = true;
@@ -137,7 +139,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 queueTriggered = 'ats-assets-reconcile';
                 queueMessage = {
                     jobType: 'WRDSB.Quartermaster.ATS.Assets.Reconcile',
-                    incomingBlob: blobFile
+                    incomingBlob: incomingBlob
                 };
                 context.bindings.atsAssetsReconcileTrigger = queueMessage;
                 sentQueueMessage = true;
