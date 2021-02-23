@@ -15,14 +15,14 @@
             "direction": "in"
         },
         {
-            "name": "assetTypeNowArray",
+            "name": "recordsNowArray",
             "type": "blob",
             "path": "ats/asset-type-now-array.json",
             "connection": "wrdsbquartermaster_STORAGE",
             "direction": "out"
         },
         {
-            "name": "assetTypeNowObject",
+            "name": "recordsNowObject",
             "type": "blob",
             "path": "ats/asset-type-now-object.json",
             "connection": "wrdsbquartermaster_STORAGE",
