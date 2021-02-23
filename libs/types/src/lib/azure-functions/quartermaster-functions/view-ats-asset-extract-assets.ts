@@ -2,6 +2,8 @@ import * as Cosmos from "../common";
 
 interface ViewATSAssetExtractAssetsFunctionRequest extends Cosmos.FunctionRequest {
     readonly jobType: string;
+    readonly incomingBlob: string;
+    readonly offset: string;
     readonly payload: ViewATSAssetExtractAssetsFunctionRequestPayload;
 }
 
