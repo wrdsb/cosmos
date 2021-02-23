@@ -14,6 +14,8 @@ const viewATSAssetExtractAssets: AzureFunction = async function (context: Contex
 
     const triggerObject = triggerMessage as ViewATSAssetExtractAssetsFunctionRequest;
     const jobType = triggerObject.jobType;
+    const incomingBlob = triggerObject.incomingBlob;
+    const offset = triggerObject.offset;
     const payload = triggerObject.payload as ViewATSAssetExtractAssetsFunctionRequestPayload;
 
     const objects = context.bindings.viewRaw;
@@ -114,7 +116,7 @@ const viewATSAssetExtractAssets: AzureFunction = async function (context: Contex
     const logPayload = "";
     functionInvocation.logPayload = logPayload;
 
-    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.jobRelay = {jobType: jobType, offset: offset};
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);

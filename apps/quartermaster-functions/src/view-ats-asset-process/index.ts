@@ -14,6 +14,7 @@ const viewATSAssetProcess: AzureFunction = async function (context: Context, tri
 
     const triggerObject = triggerMessage as ViewATSAssetProcessFunctionRequest;
     const jobType = triggerObject.jobType;
+    const offset = triggerObject.offset;
     const payload = triggerObject.payload as ViewATSAssetProcessFunctionRequestPayload;
 
     const rows = context.bindings.panamaBlob;
@@ -107,7 +108,7 @@ const viewATSAssetProcess: AzureFunction = async function (context: Context, tri
     const logPayload = "";
     functionInvocation.logPayload = logPayload;
 
-    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.jobRelay = {jobType: jobType, offset: offset};
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
