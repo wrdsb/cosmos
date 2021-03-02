@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { FunctionInvocation, ViewATSAssetTypeProcessFunctionRequest, ViewATSAssetTypeProcessFunctionRequestPayload, ViewATSAssetTypeRecord } from "@cosmos/types";
+import { FunctionInvocation, QuartermasterJobType, ViewATSAssetTypeProcessFunctionRequest, ViewATSAssetTypeProcessFunctionRequestPayload, ViewATSAssetTypeRecord } from "@cosmos/types";
 
 const viewATSAssetTypeProcess: AzureFunction = async function (context: Context, triggerMessage: ViewATSAssetTypeProcessFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -12,7 +12,8 @@ const viewATSAssetTypeProcess: AzureFunction = async function (context: Context,
         eventLabel: ''
     } as FunctionInvocation;
 
-    const jobType = 'WRDSB.Quartermaster.View.AssetType.Process';
+    let jobType = '' as QuartermasterJobType;
+    jobType = 'Quartermaster.ViewATSAssetType.Process';
 
     const triggerObject = triggerMessage as ViewATSAssetTypeProcessFunctionRequest;
     const payload = triggerObject.payload as ViewATSAssetTypeProcessFunctionRequestPayload;
