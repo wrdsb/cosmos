@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { FunctionInvocation, DeviceLoanSubmissionStoreFunctionRequest } from "@cosmos/types";
+import { FunctionInvocation, QuartermasterJobType, DeviceLoanSubmissionStoreFunctionRequest } from "@cosmos/types";
 
 const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
@@ -15,7 +15,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
     //const sgMail = require('@sendgrid/mail');
     //sgMail.setApiKey(process.env['SENDGRID_API_KEY']);
 
-    const jobType = triggerMessage.jobType;
+    const jobType = triggerMessage.jobType as QuartermasterJobType;
     const operation = triggerMessage.operation;
     const payload = triggerMessage.payload;
     const incomingBlob = triggerMessage.incomingBlob;
@@ -40,27 +40,27 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
 
     if (jobType) {
         switch (jobType) {
-            case "Quartermaster.DeviceLoanSubmission.Store":
+            case 'Quartermaster.DeviceLoanSubmission.Store':
                 context.bindings.deviceLoanSubmissionStore = {
                     operation: operation,
                     payload: payload
                 } as DeviceLoanSubmissionStoreFunctionRequest;
                 break;
 
-            case 'WRDSB.Quartermaster.View.Asset.Checksum.Process':
+            case 'Quartermaster.ViewATSAssetChecksum.Process':
                 queueTriggered = 'view-ats-asset-checksum-process';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.View.Asset.Checksum.Process",
+                    jobType: jobType,
                     incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetChecksumProcessTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
     
-            case "WRDSB.Quartermaster.View.Asset.Process":
+            case 'Quartermaster.ViewATSAsset.Process':
                 queueTriggered = 'view-ats-asset-process';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.View.Asset.Process',
+                    jobType: jobType,
                     incomingBlob: incomingBlob,
                     offset: offset
                 };
@@ -68,40 +68,40 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.View.AssetClass.Process":
+            case 'Quartermaster.ViewATSAssetClass.Process':
                 queueTriggered = 'view-ats-asset-class-process';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.View.AssetClass.Process',
+                    jobType: jobType,
                     incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetClassProcessTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.View.AssetType.Process":
+            case 'Quartermaster.ViewATSAssetType.Process':
                 queueTriggered = 'view-ats-asset-type-process';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.View.AssetType.Process',
+                    jobType: jobType,
                     incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetTypeProcessTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.View.AssetClassType.Process":
+            case 'Quartermaster.ViewATSAssetClassType.Process':
                 queueTriggered = 'view-ats-asset-class-type-process';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.View.AssetClassType.Process',
+                    jobType: jobType,
                     incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetClassTypeProcessTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.View.Asset.Extract.Assets":
+            case 'Quartermaster.ViewATSAsset.ExtractAssets':
                 queueTriggered = 'view-ats-asset-extract-assets';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.View.Asset.Extract.Assets',
+                    jobType: jobType,
                     incomingBlob: incomingBlob,
                     offset: offset
                 };
@@ -109,65 +109,65 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.View.AssetClass.Extract.AssetClasses":
+            case 'Quartermaster.ViewATSAssetClass.ExtractAssetClasses':
                 queueTriggered = 'view-ats-asset-class-extract-asset-classes';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.View.AssetClass.Extract.AssetClasses'
+                    jobType: jobType
                 };
                 context.bindings.viewATSAssetClassExtractAssetClassesTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.View.AssetType.Extract.AssetTypes":
+            case 'Quartermaster.ViewATSAssetType.ExtractAssetTypes':
                 queueTriggered = 'view-ats-asset-type-extract-asset-types';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.View.AssetType.Extract.AssetTypes'
+                    jobType: jobType
                 };
                 context.bindings.viewATSAssetTypeExtractAssetTypesTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.View.AssetClassType.Extract.AssetClassTypes":
+            case 'Quartermaster.ViewATSAssetClassType.ExtractAssetClassTypes':
                 queueTriggered = 'view-ats-asset-class-type-extract-asset-class-types';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.View.AssetClassType.Extract.AssetClassTypes'
+                    jobType: jobType
                 };
                 context.bindings.viewATSAssetClassTypeExtractAssetClassTypesTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.ATS.Assets.Reconcile":
+            case 'Quartermaster.ATSAsset.Reconcile':
                 queueTriggered = 'ats-assets-reconcile';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.ATS.Assets.Reconcile',
+                    jobType: jobType,
                     incomingBlob: incomingBlob
                 };
                 context.bindings.atsAssetsReconcileTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.ATS.AssetClasses.Reconcile":
+            case 'Quartermaster.ATSAssetClass.Reconcile':
                 queueTriggered = 'ats-asset-classes-reconcile';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.ATS.AssetClasses.Reconcile'
+                    jobType: jobType
                 };
                 context.bindings.atsAssetClassesReconcileTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.ATS.AssetTypes.Reconcile":
+            case 'Quartermaster.ATSAssetType.Reconcile':
                 queueTriggered = 'ats-asset-types-reconcile';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.ATS.AssetTypes.Reconcile'
+                    jobType: jobType
                 };
                 context.bindings.atsAssetTypesReconcileTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
-            case "WRDSB.Quartermaster.ATS.AssetClassTypes.Reconcile":
+            case 'Quartermaster.ATSAssetClassType.Reconcile':
                 queueTriggered = 'ats-asset-class-types-reconcile';
                 queueMessage = {
-                    jobType: 'WRDSB.Quartermaster.ATS.AssetClassTypes.Reconcile'
+                    jobType: jobType
                 };
                 context.bindings.atsAssetClassTypesReconcileTrigger = queueMessage;
                 sentQueueMessage = true;
