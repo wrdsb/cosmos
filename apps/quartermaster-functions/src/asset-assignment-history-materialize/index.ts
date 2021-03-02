@@ -23,7 +23,7 @@ const assetAssignmentHistoryMaterialize: AzureFunction = async function (context
     const payload = triggerObject.payload as AssetAssignmentHistoryMaterializeFunctionRequestPayload;
     const assetAssetID = payload.assetID;
 
-    let assignmentHistory = {
+    const assignmentHistory = {
         id: assetAssetID,
         assetID: assetAssetID,
         wasAssigned: false,
@@ -53,25 +53,22 @@ const assetAssignmentHistoryMaterialize: AzureFunction = async function (context
     async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer): Promise<AssetAssignment[]> {
         context.log(`get ${cosmosContainer} records: {assetID: ${assetAssetID}}`);
 
-        let cosmosItems = [];
-        let querySpec = {
-            query: `SELECT * FROM c WHERE c.correctedAssetID = '${assetAssetID}'`
-        };
-
-        const queryOptions  = {
+        const cosmosItems = [];
+        const query = {
+            query: `SELECT * FROM c WHERE c.correctedAssetID = '${assetAssetID}'`,
             maxItemCount: -1,
             enableCrossPartitionQuery: true
-        }
+        };
 
         try {
-            const { resources } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(querySpec).fetchAll();
+            const { resources } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(query).fetchAll();
 
             for (const item of resources) {
                 if (!item.deleted) {
-                    let assetAssignment = {
-                        created_at: item.created_at,
-                        updated_at: item.updated_at,
-                        deleted_at: item.deleted_at,
+                    const assetAssignment = {
+                        createdAt: item.created_at,
+                        updatedAt: item.updated_at,
+                        deletedAt: item.deleted_at,
                         deleted: item.deleted,
                         id: item.id,
                         changeDetectionHash: item.changeDetectionHash,
