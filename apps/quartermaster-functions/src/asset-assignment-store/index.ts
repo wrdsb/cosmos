@@ -19,10 +19,10 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
 
     const oldRecord = context.bindings.recordIn;
 
-    let newRecord = {
-        created_at: '',
-        updated_at: '',
-        deleted_at: '',
+    const newRecord = {
+        createdAt: '',
+        updatedAt: '',
+        deletedAt: '',
         deleted: false,
 
         id: '',
@@ -89,7 +89,7 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
 
     function doDelete(oldRecord, newRecord, payload) {
         let event = {};
-        let changedDetected = true;
+        const changedDetected = true;
 
         // check for existing record
         if (!oldRecord) {
@@ -205,49 +205,49 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
     }
 
     function craftCreateEvent(new_record) {
-        let event_type = 'Quartermaster.AssetAssignment.Create';
-        let source = 'create';
-        let schema = 'create';
-        let label = `AssetAssignment ${new_record.id} created.`;
-        let payload = {
+        const event_type = 'Quartermaster.AssetAssignment.Create';
+        const source = 'create';
+        const schema = 'create';
+        const label = `AssetAssignment ${new_record.id} created.`;
+        const payload = {
             record: new_record
         };
 
-        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
         return event;
     }
     
     function craftUpdateEvent(old_record, new_record)
     {
-        let event_type = 'Quartermaster.AssetAssignment.Update';
-        let source = 'update';
-        let schema = 'update';
-        let label = `AssetAssignment ${new_record.id} updated.`;
-        let payload = {
+        const event_type = 'Quartermaster.AssetAssignment.Update';
+        const source = 'update';
+        const schema = 'update';
+        const label = `AssetAssignment ${new_record.id} updated.`;
+        const payload = {
             old_record: old_record,
             new_record: new_record,
         };
 
-        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
         return event;
     }
 
     function craftDeleteEvent(old_record, new_record)
     {
-        let event_type = 'Quartermaster.AssetAssignment.Delete';
-        let source = 'delete';
-        let schema = 'delete';
-        let label = `AssetAssignment ${new_record.id} deleted.`;
-        let payload = {
+        const event_type = 'Quartermaster.AssetAssignment.Delete';
+        const source = 'delete';
+        const schema = 'delete';
+        const label = `AssetAssignment ${new_record.id} deleted.`;
+        const payload = {
             record: old_record
         };
 
-        let event = craftEvent(old_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(old_record.id, source, schema, event_type, label, payload);
         return event;
     }
 
     function craftEvent(recordID, source, schema, event_type, label, payload) {
-        let event = {
+        const event = {
             id: `${event_type}-${context.executionContext.invocationId}`,
             time: functionInvocation.functionInvocationTimestamp,
 
