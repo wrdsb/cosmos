@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { FunctionInvocation } from "@cosmos/types";
+import { FunctionInvocation, QuartermasterJobType } from "@cosmos/types";
 
 const jobRelay: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
@@ -15,13 +15,14 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
     //const sgMail = require('@sendgrid/mail');
     //sgMail.setApiKey(process.env['SENDGRID_API_KEY']);
 
-    const jobType = triggerMessage.jobType;
+    const jobType = triggerMessage.jobType as QuartermasterJobType;
     const operation = triggerMessage.operation;
     const payload = triggerMessage.payload;
     const incomingBlob = triggerMessage.incomingBlob;
     const offset = triggerMessage.offset;
 
     let queueTriggered = '';
+    let jobTriggered = '' as QuartermasterJobType;
     let queueMessage = {};
     const sentQueueMessage = false;
 
@@ -40,77 +41,86 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
 
     if (jobType) {
         switch (jobType) {
-            case 'WRDSB.Quartermaster.View.Asset.Checksum.Process':
+            case 'Quartermaster.ViewATSAssetChecksum.Process':
                 //queueTriggered = 'quartermaster:job-enqueue';
+                //jobTriggered = '';
                 //queueMessage = {
-                    //jobType: "",
-                    //blobFile: ""
+                    //jobType: jobTriggered,
+                    //blobFile: ''
                 //};
                 //context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
-            case 'WRDSB.Quartermaster.View.Asset.Process':
+            case 'Quartermaster.ViewATSAsset.Process':
                 queueTriggered = 'quartermaster:job-enqueue';
+                jobTriggered = 'Quartermaster.ViewATSAsset.ExtractAssets';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.View.Asset.Extract.Assets",
+                    jobType: jobTriggered,
                     incomingBlob: `ats/view-ats-asset-raw${offset}.json`,
                     offset: offset
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
-            case "WRDSB.Quartermaster.View.Asset.Extract.Assets":
+            case 'Quartermaster.ViewATSAsset.ExtractAssets':
                 //queueTriggered = 'quartermaster:job-enqueue';
+                //jobTriggered = 'WRDSB.Quartermaster.ATS.AssetClasses.Reconcile';
                 //queueMessage = {
-                    //jobType: "WRDSB.Quartermaster.ATS.AssetClasses.Reconcile"
+                    //jobType: jobTriggered,
                 //};
                 //context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
-            case 'WRDSB.Quartermaster.View.AssetClass.Process':
+            case 'Quartermaster.ViewATSAssetClass.Process':
                 queueTriggered = 'quartermaster:job-enqueue';
+                jobTriggered = 'Quartermaster.ViewATSAssetClass.ExtractAssetClasses';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.View.AssetClass.Extract.AssetClasses"
+                    jobType: jobTriggered,
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
-            case "WRDSB.Quartermaster.View.AssetClass.Extract.AssetClasses":
+            case 'Quartermaster.ViewATSAssetClass.ExtractAssetClasses':
                 queueTriggered = 'quartermaster:job-enqueue';
+                jobTriggered = 'Quartermaster.ATSAssetClass.Reconcile';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.ATS.AssetClasses.Reconcile"
+                    jobType: jobTriggered,
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
-            case 'WRDSB.Quartermaster.View.AssetClassType.Process':
+            case 'Quartermaster.ViewATSAssetClassType.Process':
                 queueTriggered = 'quartermaster:job-enqueue';
+                jobTriggered = 'Quartermaster.ViewATSAssetClassType.ExtractAssetClassTypes';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.View.AssetClassType.Extract.AssetClassTypes"
+                    jobType: jobTriggered,
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
-            case "WRDSB.Quartermaster.View.AssetClassType.Extract.AssetClassTypes":
+            case 'Quartermaster.ViewATSAssetClassType.ExtractAssetClassTypes':
                 queueTriggered = 'quartermaster:job-enqueue';
+                jobTriggered = 'Quartermaster.ATSAssetClassType.Reconcile';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.ATS.AssetClassTypes.Reconcile"
+                    jobType: jobTriggered,
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
-            case 'WRDSB.Quartermaster.View.AssetType.Process':
+            case 'Quartermaster.ViewATSAssetType.Process':
                 queueTriggered = 'quartermaster:job-enqueue';
+                jobTriggered = 'Quartermaster.ViewATSAssetType.ExtractAssetTypes';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.View.AssetType.Extract.AssetTypes"
+                    jobType: jobTriggered,
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
 
-            case "WRDSB.Quartermaster.View.AssetType.Extract.AssetTypes":
+            case 'Quartermaster.ViewATSAssetType.ExtractAssetTypes':
                 queueTriggered = 'quartermaster:job-enqueue';
+                jobTriggered = 'Quartermaster.ATSAssetType.Reconcile';
                 queueMessage = {
-                    jobType: "WRDSB.Quartermaster.ATS.AssetTypes.Reconcile"
+                    jobType: jobTriggered,
                 };
                 context.bindings.quartermasterJobEnqueue = queueMessage;
                 break;
