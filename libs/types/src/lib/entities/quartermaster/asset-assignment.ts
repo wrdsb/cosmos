@@ -1,19 +1,29 @@
-import { Asset } from "./asset";
+import { ChangeDetectionHash, DateTime, PersonID, BusinessUnitID } from "@cosmos/types";
+import { AssetID, AssetAssignmentID, AssetLifecycleState } from "@cosmos/types";
 
 export interface AssetAssignment {
-    created_at?: string;
-    updated_at?: string;
-    deleted_at?: string;
+    createdAt?: DateTime;
+    updatedAt?: DateTime;
+    deletedAt?: DateTime;
     deleted?: boolean;
 
-    id?: string;
-    changeDetectionHash?: string;
+    createdBy?: PersonID;
+    updatedBy?: PersonID;
+    deletedBy?: PersonID;
 
-    assetID?: string;
+    id?: AssetAssignmentID;
+    changeDetectionHash?: ChangeDetectionHash;
 
-    assignedBy?: string;
-    assignedTo?: string;
-    receivedBy?: string;
+    assetID?: AssetID;
+
+    assignedBy?: PersonID;
+    
+    assignedTo?: PersonID | BusinessUnitID;
+    receivedBy?: PersonID;
+
+    startDate: DateTime;
+    endDate: DateTime;
+
     untrackedAssestsIncluded?: string;
     notes?: string;
 }

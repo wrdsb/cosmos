@@ -1,21 +1,24 @@
-import { AssetAssignment } from "./asset-assignment";
+import { ChangeDetectionHash, DateTime } from "@cosmos/types";
+import { AssetID, AssetAssignmentID, AssetAssignment } from "@cosmos/types";
 
 export interface AssetAssignmentHistory {
-    created_at?: string;
-    updated_at?: string;
-    deleted_at?: string;
+    createdAt?: DateTime;
+    updatedAt?: DateTime;
+    deletedAt?: DateTime;
     deleted?: boolean;
 
     id?: string;
-    changeDetectionHash?: string;
+    changeDetectionHash?: ChangeDetectionHash;
 
-    assetID?: string;
+    assetID?: AssetID;
 
+    assetAssignmentIDs?: AssetAssignmentID[];
     assetAssignments?: AssetAssignment[];
+
+    isAssigned?: boolean;
 
     wasAssigned?: boolean;
     wasUnassigned?: boolean;
     totalAssignments?: number;
     totalUnassignments?: number;
-    isAssigned?: boolean;
 }

@@ -1,13 +1,17 @@
-import { AssetEntitlement } from "./asset-entitlement";
+import { ChangeDetectionHash, DateTime, PersonID } from "@cosmos/types";
+import { AssetEntitlementID, AssetEntitlement } from "@cosmos/types";
 
 export interface AssetEntitlementHistory {
-    created_at?: string;
-    updated_at?: string;
-    deleted_at?: string;
+    createdAt?: DateTime;
+    updatedAt?: DateTime;
+    deletedAt?: DateTime;
     deleted?: boolean;
 
     id?: string;
-    changeDetectionHash?: string;
+    changeDetectionHash?: ChangeDetectionHash;
 
-    assetAssignments: AssetEntitlement[];
+    personID?: PersonID;
+
+    assetEntitlementIDs?: AssetEntitlementID[];
+    assetEntitlements: AssetEntitlement[];
 }
