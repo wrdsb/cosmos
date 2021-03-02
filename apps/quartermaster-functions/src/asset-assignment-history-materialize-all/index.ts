@@ -1,8 +1,8 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { CosmosClient } from "@azure/cosmos";
-import { FunctionInvocation, AssetAssignmentHistoryMaterializeAllFunctionRequest, AssetAssignmentHistoryMaterializeAllFunctionRequestPayload, AssetAssignmentHistoryMaterializeFunctionRequest } from "@cosmos/types";
+import { FunctionInvocation, AssetAssignmentHistoryMaterializeAllFunctionRequest, AssetAssignmentHistoryMaterializeFunctionRequest } from "@cosmos/types";
 
-const assetAssignmentHistoryMaterializeAll: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const assetAssignmentHistoryMaterializeAll: AzureFunction = async function (context: Context, triggerMessage: AssetAssignmentHistoryMaterializeAllFunctionRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -20,25 +20,23 @@ const assetAssignmentHistoryMaterializeAll: AzureFunction = async function (cont
     const cosmosContainerReturns = 'asset-return-submissions';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
-    const triggerObject = triggerMessage;
-
     context.log('Queue all Materialize Asset Loans');
 
-    let queueMessages = [];
+    const queueMessages = [];
 
     // fetch current records from Cosmos
-    let loansAssetIDs = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainerLoans);
+    const loansAssetIDs = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainerLoans);
 
     // fetch current records from Cosmos
-    let returnsAssetIDs = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainerReturns);
+    const returnsAssetIDs = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainerReturns);
 
-    let allAssetIDs = new Set(loansAssetIDs)
+    const allAssetIDs = new Set(loansAssetIDs)
 
-    for (let assetID of returnsAssetIDs) {
+    for (const assetID of returnsAssetIDs) {
         allAssetIDs.add(assetID)
     }
 
-    for (let assetID of allAssetIDs) {
+    for (const assetID of allAssetIDs) {
         queueMessages.push({
             payload: {
                 assetID: assetID
@@ -59,13 +57,10 @@ const assetAssignmentHistoryMaterializeAll: AzureFunction = async function (cont
     async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer) {
         context.log(`get ${cosmosContainer} records`);
 
-        let assetIDs = new Set();
+        const assetIDs = new Set();
 
         const querySpec = {
-            query: `SELECT c.correctedAssetID FROM c GROUP BY c.correctedAssetID`
-        }
-
-        const queryOptions  = {
+            query: `SELECT c.correctedAssetID FROM c GROUP BY c.correctedAssetID`,
             maxItemCount: -1,
             enableCrossPartitionQuery: true
         }
