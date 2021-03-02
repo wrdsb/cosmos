@@ -68,6 +68,17 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 sentQueueMessage = true;
                 break;
 
+            case 'Quartermaster.ViewATSAsset.ExtractAssets':
+                queueTriggered = 'view-ats-asset-extract-assets';
+                queueMessage = {
+                    jobType: jobType,
+                    incomingBlob: incomingBlob,
+                    offset: offset
+                };
+                context.bindings.viewATSAssetExtractAssetsTrigger = queueMessage;
+                sentQueueMessage = true;
+                break;
+
             case 'Quartermaster.ViewATSAssetClass.Process':
                 queueTriggered = 'view-ats-asset-class-process';
                 queueMessage = {
@@ -75,6 +86,15 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetClassProcessTrigger = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'Quartermaster.ViewATSAssetClass.ExtractAssetClasses':
+                queueTriggered = 'view-ats-asset-class-extract-asset-classes';
+                queueMessage = {
+                    jobType: jobType
+                };
+                context.bindings.viewATSAssetClassExtractAssetClassesTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
@@ -88,6 +108,15 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 sentQueueMessage = true;
                 break;
 
+            case 'Quartermaster.ViewATSAssetType.ExtractAssetTypes':
+                queueTriggered = 'view-ats-asset-type-extract-asset-types';
+                queueMessage = {
+                    jobType: jobType
+                };
+                context.bindings.viewATSAssetTypeExtractAssetTypesTrigger = queueMessage;
+                sentQueueMessage = true;
+                break;
+
             case 'Quartermaster.ViewATSAssetClassType.Process':
                 queueTriggered = 'view-ats-asset-class-type-process';
                 queueMessage = {
@@ -95,35 +124,6 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     incomingBlob: incomingBlob
                 };
                 context.bindings.viewATSAssetClassTypeProcessTrigger = queueMessage;
-                sentQueueMessage = true;
-                break;
-
-            case 'Quartermaster.ViewATSAsset.ExtractAssets':
-                queueTriggered = 'view-ats-asset-extract-assets';
-                queueMessage = {
-                    jobType: jobType,
-                    incomingBlob: incomingBlob,
-                    offset: offset
-                };
-                context.bindings.viewATSAssetExtractAssetsTrigger = queueMessage;
-                sentQueueMessage = true;
-                break;
-
-            case 'Quartermaster.ViewATSAssetClass.ExtractAssetClasses':
-                queueTriggered = 'view-ats-asset-class-extract-asset-classes';
-                queueMessage = {
-                    jobType: jobType
-                };
-                context.bindings.viewATSAssetClassExtractAssetClassesTrigger = queueMessage;
-                sentQueueMessage = true;
-                break;
-
-            case 'Quartermaster.ViewATSAssetType.ExtractAssetTypes':
-                queueTriggered = 'view-ats-asset-type-extract-asset-types';
-                queueMessage = {
-                    jobType: jobType
-                };
-                context.bindings.viewATSAssetTypeExtractAssetTypesTrigger = queueMessage;
                 sentQueueMessage = true;
                 break;
 
