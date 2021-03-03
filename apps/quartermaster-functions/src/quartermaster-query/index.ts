@@ -1,48 +1,89 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
-import { FunctionInvocation } from "@cosmos/types";
+import { FunctionInvocation, QuartermasterQueryFunctionRequest, QuartermasterQueryFunctionRequestBody, QuartermasterQueryFunctionResultType } from "@cosmos/types";
 
-const quartermasterQuery: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const quartermasterQuery: AzureFunction = async function (context: Context, req: QuartermasterQueryFunctionRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Quartermaster',
         functionName: context.executionContext.functionName,
-        functionDataType: '',
+        functionDataType: 'Any',
         functionDataOperation: 'Query',
         eventLabel: ''
     } as FunctionInvocation;
 
+    const request = req as QuartermasterQueryFunctionRequest;
+    const requestBody = request.body as QuartermasterQueryFunctionRequestBody;
+    //const userQuery = requestBody.query;
+    //const queryScope = requestBody.scope as QuartermasterQueryFunctionScope;
+    //const resultType = requestBody.resultType as QuartermasterQueryFunctionResultType;
+    const dataType = requestBody.dataType;
+    const recordID = requestBody.id;
+
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainer = 'device-loan-submissions';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
-    const request = req;
-    const userQuery = request.query.query;
-    const queryScope = request.query.scope;
+    let cosmosContainer = '';
 
-    switch (userQuery) {
-        // Total form submissions
-        case 'total-device-loans':
+    switch (dataType) {
+        case 'device-loan':
+            cosmosContainer = 'device-loan-submissions';
             break;
 
-        // Forms where an Asset ID was supplied
-        case 'device-loans-with-asset-id':
+        case 'device-loan-submission':
+            cosmosContainer = 'device-loan-submissions';
             break;
 
-        // Unique Asset IDs in the data set
-        case 'device-loans-unique':
+        case 'asset':
+            cosmosContainer = 'assets';
             break;
 
-        // Asset IDs appearing more than once in the data set
-        case 'devices-with-multiple-loans':
+        case 'device':
+            cosmosContainer = 'assets';
+            break;
+
+        case 'asset-assignment':
+            cosmosContainer = 'asset-assignments';
+            break;
+
+        case 'asset-assignment-history':
+            cosmosContainer = 'asset-assignment-histories';
+            break;
+
+        case 'asset-entitlement':
+            cosmosContainer = 'asset-entitlements'
+            break;
+
+        case 'asset-entitlement-history':
+            cosmosContainer = 'asset-entitlement-histories';
+            break;
+
+        case 'ats-asset':
+            cosmosContainer = 'ats-assets';
+            break;
+
+        case 'ats-asset-class':
+            cosmosContainer = 'ats-asset-classes';
+            break;
+
+        case 'ats-asset-type':
+            cosmosContainer = 'ats-asset-types';
+            break;
+
+        case 'ats-asset-class-type':
+            cosmosContainer = 'ats-asset-class-types';
             break;
 
         default:
             break;
     }
+
+    const record = await getCosmosItem(cosmosClient, cosmosDatabase, cosmosContainer, recordID).catch(err => {
+        context.log(err);
+    });
 
     const response = {
         header: {
@@ -52,9 +93,10 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
             timestamp: functionInvocation.functionInvocationTimestamp
         },
         status: 200,
-        query: userQuery,
-        scope: queryScope,
-        payload: {}
+        recordID: recordID,
+        dataType: dataType,
+        collection: cosmosContainer,
+        record: record
     };
 
     context.res = {
@@ -69,6 +111,67 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
     context.log(functionInvocation);
 
     context.done(null, functionInvocation);
+
+
+    async function getCosmosItem(cosmosClient, cosmosDatabase, cosmosContainer: string, recordID: string) {
+        context.log('getCosmosItem');
+
+        try {
+            const { record } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).item(recordID).read();
+            context.log(JSON.stringify(record));
+            return record.item;
+
+        } catch (error) {
+            context.log(error);
+    
+            context.res = {
+                status: 500,
+                body: error
+            };
+    
+            context.done(error);
+        }
+    }
+
+    async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer: string, querySpec, resultType: QuartermasterQueryFunctionResultType) {
+        context.log('getCosmosItems');
+
+        let records;
+        const queryOptions  = {
+            maxItemCount: -1,
+            enableCrossPartitionQuery: true
+        }
+        const query = Object.assign(querySpec, queryOptions);
+
+        try {
+            const { resources } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(query).fetchAll();
+
+            if (resultType === 'object') {
+                records = {};
+                for (const item of resources) {
+                    records[item.id] = item;
+                }
+            } else if (resultType === 'array') {
+                records = [];
+                for (const item of resources) {
+                    records.push(item);
+                }
+            } else {
+                records = resources[0];
+            }
+    
+            return records;
+        } catch (error) {
+            context.log(error);
+    
+            context.res = {
+                status: 500,
+                body: error
+            };
+    
+            context.done(error);
+        }
+    }
 };
 
 export default quartermasterQuery;
