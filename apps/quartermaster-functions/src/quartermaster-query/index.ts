@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
-import { FunctionInvocation, QuartermasterQueryFunctionRequest, QuartermasterQueryFunctionRequestBody, QuartermasterQueryFunctionResultType } from "@cosmos/types";
+import { FunctionInvocation, QuartermasterQueryFunctionRequest, QuartermasterQueryFunctionRequestBody } from "@cosmos/types";
 
 const quartermasterQuery: AzureFunction = async function (context: Context, req: QuartermasterQueryFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -15,9 +15,6 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
 
     const request = req as QuartermasterQueryFunctionRequest;
     const requestBody = request.body as QuartermasterQueryFunctionRequestBody;
-    //const userQuery = requestBody.query;
-    //const queryScope = requestBody.scope as QuartermasterQueryFunctionScope;
-    //const resultType = requestBody.resultType as QuartermasterQueryFunctionResultType;
     const dataType = requestBody.dataType;
     const recordID = requestBody.id;
 
@@ -29,51 +26,51 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
     let cosmosContainer = '';
 
     switch (dataType) {
-        case 'device-loan':
+        case 'DeviceLoan':
             cosmosContainer = 'device-loan-submissions';
             break;
 
-        case 'device-loan-submission':
+        case 'DeviceLoanSubmission':
             cosmosContainer = 'device-loan-submissions';
             break;
 
-        case 'asset':
+        case 'Asset':
             cosmosContainer = 'assets';
             break;
 
-        case 'device':
+        case 'Device':
             cosmosContainer = 'assets';
             break;
 
-        case 'asset-assignment':
+        case 'AssetAssignment':
             cosmosContainer = 'asset-assignments';
             break;
 
-        case 'asset-assignment-history':
+        case 'AssetAssignmentHistory':
             cosmosContainer = 'asset-assignment-histories';
             break;
 
-        case 'asset-entitlement':
+        case 'AssetEntitlement':
             cosmosContainer = 'asset-entitlements'
             break;
 
-        case 'asset-entitlement-history':
+        case 'AssetEntitlementHistory':
             cosmosContainer = 'asset-entitlement-histories';
             break;
 
-        case 'ats-asset':
+        case 'ATSAsset':
             cosmosContainer = 'ats-assets';
             break;
 
-        case 'ats-asset-class':
+        case 'ATSAssetClass':
             cosmosContainer = 'ats-asset-classes';
             break;
 
-        case 'ats-asset-type':
+        case 'ATSAssetType':
             cosmosContainer = 'ats-asset-types';
             break;
 
-        case 'ats-asset-class-type':
+        case 'ATSAssetClassType':
             cosmosContainer = 'ats-asset-class-types';
             break;
 
@@ -121,46 +118,6 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
             context.log(JSON.stringify(record));
             return record.item;
 
-        } catch (error) {
-            context.log(error);
-    
-            context.res = {
-                status: 500,
-                body: error
-            };
-    
-            context.done(error);
-        }
-    }
-
-    async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer: string, querySpec, resultType: QuartermasterQueryFunctionResultType) {
-        context.log('getCosmosItems');
-
-        let records;
-        const queryOptions  = {
-            maxItemCount: -1,
-            enableCrossPartitionQuery: true
-        }
-        const query = Object.assign(querySpec, queryOptions);
-
-        try {
-            const { resources } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(query).fetchAll();
-
-            if (resultType === 'object') {
-                records = {};
-                for (const item of resources) {
-                    records[item.id] = item;
-                }
-            } else if (resultType === 'array') {
-                records = [];
-                for (const item of resources) {
-                    records.push(item);
-                }
-            } else {
-                records = resources[0];
-            }
-    
-            return records;
         } catch (error) {
             context.log(error);
     
