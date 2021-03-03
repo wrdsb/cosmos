@@ -8,11 +8,16 @@ interface QuartermasterQueryFunctionRequest extends HttpRequest {
 interface QuartermasterQueryFunctionRequestBody extends Cosmos.FunctionRequestPayload {
     readonly query: QuartermasterQueryFunctionQuery;
     readonly scope: QuartermasterQueryFunctionScope;
+    readonly resultType: QuartermasterQueryFunctionResultType;
+    readonly dataType: string;
+    readonly id: string;
 }
 
 interface QuartermasterQueryFunctionQuery {}
 
-interface QuartermasterQueryFunctionScope {}
+type QuartermasterQueryFunctionScope = 'all' | 'first';
+
+type QuartermasterQueryFunctionResultType = 'single' | 'array' | 'object';
 
 interface QuartermasterQueryFunctionResponse extends Cosmos.FunctionResponse {
     readonly payload: QuartermasterQueryFunctionResponsePayload;
@@ -43,6 +48,7 @@ export {
     QuartermasterQueryFunctionRequestBody,
     QuartermasterQueryFunctionQuery,
     QuartermasterQueryFunctionScope,
+    QuartermasterQueryFunctionResultType,
 
     QuartermasterQueryFunctionResponse,
     QuartermasterQueryFunctionLogObject,
