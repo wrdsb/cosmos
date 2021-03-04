@@ -36,7 +36,7 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
         recordID: recordID,
         dataType: dataType,
         collection: cosmosContainer,
-        record: null
+        records: []
     };
 
     switch (dataType) {
@@ -105,10 +105,9 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
     }
 
     const records = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer, querySpec);
-    const record = records[0];
 
-    if (record) {
-        context.log(`Got record ${record.id}.`);
+    if (records.length > 0) {
+        context.log(`Got ${records.length} records.`);
 
         response = {
             header: {
@@ -121,7 +120,7 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
             recordID: recordID,
             dataType: dataType,
             collection: cosmosContainer,
-            record: record
+            records: records
         };
     } else {
         response = {
@@ -135,7 +134,7 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
             recordID: recordID,
             dataType: dataType,
             collection: cosmosContainer,
-            record: null
+            records: []
         };
     }
 
