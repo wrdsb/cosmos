@@ -24,65 +24,8 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     let cosmosContainer = '';
-
-    switch (dataType) {
-        case 'DeviceLoan':
-            cosmosContainer = 'device-loan-submissions';
-            break;
-
-        case 'DeviceLoanSubmission':
-            cosmosContainer = 'device-loan-submissions';
-            break;
-
-        case 'Asset':
-            cosmosContainer = 'assets';
-            break;
-
-        case 'Device':
-            cosmosContainer = 'assets';
-            break;
-
-        case 'AssetAssignment':
-            cosmosContainer = 'asset-assignments';
-            break;
-
-        case 'AssetAssignmentHistory':
-            cosmosContainer = 'asset-assignment-histories';
-            break;
-
-        case 'AssetEntitlement':
-            cosmosContainer = 'asset-entitlements'
-            break;
-
-        case 'AssetEntitlementHistory':
-            cosmosContainer = 'asset-entitlement-histories';
-            break;
-
-        case 'ATSAsset':
-            cosmosContainer = 'ats-assets';
-            break;
-
-        case 'ATSAssetClass':
-            cosmosContainer = 'ats-asset-classes';
-            break;
-
-        case 'ATSAssetType':
-            cosmosContainer = 'ats-asset-types';
-            break;
-
-        case 'ATSAssetClassType':
-            cosmosContainer = 'ats-asset-class-types';
-            break;
-
-        default:
-            break;
-    }
-
-    const record = await getCosmosItem(cosmosClient, cosmosDatabase, cosmosContainer, recordID).catch(err => {
-        context.log(err);
-    });
-
-    const response = {
+    let querySpec = {query: 'SELECT * FROM c'};
+    let response = {
         header: {
             status: 200,
             message: "",
@@ -93,8 +36,108 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
         recordID: recordID,
         dataType: dataType,
         collection: cosmosContainer,
-        record: record
+        record: null
     };
+
+    switch (dataType) {
+        case 'DeviceLoan':
+            cosmosContainer = 'device-loan-submissions';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'DeviceLoanForm':
+            cosmosContainer = 'device-loan-submissions';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'Asset':
+            cosmosContainer = 'assets';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'Device':
+            cosmosContainer = 'assets';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'AssetAssignment':
+            cosmosContainer = 'asset-assignments';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'AssetAssignmentHistory':
+            cosmosContainer = 'asset-assignment-histories';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'AssetEntitlement':
+            cosmosContainer = 'asset-entitlements'
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'AssetEntitlementHistory':
+            cosmosContainer = 'asset-entitlement-histories';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'ATSAsset':
+            cosmosContainer = 'ats-assets';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'ATSAssetClass':
+            cosmosContainer = 'ats-asset-classes';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'ATSAssetType':
+            cosmosContainer = 'ats-asset-types';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        case 'ATSAssetClassType':
+            cosmosContainer = 'ats-asset-class-types';
+            querySpec = {query: `SELECT * FROM c WHERE c.id = '${recordID}'`};
+            break;
+
+        default:
+            break;
+    }
+
+    const records = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer, querySpec);
+    const record = records[0];
+
+    if (record) {
+        context.log(`Got record ${record.id}.`);
+
+        response = {
+            header: {
+                status: 200,
+                message: "",
+                chatter: "",
+                timestamp: functionInvocation.functionInvocationTimestamp
+            },
+            status: 200,
+            recordID: recordID,
+            dataType: dataType,
+            collection: cosmosContainer,
+            record: record
+        };
+    } else {
+        response = {
+            header: {
+                status: 404,
+                message: "",
+                chatter: "",
+                timestamp: functionInvocation.functionInvocationTimestamp
+            },
+            status: 404,
+            recordID: recordID,
+            dataType: dataType,
+            collection: cosmosContainer,
+            record: null
+        };
+    }
 
     context.res = {
         status: response.header.status,
@@ -110,13 +153,27 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
     context.done(null, functionInvocation);
 
 
-    async function getCosmosItem(cosmosClient, cosmosDatabase, cosmosContainer: string, recordID: string) {
-        context.log('getCosmosItem');
+    async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer, querySpec) {
+        context.log('getCosmosItems');
+
+        const records = [];
+
+        const queryOptions  = {
+            maxItemCount: -1,
+            enableCrossPartitionQuery: true
+        }
+
+        const query = Object.assign(querySpec, queryOptions);
+        context.log(query);
 
         try {
-            const { record } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).item(recordID).read();
-            context.log(JSON.stringify(record));
-            return record.item;
+            const { resources } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(query).fetchAll();
+
+            for (const item of resources) {
+                records.push(item);
+            }
+    
+            return records;
 
         } catch (error) {
             context.log(error);
