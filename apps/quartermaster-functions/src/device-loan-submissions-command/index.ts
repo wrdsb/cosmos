@@ -1,5 +1,4 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import jwt_decode from 'jwt-decode';
 import { FunctionInvocation, DeviceLoanSubmissionCommandFunctionRequest } from "@cosmos/types";
 
 const deviceLoanSubmissionsCommand: AzureFunction = async function (context: Context, req: DeviceLoanSubmissionCommandFunctionRequest): Promise<void> {
@@ -41,7 +40,7 @@ const deviceLoanSubmissionsCommand: AzureFunction = async function (context: Con
             break;
     }
 
-    let response = {
+    const response = {
         header: {
             status: 202,
             message: "",
