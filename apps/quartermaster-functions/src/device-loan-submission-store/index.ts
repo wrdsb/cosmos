@@ -20,9 +20,9 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
     const oldRecord = context.bindings.recordIn;
 
     const newRecord = {
-        createdAt: '',
-        updatedAt: '',
-        deletedAt: '',
+        created_at: '',
+        updated_at: '',
+        deleted_at: '',
         deleted: false,
 
         id: '',
@@ -103,11 +103,11 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         // check for existing record
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
-            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // mark the record as deleted
-            newRecord.deletedAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             newRecord.schoolCode = getSchoolCode(newRecord.locationName);
@@ -119,7 +119,7 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
             newRecord = Object.assign(newRecord, oldRecord);
 
             // mark the record as deleted
-            newRecord.deletedAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             newRecord.schoolCode = getSchoolCode(newRecord.locationName);
@@ -137,11 +137,11 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
-            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
-            newRecord.deletedAt = '';
+            newRecord.deleted_at = '';
             newRecord.deleted = false;
 
             newRecord.schoolCode = getSchoolCode(newRecord.locationName);
@@ -153,10 +153,10 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
         } else {
             // Merge request object into current record
             newRecord = Object.assign(newRecord, oldRecord, payload);
-            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
-            newRecord.deletedAt = '';
+            newRecord.deleted_at = '';
             newRecord.deleted = false;
 
             newRecord.schoolCode = getSchoolCode(newRecord.locationName);
@@ -181,11 +181,11 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
-            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
-            newRecord.deletedAt = '';
+            newRecord.deleted_at = '';
             newRecord.deleted = false;
 
             newRecord.schoolCode = getSchoolCode(newRecord.locationName);
@@ -196,11 +196,11 @@ const deviceLoanSubmissionStore: AzureFunction = async function (context: Contex
 
         } else {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.createdAt = oldRecord.createdAt;
-            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.created_at = oldRecord.created_at;
+            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
-            newRecord.deletedAt = '';
+            newRecord.deleted_at = '';
             newRecord.deleted = false;
 
             newRecord.schoolCode = getSchoolCode(newRecord.locationName);
