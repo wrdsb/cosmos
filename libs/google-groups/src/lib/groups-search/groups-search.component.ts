@@ -10,7 +10,7 @@ import { faCircle as TrueIcon } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
-import { GoogleGroup, SearchFunctionRequestPayload, SearchFunctionResponse } from "@cosmos/types";
+import { GoogleGroup, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
 import { GoogleGroupsService } from '../google-groups.service';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { GroupMetaDialogComponent } from "../group-meta-dialog/group-meta-dialog.component";
@@ -81,14 +81,19 @@ export class GroupsSearchComponent implements OnInit {
   pageSize = new BehaviorSubject<number>(20);
   maxPage = new BehaviorSubject<number>(1);
   
-  //public searchGroupsRequestState$: Observable<ListGroupsRequestState>;
-  //public searchGroupsResponse$: Observable<GroupQueryFunctionResponse>;
-  
+  public searchRequestState$: Observable<SearchRequestState>;
   public searchResponse$: Observable<SearchFunctionResponse>;
+  
   public totalRecords$: Observable<number>;
   public maxPage$: Observable<number>;
 
-  public groupsPage$: Observable<GoogleGroup[]>;
+  private groupsPage: BehaviorSubject<GoogleGroup[]> = new BehaviorSubject([
+    {
+      name: "Loading...",
+      email: "Loading..."      
+    }
+  ]);
+  public readonly groupsPage$: Observable<GoogleGroup[]> = this.groupsPage.asObservable();
 
   public groupSelected$: Observable<boolean>;
   public selectedGroup$: Observable<GoogleGroup>;
@@ -99,11 +104,14 @@ export class GroupsSearchComponent implements OnInit {
     private groupsService: GoogleGroupsService,
     public dialog: MatDialog
   ) {
+    this.searchRequestState$ = this.groupsService.searchRequestState$;
     this.searchResponse$ = this.groupsService.searchResponse$;
+
     this.totalRecords$ = this.searchResponse$.pipe(map(response => response.payload.count));
-    this.groupsPage$ = this.groupsService.groupsList$;
     this.maxPage$ = this.totalRecords$.pipe(map(totalRecords => Math.ceil(totalRecords / this.pageSize.value)));
     this.maxPage$.subscribe(this.maxPage);
+
+    this.groupsPage$ = this.groupsService.groupsList$;
 
     this.groupSelected$ = this.groupsService.groupSelected$;
     this.selectedGroup$ = this.groupsService.selectedGroup$;

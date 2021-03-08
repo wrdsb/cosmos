@@ -135,7 +135,24 @@
           </mat-radio-group>
         </div>
       </div>
+    </div>
 
+    <div class="panel-group">
+      <ng-container *ngIf="( searchRequestState$ | async ) as searchRequestState">
+        <div>Status: {{ searchRequestState.status }}</div>
+        <div>Response: {{ searchRequestState.response }}</div>
+        <div>Error: {{ searchRequestState.error }}</div>
+      </ng-container>
+    </div>
+
+    <div class="panel-group">
+      <ng-container *ngIf="( searchResponse$ | async ) as searchResponse">
+        <div>Status: {{ searchResponse.header.status }}</div>
+        <div>Authenticated: {{ searchResponse.header.authenticated }}</div>
+        <div>Authorized: {{ searchResponse.header.authorized }}</div>
+        <div>User Email: {{ searchResponse.header.userEmail }}</div>
+        <div>User Roles: {{ searchResponse.header.userRoles }}</div>
+      </ng-container>
     </div>
   </div>
 
