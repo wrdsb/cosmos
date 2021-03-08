@@ -6,7 +6,7 @@ import { Status } from "@cosmos/types";
 import { MessagesService } from '@cosmos/messages';
 import { ViewfinderService } from "@cosmos/viewfinder-service";
 
-import { QuartermasterAsset, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
+import { Asset, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
 
 @Injectable({
   providedIn: 'root'
@@ -30,14 +30,14 @@ export class QuartermasterAssetsService {
   });
   public readonly searchResponse$: Observable<SearchFunctionResponse> = this.searchResponse.asObservable();
 
-  private assetsList: BehaviorSubject<QuartermasterAsset[]> = new BehaviorSubject([]);
-  public readonly assetsList$: Observable<QuartermasterAsset[]> = this.assetsList.asObservable();
+  private assetsList: BehaviorSubject<Asset[]> = new BehaviorSubject([]);
+  public readonly assetsList$: Observable<Asset[]> = this.assetsList.asObservable();
 
   private assetSelected: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public readonly assetSelected$: Observable<boolean> = this.assetSelected.asObservable();
 
-  private selectedAsset: BehaviorSubject<QuartermasterAsset> = new BehaviorSubject<QuartermasterAsset>(null);
-  public readonly selectedAsset$: Observable<QuartermasterAsset> = this.selectedAsset.asObservable();
+  private selectedAsset: BehaviorSubject<Asset> = new BehaviorSubject<Asset>(null);
+  public readonly selectedAsset$: Observable<Asset> = this.selectedAsset.asObservable();
 
   constructor(
     private messagesService: MessagesService,
@@ -98,7 +98,7 @@ export class QuartermasterAssetsService {
       )
       .subscribe((response) => {
         this.assetSelected.next(true);
-        this.selectedAsset.next(response.payload.documents[0] as QuartermasterAsset);
+        this.selectedAsset.next(response.payload.documents[0] as Asset);
       });
   }
 
@@ -154,7 +154,7 @@ export class QuartermasterAssetsService {
       )
       .subscribe((response) => {
         this.searchResponse.next(response);
-        this.assetsList.next(response.payload.documents as QuartermasterAsset[]);
+        this.assetsList.next(response.payload.documents as Asset[]);
       });
   }
 }

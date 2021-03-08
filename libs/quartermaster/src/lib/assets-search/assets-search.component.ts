@@ -10,7 +10,7 @@ import { faCircle as TrueIcon } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
-import { QuartermasterAsset, SearchFunctionRequestPayload, SearchFunctionResponse } from "@cosmos/types";
+import { Asset, SearchFunctionRequestPayload, SearchFunctionResponse } from "@cosmos/types";
 import { QuartermasterAssetsService } from '../quartermaster-assets.service';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { AssetDetailDialogComponent } from "../asset-detail-dialog/asset-detail-dialog.component";
@@ -79,10 +79,10 @@ export class AssetsSearchComponent implements OnInit {
   public totalRecords$: Observable<number>;
   public maxPage$: Observable<number>;
 
-  public assetsPage$: Observable<QuartermasterAsset[]>;
+  public assetsPage$: Observable<Asset[]>;
 
   public assetSelected$: Observable<boolean>;
-  public selectedAsset$: Observable<QuartermasterAsset>;
+  public selectedAsset$: Observable<Asset>;
 
   assetDetailDialogRef: MatDialogRef<AssetDetailDialogComponent>;
 
