@@ -173,17 +173,6 @@ export class GroupsListComponent implements OnInit {
   }
 
   getGroups(): void {
-    this.igorService.listGroups('admin_created');
-
-    let sound = new Howl({
-      src: ['assets/loading-google-groups.mp3'],
-      onend: function() {
-        console.log('Finished!');
-      },
-      onloaderror: function() {
-        console.log('Error!');
-      }
-    });
-    sound.play();
+    this.groupsService.searchGroups();
   }
 }
