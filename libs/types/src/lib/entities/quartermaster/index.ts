@@ -1,6 +1,7 @@
 export * from './identifier-types';
 
 export * from './device-loan-submission';
+export * from './device-loan';
 
 export * from './asset';
 export * from './device';
