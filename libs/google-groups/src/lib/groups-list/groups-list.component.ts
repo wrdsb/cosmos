@@ -173,6 +173,6 @@ export class GroupsListComponent implements OnInit {
   }
 
   getGroups(): void {
-    this.groupsService.searchGroups();
+    this.igorService.listGroups('admin_created');
   }
 }
