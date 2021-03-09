@@ -4,6 +4,7 @@ interface PingFunctionRequest extends Cosmos.FunctionRequest {
 }
 
 interface PingFunctionResponse {
+    readonly header: PingFunctionResponseHeader;
     readonly payload: PingFunctionResponsePayload;
 }
 
@@ -19,11 +20,23 @@ interface PingFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
 interface PingFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
 }
 
+interface PingFunctionResponseHeader {
+    readonly status?: number;
+    readonly message?: string;
+    readonly chatter?: string;
+    readonly timestamp?: string;
+    readonly authenticated?: boolean;
+    readonly authorized?: boolean;
+    readonly userName?: string;
+    readonly userEmail?: string;
+    readonly userRoles?: string[];
+}
+
 interface PingFunctionResponsePayload {
-    readonly message: string;
-    readonly chatter: string;
-    readonly status: number;
-    readonly timestamp: string;
+    readonly status?: number;
+    readonly message?: string;
+    readonly chatter?: string;
+    readonly timestamp?: string;
     readonly invocationEvent?: Cosmos.FunctionInvocationEvent;
 }
 
