@@ -95,5 +95,6 @@ module.exports = {
     '<rootDir>/libs/pings-ui',
     '<rootDir>/libs/pings-service',
     '<rootDir>/apps/spectro-functions',
+    '<rootDir>/apps/spectro-console',
   ],
 };
