@@ -96,5 +96,6 @@ module.exports = {
     '<rootDir>/libs/pings-service',
     '<rootDir>/apps/spectro-functions',
     '<rootDir>/apps/spectro-console',
+    '<rootDir>/apps/bentley-functions',
   ],
 };

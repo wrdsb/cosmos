@@ -5671,6 +5671,57 @@
           }
         }
       }
+    },
+    "bentley-functions": {
+      "root": "apps/bentley-functions",
+      "sourceRoot": "apps/bentley-functions/src",
+      "projectType": "application",
+      "prefix": "bentley-functions",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/bentley-functions",
+            "main": "apps/bentley-functions/src/main.ts",
+            "tsConfig": "apps/bentley-functions/tsconfig.app.json",
+            "assets": ["apps/bentley-functions/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/bentley-functions/src/environments/environment.ts",
+                  "with": "apps/bentley-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "bentley-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/bentley-functions/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/bentley-functions"],
+          "options": {
+            "jestConfig": "apps/bentley-functions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
