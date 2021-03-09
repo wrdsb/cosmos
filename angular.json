@@ -5503,6 +5503,57 @@
           }
         }
       }
+    },
+    "spectro-functions": {
+      "root": "apps/spectro-functions",
+      "sourceRoot": "apps/spectro-functions/src",
+      "projectType": "application",
+      "prefix": "spectro-functions",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/spectro-functions",
+            "main": "apps/spectro-functions/src/main.ts",
+            "tsConfig": "apps/spectro-functions/tsconfig.app.json",
+            "assets": ["apps/spectro-functions/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/spectro-functions/src/environments/environment.ts",
+                  "with": "apps/spectro-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "spectro-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/spectro-functions/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/spectro-functions"],
+          "options": {
+            "jestConfig": "apps/spectro-functions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -94,5 +94,6 @@ module.exports = {
     '<rootDir>/libs/skinner-service',
     '<rootDir>/libs/pings-ui',
     '<rootDir>/libs/pings-service',
+    '<rootDir>/apps/spectro-functions',
   ],
 };
