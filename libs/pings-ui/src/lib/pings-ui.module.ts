@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatButtonModule } from "@angular/material/button";
+
 import { PingsUiRoutingModule } from "./pings-ui-routing.module";
 
 import { AllPingsComponent } from './all-pings/all-pings.component';
@@ -32,6 +34,7 @@ import { FlendersonPingComponent } from './flenderson-ping/flenderson-ping.compo
   ],
   imports: [
     CommonModule,
+    MatButtonModule,
     PingsUiRoutingModule
   ],
   exports: [
