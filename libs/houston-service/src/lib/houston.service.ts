@@ -16,10 +16,21 @@ export class HoustonService {
   private pingURL = 'https://wrdsb-houston.azurewebsites.net/api/ping';
 
   private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
-    payload: {
+    header: {
+      status: 0,
       message: "",
       chatter: "",
+      timestamp: "",
+      authenticated: false,
+      authorized: false,
+      userName: "",
+      userEmail: "",
+      userRoles: []
+    },
+    payload: {
       status: 0,
+      message: "",
+      chatter: "",
       timestamp: ""
     }
   });
@@ -64,10 +75,16 @@ export class HoustonService {
             error: error
           });
           this.pingState.next({
-            payload: {
+            header: {
+              status: 200,
               message: "error",
               chatter: "error",
+              timestamp: "timestamp"
+            },
+            payload: {
               status: 200,
+              message: "error",
+              chatter: "error",
               timestamp: "timestamp"
             }
           });
