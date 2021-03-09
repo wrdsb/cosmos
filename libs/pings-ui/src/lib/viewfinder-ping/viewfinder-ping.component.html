@@ -1,18 +1,27 @@
 <ng-container *ngIf="(pingRequestState$ | async) as pingRequestState">
-    <ng-container [ngSwitch]="pingRequestState['status']">
-        <span *ngSwitchCase="Status.UNKNOWN">Unknown</span>
-        <span *ngSwitchCase="Status.LOADING">Pinging Viewfinder...</span>
-        <span *ngSwitchCase="Status.ERROR">Error: {{pingRequestState$.error}}</span>
-        <span *ngSwitchCase="Status.SUCCESS">Success: {{pingRequestState$.response}}</span>
+    <ng-container *ngIf="pingRequestState.status !== 'UNKNOWN'">
+        <ng-container [ngSwitch]="pingRequestState['status']">
+            <span *ngSwitchCase="Status.UNKNOWN">Unknown</span>
+            <span *ngSwitchCase="Status.LOADING">Pinging Viewfinder...</span>
+            <span *ngSwitchCase="Status.ERROR">Error: {{pingRequestState.error}}</span>
+            <span *ngSwitchCase="Status.SUCCESS">Success: {{pingRequestState.response}}</span>
+        </ng-container>
+        <div>Status: {{ pingRequestState.status }}</div>
+        <div>Response: {{ pingRequestState.response }}</div>
+        <div>Error: {{ pingRequestState.error }}</div>
     </ng-container>
 </ng-container>
 
 <div>
-    {{ pingRequestState$ | async | json }}
+    <ng-container *ngIf="( pingState$ | async ) as pingState">
+        <ng-container *ngIf="pingState.header.status !== 0">
+            <div>Status: {{ pingState.header.status }}</div>
+            <div>Authenticated: {{ pingState.header.authenticated }}</div>
+            <div>Authorized: {{ pingState.header.authorized }}</div>
+            <div>User Email: {{ pingState.header.userEmail }}</div>
+            <div>User Roles: {{ pingState.header.userRoles }}</div>
+        </ng-container>
+    </ng-container>
 </div>
 
-<div>
-    {{ pingState$ | async | json }}
-</div>
-
-<button (click)="doPing()">Ping!</button>
+<button mat-raised-button color="primary" (click)="doPing()">Ping Viewfinder</button>
