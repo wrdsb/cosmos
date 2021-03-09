@@ -1,20 +1,25 @@
 {
-  "bindings": [
-    {
-      "authLevel": "anonymous",
-      "type": "httpTrigger",
-      "direction": "in",
+  "bindings": [{
       "name": "req",
+      "type": "httpTrigger",
+      "authLevel": "anonymous",
       "methods": [
-        "get",
-        "post"
-      ]
+        "get"
+      ],
+      "direction": "in"
     },
     {
+      "name": "res",
       "type": "http",
-      "direction": "out",
-      "name": "res"
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbradar_STORAGE",
+      "direction": "out"
     }
   ],
-  "scriptFile": "../dist/ping/index.js"
+  "scriptFile": "./index.js"
 }
