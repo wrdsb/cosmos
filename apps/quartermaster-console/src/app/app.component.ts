@@ -3,8 +3,9 @@ import { MsalService, MsalBroadcastService, MSAL_GUARD_CONFIG, MsalGuardConfigur
 import { AuthenticationResult, InteractionStatus, InteractionType, PopupRequest, RedirectRequest } from '@azure/msal-browser';
 import { Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { ChassisService } from '@cosmos/chassis';
 
-import { UserAuth2Service } from '@cosmos/user-auth2';
+import { UserAuthService } from '@cosmos/user-auth';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
   private readonly _destroying$ = new Subject<void>();
 
   constructor(
-    private userAuthService: UserAuth2Service
+    private userAuthService: UserAuthService
   ) {
     this.isLoggedIn$ = this.userAuthService.isLoggedIn$;
   }

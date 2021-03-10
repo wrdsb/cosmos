@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MsalService } from '@azure/msal-angular';
+import { Observable } from 'rxjs';
+import { UserAuthService } from '@cosmos/user-auth';
 import { ChassisService } from "../chassis.service";
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -14,16 +15,20 @@ export class ChassisComponent implements OnInit, AfterViewInit {
   @ViewChild('sidebarInnerLeft') public sidebarInnerLeft: MatSidenav;
   @ViewChild('sidebarInnerRight') public sidebarInnerRight: MatSidenav;
 
-  loggedIn = false;
+  isIframe = false;
+  isLoggedIn$: Observable<boolean>;
 
   constructor(
-    private authService: MsalService,
+    private userAuthService: UserAuthService,
     private chassisService: ChassisService
-  ) { }
+  ) {
+    this.isLoggedIn$ = this.userAuthService.isLoggedIn$;
+  }
 
   ngOnInit(): void {
+    this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
     console.log('init chassis');
-    this.checkoutAccount();
+    this.userAuthService.setIsLoggedIn();
   }
 
   ngAfterViewInit(): void {
@@ -33,15 +38,11 @@ export class ChassisComponent implements OnInit, AfterViewInit {
     this.chassisService.setSidebarInnerRight(this.sidebarInnerRight);
   }
 
-  checkoutAccount() {
-    this.loggedIn = !!this.authService.getAccount();
-  }
-
   login() {
-    this.authService.loginRedirect();
+    this.userAuthService.login();
   }
 
   logout() {
-    this.authService.logout();
+    this.userAuthService.logout();
   }
 }

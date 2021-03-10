@@ -13,7 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
-import { UserAuth2Module } from "@cosmos/user-auth2";
+import { UserAuthModule } from "@cosmos/user-auth";
+import { ChassisModule } from "@cosmos/chassis";
 import { UserProfilesModule } from '@cosmos/user-profiles';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -35,7 +36,8 @@ import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfig
     HttpClientModule,
     MsalModule,
     UserProfilesModule,
-    UserAuth2Module
+    UserAuthModule,
+    ChassisModule
   ],
   providers: [
     {

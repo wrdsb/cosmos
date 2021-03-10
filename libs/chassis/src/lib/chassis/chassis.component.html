@@ -1,9 +1,10 @@
-<ng-container *ngIf="!loggedIn">
-  <div class="sign-in-page">
-    <cosmos-big-sign-in-out-button></cosmos-big-sign-in-out-button>
-  </div>
+<ng-container *ngIf="!(isLoggedIn$ | async)">
+  <p class="welcome">Welcome to the MSAL.js v2 Angular Quickstart!</p>
+  <p>This sample demonstrates how to configure MSAL Angular to login, logout, protect a route, and acquire an access token for a protected resource such as the Microsoft Graph.</p>
+  <p>Please sign-in to see your profile information.</p>
+  <button mat-raised-button (click)="login()">Login</button>
 </ng-container>
-<ng-container *ngIf="loggedIn">
+<ng-container *ngIf="isLoggedIn$ | async">
   <mat-sidenav-container fullscreen [hasBackdrop]="false" class="console-container">
 
     <mat-sidenav #sidebarOuterLeft mode="over" position="start" fixedInViewport="false" closed>
@@ -27,9 +28,9 @@
         </mat-sidenav>
     
         <mat-sidenav-content id="main" class="main-content">
-
-          <router-outlet></router-outlet>
-
+          <button mat-raised-button *ngIf="isLoggedIn$ | async" (click)="logout()">Logout</button>
+          <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+          <router-outlet *ngIf="!isIframe"></router-outlet>
         </mat-sidenav-content>
       </mat-sidenav-container>
 

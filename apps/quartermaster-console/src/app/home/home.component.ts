@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { Observable, Subject } from 'rxjs';
 
-import { UserAuth2Service } from '@cosmos/user-auth2';
+import { UserAuthService } from '@cosmos/user-auth';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
 
   constructor(
-    private userAuthService: UserAuth2Service
+    private userAuthService: UserAuthService
   ) {
     this.isLoggedIn$ = this.userAuthService.isLoggedIn$;
   }
