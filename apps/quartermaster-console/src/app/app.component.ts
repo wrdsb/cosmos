@@ -12,7 +12,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Angular 11 - Angular v2 Sample';
   isIframe = false;
-  loginDisplay = false;
+  loggedIn = false;
   private readonly _destroying$ = new Subject<void>();
 
   constructor(
@@ -30,13 +30,13 @@ export class AppComponent implements OnInit, OnDestroy {
         takeUntil(this._destroying$)
       )
       .subscribe(() => {
-        this.setLoginDisplay();
+        this.setLoggedIn();
         this.checkAndSetActiveAccount();
       })
   }
 
-  setLoginDisplay() {
-    this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
+  setLoggedIn() {
+    this.loggedIn = this.authService.instance.getAllAccounts().length > 0;
   }
 
   checkAndSetActiveAccount(){
