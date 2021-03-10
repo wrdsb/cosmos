@@ -85,7 +85,8 @@
       "@cosmos/panama-service": ["libs/panama-service/src/index.ts"],
       "@cosmos/skinner-service": ["libs/skinner-service/src/index.ts"],
       "@cosmos/pings-ui": ["libs/pings-ui/src/index.ts"],
-      "@cosmos/pings-service": ["libs/pings-service/src/index.ts"]
+      "@cosmos/pings-service": ["libs/pings-service/src/index.ts"],
+      "@cosmos/user-auth2": ["libs/user-auth2/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
