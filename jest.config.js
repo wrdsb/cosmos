@@ -97,5 +97,6 @@ module.exports = {
     '<rootDir>/apps/spectro-functions',
     '<rootDir>/apps/spectro-console',
     '<rootDir>/apps/bentley-functions',
+    '<rootDir>/apps/quartermaster-console',
   ],
 };

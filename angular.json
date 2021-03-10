@@ -5722,6 +5722,129 @@
           }
         }
       }
+    },
+    "quartermaster-console": {
+      "projectType": "application",
+      "root": "apps/quartermaster-console",
+      "sourceRoot": "apps/quartermaster-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/quartermaster-console",
+            "index": "apps/quartermaster-console/src/index.html",
+            "main": "apps/quartermaster-console/src/main.ts",
+            "polyfills": "apps/quartermaster-console/src/polyfills.ts",
+            "tsConfig": "apps/quartermaster-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/quartermaster-console/src/favicon.ico",
+              "apps/quartermaster-console/src/assets"
+            ],
+            "styles": ["apps/quartermaster-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/quartermaster-console/src/environments/environment.ts",
+                  "with": "apps/quartermaster-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "quartermaster-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "quartermaster-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "quartermaster-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/quartermaster-console/tsconfig.app.json",
+              "apps/quartermaster-console/tsconfig.spec.json",
+              "apps/quartermaster-console/tsconfig.editor.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/quartermaster-console/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/quartermaster-console"],
+          "options": {
+            "jestConfig": "apps/quartermaster-console/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "quartermaster-console-e2e": {
+      "root": "apps/quartermaster-console-e2e",
+      "sourceRoot": "apps/quartermaster-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/quartermaster-console-e2e/cypress.json",
+            "tsConfig": "apps/quartermaster-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "quartermaster-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "quartermaster-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/quartermaster-console-e2e/tsconfig.e2e.json"],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/quartermaster-console-e2e/**/*"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
