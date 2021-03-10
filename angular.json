@@ -5846,32 +5846,6 @@
         }
       }
     },
-    "user-auth2": {
-      "projectType": "library",
-      "root": "libs/user-auth2",
-      "sourceRoot": "libs/user-auth2/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/user-auth2/tsconfig.lib.json",
-              "libs/user-auth2/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/user-auth2/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/user-auth2"],
-          "options": {
-            "jestConfig": "libs/user-auth2/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    }
   },
   "cli": {
     "defaultCollection": "@nrwl/angular",
