@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
+import { UserAuthService } from '@cosmos/user-auth';
 
 import { Menu } from "@cosmos/types";
-import { UserAuthService } from '@cosmos/user-auth';
 
 @Component({
   selector: 'cosmos-header',
@@ -12,6 +13,8 @@ import { UserAuthService } from '@cosmos/user-auth';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  isLoggedIn$: Observable<boolean>;
+
   enabled: boolean;
   enabled$ = this.chassisService.headerEnabled$;
 
@@ -27,7 +30,9 @@ export class HeaderComponent implements OnInit {
     private userAuthService: UserAuthService,
     private environmentService: EnvironmentService,
     private chassisService: ChassisService
-  ) { }
+  ) {
+    this.isLoggedIn$ = this.userAuthService.isLoggedIn$;
+  }
 
   ngOnInit(): void {
     this.getEnabled();

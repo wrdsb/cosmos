@@ -1,21 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { EnvironmentService } from "@cosmos/environment";
 import { UserAuthService } from '@cosmos/user-auth';
 
 @Component({
-  selector: 'cosmos-auth-button',
-  templateUrl: './auth-button.component.html',
-  styleUrls: ['./auth-button.component.scss']
+  selector: 'cosmos-login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.scss']
 })
-export class AuthButtonComponent implements OnInit {
+export class LoginPageComponent implements OnInit {
+  appName = this.environmentService.appName;
 
   isLoggedIn$: Observable<boolean>;
 
   constructor(
-    private userAuthService: UserAuthService
+    private userAuthService: UserAuthService,
+    public environmentService: EnvironmentService,
   ) {
     this.isLoggedIn$ = this.userAuthService.isLoggedIn$;
   }
+
 
   ngOnInit(): void {
   }

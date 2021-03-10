@@ -5845,7 +5845,7 @@
           }
         }
       }
-    },
+    }
   },
   "cli": {
     "defaultCollection": "@nrwl/angular",

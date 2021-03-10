@@ -2,6 +2,19 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from "@angular/material/divider";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
 import { IPublicClientApplication, PublicClientApplication, InteractionType, BrowserCacheLocation, LogLevel } from '@azure/msal-browser';
 
@@ -9,6 +22,7 @@ import { EnvironmentService } from "@cosmos/environment";
 import { GraphService } from '@cosmos/msgraph-service';
 
 import { AuthButtonComponent } from './auth-button/auth-button.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 export const protectedResourceMap: [string, string[]][] = [
   ['https://wrdsb-codex.azurewebsites.net/api/ping', [ 'https://wrdsb-codex.azurewebsites.net/user_impersonation' ]],
@@ -97,9 +111,25 @@ function MSALGuardConfigFactory(): MsalGuardConfiguration {
 
 @NgModule({
   declarations: [
-    AuthButtonComponent
+    AuthButtonComponent,
+    LoginPageComponent
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+
+    LayoutModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     {
@@ -125,7 +155,8 @@ function MSALGuardConfigFactory(): MsalGuardConfiguration {
     }
   ],
   exports: [
-    AuthButtonComponent
+    AuthButtonComponent,
+    LoginPageComponent
   ]
 })
 export class UserAuthModule {}

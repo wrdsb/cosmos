@@ -2,126 +2,131 @@
   <header class="header" [class.showHeader]="visible" [class.hideHeader]="visible === false">
     <mat-toolbar color="primary" class='mat-toolbar-single-row'>
 
-      <button mat-button [matMenuTriggerFor]="aadMenu">
-        AAD
-      </button>
-      <mat-menu #aadMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/aad">
-          <mat-icon class="material-icons">dashboard</mat-icon>
-          <span>AAD Dashboard</span>
+      <ng-container *ngIf="isLoggedIn$ | async">
+        <button mat-button [matMenuTriggerFor]="aadMenu">
+          AAD
         </button>
-      </mat-menu>
+        <mat-menu #aadMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/aad">
+            <mat-icon class="material-icons">dashboard</mat-icon>
+            <span>AAD Dashboard</span>
+          </button>
+        </mat-menu>
 
-      <button mat-button [matMenuTriggerFor]="atsMenu">
-        ATS
-      </button>
-      <mat-menu #atsMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/ats">
-          <mat-icon class="material-icons">dashboard</mat-icon>
-          <span>ATS Dashboard</span>
+        <button mat-button [matMenuTriggerFor]="atsMenu">
+          ATS
         </button>
-        <button mat-menu-item routerLink="/ats/assets/search">
-          <mat-icon class="material-icons">search</mat-icon>
-          <span>Assets Search</span>
-        </button>
-      </mat-menu>
+        <mat-menu #atsMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/ats">
+            <mat-icon class="material-icons">dashboard</mat-icon>
+            <span>ATS Dashboard</span>
+          </button>
+          <button mat-menu-item routerLink="/ats/assets/search">
+            <mat-icon class="material-icons">search</mat-icon>
+            <span>Assets Search</span>
+          </button>
+        </mat-menu>
 
-      <button mat-button [matMenuTriggerFor]="devicesMenu">
-        Device Loans
-      </button>
-      <mat-menu #devicesMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/device-loans">
-          <mat-icon class="material-icons">dashboard</mat-icon>
-          <span>Devices Loans Dashboard</span>
+        <button mat-button [matMenuTriggerFor]="devicesMenu">
+          Device Loans
         </button>
-        <button mat-menu-item routerLink="/device-loans/search">
-          <mat-icon class="material-icons">search</mat-icon>
-          <span>Device Loans Search</span>
-        </button>
-      </mat-menu>
+        <mat-menu #devicesMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/device-loans">
+            <mat-icon class="material-icons">dashboard</mat-icon>
+            <span>Devices Loans Dashboard</span>
+          </button>
+          <button mat-menu-item routerLink="/device-loans/search">
+            <mat-icon class="material-icons">search</mat-icon>
+            <span>Device Loans Search</span>
+          </button>
+        </mat-menu>
 
-      <button mat-button [matMenuTriggerFor]="googleMenu">
-        Google
-      </button>
-      <mat-menu #googleMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/google">
-          <mat-icon class="material-icons">dashboard</mat-icon>
-          <span>Google Dashboard</span>
+        <button mat-button [matMenuTriggerFor]="googleMenu">
+          Google
         </button>
-        <button mat-menu-item routerLink="/google/groups">
-          <mat-icon class="material-icons">group</mat-icon>
-          <span>Google Groups</span>
-        </button>
-        <button mat-menu-item routerLink="/google/calendar">
-          <mat-icon class="material-icons">calendar_today</mat-icon>
-          <span>Google Calendar</span>
-        </button>
-      </mat-menu>
+        <mat-menu #googleMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/google">
+            <mat-icon class="material-icons">dashboard</mat-icon>
+            <span>Google Dashboard</span>
+          </button>
+          <button mat-menu-item routerLink="/google/groups">
+            <mat-icon class="material-icons">group</mat-icon>
+            <span>Google Groups</span>
+          </button>
+          <button mat-menu-item routerLink="/google/calendar">
+            <mat-icon class="material-icons">calendar_today</mat-icon>
+            <span>Google Calendar</span>
+          </button>
+        </mat-menu>
 
-      <button mat-button [matMenuTriggerFor]="ippsMenu">
-        IPPS
-      </button>
-      <mat-menu #ippsMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/ipps">
-          <mat-icon class="material-icons">dashboard</mat-icon>
-          <span>IPPS Dashboard</span>
+        <button mat-button [matMenuTriggerFor]="ippsMenu">
+          IPPS
         </button>
-      </mat-menu>
+        <mat-menu #ippsMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/ipps">
+            <mat-icon class="material-icons">dashboard</mat-icon>
+            <span>IPPS Dashboard</span>
+          </button>
+        </mat-menu>
 
-      <button mat-button [matMenuTriggerFor]="peopleMenu">
-        People
-      </button>
-      <mat-menu #peopleMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/people">
-          <mat-icon class="material-icons">dashboard</mat-icon>
-          <span>People Dashboard</span>
+        <button mat-button [matMenuTriggerFor]="peopleMenu">
+          People
         </button>
-      </mat-menu>
+        <mat-menu #peopleMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/people">
+            <mat-icon class="material-icons">dashboard</mat-icon>
+            <span>People Dashboard</span>
+          </button>
+        </mat-menu>
 
-      <button mat-button [matMenuTriggerFor]="quartermasterMenu">
-        Quartermaster
-      </button>
-      <mat-menu #quartermasterMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/quartermaster">
-          <mat-icon class="material-icons">dashboard</mat-icon>
-          <span>Quartermaster Dashboard</span>
+        <button mat-button [matMenuTriggerFor]="quartermasterMenu">
+          Quartermaster
         </button>
-        <button mat-menu-item routerLink="/quartermaster/assets/search">
-          <mat-icon class="material-icons">search</mat-icon>
-          <span>Assets Search</span>
-        </button>
-      </mat-menu>
+        <mat-menu #quartermasterMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/quartermaster">
+            <mat-icon class="material-icons">dashboard</mat-icon>
+            <span>Quartermaster Dashboard</span>
+          </button>
+          <button mat-menu-item routerLink="/quartermaster/assets/search">
+            <mat-icon class="material-icons">search</mat-icon>
+            <span>Assets Search</span>
+          </button>
+        </mat-menu>
 
-      <button mat-button [matMenuTriggerFor]="schoolsMenu">
-        Schools
-      </button>
-      <mat-menu #schoolsMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/schools">
-          <mat-icon class="material-icons">dashboard</mat-icon>
-          <span>Schools Dashboard</span>
+        <button mat-button [matMenuTriggerFor]="schoolsMenu">
+          Schools
         </button>
-      </mat-menu>
+        <mat-menu #schoolsMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/schools">
+            <mat-icon class="material-icons">dashboard</mat-icon>
+            <span>Schools Dashboard</span>
+          </button>
+        </mat-menu>
 
-      <button mat-button [matMenuTriggerFor]="teamViewerMenu">
-        TeamViewer
-      </button>
-      <mat-menu #teamViewerMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/teamviewer">
-          <mat-icon class="material-icons">dashboard</mat-icon>
-          <span>Teamviewer Dashboard</span>
+        <button mat-button [matMenuTriggerFor]="teamViewerMenu">
+          TeamViewer
         </button>
-      </mat-menu>
+        <mat-menu #teamViewerMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/teamviewer">
+            <mat-icon class="material-icons">dashboard</mat-icon>
+            <span>Teamviewer Dashboard</span>
+          </button>
+        </mat-menu>
 
-      <button mat-button [matMenuTriggerFor]="trilliumMenu">
-        Trillium
-      </button>
-      <mat-menu #trilliumMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/trillium">
-          <mat-icon class="material-icons">dashboard</mat-icon>
-          <span>Trillium Dashboard</span>
+        <button mat-button [matMenuTriggerFor]="trilliumMenu">
+          Trillium
         </button>
-      </mat-menu>
+        <mat-menu #trilliumMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/trillium">
+            <mat-icon class="material-icons">dashboard</mat-icon>
+            <span>Trillium Dashboard</span>
+          </button>
+        </mat-menu>
+      </ng-container>
 
+      <span class="header-spacer"></span>
+
+      <cosmos-auth-button></cosmos-auth-button>
     </mat-toolbar>
   </header>
 </ng-container>

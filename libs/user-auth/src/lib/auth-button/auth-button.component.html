@@ -1,1 +1,2 @@
-<p>auth-button works!</p>
+<button mat-raised-button *ngIf="!(isLoggedIn$ | async)" (click)="login()">Login</button>
+<button mat-raised-button *ngIf="isLoggedIn$ | async" (click)="logout()">Logout</button>
