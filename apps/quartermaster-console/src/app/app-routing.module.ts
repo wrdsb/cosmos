@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { MsalGuard } from '@azure/msal-angular';
-import { DetailComponent } from './detail/detail.component';
 import { FailedComponent } from './failed/failed.component';
 
 const routes: Routes = [
   {
     path: 'profile',
-    component: ProfileComponent,
+    loadChildren: () => import('@cosmos/user-profiles').then(m => m.UserProfilesModule),
     canActivate: [MsalGuard]
   },
   {
@@ -18,7 +16,7 @@ const routes: Routes = [
     children: [
       {
         path: 'detail',
-        component: DetailComponent
+        loadChildren: () => import('@cosmos/user-profiles').then(m => m.UserProfilesModule),
       }
     ]
   },
@@ -26,11 +24,6 @@ const routes: Routes = [
     path: 'lazyLoad', 
     loadChildren: () => import('./lazy/lazy.module').then(m => m.LazyModule),
     canLoad: [MsalGuard]
-  },
-  {
-    // Needed for hash routing
-    path: 'code',
-    component: HomeComponent
   },
   {
     path: '',

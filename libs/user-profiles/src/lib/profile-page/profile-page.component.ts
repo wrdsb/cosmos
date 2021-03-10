@@ -21,8 +21,8 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfile();
-    const account = this.msalService.getAccount();
-    this.roles = account.idToken.roles;
+    //const account = this.msalService.getAccount();
+    //this.roles = account.idToken.roles;
   }
 
   profileString() {
