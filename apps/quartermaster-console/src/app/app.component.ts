@@ -11,71 +11,27 @@ import { UserAuth2Service } from '@cosmos/user-auth2';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   title = 'Angular 11 - Angular v2 Sample';
   isIframe = false;
   isLoggedIn$: Observable<boolean>;
   private readonly _destroying$ = new Subject<void>();
 
   constructor(
-    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
-    private userAuthService: UserAuth2Service,
-    private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService
+    private userAuthService: UserAuth2Service
   ) {
     this.isLoggedIn$ = this.userAuthService.isLoggedIn$;
   }
 
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
-
-    this.msalBroadcastService.inProgress$
-      .pipe(
-        filter((status: InteractionStatus) => status === InteractionStatus.None),
-        takeUntil(this._destroying$)
-      )
-      .subscribe(() => {
-        this.setIsLoggedIn();
-        this.checkAndSetActiveAccount();
-      })
-  }
-
-  setIsLoggedIn() {
-    this.userAuthService.setIsLoggedIn();
-  }
-
-  checkAndSetActiveAccount() {
-    this.userAuthService.checkAndSetActiveAccount();
   }
 
   login() {
-    if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
-      if (this.msalGuardConfig.authRequest){
-        this.authService.loginPopup({...this.msalGuardConfig.authRequest} as PopupRequest)
-          .subscribe((response: AuthenticationResult) => {
-            this.authService.instance.setActiveAccount(response.account);
-          });
-        } else {
-          this.authService.loginPopup()
-            .subscribe((response: AuthenticationResult) => {
-              this.authService.instance.setActiveAccount(response.account);
-            });
-      }
-    } else {
-      if (this.msalGuardConfig.authRequest){
-        this.authService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
-      } else {
-        this.authService.loginRedirect();
-      }
-    }
+    this.userAuthService.login();
   }
 
   logout() {
-    this.authService.logout();
-  }
-
-  ngOnDestroy(): void {
-    this._destroying$.next(undefined);
-    this._destroying$.complete();
+    this.userAuthService.logout();
   }
 }
