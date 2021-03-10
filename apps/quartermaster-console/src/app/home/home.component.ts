@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { EventMessage, EventType } from '@azure/msal-browser';
+import { Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
+import { UserAuth2Service } from '@cosmos/user-auth2';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +12,15 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  loggedIn = false;
+  isLoggedIn$: Observable<boolean>;
 
-  constructor(private authService: MsalService, private msalBroadcastService: MsalBroadcastService) { }
+  constructor(
+    private userAuthService: UserAuth2Service,
+    private authService: MsalService,
+    private msalBroadcastService: MsalBroadcastService
+  ) {
+    this.isLoggedIn$ = this.userAuthService.isLoggedIn$;
+  }
 
   ngOnInit(): void {
     this.msalBroadcastService.msalSubject$
@@ -25,12 +34,12 @@ export class HomeComponent implements OnInit {
         }
       });
     
-    this.setLoggedIn();
+    this.setIsLoggedIn();
     
   }
   
-  setLoggedIn() {
-    this.loggedIn = this.authService.instance.getAllAccounts().length > 0;
+  setIsLoggedIn() {
+    this.userAuthService.setIsLoggedIn();
   }
 
 }

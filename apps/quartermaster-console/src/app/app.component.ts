@@ -1,8 +1,10 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MsalService, MsalBroadcastService, MSAL_GUARD_CONFIG, MsalGuardConfiguration } from '@azure/msal-angular';
 import { AuthenticationResult, InteractionStatus, InteractionType, PopupRequest, RedirectRequest } from '@azure/msal-browser';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+
+import { UserAuth2Service } from '@cosmos/user-auth2';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +14,17 @@ import { filter, takeUntil } from 'rxjs/operators';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Angular 11 - Angular v2 Sample';
   isIframe = false;
-  loggedIn = false;
+  isLoggedIn$: Observable<boolean>;
   private readonly _destroying$ = new Subject<void>();
 
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
+    private userAuthService: UserAuth2Service,
     private authService: MsalService,
     private msalBroadcastService: MsalBroadcastService
-  ) {}
+  ) {
+    this.isLoggedIn$ = this.userAuthService.isLoggedIn$;
+  }
 
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
@@ -30,27 +35,17 @@ export class AppComponent implements OnInit, OnDestroy {
         takeUntil(this._destroying$)
       )
       .subscribe(() => {
-        this.setLoggedIn();
+        this.setIsLoggedIn();
         this.checkAndSetActiveAccount();
       })
   }
 
-  setLoggedIn() {
-    this.loggedIn = this.authService.instance.getAllAccounts().length > 0;
+  setIsLoggedIn() {
+    this.userAuthService.setIsLoggedIn();
   }
 
-  checkAndSetActiveAccount(){
-    /**
-     * If no active account set but there are accounts signed in, sets first account to active account
-     * To use active account set here, subscribe to inProgress$ first in your component
-     * Note: Basic usage demonstrated. Your app may require more complicated account selection logic
-     */
-    let activeAccount = this.authService.instance.getActiveAccount();
-
-    if (!activeAccount && this.authService.instance.getAllAccounts().length > 0) {
-      let accounts = this.authService.instance.getAllAccounts();
-      this.authService.instance.setActiveAccount(accounts[0]);
-    }
+  checkAndSetActiveAccount() {
+    this.userAuthService.checkAndSetActiveAccount();
   }
 
   login() {
