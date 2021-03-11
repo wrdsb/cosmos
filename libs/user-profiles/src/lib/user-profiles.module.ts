@@ -22,9 +22,9 @@ const routes: Routes = [
     ]
   },
   {
-    path: '',
-    pathMatch: 'full',
-    component: ProfileComponent,
+    path: '**',
+    //pathMatch: 'full',
+    component: ProfilePageComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
