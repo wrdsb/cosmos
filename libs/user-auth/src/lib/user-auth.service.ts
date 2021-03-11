@@ -59,11 +59,14 @@ export class UserAuthService {
   }
 
   getAccount(): AccountInfo {
+    this.checkAndSetActiveAccount();
     return this.authService.instance.getActiveAccount();
   }
 
-  getRoles() {
-    return this.authService.instance.getActiveAccount().idTokenClaims['roles'];
+  getRoles(): string[] {
+    this.checkAndSetActiveAccount();
+    const roles = this.authService.instance.getActiveAccount().idTokenClaims['roles'];
+    return roles;
   }
 
   login() {
