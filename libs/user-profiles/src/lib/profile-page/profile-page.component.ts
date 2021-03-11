@@ -11,7 +11,7 @@ import { UserAuthService } from '@cosmos/user-auth';
 })
 export class ProfilePageComponent implements OnInit {
   profile: User;
-  //profile$ = this.graphService.getProfile();
+  profile$ = this.graphService.getProfile();
   roles;
 
   constructor(
@@ -21,18 +21,18 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Load ProfilePage component.');
-    //this.getProfile();
-    //const account = this.msalService.getAccount();
-    //this.roles = account.idToken.roles;
+    this.getProfile();
+    const account = this.userAuthService.getAccount();
+    this.roles = account.idTokenClaims;
   }
 
   profileString() {
     return JSON.stringify(this.profile);
   }
 
-  //getProfile() {
-    //this.profile$.subscribe(profile => 
-      //this.profile = profile
-    //);
-  //}
+  getProfile() {
+    this.profile$.subscribe(profile => 
+      this.profile = profile
+    );
+  }
 }
