@@ -126,6 +126,16 @@
 
       <span class="header-spacer"></span>
 
+      <button mat-icon-button [matMenuTriggerFor]="accountMenu">
+        <mat-icon class="material-icons-outlined">account_circle</mat-icon>
+      </button>
+      <mat-menu #accountMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/profile">
+              <mat-icon class="material-icons-outlined">account_circle</mat-icon>
+              <span>Profile</span>
+          </button>
+      </mat-menu>
+
       <cosmos-auth-button></cosmos-auth-button>
     </mat-toolbar>
   </header>
