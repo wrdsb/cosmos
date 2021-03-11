@@ -7,19 +7,19 @@ import { FailedComponent } from './failed/failed.component';
 
 const routes: Routes = [
   {
-    path: 'profile',
-    loadChildren: () => import('@cosmos/user-profiles').then(m => m.UserProfilesModule),
-    canActivate: [MsalGuard]
+    path: 'ping',
+    loadChildren: () => import('@cosmos/pings-ui').then(m => m.PingsUiModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
   },
   {
     path: 'profile',
-    canActivateChild: [MsalGuard],
-    children: [
-      {
-        path: 'detail',
-        loadChildren: () => import('@cosmos/user-profiles').then(m => m.UserProfilesModule),
-      }
-    ]
+    loadChildren: () => import('@cosmos/user-profiles').then(m => m.UserProfilesModule),
+    canActivate: [MsalGuard]
   },
   {
     path: 'login-failed',
