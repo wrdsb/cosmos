@@ -1,13 +1,14 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
-import { httpInterceptorProviders } from "@cosmos/http-interceptors";
+import { HttpClientModule } from '@angular/common/http';
+import { MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 
-//import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-//import { InMemoryDataService }  from '@cosmos/people-sets';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import { environment } from "../environments/environment";
 import { EnvironmentService } from "@cosmos/environment";
@@ -16,12 +17,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { UserAuthModule } from "@cosmos/user-auth";
+import { UserProfilesModule } from '@cosmos/user-profiles';
+
 import { ChassisModule } from "@cosmos/chassis";
 import { PanelsModule } from "@cosmos/panels";
 import { PagesModule } from "@cosmos/pages";
+
 import { NotificationsModule } from '@cosmos/notifications';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+
 
 @NgModule({
   declarations: [
@@ -29,34 +33,34 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+
     HttpClientModule,
     MsalModule,
 
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    //HttpClientInMemoryWebApiModule.forRoot(
-      //InMemoryDataService, { dataEncapsulation: false }
-    //),
+    MatButtonModule,
+    MatToolbarModule,
+    MatListModule,
+    FontAwesomeModule,
+
+    AppRoutingModule,
 
     UserAuthModule,
+    UserProfilesModule,
+
     ChassisModule,
     PanelsModule,
     PagesModule,
+
     NotificationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    FontAwesomeModule
+    //ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    httpInterceptorProviders,
     {
       provide: EnvironmentService,
       useValue: environment
-    }
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, MsalRedirectComponent]
 })
 export class AppModule { }
