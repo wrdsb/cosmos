@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { MsalService, MsalBroadcastService, MSAL_GUARD_CONFIG, MsalGuardConfiguration } from '@azure/msal-angular';
-import { EventMessage, EventType } from '@azure/msal-browser';
+import { AccountInfo, EventMessage, EventType } from '@azure/msal-browser';
 import { AuthenticationResult, InteractionStatus, InteractionType, PopupRequest, RedirectRequest } from '@azure/msal-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -56,6 +56,14 @@ export class UserAuthService {
       let accounts = this.authService.instance.getAllAccounts();
       this.authService.instance.setActiveAccount(accounts[0]);
     }
+  }
+
+  getAccount(): AccountInfo {
+    return this.authService.instance.getActiveAccount();
+  }
+
+  getRoles() {
+    return this.authService.instance.getActiveAccount().idTokenClaims
   }
 
   login() {
