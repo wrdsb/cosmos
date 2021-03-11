@@ -23,7 +23,7 @@ export class ProfilePageComponent implements OnInit {
     console.log('Load ProfilePage component.');
     this.getProfile();
     const account = this.userAuthService.getAccount();
-    this.roles = account.idTokenClaims;
+    this.roles = this.userAuthService.getRoles();
   }
 
   profileString() {

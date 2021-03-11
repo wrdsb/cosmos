@@ -63,7 +63,7 @@ export class UserAuthService {
   }
 
   getRoles() {
-    return this.authService.instance.getActiveAccount().idTokenClaims
+    return this.authService.instance.getActiveAccount().idTokenClaims['roles'];
   }
 
   login() {
