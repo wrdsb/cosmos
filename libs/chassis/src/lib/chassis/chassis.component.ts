@@ -28,6 +28,7 @@ export class ChassisComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
     console.log('init chassis');
+    console.log(`isiFrame: ${this.isIframe}`);
     this.userAuthService.setIsLoggedIn();
   }
 

@@ -20,16 +20,20 @@
           <cosmos-sidebar-inner-right></cosmos-sidebar-inner-right>
         </mat-sidenav>
 
-        <ng-container *ngIf="!(isLoggedIn$ | async)">
-          <cosmos-login-page></cosmos-login-page>
-        </ng-container>
-        
-        <ng-container *ngIf="isLoggedIn$ | async">
           <mat-sidenav-content id="main" class="main-content">
-          <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
-          <router-outlet *ngIf="!isIframe"></router-outlet>
+
+            <ng-container *ngIf="!(isLoggedIn$ | async); then notLoggedIn else loggedIn"></ng-container>
+            
+            <ng-template #notLoggedIn>
+              <cosmos-login-page></cosmos-login-page>
+            </ng-template>
+            
+            <ng-template #loggedIn>
+              <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+              <router-outlet *ngIf="!isIframe"></router-outlet>
+            </ng-template>
+
           </mat-sidenav-content>
-        </ng-container>
 
       </mat-sidenav-container>
 
