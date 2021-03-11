@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { FailedComponent } from './failed/failed.component';
 
@@ -21,12 +20,16 @@ const routes: Routes = [
     ]
   },
   {
-    path: '',
-    component: HomeComponent
-  },
-  {
     path: 'login-failed',
     component: FailedComponent
+  },
+  {
+    path: '',
+    loadChildren: () => import('@cosmos/pages').then(m => m.PagesModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('@cosmos/pages').then(m => m.PagesModule)
   }
 ];
 
