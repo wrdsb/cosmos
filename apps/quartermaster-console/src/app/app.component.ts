@@ -1,10 +1,8 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import { MsalService, MsalBroadcastService, MSAL_GUARD_CONFIG, MsalGuardConfiguration } from '@azure/msal-angular';
-import { AuthenticationResult, InteractionStatus, InteractionType, PopupRequest, RedirectRequest } from '@azure/msal-browser';
-import { Observable, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
-import { ChassisService } from '@cosmos/chassis';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
+import { EnvironmentService } from '@cosmos/environment';
+import { ChassisService } from '@cosmos/chassis';
 import { UserAuthService } from '@cosmos/user-auth';
 
 @Component({
@@ -13,12 +11,12 @@ import { UserAuthService } from '@cosmos/user-auth';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Angular 11 - Angular v2 Sample';
   isIframe = false;
   isLoggedIn$: Observable<boolean>;
-  private readonly _destroying$ = new Subject<void>();
 
   constructor(
+    public environmentService: EnvironmentService,
+    public chassisService: ChassisService,
     private userAuthService: UserAuthService
   ) {
     this.isLoggedIn$ = this.userAuthService.isLoggedIn$;
