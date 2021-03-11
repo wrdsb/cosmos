@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
+
+import { RolesGuard } from "@cosmos/guards";
 import { FailedComponent } from './failed/failed.component';
 
 const routes: Routes = [
