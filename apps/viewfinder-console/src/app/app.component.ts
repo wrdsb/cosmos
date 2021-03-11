@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BroadcastService, MsalService } from '@azure/msal-angular';
-import { Logger, CryptoUtils } from 'msal';
+import { Observable } from 'rxjs';
+
 import { EnvironmentService } from '@cosmos/environment';
-import { Menu } from "@cosmos/types";
 import { ChassisService } from '@cosmos/chassis';
+import { UserAuthService } from '@cosmos/user-auth';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +12,12 @@ import { ChassisService } from '@cosmos/chassis';
 })
 export class AppComponent implements OnInit {
   isIframe = false;
-  loggedIn = false;
+  isLoggedIn$: Observable<boolean>;
 
   constructor(
     public environmentService: EnvironmentService,
     public chassisService: ChassisService,
-    private broadcastService: BroadcastService,
-    private authService: MsalService
+    private userAuthService: UserAuthService
   ) {}
 
   ngOnInit(): void {
@@ -36,32 +35,14 @@ export class AppComponent implements OnInit {
       }
     );
 
-    this.isIframe = window !== window.parent && !window.opener;
+    this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
+  };
 
-    this.checkoutAccount();
-
-    this.broadcastService.subscribe('msal:loginSuccess', () => {
-      this.checkoutAccount();
-    });
-
-    this.authService.handleRedirectCallback((authError, response) => {
-      if (authError) {
-        console.error('Redirect Error: ', authError.errorMessage);
-        return;
-      }
-
-      console.log('Redirect Success: ', response);
-    });
-
-    this.authService.setLogger(new Logger((logLevel, message, piiEnabled) => {
-      console.log('MSAL Logging: ', message);
-    }, {
-      correlationId: CryptoUtils.createNewGuid(),
-      piiLoggingEnabled: false
-    }));
+  login() {
+    this.userAuthService.login();
   }
 
-  checkoutAccount() {
-    this.loggedIn = !!this.authService.getAccount();
+  logout() {
+    this.userAuthService.logout();
   }
 }
