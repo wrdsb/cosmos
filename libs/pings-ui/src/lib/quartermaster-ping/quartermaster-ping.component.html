@@ -14,12 +14,12 @@
 
 <div>
     <ng-container *ngIf="( pingState$ | async ) as pingState">
-        <ng-container *ngIf="pingState.header.status !== 0">
-            <div>Status: {{ pingState.header.status }}</div>
-            <div>Authenticated: {{ pingState.header.authenticated }}</div>
-            <div>Authorized: {{ pingState.header.authorized }}</div>
-            <div>User Email: {{ pingState.header.userEmail }}</div>
-            <div>User Roles: {{ pingState.header.userRoles }}</div>
+        <ng-container *ngIf="pingState.header?.status !== 0">
+            <div>Status: {{ pingState.header?.status }}</div>
+            <div>Authenticated: {{ pingState.header?.authenticated }}</div>
+            <div>Authorized: {{ pingState.header?.authorized }}</div>
+            <div>User Email: {{ pingState.header?.userEmail }}</div>
+            <div>User Roles: {{ pingState.header?.userRoles }}</div>
         </ng-container>
     </ng-container>
 </div>
