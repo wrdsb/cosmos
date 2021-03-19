@@ -34,8 +34,8 @@ export interface AssetAssignment {
     receivedByRole?: string;
 
     isTemporary?: boolean;
-    startDate: DateTime;
-    endDate: DateTime;
+    startDate?: DateTime;
+    endDate?: DateTime;
 
     untrackedAssestsIncluded?: string;
     notes?: string;

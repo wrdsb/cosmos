@@ -25,15 +25,36 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
         deletedAt: '',
         deleted: false,
 
+        createdBy: '',
+        updatedBy: '',
+        deletedBy: '',
+
+        assignedBy: '',
+        assignedFromLocation: '',
+    
         id: '',
         changeDetectionHash: '',
 
         assetID: '',
+        assetSerialNumber: '',
+        assetType: '',
+        assetLocation: '',
 
-        assignedBy: '',
-        assignedTo: '',
+        assignedToPerson: '',
+        assignedToPersonEmail: '',
+        assignedToPersonNumber: '',
+        assignedToPersonLocation: '',
+    
+        assignedToBusinessUnit: '',
+    
+        receivedByAssignee: true,
         receivedBy: '',
-
+        receivedByRole: '',
+    
+        isTemporary: false,
+        startDate: '',
+        endDate: '',
+    
         untrackedAssestsIncluded: '',
         notes: ''
     } as AssetAssignment;
@@ -280,10 +301,30 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
 
     function makeHash(assetAssignment: AssetAssignment): string {
         const objectForHash = JSON.stringify({
-            assetID:                  assetAssignment.assetID,
+            createdAt:                assetAssignment.createdAt,
+            updatedAt:                assetAssignment.updatedAt,
+            deletedAt:                assetAssignment.deletedAt,
+            deleted:                  assetAssignment.deleted,
+            createdBy:                assetAssignment.createdBy,
+            updatedBy:                assetAssignment.updatedBy,
+            deletedBy:                assetAssignment.deletedBy,
             assignedBy:               assetAssignment.assignedBy,
-            assignedTo:               assetAssignment.assignedTo,
+            assignedFromLocation:     assetAssignment.assignedFromLocation,
+            assetID:                  assetAssignment.assetID,
+            assetSerialNumber:        assetAssignment.assetSerialNumber,
+            assetType:                assetAssignment.assetType,
+            assetLocation:            assetAssignment.assetLocation,
+            assignedToPerson:         assetAssignment.assignedToPerson,
+            assignedToPersonEmail:    assetAssignment.assignedToPersonEmail,
+            assignedToPersonNumber:   assetAssignment.assignedToPersonNumber,
+            assignedToPersonLocation: assetAssignment.assignedToPersonLocation,
+            assignedToBusinessUnit:   assetAssignment.assignedToBusinessUnit,
+            receivedByAssignee:       assetAssignment.receivedByAssignee,
             receivedBy:               assetAssignment.receivedBy,
+            receivedByRole:           assetAssignment.receivedByRole,
+            isTemporary:              assetAssignment.isTemporary,
+            startDate:                assetAssignment.startDate,
+            endDate:                  assetAssignment.endDate,
             untrackedAssestsIncluded: assetAssignment.untrackedAssestsIncluded,
             notes:                    assetAssignment.notes
         });
