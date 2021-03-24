@@ -29,7 +29,7 @@ export interface AssetAssignment {
 
     assignedToBusinessUnit?: BusinessUnitID;
 
-    receivedByAssignee?: boolean;
+    wasReceivedByAssignee?: boolean;
     receivedBy?: PersonID;
     receivedByRole?: string;
 
