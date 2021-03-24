@@ -47,7 +47,7 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
     
         assignedToBusinessUnit: '',
     
-        receivedByAssignee: true,
+        wasReceivedByAssignee: true,
         receivedBy: '',
         receivedByRole: '',
     
@@ -64,6 +64,11 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
     let statusMessage;
 
     switch (operation) {
+        case 'create':
+            result = doCreate(newRecord, payload);
+            statusCode = '200';
+            statusMessage = 'Success: Created new record.';
+            break;
         case 'delete':
             result = doDelete(oldRecord, newRecord, payload);
             statusCode = '200';
@@ -86,16 +91,6 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
     if (result.changedDetected) {
         context.bindings.recordOut = result.newRecord;
 
-        //context.bindings.assetAssignmentHistoryMaterialize = {
-            //operation: 'patch',
-            //payload: {
-                //assetID: result.newRecord.correctedAssetID,
-                //loans: [
-                    //result.newRecord
-                //]
-            //}
-        //}
-
         const logPayload = result.event;
         functionInvocation.logPayload = logPayload;
         context.log(logPayload);
@@ -107,6 +102,29 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
     
     context.log(functionInvocation);
     context.done(null, functionInvocation);
+
+    function doCreate(newRecord, payload) {
+        let event = {};
+        let changedDetected = true;
+
+        newRecord = Object.assign(newRecord, payload);
+        newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+        newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+
+        // creating a record implicitly undeletes it
+        newRecord.deleted_at = '';
+        newRecord.deleted = false;
+
+        // let database assign an ID
+        delete newRecord['id'];
+
+        newRecord.changeDetectionHash = makeHash(newRecord);
+
+        changedDetected = true;
+        event = craftCreateEvent(newRecord);
+
+        return {changedDetected: changedDetected, event: event, newRecord: newRecord};
+    }
 
     function doDelete(oldRecord, newRecord, payload) {
         let event = {};
@@ -319,7 +337,7 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
             assignedToPersonNumber:   assetAssignment.assignedToPersonNumber,
             assignedToPersonLocation: assetAssignment.assignedToPersonLocation,
             assignedToBusinessUnit:   assetAssignment.assignedToBusinessUnit,
-            receivedByAssignee:       assetAssignment.receivedByAssignee,
+            wasReceivedByAssignee:    assetAssignment.wasReceivedByAssignee,
             receivedBy:               assetAssignment.receivedBy,
             receivedByRole:           assetAssignment.receivedByRole,
             isTemporary:              assetAssignment.isTemporary,
