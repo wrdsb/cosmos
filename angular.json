@@ -5853,13 +5853,43 @@
       "prefix": "tollbooth-functions",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/tollbooth-functions",
-            "main": "apps/tollbooth-functions/src/main.ts",
             "tsConfig": "apps/tollbooth-functions/tsconfig.app.json",
-            "assets": ["apps/tollbooth-functions/src/assets"]
+            "webpackConfig": "apps/tollbooth-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/tollbooth-functions/src",
+                "glob": "**/function.json",
+                "output": "./tollbooth-functions"
+              },
+              {
+                "input": "./apps/tollbooth-functions/src",
+                "glob": "host.json",
+                "output": "./tollbooth-functions"
+              },
+              {
+                "input": "./apps/tollbooth-functions/src",
+                "glob": "proxies.json",
+                "output": "./tollbooth-functions"
+              },
+              {
+                "input": "./apps/tollbooth-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./tollbooth-functions"
+              },
+              {
+                "input": "./apps/tollbooth-functions/src/bin",
+                "glob": "**.*",
+                "output": "./tollbooth-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {
