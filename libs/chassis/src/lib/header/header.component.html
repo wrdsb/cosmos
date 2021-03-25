@@ -13,7 +13,7 @@
             <mat-menu #thisMenu="matMenu" backdropClass="customWaffle">
               <ng-container *ngFor="let menuLink of menuItem.links">
 
-                <button mat-menu-item [attr.routerLink]="menuLink.routerLink">
+                <button mat-menu-item [routerLink]="menuLink.routerLink">
                   <mat-icon class="material-icons">{{menuLink.icon}}</mat-icon>
                   <span>{{menuLink.linkTitle}}</span>
                 </button>
