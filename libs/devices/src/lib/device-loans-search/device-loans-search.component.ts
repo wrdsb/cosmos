@@ -10,7 +10,7 @@ import { faCircle as TrueIcon } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
-import { DeviceLoan, SearchFunctionRequestPayload, SearchFunctionResponse } from "@cosmos/types";
+import { DeviceLoan, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
 import { DeviceLoansService } from '../device-loans.service';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DeviceLoanMetaDialogComponent } from "../device-loan-meta-dialog/device-loan-meta-dialog.component";
@@ -39,15 +39,12 @@ export class DeviceLoansSearchComponent implements OnInit {
     'assetID',
     'deviceType',
     'locationName',
-    'isLoaned',
-    'hasInventoryRecord',
-    'totalLoans',
-    'recordActions'
+    'wasReturned',
+    'returnedAt'
   ]);
 
   onLoanFilterFormControl = new FormControl();
-  wasLoanedFilterFormControl = new FormControl();
-  hasInventoryRecordFilterFormControl = new FormControl();
+  wasReturnedFilterFormControl = new FormControl();
   deviceTypeFilterFormControl = new FormControl();
   locationNameFilterFormControl = new FormControl();
 
@@ -55,8 +52,7 @@ export class DeviceLoansSearchComponent implements OnInit {
   anyFieldSearchFormControl = new FormControl();
 
   currentOnLoanFilter = new BehaviorSubject<string>('');
-  currentWasLoanedFilter = new BehaviorSubject<string>('');
-  currentHasInventoryRecordFilter = new BehaviorSubject<string>('');
+  currentWasReturnedFilter = new BehaviorSubject<string>('');
   currentDeviceTypeFilter = new BehaviorSubject<string>('');
   currentLocationNameFilter = new BehaviorSubject<string>('');
   currentAssetIDSearch = new BehaviorSubject<string>('');
@@ -68,14 +64,20 @@ export class DeviceLoansSearchComponent implements OnInit {
   pageSize = new BehaviorSubject<number>(20);
   maxPage = new BehaviorSubject<number>(1);
   
-  //public searchDeviceLoansRequestState$: Observable<ListDeviceLoansRequestState>;
-  //public searchDeviceLoansResponse$: Observable<DeviceLoanQueryFunctionResponse>;
-  
+  public searchRequestState$: Observable<SearchRequestState>;
   public searchResponse$: Observable<SearchFunctionResponse>;
+
   public totalRecords$: Observable<number>;
   public maxPage$: Observable<number>;
 
-  public loansPage$: Observable<DeviceLoan[]>;
+  private loansPage: BehaviorSubject<DeviceLoan[]> = new BehaviorSubject([
+    {
+      assetID: "Loading...",
+      deviceType: "Loading...",
+      locationName: "Loading..."
+    }
+  ]);
+  public readonly loansPage$: Observable<DeviceLoan[]> = this.loansPage.asObservable();
 
   public loanSelected$: Observable<boolean>;
   public selectedLoan$: Observable<DeviceLoan>;
@@ -86,12 +88,15 @@ export class DeviceLoansSearchComponent implements OnInit {
     private deviceLoansService: DeviceLoansService,
     public dialog: MatDialog
   ) {
+    this.searchRequestState$ = this.deviceLoansService.searchRequestState$;
     this.searchResponse$ = this.deviceLoansService.searchResponse$;
+
     this.totalRecords$ = this.searchResponse$.pipe(map(response => response.payload.count));
-    this.loansPage$ = this.deviceLoansService.loansList$;
     this.maxPage$ = this.totalRecords$.pipe(map(totalRecords => Math.ceil(totalRecords / this.pageSize.value)));
     this.maxPage$.subscribe(this.maxPage);
 
+    this.loansPage$ = this.deviceLoansService.loansList$;
+    
     this.loanSelected$ = this.deviceLoansService.loanSelected$;
     this.selectedLoan$ = this.deviceLoansService.selectedLoan$;
   }
@@ -108,17 +113,10 @@ export class DeviceLoansSearchComponent implements OnInit {
         this.searchLoans();
       }
     );
-    this.wasLoanedFilterFormControl.valueChanges
-      .subscribe(wasLoaned => {
-        console.log(`wasLoaned Filter ${wasLoaned}`);
-        this.currentWasLoanedFilter.next(wasLoaned);
-        this.searchLoans();
-      }
-    );
-    this.hasInventoryRecordFilterFormControl.valueChanges
-      .subscribe(hasInventoryRecord => {
-        console.log(`inInventory Filter ${hasInventoryRecord}`);
-        this.currentHasInventoryRecordFilter.next(hasInventoryRecord);
+    this.wasReturnedFilterFormControl.valueChanges
+      .subscribe(wasReturned => {
+        console.log(`wasReturned Filter ${wasReturned}`);
+        this.currentWasReturnedFilter.next(wasReturned);
         this.searchLoans();
       }
     );
@@ -216,18 +214,11 @@ export class DeviceLoansSearchComponent implements OnInit {
       filterString += `isLoaned eq ${this.currentOnLoanFilter.value}`;
     }
 
-    if (this.currentWasLoanedFilter.value.length > 0 && this.currentWasLoanedFilter.value !== 'all') {
+    if (this.currentWasReturnedFilter.value.length > 0 && this.currentWasReturnedFilter.value !== 'all') {
       if (filterString.length > 0) {
         filterString += ' and ';
       }
-      filterString += `wasLoaned eq ${this.currentWasLoanedFilter.value}`;
-    }
-
-    if (this.currentHasInventoryRecordFilter.value.length > 0 && this.currentHasInventoryRecordFilter.value !== 'all') {
-      if (filterString.length > 0) {
-        filterString += ' and ';
-      }
-      filterString += `hasInventoryRecord eq ${this.currentHasInventoryRecordFilter.value}`;
+      filterString += `wasReturned eq ${this.currentWasReturnedFilter.value}`;
     }
 
     if (this.currentDeviceTypeFilter.value.length > 0 && this.currentDeviceTypeFilter.value !== 'all') {
