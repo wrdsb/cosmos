@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MgtPerson } from '@microsoft/mgt';
 import { User } from "@microsoft/microsoft-graph-types";
 import { GraphService } from '@cosmos/msgraph-service';
-import { MsalService } from '@azure/msal-angular';
+import { UserAuthService } from '@cosmos/user-auth';
 
 @Component({
   selector: 'cosmos-profile-page',
@@ -15,14 +15,15 @@ export class ProfilePageComponent implements OnInit {
   roles;
 
   constructor(
-    private msalService: MsalService,
+    private userAuthService: UserAuthService,
     private graphService: GraphService
   ) { }
 
   ngOnInit(): void {
+    console.log('Load ProfilePage component.');
     this.getProfile();
-    const account = this.msalService.getAccount();
-    this.roles = account.idToken.roles;
+    const account = this.userAuthService.getAccount();
+    this.roles = this.userAuthService.getRoles();
   }
 
   profileString() {

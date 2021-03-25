@@ -1,6 +1,6 @@
 type QueryFunctionOperation = 'list' | 'find';
-type CommandFunctionOperation = 'patch' | 'replace' | 'delete' | 'materialize';
-type StoreFunctionOperation = 'patch' | 'replace' | 'delete' | 'materialize';
+type CommandFunctionOperation = 'create' | 'patch' | 'replace' | 'delete' | 'materialize';
+type StoreFunctionOperation = 'create' | 'patch' | 'replace' | 'delete' | 'materialize';
 
 type FunctionCallbackType = 'Function.Invocation';
 

@@ -70,12 +70,37 @@ const assetAssignmentHistoryMaterialize: AzureFunction = async function (context
                         updatedAt: item.updated_at,
                         deletedAt: item.deleted_at,
                         deleted: item.deleted,
+
+                        createdBy: item.createdBy,
+                        updatedBy: item.updatedBy,
+                        deletedBy: item.deletedBy,
+                    
+                        assignedBy: item.assignedBy,
+                        assignedFromLocation: item.assignedFromLocation,
+                    
                         id: item.id,
                         changeDetectionHash: item.changeDetectionHash,
+
                         assetID: item.assetID,
-                        assignedBy: item.assignedBy,
-                        assignedTo: item.assignedTo,
+                        assetSerialNumber: item.assetSerialNumber,
+                        assetType: item.assetType,
+                        assetLocation: item.assetLocation,
+                        
+                        assignedToPerson: item.assignedToPerson,
+                        assignedToPersonEmail: item.assignedToPersonEmail,
+                        assignedToPersonNumber: item.assignedToPersonNumber,
+                        assignedToPersonLocation: item.assignedToPersonLocation,
+                    
+                        assignedToBusinessUnit: item.assignedToBusinessUnit,
+                    
+                        receivedByAssignee: item.receivedByAssignee,
                         receivedBy: item.receivedBy,
+                        receivedByRole: item.receivedByRole,
+                    
+                        isTemporary: item.isTemporary,
+                        startDate: item.startDate,
+                        endDate: item.endDate,
+
                         untrackedAssestsIncluded: item.untrackedAssestsIncluded,
                         notes: item.notes
                     } as AssetAssignment;

@@ -25,15 +25,36 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
         deletedAt: '',
         deleted: false,
 
+        createdBy: '',
+        updatedBy: '',
+        deletedBy: '',
+
+        assignedBy: '',
+        assignedFromLocation: '',
+    
         id: '',
         changeDetectionHash: '',
 
         assetID: '',
+        assetSerialNumber: '',
+        assetType: '',
+        assetLocation: '',
 
-        assignedBy: '',
-        assignedTo: '',
+        assignedToPerson: '',
+        assignedToPersonEmail: '',
+        assignedToPersonNumber: '',
+        assignedToPersonLocation: '',
+    
+        assignedToBusinessUnit: '',
+    
+        wasReceivedByAssignee: true,
         receivedBy: '',
-
+        receivedByRole: '',
+    
+        isTemporary: false,
+        startDate: '',
+        endDate: '',
+    
         untrackedAssestsIncluded: '',
         notes: ''
     } as AssetAssignment;
@@ -43,6 +64,11 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
     let statusMessage;
 
     switch (operation) {
+        case 'create':
+            result = doCreate(newRecord, payload);
+            statusCode = '200';
+            statusMessage = 'Success: Created new record.';
+            break;
         case 'delete':
             result = doDelete(oldRecord, newRecord, payload);
             statusCode = '200';
@@ -65,16 +91,6 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
     if (result.changedDetected) {
         context.bindings.recordOut = result.newRecord;
 
-        //context.bindings.assetAssignmentHistoryMaterialize = {
-            //operation: 'patch',
-            //payload: {
-                //assetID: result.newRecord.correctedAssetID,
-                //loans: [
-                    //result.newRecord
-                //]
-            //}
-        //}
-
         const logPayload = result.event;
         functionInvocation.logPayload = logPayload;
         context.log(logPayload);
@@ -86,6 +102,29 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
     
     context.log(functionInvocation);
     context.done(null, functionInvocation);
+
+    function doCreate(newRecord, payload) {
+        let event = {};
+        let changedDetected = true;
+
+        newRecord = Object.assign(newRecord, payload);
+        newRecord.created_at = functionInvocation.functionInvocationTimestamp;
+        newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+
+        // creating a record implicitly undeletes it
+        newRecord.deleted_at = '';
+        newRecord.deleted = false;
+
+        // let database assign an ID
+        delete newRecord['id'];
+
+        newRecord.changeDetectionHash = makeHash(newRecord);
+
+        changedDetected = true;
+        event = craftCreateEvent(newRecord);
+
+        return {changedDetected: changedDetected, event: event, newRecord: newRecord};
+    }
 
     function doDelete(oldRecord, newRecord, payload) {
         let event = {};
@@ -280,10 +319,30 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
 
     function makeHash(assetAssignment: AssetAssignment): string {
         const objectForHash = JSON.stringify({
-            assetID:                  assetAssignment.assetID,
+            createdAt:                assetAssignment.createdAt,
+            updatedAt:                assetAssignment.updatedAt,
+            deletedAt:                assetAssignment.deletedAt,
+            deleted:                  assetAssignment.deleted,
+            createdBy:                assetAssignment.createdBy,
+            updatedBy:                assetAssignment.updatedBy,
+            deletedBy:                assetAssignment.deletedBy,
             assignedBy:               assetAssignment.assignedBy,
-            assignedTo:               assetAssignment.assignedTo,
+            assignedFromLocation:     assetAssignment.assignedFromLocation,
+            assetID:                  assetAssignment.assetID,
+            assetSerialNumber:        assetAssignment.assetSerialNumber,
+            assetType:                assetAssignment.assetType,
+            assetLocation:            assetAssignment.assetLocation,
+            assignedToPerson:         assetAssignment.assignedToPerson,
+            assignedToPersonEmail:    assetAssignment.assignedToPersonEmail,
+            assignedToPersonNumber:   assetAssignment.assignedToPersonNumber,
+            assignedToPersonLocation: assetAssignment.assignedToPersonLocation,
+            assignedToBusinessUnit:   assetAssignment.assignedToBusinessUnit,
+            wasReceivedByAssignee:    assetAssignment.wasReceivedByAssignee,
             receivedBy:               assetAssignment.receivedBy,
+            receivedByRole:           assetAssignment.receivedByRole,
+            isTemporary:              assetAssignment.isTemporary,
+            startDate:                assetAssignment.startDate,
+            endDate:                  assetAssignment.endDate,
             untrackedAssestsIncluded: assetAssignment.untrackedAssestsIncluded,
             notes:                    assetAssignment.notes
         });

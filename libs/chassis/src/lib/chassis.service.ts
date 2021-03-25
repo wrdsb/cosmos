@@ -19,7 +19,7 @@ export class ChassisService {
   private headerVisible = new BehaviorSubject<boolean>(false);
   readonly headerVisible$ = this.headerVisible.asObservable();
 
-  private headerContent = new BehaviorSubject<Menu>({links: []});
+  private headerContent = new BehaviorSubject<Menu>({items:[]});
   readonly headerContent$ = this.headerContent.asObservable();
 
   private footerEnabled = new BehaviorSubject<boolean>(true);
@@ -28,7 +28,7 @@ export class ChassisService {
   private footerVisible = new BehaviorSubject<boolean>(false);
   readonly footerVisible$ = this.footerVisible.asObservable();
 
-  private footerContent = new BehaviorSubject<Menu>({links: []});
+  private footerContent = new BehaviorSubject<Menu>({items:[]});
   readonly footerContent$ = this.footerContent.asObservable();
 
   private sidebarOuterLeftEnabled = new BehaviorSubject<boolean>(true);
@@ -67,7 +67,7 @@ export class ChassisService {
   }
   setHeaderContent(headerContent: Menu): void {
     this.headerContent.next(headerContent);
-    console.log(`headerContent$ set to ${this.headerContent.getValue()}`)
+    console.log(`headerContent$ set to ${JSON.stringify(this.headerContent.getValue())}`)
   }
 
   enableFooter(footerEnabled: boolean): void {

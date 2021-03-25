@@ -177,7 +177,13 @@
       "tags": [],
       "implicitDependencies": ["spectro-console"]
     },
-    "bentley-functions": { "tags": [] }
+    "bentley-functions": { "tags": [] },
+    "quartermaster-console": { "tags": [] },
+    "quartermaster-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["quartermaster-console"]
+    },
+    "tollbooth-functions": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }

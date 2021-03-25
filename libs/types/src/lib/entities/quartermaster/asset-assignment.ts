@@ -11,18 +11,31 @@ export interface AssetAssignment {
     updatedBy?: PersonID;
     deletedBy?: PersonID;
 
+    assignedBy?: PersonID;
+    assignedFromLocation?: string;
+
     id?: AssetAssignmentID;
     changeDetectionHash?: ChangeDetectionHash;
 
     assetID?: AssetID;
-
-    assignedBy?: PersonID;
+    assetSerialNumber?: string;
+    assetType?: string;
+    assetLocation?: string;
     
-    assignedTo?: PersonID | BusinessUnitID;
-    receivedBy?: PersonID;
+    assignedToPerson?: PersonID;
+    assignedToPersonEmail?: string;
+    assignedToPersonNumber?: string;
+    assignedToPersonLocation?: string;
 
-    startDate: DateTime;
-    endDate: DateTime;
+    assignedToBusinessUnit?: BusinessUnitID;
+
+    wasReceivedByAssignee?: boolean;
+    receivedBy?: PersonID;
+    receivedByRole?: string;
+
+    isTemporary?: boolean;
+    startDate?: DateTime;
+    endDate?: DateTime;
 
     untrackedAssestsIncluded?: string;
     notes?: string;

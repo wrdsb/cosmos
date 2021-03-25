@@ -1,10 +1,17 @@
 interface Menu {
+    items: MenuItem[];
+}
+
+interface MenuItem {
+    menuID: string,
+    menuTitle: string,
     links: MenuLink[];
 }
 
 interface MenuLink {
-    link: string;
-    name: string;
+    linkTitle: string;
+    routerLink: string;
+    icon: string;
 }
 
-export { Menu, MenuLink }
+export { Menu, MenuItem, MenuLink }

@@ -1,0 +1,25 @@
+{
+  "bindings": [{
+      "name": "req",
+      "type": "httpTrigger",
+      "authLevel": "function",
+      "methods": [
+        "get"
+      ],
+      "direction": "in"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbtollbooth_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { EnvironmentService } from "@cosmos/environment";
 import { ChassisService } from '../chassis.service';
@@ -13,6 +14,7 @@ import { Menu } from '@cosmos/types';
 })
 export class FooterComponent implements OnInit {
   appName = this.environmentService.appName;
+  isLoggedIn$: Observable<boolean>;
 
   enabled: boolean;
   enabled$ = this.chassisService.footerEnabled$;
@@ -29,7 +31,9 @@ export class FooterComponent implements OnInit {
     private userAuthService: UserAuthService,
     public environmentService: EnvironmentService,
     private chassisService: ChassisService
-  ) { }
+  ) {
+    this.isLoggedIn$ = this.userAuthService.isLoggedIn$;
+  }
 
   ngOnInit(): void {
     this.getEnabled();

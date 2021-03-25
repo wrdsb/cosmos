@@ -16,20 +16,9 @@
       </div>
 
       <div class="panel-field">
-        <div class="panel-field-label">Was Loaned</div>
+        <div class="panel-field-label">Was Returned</div>
         <div class="panel-field-control">
-          <mat-radio-group name="wasLoaned" aria-label="Was Loaned" [formControl]="wasLoanedFilterFormControl">
-            <mat-radio-button value="true">Yes</mat-radio-button>
-            <mat-radio-button value="false">No</mat-radio-button>
-            <mat-radio-button value="all">All</mat-radio-button>
-          </mat-radio-group>
-        </div>
-      </div>
-
-      <div class="panel-field">
-        <div class="panel-field-label">In Inventory</div>
-        <div class="panel-field-control">
-          <mat-radio-group name="hasInventoryRecord" aria-label="In Inventory" [formControl]="hasInventoryRecordFilterFormControl">
+          <mat-radio-group name="wasReturned" aria-label="Was Returned" [formControl]="wasReturnedFilterFormControl">
             <mat-radio-button value="true">Yes</mat-radio-button>
             <mat-radio-button value="false">No</mat-radio-button>
             <mat-radio-button value="all">All</mat-radio-button>
@@ -234,7 +223,7 @@
         <th cdk-header-cell *cdkHeaderCellDef>
           Asset ID
         </th>
-        <td cdk-cell class="clickable" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)"> {{loan.assetID}} </td>
+        <td cdk-cell class="clickable" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)"> {{loan.correctedAssetID}} </td>
       </ng-container>
 
       <!-- deviceType Column -->
@@ -253,11 +242,11 @@
         <td cdk-cell class="clickable" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)"> {{loan.locationName}} </td>
       </ng-container>
 
-      <!-- isLoaned Column -->
-      <ng-container cdkColumnDef="isLoaned">
-        <th cdk-header-cell *cdkHeaderCellDef> On Loan </th>
+      <!-- wasReturned Column -->
+      <ng-container cdkColumnDef="wasReturned">
+        <th cdk-header-cell *cdkHeaderCellDef> Was Returned </th>
         <td cdk-cell class="clickable boolean" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)">
-          <ng-container *ngIf="loan.isLoaned; then thenBlock else elseBlock"></ng-container>
+          <ng-container *ngIf="loan.wasReturned then thenBlock else elseBlock"></ng-container>
           <ng-template #thenBlock>
             <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
           </ng-template>
@@ -267,28 +256,14 @@
         </td>
       </ng-container>
 
-      <!-- hasInventoryRecord Column -->
-      <ng-container cdkColumnDef="hasInventoryRecord">
-        <th cdk-header-cell *cdkHeaderCellDef> In Inventory </th>
-        <td cdk-cell class="clickable boolean" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)">
-          <ng-container *ngIf="loan.hasInventoryRecord; then thenBlock else elseBlock"></ng-container>
-          <ng-template #thenBlock>
-            <fa-icon [icon]="TrueIcon" [styles]="{'color':'green'}" size="lg"></fa-icon>
-          </ng-template>
-          <ng-template #elseBlock>
-            <fa-icon [icon]="FalseIcon" [styles]="{'color':'orange'}" size="lg"></fa-icon>
-          </ng-template>
-        </td>
-      </ng-container>
-
-      <!-- totalLoans Column -->
-      <ng-container cdkColumnDef="totalLoans">
+      <!-- returnedAt Column -->
+      <ng-container cdkColumnDef="returnedAt">
         <th cdk-header-cell *cdkHeaderCellDef>
-          Total Loans
+          Returned At
         </th>
-        <td cdk-cell class="clickable" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)"> {{loan.totalLoans}} </td>
+        <td cdk-cell class="clickable" *cdkCellDef="let loan" (click)="selectLoan(loan.searchID)"> {{loan.returnedAt}} </td>
       </ng-container>
-
+      
       <!-- recordActions Column -->
       <ng-container cdkColumnDef="recordActions">
         <th cdk-header-cell *cdkHeaderCellDef>

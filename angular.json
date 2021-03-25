@@ -5722,6 +5722,210 @@
           }
         }
       }
+    },
+    "quartermaster-console": {
+      "projectType": "application",
+      "root": "apps/quartermaster-console",
+      "sourceRoot": "apps/quartermaster-console/src",
+      "prefix": "cosmos",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/quartermaster-console",
+            "index": "apps/quartermaster-console/src/index.html",
+            "main": "apps/quartermaster-console/src/main.ts",
+            "polyfills": "apps/quartermaster-console/src/polyfills.ts",
+            "tsConfig": "apps/quartermaster-console/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/quartermaster-console/src/favicon.ico",
+              "apps/quartermaster-console/src/assets"
+            ],
+            "styles": ["apps/quartermaster-console/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/quartermaster-console/src/environments/environment.ts",
+                  "with": "apps/quartermaster-console/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "15kb",
+                  "maximumError": "20kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "quartermaster-console:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "quartermaster-console:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "quartermaster-console:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/quartermaster-console/tsconfig.app.json",
+              "apps/quartermaster-console/tsconfig.spec.json",
+              "apps/quartermaster-console/tsconfig.editor.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/quartermaster-console/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/quartermaster-console"],
+          "options": {
+            "jestConfig": "apps/quartermaster-console/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "quartermaster-console-e2e": {
+      "root": "apps/quartermaster-console-e2e",
+      "sourceRoot": "apps/quartermaster-console-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/quartermaster-console-e2e/cypress.json",
+            "tsConfig": "apps/quartermaster-console-e2e/tsconfig.e2e.json",
+            "devServerTarget": "quartermaster-console:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "quartermaster-console:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/quartermaster-console-e2e/tsconfig.e2e.json"],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/quartermaster-console-e2e/**/*"
+            ]
+          }
+        }
+      }
+    },
+    "tollbooth-functions": {
+      "root": "apps/tollbooth-functions",
+      "sourceRoot": "apps/tollbooth-functions/src",
+      "projectType": "application",
+      "prefix": "tollbooth-functions",
+      "architect": {
+        "build": {
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/tollbooth-functions",
+            "tsConfig": "apps/tollbooth-functions/tsconfig.app.json",
+            "webpackConfig": "apps/tollbooth-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/tollbooth-functions/src",
+                "glob": "**/function.json",
+                "output": "./tollbooth-functions"
+              },
+              {
+                "input": "./apps/tollbooth-functions/src",
+                "glob": "host.json",
+                "output": "./tollbooth-functions"
+              },
+              {
+                "input": "./apps/tollbooth-functions/src",
+                "glob": "proxies.json",
+                "output": "./tollbooth-functions"
+              },
+              {
+                "input": "./apps/tollbooth-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./tollbooth-functions"
+              },
+              {
+                "input": "./apps/tollbooth-functions/src/bin",
+                "glob": "**.*",
+                "output": "./tollbooth-functions/bin"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/tollbooth-functions/src/environments/environment.ts",
+                  "with": "apps/tollbooth-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "tollbooth-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/tollbooth-functions/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/tollbooth-functions"],
+          "options": {
+            "jestConfig": "apps/tollbooth-functions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

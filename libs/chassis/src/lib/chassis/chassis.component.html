@@ -1,9 +1,3 @@
-<ng-container *ngIf="!loggedIn">
-  <div class="sign-in-page">
-    <cosmos-big-sign-in-out-button></cosmos-big-sign-in-out-button>
-  </div>
-</ng-container>
-<ng-container *ngIf="loggedIn">
   <mat-sidenav-container fullscreen [hasBackdrop]="false" class="console-container">
 
     <mat-sidenav #sidebarOuterLeft mode="over" position="start" fixedInViewport="false" closed>
@@ -25,16 +19,25 @@
         <mat-sidenav #sidebarInnerRight mode="over" position="end" fixedInViewport="false" closed>
           <cosmos-sidebar-inner-right></cosmos-sidebar-inner-right>
         </mat-sidenav>
-    
-        <mat-sidenav-content id="main" class="main-content">
 
-          <router-outlet></router-outlet>
+          <mat-sidenav-content id="main" class="main-content">
 
-        </mat-sidenav-content>
+            <ng-container *ngIf="!(isLoggedIn$ | async); then notLoggedIn else loggedIn"></ng-container>
+            
+            <ng-template #notLoggedIn>
+              <cosmos-login-page></cosmos-login-page>
+            </ng-template>
+            
+            <ng-template #loggedIn>
+              <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+              <router-outlet *ngIf="!isIframe"></router-outlet>
+            </ng-template>
+
+          </mat-sidenav-content>
+
       </mat-sidenav-container>
 
       <cosmos-footer></cosmos-footer>
     </mat-sidenav-content>
 
   </mat-sidenav-container>
-</ng-container>

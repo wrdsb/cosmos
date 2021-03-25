@@ -8,6 +8,13 @@
       "direction": "in"
     },
     {
+      "name": "assetAssignmentStore",
+      "type": "queue",
+      "queueName": "asset-assignment-store",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "deviceLoanSubmissionStore",
       "type": "queue",
       "queueName": "device-loan-submission-store",

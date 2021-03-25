@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import { MsalService } from '@azure/msal-angular';
 import { User } from "@microsoft/microsoft-graph-types";
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { MSGraphServiceModule } from './msgraph-service.module';
 
+import { UserAuthService } from '@cosmos/user-auth';
+
+
 @Injectable({
-  providedIn: MSGraphServiceModule
+  providedIn: 'root'
 })
 export class GraphService {
 
   constructor(
-    private authService: MsalService,
+    private userAuthService: UserAuthService,
     private http: HttpClient
   ) { }
 

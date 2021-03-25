@@ -66,46 +66,35 @@
         </ng-container>
       </mat-menu>
 
-      <button mat-icon-button [matMenuTriggerFor]="statusMenu">
-        <mat-icon class="material-icons-outlined">visibility</mat-icon>
-      </button>
-      <mat-menu #statusMenu="matMenu" backdropClass="customWaffle">
-        <button mat-menu-item routerLink="/ping">
-          <mat-icon class="material-icons-outlined">contactless</mat-icon>
-          <span>Ping!</span>
+      <ng-container *ngIf="isLoggedIn$ | async">
+        <button mat-icon-button [matMenuTriggerFor]="statusMenu">
+          <mat-icon class="material-icons-outlined">visibility</mat-icon>
         </button>
-      </mat-menu>
+        <mat-menu #statusMenu="matMenu" backdropClass="customWaffle">
+          <button mat-menu-item routerLink="/ping">
+            <mat-icon class="material-icons-outlined">contactless</mat-icon>
+            <span>Ping!</span>
+          </button>
+        </mat-menu>
 
-      <ng-container *ngIf="!this.environmentService.production">
-        <button mat-icon-button class="material-icons" (click)="toggleNotificationsPanel()">
-          <mat-icon class="material-icons-outlined">notifications</mat-icon>
-        </button>
+        <ng-container *ngIf="!this.environmentService.production">
+          <button mat-icon-button class="material-icons" (click)="toggleNotificationsPanel()">
+            <mat-icon class="material-icons-outlined">notifications</mat-icon>
+          </button>
 
-        <button mat-icon-button class="material-icons" (click)="toggleHelpPanel()">
-            <mat-icon class="material-icons-outlined">help_outline</mat-icon>
-        </button>
+          <button mat-icon-button class="material-icons" (click)="toggleHelpPanel()">
+              <mat-icon class="material-icons-outlined">help_outline</mat-icon>
+          </button>
 
-        <button mat-icon-button class="material-icons" (click)="toggleFeedbackPanel()">
-            <mat-icon class="material-icons-outlined">feedback</mat-icon>
-        </button>
+          <button mat-icon-button class="material-icons" (click)="toggleFeedbackPanel()">
+              <mat-icon class="material-icons-outlined">feedback</mat-icon>
+          </button>
 
-        <button mat-icon-button class="material-icons" (click)="toggleSettingsPanel()">
-            <mat-icon class="material-icons-outlined">settings</mat-icon>
-        </button>
+          <button mat-icon-button class="material-icons" (click)="toggleSettingsPanel()">
+              <mat-icon class="material-icons-outlined">settings</mat-icon>
+          </button>
+        </ng-container>
       </ng-container>
-
-      <button mat-icon-button [matMenuTriggerFor]="accountMenu">
-        <mat-icon class="material-icons-outlined">account_circle</mat-icon>
-      </button>
-      <mat-menu #accountMenu="matMenu" backdropClass="customWaffle">
-          <button mat-menu-item routerLink="/profile">
-              <mat-icon class="material-icons-outlined">account_circle</mat-icon>
-              <span>Profile</span>
-          </button>
-          <button mat-menu-item>
-              <span><cosmos-sign-in-out-button></cosmos-sign-in-out-button></span>
-          </button>
-      </mat-menu>
 
       <span class="footer-spacer"></span>
 
@@ -113,7 +102,7 @@
 
       <span class="footer-spacer"></span>
 
-      <span routerLink="/releases" class="release-number">Release 21.10.01</span>
+      <span routerLink="/releases" class="release-number">Release 21.12.01</span>
 
     </mat-toolbar>
   </footer>
