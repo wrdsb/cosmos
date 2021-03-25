@@ -182,7 +182,8 @@
     "quartermaster-console-e2e": {
       "tags": [],
       "implicitDependencies": ["quartermaster-console"]
-    }
+    },
+    "tollbooth": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
