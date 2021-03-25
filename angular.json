@@ -5846,20 +5846,20 @@
         }
       }
     },
-    "tollbooth": {
-      "root": "apps/tollbooth",
-      "sourceRoot": "apps/tollbooth/src",
+    "tollbooth-functions": {
+      "root": "apps/tollbooth-functions",
+      "sourceRoot": "apps/tollbooth-functions/src",
       "projectType": "application",
-      "prefix": "tollbooth",
+      "prefix": "tollbooth-functions",
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/tollbooth",
-            "main": "apps/tollbooth/src/main.ts",
-            "tsConfig": "apps/tollbooth/tsconfig.app.json",
-            "assets": ["apps/tollbooth/src/assets"]
+            "outputPath": "dist/apps/tollbooth-functions",
+            "main": "apps/tollbooth-functions/src/main.ts",
+            "tsConfig": "apps/tollbooth-functions/tsconfig.app.json",
+            "assets": ["apps/tollbooth-functions/src/assets"]
           },
           "configurations": {
             "production": {
@@ -5868,8 +5868,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/tollbooth/src/environments/environment.ts",
-                  "with": "apps/tollbooth/src/environments/environment.prod.ts"
+                  "replace": "apps/tollbooth-functions/src/environments/environment.ts",
+                  "with": "apps/tollbooth-functions/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -5878,20 +5878,20 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "tollbooth:build"
+            "buildTarget": "tollbooth-functions:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/tollbooth/**/*.ts"]
+            "lintFilePatterns": ["apps/tollbooth-functions/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/tollbooth"],
+          "outputs": ["coverage/apps/tollbooth-functions"],
           "options": {
-            "jestConfig": "apps/tollbooth/jest.config.js",
+            "jestConfig": "apps/tollbooth-functions/jest.config.js",
             "passWithNoTests": true
           }
         }

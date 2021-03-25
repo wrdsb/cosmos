@@ -98,6 +98,6 @@ module.exports = {
     '<rootDir>/apps/spectro-console',
     '<rootDir>/apps/bentley-functions',
     '<rootDir>/apps/quartermaster-console',
-    '<rootDir>/apps/tollbooth',
+    '<rootDir>/apps/tollbooth-functions',
   ],
 };
