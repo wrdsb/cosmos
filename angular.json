@@ -271,10 +271,7 @@
               "apps/hagar-console/src/favicon.ico",
               "apps/hagar-console/src/assets"
             ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "apps/hagar-console/src/styles.scss"
-            ],
+            "styles": ["apps/hagar-console/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
