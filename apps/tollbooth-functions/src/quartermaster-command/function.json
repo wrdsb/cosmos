@@ -1,0 +1,32 @@
+{
+  "bindings": [{
+      "name": "req",
+      "type": "httpTrigger",
+      "authLevel": "function",
+      "methods": [
+        "post"
+      ],
+      "direction": "in"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "name": "quartermasterCommand",
+      "type": "queue",
+      "queueName": "quartermaster-command",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbtollbooth_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
