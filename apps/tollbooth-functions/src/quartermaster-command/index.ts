@@ -25,15 +25,23 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
 
     switch (jobType) {
         case 'Quartermaster.DeviceLoanSubmission.Store':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
             };
             break;
 
+        case 'Quartermaster.DeviceLoanSubmission.Return':
+            context.bindings.quartermasterCommand = {
+                jobType: 'Quartermaster.DeviceLoanSubmission.Store',
+                operation: operation,
+                payload: payload
+            };
+            break;
+    
         case 'Quartermaster.Asset.Store':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -41,7 +49,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.AssetAssignment.Store':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -49,7 +57,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.AssetAssignmentHistory.Materialize':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -57,7 +65,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.AssetAssignmentHistory.MaterializeAll':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -65,7 +73,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.AssetAssignmentHistory.Store':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -73,7 +81,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.AssetEntitlement.Store':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -81,7 +89,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.ViewATSAssetChecksum.Process':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -89,7 +97,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.ViewATSAsset.Process':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -97,7 +105,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.ViewATSAsset.ExtractAssets':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -105,7 +113,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
                 
         case 'Quartermaster.ViewATSAssetClass.Process':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -113,7 +121,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
                     
         case 'Quartermaster.ViewATSAssetClass.ExtractAssetClasses':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -121,7 +129,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
         
         case 'Quartermaster.ViewATSAssetType.Process':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -129,7 +137,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
             
         case 'Quartermaster.ViewATSAssetType.ExtractAssetTypes':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -137,7 +145,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.ViewATSAssetClassType.Process':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -145,7 +153,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.ViewATSAssetClassType.ExtractAssetClassTypes':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -153,7 +161,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
         
         case 'Quartermaster.ATSAsset.Reconcile':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -161,7 +169,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.ATSAssetClass.Reconcile':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -169,7 +177,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.ATSAssetType.Reconcile':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
@@ -177,7 +185,7 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             break;
 
         case 'Quartermaster.ATSAssetClassType.Reconcile':
-            context.bindings.jobEnqueue = {
+            context.bindings.quartermasterCommand = {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
