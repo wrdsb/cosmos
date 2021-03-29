@@ -23,6 +23,30 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
     const cosmosDatabase = process.env['cosmosDatabase'];
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
+    //const userQuery = request.query.query;
+    //const queryScope = request.query.scope;
+
+    //switch (userQuery) {
+        // Total form submissions
+        //case 'total-device-loans':
+            //break;
+
+        // Forms where an Asset ID was supplied
+        //case 'device-loans-with-asset-id':
+            //break;
+
+        // Unique Asset IDs in the data set
+        //case 'device-loans-unique':
+            //break;
+
+        // Asset IDs appearing more than once in the data set
+        //case 'devices-with-multiple-loans':
+            //break;
+
+        //default:
+            //break;
+    //}
+
     let cosmosContainer = '';
     let querySpec = {query: 'SELECT * FROM c'};
     let response = {
@@ -35,6 +59,8 @@ const quartermasterQuery: AzureFunction = async function (context: Context, req:
         status: 200,
         recordID: recordID,
         dataType: dataType,
+        //query: userQuery,
+        //scope: queryScope,
         collection: cosmosContainer,
         records: []
     };
