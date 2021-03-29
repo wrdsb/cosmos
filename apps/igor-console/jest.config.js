@@ -1,11 +1,6 @@
 module.exports = {
+  displayName: 'igor-console',
   preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/apps/igor-console',
-  snapshotSerializers: [
-    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
-    'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -19,5 +14,10 @@ module.exports = {
       },
     },
   },
-  displayName: 'igor-console',
+  coverageDirectory: '../../coverage/apps/igor-console',
+  snapshotSerializers: [
+    'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
+    'jest-preset-angular/build/AngularSnapshotSerializer.js',
+    'jest-preset-angular/build/HTMLCommentSerializer.js',
+  ],
 };
