@@ -1,1 +1,124 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+
+/* ======== Angular material custom themes ======== */ 
+$mat-igor-theme: (
+  50: #e8f5e9,
+  100: #c8e6c9,
+  200: #a5d6a7,
+  300: #81c784,
+  400: #66bb6a,
+  500: #4caf50,
+  600: #43a047,
+  700: #388e3c,
+  800: #2e7d32,
+  900: #1b5e20,
+  A100: #b9f6ca,
+  A200: #69f0ae,
+  A400: #00e676,
+  A700: #00c853,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+
+$primary: mat-palette($mat-igor-theme, 700, 900, A100);
+$accent: mat-palette($mat-blue-grey, 100, 500, A100);
+$warn: mat-palette($mat-lime);
+
+// Convert => mat-light-theme()
+$theme: mat-light-theme($primary, $accent);
+
+// Convert to this => mat-dark-theme()
+$theme: mat-dark-theme($primary, $accent);
+
+@include angular-material-theme($theme);
+
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --gray0: #f8f8f8;
+  --gray1: #dbe1e8;
+  --gray2: #b2becd;
+  --gray3: #6c7983;
+  --gray4: #454e56;
+  --gray5: #2a2e35;
+  --gray6: #12181b;
+}
+
+.cosmos-theme-light {
+  --bg: var(--gray0);
+  --bg-nav: linear-gradient(to right, var(--gray1), var(--gray3));
+  --bg-dropdown: var(--gray0);
+  --text: var(--gray6);
+  --border-color: var(--blue);
+  --bg-solar: var(--yellow);
+
+  --default-font-family: Roboto, 'Helvetica Neue', sans-serif;
+  --text: black;
+
+  --body-text: black;
+  --body-text-size: 18px;
+  --body-font-weight: 400;
+
+  --header-text: white;
+  --header-text-size: 18px;
+  --header-font-weight: normal;
+
+  --footer-text: white;
+  --footer-text-size: 18px;
+  --footer-font-weight: normal;
+}
+
+.cosmos-theme-dark {
+  --bg: var(--gray5);
+  --bg-nav: linear-gradient(to right, var(--gray5), var(--gray6));
+  --bg-dropdown: var(--gray6);
+  --text: var(--gray0);
+  --border-color: var(--purple);
+  --bg-solar: var(--blue);
+
+  --default-font-family: 'Jura', sans-serif;
+  --text: white;
+
+  --header-text: white;
+  --header-text-size: 18px;
+  --header-font-weight: normal;
+
+  --footer-text: white;
+  --footer-text-size: 18px;
+  --footer-font-weight: normal;
+}
+
+.cosmos-theme-solar {
+  --gray0: #fbffd4;
+  --gray1: #f7f8d0;
+  --gray2: #b6f880;
+  --gray3: #5ec72d;
+  --gray4: #3ea565;
+  --gray5: #005368;
+  --gray6: #003d4c;
+}
