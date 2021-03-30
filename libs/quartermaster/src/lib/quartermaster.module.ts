@@ -25,12 +25,14 @@ import { QuartermasterHomeComponent } from './home/home.component';
 import { AssetsSearchComponent } from "./assets-search/assets-search.component";
 
 import { AssetDetailDialogComponent } from './asset-detail-dialog/asset-detail-dialog.component';
+import { AssetDetailPageComponent } from './asset-detail-page/asset-detail-page.component';
 
 @NgModule({
   declarations: [
     QuartermasterHomeComponent,
     AssetsSearchComponent,
-    AssetDetailDialogComponent
+    AssetDetailDialogComponent,
+    AssetDetailPageComponent
   ],
   imports: [
     CommonModule,

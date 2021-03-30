@@ -5,10 +5,21 @@ import { RolesGuard } from "@cosmos/guards";
 
 import { QuartermasterHomeComponent } from "./home/home.component";
 import { AssetsSearchComponent } from './assets-search/assets-search.component';
+import { AssetDetailPageComponent } from "./asset-detail-page/asset-detail-page.component";
 
 const routes: Routes = [
   { 
-    path: 'assets/search',
+    path: 'detail',
+    component: AssetDetailPageComponent,
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  { 
+    path: 'search',
     component: AssetsSearchComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
