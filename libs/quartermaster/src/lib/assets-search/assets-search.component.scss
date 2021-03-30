@@ -1,0 +1,156 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$app-primary: mat-palette($mat-indigo);
+$app-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$app-theme: mat-light-theme($app-primary, $app-accent);
+
+$primary: map-get($app-theme, primary);
+$accent: map-get($app-theme, accent);
+
+:host {
+  display: grid;
+}
+
+.records-search {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.search-panel {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.panel-group {
+  margin-bottom: 1rem;
+  margin-right: 5rem;
+
+  width: 80%;
+  height: 100%;
+
+  background-color: var(--gray1);
+
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.panel-group-label {
+  font-size: 120%;
+  font-weight: normal;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  padding-right: 2rem;
+}
+
+.panel-field {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.panel-field-label {
+  display: inline;
+}
+
+.panel-field-control {
+  display: inline;
+}
+
+.groups-list {
+  flex-grow: 3;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+table {
+  width: 100%;
+}
+
+.list {
+  flex: 1 1 auto;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+th {
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: normal;
+  text-align: -internal-center;
+}
+
+.cdk-column-email {
+}
+
+.cdk-column-name {
+}
+
+.cdk-column-adminCreated {
+  width: 12%;
+  text-align: center;
+}
+
+.cdk-column-membership_automation_active {
+  width: 12%;
+  text-align: center;
+}
+
+.cdk-row {
+  line-height: 2em;
+}
+
+.cdk-row:nth-child(odd) {
+  background-color: var(--gray1);
+}
+
+.paginator {
+}
+
+.page-button {
+  padding-left: 8px;
+  padding-right: 8px;
+  cursor: pointer;
+  color: var(--gray3);
+}
+
+.mat-button-toggle {
+  background-color: mat-color($primary);
+  color: mat-color($primary, default-contrast);
+}
+
+.mat-button-toggle-checked {
+  background-color: mat-color($accent);
+  color: mat-color($accent, default-contrast);
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.input-full-width {
+  width: 100%;
+}

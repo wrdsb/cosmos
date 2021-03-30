@@ -10,7 +10,7 @@ import { faCircle as TrueIcon } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
-import { Asset, SearchFunctionRequestPayload, SearchFunctionResponse } from "@cosmos/types";
+import { Asset, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
 import { QuartermasterAssetsService } from '../quartermaster-assets.service';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { AssetDetailDialogComponent } from "../asset-detail-dialog/asset-detail-dialog.component";
@@ -37,35 +37,19 @@ export class AssetsSearchComponent implements OnInit {
   
   displayedColumns$ = new BehaviorSubject<string[]>([
     'assetID',
-    'status',
-    'manufacturer',
-    'modelName',
-    'modelID',
-    'location',
-    'program',
-    'project',
-    'poDate',
-    'serial',
-    'assignedTo',
-    'note',
-    'position',
-    'employee'
+    'serialNumber',
+    'isAssignedPerson',
+    'isAssignedBusinessUnit',
+    'assignedToBusinessUnitName'
   ]);
 
-  isAssignedFilterFormControl = new FormControl();
-  statusFilterFormControl = new FormControl();
-  modelNameFilterFormControl = new FormControl();
-  programFilterFormControl = new FormControl();
-  locationNameFilterFormControl = new FormControl();
+  isAssignedPersonFilterFormControl = new FormControl();
 
   assetIDSearchFormControl = new FormControl();
   anyFieldSearchFormControl = new FormControl();
 
-  currentIsAssignedFilter = new BehaviorSubject<string>('');
-  currentStatusFilter = new BehaviorSubject<string>('');
-  currentModelNameFilter = new BehaviorSubject<string>('');
-  currentProgramFilter = new BehaviorSubject<string>('');
-  currentLocationNameFilter = new BehaviorSubject<string>('');
+  currentIsAssignedPersonFilter = new BehaviorSubject<string>('');
+
   currentAssetIDSearch = new BehaviorSubject<string>('');
   currentAnyFieldSearch = new BehaviorSubject<string>('');
 
@@ -75,11 +59,19 @@ export class AssetsSearchComponent implements OnInit {
   pageSize = new BehaviorSubject<number>(20);
   maxPage = new BehaviorSubject<number>(1);
 
+  public searchRequestState$: Observable<SearchRequestState>;
   public searchResponse$: Observable<SearchFunctionResponse>;
+  
   public totalRecords$: Observable<number>;
   public maxPage$: Observable<number>;
 
-  public assetsPage$: Observable<Asset[]>;
+  private assetsPage: BehaviorSubject<Asset[]> = new BehaviorSubject([
+    {
+      assetID: "Loading...",
+      status: "Loading..."
+    }
+  ]);
+  public readonly assetsPage$: Observable<Asset[]> = this.assetsPage.asObservable();
 
   public assetSelected$: Observable<boolean>;
   public selectedAsset$: Observable<Asset>;
@@ -90,11 +82,14 @@ export class AssetsSearchComponent implements OnInit {
     private assetsService: QuartermasterAssetsService,
     public dialog: MatDialog
   ) {
+    this.searchRequestState$ = this.assetsService.searchRequestState$;
     this.searchResponse$ = this.assetsService.searchResponse$;
+
     this.totalRecords$ = this.searchResponse$.pipe(map(response => response.payload.count));
-    this.assetsPage$ = this.assetsService.assetsList$;
     this.maxPage$ = this.totalRecords$.pipe(map(totalRecords => Math.ceil(totalRecords / this.pageSize.value)));
     this.maxPage$.subscribe(this.maxPage);
+
+    this.assetsPage$ = this.assetsService.assetsList$;
 
     this.assetSelected$ = this.assetsService.assetSelected$;
     this.selectedAsset$ = this.assetsService.selectedAsset$;
@@ -105,39 +100,10 @@ export class AssetsSearchComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.isAssignedFilterFormControl.valueChanges
-      .subscribe(isAssigned => {
-        console.log(`isAssigned Filter: ${isAssigned}`);
-        this.currentIsAssignedFilter.next(isAssigned);
-        this.searchAssets();
-      }
-    );
-    this.statusFilterFormControl.valueChanges
-      .subscribe(status => {
-        console.log(`status Filter ${status}`);
-        this.currentStatusFilter.next(status);
-        this.searchAssets();
-      }
-    );
-    this.modelNameFilterFormControl.valueChanges
-      .subscribe(modelName => {
-        console.log(`modelName Filter ${modelName}`);
-        this.currentModelNameFilter.next(modelName);
-        this.searchAssets();
-      }
-    );
-    this.programFilterFormControl.valueChanges
-      .subscribe(program => {
-        console.log(`program Filter: ${program}`);
-        this.currentProgramFilter.next(program);
-        this.searchAssets();
-      }
-    );
-    this.locationNameFilterFormControl.valueChanges
-      .subscribe(locationName => {
-        console.log(`locationName Filter: ${locationName}`);
-        this.currentLocationNameFilter.next(locationName);
-        this.currentPage.next(1);
+    this.isAssignedPersonFilterFormControl.valueChanges
+      .subscribe(isAssignedPerson => {
+        console.log(`isAssignedPerson Filter: ${isAssignedPerson}`);
+        this.currentIsAssignedPersonFilter.next(isAssignedPerson);
         this.searchAssets();
       }
     );
@@ -216,36 +182,8 @@ export class AssetsSearchComponent implements OnInit {
     let filterString = '';
     let searchString = '*';
 
-    if (this.currentIsAssignedFilter.value.length > 0 && this.currentIsAssignedFilter.value !== 'all') {
-      filterString += `isAssigned eq ${this.currentIsAssignedFilter.value}`;
-    }
-
-    if (this.currentStatusFilter.value.length > 0 && this.currentStatusFilter.value !== 'all') {
-      if (filterString.length > 0) {
-        filterString += ' and ';
-      }
-      filterString += `status eq ${this.currentStatusFilter.value}`;
-    }
-
-    if (this.currentModelNameFilter.value.length > 0 && this.currentModelNameFilter.value !== 'all') {
-      if (filterString.length > 0) {
-        filterString += ' and ';
-      }
-      filterString += `modelName eq ${this.currentModelNameFilter.value}`;
-    }
-
-    if (this.currentProgramFilter.value.length > 0 && this.currentProgramFilter.value !== 'all') {
-      if (filterString.length > 0) {
-        filterString += ' and ';
-      }
-      filterString += `program eq ${this.currentProgramFilter.value}`;
-    }
-
-    if (this.currentLocationNameFilter.value.length > 0 && this.currentLocationNameFilter.value !== 'all') {
-      if (filterString.length > 0) {
-        filterString += ' and ';
-      }
-      filterString += `locationName eq '${this.currentLocationNameFilter.value}'`;
+    if (this.currentIsAssignedPersonFilter.value.length > 0 && this.currentIsAssignedPersonFilter.value !== 'all') {
+      filterString += `isAssignedPerson eq ${this.currentIsAssignedPersonFilter.value}`;
     }
 
     if (this.currentAssetIDSearch.value.length > 0) {

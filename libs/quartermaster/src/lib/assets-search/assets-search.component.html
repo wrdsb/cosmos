@@ -1,19 +1,114 @@
 <h1>Search Quartermaster Assets</h1>
 
-Asset ID
-Status
-Signed Out for Learn from Home
-Returned from Learn from Home
-Manufacturer
-Model Name
-Model ID
-Location
-Program
-Project
-PO Date
-Serial
-Assigned To
-Note
-Position
-Employee
+<div class="records-search">
+    <div class="search-panel">
+  
+      <div class="panel-group">
+        <div class="panel-field">
+          <div class="panel-field-label">Assigned to Person?</div>
+          <div class="panel-field-control">
+            <mat-radio-group name="isAssignedPerson" aria-label="Assigned to Person?" [formControl]="isAssignedPersonFilterFormControl">
+              <mat-radio-button value="true">Yes</mat-radio-button>
+              <mat-radio-button value="false">No</mat-radio-button>
+              <mat-radio-button value="all">All</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+  
+      <div class="panel-group">
+        <div class="panel-group-label">Search by:</div>
+        <div class="panel-field">
+          <mat-form-field class="input-full-width" floatLabel="never">
+            <mat-label>Asset ID</mat-label>
+            <input matInput type="text" [formControl]="assetIDSearchFormControl">
+            <button mat-button *ngIf="assetIDSearchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="assetIDSearchFormControl.setValue('')">
+              <fa-icon [icon]="CloseIcon"></fa-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="panel-field">
+          <mat-form-field class="input-full-width" floatLabel="never">
+            <mat-label>Any Field</mat-label>
+            <input matInput type="text" [formControl]="anyFieldSearchFormControl">
+            <button mat-button *ngIf="anyFieldSearchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="anyFieldSearchFormControl.setValue('')">
+              <fa-icon [icon]="CloseIcon"></fa-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  
+    <div class="groups-list">
+      <div class="list-header">
+        <div class="search-results">
+          <div>Results: {{ totalRecords$ | async }} total records</div>
+        </div>
+  
+        <div class="paginator">
+          <span>
+            Showing Page {{ currentPage.value }} of {{ maxPage$ | async }}&nbsp;&nbsp;
+          </span>
+          <span class="page-button">
+            <fa-icon (click)="pageBeginning()" [icon]="beginningIcon" size="lg"></fa-icon>
+          </span>
+          <span class="page-button">
+            <fa-icon (click)="pageUp()" [icon]="backwardIcon" size="lg"></fa-icon>
+          </span>
+          <span class="page-button">
+            <fa-icon (click)="pageDown()" [icon]="forwardIcon" size="lg"></fa-icon>
+          </span>
+          <span class="page-button">
+            <fa-icon (click)="pageEnd()" [icon]="endIcon" size="lg"></fa-icon>
+          </span>
+        </div>
+      </div>
+  
+      <table cdk-table [dataSource]="assetsPage$">
+  
+        <!-- assetID Column -->
+        <ng-container cdkColumnDef="assetID">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            AssetID
+          </th>
+          <td cdk-cell class="clickable" *cdkCellDef="let asset" (click)="selectAsset(asset.searchID)"> {{asset.assetID}} </td>
+        </ng-container>
 
+        <!-- serialNumber Column -->
+        <ng-container cdkColumnDef="serialNumber">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            serialNumber
+          </th>
+          <td cdk-cell class="clickable" *cdkCellDef="let asset" (click)="selectAsset(asset.searchID)"> {{asset.serialNumber}} </td>
+        </ng-container>
+  
+        <!-- isAssignedPerson Column -->
+        <ng-container cdkColumnDef="isAssignedPerson">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            isAssignedPerson
+          </th>
+          <td cdk-cell class="clickable" *cdkCellDef="let asset" (click)="selectAsset(asset.searchID)"> {{asset.isAssignedPerson}} </td>
+        </ng-container>
+
+        <!-- isAssignedBusinessUnit Column -->
+        <ng-container cdkColumnDef="isAssignedBusinessUnit">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            isAssignedBusinessUnit
+          </th>
+          <td cdk-cell class="clickable" *cdkCellDef="let asset" (click)="selectAsset(asset.searchID)"> {{asset.isAssignedBusinessUnit}} </td>
+        </ng-container>
+          
+        <!-- assignedToBusinessUnitName Column -->
+        <ng-container cdkColumnDef="assignedToBusinessUnitName">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            assignedToBusinessUnitName
+          </th>
+          <td cdk-cell class="clickable" *cdkCellDef="let asset" (click)="selectAsset(asset.searchID)"> {{asset.assignedToBusinessUnitName}} </td>
+        </ng-container>
+            
+        <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
+        <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
+      </table>
+  
+    </div>
+  </div>
