@@ -40,6 +40,7 @@ export interface Asset {
 
     businessUnitAssignmentID?: AssetAssignmentID;
     assignedToBusinessUnitID?: BusinessUnitID;
+    assignedToBusinessUnitName?: string;
 
     programAssignmentID?: string;
     assignedToProgramID?: string;
