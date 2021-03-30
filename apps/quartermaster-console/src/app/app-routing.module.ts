@@ -27,6 +27,16 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'assets',
+    loadChildren: () => import('@cosmos/quartermaster').then(m => m.QuartermasterModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  {
     path: 'ping',
     loadChildren: () => import('@cosmos/pings-ui').then(m => m.PingsUiModule),
     data: {

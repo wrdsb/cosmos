@@ -49,6 +49,22 @@ export class AppComponent implements OnInit {
             icon: 'search'
           }
         ]
+      },
+      {
+        menuID: 'assetsMenu',
+        menuTitle: 'Assets',
+        links: [
+          {
+            linkTitle: 'Assets Dashboard',
+            routerLink: '/assets',
+            icon: 'dashboard'
+          },
+          {
+            linkTitle: 'Assets Search',
+            routerLink: '/assets/search',
+            icon: 'search'
+          }
+        ]
       }
     ]
   } as Menu;
