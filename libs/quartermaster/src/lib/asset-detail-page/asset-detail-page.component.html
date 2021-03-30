@@ -1,0 +1,85 @@
+<ng-container *ngIf="(selectedAsset$ | async) as asset">
+<pre>
+    Quartermaster ID: {{asset.id}}
+    Asset ID: {{asset.assetID}}
+    Serial Number: {{asset.serialNumber}}
+
+    createdAt: {{asset.createdAt}}
+    updatedAt: {{asset.updatedAt}}
+    deletedAt: {{asset.deletedAt}}
+    deleted: {{asset.deleted}}
+
+    createdBy: {{asset.createdBy}}
+    updatedBy: {{asset.updatedBy}}
+    deletedBy: {{asset.deletedBy}}
+
+    lifecycleState: {{asset.lifecycleState}}
+
+    isAllottedPerson: {{asset.isAllottedPerson}}
+    personAllotmentID: {{asset.personAllotmentID}}
+    allottedToPersonID: {{asset.allottedToPersonID}}
+
+    isAllottedBusinessUnit: {{asset.isAllottedBusinessUnit}}
+    businessUnitAllotmentID: {{asset.businessUnitAllotmentID}}
+    allottedToBusinessUnitID: {{asset.allottedToBusinessUnitID}}
+
+    programAllotmentID: {{asset.programAllotmentID}}
+    allottedToProgramID: {{asset.allottedToProgramID}}
+
+    projectAllotmentID: {{asset.projectAllotmentID}}
+    allottedToProjectID: {{asset.allottedToProjectID}}
+
+    isAssignedPerson: {{asset.isAssignedPerson}}
+    personAssignmentID: {{asset.personAssignmentID}}
+    assignedToPersonID: {{asset.assignedToPersonID}}
+
+    isAssignedBusinessUnit: {{asset.isAssignedBusinessUnit}}
+    businessUnitAssignmentID: {{asset.businessUnitAssignmentID}}
+    assignedToBusinessUnitID: {{asset.assignedToBusinessUnitID}}
+    assignedToBusinessUnitName: {{asset.assignedToBusinessUnitName}}
+
+    programAssignmentID: {{asset.programAssignmentID}}
+    assignedToProgramID: {{asset.assignedToProgramID}}
+
+    projectAssignmentID: {{asset.projectAssignmentID}}
+    assignedToProjectID: {{asset.assignedToProjectID}}
+
+    wasPurchased: {{asset.wasPurchased}}
+    wasPrivatePurchase: {{asset.wasPrivatePurchase}}
+    wasDonated: {{asset.wasDonated}}
+    wasUsed: {{asset.wasUsed}}
+
+    wasReplacement: {{asset.wasReplacement}}
+    replacementID: {{asset.replacementID}}
+    isReplaceable: {{asset.isReplaceable}}
+    replaceableUntil: {{asset.replaceableUntil}}
+    replaceableOn: {{asset.replaceableOn}}
+    wasReplaced: {{asset.wasReplaced}}
+    replacedID: {{asset.replacedID}}
+
+    purchaseOrderID: {{asset.purchaseOrderID}}
+    purchasedOn: {{asset.purchasedOn}}
+    receivedOn: {{asset.receivedOn}}
+    commissionedOn: {{asset.commissionedOn}}
+    allottedOn: {{asset.allottedOn}}
+    unallottedOn: {{asset.unallottedOn}}
+    assignedOn: {{asset.assignedOn}}
+    unassignedOn: {{asset.unassignedOn}}
+    decommissionedOn: {{asset.decommissionedOn}}
+    recycledOn: {{asset.recycledOn}}
+    warrantyEndsOn: {{asset.warrantyEndsOn}}
+
+    assetType: {{asset.assetType}}
+    manufacturer: {{asset.manufacturer}}
+    model: {{asset.model}}
+
+    isSEA: {{asset.isSEA}}
+    seaType: {{asset.seaType}}
+
+    macAddress: {{asset.macAddress}}
+    bitlockerID: {{asset.bitlockerID}}
+    tpmID: {{asset.tpmID}}
+
+    notes: {{asset.notes}}
+</pre>
+</ng-container>
