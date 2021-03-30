@@ -1,1 +1,61 @@
-<p>asset-detail-dialog works!</p>
+<ng-container *ngIf="(selectedAsset$ | async) as asset">
+    <pre>
+        Quartermaster ID: {{asset.id}}
+        Asset ID: {{asset.assetID}}
+        Serial Number: {{asset.serialNumber}}
+
+        lifecycleState: {{asset.lifecycleState}}
+
+        isAllottedPerson: {{asset.isAllottedPerson}}
+        allottedToPersonID: {{asset.allottedToPersonID}}
+
+        isAllottedBusinessUnit: {{asset.isAllottedBusinessUnit}}
+        allottedToBusinessUnitID: {{asset.allottedToBusinessUnitID}}
+
+        programAllotmentID: {{asset.programAllotmentID}}
+        allottedToProgramID: {{asset.allottedToProgramID}}
+
+        projectAllotmentID: {{asset.projectAllotmentID}}
+        allottedToProjectID: {{asset.allottedToProjectID}}
+
+        isAssignedPerson: {{asset.isAssignedPerson}}
+        assignedToPersonID: {{asset.assignedToPersonID}}
+
+        isAssignedBusinessUnit: {{asset.isAssignedBusinessUnit}}
+        assignedToBusinessUnitID: {{asset.assignedToBusinessUnitID}}
+        assignedToBusinessUnitName: {{asset.assignedToBusinessUnitName}}
+
+        programAssignmentID: {{asset.programAssignmentID}}
+        assignedToProgramID: {{asset.assignedToProgramID}}
+
+        projectAssignmentID: {{asset.projectAssignmentID}}
+        assignedToProjectID: {{asset.assignedToProjectID}}
+
+        wasPurchased: {{asset.wasPurchased}}
+        wasPrivatePurchase: {{asset.wasPrivatePurchase}}
+        wasDonated: {{asset.wasDonated}}
+        wasUsed: {{asset.wasUsed}}
+
+        wasReplacement: {{asset.wasReplacement}}
+        replacementID: {{asset.replacementID}}
+        isReplaceable: {{asset.isReplaceable}}
+        replaceableUntil: {{asset.replaceableUntil}}
+        replaceableOn: {{asset.replaceableOn}}
+        wasReplaced: {{asset.wasReplaced}}
+        replacedID: {{asset.replacedID}}
+
+        purchaseOrderID: {{asset.purchaseOrderID}}
+
+        assetType: {{asset.assetType}}
+        manufacturer: {{asset.manufacturer}}
+        model: {{asset.model}}
+
+        isSEA: {{asset.isSEA}}
+        seaType: {{asset.seaType}}
+    </pre>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" [mat-dialog-close]="true" [routerLink]="['/assets/detail']">Full Details</button>
+      <button mat-raised-button [mat-dialog-close]="true">Close</button>
+    </div>
+    
+    </ng-container>
