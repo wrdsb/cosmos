@@ -83,6 +83,9 @@ function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
   protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/google-groups-search', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
   protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/device-loan-find', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
   protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/device-loans-search', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
+  
+  protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/quartermaster-asset-find', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
+  protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/quartermaster-assets-search', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
 
   protectedResourceMap.set('https://graph.microsoft.com/v1.0/me', ['user.read']);
 
