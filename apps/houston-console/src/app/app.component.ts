@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BroadcastService, MsalService } from '@azure/msal-angular';
-import { Logger, CryptoUtils } from 'msal';
+import { Observable } from 'rxjs';
+
 import { EnvironmentService } from '@cosmos/environment';
+import { ChassisService } from '@cosmos/chassis';
+import { UserAuthService } from '@cosmos/user-auth';
+
+import { Menu } from "@cosmos/types";
 
 @Component({
   selector: 'app-root',
@@ -10,41 +14,68 @@ import { EnvironmentService } from '@cosmos/environment';
 })
 export class AppComponent implements OnInit {
   isIframe = false;
-  loggedIn = false;
+  isLoggedIn$: Observable<boolean>;
+
+  headerContent = {
+    items: [
+      {
+        menuID: 'googleMenu',
+        menuTitle: 'Google',
+        links: [
+          {
+            linkTitle: 'Google Dashboard',
+            routerLink: '/google',
+            icon: 'dashboard'
+          },
+          {
+            linkTitle: 'Google Groups',
+            routerLink: '/google/groups',
+            icon: 'group'
+          },
+          {
+            linkTitle: 'Google Calendar',
+            routerLink: '/google/calendar',
+            icon: 'calendar_today'
+          }
+        ]
+      },
+      {
+        menuID: 'peopleMenu',
+        menuTitle: 'People',
+        links: [
+          {
+          linkTitle: 'People Dashboard',
+          routerLink: '/people',
+          icon: 'dashboard'
+          }
+        ]
+      },
+    ]
+  } as Menu;
+
+  footerContent = {
+    items: [
+    ]
+  } as Menu;
 
   constructor(
     public environmentService: EnvironmentService,
-    private broadcastService: BroadcastService,
-    private authService: MsalService
+    public chassisService: ChassisService,
+    private userAuthService: UserAuthService
   ) {}
 
   ngOnInit(): void {
-    this.isIframe = window !== window.parent && !window.opener;
+    this.chassisService.setHeaderContent(this.headerContent);
+    this.chassisService.setFooterContent(this.footerContent);
 
-    this.checkoutAccount();
-
-    this.broadcastService.subscribe('msal:loginSuccess', () => {
-      this.checkoutAccount();
-    });
-
-    this.authService.handleRedirectCallback((authError, response) => {
-      if (authError) {
-        console.error('Redirect Error: ', authError.errorMessage);
-        return;
-      }
-
-      console.log('Redirect Success: ', response);
-    });
-
-    this.authService.setLogger(new Logger((logLevel, message, piiEnabled) => {
-      console.log('MSAL Logging: ', message);
-    }, {
-      correlationId: CryptoUtils.createNewGuid(),
-      piiLoggingEnabled: false
-    }));
+    this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
   }
 
-  checkoutAccount() {
-    this.loggedIn = !!this.authService.getAccount();
+  login() {
+    this.userAuthService.login();
+  }
+
+  logout() {
+    this.userAuthService.logout();
   }
 }

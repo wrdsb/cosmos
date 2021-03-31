@@ -2,13 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 
-//const adminOnly = () => hasCustomClaim('admin');
-//const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-
-// TODO: redirect logged in users to home when they access login page
-//const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
-
-//const belongsToAccount = (next) => hasCustomClaim(`account-${next.params.id}`);
+import { RolesGuard } from "@cosmos/guards";
+import { FailedComponent } from './failed/failed.component';
 
 const routes: Routes = [
   {
@@ -42,8 +37,14 @@ const routes: Routes = [
   }
 ];
 
+const isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, {
+    useHash: false,
+    // Don't perform initial navigation in iframes
+    initialNavigation: !isIframe ? 'enabled' : 'disabled' // Remove this line to use Angular Universal
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
