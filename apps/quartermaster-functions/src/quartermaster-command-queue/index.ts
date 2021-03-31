@@ -38,6 +38,14 @@ const quartermasterCommandQueue: AzureFunction = async function (context: Contex
             };
             break;
 
+        case 'Quartermaster.AssetAssignment.Create':
+            context.bindings.jobEnqueue = {
+                jobType: jobType,
+                operation: operation,
+                payload: payload
+            };
+            break;
+    
         case 'Quartermaster.AssetAssignment.Store':
             context.bindings.jobEnqueue = {
                 jobType: jobType,

@@ -23,6 +23,8 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
     const operation = requestBody.operation as QuartermasterCommandOperation;
     const payload = requestBody.payload as QuartermasterCommandFunctionRequestPayload;
 
+    context.log(`tollbooth request body: ${JSON.stringify(requestBody)}`);
+
     switch (jobType) {
         case 'Quartermaster.DeviceLoanSubmission.Store':
             context.bindings.quartermasterCommand = {
@@ -48,6 +50,14 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             };
             break;
 
+        case 'Quartermaster.AssetAssignment.Create':
+            context.bindings.quartermasterCommand = {
+                jobType: jobType,
+                operation: operation,
+                payload: payload
+            };
+            break;
+    
         case 'Quartermaster.AssetAssignment.Store':
             context.bindings.quartermasterCommand = {
                 jobType: jobType,

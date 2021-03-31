@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { FunctionInvocation, QuartermasterJobType, AssetAssignmentStoreFunctionRequest, DeviceLoanSubmissionStoreFunctionRequest } from "@cosmos/types";
+import { FunctionInvocation, QuartermasterJobType, AssetAssignmentCreateFunctionRequest, AssetAssignmentStoreFunctionRequest, DeviceLoanSubmissionStoreFunctionRequest } from "@cosmos/types";
 
 const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
@@ -40,6 +40,13 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
 
     if (jobType) {
         switch (jobType) {
+            case 'Quartermaster.AssetAssignment.Create':
+                context.bindings.assetAssignmentCreate = {
+                    operation: operation,
+                    payload: payload
+                } as AssetAssignmentCreateFunctionRequest;
+                break;
+
             case 'Quartermaster.AssetAssignment.Store':
                 context.bindings.assetAssignmentStore = {
                     operation: operation,

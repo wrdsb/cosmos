@@ -8,6 +8,13 @@
       "direction": "in"
     },
     {
+      "name": "assetAssignmentCreate",
+      "type": "queue",
+      "queueName": "asset-assignment-create",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "assetAssignmentStore",
       "type": "queue",
       "queueName": "asset-assignment-store",
