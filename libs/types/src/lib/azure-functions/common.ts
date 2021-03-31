@@ -1,6 +1,7 @@
 type QueryFunctionOperation = 'list' | 'find';
 type CommandFunctionOperation = 'create' | 'patch' | 'replace' | 'delete' | 'materialize';
-type StoreFunctionOperation = 'create' | 'patch' | 'replace' | 'delete' | 'materialize';
+type CreateFunctionOperation = 'create';
+type StoreFunctionOperation = 'patch' | 'replace' | 'delete' | 'materialize';
 
 type FunctionCallbackType = 'Function.Invocation';
 
@@ -114,6 +115,7 @@ interface FunctionInvocationEventPayload {
 export {
     QueryFunctionOperation,
     CommandFunctionOperation,
+    CreateFunctionOperation,
     StoreFunctionOperation,
 
     FunctionLogID,

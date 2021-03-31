@@ -6,6 +6,7 @@ export * from './quartermasater-query';
 export * from './device-loan-submission-store';
 export * from './device-loan-submission-command';
 
+export * from './asset-assignment-create';
 export * from './asset-assignment-store';
 
 export * from './asset-assignment-history-store';

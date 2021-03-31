@@ -15,6 +15,7 @@ interface QuartermasterCommandFunctionRequestBody extends Cosmos.FunctionRequest
 type QuartermasterCommandJobType = QuartermasterJobType;
 
 type QuartermasterCommandOperation = 
+    'create' |
     'patch' | 
     'replace' | 
     'delete' | 
