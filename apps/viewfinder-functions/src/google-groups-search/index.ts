@@ -32,7 +32,7 @@ const googleGroupsSearch: AzureFunction = async function (context: Context, req:
     if (request.headers['x-ms-token-aad-id-token']) {
         authenticated = true;
         idToken = request.headers['x-ms-token-aad-id-token'];
-        let decodedToken = jwt_decode(idToken) as MSALToken;
+        const decodedToken = jwt_decode(idToken) as MSALToken;
         userName = decodedToken.name;
         userEmail = decodedToken.unique_name;
         userRoles = decodedToken.roles as string[];
@@ -45,7 +45,7 @@ const googleGroupsSearch: AzureFunction = async function (context: Context, req:
 
     const search = payload.search ? payload.search : '*';
     
-    let options = {
+    const options = {
         includeTotalCount: true,
         facets: null,
         filter: null,
@@ -86,17 +86,17 @@ const googleGroupsSearch: AzureFunction = async function (context: Context, req:
         new AzureKeyCredential(searchKey)
     );
 
-    let searchResults = await searchClient.search(search, options);
+    const searchResults = await searchClient.search(search, options);
 
-    let documents = [];
+    const documents = [];
     for await (const result of searchResults.results) {
-        let document = result.document;
+        const document = result.document;
         document['searchID'] = document.id;
         document.id = Buffer.from(document.id, 'base64').toString();
         documents.push(document);
     }
 
-    let response = {
+    const response = {
         header: {
             status: 200,
             message: "",
