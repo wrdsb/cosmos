@@ -19,34 +19,49 @@ export class AppComponent implements OnInit {
   headerContent = {
     items: [
       {
-        menuID: 'atsMenu',
-        menuTitle: 'ATS',
+        menuID: 'groupsMenu',
+        menuTitle: 'Groups',
         links: [
           {
-            linkTitle: 'ATS Dashboard',
-            routerLink: '/ats',
+            linkTitle: 'Groups Dashboard',
+            routerLink: '/groups',
             icon: 'dashboard'
           },
           {
-            linkTitle: 'Assets Search',
-            routerLink: '/ats/assets/search',
-            icon: 'search'
+            linkTitle: 'Groups Search',
+            routerLink: '/groups/search',
+            icon: 'group'
+          },
+          {
+            linkTitle: 'Membership Definitions',
+            routerLink: '/groups/memberships/definitions',
+            icon: 'group'
+          },
+          {
+            linkTitle: 'Membership Overrides',
+            routerLink: '/groups/memberships/overrides',
+            icon: 'group'
           }
         ]
       },
       {
-        menuID: 'devicesMenu',
-        menuTitle: 'Device Loans',
+        menuID: 'calendarMenu',
+        menuTitle: 'Calendar',
         links: [
           {
-            linkTitle: 'Devices Loans Dashboard',
-            routerLink: '/device-loans',
+            linkTitle: 'Calendar Dashboard',
+            routerLink: '/calendar',
             icon: 'dashboard'
           },
           {
-            linkTitle: 'Device Loans Search',
-            routerLink: '/device-loans/search',
-            icon: 'search'
+            linkTitle: 'Calendars Search',
+            routerLink: '/calendar/search',
+            icon: 'calendar_today'
+          },
+          {
+            linkTitle: 'Membership Overrides',
+            routerLink: '/calendar/memberships/overrides',
+            icon: 'group'
           }
         ]
       }

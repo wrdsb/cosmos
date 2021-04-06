@@ -6,6 +6,36 @@ import { RolesGuard } from "@cosmos/guards";
 
 const routes: Routes = [
   {
+    path: 'calendar',
+    loadChildren: () => import('@cosmos/google-calendar').then(m => m.GoogleCalendarModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  {
+    path: 'groups',
+    loadChildren: () => import('@cosmos/google-groups').then(m => m.GoogleGroupsModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  {
+    path: 'google',
+    loadChildren: () => import('@cosmos/google').then(m => m.GoogleModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  {
     path: 'ping',
     loadChildren: () => import('@cosmos/pings-ui').then(m => m.PingsUiModule),
     data: {
