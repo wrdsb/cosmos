@@ -1,0 +1,89 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "job-enqueue",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "viewIAMWPProcess",
+      "type": "queue",
+      "queueName": "view-iamwp-process",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "viewStaffDirProcess",
+      "type": "queue",
+      "queueName": "view-staffdir-process",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "IPPSGroupsReconcile",
+      "type": "queue",
+      "queueName": "ipps-groups-reconcile",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "IPPSJobsReconcile",
+      "type": "queue",
+      "queueName": "ipps-jobs-reconcile",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "IPPSLocationsReconcile",
+      "type": "queue",
+      "queueName": "ipps-locations-reconcile",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "IPPSPeopleReconcile",
+      "type": "queue",
+      "queueName": "ipps-people-reconcile",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "IPPSEmployeeGroupStore",
+      "type": "queue",
+      "queueName": "ipps-employee-group-store",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "IPPSJobStore",
+      "type": "queue",
+      "queueName": "ipps-job-store",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "IPPSLocationStore",
+      "type": "queue",
+      "queueName": "ipps-location-store",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "IPPSPersonStore",
+      "type": "queue",
+      "queueName": "ipps-person-store",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
