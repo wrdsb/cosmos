@@ -24,22 +24,24 @@ import { GroupsHomeComponent } from './groups-home/groups-home.component';
 import { GroupsSearchComponent } from './groups-search/groups-search.component';
 
 import { GroupDetailComponent } from './group-detail/group-detail.component';
-import { GroupsListComponent } from './groups-list/groups-list.component';
 import { GroupMetaDialogComponent } from "./group-meta-dialog/group-meta-dialog.component";
 
 import { MembershipsListComponent } from './memberships-list/memberships-list.component';
 import { MembershipDetailComponent } from './membership-detail/membership-detail.component';
+import { MembershipsOverridesComponent } from './memberships-overrides/memberships-overrides.component';
+import { MembershipsDefinitionsComponent } from './memberships-definitions/memberships-definitions.component';
 
 
 @NgModule({
   declarations: [
     GroupDetailComponent,
-    GroupsListComponent,
     GroupMetaDialogComponent,
     GroupsHomeComponent,
     GroupsSearchComponent,
     MembershipsListComponent,
-    MembershipDetailComponent
+    MembershipDetailComponent,
+    MembershipsOverridesComponent,
+    MembershipsDefinitionsComponent
   ],
   imports: [
     CommonModule,
@@ -63,7 +65,6 @@ import { MembershipDetailComponent } from './membership-detail/membership-detail
   ],
   exports: [
     GroupDetailComponent,
-    GroupsListComponent,
     GroupMetaDialogComponent,
     GroupsHomeComponent
   ],
