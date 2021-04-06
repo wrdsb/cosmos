@@ -18,14 +18,14 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
     let rowsProcessed = 0;
     let peopleProcessed = 0;
 
-    let peopleObject = {};
-    let peopleArray = [];
-    let jobsObject = {};
-    let jobsArray = [];
-    let groupsObject = {};
-    let groupsArray = [];
-    let locationsObject = {};
-    let locationsArray = [];
+    const peopleObject = {};
+    const peopleArray = [];
+    const jobsObject = {};
+    const jobsArray = [];
+    const groupsObject = {};
+    const groupsArray = [];
+    const locationsObject = {};
+    const locationsArray = [];
 
     rows.forEach(function(row) {
         // If we're missing an EIN or Position ID, bail
@@ -36,7 +36,7 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
         rowsProcessed++;
 
         // Create the main part of a Person object
-        let personRecord = {
+        const personRecord = {
             id:             row.EMPLOYEE_ID,
             ein:            row.EMPLOYEE_ID,
             username:       (row.USERNAME ? row.USERNAME.toLowerCase() : ''),
@@ -50,7 +50,7 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
         };
 
         // Create the Position object for this row
-        let personPosition = {
+        const personPosition = {
             ein:                         row.EMPLOYEE_ID,
             position_id:                 row.POSITION_ID,
             activity_code:               row.ACTIVITY_CODE,
@@ -72,8 +72,8 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
         };
 
         // Grab what will become our object identifiers
-        let ein = personRecord.ein;
-        let position_id = personPosition.position_id;
+        const ein = personRecord.ein;
+        const position_id = personPosition.position_id;
 
         // Upsert Person, and current Position, to people collection object
         if (peopleObject[ein]) {
@@ -109,8 +109,8 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
     // Add each person from peopleObject to peopleArray
     Object.getOwnPropertyNames(peopleObject).forEach(function (ein) {
         peopleProcessed++;
-        var person = peopleObject[ein];
-        var positions_array = [];
+        const person = peopleObject[ein];
+        const positions_array = [];
         Object.getOwnPropertyNames(person.positions).forEach(function (position) {
             positions_array.push(person.positions[position]);
         });

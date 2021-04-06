@@ -18,8 +18,8 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
     let rowsProcessed = 0;
     let peopleProcessed = 0;
 
-    let directoryObject = {};
-    let directoryArray = [];
+    const directoryObject = {};
+    const directoryArray = [];
 
     rows.forEach(function(row) {
         // If we're missing an email address, bail
@@ -30,7 +30,7 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
         rowsProcessed++;
 
         // Create the directoryRecord object for the directory collections
-        var directoryRecord = {
+        const directoryRecord = {
             id:             row.EMAIL_ADDRESS,
             email:          row.EMAIL_ADDRESS,
             first_name:     row.FIRST_NAME,
@@ -45,7 +45,7 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
         };
 
         // Grab what will become our object identifier
-        let email = directoryRecord.email;
+        const email = directoryRecord.email;
 
         // Upsert directoryRecord into directory collection object
         directoryObject[email] = directoryRecord;

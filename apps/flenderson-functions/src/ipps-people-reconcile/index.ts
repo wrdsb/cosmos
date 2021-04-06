@@ -28,12 +28,12 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
     const directoryNow = context.bindings.directoryNow;
 
     // ensure we have a full data set
-    let totalPeople = Object.getOwnPropertyNames(peopleNow).length;
+    const totalPeople = Object.getOwnPropertyNames(peopleNow).length;
     if (totalPeople < 5000) {
         context.done('Too few records. Aborting.');
     }
 
-    let recordsNow = await materializePeople(peopleNow, directoryNow);
+    const recordsNow = await materializePeople(peopleNow, directoryNow);
 
     // fetch current records from Cosmos
     const recordsPrevious = await getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer).catch(err => {
@@ -54,11 +54,11 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
     calculation = await findCreatesAndUpdates(calculation);
     calculation = await findDeletes(calculation);
 
-    let creates = await processCreates(calculation.differences.createdRecords);
-    let updates = await processUpdates(calculation.differences.updatedRecords);
-    let deletes = await processDeletes(calculation.differences.deletedRecords);
+    const creates = await processCreates(calculation.differences.createdRecords);
+    const updates = await processUpdates(calculation.differences.updatedRecords);
+    const deletes = await processDeletes(calculation.differences.deletedRecords);
 
-    let totalDifferences = creates.length + updates.length + deletes.length;
+    const totalDifferences = creates.length + updates.length + deletes.length;
 
     context.bindings.queueStore = creates.concat(updates, deletes);
 
@@ -75,13 +75,13 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
 
     async function materializePeople(people, directory)
     {
-        let materializedPeople = {};
+        const materializedPeople = {};
 
         Object.getOwnPropertyNames(people).forEach(function (personID) {
-            let personRecord = people[personID];
-            let directoryRecord = directory[personRecord.email];
+            const personRecord = people[personID];
+            const directoryRecord = directory[personRecord.email];
 
-            let materializedPerson = {
+            const materializedPerson = {
                 id:            personRecord.id,
                 email:         personRecord.email,
                 username:      personRecord.username,
@@ -99,7 +99,7 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
             } as IPPSPerson;
 
             personRecord.positions.forEach(function (position) {
-                let assignment = position as IPPSAssignment;
+                const assignment = position as IPPSAssignment;
                 materializedPerson.assignments.push(assignment);
                 materializedPerson.locationCodes.push(assignment.locationCode);
                 materializedPerson.schoolCodes.push(assignment.schoolCode);
@@ -122,8 +122,8 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
     async function findCreatesAndUpdates(calculation) {
         context.log('findCreatesAndUpdates');
 
-        let recordsPrevious = calculation.recordsPrevious;
-        let recordsNow = calculation.recordsNow;
+        const recordsPrevious = calculation.recordsPrevious;
+        const recordsNow = calculation.recordsNow;
 
         if (!recordsNow) {
             return calculation;
@@ -214,8 +214,8 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
     async function findDeletes(calculation) {
         context.log('findDeletes');
 
-        let recordsPrevious = calculation.recordsPrevious;
-        let recordsNow = calculation.recordsNow;
+        const recordsPrevious = calculation.recordsPrevious;
+        const recordsNow = calculation.recordsNow;
 
         if (!recordsPrevious) {
             return calculation;
@@ -235,10 +235,10 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
         context.log('processCreates');
 
         // array for the results being returned
-        let messages = [];
+        const messages = [];
 
         createdRecords.forEach(function (record) {
-            let message = {
+            const message = {
                 operation: "replace",
                 payload: record
             };
@@ -252,10 +252,10 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
         context.log('processUpdates');
 
         // array for the results being returned
-        let messages = [];
+        const messages = [];
 
         updatedRecords.forEach(function (record) {
-            let message = {
+            const message = {
                 operation: "replace",
                 payload: record.now
             };
@@ -269,10 +269,10 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
         context.log('processDeletes');
 
         // array for the results being returned
-        let messages = [];
+        const messages = [];
 
         deletedRecords.forEach(function (record) {
-            let message = {
+            const message = {
                 operation: "delete",
                 payload: record
             };
@@ -285,7 +285,7 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
     async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer) {
         context.log('getCosmosItems');
 
-        let recordsPrevious = {};
+        const recordsPrevious = {};
 
         const querySpec = {
             query: `SELECT * FROM c WHERE c.deleted = false`
@@ -301,7 +301,7 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
 
             for (const item of resources) {
                 if (!item.deleted) {
-                    let recordObject = {
+                    const recordObject = {
                         id:             item.id,
                         email:          item.email,
                         username:       item.username,

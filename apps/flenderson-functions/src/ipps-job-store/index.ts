@@ -17,9 +17,9 @@ const ippsJobStore: AzureFunction = async function (context: Context, triggerMes
     const operation = triggerObject.operation as StoreFunctionOperation;
     const payload = triggerObject.payload as IPPSJobStoreFunctionRequestPayload;
 
-    let oldRecord = context.bindings.recordIn;
+    const oldRecord = context.bindings.recordIn;
 
-    let newRecord = {
+    const newRecord = {
         createdAt: '',
         updatedAt: '',
         deletedAt: '',
@@ -188,49 +188,49 @@ const ippsJobStore: AzureFunction = async function (context: Context, triggerMes
 
     function craftCreateEvent(new_record)
     {
-        let event_type = 'Flenderson.IPPSJob.Create';
-        let source = 'create';
-        let schema = 'create';
-        let label = `Job ${new_record.id} created.`;
-        let payload = {
+        const event_type = 'Flenderson.IPPSJob.Create';
+        const source = 'create';
+        const schema = 'create';
+        const label = `Job ${new_record.id} created.`;
+        const payload = {
             record: new_record
         };
 
-        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
         return event;
     }
     
     function craftUpdateEvent(old_record, new_record)
     {
-        let event_type = 'Flenderson.IPPSJob.Update';
-        let source = 'update';
-        let schema = 'update';
-        let label = `Job ${new_record.id} updated.`;
-        let payload = {
+        const event_type = 'Flenderson.IPPSJob.Update';
+        const source = 'update';
+        const schema = 'update';
+        const label = `Job ${new_record.id} updated.`;
+        const payload = {
             old_record: old_record,
             new_record: new_record,
         };
 
-        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
         return event;
     }
 
     function craftDeleteEvent(old_record)
     {
-        let event_type = 'Flenderson.IPPSJob.Delete';
-        let source = 'delete';
-        let schema = 'delete';
-        let label = `Job ${old_record.id} deleted.`;
-        let payload = {
+        const event_type = 'Flenderson.IPPSJob.Delete';
+        const source = 'delete';
+        const schema = 'delete';
+        const label = `Job ${old_record.id} deleted.`;
+        const payload = {
             record: old_record
         };
 
-        let event = craftEvent(old_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(old_record.id, source, schema, event_type, label, payload);
         return event;
     }
 
     function craftEvent(recordID, source, schema, event_type, label, payload) {
-        let event = {
+        const event = {
             id: `${event_type}-${functionInvocation.functionInvocationID}`,
             time: functionInvocation.functionInvocationTimestamp,
 

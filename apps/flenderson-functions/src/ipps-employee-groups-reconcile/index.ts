@@ -27,7 +27,7 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
     const recordsNow = context.bindings.groupsNow;
 
     // ensure we have a full data set
-    let totalRecords = Object.getOwnPropertyNames(recordsNow).length;
+    const totalRecords = Object.getOwnPropertyNames(recordsNow).length;
     if (totalRecords < 50) {
         context.done('Too few records. Aborting.');
     }
@@ -53,11 +53,11 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
     calculation = await findCreatesAndUpdates(calculation);
     calculation = await findDeletes(calculation);
 
-    let creates = await processCreates(calculation.differences.createdRecords);
-    let updates = await processUpdates(calculation.differences.updatedRecords);
-    let deletes = await processDeletes(calculation.differences.deletedRecords);
+    const creates = await processCreates(calculation.differences.createdRecords);
+    const updates = await processUpdates(calculation.differences.updatedRecords);
+    const deletes = await processDeletes(calculation.differences.deletedRecords);
 
-    let totalDifferences = creates.length + updates.length + deletes.length;
+    const totalDifferences = creates.length + updates.length + deletes.length;
 
     context.bindings.queueStore = creates.concat(updates, deletes);
 
@@ -75,8 +75,8 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
     async function findCreatesAndUpdates(calculation) {
         context.log('findCreatesAndUpdates');
 
-        let recordsPrevious = calculation.recordsPrevious;
-        let recordsNow = calculation.recordsNow;
+        const recordsPrevious = calculation.recordsPrevious;
+        const recordsNow = calculation.recordsNow;
 
         if (!recordsNow) {
             return calculation;
@@ -137,8 +137,8 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
     async function findDeletes(calculation) {
         context.log('findDeletes');
 
-        let recordsPrevious = calculation.recordsPrevious;
-        let recordsNow = calculation.recordsNow;
+        const recordsPrevious = calculation.recordsPrevious;
+        const recordsNow = calculation.recordsNow;
 
         if (!recordsPrevious) {
             return calculation;
@@ -158,10 +158,10 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
         context.log('processCreates');
 
         // array for the results being returned
-        let messages = [];
+        const messages = [];
 
         createdRecords.forEach(function (record) {
-            let message = {
+            const message = {
                 operation: "replace",
                 payload: record
             };
@@ -175,10 +175,10 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
         context.log('processUpdates');
 
         // array for the results being returned
-        let messages = [];
+        const messages = [];
 
         updatedRecords.forEach(function (record) {
-            let message = {
+            const message = {
                 operation: "replace",
                 payload: record.now
             };
@@ -192,10 +192,10 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
         context.log('processDeletes');
 
         // array for the results being returned
-        let messages = [];
+        const messages = [];
 
         deletedRecords.forEach(function (record) {
-            let message = {
+            const message = {
                 operation: "delete",
                 payload: record
             };
@@ -208,7 +208,7 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
     async function getCosmosItems(cosmosClient, cosmosDatabase, cosmosContainer) {
         context.log('getCosmosItems');
 
-        let recordsPrevious = {};
+        const recordsPrevious = {};
 
         const querySpec = {
             query: `SELECT * FROM c WHERE c.deleted = false`
@@ -224,7 +224,7 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
 
             for (const item of resources) {
                 if (!item.deleted) {
-                    let recordObject = {
+                    const recordObject = {
                         id:                item.id,
                         groupCode:         item.groupCode,
                         groupDescription:  item.groupDescription,

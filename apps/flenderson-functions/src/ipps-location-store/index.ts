@@ -17,7 +17,7 @@ const ippsLocationStore: AzureFunction = async function (context: Context, trigg
     const operation = triggerObject.operation as StoreFunctionOperation;
     const payload = triggerObject.payload as IPPSLocationStoreFunctionRequestPayload;
 
-    let oldRecord = context.bindings.recordIn;
+    const oldRecord = context.bindings.recordIn;
 
     const newRecord = {
         createdAt: '',
@@ -191,47 +191,47 @@ const ippsLocationStore: AzureFunction = async function (context: Context, trigg
     }
 
     function craftCreateEvent(new_record) {
-        let event_type = 'Flenderson.IPPSLocation.Create';
-        let source = 'create';
-        let schema = 'create';
-        let label = `Location ${new_record.id} created.`;
-        let payload = {
+        const event_type = 'Flenderson.IPPSLocation.Create';
+        const source = 'create';
+        const schema = 'create';
+        const label = `Location ${new_record.id} created.`;
+        const payload = {
             record: new_record
         };
 
-        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
         return event;
     }
     
     function craftUpdateEvent(old_record, new_record) {
-        let event_type = 'Flenderson.IPPSLocation.Update';
-        let source = 'update';
-        let schema = 'update';
-        let label = `Location ${new_record.id} updated.`;
-        let payload = {
+        const event_type = 'Flenderson.IPPSLocation.Update';
+        const source = 'update';
+        const schema = 'update';
+        const label = `Location ${new_record.id} updated.`;
+        const payload = {
             old_record: old_record,
             new_record: new_record,
         };
 
-        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
         return event;
     }
 
     function craftDeleteEvent(old_record) {
-        let event_type = 'Flenderson.IPPSLocation.Delete';
-        let source = 'delete';
-        let schema = 'delete';
-        let label = `Location ${old_record.id} deleted.`;
-        let payload = {
+        const event_type = 'Flenderson.IPPSLocation.Delete';
+        const source = 'delete';
+        const schema = 'delete';
+        const label = `Location ${old_record.id} deleted.`;
+        const payload = {
             record: old_record
         };
 
-        let event = craftEvent(old_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(old_record.id, source, schema, event_type, label, payload);
         return event;
     }
 
     function craftEvent(recordID, source, schema, event_type, label, payload) {
-        let event = {
+        const event = {
             id: `${event_type}-${functionInvocation.functionInvocationID}`,
             time: functionInvocation.functionInvocationTimestamp,
 
