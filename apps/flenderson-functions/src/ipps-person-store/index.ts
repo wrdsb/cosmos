@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, IPPSPersonStoreFunctionRequest, StoreFunctionOperation, IPPSPersonStoreFunctionRequestPayload, IPPSPerson } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, IPPSPersonStoreFunctionRequest, StoreFunctionOperation, IPPSPersonStoreFunctionRequestPayload, IPPSPerson } from "@cosmos/types";
 
 const ippsPersonStore: AzureFunction = async function (context: Context, triggerMessage: IPPSPersonStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -12,6 +12,9 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         functionDataOperation: 'Store',
         eventLabel: ''
     } as FunctionInvocation;
+
+    let jobType = '' as FlendersonJobType;
+    jobType = 'Flenderson.IPPSPerson.Store';
 
     const triggerObject = triggerMessage as IPPSPersonStoreFunctionRequest;
     const operation = triggerObject.operation as StoreFunctionOperation;
@@ -77,14 +80,21 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         context.bindings.recordOut = result.newRecord;
 
         const logPayload = result.event;
+        logPayload['jobType'] = jobType;
+        logPayload['statusCode'] = statusCode;
+        logPayload['statusMessage'] = statusMessage;
         functionInvocation.logPayload = logPayload;
         context.log(logPayload);
     } else {
-        const logPayload = {};
+        const logPayload = result.event;
+        logPayload['jobType'] = jobType;
+        logPayload['statusCode'] = statusCode;
+        logPayload['statusMessage'] = 'No change detected.';
         functionInvocation.logPayload = logPayload;
-        context.log('No change detected.');
     }
     
+    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 
@@ -220,16 +230,16 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
     }
     
     function craftUpdateEvent(old_record, new_record) {
-        let event_type = 'Flenderson.IPPSPerson.Update';
-        let source = 'update';
-        let schema = 'update';
-        let label = `${new_record.email}'s IPPS record updated.`;
-        let payload = {
+        const event_type = 'Flenderson.IPPSPerson.Update';
+        const source = 'update';
+        const schema = 'update';
+        const label = `${new_record.email}'s IPPS record updated.`;
+        const payload = {
             old_record: old_record,
             new_record: new_record,
         };
 
-        let event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
         return event;
     }
 

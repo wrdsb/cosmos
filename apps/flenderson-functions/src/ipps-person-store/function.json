@@ -24,6 +24,20 @@
             "collectionName": "people",
             "connectionStringSetting": "wrdsb-flenderson_COSMOSDB",
             "direction": "out"
+        },
+        {
+            "name": "jobRelay",
+            "type": "queue",
+            "queueName": "job-relay",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbflenderson_STORAGE",
+          "direction": "out"
         }
     ],
     "scriptFile": "./index.js"

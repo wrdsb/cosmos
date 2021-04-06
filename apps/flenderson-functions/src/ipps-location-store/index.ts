@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, IPPSLocationStoreFunctionRequest, StoreFunctionOperation, IPPSLocationStoreFunctionRequestPayload, IPPSLocation } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, IPPSLocationStoreFunctionRequest, StoreFunctionOperation, IPPSLocationStoreFunctionRequestPayload, IPPSLocation } from "@cosmos/types";
 
 const ippsLocationStore: AzureFunction = async function (context: Context, triggerMessage: IPPSLocationStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -12,6 +12,9 @@ const ippsLocationStore: AzureFunction = async function (context: Context, trigg
         functionDataOperation: 'Store',
         eventLabel: ''
     } as FunctionInvocation;
+
+    let jobType = '' as FlendersonJobType;
+    jobType = 'Flenderson.IPPSLocation.Store';
 
     const triggerObject = triggerMessage as IPPSLocationStoreFunctionRequest;
     const operation = triggerObject.operation as StoreFunctionOperation;
@@ -63,14 +66,21 @@ const ippsLocationStore: AzureFunction = async function (context: Context, trigg
         context.bindings.recordOut = result.newRecord;
 
         const logPayload = result.event;
+        logPayload['jobType'] = jobType;
+        logPayload['statusCode'] = statusCode;
+        logPayload['statusMessage'] = statusMessage;
         functionInvocation.logPayload = logPayload;
         context.log(logPayload);
     } else {
-        const logPayload = {};
+        const logPayload = result.event;
+        logPayload['jobType'] = jobType;
+        logPayload['statusCode'] = statusCode;
+        logPayload['statusMessage'] = 'No change detected.';
         functionInvocation.logPayload = logPayload;
-        context.log('No change detected.');
     }
     
+    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 

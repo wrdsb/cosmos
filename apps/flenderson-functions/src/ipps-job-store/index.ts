@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, IPPSJobStoreFunctionRequest, StoreFunctionOperation, IPPSJobStoreFunctionRequestPayload, IPPSJob } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, IPPSJobStoreFunctionRequest, StoreFunctionOperation, IPPSJobStoreFunctionRequestPayload, IPPSJob } from "@cosmos/types";
 
 const ippsJobStore: AzureFunction = async function (context: Context, triggerMessage: IPPSJobStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -12,6 +12,9 @@ const ippsJobStore: AzureFunction = async function (context: Context, triggerMes
         functionDataOperation: 'Store',
         eventLabel: ''
     } as FunctionInvocation;
+
+    let jobType = '' as FlendersonJobType;
+    jobType = 'Flenderson.IPPSJob.Store';
 
     const triggerObject = triggerMessage as IPPSJobStoreFunctionRequest;
     const operation = triggerObject.operation as StoreFunctionOperation;
@@ -59,14 +62,21 @@ const ippsJobStore: AzureFunction = async function (context: Context, triggerMes
         context.bindings.recordOut = result.newRecord;
 
         const logPayload = result.event;
+        logPayload['jobType'] = jobType;
+        logPayload['statusCode'] = statusCode;
+        logPayload['statusMessage'] = statusMessage;
         functionInvocation.logPayload = logPayload;
         context.log(logPayload);
     } else {
-        const logPayload = {};
+        const logPayload = result.event;
+        logPayload['jobType'] = jobType;
+        logPayload['statusCode'] = statusCode;
+        logPayload['statusMessage'] = 'No change detected.';
         functionInvocation.logPayload = logPayload;
-        context.log('No change detected.');
     }
     
+    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 
