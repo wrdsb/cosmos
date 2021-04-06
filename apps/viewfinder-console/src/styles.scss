@@ -1,22 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
-/*@import '~@angular/material/prebuilt-themes/indigo-pink.css';*/
-
 @import '~@angular/material/theming';
+@import '../../../libs/google-groups/src/lib/groups-search/theme';
 @include mat-core();
 
 /* ======== Angular material custom themes ======== */ 
-$primary: mat-palette($mat-indigo);
+$mat-app-theme: (
+  50: #e8eaf6,
+  100: #c5cae9,
+  200: #9fa8da,
+  300: #7986cb,
+  400: #5c6bc0,
+  500: #3f51b5,
+  600: #3949ab,
+  700: #303f9f,
+  800: #283593,
+  900: #1a237e,
+  A100: #8c9eff,
+  A200: #536dfe,
+  A400: #3d5afe,
+  A700: #304ffe,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$primary: mat-palette($mat-app-theme);
 $accent: mat-palette($mat-pink, 100, 500, A100);
 $warn: mat-palette($mat-lime);
 
 // Convert => mat-light-theme()
-$theme: mat-light-theme($primary, $accent);
+$light-theme: mat-light-theme($primary, $accent);
 
 // Convert to this => mat-dark-theme()
-$theme: mat-dark-theme($primary, $accent);
+$dark-theme: mat-dark-theme($primary, $accent);
 
-@include angular-material-theme($theme);
-
+@include angular-material-theme($light-theme);
+@include google-groups-search-theme($light-theme);
 
 html,
 body {

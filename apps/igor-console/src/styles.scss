@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/theming';
+@import '../../../libs/google-groups/src/lib/groups-search/theme';
 @include mat-core();
 
 /* ======== Angular material custom themes ======== */ 
-$mat-igor-theme: (
+$mat-app-theme: (
   50: #e8f5e9,
   100: #c8e6c9,
   200: #a5d6a7,
@@ -36,18 +37,18 @@ $mat-igor-theme: (
   )
 );
 
-$primary: mat-palette($mat-igor-theme, 700, 900, A100);
+$primary: mat-palette($mat-app-theme, 700, 900, A100);
 $accent: mat-palette($mat-blue-grey, 100, 500, A100);
 $warn: mat-palette($mat-lime);
 
 // Convert => mat-light-theme()
-$theme: mat-light-theme($primary, $accent);
+$light-theme: mat-light-theme($primary, $accent);
 
 // Convert to this => mat-dark-theme()
-$theme: mat-dark-theme($primary, $accent);
+$dark-theme: mat-dark-theme($primary, $accent);
 
-@include angular-material-theme($theme);
-
+@include angular-material-theme($light-theme);
+@include google-groups-search-theme($light-theme);
 
 html,
 body {
