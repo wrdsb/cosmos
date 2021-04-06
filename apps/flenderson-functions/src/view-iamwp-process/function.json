@@ -92,32 +92,11 @@
             "direction": "out"
         },
         {
-            "name": "triggerIPPSEmployeeGroupsReconcile",
-            "type": "queue",
-            "queueName": "ipps-groups-reconcile",
-            "connection": "wrdsbflenderson_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "triggerIPPSJobsReconcile",
-            "type": "queue",
-            "queueName": "ipps-jobs-reconcile",
-            "connection": "wrdsbflenderson_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "triggerIPPSLocationsReconcile",
-            "type": "queue",
-            "queueName": "ipps-locations-reconcile",
-            "connection": "wrdsbflenderson_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "triggerIPPSPeopleReconcile",
-            "type": "queue",
-            "queueName": "ipps-people-reconcile",
-            "connection": "wrdsbflenderson_STORAGE",
-            "direction": "out"
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbflenderson_STORAGE",
+          "direction": "out"
         }
     ],
     "scriptFile": "./index.js"

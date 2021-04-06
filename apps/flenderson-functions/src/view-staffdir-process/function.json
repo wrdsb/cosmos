@@ -36,11 +36,11 @@
             "direction": "out"
         },
         {
-            "name": "triggerIPPSPeopleReconcile",
-            "type": "queue",
-            "queueName": "ipps-people-reconcile",
-            "connection": "wrdsbflenderson_STORAGE",
-            "direction": "out"
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbflenderson_STORAGE",
+          "direction": "out"
         }
     ],
     "scriptFile": "./index.js"

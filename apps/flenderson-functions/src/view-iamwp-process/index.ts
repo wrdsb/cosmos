@@ -163,11 +163,6 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
     functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    context.bindings.triggerIPPSEmployeeGroupsReconcile = JSON.stringify(functionInvocation);
-    context.bindings.triggerIPPSJobsReconcile = JSON.stringify(functionInvocation);
-    context.bindings.triggerIPPSLocationsReconcile = JSON.stringify(functionInvocation);
-    context.bindings.triggerIPPSPeopleReconcile = JSON.stringify(functionInvocation);
-
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
