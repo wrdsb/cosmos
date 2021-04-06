@@ -8,7 +8,7 @@
       "connectionStringSetting": "wrdsb-quartermaster_CosmosDB",
       "leaseCollectionName": "device-loan-submission-change-process",
       "createLeaseCollectionIfNotExists": true,
-      "direction": "in",
+      "direction": "in"
     },
     {
       "name": "invocationPostProcessor",
