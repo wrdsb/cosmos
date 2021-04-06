@@ -21,7 +21,6 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     const triggerObject = triggerMessage as IPPSLocationsReconcileFunctionRequest;
-    const payload = triggerObject.payload as IPPSLocationsReconcileFunctionRequestPayload;
 
     // give our bindings more human-readable names
     const recordsNow = context.bindings.locationsNow;

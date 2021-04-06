@@ -21,7 +21,6 @@ const ippsJobsReconcile: AzureFunction = async function (context: Context, trigg
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     const triggerObject = triggerMessage as IPPSJobsReconcileFunctionRequest;
-    const payload = triggerObject.payload as IPPSJobsReconcileFunctionRequestPayload;
 
     // give our bindings more human-readable names
     const recordsNow = context.bindings.jobsNow;
