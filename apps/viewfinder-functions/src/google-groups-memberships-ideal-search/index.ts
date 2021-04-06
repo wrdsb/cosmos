@@ -1,15 +1,15 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { SearchClient, AzureKeyCredential, SearchRequestOptions } from "@azure/search-documents";
 import jwt_decode from 'jwt-decode';
-import { FunctionInvocation, GoogleGroupMembershipDefinition } from "@cosmos/types";
+import { FunctionInvocation, GoogleGroupMembershipIdeal } from "@cosmos/types";
 
-const googleGroupsMembershipsDefinitionsSearch: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const googleGroupsMembershipsIdealSearch: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Viewfinder',
         functionName: context.executionContext.functionName,
-        functionDataType: 'GoogleGroupMembershipDefinition',
+        functionDataType: 'GoogleGroupMembershipIdeal',
         functionDataOperation: 'Search',
         eventLabel: ''
     } as FunctionInvocation;
@@ -41,7 +41,7 @@ const googleGroupsMembershipsDefinitionsSearch: AzureFunction = async function (
 
     const searchKey = process.env['searchKey'];
     const searchURL = 'https://wrdsb-codex.search.windows.net';
-    const searchIndex = 'igor-groups-memberships-definitions';
+    const searchIndex = 'igor-groups-memberships-ideal';
 
     const search = payload.search ? payload.search : '*';
     
@@ -54,11 +54,25 @@ const googleGroupsMembershipsDefinitionsSearch: AzureFunction = async function (
         top: 20,
         select: [
             "id",
-            "job_codes",
-            "group_codes",
-            "location_codes"
+            "createdAt",
+            "updatedAt",
+            "deletedAt",
+            "deleted",
+            "createdBy",
+            "updatedBy",
+            "deletedBy",
+            "group",
+            "user",
+            "role",
+            "status",
+            "type",
+            "isManaged",
+            "isCalculated",
+            "calculationSource",
+            "isOverride",
+            "overrideTier"
         ]
-    } as SearchRequestOptions<keyof GoogleGroupMembershipDefinition>;
+    } as SearchRequestOptions<keyof GoogleGroupMembershipIdeal>;
 
     if (payload.includeTotalCount) { options.includeTotalCount = payload.includeTotalCount; }
     if (payload.filter)            { options.filter = payload.filter; }
@@ -69,7 +83,7 @@ const googleGroupsMembershipsDefinitionsSearch: AzureFunction = async function (
     if (payload.select)            { options.select = payload.select; }
     if (payload.searchFields)      { options.searchFields = payload.searchFields; }
 
-    const searchClient = new SearchClient<GoogleGroupMembershipDefinition>(
+    const searchClient = new SearchClient<GoogleGroupMembershipIdeal>(
         searchURL,
         searchIndex,
         new AzureKeyCredential(searchKey)
@@ -139,4 +153,4 @@ const googleGroupsMembershipsDefinitionsSearch: AzureFunction = async function (
     context.done(null, functionInvocation);
 };
 
-export default googleGroupsMembershipsDefinitionsSearch;
+export default googleGroupsMembershipsIdealSearch;

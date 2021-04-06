@@ -1,15 +1,15 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { SearchClient, AzureKeyCredential, SearchRequestOptions } from "@azure/search-documents";
 import jwt_decode from 'jwt-decode';
-import { FunctionInvocation, GoogleGroup } from "@cosmos/types";
+import { FunctionInvocation, GoogleGroupMembershipActual } from "@cosmos/types";
 
-const googleGroupsMembershipsOverridesSearch: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const googleGroupsMembershipsActualSearch: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Viewfinder',
         functionName: context.executionContext.functionName,
-        functionDataType: 'GoogleGroupMembershipOverride',
+        functionDataType: 'GoogleGroupMembershipActual',
         functionDataOperation: 'Search',
         eventLabel: ''
     } as FunctionInvocation;
@@ -41,7 +41,7 @@ const googleGroupsMembershipsOverridesSearch: AzureFunction = async function (co
 
     const searchKey = process.env['searchKey'];
     const searchURL = 'https://wrdsb-codex.search.windows.net';
-    const searchIndex = 'igor-groups-memberships-overrides';
+    const searchIndex = 'igor-groups-memberships-actual';
 
     const search = payload.search ? payload.search : '*';
     
@@ -54,10 +54,20 @@ const googleGroupsMembershipsOverridesSearch: AzureFunction = async function (co
         top: 20,
         select: [
             "id",
+            "createdAt",
+            "updatedAt",
+            "deletedAt",
+            "deleted",
+            "createdBy",
+            "updatedBy",
+            "deletedBy",
             "group",
-            "central"
+            "user",
+            "role",
+            "status",
+            "type"
         ]
-    } as SearchRequestOptions<keyof GoogleGroup>;
+    } as SearchRequestOptions<keyof GoogleGroupMembershipActual>;
 
     if (payload.includeTotalCount) { options.includeTotalCount = payload.includeTotalCount; }
     if (payload.filter)            { options.filter = payload.filter; }
@@ -68,7 +78,7 @@ const googleGroupsMembershipsOverridesSearch: AzureFunction = async function (co
     if (payload.select)            { options.select = payload.select; }
     if (payload.searchFields)      { options.searchFields = payload.searchFields; }
 
-    const searchClient = new SearchClient<GoogleGroup>(
+    const searchClient = new SearchClient<GoogleGroupMembershipActual>(
         searchURL,
         searchIndex,
         new AzureKeyCredential(searchKey)
@@ -138,4 +148,4 @@ const googleGroupsMembershipsOverridesSearch: AzureFunction = async function (co
     context.done(null, functionInvocation);
 };
 
-export default googleGroupsMembershipsOverridesSearch;
+export default googleGroupsMembershipsActualSearch;
