@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { FunctionInvocation } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType } from "@cosmos/types";
 
 const viewStaffDirProcess: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const functionInvocation = {
@@ -11,6 +11,9 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
         functionDataOperation: 'Process',
         eventLabel: ''
     } as FunctionInvocation;
+
+    let jobType = '' as FlendersonJobType;
+    jobType = 'Flenderson.ViewStaffDir.Process';
 
     const panamaBlob = context.bindings.panamaBlob;
 
@@ -72,11 +75,16 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
     const statusMessage = 'Success: Processed view staffdir.';
 
     const logPayload = {
-        directory: JSON.stringify(directoryObject)
+        jobType: jobType,
+        status: statusCode,
+        statusMessage: statusMessage,
+        rowsProcessed: rowsProcessed,
+        peopleProcessed: peopleProcessed
     };
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 };

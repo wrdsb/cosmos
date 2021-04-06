@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { FunctionInvocation } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType } from "@cosmos/types";
 
 const viewIAMWPProcess: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const functionInvocation = {
@@ -12,11 +12,17 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
         eventLabel: ''
     } as FunctionInvocation;
 
+    let jobType = '' as FlendersonJobType;
+    jobType = 'Flenderson.ViewIAMWP.Process';
+
     const panamaBlob = context.bindings.panamaBlob;
 
     const rows = panamaBlob;
     let rowsProcessed = 0;
     let peopleProcessed = 0;
+    let jobsProcessed = 0;
+    let locationsProcessed = 0;
+    let groupsProcessed = 0;
 
     const peopleObject = {};
     const peopleArray = [];
@@ -120,12 +126,15 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
 
     // Step through other collection objects and assign objects to their arrays
     Object.getOwnPropertyNames(jobsObject).forEach(function (job) {
+        jobsProcessed++;
         jobsArray.push(jobsObject[job]);
     });    
     Object.getOwnPropertyNames(groupsObject).forEach(function (group) {
+        groupsProcessed++;
         groupsArray.push(groupsObject[group]);
     });
     Object.getOwnPropertyNames(locationsObject).forEach(function (location) {
+        locationsProcessed++;
         locationsArray.push(locationsObject[location]);
     });
 
@@ -155,14 +164,19 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
     const statusMessage = 'Success: Processed view iamwp.';
 
     const logPayload = {
-        people: peopleObject,
-        jobs: jobsObject,
-        groups: groupsObject,
-        locations: locationsObject
+        jobType: jobType,
+        status: statusCode,
+        statusMessage: statusMessage,
+        rowsProcessed: rowsProcessed,
+        peopleProcessed: peopleProcessed,
+        jobsProcessed: jobsProcessed,
+        locationsProcessed: locationsProcessed,
+        groupsProcessed: groupsProcessed
     };
     functionInvocation.logPayload = logPayload;
-    context.log(logPayload);
 
+    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
