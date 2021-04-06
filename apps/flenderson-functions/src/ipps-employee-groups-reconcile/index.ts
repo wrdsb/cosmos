@@ -1,7 +1,7 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
 import { createHash } from "crypto";
-import { FunctionInvocation, IPPSEmployeeGroupsReconcileFunctionRequest, IPPSEmployeeGroupsReconcileFunctionRequestPayload, IPPSEmployeeGroup } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, IPPSEmployeeGroupsReconcileFunctionRequest, IPPSEmployeeGroup } from "@cosmos/types";
 
 const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSEmployeeGroupsReconcileFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -13,14 +13,15 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
         functionDataOperation: 'Reconcile',
         eventLabel: ''
     } as FunctionInvocation;
+    
+    let jobType = '' as FlendersonJobType;
+    jobType = 'Flenderson.IPPSEmployeeGroup.Reconcile';
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
     const cosmosContainer = 'groups';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
-
-    const triggerObject = triggerMessage as IPPSEmployeeGroupsReconcileFunctionRequest;
 
     // give our bindings more human-readable names
     const recordsNow = context.bindings.groupsNow;
@@ -61,13 +62,17 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
     context.bindings.queueStore = creates.concat(updates, deletes);
 
     const logPayload = {
-        totalDifferences: totalDifferences
+        totalDifferences: totalDifferences,
+        createdRecords: creates.length,
+        updatedRecords: updates.length,
+        deletedRecords: deletes.length
         //differences: calculation.differences
     };
     functionInvocation.logPayload = logPayload;
 
+    context.bindings.jobRelay = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
+     context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 

@@ -1,7 +1,7 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
 import { createHash } from "crypto";
-import { FunctionInvocation, IPPSJobsReconcileFunctionRequest, IPPSJobsReconcileFunctionRequestPayload, IPPSJob } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, IPPSJobsReconcileFunctionRequest, IPPSJob } from "@cosmos/types";
 
 const ippsJobsReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSJobsReconcileFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -14,13 +14,14 @@ const ippsJobsReconcile: AzureFunction = async function (context: Context, trigg
         eventLabel: ''
     } as FunctionInvocation;
 
+    let jobType = '' as FlendersonJobType;
+    jobType = 'Flenderson.IPPSJob.Reconcile';
+
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
     const cosmosContainer = 'jobs';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
-
-    const triggerObject = triggerMessage as IPPSJobsReconcileFunctionRequest;
 
     // give our bindings more human-readable names
     const recordsNow = context.bindings.jobsNow;
@@ -61,11 +62,15 @@ const ippsJobsReconcile: AzureFunction = async function (context: Context, trigg
     context.bindings.queueStore = creates.concat(updates, deletes);
 
     const logPayload = {
-        totalDifferences: totalDifferences
+        totalDifferences: totalDifferences,
+        createdRecords: creates.length,
+        updatedRecords: updates.length,
+        deletedRecords: deletes.length
         //differences: calculation.differences
     };
     functionInvocation.logPayload = logPayload;
 
+    context.bindings.jobRelay = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);

@@ -1,7 +1,7 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
 import { createHash } from "crypto";
-import { FunctionInvocation, IPPSLocationsReconcileFunctionRequest, IPPSLocationsReconcileFunctionRequestPayload, IPPSLocation } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, IPPSLocationsReconcileFunctionRequest, IPPSLocation } from "@cosmos/types";
 
 const ippsLocationsReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSLocationsReconcileFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -14,13 +14,14 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
         eventLabel: ''
     } as FunctionInvocation;
 
+    let jobType = '' as FlendersonJobType;
+    jobType = 'Flenderson.IPPSLocation.Reconcile';
+
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
     const cosmosContainer = 'locations';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
-
-    const triggerObject = triggerMessage as IPPSLocationsReconcileFunctionRequest;
 
     // give our bindings more human-readable names
     const recordsNow = context.bindings.locationsNow;
@@ -61,11 +62,15 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
     context.bindings.queueStore = creates.concat(updates, deletes);
 
     const logPayload = {
-        totalDifferences: totalDifferences
+        totalDifferences: totalDifferences,
+        createdRecords: creates.length,
+        updatedRecords: updates.length,
+        deletedRecords: deletes.length
         //differences: calculation.differences
     };
     functionInvocation.logPayload = logPayload;
 
+    context.bindings.jobRelay = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
