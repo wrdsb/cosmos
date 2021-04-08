@@ -22,14 +22,7 @@
             "type": "cosmosDB",
             "databaseName": "flenderson",
             "collectionName": "groups",
-            "connectionStringSetting": "wrdsb-flenderson_COSMOSDB",
-            "direction": "out"
-        },
-        {
-            "name": "jobRelay",
-            "type": "queue",
-            "queueName": "job-relay",
-            "connection": "wrdsbflenderson_STORAGE",
+            "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
             "direction": "out"
         },
         {
