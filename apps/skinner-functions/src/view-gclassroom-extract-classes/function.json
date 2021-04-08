@@ -16,7 +16,7 @@
     {
       "name": "peopleNow",
       "type": "blob",
-      "path": "hris/people-now-object.json",
+      "path": "ipps/people-now-object.json",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "in"
     },
