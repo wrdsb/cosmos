@@ -177,6 +177,7 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
 
         } else {
             newRecord = Object.assign(newRecord, payload);
+            newRecord.createdAt = oldRecord.createdAt;
             newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
