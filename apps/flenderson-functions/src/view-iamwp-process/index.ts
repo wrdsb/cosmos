@@ -110,6 +110,9 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
             id: personPosition.locationCode,
             locationCode: personPosition.locationCode,
             locationDescription: personPosition.locationDescription,
+            schoolCode: personPosition.schoolCode,
+            schoolType: personPosition.schoolType,
+            panel: personPosition.panel
         };
     });
 
