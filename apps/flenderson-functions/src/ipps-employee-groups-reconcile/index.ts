@@ -16,6 +16,7 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
     
     let jobType = '' as FlendersonJobType;
     jobType = 'Flenderson.IPPSEmployeeGroup.Reconcile';
+    functionInvocation.jobType = jobType;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
@@ -66,13 +67,11 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
         createdRecords: creates.length,
         updatedRecords: updates.length,
         deletedRecords: deletes.length
-        //differences: calculation.differences
     };
     functionInvocation.logPayload = logPayload;
 
-    context.bindings.jobRelay = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
-     context.log(functionInvocation);
+    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 

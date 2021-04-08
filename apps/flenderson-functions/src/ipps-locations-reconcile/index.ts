@@ -16,6 +16,7 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
 
     let jobType = '' as FlendersonJobType;
     jobType = 'Flenderson.IPPSLocation.Reconcile';
+    functionInvocation.jobType = jobType;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
@@ -66,11 +67,9 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
         createdRecords: creates.length,
         updatedRecords: updates.length,
         deletedRecords: deletes.length
-        //differences: calculation.differences
     };
     functionInvocation.logPayload = logPayload;
 
-    context.bindings.jobRelay = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
