@@ -1,7 +1,7 @@
-import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
+import { AzureFunction, Context } from "@azure/functions";
+import { FlendersonJobType, FunctionInvocation, IPPSAssignment, IPPSPeopleReconcileFunctionRequest, IPPSPerson } from "@cosmos/types";
 import { createHash } from "crypto";
-import { FunctionInvocation, FlendersonJobType, IPPSPeopleReconcileFunctionRequest, IPPSPerson, IPPSAssignment } from "@cosmos/types";
 
 const ippsPeopleReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSPeopleReconcileFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -16,6 +16,7 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
 
     let jobType = '' as FlendersonJobType;
     jobType = 'Flenderson.IPPSPerson.Reconcile';
+    functionInvocation.jobType = jobType;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
@@ -71,14 +72,12 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
     };
     functionInvocation.logPayload = logPayload;
 
-    context.bindings.jobRelay = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 
-    async function materializePeople(people, directory)
-    {
+    async function materializePeople(people, directory) {
         const materializedPeople = {};
 
         Object.getOwnPropertyNames(people).forEach(function (personID) {
@@ -86,20 +85,27 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
             const directoryRecord = directory[personRecord.email];
 
             const materializedPerson = {
-                id:            personRecord.id,
-                email:         personRecord.email,
-                username:      personRecord.username,
-                employeeID:    personRecord.ein,
-                firstName:     personRecord.first_name,
-                lastName:      personRecord.last_name,
-                ein:           personRecord.ein,
-                fullName:      `${personRecord.first_name} ${personRecord.last_name}`,
-                sortableName:  `${personRecord.last_name}, ${personRecord.first_name}`,
-                homeLocation:  personRecord.home_location,
-                directory:     null,
-                phone:         null,
-                extension:     null,
-                mbxnumber:     null
+                id:                        personRecord.id,
+                email:                     personRecord.email,
+                username:                  personRecord.username,
+                employeeID:                personRecord.ein,
+                firstName:                 personRecord.firstName,
+                lastName:                  personRecord.lastName,
+                fullName:                  `${personRecord.firstName} ${personRecord.firstName}`,
+                sortableName:              `${personRecord.lastName}, ${personRecord.firstName}`,
+                ein:                       personRecord.ein,
+                locationCodes:             [],
+                schoolCodes:               [],
+                jobCodes:                  [],
+                employeeGroupCodes:        [],
+                homeLocation:              personRecord.homeLocation,
+                directory:                 null,
+                phone:                     null,
+                extension:                 null,
+                mbxnumber:                 null,
+                numberOfAssignments:       0,
+                numberOfActiveAssignments: 0,
+                assignments:               []
             } as IPPSPerson;
 
             personRecord.positions.forEach(function (position) {
@@ -108,11 +114,14 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
                 materializedPerson.locationCodes.push(assignment.locationCode);
                 materializedPerson.schoolCodes.push(assignment.schoolCode);
                 materializedPerson.jobCodes.push(assignment.jobCode);
+                materializedPerson.employeeGroupCodes.push(assignment.employeeGroupCode);
+                materializedPerson.numberOfAssignments = materializedPerson.numberOfAssignments + 1;
+                materializedPerson.numberOfActiveAssignments = (assignment.activityCode === 'ACTIVE') ? materializedPerson.numberOfActiveAssignments + 1 : materializedPerson.numberOfActiveAssignments;
             });
 
             if (directoryRecord) {
                 (directoryRecord.directory) ? materializedPerson.directory = directoryRecord.directory : materializedPerson.directory = '';
-                (directoryRecord.phone_no) ? materializedPerson.phone = directoryRecord.phone_no : materializedPerson.phone = '';
+                (directoryRecord.phone) ? materializedPerson.phone = directoryRecord.phone : materializedPerson.phone = '';
                 (directoryRecord.extension) ? materializedPerson.extension = directoryRecord.extension : materializedPerson.extension = '';
                 (directoryRecord.mbxnumber) ? materializedPerson.mbxnumber = directoryRecord.mbxnumber : materializedPerson.mbxnumber = '';
             }
@@ -136,25 +145,27 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
         // loop through all records in recordsNow, looking for updates and creates
         Object.getOwnPropertyNames(recordsNow).forEach(function (recordID) {
             const newRecord = {
-                id:             recordsNow[recordID].id,
-                email:          recordsNow[recordID].email,
-                username:       recordsNow[recordID].username,
-                employeeID:     recordsNow[recordID].employeeID,
-                staffNumber:    recordsNow[recordID].staffNumber,
-                firstName:      recordsNow[recordID].firstName,
-                lastName:       recordsNow[recordID].lastName,
-                fullName:       recordsNow[recordID].fullName,
-                sortableName:   recordsNow[recordID].sortableName,
-                ein:            recordsNow[recordID].ein,
-                locationCodes:  recordsNow[recordID].locationCodes,
-                schoolCodes:    recordsNow[recordID].schoolCodes,
-                jobCodes:       recordsNow[recordID].jobCodes,
-                homeLocation:   recordsNow[recordID].homeLocation,
-                directory:      recordsNow[recordID].directory,
-                phone:          recordsNow[recordID].phone,
-                extension:      recordsNow[recordID].extension,
-                mbxnumber:      recordsNow[recordID].mbxnumber,
-                assignments:    recordsNow[recordID].assignments
+                id:                        recordsNow[recordID].id,
+                email:                     recordsNow[recordID].email,
+                username:                  recordsNow[recordID].username,
+                employeeID:                recordsNow[recordID].employeeID,
+                firstName:                 recordsNow[recordID].firstName,
+                lastName:                  recordsNow[recordID].lastName,
+                fullName:                  recordsNow[recordID].fullName,
+                sortableName:              recordsNow[recordID].sortableName,
+                ein:                       recordsNow[recordID].ein,
+                locationCodes:             recordsNow[recordID].locationCodes,
+                schoolCodes:               recordsNow[recordID].schoolCodes,
+                jobCodes:                  recordsNow[recordID].jobCodes,
+                employeeGroupCodes:        recordsNow[recordID].employeeGroupCodes,
+                homeLocation:              recordsNow[recordID].homeLocation,
+                directory:                 recordsNow[recordID].directory,
+                phone:                     recordsNow[recordID].phone,
+                extension:                 recordsNow[recordID].extension,
+                mbxnumber:                 recordsNow[recordID].mbxnumber,
+                numberOfAssignments:       recordsNow[recordID].numberOfAssignments,
+                numberOfActiveAssignments: recordsNow[recordID].numberOfActiveAssignments,
+                assignments:               recordsNow[recordID].assignments
 
                 // these fields are not present in the data from ipps, so we don't map them
                 //createdAt
@@ -168,25 +179,27 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
             } else {
                 // get the corresponding record in recordsPrevious
                 const oldRecord = {
-                    id:             recordsPrevious[recordID].id,
-                    email:          recordsPrevious[recordID].email,
-                    username:       recordsPrevious[recordID].username,
-                    employeeID:     recordsPrevious[recordID].employeeID,
-                    staffNumber:    recordsPrevious[recordID].staffNumber,
-                    firstName:      recordsPrevious[recordID].firstName,
-                    lastName:       recordsPrevious[recordID].lastName,
-                    fullName:       recordsPrevious[recordID].fullName,
-                    sortableName:   recordsPrevious[recordID].sortableName,
-                    ein:            recordsPrevious[recordID].ein,
-                    locationCodes:  recordsPrevious[recordID].locationCodes,
-                    schoolCodes:    recordsPrevious[recordID].schoolCodes,
-                    jobCodes:       recordsPrevious[recordID].jobCodes,
-                    homeLocation:   recordsPrevious[recordID].homeLocation,
-                    directory:      recordsPrevious[recordID].directory,
-                    phone:          recordsPrevious[recordID].phone,
-                    extension:      recordsPrevious[recordID].extension,
-                    mbxnumber:      recordsPrevious[recordID].mbxnumber,
-                    assignments:    recordsPrevious[recordID].assignments
+                    id:                        recordsPrevious[recordID].id,
+                    email:                     recordsPrevious[recordID].email,
+                    username:                  recordsPrevious[recordID].username,
+                    employeeID:                recordsPrevious[recordID].employeeID,
+                    firstName:                 recordsPrevious[recordID].firstName,
+                    lastName:                  recordsPrevious[recordID].lastName,
+                    fullName:                  recordsPrevious[recordID].fullName,
+                    sortableName:              recordsPrevious[recordID].sortableName,
+                    ein:                       recordsPrevious[recordID].ein,
+                    locationCodes:             recordsPrevious[recordID].locationCodes,
+                    schoolCodes:               recordsPrevious[recordID].schoolCodes,
+                    jobCodes:                  recordsPrevious[recordID].jobCodes,
+                    employeeGroupCodes:        recordsPrevious[recordID].employeeGroupCodes,
+                    homeLocation:              recordsPrevious[recordID].homeLocation,
+                    directory:                 recordsPrevious[recordID].directory,
+                    phone:                     recordsPrevious[recordID].phone,
+                    extension:                 recordsPrevious[recordID].extension,
+                    mbxnumber:                 recordsPrevious[recordID].mbxnumber,
+                    numberOfAssignments:       recordsPrevious[recordID].numberOfAssignments,
+                    numberOfActiveAssignments: recordsPrevious[recordID].numberOfActiveAssignments,
+                    assignments:               recordsPrevious[recordID].assignments
         
                     // these fields are not present in the data from ipps, so we don't map them
                     //createdAt
@@ -306,25 +319,27 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
             for (const item of resources) {
                 if (!item.deleted) {
                     const recordObject = {
-                        id:             item.id,
-                        email:          item.email,
-                        username:       item.username,
-                        employeeID:     item.employeeID,
-                        staffNumber:    item.staffNumber,
-                        firstName:      item.firstName,
-                        lastName:       item.lastName,
-                        fullName:       item.fullName,
-                        sortableName:   item.sortableName,
-                        ein:            item.ein,
-                        locationCodes:  item.locationCodes,
-                        schoolCodes:    item.schoolCodes,
-                        jobCodes:       item.jobCodes,
-                        homeLocation:   item.homeLocation,
-                        directory:      item.directory,
-                        phone:          item.phone,
-                        extension:      item.extension,
-                        mbxnumber:      item.mbxnumber,
-                        assignments:    item.assignments
+                        id:                        item.id,
+                        email:                     item.email,
+                        username:                  item.username,
+                        employeeID:                item.employeeID,
+                        firstName:                 item.firstName,
+                        lastName:                  item.lastName,
+                        fullName:                  item.fullName,
+                        sortableName:              item.sortableName,
+                        ein:                       item.ein,
+                        locationCodes:             item.locationCodes,
+                        schoolCodes:               item.schoolCodes,
+                        jobCodes:                  item.jobCodes,
+                        employeeGroupCodes:        item.employeeGroupCodes,
+                        homeLocation:              item.homeLocation,
+                        directory:                 item.directory,
+                        phone:                     item.phone,
+                        extension:                 item.extension,
+                        mbxnumber:                 item.mbxnumber,
+                        numberOfAssignments:       item.numberOfAssignments,
+                        numberOfActiveAssignments: item.numberOfActiveAssignments,
+                        assignments:               item.assignments
     
                         // these fields are not present in the data from ipps
                         //createdAt: item.createdAt,
@@ -352,24 +367,26 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
 
     function makeHash(objectToHash: IPPSPerson): string {
         const objectForHash = JSON.stringify({
-            email:          objectToHash.email,
-            username:       objectToHash.username,
-            employeeID:     objectToHash.employeeID,
-            staffNumber:    objectToHash.staffNumber,
-            firstName:      objectToHash.firstName,
-            lastName:       objectToHash.lastName,
-            fullName:       objectToHash.fullName,
-            sortableName:   objectToHash.sortableName,
-            ein:            objectToHash.ein,
-            locationCodes:  objectToHash.locationCodes,
-            schoolCodes:    objectToHash.schoolCodes,
-            jobCodes:       objectToHash.jobCodes,
-            homeLocation:   objectToHash.homeLocation,
-            directory:      objectToHash.directory,
-            phone:          objectToHash.phone,
-            extension:      objectToHash.extension,
-            mbxnumber:      objectToHash.mbxnumber,
-            assignments:    objectToHash.assignments
+            email:                     objectToHash.email,
+            username:                  objectToHash.username,
+            employeeID:                objectToHash.employeeID,
+            firstName:                 objectToHash.firstName,
+            lastName:                  objectToHash.lastName,
+            fullName:                  objectToHash.fullName,
+            sortableName:              objectToHash.sortableName,
+            ein:                       objectToHash.ein,
+            locationCodes:             objectToHash.locationCodes,
+            schoolCodes:               objectToHash.schoolCodes,
+            jobCodes:                  objectToHash.jobCodes,
+            employeeGroupCodes:        objectToHash.employeeGroupCodes,
+            homeLocation:              objectToHash.homeLocation,
+            directory:                 objectToHash.directory,
+            phone:                     objectToHash.phone,
+            extension:                 objectToHash.extension,
+            mbxnumber:                 objectToHash.mbxnumber,
+            numberOfAssignments:       objectToHash.numberOfAssignments,
+            numberOfActiveAssignments: objectToHash.numberOfActiveAssignments,
+            assignments:               objectToHash.assignments
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;
