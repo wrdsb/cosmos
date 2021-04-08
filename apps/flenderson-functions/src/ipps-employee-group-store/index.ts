@@ -31,9 +31,9 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
 
         id: '',
 
-        groupCode: '',
-        groupDescription: '',
-        groupCategory: ''
+        employeeGroupCode: '',
+        employeeGroupDescription: '',
+        employeeGroupCategory: ''
     } as IPPSEmployeeGroup;
 
     let result;
