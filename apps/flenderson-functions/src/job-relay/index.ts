@@ -57,7 +57,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                         jobType: 'Flenderson.IPPSPerson.Reconcile'
                     }
                 ];
-                context.bindings.FlendersonJobEnqueue = queueMessage;
+                context.bindings.flendersonJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
 
@@ -67,7 +67,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 queueMessage = {
                     jobType: jobTriggered
                 };
-                context.bindings.FlendersonJobEnqueue = queueMessage;
+                context.bindings.flendersonJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
 
@@ -77,7 +77,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //queueMessage = {
                     //jobType: jobTriggered,
                 //};
-                //context.bindings.FlendersonJobEnqueue = queueMessage;
+                //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
             case 'Flenderson.IPPSJob.Reconcile':
@@ -86,7 +86,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //queueMessage = {
                     //jobType: jobTriggered,
                 //};
-                //context.bindings.FlendersonJobEnqueue = queueMessage;
+                //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
             case 'Flenderson.IPPSLocation.Reconcile':
@@ -95,7 +95,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //queueMessage = {
                     //jobType: jobTriggered,
                 //};
-                //context.bindings.FlendersonJobEnqueue = queueMessage;
+                //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
             case 'Flenderson.IPPSPerson.Reconcile':
@@ -104,7 +104,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //queueMessage = {
                     //jobType: jobTriggered,
                 //};
-                //context.bindings.FlendersonJobEnqueue = queueMessage;
+                //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
             case 'Flenderson.IPPSEmployeeGroup.Store':
@@ -113,7 +113,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //queueMessage = {
                     //jobType: jobTriggered,
                 //};
-                //context.bindings.FlendersonJobEnqueue = queueMessage;
+                //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
             case 'Flenderson.IPPSJob.Store':
@@ -122,7 +122,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //queueMessage = {
                     //jobType: jobTriggered,
                 //};
-                //context.bindings.FlendersonJobEnqueue = queueMessage;
+                //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
             case 'Flenderson.IPPSLocation.Store':
@@ -131,7 +131,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //queueMessage = {
                     //jobType: jobTriggered,
                 //};
-                //context.bindings.FlendersonJobEnqueue = queueMessage;
+                //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
             case 'Flenderson.IPPSPerson.Store':
@@ -140,7 +140,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //queueMessage = {
                     //jobType: jobTriggered,
                 //};
-                //context.bindings.FlendersonJobEnqueue = queueMessage;
+                //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
             default:
@@ -205,7 +205,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
+    context.log(JSON.stringify(functionInvocation));
     context.done(null, functionInvocation);
 };
 
