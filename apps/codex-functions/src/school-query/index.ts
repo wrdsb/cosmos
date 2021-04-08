@@ -37,16 +37,16 @@ const schoolQuery: AzureFunction = async function (context: Context, req: HttpRe
         cosmosQuery = `SELECT * FROM c where c.id = "${reqQuery.id}"`;
     } else if (reqQuery.alpha_code) {
         cosmosQuery = `SELECT * FROM c where c.alpha_code = "${reqQuery.alpha_code}"`;
-    } else if (reqQuery.school_code) {
+    } else if (reqQuery.schoolCode) {
         cosmosQuery = `SELECT * FROM c where c.alpha_code = "${reqQuery.alpha_code}"`;
     } else if (reqQuery.abbreviated_name) {
         cosmosQuery = `SELECT * FROM c where c.abbreviated_name = "${reqQuery.abbreviated_name}"`;
     } else {
         context.res = {
             status: 400,
-            body: "One of id, alpha_code, school_code, or abbreviated_name is required."
+            body: "One of id, alpha_code, schoolCode, or abbreviated_name is required."
         };
-        context.done("One of id, alpha_code, school_code, or abbreviated_name is required.");
+        context.done("One of id, alpha_code, schoolCode, or abbreviated_name is required.");
     }
 
     const querySpec = {

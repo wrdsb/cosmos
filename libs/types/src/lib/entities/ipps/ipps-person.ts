@@ -12,7 +12,6 @@ interface IPPSPerson extends CosmosPerson {
     // email?: string;
     // username?: string;
     // employeeID?: string;
-    // staffNumber?: string;
 
     // firstName?: string;
     // lastName?: string;
@@ -24,13 +23,16 @@ interface IPPSPerson extends CosmosPerson {
     locationCodes: string[];
     schoolCodes: string[];
     jobCodes: string[];
-    homeLocation: string;
+    employeeGroupCodes: string[];
 
+    homeLocation: string;
     directory: string;
     phone: string;
     extension: string;
     mbxnumber: string;
 
+    numberOfAssignments: number;
+    numberOfActiveAssignments: number;
     assignments: IPPSAssignment[];
 }
 

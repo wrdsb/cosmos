@@ -66,9 +66,9 @@ const SCABCCalculate: AzureFunction = async function (context: Context, triggerM
                 let email = people[ein].email ? people[ein].email : "";
                 let username = people[ein].username ? people[ein].username : "";
                 let name = people[ein].name ? people[ein].name : "";
-                let sortableName = people[ein].sortable_name ? people[ein].sortable_name : "";
-                let firstName = people[ein].first_name ? people[ein].first_name : "";
-                let lastName = people[ein].last_name ? people[ein].last_name : "";
+                let sortableName = people[ein].sortableName ? people[ein].sortableName : "";
+                let firstName = people[ein].firstName ? people[ein].firstName : "";
+                let lastName = people[ein].lastName ? people[ein].lastName : "";
     
                 materializedMembers[ein] = {
                     id: ein,

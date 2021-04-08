@@ -19,7 +19,7 @@ interface IPPSAssignment extends HRISAssignment {
     jobCode: string;
     jobDesc: string;
 
-    empGroupCode: string;
+    employeeGroupCode: string;
     empGroupDesc: string;
     empGroupCategory: string;
 

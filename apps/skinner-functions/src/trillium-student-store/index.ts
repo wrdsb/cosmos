@@ -19,17 +19,17 @@ const trilliumStudentStore: AzureFunction = async function (context: Context, tr
     let oldRecord = context.bindings.recordIn;
     let newRecord = {
         id: '',
-        student_number: '',
-        student_grade: '',
-        student_email: '',
-        student_first_name: '',
-        student_last_name: '',
-        school_code: '',
-        student_oyap: '',
-        student_shsm_sector: '',
-        created_at: '',
-        updated_at: '',
-        deleted_at: '',
+        studentNumber: '',
+        studentGrade: '',
+        studentEmail: '',
+        studentFirstName: '',
+        studentLastName: '',
+        schoolCode: '',
+        studentOYAP: '',
+        studentSHSMSector: '',
+        createdAt: '',
+        updatedAt: '',
+        deletedAt: '',
         deleted: false
     } as TrilliumStudent;
     let result;

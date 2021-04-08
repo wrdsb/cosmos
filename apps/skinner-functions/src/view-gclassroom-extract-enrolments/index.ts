@@ -21,43 +21,43 @@ const viewGclassroomExtractEnrolments: AzureFunction = async function (context: 
     let enrolmentsSortedArrays = {};
 
     objects.forEach(function(record: ViewGclassroomRecord) {
-        let school_code         = record.school_code ? record.school_code : "";
-        let class_code          = record.class_code ? record.class_code : "";
+        let schoolCode        = record.schoolCode ? record.schoolCode : "";
+        let classCode         = record.classCode ? record.classCode : "";
 
-        let student_number      = record.student_number ? record.student_number : "";
-        let student_grade       = record.student_grade ? record.student_grade : "";
-        let student_first_name  = record.student_first_name ? record.student_first_name : "";
-        let student_last_name   = record.student_last_name ? record.student_last_name : "";
-        let student_email       = record.student_email ? record.student_email : "";
+        let studentNumber     = record.studentNumber ? record.studentNumber : "";
+        let studentGrade      = record.studentGrade ? record.studentGrade : "";
+        let studentFirstName  = record.studentFirstName ? record.studentFirstName : "";
+        let studentLastName   = record.studentLastName ? record.studentLastName : "";
+        let studentEmail      = record.studentEmail ? record.studentEmail : "";
 
-        let staff_number        = record.staff_number ? record.staff_number : "";
+        let staffNumber       = record.staffNumber ? record.staffNumber : "";
 
-        if (school_code !== "" && class_code !== "" && student_number !== "") {
-            let classObjectID     = sanitizeID(`${school_code}-${class_code}`);
-            let enrolmentObjectID = sanitizeID(`${classObjectID}-${student_number}`);
+        if (schoolCode !== "" && classCode !== "" && studentNumber !== "") {
+            let classObjectID     = sanitizeID(`${schoolCode}-${classCode}`);
+            let enrolmentObjectID = sanitizeID(`${classObjectID}-${studentNumber}`);
     
             // Extract the 'enrolment' object from the row
             let enrolmentObject = {
-                id:                  enrolmentObjectID,
-                school_code:         school_code,
-                class_code:          class_code,
-                student_number:      student_number,
-                student_grade:       student_grade,
-                student_first_name:  student_first_name,
-                student_last_name:   student_last_name,
-                student_email:       student_email,
-                staff_number:        staff_number
+                id:                enrolmentObjectID,
+                schoolCode:        schoolCode,
+                classCode:         classCode,
+                studentNumber:     studentNumber,
+                studentGrade:      studentGrade,
+                studentFirstName:  studentFirstName,
+                studentLastName:   studentLastName,
+                studentEmail:      studentEmail,
+                staffNumber:       staffNumber
             } as TrilliumEnrolment;
     
-            if (!enrolmentsSortedObject[enrolmentObject.school_code]) {
-                enrolmentsSortedObject[enrolmentObject.school_code] = {};
+            if (!enrolmentsSortedObject[enrolmentObject.schoolCode]) {
+                enrolmentsSortedObject[enrolmentObject.schoolCode] = {};
             }
-            if (!enrolmentsSortedArrays[enrolmentObject.school_code]) {
-                enrolmentsSortedArrays[enrolmentObject.school_code] = [];
+            if (!enrolmentsSortedArrays[enrolmentObject.schoolCode]) {
+                enrolmentsSortedArrays[enrolmentObject.schoolCode] = [];
             }
     
-            enrolmentsSortedObject[enrolmentObject.school_code][enrolmentObjectID] = enrolmentObject;
-            enrolmentsSortedArrays[enrolmentObject.school_code].push(enrolmentObject);
+            enrolmentsSortedObject[enrolmentObject.schoolCode][enrolmentObjectID] = enrolmentObject;
+            enrolmentsSortedArrays[enrolmentObject.schoolCode].push(enrolmentObject);
         }
     });
 

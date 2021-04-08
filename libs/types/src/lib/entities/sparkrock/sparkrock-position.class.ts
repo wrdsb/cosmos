@@ -16,7 +16,7 @@ class SparkrockPosition implements Position {
     phone_no: string;
     school_code: string;
     school_type: string;
-    home_location_indicator: string;
+    homeLocationIndicator: string;
     position_start_date: string;
     position_end_date: string;
 }

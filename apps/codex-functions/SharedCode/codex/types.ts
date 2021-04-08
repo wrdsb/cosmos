@@ -1,7 +1,7 @@
 interface Trillium {
     id: string;
     ein: string;
-    school_code: string;
+    schoolCode: string;
     school_year: string;
     staff_type: string;
     status: string;
@@ -14,7 +14,7 @@ interface Trillium {
 
 interface Assignment {
     id: string;
-    school_code: string;
+    schoolCode: string;
     class_code: string;
     teacher_ein: string;
     teacher_email: string;
@@ -29,10 +29,10 @@ interface IPPS {
     ein: string;
     email: string;
     username: string;
-    first_name: string;
-    last_name: string;
+    firstName: string;
+    lastName: string;
     name: string;
-    sortable_name: string;
+    sortableName: string;
     directory: string;
     phone: string;
     extension: string;
@@ -45,24 +45,24 @@ interface IPPS {
 }
 
 interface Position {
-    position_id: string;
+    positionID: string;
     ein: string;
-    activity_code: string;
-    employee_group_category: string;
-    employee_group_code: string;
-    employee_group_description: string;
+    activityCode: string;
+    employeeGroupCategory: string;
+    employeeGroupCode: string;
+    employeeGroupDescription: string;
     extension: string;
-    job_code: string;
-    job_description: string;
-    location_code: string;
-    location_description: string;
+    jobCode: string;
+    jobDescription: string;
+    locationCode: string;
+    locationDescription: string;
     panel: string;
-    phone_no: string;
-    school_code: string;
-    school_type: string;
-    home_location_indicator: string;
-    position_start_date: string;
-    position_end_date: string;
+    phone: string;
+    schoolCode: string;
+    schoolType: string;
+    homeLocationIndicator: string;
+    positionStartDate: string;
+    positionEndDate: string;
 }
 
 export { Trillium, Assignment, IPPS, Position };

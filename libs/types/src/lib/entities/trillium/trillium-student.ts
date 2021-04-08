@@ -1,16 +1,16 @@
 interface TrilliumStudent {
   id?: string;
-  student_number: string;
-  student_grade: string;
-  student_email: string;
-  student_first_name: string;
-  student_last_name: string;
-  school_code: string;
-  student_oyap: string;
-  student_shsm_sector: string;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: string;
+  studentNumber: string;
+  studentGrade: string;
+  studentEmail: string;
+  studentFirstName: string;
+  studentLastName: string;
+  schoolCode: string;
+  studentOYAP: string;
+  studentSHSMSector: string;
+  createdAt?: string;
+  updatedAt?: string;
+  deletedAt?: string;
   deleted?: boolean
 }
 

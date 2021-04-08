@@ -34,18 +34,18 @@ const materializePerson: AzureFunction = async function (context: Context, trigg
     const pal = flendersonPerson.username || '';
 
     const full_name = flendersonPerson.name || '';
-    const first_name = flendersonPerson.first_name || '';
-    const last_name = flendersonPerson.last_name || '';
-    const sortable_name = flendersonPerson.sortable_name || '';
+    const firstName = flendersonPerson.firstName || '';
+    const lastName = flendersonPerson.lastName || '';
+    const sortableName = flendersonPerson.sortableName || '';
 
-    const location_codes = flendersonPerson.location_codes || [];
+    const locationCodes = flendersonPerson.locationCodes || [];
 
     let trillium_record = {};;
-    let school_codes = [];;
+    let schoolCodes = [];;
 
     if (skinnerPerson) {
         trillium_record = skinnerPerson;
-        school_codes = skinnerPerson.school_codes;
+        schoolCodes = skinnerPerson.schoolCodes;
     }
 
     const codexPerson = {
@@ -54,12 +54,12 @@ const materializePerson: AzureFunction = async function (context: Context, trigg
         pal: pal,
     
         full_name: full_name,
-        first_name: first_name,
-        last_name: last_name,
-        sortable_name: sortable_name,
+        firstName: firstName,
+        lastName: lastName,
+        sortableName: sortableName,
     
-        school_codes: school_codes,
-        location_codes: location_codes,
+        schoolCodes: schoolCodes,
+        locationCodes: locationCodes,
     
         trillium_record: trillium_record,
     

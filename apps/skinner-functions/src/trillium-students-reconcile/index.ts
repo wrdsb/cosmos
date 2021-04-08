@@ -79,44 +79,44 @@ const trilliumStudentsReconcile: AzureFunction = async function (context: Contex
         // loop through all records in records_now, looking for updates and creates
         Object.getOwnPropertyNames(records_now).forEach(function (record_id) {
             const new_record = {
-                id:                   records_now[record_id].id,
-                student_number:       records_now[record_id].student_number,
-                student_grade:        records_now[record_id].student_grade,
-                student_email:        records_now[record_id].student_email,
-                student_first_name:   records_now[record_id].student_first_name,
-                student_last_name:    records_now[record_id].student_last_name,
-                school_code:          records_now[record_id].school_code,
-                student_oyap:         records_now[record_id].student_oyap,
-                student_shsm_sector:  records_now[record_id].student_shsm_sector
+                id:                records_now[record_id].id,
+                studentNumber:     records_now[record_id].studentNumber,
+                studentGrade:      records_now[record_id].studentGrade,
+                studentEmail:      records_now[record_id].studentEmail,
+                studentFirstName:  records_now[record_id].studentFirstName,
+                studentLastName:   records_now[record_id].studentLastName,
+                schoolCode:        records_now[record_id].schoolCode,
+                studentOYAP:       records_now[record_id].studentOYAP,
+                studentSHSMSector: records_now[record_id].studentSHSMSector
 
                 // these fields are not present in the data from trillium, so we don't map them
-                //created_at
-                //updated_at
-                //deleted_at
+                //createdAt
+                //updatedAt
+                //deletedAt
                 //deleted
-            };
+            } as TrilliumStudent;
     
             if (!records_previous || !records_previous[record_id]) {
                 calculation.differences.created_records.push(new_record);
             } else {
                 // get the corresponding record in records_previous
                 const old_record = {
-                    id:                   records_previous[record_id].id,
-                    student_number:       records_previous[record_id].student_number,
-                    student_grade:        records_previous[record_id].student_grade,
-                    student_email:        records_previous[record_id].student_email,
-                    student_first_name:   records_previous[record_id].student_first_name,
-                    student_last_name:    records_previous[record_id].student_last_name,
-                    school_code:          records_previous[record_id].school_code,
-                    student_oyap:         records_previous[record_id].student_oyap,
-                    student_shsm_sector:  records_previous[record_id].student_shsm_sector
+                    id:                 records_previous[record_id].id,
+                    studentNumber:      records_previous[record_id].studentNumber,
+                    studentGrade:       records_previous[record_id].studentGrade,
+                    studentEmail:       records_previous[record_id].studentEmail,
+                    studentFirstName:   records_previous[record_id].studentFirstName,
+                    studentLastName:    records_previous[record_id].studentLastName,
+                    schoolCode:         records_previous[record_id].schoolCode,
+                    studentOYAP:        records_previous[record_id].studentOYAP,
+                    studentSHSMSector:  records_previous[record_id].studentSHSMSector
     
                     // these fields are not present in the data from trillium, so we don't map them
-                    //created_at
-                    //updated_at
-                    //deleted_at
+                    //createdAt
+                    //updatedAt
+                    //deletedAt
                     //deleted
-                }; 
+                } as TrilliumStudent; 
     
                 // Re-calculate the change detection hashes locally,
                 // because different functions may have different change detection standards
@@ -230,19 +230,19 @@ const trilliumStudentsReconcile: AzureFunction = async function (context: Contex
                 if (!item.deleted) {
                     let studentObject = {
                         id: item.id,
-                        student_number: item.student_number,
-                        student_grade: item.student_grade,
-                        student_email: item.student_email,
-                        student_first_name: item.student_first_name,
-                        student_last_name: item.student_last_name,
-                        school_code: item.school_code,
-                        student_oyap: item.student_oyap,
-                        student_shsm_sector: item.student_shsm_sector
+                        studentNumber:     item.studentNumber,
+                        studentGrade:      item.studentGrade,
+                        studentEmail:      item.studentEmail,
+                        studentFirstName:  item.studentFirstName,
+                        studentLastName:   item.studentLastName,
+                        schoolCode:        item.schoolCode,
+                        studentOYAP:       item.studentOYAP,
+                        studentSHSMSector: item.studentSHSMSector
     
                         // these fields are not present in the data from trillium
-                        //created_at: item.created_at,
-                        //updated_at: item.updated_at,
-                        //deleted_at: item.deleted_at,
+                        //createdAt: item.createdAt,
+                        //updatedAt: item.updatedat,
+                        //deletedAt: item.deletedAt,
                         //deleted: item.deleted
                     } as TrilliumStudent;
         
@@ -265,14 +265,14 @@ const trilliumStudentsReconcile: AzureFunction = async function (context: Contex
 
     function makeHash(objectToHash: TrilliumStudent): string {
         const objectForHash = JSON.stringify({
-            student_number: objectToHash.student_number,
-            student_grade: objectToHash.student_grade,
-            student_email: objectToHash.student_email,
-            student_first_name: objectToHash.student_first_name,
-            student_last_name: objectToHash.student_last_name,
-            school_code: objectToHash.school_code,
-            student_oyap: objectToHash.student_oyap,
-            student_shsm_sector: objectToHash.student_shsm_sector
+            studentNumber:     objectToHash.studentNumber,
+            studentGrade:      objectToHash.studentGrade,
+            studentEmail:      objectToHash.studentEmail,
+            studentFirstName:  objectToHash.studentFirstName,
+            studentLastName:   objectToHash.studentLastName,
+            schoolCode:        objectToHash.schoolCode,
+            studentOYAP:       objectToHash.studentOYAP,
+            studentSHSMSector: objectToHash.studentSHSMSector
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;

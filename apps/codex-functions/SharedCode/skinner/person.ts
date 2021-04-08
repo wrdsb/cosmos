@@ -2,26 +2,26 @@ import { SchoolGig } from "./types";
 
 interface Employee {
     id: string;
-    staff_number: string;
+    staffNumber: string;
     email: string;
 
-    school_gigs: Array<SchoolGig>;
+    schoolGigs: Array<SchoolGig>;
 
-    created_at: string;
-    updated_at: string;
-    deleted_at: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
     deleted: boolean
 }
 
 class School {
     id: string;
-    school_code: string;
+    schoolCode: string;
 
-    staff_assignments: Array<SchoolGig>;
+    staffAssignments: Array<SchoolGig>;
 
-    created_at: string;
-    updated_at: string;
-    deleted_at: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
     deleted: boolean
 }
 
@@ -58,9 +58,9 @@ type StaffNumber = string;
 type Email = string;
 
 type SchoolStudentID = string;
-type student_number = string;
-type student_email = string;
-type student_first_name = string;
-type student_last_name = string;
-type school_code = string;
-type student_oyap = string;
+type studentNumber = string;
+type studentEmail = string;
+type studentFirstName = string;
+type studentLastName = string;
+type schoolCode = string;
+type studentOYAP = string;

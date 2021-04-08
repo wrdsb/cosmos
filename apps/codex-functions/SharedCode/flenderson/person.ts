@@ -5,10 +5,10 @@ class Person implements flenderson.IPPSPerson {
     ein: string;
     email: string;
     username: string;
-    first_name: string;
-    last_name: string;
+    firstName: string;
+    lastName: string;
     name: string;
-    sortable_name: string;
+    sortableName: string;
     directory: string;
     phone: string;
     extension: string;

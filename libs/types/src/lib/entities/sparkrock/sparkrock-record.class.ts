@@ -6,17 +6,17 @@ class SparkrockRecord implements HRISRecord {
     ein: string;
     email: string;
     username: string;
-    first_name: string;
-    last_name: string;
+    firstName: string;
+    lastName: string;
     name: string;
-    sortable_name: string;
+    sortableName: string;
     directory: string;
     phone: string;
     extension: string;
     mbxnumber: string;
-    created_at: string;
-    updated_at: string;
-    deleted_at: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
     deleted: boolean
     positions: Array<SparkrockPosition>;
 }

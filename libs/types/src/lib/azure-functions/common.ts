@@ -47,6 +47,8 @@ interface FunctionInvocation {
     functionDataType: string;
     functionDataOperation: string;
 
+    jobType?: string;
+
     eventLabel: string;
 
     logPayload?: any;

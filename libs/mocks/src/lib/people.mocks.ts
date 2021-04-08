@@ -8,13 +8,13 @@ export const PEOPLE: CodexPerson[] = [
         pal: 'string',
     
         name: 'string',
-        first_name: 'string',
-        last_name: 'string',
-        sortable_name: 'string',
+        firstName: 'string',
+        lastName: 'string',
+        sortableName: 'string',
     
         people_set_memberships: ['string','string','string'],
     
-        school_codes: ['string','string','string'],
+        schoolCodes: ['string','string','string'],
         location_codes: ['string','string','string'],
     
         ippsRecord: {
@@ -23,19 +23,19 @@ export const PEOPLE: CodexPerson[] = [
             email: 'string',
 
             username: 'string',
-            first_name: 'string',
-            last_name: 'string',
+            firstName: 'string',
+            lastName: 'string',
             name: 'string',
-            sortable_name: 'string',
+            sortableName: 'string',
 
             directory: 'string',
             phone: 'string',
             extension: 'string',
             mbxnumber: 'string',
 
-            created_at: 'string',
-            updated_at: 'string',
-            deleted_at: 'string',
+            createdAt: 'string',
+            updatedAt: 'string',
+            deletedAt: 'string',
             deleted: false,
 
             positions: []
@@ -43,16 +43,16 @@ export const PEOPLE: CodexPerson[] = [
         
         trilliumRecord: {
             id: 'string',
-            ein: 'string',
+            staffNumber: 'string',
 
-            school_code: 'string',
-            school_year: 'string',
-            staff_type: 'string',
+            schoolCode: 'string',
+            schoolYear: 'string',
+            staffType: 'string',
             status: 'string',
 
-            created_at: 'string',
-            updated_at: 'string',
-            deleted_at: 'string',
+            createdAt: 'string',
+            updatedAt: 'string',
+            deletedAt: 'string',
             deleted: false,
 
             assignments: []
@@ -65,13 +65,13 @@ export const PEOPLE: CodexPerson[] = [
         pal: 'string',
     
         name: 'string',
-        first_name: 'string',
-        last_name: 'string',
-        sortable_name: 'string',
+        firstName: 'string',
+        lastName: 'string',
+        sortableName: 'string',
     
         people_set_memberships: ['string','string','string'],
     
-        school_codes: ['string','string','string'],
+        schoolCodes: ['string','string','string'],
         location_codes: ['string','string','string'],
     
         ippsRecord: {
@@ -80,19 +80,19 @@ export const PEOPLE: CodexPerson[] = [
             email: 'string',
 
             username: 'string',
-            first_name: 'string',
-            last_name: 'string',
+            firstName: 'string',
+            lastName: 'string',
             name: 'string',
-            sortable_name: 'string',
+            sortableName: 'string',
 
             directory: 'string',
             phone: 'string',
             extension: 'string',
             mbxnumber: 'string',
 
-            created_at: 'string',
-            updated_at: 'string',
-            deleted_at: 'string',
+            createdAt: 'string',
+            updatedAt: 'string',
+            deletedAt: 'string',
             deleted: false,
 
             positions: []
@@ -100,16 +100,16 @@ export const PEOPLE: CodexPerson[] = [
         
         trilliumRecord: {
             id: 'string',
-            ein: 'string',
+            staffNumber: 'string',
 
-            school_code: 'string',
-            school_year: 'string',
-            staff_type: 'string',
+            schoolCode: 'string',
+            schoolYear: 'string',
+            staffType: 'string',
             status: 'string',
 
-            created_at: 'string',
-            updated_at: 'string',
-            deleted_at: 'string',
+            createdAt: 'string',
+            updatedAt: 'string',
+            deletedAt: 'string',
             deleted: false,
 
             assignments: []
@@ -122,13 +122,13 @@ export const PEOPLE: CodexPerson[] = [
         pal: 'string',
     
         name: 'string',
-        first_name: 'string',
-        last_name: 'string',
-        sortable_name: 'string',
+        firstName: 'string',
+        lastName: 'string',
+        sortableName: 'string',
     
         people_set_memberships: ['string','string','string'],
     
-        school_codes: ['string','string','string'],
+        schoolCodes: ['string','string','string'],
         location_codes: ['string','string','string'],
     
         ippsRecord: {
@@ -137,19 +137,19 @@ export const PEOPLE: CodexPerson[] = [
             email: 'string',
 
             username: 'string',
-            first_name: 'string',
-            last_name: 'string',
+            firstName: 'string',
+            lastName: 'string',
             name: 'string',
-            sortable_name: 'string',
+            sortableName: 'string',
 
             directory: 'string',
             phone: 'string',
             extension: 'string',
             mbxnumber: 'string',
 
-            created_at: 'string',
-            updated_at: 'string',
-            deleted_at: 'string',
+            createdAt: 'string',
+            updatedAt: 'string',
+            deletedAt: 'string',
             deleted: false,
 
             positions: []
@@ -157,16 +157,16 @@ export const PEOPLE: CodexPerson[] = [
         
         trilliumRecord: {
             id: 'string',
-            ein: 'string',
+            staffNumber: 'string',
 
-            school_code: 'string',
-            school_year: 'string',
-            staff_type: 'string',
+            schoolCode: 'string',
+            schoolYear: 'string',
+            staffType: 'string',
             status: 'string',
 
-            created_at: 'string',
-            updated_at: 'string',
-            deleted_at: 'string',
+            createdAt: 'string',
+            updatedAt: 'string',
+            deletedAt: 'string',
             deleted: false,
 
             assignments: []

@@ -14,7 +14,8 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
 
     let jobType = '' as FlendersonJobType;
     jobType = 'Flenderson.ViewStaffDir.Process';
-
+    functionInvocation.jobType = jobType;
+    
     const panamaBlob = context.bindings.panamaBlob;
 
     const rows = panamaBlob;
@@ -36,15 +37,15 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
         const directoryRecord = {
             id:             row.EMAIL_ADDRESS,
             email:          row.EMAIL_ADDRESS,
-            first_name:     row.FIRST_NAME,
-            last_name:      row.SURNAME,
+            firstName:      row.FIRST_NAME,
+            lastName:       row.SURNAME,
             directory:      row.DIRECTORY,
-            phone_no:       row.PHONE_NO,
+            phone:          row.PHONE_NO,
             extension:      row.EXTENSION,
             mbxnumber:      row.MBXNUMBER,
-            school_code:    row.SCHOOL_CODE,
-            full_name:      row.FULL_NAME,
-            job_desc:       row.JOB_DESC
+            schoolCode:     row.SCHOOL_CODE,
+            fullName:       row.FULL_NAME,
+            jobDesc:        row.JOB_DESC
         };
 
         // Grab what will become our object identifier

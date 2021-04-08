@@ -43,11 +43,11 @@ const materializeSchoolStaff: AzureFunction = async function (context: Context, 
 
     recordsNow.forEach(record => {
         logObject.totalRecords++;
-        if (blobsObject[record.school_code]) {
-            blobsObject[record.school_code].push(record);
+        if (blobsObject[record.schoolCode]) {
+            blobsObject[record.schoolCode].push(record);
         } else {
-            blobsObject[record.school_code] = [];
-            blobsObject[record.school_code].push(record);
+            blobsObject[record.schoolCode] = [];
+            blobsObject[record.schoolCode].push(record);
         }
     });
 

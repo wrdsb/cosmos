@@ -1,57 +1,57 @@
 interface SchoolClass {
     id: string;
-    school_code: string;
-    class_code: string;
+    schoolCode: string;
+    classCode: string;
     block: string;
-    room_number: string;
+    roomNumber: string;
 
-    created_at: string;
-    updated_at: string;
-    deleted_at: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
     deleted: boolean
 }
 
 interface SchoolGig {
     id: string;
-    school_code: string;
-    school_year: string;
-    staff_type: string;
+    schoolCode: string;
+    schoolYear: string;
+    staffType: string;
     status: string;
 
     classes: Array<SchoolClass>;
 
-    created_at: string;
-    updated_at: string;
-    deleted_at: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
     deleted: boolean
 }
 
 interface EmployeeAssignment {
     id: string;
-    staff_number: string;
+    staffNumber: string;
     email: string;
 
     gig: SchoolGig;
 
-    created_at: string;
-    updated_at: string;
-    deleted_at: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
     deleted: boolean
 }
 
 
 interface SchoolStudent {
     id: string;
-    student_number: string;
-    student_email: string;
-    student_first_name: string;
-    student_last_name: string;
-    school_code: string;
-    student_oyap: string;
+    studentNumber: string;
+    studentEmail: string;
+    studentFirstName: string;
+    studentLastName: string;
+    schoolCode: string;
+    studentOYAP: string;
 
-    created_at: string;
-    updated_at: string;
-    deleted_at: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
     deleted: boolean
 }
 

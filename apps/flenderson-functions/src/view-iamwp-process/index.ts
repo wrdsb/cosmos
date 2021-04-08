@@ -14,7 +14,8 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
 
     let jobType = '' as FlendersonJobType;
     jobType = 'Flenderson.ViewIAMWP.Process';
-
+    functionInvocation.jobType = jobType;
+    
     const panamaBlob = context.bindings.panamaBlob;
 
     const rows = panamaBlob;
@@ -47,68 +48,68 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
             ein:            row.EMPLOYEE_ID,
             username:       (row.USERNAME ? row.USERNAME.toLowerCase() : ''),
             name:           row.FIRST_NAME + ' ' + row.SURNAME,
-            sortable_name:  row.SURNAME + ', ' + row.FIRST_NAME,
-            first_name:     row.FIRST_NAME,
-            last_name:      row.SURNAME,
+            sortableName:   row.SURNAME + ', ' + row.FIRST_NAME,
+            firstName:      row.FIRST_NAME,
+            lastName:       row.SURNAME,
             email:          row.EMAIL_ADDRESS,
-            home_location:  '',
+            homeLocation:  '',
             positions:      {}
         };
 
         // Create the Position object for this row
         const personPosition = {
             ein:                         row.EMPLOYEE_ID,
-            position_id:                 row.POSITION_ID,
-            activity_code:               row.ACTIVITY_CODE,
-            employee_group_category:     row.EMP_GROUP_CATEGORY,
-            employee_group_code:         row.EMP_GROUP_CODE,
-            employee_group_description:  row.EMP_GROUP_DESC,
+            positionID:                  row.POSITION_ID,
+            activityCode:                row.ACTIVITY_CODE,
+            employeeGroupCategory:       row.EMP_GROUP_CATEGORY,
+            employeeGroupCode:           row.EMP_GROUP_CODE,
+            employeeGroupDescription:    row.EMP_GROUP_DESC,
             extension:                   row.EXTENSION,
-            job_code:                    row.JOB_CODE,
-            job_description:             row.JOB_DESC,
-            location_code:               row.LOCATION_CODE,
-            location_description:        row.LOCATION_DESC,
+            jobCode:                     row.JOB_CODE,
+            jobDescription:              row.JOB_DESC,
+            locationCode:                row.LOCATION_CODE,
+            locationDescription:         row.LOCATION_DESC,
             panel:                       row.PANEL,
-            phone_no:                    row.PHONE_NO,
-            school_code:                 row.SCHOOL_CODE,
-            school_type:                 row.SCHOOL_TYPE,
-            home_location_indicator:     row.HOME_LOC_IND,
-            position_start_date:         row.POSITION_START_DATE,
-            position_end_date:           row.POSITION_END_DATE
+            phone:                       row.PHONE_NO,
+            schoolCode:                  row.SCHOOL_CODE,
+            schoolType:                  row.SCHOOL_TYPE,
+            homeLocationIndicator:       row.HOME_LOC_IND,
+            positionStartDate:           row.POSITION_START_DATE,
+            positionEndDate:             row.POSITION_END_DATE
         };
 
         // Grab what will become our object identifiers
         const ein = personRecord.ein;
-        const position_id = personPosition.position_id;
+        const positionID = personPosition.positionID;
 
         // Upsert Person, and current Position, to people collection object
         if (peopleObject[ein]) {
-            if (personPosition.home_location_indicator === 'Y') {peopleObject[ein].home_location = personPosition.location_code;}
-            peopleObject[ein].positions[position_id] = personPosition;
+            if (personPosition.homeLocationIndicator === 'Y') {peopleObject[ein].homeLocation = personPosition.locationCode;}
+            peopleObject[ein].positions[positionID] = personPosition;
 
         } else {
-            if (personPosition.home_location_indicator === 'Y') {personRecord.home_location = personPosition.location_code;}
+            if (personPosition.homeLocationIndicator === 'Y') {personRecord.homeLocation = personPosition.locationCode;}
             personRecord.positions = {};
-            personRecord.positions[position_id] = personPosition;
+            personRecord.positions[positionID] = personPosition;
             peopleObject[ein] = personRecord;
         }
 
         // Add/overwrite jobs, groups, and locations from this row to their collection objects
-        jobsObject[personPosition.job_code] = {
-            id: personPosition.job_code,
-            job_code: personPosition.job_code,
-            job_description: personPosition.job_description,
+        jobsObject[personPosition.jobCode] = {
+            id: personPosition.jobCode,
+            jobCode: personPosition.jobCode,
+            jobDescription: personPosition.jobDescription,
         };
-        groupsObject[personPosition.employee_group_code] = {
-            id: personPosition.employee_group_code,
-            employee_group_code: personPosition.employee_group_code,
-            employee_group_category: personPosition.employee_group_category,
-            employee_group_description: personPosition.employee_group_description,
+        groupsObject[personPosition.employeeGroupCode] = {
+            id: personPosition.employeeGroupCode,
+            employeeGroupCode: personPosition.employeeGroupCode,
+            employeeGroupCategory: personPosition.employeeGroupCategory,
+            employeeGroupDescription: personPosition.employeeGroupDescription,
         };
-        locationsObject[personPosition.location_code] = {
-            id: personPosition.location_code,
-            location_code: personPosition.location_code,
-            location_description: personPosition.location_description,
+        locationsObject[personPosition.locationCode] = {
+            id: personPosition.locationCode,
+            locationCode: personPosition.locationCode,
+            locationDescription: personPosition.locationDescription,
         };
     });
 
@@ -116,11 +117,11 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
     Object.getOwnPropertyNames(peopleObject).forEach(function (ein) {
         peopleProcessed++;
         const person = peopleObject[ein];
-        const positions_array = [];
+        const positionsArray = [];
         Object.getOwnPropertyNames(person.positions).forEach(function (position) {
-            positions_array.push(person.positions[position]);
+            positionsArray.push(person.positions[position]);
         });
-        person.positions = positions_array;
+        person.positions = positionsArray;
         peopleArray.push(person);
     });
 

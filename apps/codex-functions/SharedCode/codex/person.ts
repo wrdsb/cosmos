@@ -5,14 +5,14 @@ class Person {
     pal: string;
 
     name: string;
-    first_name: string;
-    last_name: string;
-    sortable_name: string;
+    firstName: string;
+    lastName: string;
+    sortableName: string;
 
     people_set_memberships: Array<string>;
 
-    school_codes: Array<string>;
-    location_codes: Array<string>;
+    schoolCodes: Array<string>;
+    locationCodes: Array<string>;
 
     trillium: string;
 

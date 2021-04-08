@@ -23,7 +23,7 @@ const membershipsLegacyCalculate: AzureFunction = async function (context: Conte
     let membersByUsername = {};
 
     let membersArray = [];
-    let membersCSV = '"ein","email","username","first_name","last_name","full_name","sortable_name"' + "\n";
+    let membersCSV = '"ein","email","username","firstName","lastName","full_name","sortableName"' + "\n";
 
     rows.forEach(function(row) {
         if ( !excluded_job_codes.includes(row.JOB_CODE) && activity_codes.includes(row.ACTIVITY_CODE)) {
@@ -31,28 +31,28 @@ const membershipsLegacyCalculate: AzureFunction = async function (context: Conte
             let ein = (row.EMPLOYEE_ID) ? row.EMPLOYEE_ID : '';
             let email = (row.EMAIL_ADDRESS) ? row.EMAIL_ADDRESS : '';
             let username = (row.USERNAME) ? row.USERNAME.toLowerCase() : '';
-            let first_name = (row.FIRST_NAME) ? row.FIRST_NAME : '';
-            let last_name = (row.SURNAME) ? row.SURNAME : '';
-            let full_name = (row.SURNAME && row.FIRST_NAME) ? row.FIRST_NAME + ' ' + row.SURNAME : '';
-            let sortable_name = (row.SURNAME && row.FIRST_NAME) ? row.SURNAME + ', ' + row.FIRST_NAME : '';
+            let firstName = (row.FIRST_NAME) ? row.FIRST_NAME : '';
+            let lastName = (row.SURNAME) ? row.SURNAME : '';
+            let fullName = (row.SURNAME && row.FIRST_NAME) ? row.FIRST_NAME + ' ' + row.SURNAME : '';
+            let sortableName = (row.SURNAME && row.FIRST_NAME) ? row.SURNAME + ', ' + row.FIRST_NAME : '';
 
             let person = {
                 ein: ein,
                 email: email,
                 username: username,
-                first_name: first_name,
-                last_name: last_name,
-                full_name: full_name,
-                sortable_name: sortable_name
+                firstName: firstName,
+                lastName: lastName,
+                fullName: fullName,
+                sortableName: sortableName
             };
 
-            let job_code = (row.JOB_CODE) ? 'JC-' + row.JOB_CODE : '';
-            let group_code = (row.EMP_GROUP_CODE) ? 'GC-' + row.EMP_GROUP_CODE : '';
-            let location_code = (row.LOCATION_CODE) ? 'LC-' + row.LOCATION_CODE : '';
-            let school_code = (row.SCHOOL_CODE) ? 'SC-' + row.SCHOOL_CODE : '';
+            let jobCode = (row.JOB_CODE) ? 'JC-' + row.JOB_CODE : '';
+            let groupCode = (row.EMP_GROUP_CODE) ? 'GC-' + row.EMP_GROUP_CODE : '';
+            let locationCode = (row.LOCATION_CODE) ? 'LC-' + row.LOCATION_CODE : '';
+            let schoolCode = (row.SCHOOL_CODE) ? 'SC-' + row.SCHOOL_CODE : '';
             let panel = (row.PANEL) ? 'PANEL-' + row.PANEL : 'PANEL-X';
 
-            let qualifications = [job_code, group_code, location_code, school_code, panel];
+            let qualifications = [jobCode, groupCode, locationCode, schoolCode, panel];
             let qualifies = [];
 
             legacySetDefinition.definition.forEach(function(criteria) {  // foreach array of criteria in the definition
@@ -83,7 +83,7 @@ const membershipsLegacyCalculate: AzureFunction = async function (context: Conte
 
         membersArray.push(membersByEmail[email]);
         
-        let csv_row = '"' + member.ein +'","'+ member.email +'","'+ member.username +'","'+ member.first_name +'","'+ member.last_name +'","'+ member.full_name +'","'+ member.sortable_name + '"' + "\n";
+        let csv_row = '"' + member.ein +'","'+ member.email +'","'+ member.username +'","'+ member.firstName +'","'+ member.lastName +'","'+ member.fullName +'","'+ member.sortableName + '"' + "\n";
         membersCSV = membersCSV + csv_row;
     })
 
