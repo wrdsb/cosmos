@@ -15,7 +15,8 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
 
     let jobType = '' as FlendersonJobType;
     jobType = 'Flenderson.IPPSPerson.Store';
-
+    functionInvocation.jobType = jobType;
+    
     const triggerObject = triggerMessage as IPPSPersonStoreFunctionRequest;
     const operation = triggerObject.operation as StoreFunctionOperation;
     const payload = triggerObject.payload as IPPSPersonStoreFunctionRequestPayload;
@@ -31,6 +32,7 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         id: '',
         email: '',
         username: '',
+        employeeID: '',
 
         firstName: '',
         lastName: '',
@@ -42,13 +44,16 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         locationCodes: [],
         schoolCodes: [],
         jobCodes: [],
-        homeLocation: '',
+        employeeGroupCodes: [],
 
+        homeLocation: '',
         directory: '',
         phone: '',
         extension: '',
         mbxnumber: '',
 
+        numberOfAssignments: 0,
+        numberOfActiveAssignments: 0,
         assignments: []
     } as IPPSPerson;
 
@@ -86,14 +91,16 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         functionInvocation.logPayload = logPayload;
         context.log(logPayload);
     } else {
-        const logPayload = result.event;
+        const logPayload = {};
         logPayload['jobType'] = jobType;
         logPayload['statusCode'] = statusCode;
         logPayload['statusMessage'] = 'No change detected.';
+        logPayload['recordID'] = result.newRecord.id;
+        logPayload['newRecordChangeDetectionHash'] = result.newRecord.changeDetectionHash;
+        logPayload['oldRecordChangeDetectionHash'] = oldRecord.changeDetectionHash;
         functionInvocation.logPayload = logPayload;
     }
     
-    context.bindings.jobRelay = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
@@ -106,11 +113,11 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         // check for existing record
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.deletedAt = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
             
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -121,7 +128,7 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
             newRecord = Object.assign(newRecord, oldRecord);
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.deletedAt = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -138,13 +145,13 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
-    
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
+
             // patching a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
-    
+
             newRecord.changeDetectionHash = makeHash(newRecord);
 
             changedDetected = true;
@@ -153,12 +160,12 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         } else {
             // Merge request object into current record
             newRecord = Object.assign(newRecord, oldRecord, payload);
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
-    
+
             newRecord.changeDetectionHash = makeHash(newRecord);
 
             changedDetected = (oldRecord.changeDetectionHash === newRecord.changeDetectionHash) ? false : true;
@@ -180,11 +187,11 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -194,11 +201,11 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
 
         } else {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = oldRecord.created_at;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = oldRecord.createdAt;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -216,52 +223,52 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         return {changedDetected: changedDetected, event: event, newRecord: newRecord};
     }
 
-    function craftCreateEvent(new_record) {
-        const event_type = 'Flenderson.IPPSPerson.Create';
+    function craftCreateEvent(newRecord) {
+        const eventType = 'Flenderson.IPPSPerson.Create';
         const source = 'create';
         const schema = 'create';
-        const label = `${new_record.email}'s IPPS record created.`;
+        const label = `${newRecord.email}'s IPPS record created.`;
         const payload = {
-            record: new_record
+            record: newRecord
         };
 
-        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(newRecord.id, source, schema, eventType, label, payload);
         return event;
     }
     
-    function craftUpdateEvent(old_record, new_record) {
-        const event_type = 'Flenderson.IPPSPerson.Update';
+    function craftUpdateEvent(oldRecord, newRecord) {
+        const eventType = 'Flenderson.IPPSPerson.Update';
         const source = 'update';
         const schema = 'update';
-        const label = `${new_record.email}'s IPPS record updated.`;
+        const label = `${newRecord.email}'s IPPS record updated.`;
         const payload = {
-            old_record: old_record,
-            new_record: new_record,
+            oldRecord: oldRecord,
+            newRecord: newRecord,
         };
 
-        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(newRecord.id, source, schema, eventType, label, payload);
         return event;
     }
 
-    function craftDeleteEvent(old_record) {
-        const event_type = 'Flenderson.IPPSPerson.Delete';
+    function craftDeleteEvent(oldRecord) {
+        const eventType = 'Flenderson.IPPSPerson.Delete';
         const source = 'delete';
         const schema = 'delete';
-        const label = `${old_record.email}'s IPPS record deleted.`;
+        const label = `${oldRecord.email}'s IPPS record deleted.`;
         const payload = {
-            record: old_record
+            record: oldRecord
         };
 
-        const event = craftEvent(old_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(oldRecord.id, source, schema, eventType, label, payload);
         return event;
     }
 
-    function craftEvent(recordID, source, schema, event_type, label, payload) {
+    function craftEvent(recordID, source, schema, eventType, label, payload) {
         const event = {
-            id: `${event_type}-${functionInvocation.functionInvocationID}`,
+            id: `${eventType}-${functionInvocation.functionInvocationID}`,
             time: functionInvocation.functionInvocationTimestamp,
 
-            type: event_type,
+            type: eventType,
             source: `/flenderson/ipps-person/${recordID}/${source}`,
             schemaURL: `ca.wrdsb.flenderson.ipps-person.${schema}.json`,
 
@@ -273,8 +280,8 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
             ], 
 
             data: {
-                function_name: functionInvocation.functionName,
-                invocation_id: functionInvocation.functionInvocationID,
+                functionName: functionInvocation.functionName,
+                invocationID: functionInvocation.functionInvocationID,
                 result: {
                     payload: payload 
                 },
@@ -289,16 +296,27 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         return event;
     }
 
-    function makeHash(ippsPerson: IPPSPerson): string {
+    function makeHash(objectToHash: IPPSPerson): string {
         const objectForHash = JSON.stringify({
-            email:        ippsPerson.email,
-            username:     ippsPerson.username,
-            ein:          ippsPerson.ein,
-            directory:    ippsPerson.directory,
-            phone:        ippsPerson.phone,
-            extension:    ippsPerson.extension,
-            mbxnumber:    ippsPerson.mbxnumber,
-            assignments:  ippsPerson.assignments
+            email:                     objectToHash.email,
+            username:                  objectToHash.username,
+            employeeID:                objectToHash.employeeID,
+            firstName:                 objectToHash.firstName,
+            lastName:                  objectToHash.lastName,
+            fullName:                  objectToHash.fullName,
+            sortableName:              objectToHash.sortableName,
+            ein:                       objectToHash.ein,
+            locationCodes:             objectToHash.locationCodes,
+            schoolCodes:               objectToHash.schoolCodes,
+            jobCodes:                  objectToHash.jobCodes,
+            homeLocation:              objectToHash.homeLocation,
+            directory:                 objectToHash.directory,
+            phone:                     objectToHash.phone,
+            extension:                 objectToHash.extension,
+            mbxnumber:                 objectToHash.mbxnumber,
+            numberOfAssignments:       objectToHash.numberOfAssignments,
+            numberOfActiveAssignments: objectToHash.numberOfActiveAssignments,
+            assignments:               objectToHash.assignments
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;
