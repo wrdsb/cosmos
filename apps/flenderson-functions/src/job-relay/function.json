@@ -7,7 +7,7 @@
       "direction": "in"
     },
     {
-      "name": "quartermasterJobEnqueue",
+      "name": "flendersonJobEnqueue",
       "type": "queue",
       "queueName": "job-enqueue",
       "connection": "wrdsbflenderson_STORAGE",
