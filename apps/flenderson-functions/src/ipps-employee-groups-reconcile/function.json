@@ -17,7 +17,7 @@
         {
             "name": "queueStore",
             "type": "queue",
-            "queueName": "ipps-group-store",
+            "queueName": "ipps-employee-group-store",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
