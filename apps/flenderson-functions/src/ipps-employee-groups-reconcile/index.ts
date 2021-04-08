@@ -88,10 +88,10 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
         // loop through all records in recordsNow, looking for updates and creates
         Object.getOwnPropertyNames(recordsNow).forEach(function (recordID) {
             const newRecord = {
-                id:                recordsNow[recordID].id,
-                groupCode:         recordsNow[recordID].groupCode,
-                groupDescription:  recordsNow[recordID].groupDescription,
-                groupCategory:     recordsNow[recordID].groupCategory
+                id:                        recordsNow[recordID].id,
+                employeeGroupCode:         recordsNow[recordID].employeeGroupCode,
+                employeeGroupDescription:  recordsNow[recordID].employeeGroupDescription,
+                employeeGroupCategory:     recordsNow[recordID].employeeGroupCategory
 
                 // these fields are not present in the data from ipps, so we don't map them
                 //createdAt
@@ -105,10 +105,10 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
             } else {
                 // get the corresponding record in recordsPrevious
                 const oldRecord = {
-                    id:                recordsPrevious[recordID].id,
-                    groupCode:         recordsPrevious[recordID].groupCode,
-                    groupDescription:  recordsPrevious[recordID].groupDescription,
-                    groupCategory:     recordsPrevious[recordID].groupCategory
+                    id:                        recordsPrevious[recordID].id,
+                    employeeGroupCode:         recordsPrevious[recordID].employeeGroupCode,
+                    employeeGroupDescription:  recordsPrevious[recordID].employeeGroupDescription,
+                    employeeGroupCategory:     recordsPrevious[recordID].employeeGroupCategory
     
                     // these fields are not present in the data from ipps, so we don't map them
                     //createdAt
@@ -228,10 +228,10 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
             for (const item of resources) {
                 if (!item.deleted) {
                     const recordObject = {
-                        id:                item.id,
-                        groupCode:         item.groupCode,
-                        groupDescription:  item.groupDescription,
-                        groupCategory:     item.groupCategory
+                        id:                        item.id,
+                        employeeGroupCode:         item.employeeGroupCode,
+                        employeeGroupDescription:  item.employeeGroupDescription,
+                        employeeGroupCategory:     item.employeeGroupCategory
     
                         // these fields are not present in the data from ipps
                         //createdAt: item.createdAt,
@@ -259,9 +259,9 @@ const ippsEmployeeGroupsReconcile: AzureFunction = async function (context: Cont
 
     function makeHash(objectToHash: IPPSEmployeeGroup): string {
         const objectForHash = JSON.stringify({
-            groupCode:         objectToHash.groupCode,
-            groupDescription:  objectToHash.groupDescription,
-            groupCategory:     objectToHash.groupCategory
+            employeeGroupCode:         objectToHash.employeeGroupCode,
+            employeeGroupDescription:  objectToHash.employeeGroupDescription,
+            employeeGroupCategory:     objectToHash.employeeGroupCategory
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;

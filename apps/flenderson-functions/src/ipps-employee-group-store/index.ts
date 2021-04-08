@@ -274,9 +274,9 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
 
     function makeHash(ippsEmployeeGroup: IPPSEmployeeGroup): string {
         const objectForHash = JSON.stringify({
-            groupCode:         ippsEmployeeGroup.groupCode,
-            groupDescription:  ippsEmployeeGroup.groupDescription,
-            groupCategory:     ippsEmployeeGroup.groupCategory
+            employeeGroupCode:         ippsEmployeeGroup.employeeGroupCode,
+            employeeGroupDescription:  ippsEmployeeGroup.employeeGroupDescription,
+            employeeGroupCategory:     ippsEmployeeGroup.employeeGroupCategory
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;

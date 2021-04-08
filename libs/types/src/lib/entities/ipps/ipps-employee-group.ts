@@ -8,9 +8,9 @@ interface IPPSEmployeeGroup extends CosmosEmployeeGroup {
     // deletedAt: string;
     // deleted: boolean
 
-    // groupCode?: string;
-    // groupDescription?: string;
-    // groupCategory?: string;
+    // employeeGroupCode?: string;
+    // employeeGroupDescription?: string;
+    // employeeGroupCategory?: string;
 }
 
 export { IPPSEmployeeGroup };

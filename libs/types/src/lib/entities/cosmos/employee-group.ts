@@ -8,9 +8,9 @@ interface CosmosEmployeeGroup extends CosmosCoreFields {
     // deletedAt: string;
     // deleted: boolean
 
-    groupCode?: string;
-    groupDescription?: string;
-    groupCategory?: string;
+    employeeGroupCode?: string;
+    employeeGroupDescription?: string;
+    employeeGroupCategory?: string;
 }
 
 export { CosmosEmployeeGroup };
