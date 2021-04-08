@@ -83,6 +83,10 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
         Object.getOwnPropertyNames(people).forEach(function (personID) {
             const personRecord = people[personID];
             const directoryRecord = directory[personRecord.email];
+            const locationCodes = new Set<string>();
+            const schoolCodes = new Set<string>();
+            const jobCodes = new Set<string>();
+            const employeeGroupCodes = new Set<string>();
 
             const materializedPerson = {
                 id:                        personRecord.id,
@@ -111,13 +115,18 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
             personRecord.positions.forEach(function (position) {
                 const assignment = position as IPPSAssignment;
                 materializedPerson.assignments.push(assignment);
-                materializedPerson.locationCodes.push(assignment.locationCode);
-                materializedPerson.schoolCodes.push(assignment.schoolCode);
-                materializedPerson.jobCodes.push(assignment.jobCode);
-                materializedPerson.employeeGroupCodes.push(assignment.employeeGroupCode);
+                locationCodes.add(assignment.locationCode);
+                schoolCodes.add(assignment.schoolCode);
+                jobCodes.add(assignment.jobCode);
+                employeeGroupCodes.add(assignment.employeeGroupCode);
                 materializedPerson.numberOfAssignments = materializedPerson.numberOfAssignments + 1;
                 materializedPerson.numberOfActiveAssignments = (assignment.activityCode === 'ACTIVE') ? materializedPerson.numberOfActiveAssignments + 1 : materializedPerson.numberOfActiveAssignments;
             });
+
+            materializedPerson.locationCodes = Array.from(locationCodes);
+            materializedPerson.schoolCodes = Array.from(schoolCodes);
+            materializedPerson.jobCodes = Array.from(jobCodes);
+            materializedPerson.employeeGroupCodes = Array.from(employeeGroupCodes);
 
             if (directoryRecord) {
                 (directoryRecord.directory) ? materializedPerson.directory = directoryRecord.directory : materializedPerson.directory = '';
