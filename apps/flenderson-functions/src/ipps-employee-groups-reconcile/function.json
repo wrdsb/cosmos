@@ -15,16 +15,9 @@
             "direction": "in"
         },
         {
-            "name": "queueGroupStore",
+            "name": "queueStore",
             "type": "queue",
             "queueName": "ipps-group-store",
-            "connection": "wrdsbflenderson_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "jobRelay",
-            "type": "queue",
-            "queueName": "job-relay",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
