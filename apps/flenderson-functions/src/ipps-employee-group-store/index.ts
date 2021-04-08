@@ -15,6 +15,7 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
 
     let jobType = '' as FlendersonJobType;
     jobType = 'Flenderson.IPPSEmployeeGroup.Store';
+    functionInvocation.jobType = jobType;
 
     const triggerObject = triggerMessage as IPPSEmployeeGroupStoreFunctionRequest;
     const operation = triggerObject.operation as StoreFunctionOperation;
@@ -69,14 +70,13 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
         functionInvocation.logPayload = logPayload;
         context.log(logPayload);
     } else {
-        const logPayload = result.event;
+        const logPayload = {};
         logPayload['jobType'] = jobType;
         logPayload['statusCode'] = statusCode;
         logPayload['statusMessage'] = 'No change detected.';
         functionInvocation.logPayload = logPayload;
     }
     
-    context.bindings.jobRelay = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
@@ -89,11 +89,11 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
         // check for existing record
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.deletedAt = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -104,8 +104,10 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
             newRecord = Object.assign(newRecord, oldRecord);
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.deletedAt = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
+
+            newRecord.changeDetectionHash = makeHash(newRecord);
 
             event = craftDeleteEvent(oldRecord);
         }
@@ -119,11 +121,11 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
     
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -134,10 +136,10 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
         } else {
             // Merge request object into current record
             newRecord = Object.assign(newRecord, oldRecord, payload);
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -161,11 +163,11 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -175,11 +177,10 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
 
         } else {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = oldRecord.created_at;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -197,52 +198,52 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
         return {changedDetected: changedDetected, event: event, newRecord: newRecord};
     }
 
-    function craftCreateEvent(new_record) {
-        const event_type = 'Flenderson.IPPSEmployeeGroup.Create';
+    function craftCreateEvent(newRecord) {
+        const eventType = 'Flenderson.IPPSEmployeeGroup.Create';
         const source = 'create';
         const schema = 'create';
-        const label = `Employee Group ${new_record.id} created.`;
+        const label = `Employee Group ${newRecord.id} created.`;
         const payload = {
-            record: new_record
+            record: newRecord
         };
 
-        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(newRecord.id, source, schema, eventType, label, payload);
         return event;
     }
     
-    function craftUpdateEvent(old_record, new_record) {
-        const event_type = 'Flenderson.IPPSEmployeeGroup.Update';
+    function craftUpdateEvent(oldRecord, newRecord) {
+        const eventType = 'Flenderson.IPPSEmployeeGroup.Update';
         const source = 'update';
         const schema = 'update';
-        const label = `Employee Group ${new_record.id} updated.`;
+        const label = `Employee Group ${newRecord.id} updated.`;
         const payload = {
-            old_record: old_record,
-            new_record: new_record,
+            oldRecord: oldRecord,
+            newRecord: newRecord,
         };
 
-        const event = craftEvent(new_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(newRecord.id, source, schema, eventType, label, payload);
         return event;
     }
 
-    function craftDeleteEvent(old_record) {
-        const event_type = 'Flenderson.IPPSEmployeeGroup.Delete';
+    function craftDeleteEvent(oldRecord) {
+        const eventType = 'Flenderson.IPPSEmployeeGroup.Delete';
         const source = 'delete';
         const schema = 'delete';
-        const label = `Employee Group ${old_record.id} deleted.`;
+        const label = `Employee Group ${oldRecord.id} deleted.`;
         const payload = {
-            record: old_record
+            record: oldRecord
         };
 
-        const event = craftEvent(old_record.id, source, schema, event_type, label, payload);
+        const event = craftEvent(oldRecord.id, source, schema, eventType, label, payload);
         return event;
     }
 
-    function craftEvent(recordID, source, schema, event_type, label, payload) {
+    function craftEvent(recordID, source, schema, eventType, label, payload) {
         const event = {
-            id: `${event_type}-${functionInvocation.functionInvocationID}`,
+            id: `${eventType}-${functionInvocation.functionInvocationID}`,
             time: functionInvocation.functionInvocationTimestamp,
 
-            type: event_type,
+            type: eventType,
             source: `/flenderson/ipps-employee-group/${recordID}/${source}`,
             schemaURL: `ca.wrdsb.flenderson.ipps-employee-group.${schema}.json`,
 
@@ -254,8 +255,8 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
             ], 
 
             data: {
-                function_name: functionInvocation.functionName,
-                invocation_id: functionInvocation.functionInvocationID,
+                functionName: functionInvocation.functionName,
+                invocationID: functionInvocation.functionInvocationID,
                 result: {
                     payload: payload 
                 },
