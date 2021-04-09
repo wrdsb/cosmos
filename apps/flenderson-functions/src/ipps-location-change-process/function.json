@@ -1,0 +1,22 @@
+{
+  "bindings": [
+    {
+      "name": "changedRecords",
+      "type": "cosmosDBTrigger",
+      "databaseName": "flenderson",
+      "collectionName": "locations",
+      "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+      "leaseCollectionName": "locations-change-process",
+      "createLeaseCollectionIfNotExists": true,
+      "direction": "in"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    }
+],
+  "scriptFile": "./index.js"
+}
