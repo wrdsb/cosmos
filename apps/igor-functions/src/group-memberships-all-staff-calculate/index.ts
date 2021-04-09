@@ -1,28 +1,16 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { createLogObject } from "@cosmos/azure-functions-shared";
-import { storeLogBlob } from "@cosmos/azure-functions-shared";
-import { createCallbackMessage } from "@cosmos/azure-functions-shared";
-import { createEvent } from "@cosmos/azure-functions-shared";
-import { GroupMembershipsAllStaffCalculateFunctionRequest, GroupMembershipsAllStaffCalculateFunctionRequestPayload } from "@cosmos/types";
+import { FunctionInvocation, GroupMembershipsAllStaffCalculateFunctionRequest, GroupMembershipsAllStaffCalculateFunctionRequestPayload } from "@cosmos/types";
 
 const GroupMembershipsAllStaffCalculate: AzureFunction = async function (context: Context, triggerMessage: GroupMembershipsAllStaffCalculateFunctionRequest): Promise<void> {
-    const functionInvocationID = context.executionContext.invocationId;
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-
-    const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.IGOR.Google.Group.Memberships.AllStaff.Calculate';
-    const functionEventID = `igor-functions-${functionName}-${functionInvocationID}`;
-    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
-
-    const logStorageAccount = process.env['storageAccount'];
-    const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-group-memberships-all-staff-calculate-logs';
-
-    const eventLabel = '';
-    const eventTags = [
-        "igor", 
-    ];
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'IGOR',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'GoogleGroupMembershipsAllStaff',
+        functionDataOperation: 'Calculate',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const triggerObject = triggerMessage as GroupMembershipsAllStaffCalculateFunctionRequest;
     const payload = triggerObject.payload as GroupMembershipsAllStaffCalculateFunctionRequestPayload;
@@ -34,7 +22,7 @@ const GroupMembershipsAllStaffCalculate: AzureFunction = async function (context
     const excluded_job_codes = ['6106', '6118'];
     const activity_codes = ['ACTIVE', 'ONLEAVE'];
 
-    let calculatedMembers = {
+    const calculatedMembers = {
         allStaff: {},
         bereavements: {},
         retirements: {},
@@ -47,7 +35,7 @@ const GroupMembershipsAllStaffCalculate: AzureFunction = async function (context
             && !excluded_job_codes.includes(row.JOB_CODE)
             && activity_codes.includes(row.ACTIVITY_CODE)
         ) {
-            let member = row.EMAIL_ADDRESS;
+            const member = row.EMAIL_ADDRESS;
 
             calculatedMembers.allStaff[member] = {
                 email:          member,
@@ -97,7 +85,7 @@ const GroupMembershipsAllStaffCalculate: AzureFunction = async function (context
     context.bindings.severeWeatherOutputBlob = calculatedMembers.severeWeather;
     context.bindings.staffOpportunitiesOutputBlob = calculatedMembers.staffOpportunities;
 
-    let memberCounts = {
+    const memberCounts = {
         allStaff: Object.getOwnPropertyNames(calculatedMembers.allStaff).length,
         bereavements: Object.getOwnPropertyNames(calculatedMembers.bereavements).length,
         retirements: Object.getOwnPropertyNames(calculatedMembers.retirements).length,
@@ -108,33 +96,11 @@ const GroupMembershipsAllStaffCalculate: AzureFunction = async function (context
     const logPayload = {
         memberCounts: memberCounts
     };
+    functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    context.log(logBlob);
-
-    const callbackMessage = await createCallbackMessage(logObject, 200);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    context.log(callbackMessage);
-
-    const invocationEvent = await createEvent(
-        functionInvocationID,
-        functionInvocationTime,
-        functionInvocationTimestamp,
-        functionName,
-        functionEventType,
-        functionEventID,
-        functionLogID,
-        logStorageAccount,
-        logStorageContainer,
-        eventLabel,
-        eventTags
-    );
-    context.bindings.flynnEvent = JSON.stringify(invocationEvent);
-    context.log(invocationEvent);
-
-    context.done(null, logBlob);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 };
 
 export default GroupMembershipsAllStaffCalculate;

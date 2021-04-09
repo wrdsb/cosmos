@@ -20,7 +20,7 @@ const GroupMembershipsSHSMCalculate: AzureFunction = async function (context: Co
     const requestedSector = payload.sector.toLowerCase();
     const rows = context.bindings.studentsNow;
 
-    let calculatedMembers = await calculateMembers(rows);
+    const calculatedMembers = await calculateMembers(rows);
 
     context.bindings.outputBlob = calculatedMembers;
 
@@ -37,11 +37,11 @@ const GroupMembershipsSHSMCalculate: AzureFunction = async function (context: Co
     context.done(null, functionInvocation);
 
     async function calculateMembers(rows) {
-        let members = {};
+        const members = {};
 
         rows.forEach(function(row) {
-            let email = (row.student_email) ? row.student_email : false;
-            let sector_raw = (row.student_shsm_sector) ? row.student_shsm_sector.toLowerCase() : false;
+            const email = (row.student_email) ? row.student_email : false;
+            const sector_raw = (row.student_shsm_sector) ? row.student_shsm_sector.toLowerCase() : false;
             let group_slug = null;
 
             if (sector_raw) {

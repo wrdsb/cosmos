@@ -31,10 +31,10 @@ const GroupMembershipsSHSMCalculateAll: AzureFunction = async function (context:
         'sports',
         'transportation'
     ];
-    let queueMessages = [];
+    const queueMessages = [];
 
     sectors.forEach(sector => {
-        let message = {
+        const message = {
             payload: {
                 sector: sector
             }

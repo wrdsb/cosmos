@@ -1,28 +1,16 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { createLogObject } from "@cosmos/azure-functions-shared";
-import { storeLogBlob } from "@cosmos/azure-functions-shared";
-import { createCallbackMessage } from "@cosmos/azure-functions-shared";
-import { createEvent } from "@cosmos/azure-functions-shared";
-import { GroupMembershipsOneOffsCalculateFunctionRequest, GroupMembershipsOneOffsCalculateFunctionRequestPayload } from "@cosmos/types";
+import { FunctionInvocation, GroupMembershipsOneOffsCalculateFunctionRequest, GroupMembershipsOneOffsCalculateFunctionRequestPayload } from "@cosmos/types";
 
 const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context: Context, triggerMessage: GroupMembershipsOneOffsCalculateFunctionRequest): Promise<void> {
-    const functionInvocationID = context.executionContext.invocationId;
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-
-    const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.IGOR.Google.Group.Memberships.OneOffs.Calculate';
-    const functionEventID = `igor-functions-${functionName}-${functionInvocationID}`;
-    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
-
-    const logStorageAccount = process.env['storageAccount'];
-    const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-group-memberships-one-offs-calculate-logs';
-
-    const eventLabel = '';
-    const eventTags = [
-        "igor", 
-    ];
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'IGOR',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'GoogleGroupMembershipsOneOffs',
+        functionDataOperation: 'Calculate',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const triggerObject = triggerMessage as GroupMembershipsOneOffsCalculateFunctionRequest;
     const payload = triggerObject.payload as GroupMembershipsOneOffsCalculateFunctionRequestPayload;
@@ -73,7 +61,7 @@ const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context:
     const intranetLibraryJobCodes = context.bindings.intranetLibraryJobCodes.job_codes;
     const intranetTrilliumJobCodes = context.bindings.intranetTrilliumJobCodes.job_codes;
 
-    let calculatedMembers = await calculateMembers(rows);
+    const calculatedMembers = await calculateMembers(rows);
 
     context.bindings.admissionsQnaOutputBlob = calculatedMembers.admissionsQna;
     context.bindings.deceStaffOutputBlob = calculatedMembers.deceStaff;
@@ -144,37 +132,15 @@ const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context:
     const logPayload = {
         memberCounts: memberCounts
     };
+    functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    const logObject = await createLogObject(functionInvocationID, functionInvocationTime, functionName, logPayload);
-    const logBlob = await storeLogBlob(logStorageAccount, logStorageKey, logStorageContainer, logObject);
-    context.log(logBlob);
-
-    const callbackMessage = await createCallbackMessage(logObject, 200);
-    context.bindings.callbackMessage = JSON.stringify(callbackMessage);
-    context.log(callbackMessage);
-
-    const invocationEvent = await createEvent(
-        functionInvocationID,
-        functionInvocationTime,
-        functionInvocationTimestamp,
-        functionName,
-        functionEventType,
-        functionEventID,
-        functionLogID,
-        logStorageAccount,
-        logStorageContainer,
-        eventLabel,
-        eventTags
-    );
-    context.bindings.flynnEvent = JSON.stringify(invocationEvent);
-    context.log(invocationEvent);
-
-    context.done(null, logBlob);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 
 
     async function calculateMembers(rows) {
-        let members = {
+        const members = {
             admissionsQna: {},
             deceStaff: {},
             eaStaff: {},
@@ -209,13 +175,13 @@ const GroupMembershipsOneOffsCalculate: AzureFunction = async function (context:
         };
 
         rows.forEach(function(row) {
-            let email = (row.EMAIL_ADDRESS) ? row.EMAIL_ADDRESS : null;
-            let jobCode = (row.JOB_CODE) ? row.JOB_CODE : null;
-            let groupCode = (row.EMP_GROUP_CODE) ? row.EMP_GROUP_CODE : null;
-            let locationCode = (row.LOCATION_CODE) ? row.LOCATION_CODE : null;
-            let schoolCode = (row.SCHOOL_CODE) ? row.SCHOOL_CODE.toLowerCase() : null;
-            let panel = (row.PANEL) ? row.PANEL : null;
-            let activityCode = (row.ACTIVITY_CODE ) ? row.ACTIVITY_CODE : null;
+            const email = (row.EMAIL_ADDRESS) ? row.EMAIL_ADDRESS : null;
+            const jobCode = (row.JOB_CODE) ? row.JOB_CODE : null;
+            const groupCode = (row.EMP_GROUP_CODE) ? row.EMP_GROUP_CODE : null;
+            const locationCode = (row.LOCATION_CODE) ? row.LOCATION_CODE : null;
+            const schoolCode = (row.SCHOOL_CODE) ? row.SCHOOL_CODE.toLowerCase() : null;
+            const panel = (row.PANEL) ? row.PANEL : null;
+            const activityCode = (row.ACTIVITY_CODE ) ? row.ACTIVITY_CODE : null;
 
             if (row.EMAIL_ADDRESS
                 && !excludedJobCodes.includes(jobCode)
