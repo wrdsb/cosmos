@@ -32,6 +32,7 @@ const GroupMembershipsStudentsGradeCalculateAll: AzureFunction = async function 
     context.log(functionInvocation);
     context.done(null, functionInvocation);
 
+    
     async function prepareMessages(rows) {
         const messages = [];
         const grades = new Set();

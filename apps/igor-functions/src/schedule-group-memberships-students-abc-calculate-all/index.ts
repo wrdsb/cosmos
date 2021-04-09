@@ -1,27 +1,16 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { createLogObject } from "@cosmos/azure-functions-shared";
-import { storeLogBlob } from "@cosmos/azure-functions-shared";
-import { createCallbackMessage } from "@cosmos/azure-functions-shared";
-import { createEvent } from "@cosmos/azure-functions-shared";
+import { FunctionInvocation } from "@cosmos/types";
 
-const ScheduleGroupMembershipsStudentsCalculateAll: AzureFunction = async function (context: Context, timer): Promise<void> {
-    const functionInvocationID = context.executionContext.invocationId;
-    const functionInvocationTime = new Date();
-    const functionInvocationTimestamp = functionInvocationTime.toJSON();  // format: 2012-04-23T18:25:43.511Z
-
-    const functionName = context.executionContext.functionName;
-    const functionEventType = 'WRDSB.IGOR.Schedule.Google.Group.Memberships.Students.Calculate.All';
-    const functionEventID = `igor-functions-${functionName}-${functionInvocationID}`;
-    const functionLogID = `${functionInvocationTime.getTime()}-${functionInvocationID}`;
-
-    const logStorageAccount = process.env['storageAccount'];
-    const logStorageKey = process.env['storageKey'];
-    const logStorageContainer = 'function-schedule-group-memberships-students-calculate-all-logs';
-
-    const eventLabel = '';
-    const eventTags = [
-        "igor", 
-    ];
+const ScheduleGroupMembershipsStudentsABCCalculateAll: AzureFunction = async function (context: Context, timer): Promise<void> {
+    const functionInvocation = {
+        functionInvocationID: context.executionContext.invocationId,
+        functionInvocationTimestamp: new Date().toJSON(),
+        functionApp: 'IGOR',
+        functionName: context.executionContext.functionName,
+        functionDataType: 'GoogleGroupMembershipsStudentsABC',
+        functionDataOperation: 'ScheduleCalculateAll',
+        eventLabel: ''
+    } as FunctionInvocation;
 
     const queueMessage = {
         payload: {}
@@ -33,24 +22,11 @@ const ScheduleGroupMembershipsStudentsCalculateAll: AzureFunction = async functi
         timer: context.bindings.timer,
         queueMessage: queueMessage
     };
+    functionInvocation.logPayload = logPayload;
     context.log(logPayload);
 
-    const invocationEvent = await createEvent(
-        functionInvocationID,
-        functionInvocationTime,
-        functionInvocationTimestamp,
-        functionName,
-        functionEventType,
-        functionEventID,
-        functionLogID,
-        logStorageAccount,
-        logStorageContainer,
-        eventLabel,
-        eventTags
-    );
-    context.log(invocationEvent);
-
-    context.done(null, invocationEvent);
+    context.log(functionInvocation);
+    context.done(null, functionInvocation);
 }
 
-export default ScheduleGroupMembershipsStudentsCalculateAll;
+export default ScheduleGroupMembershipsStudentsABCCalculateAll;
