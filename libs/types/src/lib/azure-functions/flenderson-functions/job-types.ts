@@ -10,4 +10,6 @@ export type FlendersonJobType =
 'Flenderson.IPPSEmployeeGroup.Reconcile' |
 'Flenderson.IPPSJob.Reconcile' |
 'Flenderson.IPPSLocation.Reconcile' |
-'Flenderson.IPPSPerson.Reconcile'
+'Flenderson.IPPSPerson.Reconcile' |
+
+'Flenderson.IPPSEmployeeGroup.ChangeParse'
