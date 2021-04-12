@@ -101,7 +101,7 @@ const groupCreate: AzureFunction = async function (context: Context, triggerMess
         'https://www.googleapis.com/auth/apps.groups.settings'
     ];
 
-    let results = [];
+    const results = [];
     // stores our group in the end
     let groupCreated = {};
 

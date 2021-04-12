@@ -56,7 +56,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-create';
         const queueMessage = {payload: "group-create"};
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Group created.'
         }
@@ -69,7 +69,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-delete';
         const queueMessage = 'group-delete';
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Group deleted.'
         }
@@ -82,7 +82,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-get';
         const queueMessage = 'group-get';
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Got group.'
         }
@@ -95,7 +95,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-memberships-abc-calculate';
         const queueMessage = {};
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued group-memberships-abc-calculate.'
         }
@@ -108,7 +108,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-memberships-abc-calculate-all';
         const queueMessage = {};
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued group-memberships-abc-calculate-all.'
         }
@@ -121,7 +121,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-memberships-all-staff-calculate';
         const queueMessage = {};
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued group-memberships-all-staff-calculate.'
         }
@@ -134,7 +134,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-memberships-one-offs-calculate';
         const queueMessage = {};
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued group-memberships-one-offs-calculate.'
         }
@@ -147,7 +147,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-memberships-roles-calculate';
         const queueMessage = {};
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued group-memberships-roles-calculate.'
         }
@@ -160,7 +160,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-memberships-students-calculate';
         const queueMessage = {};
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued group-memberships-students-calculate.'
         }
@@ -173,7 +173,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-memberships-students-calculate-all';
         const queueMessage = {};
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued group-memberships-students-calculate-all.'
         }
@@ -186,7 +186,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-memberships-unions-calculate';
         const queueMessage = {};
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued group-memberships-unions-calculate.'
         }
@@ -199,7 +199,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-store';
         const queueMessage = 'group-get';
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Got group.'
         }
@@ -212,7 +212,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'groups-create-bulk';
         const queueMessage = 'groups-create-bulk';
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued groups-create-bulk.'
         }
@@ -225,7 +225,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'groups-get-all';
         const queueMessage = 'groups-get-all';
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued groups-get-all.'
         }
@@ -238,7 +238,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'groups-list';
         const queueMessage = 'groups-list';
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Listed groups.'
         }
@@ -251,7 +251,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'groups-list-parse';
         const queueMessage = 'groups-list-parse';
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued groups-list-parse.'
         }
@@ -264,7 +264,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'groups-reconcile';
         const queueMessage = 'groups-reconcile';
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Queued groups-reconcile.'
         }
@@ -277,7 +277,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-update';
         const queueMessage = 'group-update';
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Group patched.'
         }
@@ -290,7 +290,7 @@ const groupCommand: AzureFunction = async function (context: Context, req: HttpR
         const queueName = 'group-update';
         const queueMessage = 'group-update';
 
-        let status = {
+        const status = {
             code: 202,
             statusMessage: 'Success: Group replaced.'
         }
