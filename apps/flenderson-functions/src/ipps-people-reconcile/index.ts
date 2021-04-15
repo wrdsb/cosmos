@@ -95,7 +95,7 @@ const ippsPeopleReconcile: AzureFunction = async function (context: Context, tri
                 employeeID:                personRecord.ein,
                 firstName:                 personRecord.firstName,
                 lastName:                  personRecord.lastName,
-                fullName:                  `${personRecord.firstName} ${personRecord.firstName}`,
+                fullName:                  `${personRecord.firstName} ${personRecord.lastName}`,
                 sortableName:              `${personRecord.lastName}, ${personRecord.firstName}`,
                 ein:                       personRecord.ein,
                 locationCodes:             [],
