@@ -86,9 +86,9 @@ const atsAssetClassTypesReconcile: AzureFunction = async function (context: Cont
                 engraved_id_prefix:   records_now[record_id].engraved_id_prefix
         
                 // these fields are not present in the data from ats, so we don't map them
-                //created_at
-                //updated_at
-                //deleted_at
+                //createdAt
+                //updatedAt
+                //deletedAt
                 //deleted
             };
     
@@ -104,9 +104,9 @@ const atsAssetClassTypesReconcile: AzureFunction = async function (context: Cont
                     engraved_id_prefix:   records_previous[record_id].engraved_id_prefix
         
                     // these fields are not present in the data from ats, so we don't map them
-                    //created_at
-                    //updated_at
-                    //deleted_at
+                    //createdAt
+                    //updatedAt
+                    //deletedAt
                     //deleted
                 }; 
 
@@ -229,9 +229,9 @@ const atsAssetClassTypesReconcile: AzureFunction = async function (context: Cont
                         engraved_id_prefix: item.engraved_id_prefix
                 
                         // these fields are not present in the data from ats
-                        //created_at: item.created_at,
-                        //updated_at: item.updated_at,
-                        //deleted_at: item.deleted_at,
+                        //createdAt: item.createdAt,
+                        //updatedAt: item.updatedAt,
+                        //deletedAt: item.deletedAt,
                         //deleted: item.deleted
                     } as ATSAssetClassType;
         

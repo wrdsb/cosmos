@@ -86,9 +86,9 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
                 short_description:    records_now[record_id].short_description
 
                 // these fields are not present in the data from ats, so we don't map them
-                //created_at
-                //updated_at
-                //deleted_at
+                //createdAt
+                //updatedAt
+                //deletedAt
                 //deleted
             };
     
@@ -104,9 +104,9 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
                     short_description:    records_previous[record_id].short_description
     
                     // these fields are not present in the data from ats, so we don't map them
-                    //created_at
-                    //updated_at
-                    //deleted_at
+                    //createdAt
+                    //updatedAt
+                    //deletedAt
                     //deleted
                 }; 
 
@@ -229,9 +229,9 @@ const atsAssetClassesReconcile: AzureFunction = async function (context: Context
                         short_description: item.short_description
 
                         // these fields are not present in the data from ats
-                        //created_at: item.created_at,
-                        //updated_at: item.updated_at,
-                        //deleted_at: item.deleted_at,
+                        //createdAt: item.createdAt,
+                        //updatedAt: item.updatedAt,
+                        //deletedAt: item.deletedAt,
                         //deleted: item.deleted
                     } as ATSAssetClass;
         

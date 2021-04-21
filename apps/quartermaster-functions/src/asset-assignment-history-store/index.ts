@@ -84,11 +84,11 @@ const assetAssignmentHistoryStore: AzureFunction = async function (context: Cont
         if (!oldRecord) {
             context.log('No old record detected...');
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.deletedAt = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -99,7 +99,7 @@ const assetAssignmentHistoryStore: AzureFunction = async function (context: Cont
             newRecord = Object.assign(newRecord, oldRecord);
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.deletedAt = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -117,11 +117,11 @@ const assetAssignmentHistoryStore: AzureFunction = async function (context: Cont
         if (!oldRecord) {
             context.log('No old record detected...');
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
     
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -147,10 +147,10 @@ const assetAssignmentHistoryStore: AzureFunction = async function (context: Cont
                 newRecord.returns[property] = payload.returns[property];
             });
 
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
         
             // patching a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -175,11 +175,11 @@ const assetAssignmentHistoryStore: AzureFunction = async function (context: Cont
         if (!oldRecord) {
             context.log('No old record detected...');
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -189,11 +189,11 @@ const assetAssignmentHistoryStore: AzureFunction = async function (context: Cont
 
         } else {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = oldRecord.created_at;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = oldRecord.createdAt;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);

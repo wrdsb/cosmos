@@ -19,10 +19,10 @@ const atsAssetTypeStore: AzureFunction = async function (context: Context, trigg
 
     const oldRecord = context.bindings.recordIn;
 
-    let newRecord = {
-        created_at: '',
-        updated_at: '',
-        deleted_at: '',
+    const newRecord = {
+        createdAt: '',
+        updatedAt: '',
+        deletedAt: '',
         deleted: false,
 
         id: '',
@@ -80,11 +80,11 @@ const atsAssetTypeStore: AzureFunction = async function (context: Context, trigg
         // check for existing record
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.deletedAt = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -95,7 +95,7 @@ const atsAssetTypeStore: AzureFunction = async function (context: Context, trigg
             newRecord = Object.assign(newRecord, oldRecord);
 
             // mark the record as deleted
-            newRecord.deleted_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.deletedAt = functionInvocation.functionInvocationTimestamp;
             newRecord.deleted = true;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -112,11 +112,11 @@ const atsAssetTypeStore: AzureFunction = async function (context: Context, trigg
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -127,10 +127,10 @@ const atsAssetTypeStore: AzureFunction = async function (context: Context, trigg
         } else {
             // Merge request object into current record
             newRecord = Object.assign(newRecord, oldRecord, payload);
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
     
             // patching a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -154,11 +154,11 @@ const atsAssetTypeStore: AzureFunction = async function (context: Context, trigg
 
         if (!oldRecord) {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);
@@ -168,11 +168,11 @@ const atsAssetTypeStore: AzureFunction = async function (context: Context, trigg
 
         } else {
             newRecord = Object.assign(newRecord, payload);
-            newRecord.created_at = oldRecord.created_at;
-            newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+            newRecord.createdAt = oldRecord.createdAt;
+            newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
             // replacing a record implicitly undeletes it
-            newRecord.deleted_at = '';
+            newRecord.deletedAt = '';
             newRecord.deleted = false;
 
             newRecord.changeDetectionHash = makeHash(newRecord);

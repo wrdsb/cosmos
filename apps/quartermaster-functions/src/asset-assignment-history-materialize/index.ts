@@ -66,9 +66,9 @@ const assetAssignmentHistoryMaterialize: AzureFunction = async function (context
             for (const item of resources) {
                 if (!item.deleted) {
                     const assetAssignment = {
-                        createdAt: item.created_at,
-                        updatedAt: item.updated_at,
-                        deletedAt: item.deleted_at,
+                        createdAt: item.createdAt,
+                        updatedAt: item.updatedAt,
+                        deletedAt: item.deletedAt,
                         deleted: item.deleted,
 
                         createdBy: item.createdBy,

@@ -1,19 +1,19 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, AssetAssignmentStoreFunctionRequest, AssetAssignmentStoreFunctionRequestPayload, AssetAssignment } from "@cosmos/types";
+import { FunctionInvocation, AssetAssignmentCreateFunctionRequest, AssetAssignmentStoreFunctionRequestPayload, AssetAssignment } from "@cosmos/types";
 
-const assetAssignmentStore: AzureFunction = async function (context: Context, triggerMessage: AssetAssignmentStoreFunctionRequest): Promise<void> {
+const assetAssignmentStore: AzureFunction = async function (context: Context, triggerMessage: AssetAssignmentCreateFunctionRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Quartermaster',
         functionName: context.executionContext.functionName,
         functionDataType: 'AssetAssignment',
-        functionDataOperation: 'Store',
+        functionDataOperation: 'Create',
         eventLabel: ''
     } as FunctionInvocation;
 
-    const triggerObject = triggerMessage as AssetAssignmentStoreFunctionRequest;
+    const triggerObject = triggerMessage as AssetAssignmentCreateFunctionRequest;
     const operation = triggerObject.operation;
     const payload = triggerObject.payload as AssetAssignmentStoreFunctionRequestPayload;
 
@@ -85,11 +85,11 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
         let changedDetected = true;
 
         newRecord = Object.assign(newRecord, payload);
-        newRecord.created_at = functionInvocation.functionInvocationTimestamp;
-        newRecord.updated_at = functionInvocation.functionInvocationTimestamp;
+        newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
+        newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
 
         // creating a record implicitly undeletes it
-        newRecord.deleted_at = '';
+        newRecord.deletedAt = '';
         newRecord.deleted = false;
 
         // let database assign an ID
