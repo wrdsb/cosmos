@@ -37,6 +37,10 @@ export interface AssetAssignment {
     startDate?: DateTime;
     endDate?: DateTime;
 
+    wasReturned?: boolean;
+    returnedAt?: string;
+    returnedBy?: string;
+
     untrackedAssestsIncluded?: string;
     notes?: string;
 }
