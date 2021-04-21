@@ -42,6 +42,22 @@ const quartermasterCommand: AzureFunction = async function (context: Context, re
             };
             break;
     
+        case 'Quartermaster.DeviceLoan.Store':
+            context.bindings.quartermasterCommand = {
+                jobType: jobType,
+                operation: operation,
+                payload: payload
+            };
+            break;
+
+        case 'Quartermaster.DeviceLoan.Return':
+            context.bindings.quartermasterCommand = {
+                jobType: 'Quartermaster.DeviceLoanSubmission.Store',
+                operation: operation,
+                payload: payload
+            };
+            break;
+    
         case 'Quartermaster.Asset.Store':
             context.bindings.quartermasterCommand = {
                 jobType: jobType,

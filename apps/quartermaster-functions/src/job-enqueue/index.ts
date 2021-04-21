@@ -60,6 +60,13 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as DeviceLoanSubmissionStoreFunctionRequest;
                 break;
+    
+            case 'Quartermaster.DeviceLoan.Store':
+                context.bindings.deviceLoanSubmissionStore = {
+                    operation: operation,
+                    payload: payload
+                } as DeviceLoanSubmissionStoreFunctionRequest;
+                break;
 
             case 'Quartermaster.ViewATSAssetChecksum.Process':
                 queueTriggered = 'view-ats-asset-checksum-process';
