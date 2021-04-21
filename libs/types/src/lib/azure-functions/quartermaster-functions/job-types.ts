@@ -1,6 +1,8 @@
 export type QuartermasterJobType =
 'Quartermaster.DeviceLoanSubmission.Store' |
 'Quartermaster.DeviceLoanSubmission.Return' |
+'Quartermaster.DeviceLoan.Store' |
+'Quartermaster.DeviceLoan.Return' |
 
 'Quartermaster.Asset.Store' |
 'Quartermaster.AssetAssignment.Create' |
