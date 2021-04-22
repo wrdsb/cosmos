@@ -1,8 +1,8 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, AssetAssignmentCreateFunctionRequest, AssetAssignmentStoreFunctionRequestPayload, AssetAssignment } from "@cosmos/types";
+import { FunctionInvocation, AssetAssignmentCreateFunctionRequest, AssetAssignmentCreateFunctionRequestPayload, AssetAssignment } from "@cosmos/types";
 
-const assetAssignmentStore: AzureFunction = async function (context: Context, triggerMessage: AssetAssignmentCreateFunctionRequest): Promise<void> {
+const assetAssignmentCreate: AzureFunction = async function (context: Context, triggerMessage: AssetAssignmentCreateFunctionRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -15,7 +15,7 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
 
     const triggerObject = triggerMessage as AssetAssignmentCreateFunctionRequest;
     const operation = triggerObject.operation;
-    const payload = triggerObject.payload as AssetAssignmentStoreFunctionRequestPayload;
+    const payload = triggerObject.payload as AssetAssignmentCreateFunctionRequestPayload;
 
     const newRecord = {
         createdAt: '',
@@ -182,4 +182,4 @@ const assetAssignmentStore: AzureFunction = async function (context: Context, tr
     }
 };
 
-export default assetAssignmentStore;
+export default assetAssignmentCreate;
