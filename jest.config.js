@@ -99,5 +99,6 @@ module.exports = {
     '<rootDir>/apps/bentley-functions',
     '<rootDir>/apps/quartermaster-console',
     '<rootDir>/apps/tollbooth-functions',
+    '<rootDir>/apps/friday-functions',
   ],
 };

@@ -183,7 +183,8 @@
       "tags": [],
       "implicitDependencies": ["quartermaster-console"]
     },
-    "tollbooth-functions": { "tags": [] }
+    "tollbooth-functions": { "tags": [] },
+    "friday-functions": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
