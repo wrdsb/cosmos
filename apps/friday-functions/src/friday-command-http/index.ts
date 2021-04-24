@@ -5,6 +5,7 @@ import { FunctionInvocation,
     FridayCommandJobType,
     FridayCommandOperation,
     FridayCommandFunctionRequestPayload } from "@cosmos/types";
+import { jobTypeEnqueue } from "@cosmos/friday-functions-lib";
 
 const fridayCommand: AzureFunction = async function (context: Context, req: FridayCommandFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -23,26 +24,7 @@ const fridayCommand: AzureFunction = async function (context: Context, req: Frid
     const operation = requestBody.operation as FridayCommandOperation;
     const payload = requestBody.payload as FridayCommandFunctionRequestPayload;
 
-    switch (jobType) {
-        case 'Quartermaster.DeviceLoanSubmissions.Copy.ProdDev':
-            context.bindings.jobEnqueue = {
-                jobType: jobType,
-                operation: operation,
-                payload: payload
-            };
-            break;
-
-        case 'Quartermaster.DeviceLoanSubmissions.Copy.ProdTest':
-            context.bindings.jobEnqueue = {
-                jobType: jobType,
-                operation: operation,
-                payload: payload
-            };
-            break;
-
-        default:
-            break;
-    }
+    context.bindings.jobEnqueue = jobTypeEnqueue(jobType, operation, payload);
 
     const response = {
         header: {
