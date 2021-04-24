@@ -1,4 +1,4 @@
-import { HttpRequest } from "@azure/functions"
+import { HttpRequest } from "@azure/functions";
 import * as Cosmos from "../common";
 import { QuartermasterJobType } from "@cosmos/types";
 
