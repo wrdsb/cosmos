@@ -1,0 +1,40 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "job-enqueue",
+      "connection": "wrdsbfriday_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "cosmosdbCollectionCopy",
+      "type": "queue",
+      "queueName": "cosmosdb-collection-copy",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "cosmosdbCollectionEmpty",
+      "type": "queue",
+      "queueName": "cosmosdb-collection-empty",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "cosmosdbCollectionRefresh",
+      "type": "queue",
+      "queueName": "cosmosdb-collection-refresh",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbquartermaster_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
