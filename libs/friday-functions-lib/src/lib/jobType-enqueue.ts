@@ -19,7 +19,7 @@ export function jobTypeEnqueue(jobType: FridayCommandJobType, operation: FridayC
             break;
 
         case 'Quartermaster.DeviceLoanSubmissions.Refresh.Dev':
-            return = {
+            return {
                 jobType: jobType,
                 operation: operation,
                 payload: payload
