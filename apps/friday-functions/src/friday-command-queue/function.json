@@ -1,0 +1,26 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "friday-command",
+      "connection": "wrdsbfriday_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "jobEnqueue",
+      "type": "queue",
+      "queueName": "job-enqueue",
+      "connection": "wrdsbfriday_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbfriday_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
