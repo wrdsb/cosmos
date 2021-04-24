@@ -86,7 +86,7 @@
       "@cosmos/skinner-service": ["libs/skinner-service/src/index.ts"],
       "@cosmos/pings-ui": ["libs/pings-ui/src/index.ts"],
       "@cosmos/pings-service": ["libs/pings-service/src/index.ts"],
-      "@cosmos/friday-functions": ["libs/friday-functions/src/index.ts"]
+      "@cosmos/friday-functions-lib": ["libs/friday-functions-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -5922,21 +5922,102 @@
       }
     },
     "friday-functions": {
-      "root": "libs/friday-functions",
-      "sourceRoot": "libs/friday-functions/src",
+      "root": "apps/friday-functions",
+      "sourceRoot": "apps/friday-functions/src",
+      "projectType": "application",
+      "prefix": "friday-functions",
+      "architect": {
+        "build": {
+          "builder": "./tools/executors/azfunc:azfunc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/friday-functions",
+            "tsConfig": "apps/friday-functions/tsconfig.app.json",
+            "webpackConfig": "apps/friday-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/friday-functions/src",
+                "glob": "**/function.json",
+                "output": "./friday-functions"
+              },
+              {
+                "input": "./apps/friday-functions/src",
+                "glob": "host.json",
+                "output": "./friday-functions"
+              },
+              {
+                "input": "./apps/friday-functions/src",
+                "glob": "proxies.json",
+                "output": "./friday-functions"
+              },
+              {
+                "input": "./apps/friday-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./friday-functions"
+              },
+              {
+                "input": "./apps/friday-functions/src/bin",
+                "glob": "**.*",
+                "output": "./friday-functions/bin"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/friday-functions/src/environments/environment.ts",
+                  "with": "apps/friday-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "friday-functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/friday-functions/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/friday-functions"],
+          "options": {
+            "jestConfig": "apps/friday-functions/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "friday-functions-lib": {
+      "root": "libs/friday-functions-lib",
+      "sourceRoot": "libs/friday-functions-lib/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/friday-functions/**/*.ts"]
+            "lintFilePatterns": ["libs/friday-functions-lib/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/friday-functions"],
+          "outputs": ["coverage/libs/friday-functions-lib"],
           "options": {
-            "jestConfig": "libs/friday-functions/jest.config.js",
+            "jestConfig": "libs/friday-functions-lib/jest.config.js",
             "passWithNoTests": true
           }
         }
