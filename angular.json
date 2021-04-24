@@ -5922,51 +5922,21 @@
       }
     },
     "friday-functions": {
-      "root": "apps/friday-functions",
-      "sourceRoot": "apps/friday-functions/src",
-      "projectType": "application",
-      "prefix": "friday-functions",
+      "root": "libs/friday-functions",
+      "sourceRoot": "libs/friday-functions/src",
+      "projectType": "library",
       "architect": {
-        "build": {
-          "builder": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/friday-functions",
-            "main": "apps/friday-functions/src/main.ts",
-            "tsConfig": "apps/friday-functions/tsconfig.app.json",
-            "assets": ["apps/friday-functions/src/assets"]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/friday-functions/src/environments/environment.ts",
-                  "with": "apps/friday-functions/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "friday-functions:build"
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/friday-functions/**/*.ts"]
+            "lintFilePatterns": ["libs/friday-functions/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/friday-functions"],
+          "outputs": ["coverage/libs/friday-functions"],
           "options": {
-            "jestConfig": "apps/friday-functions/jest.config.js",
+            "jestConfig": "libs/friday-functions/jest.config.js",
             "passWithNoTests": true
           }
         }

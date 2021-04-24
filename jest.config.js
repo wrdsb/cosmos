@@ -100,5 +100,6 @@ module.exports = {
     '<rootDir>/apps/quartermaster-console',
     '<rootDir>/apps/tollbooth-functions',
     '<rootDir>/apps/friday-functions',
+    '<rootDir>/libs/friday-functions',
   ],
 };
