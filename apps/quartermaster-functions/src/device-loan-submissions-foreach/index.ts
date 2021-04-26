@@ -1,4 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
+import { CosmosClient } from "@azure/cosmos";
 import { FunctionInvocation } from "@cosmos/types";
 
 const deviceLoanSubmissionsForeach: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
@@ -15,17 +16,21 @@ const deviceLoanSubmissionsForeach: AzureFunction = async function (context: Con
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainer = 'groups';
+    const cosmosContainer = 'device-loan-submissions';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
+
+    let recordCount = 0;
 
     // fetch current records from Cosmos
     const messages = await generateMessages(cosmosClient, cosmosDatabase, cosmosContainer).catch(err => {
         context.log(err);
     });
 
-    //context.bindings.messageOut = messages;
+    context.bindings.messageOut = messages;
 
-    const logPayload = {};
+    const logPayload = {
+        totalRecords: recordCount
+    };
     functionInvocation.logPayload = logPayload;
     context.log(logPayload);
     
@@ -50,10 +55,13 @@ const deviceLoanSubmissionsForeach: AzureFunction = async function (context: Con
             for (const item of resources) {
                 if (!item.deleted) {
                     const message = {
-                        payload: item.id
+                        payload: {
+                            id: item.id
+                        }
                     };
         
                     messages.push(message);
+                    recordCount++;
                 }
             }
     

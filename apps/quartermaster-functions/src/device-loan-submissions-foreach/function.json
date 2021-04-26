@@ -3,7 +3,7 @@
     {
       "name": "triggerMessage",
       "type": "queueTrigger",
-      "queueName": "device-loan-submission-transform",
+      "queueName": "device-loan-submissions-foreach",
       "connection": "wrdsbquartermaster_STORAGE",
       "direction": "in"
     },
