@@ -8,12 +8,14 @@ import { IppsRoutingModule } from "./ipps-routing.module";
 import { HomeComponent } from './home/home.component';
 import { PeopleSearchComponent } from './people-search/people-search.component';
 import { JobsSearchComponent } from './jobs-search/jobs-search.component';
+import { LocationsSearchComponent } from './locations-search/locations-search.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     PeopleSearchComponent,
-    JobsSearchComponent
+    JobsSearchComponent,
+    LocationsSearchComponent
   ],
   imports: [
     CommonModule,
