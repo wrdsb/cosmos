@@ -358,8 +358,3 @@ export class GroupsSearchComponent implements OnInit {
     this.groupsService.searchGroups(searchRequestPayload);
   }
 }
-
-interface searchGroupsRequest {
-  search?: string;
-  page?: number;
-}
