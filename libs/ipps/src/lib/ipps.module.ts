@@ -7,11 +7,13 @@ import { MsalInterceptor } from '@azure/msal-angular';
 import { IppsRoutingModule } from "./ipps-routing.module";
 import { HomeComponent } from './home/home.component';
 import { PeopleSearchComponent } from './people-search/people-search.component';
+import { JobsSearchComponent } from './jobs-search/jobs-search.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    PeopleSearchComponent
+    PeopleSearchComponent,
+    JobsSearchComponent
   ],
   imports: [
     CommonModule,
