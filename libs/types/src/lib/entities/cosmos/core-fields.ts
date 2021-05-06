@@ -1,10 +1,10 @@
 interface CosmosCoreFields {
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: string;
-    deleted: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+    deletedAt?: string;
+    deleted?: boolean;
 
-    id: string;
+    id?: string;
 }
 
 export { CosmosCoreFields };
