@@ -81,6 +81,8 @@ function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
   protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/google-calendars-search', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
   protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/google-group-find', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
   protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/google-groups-search', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
+  protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/ipps-person-find', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
+  protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/ipps-people-search', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
   protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/device-loan-find', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
   protectedResourceMap.set('https://wrdsb-viewfinder.azurewebsites.net/api/device-loans-search', [ 'https://wrdsb-viewfinder.azurewebsites.net/user_impersonation' ]);
   
