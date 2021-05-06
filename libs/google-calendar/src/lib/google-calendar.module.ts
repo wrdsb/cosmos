@@ -12,6 +12,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from "@angular/material/input";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatRadioModule } from "@angular/material/radio";
 
 import { GoogleCalendarRoutingModule } from './google-calendar-routing.module';
 
@@ -20,13 +25,27 @@ import { CalendarSearchComponent } from './calendar-search/calendar-search.compo
 
 import { CalendarDetailComponent } from './calendar-detail/calendar-detail.component';
 import { CalendarMetaDialogComponent } from './calendar-meta-dialog/calendar-meta-dialog.component';
+import { MembershipsDefinitionsComponent } from './memberships-definitions/memberships-definitions.component';
+import { MembershipsOverridesComponent } from './memberships-overrides/memberships-overrides.component';
+
+//import { MembershipsListComponent } from './memberships-list/memberships-list.component';
+//import { MembershipDetailComponent } from './membership-detail/membership-detail.component';
+//import { MembershipsOverridesComponent } from './memberships-overrides/memberships-overrides.component';
+//import { MembershipsDefinitionsComponent } from './memberships-definitions/memberships-definitions.component';
+
 
 @NgModule({
   declarations: [
     CalendarDetailComponent,
-    CalendarHomeComponent,
     CalendarMetaDialogComponent,
-    CalendarSearchComponent
+    CalendarHomeComponent,
+    CalendarSearchComponent,
+    MembershipsDefinitionsComponent,
+    MembershipsOverridesComponent,
+    //MembershipsListComponent,
+    //MembershipDetailComponent,
+    //MembershipsOverridesComponent,
+    //MembershipsDefinitionsComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +59,11 @@ import { CalendarMetaDialogComponent } from './calendar-meta-dialog/calendar-met
     MatButtonModule,
     MatTableModule,
     MatDialogModule,
+    MatInputModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule,
+    MatDividerModule,
+    MatRadioModule,
 
     GoogleCalendarRoutingModule
   ],

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'cosmos-calendar-home',
+  selector: 'cosmos-google-calendar-home',
   templateUrl: './calendar-home.component.html',
   styleUrls: ['./calendar-home.component.scss']
 })
