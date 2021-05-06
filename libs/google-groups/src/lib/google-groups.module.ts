@@ -66,7 +66,8 @@ import { MembershipsDefinitionsComponent } from './memberships-definitions/membe
   exports: [
     GroupDetailComponent,
     GroupMetaDialogComponent,
-    GroupsHomeComponent
+    GroupsHomeComponent,
+    GroupsSearchComponent
   ],
   entryComponents: [
     GroupMetaDialogComponent
