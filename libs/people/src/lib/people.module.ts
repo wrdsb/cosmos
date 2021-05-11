@@ -8,12 +8,14 @@ import { PeopleRoutingModule } from "./people-routing.module";
 import { HomeComponent } from './home/home.component';
 import { AllPrincipalsComponent } from './all-principals/all-principals.component';
 import { ElementaryPrincipalsComponent } from './elementary-principals/elementary-principals.component';
+import { SecondaryPrincipalsComponent } from './secondary-principals/secondary-principals.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AllPrincipalsComponent,
-    ElementaryPrincipalsComponent
+    ElementaryPrincipalsComponent,
+    SecondaryPrincipalsComponent
   ],
   imports: [
     CommonModule,
