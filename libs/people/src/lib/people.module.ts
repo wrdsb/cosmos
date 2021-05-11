@@ -10,6 +10,7 @@ import { AllPrincipalsComponent } from './all-principals/all-principals.componen
 import { ElementaryPrincipalsComponent } from './elementary-principals/elementary-principals.component';
 import { SecondaryPrincipalsComponent } from './secondary-principals/secondary-principals.component';
 import { AllSchoolAdminComponent } from './all-school-admin/all-school-admin.component';
+import { ElementarySchoolAdminComponent } from './elementary-school-admin/elementary-school-admin.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AllSchoolAdminComponent } from './all-school-admin/all-school-admin.com
     AllPrincipalsComponent,
     ElementaryPrincipalsComponent,
     SecondaryPrincipalsComponent,
-    AllSchoolAdminComponent
+    AllSchoolAdminComponent,
+    ElementarySchoolAdminComponent
   ],
   imports: [
     CommonModule,
