@@ -7,11 +7,13 @@ import { MsalInterceptor } from '@azure/msal-angular';
 import { PeopleRoutingModule } from "./people-routing.module";
 import { HomeComponent } from './home/home.component';
 import { AllPrincipalsComponent } from './all-principals/all-principals.component';
+import { ElementaryPrincipalsComponent } from './elementary-principals/elementary-principals.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    AllPrincipalsComponent
+    AllPrincipalsComponent,
+    ElementaryPrincipalsComponent
   ],
   imports: [
     CommonModule,
