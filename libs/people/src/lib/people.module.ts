@@ -14,6 +14,7 @@ import { ElementarySchoolAdminComponent } from './elementary-school-admin/elemen
 import { SecondarySchoolAdminComponent } from './secondary-school-admin/secondary-school-admin.component';
 import { AllFirstSecretariesComponent } from './all-first-secretaries/all-first-secretaries.component';
 import { ElementaryFirstSecretariesComponent } from './elementary-first-secretaries/elementary-first-secretaries.component';
+import { SecondaryFirstSecretariesComponent } from './secondary-first-secretaries/secondary-first-secretaries.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ElementaryFirstSecretariesComponent } from './elementary-first-secretar
     ElementarySchoolAdminComponent,
     SecondarySchoolAdminComponent,
     AllFirstSecretariesComponent,
-    ElementaryFirstSecretariesComponent
+    ElementaryFirstSecretariesComponent,
+    SecondaryFirstSecretariesComponent
   ],
   imports: [
     CommonModule,
