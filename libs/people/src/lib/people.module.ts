@@ -9,13 +9,15 @@ import { HomeComponent } from './home/home.component';
 import { AllPrincipalsComponent } from './all-principals/all-principals.component';
 import { ElementaryPrincipalsComponent } from './elementary-principals/elementary-principals.component';
 import { SecondaryPrincipalsComponent } from './secondary-principals/secondary-principals.component';
+import { AllSchoolAdminComponent } from './all-school-admin/all-school-admin.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AllPrincipalsComponent,
     ElementaryPrincipalsComponent,
-    SecondaryPrincipalsComponent
+    SecondaryPrincipalsComponent,
+    AllSchoolAdminComponent
   ],
   imports: [
     CommonModule,
