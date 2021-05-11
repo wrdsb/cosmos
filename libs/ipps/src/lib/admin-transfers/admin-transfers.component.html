@@ -1,0 +1,261 @@
+<h1>Admin Personnel Transfers</h1>
+
+<div class="records-search">
+  <div class="search-panel">
+
+    <div class="panel-group">
+      <div class="panel-field">
+        <mat-form-field class="input-full-width" floatLabel="never">
+          <mat-label>Any Field</mat-label>
+          <input matInput type="text" [formControl]="anyFieldSearchFormControl">
+          <button mat-button *ngIf="anyFieldSearchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="anyFieldSearchFormControl.setValue('')">
+            <fa-icon [icon]="CloseIcon"></fa-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="panel-group">
+      <ng-container *ngIf="( searchRequestState$ | async ) as searchRequestState">
+        <div>Status: {{ searchRequestState.status }}</div>
+        <div>Response: {{ searchRequestState.response }}</div>
+        <div>Error: {{ searchRequestState.error }}</div>
+      </ng-container>
+    </div>
+
+    <div class="panel-group">
+      <ng-container *ngIf="( searchResponse$ | async ) as searchResponse">
+        <div>Status: {{ searchResponse.header.status }}</div>
+        <div>Authenticated: {{ searchResponse.header.authenticated }}</div>
+        <div>Authorized: {{ searchResponse.header.authorized }}</div>
+        <div>User Email: {{ searchResponse.header.userEmail }}</div>
+        <div>User Roles: {{ searchResponse.header.userRoles }}</div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="items-list">
+    <div class="list-header">
+      <div class="search-results">
+        <div>Results: {{ totalRecords$ | async }} total records</div>
+      </div>
+
+      <div class="paginator">
+        <span>
+          Showing Page {{ currentPage.value }} of {{ maxPage$ | async }}&nbsp;&nbsp;
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageBeginning()" [icon]="beginningIcon" size="lg"></fa-icon>
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageUp()" [icon]="backwardIcon" size="lg"></fa-icon>
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageDown()" [icon]="forwardIcon" size="lg"></fa-icon>
+        </span>
+        <span class="page-button">
+          <fa-icon (click)="pageEnd()" [icon]="endIcon" size="lg"></fa-icon>
+        </span>
+      </div>
+    </div>
+
+    <table cdk-table [dataSource]="peoplePage$">
+
+      <!-- id Column -->
+      <ng-container cdkColumnDef="id">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          ID
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.id}} </td>
+      </ng-container>
+
+      <!-- createdAt Column -->
+      <ng-container cdkColumnDef="createdAt">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          createdAt
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.createdAt}} </td>
+      </ng-container>
+
+      <!-- updatedAt Column -->
+      <ng-container cdkColumnDef="updatedAt">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          updatedAt
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.updatedAt}} </td>
+      </ng-container>
+
+      <!-- deletedAt Column -->
+      <ng-container cdkColumnDef="deletedAt">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          deletedAt
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.deletedAt}} </td>
+      </ng-container>
+
+      <!-- deleted Column -->
+      <ng-container cdkColumnDef="deleted">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          deleted
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.deleted}} </td>
+      </ng-container>
+
+      <!-- email Column -->
+      <ng-container cdkColumnDef="email">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Email
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.email}} </td>
+      </ng-container>
+
+      <!-- username Column -->
+      <ng-container cdkColumnDef="username">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Username
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.username}} </td>
+      </ng-container>
+
+      <!-- employeeID Column -->
+      <ng-container cdkColumnDef="employeeID">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Employee ID
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.employeeID}} </td>
+      </ng-container>
+
+      <!-- firstName Column -->
+      <ng-container cdkColumnDef="firstName">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          firstName
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.firstName}} </td>
+      </ng-container>
+
+      <!-- lastName Column -->
+      <ng-container cdkColumnDef="lastName">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          lastName
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.lastName}} </td>
+      </ng-container>
+
+      <!-- fullName Column -->
+      <ng-container cdkColumnDef="fullName">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          fullName
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.fullName}} </td>
+      </ng-container>
+
+      <!-- sortableName Column -->
+      <ng-container cdkColumnDef="sortableName">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Name
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.sortableName}} </td>
+      </ng-container>
+
+      <!-- ein Column -->
+      <ng-container cdkColumnDef="ein">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          EIN
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.ein}} </td>
+      </ng-container>
+
+      <!-- locationCodes Column -->
+      <ng-container cdkColumnDef="locationCodes">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          locationCodes
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.locationCodes}} </td>
+      </ng-container>
+
+      <!-- schoolCodes Column -->
+      <ng-container cdkColumnDef="schoolCodes">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          schoolCodes
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.schoolCodes}} </td>
+      </ng-container>
+
+      <!-- jobCodes Column -->
+      <ng-container cdkColumnDef="jobCodes">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          jobCodes
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.jobCodes}} </td>
+      </ng-container>
+
+      <!-- employeeGroupCodes Column -->
+      <ng-container cdkColumnDef="employeeGroupCodes">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          employeeGroupCodes
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.employeeGroupCodes}} </td>
+      </ng-container>
+
+      <!-- homeLocation Column -->
+      <ng-container cdkColumnDef="homeLocation">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Home Location
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.homeLocation}} </td>
+      </ng-container>
+
+      <!-- directory Column -->
+      <ng-container cdkColumnDef="directory">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Directory
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.directory}} </td>
+      </ng-container>
+
+      <!-- phone Column -->
+      <ng-container cdkColumnDef="phone">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Phone
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.phone}} </td>
+      </ng-container>
+
+      <!-- extension Column -->
+      <ng-container cdkColumnDef="extension">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Extension
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.extension}} </td>
+      </ng-container>
+
+      <!-- mbxnumber Column -->
+      <ng-container cdkColumnDef="mbxnumber">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          mbxnumber
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.mbxnumber}} </td>
+      </ng-container>
+
+      <!-- numberOfAssignments Column -->
+      <ng-container cdkColumnDef="numberOfAssignments">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Assignments
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.numberOfAssignments}} </td>
+      </ng-container>
+
+      <!-- numberOfActiveAssignments Column -->
+      <ng-container cdkColumnDef="numberOfActiveAssignments">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Active Assignments
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.numberOfActiveAssignments}} </td>
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
+    </table>
+
+  </div>
+</div>
