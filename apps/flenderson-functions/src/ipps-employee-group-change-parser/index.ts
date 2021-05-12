@@ -1,8 +1,8 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
-import { FunctionInvocation, FlendersonJobType, IPPSEmployeeGroupChangeParseFunctionRequest, IPPSEmployeeGroupChangeParseFunctionRequestPayload, IPPSEmployeeGroup } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, IPPSEmployeeGroup } from "@cosmos/types";
 
-const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, triggerMessage: IPPSEmployeeGroupChangeParseFunctionRequest): Promise<void> {
+const ippsEmployeeGroupChangeParser: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -17,8 +17,8 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
     jobType = 'Flenderson.IPPSEmployeeGroup.ChangeParse';
     functionInvocation.jobType = jobType;
 
-    const triggerObject = triggerMessage as IPPSEmployeeGroupChangeParseFunctionRequest;
-    const payload = triggerObject.payload as IPPSEmployeeGroupChangeParseFunctionRequestPayload;
+    const triggerObject = triggerMessage;
+    const payload = triggerObject.payload;
 
     const oldRecord = payload.oldRecord as IPPSEmployeeGroup;
     const newRecord = payload.newRecord as IPPSEmployeeGroup;
@@ -93,4 +93,4 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
     }
 };
 
-export default ippsEmployeeGroupStore;
+export default ippsEmployeeGroupChangeParser;
