@@ -20,7 +20,7 @@
     {
       "name": "recordOut",
       "type": "queue",
-      "queueName": "asset-assignment-store",
+      "queueName": "asset-assignment-create",
       "connection": "wrdsbquartermaster_STORAGE",
       "direction": "out"
     },
