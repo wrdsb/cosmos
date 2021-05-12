@@ -17,13 +17,6 @@
       "direction": "out"
     },
     {
-      "name": "assetAssignmentHistoryMaterialize",
-      "type": "queue",
-      "queueName": "asset-assignment-history-materialize",
-      "connection": "wrdsbquartermaster_STORAGE",
-      "direction": "out"
-    },
-    {
       "name": "invocationPostProcessor",
       "type": "queue",
       "queueName": "invocation-post-processor",
