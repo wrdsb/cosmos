@@ -44,8 +44,8 @@ export class PeopleSearchComponent implements OnInit {
     //"phone",
     //"extension",
     //"mbxnumber",
-    //"numberOfAssignments",
-    //"numberOfActiveAssignments",
+    "numberOfAssignments",
+    "numberOfActiveAssignments",
   ];
 
   CloseIcon = CloseIcon;
@@ -158,7 +158,7 @@ export class PeopleSearchComponent implements OnInit {
     return ( nextPage >= 1 && nextPage <= this.maxPage.value ) ? true : false;
   }
 
-  selectGroup(groupID: string): void {
+  selectPerson(groupID: string): void {
     console.log(`Show details for ${groupID}`);
 
     this.ippsService.selectPerson(groupID);
