@@ -6022,6 +6022,27 @@
           }
         }
       }
+    },
+    "viewfinder-functions-shared": {
+      "root": "libs/viewfinder-functions-shared",
+      "sourceRoot": "libs/viewfinder-functions-shared/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/viewfinder-functions-shared/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/viewfinder-functions-shared"],
+          "options": {
+            "jestConfig": "libs/viewfinder-functions-shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

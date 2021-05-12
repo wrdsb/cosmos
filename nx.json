@@ -185,7 +185,8 @@
     },
     "tollbooth-functions": { "tags": [] },
     "friday-functions": { "tags": [] },
-    "friday-functions-lib": { "tags": [] }
+    "friday-functions-lib": { "tags": [] },
+    "viewfinder-functions-shared": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
