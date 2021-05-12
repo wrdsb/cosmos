@@ -9,6 +9,7 @@ import { EmployeeGroupsSearchComponent } from "./employee-groups-search/employee
 import { JobsSearchComponent } from "./jobs-search/jobs-search.component";
 import { LocationsSearchComponent } from "./locations-search/locations-search.component";
 import { PeopleSearchComponent } from "./people-search/people-search.component";
+import { AdminTransfersComponent } from "./admin-transfers/admin-transfers.component";
 
 const routes: Routes = [
   { 
@@ -44,6 +45,16 @@ const routes: Routes = [
   { 
     path: 'people',
     component: PeopleSearchComponent,
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  { 
+    path: 'transfers',
+    component: AdminTransfersComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },

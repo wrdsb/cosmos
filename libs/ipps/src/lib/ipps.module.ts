@@ -27,6 +27,8 @@ import { JobsSearchComponent } from './jobs-search/jobs-search.component';
 import { LocationsSearchComponent } from './locations-search/locations-search.component';
 import { PeopleSearchComponent } from './people-search/people-search.component';
 
+import { AdminTransfersComponent } from './admin-transfers/admin-transfers.component';
+
 import { EmployeeGroupMetaDialogComponent } from './employee-group-meta-dialog/employee-group-meta-dialog.component';
 import { JobMetaDialogComponent } from './job-meta-dialog/job-meta-dialog.component';
 import { LocationMetaDialogComponent } from './location-meta-dialog/location-meta-dialog.component';
@@ -40,6 +42,8 @@ import { PersonMetaDialogComponent } from './person-meta-dialog/person-meta-dial
     JobsSearchComponent,
     LocationsSearchComponent,
     PeopleSearchComponent,
+
+    AdminTransfersComponent,
 
     EmployeeGroupMetaDialogComponent,
     JobMetaDialogComponent,
@@ -74,6 +78,8 @@ import { PersonMetaDialogComponent } from './person-meta-dialog/person-meta-dial
     LocationsSearchComponent,
     PeopleSearchComponent,
 
+    AdminTransfersComponent,
+  
     EmployeeGroupMetaDialogComponent,
     JobMetaDialogComponent,
     LocationMetaDialogComponent,
