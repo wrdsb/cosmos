@@ -85,8 +85,9 @@ const assetAssignmentCreate: AzureFunction = async function (context: Context, t
         let changedDetected = true;
 
         newRecord = Object.assign(newRecord, payload);
-        newRecord.createdAt = functionInvocation.functionInvocationTimestamp;
-        newRecord.updatedAt = functionInvocation.functionInvocationTimestamp;
+
+        newRecord.createdAt = payload.createdAt?.length > 0 ? payload.createdAt : functionInvocation.functionInvocationTimestamp;
+        newRecord.updatedAt = payload.updatedAt?.length > 0 ? payload.updatedAt : functionInvocation.functionInvocationTimestamp;
 
         // creating a record implicitly undeletes it
         newRecord.deletedAt = '';
