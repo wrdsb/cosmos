@@ -36,8 +36,16 @@ const deviceLoanSubmissionTransform: AzureFunction = async function (context: Co
         assetID = deviceLoanSubmission['submittedAssetID']
     }
 
+    let wasReceivedByAssignee = true;
+    if (deviceLoanSubmission['receivedBy'] && deviceLoanSubmission['receivedBy'].length > 1) {
+        wasReceivedByAssignee = false;
+    } else {
+        wasReceivedByAssignee = true;
+    }
+
     const assetAssignment = {
-        id: deviceLoanSubmission['id'],
+        id: '',
+        legacyID: deviceLoanSubmission['id'],
 
         createdAt: createdAt,
         updatedAt: updatedAt,
@@ -63,13 +71,13 @@ const deviceLoanSubmissionTransform: AzureFunction = async function (context: Co
     
         assignedToBusinessUnit:   schoolCode,
     
-        wasReceivedByAssignee: true,
+        wasReceivedByAssignee: wasReceivedByAssignee,
         receivedBy:            deviceLoanSubmission['receivedBy'],
         receivedByRole:        deviceLoanSubmission['loanedToRole'],
     
         isTemporary: true,
         startDate:   startDate,
-        endDate:     '',
+        endDate:     '2021-06-30T00:00:00.000Z',
     
         wasReturned: deviceLoanSubmission['wasReturned'],
         returnedAt:  deviceLoanSubmission['returnedAt'],
@@ -80,7 +88,7 @@ const deviceLoanSubmissionTransform: AzureFunction = async function (context: Co
     } as AssetAssignment;
    
     context.bindings.recordOut = {
-        operation: 'replace',
+        operation: 'create',
         payload: assetAssignment
     }
 
