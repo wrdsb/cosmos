@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'skinner-service',
-  preset: '../../jest.preset.js',
+  displayName: 'angular-services-skinner-service',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../coverage/libs/skinner-service',
+  coverageDirectory: '../../../coverage/libs/angular-services/skinner-service',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

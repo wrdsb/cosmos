@@ -376,9 +376,6 @@
     "panama-service": {
       "tags": []
     },
-    "skinner-service": {
-      "tags": []
-    },
     "pings-ui": {
       "tags": []
     },
@@ -434,6 +431,9 @@
       "tags": []
     },
     "angular-services-houston-service": {
+      "tags": []
+    },
+    "angular-services-skinner-service": {
       "tags": []
     }
   },

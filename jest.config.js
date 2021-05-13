@@ -91,7 +91,7 @@ module.exports = {
     '<rootDir>/libs/flenderson-service',
     <rootDir>/libs/angular-services/houston-service,
     '<rootDir>/libs/panama-service',
-    '<rootDir>/libs/skinner-service',
+    <rootDir>/libs/angular-services/skinner-service,
     '<rootDir>/libs/pings-ui',
     '<rootDir>/libs/pings-service',
     '<rootDir>/apps/spectro-functions',

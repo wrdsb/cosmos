@@ -171,9 +171,6 @@
       "@cosmos/panama-service": [
         "libs/panama-service/src/index.ts"
       ],
-      "@cosmos/skinner-service": [
-        "libs/skinner-service/src/index.ts"
-      ],
       "@cosmos/pings-ui": [
         "libs/pings-ui/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/houston-service": [
         "libs/angular-services/houston-service/src/index.ts"
+      ],
+      "@cosmos/angular-services/skinner-service": [
+        "libs/angular-services/skinner-service/src/index.ts"
       ]
     }
   },

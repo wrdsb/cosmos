@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SkinnerService } from "@cosmos/skinner-service";
+import { SkinnerService } from "@cosmos/angular-services/skinner-service";
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({

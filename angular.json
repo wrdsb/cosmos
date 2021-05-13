@@ -5848,37 +5848,6 @@
         }
       }
     },
-    "skinner-service": {
-      "projectType": "library",
-      "root": "libs/skinner-service",
-      "sourceRoot": "libs/skinner-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/skinner-service/tsconfig.lib.json",
-              "libs/skinner-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/skinner-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/skinner-service"
-          ],
-          "options": {
-            "jestConfig": "libs/skinner-service/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "pings-ui": {
       "projectType": "library",
       "root": "libs/pings-ui",
@@ -6711,6 +6680,37 @@
           ],
           "options": {
             "jestConfig": "libs/angular-services/houston-service/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "angular-services-skinner-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/skinner-service",
+      "sourceRoot": "libs/angular-services/skinner-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/skinner-service/tsconfig.lib.json",
+              "libs/angular-services/skinner-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/skinner-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/angular-services/skinner-service"
+          ],
+          "options": {
+            "jestConfig": "libs/angular-services/skinner-service/jest.config.js",
             "passWithNoTests": true
           }
         }
