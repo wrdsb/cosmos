@@ -93,7 +93,7 @@ module.exports = {
     <rootDir>/libs/angular-services/panama-service,
     <rootDir>/libs/angular-services/skinner-service,
     '<rootDir>/libs/pings-ui',
-    '<rootDir>/libs/pings-service',
+    <rootDir>/libs/angular-services/pings-service,
     '<rootDir>/apps/spectro-functions',
     '<rootDir>/apps/spectro-console',
     '<rootDir>/apps/bentley-functions',

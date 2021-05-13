@@ -159,9 +159,6 @@
       "@cosmos/pings-ui": [
         "libs/pings-ui/src/index.ts"
       ],
-      "@cosmos/pings-service": [
-        "libs/pings-service/src/index.ts"
-      ],
       "@cosmos/friday-functions-lib": [
         "libs/friday-functions-lib/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/signalr-service": [
         "libs/angular-services/signalr-service/src/index.ts"
+      ],
+      "@cosmos/angular-services/pings-service": [
+        "libs/angular-services/pings-service/src/index.ts"
       ]
     }
   },

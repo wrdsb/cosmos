@@ -5714,37 +5714,6 @@
         }
       }
     },
-    "pings-service": {
-      "projectType": "library",
-      "root": "libs/pings-service",
-      "sourceRoot": "libs/pings-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/pings-service/tsconfig.lib.json",
-              "libs/pings-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/pings-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/pings-service"
-          ],
-          "options": {
-            "jestConfig": "libs/pings-service/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "spectro-functions": {
       "root": "apps/spectro-functions",
       "sourceRoot": "apps/spectro-functions/src",
@@ -6713,6 +6682,37 @@
       "schematics": {
         "@nrwl/angular:component": {
           "style": "scss"
+        }
+      }
+    },
+    "angular-services-pings-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/pings-service",
+      "sourceRoot": "libs/angular-services/pings-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/pings-service/tsconfig.lib.json",
+              "libs/angular-services/pings-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/pings-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/angular-services/pings-service"
+          ],
+          "options": {
+            "jestConfig": "libs/angular-services/pings-service/jest.config.js",
+            "passWithNoTests": true
+          }
         }
       }
     }
