@@ -89,7 +89,7 @@ module.exports = {
     '<rootDir>/apps/spyglass-functions',
     '<rootDir>/libs/quartermaster-service',
     '<rootDir>/libs/flenderson-service',
-    '<rootDir>/libs/houston-service',
+    <rootDir>/libs/angular-services/houston-service,
     '<rootDir>/libs/panama-service',
     '<rootDir>/libs/skinner-service',
     '<rootDir>/libs/pings-ui',

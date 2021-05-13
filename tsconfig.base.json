@@ -168,9 +168,6 @@
       "@cosmos/flenderson-service": [
         "libs/flenderson-service/src/index.ts"
       ],
-      "@cosmos/houston-service": [
-        "libs/houston-service/src/index.ts"
-      ],
       "@cosmos/panama-service": [
         "libs/panama-service/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/sorting-hat-service": [
         "libs/angular-services/sorting-hat-service/src/index.ts"
+      ],
+      "@cosmos/angular-services/houston-service": [
+        "libs/angular-services/houston-service/src/index.ts"
       ]
     }
   },

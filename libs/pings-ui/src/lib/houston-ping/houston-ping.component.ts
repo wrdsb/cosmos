@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HoustonService } from "@cosmos/houston-service";
+import { HoustonService } from "@cosmos/angular-services/houston-service";
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({

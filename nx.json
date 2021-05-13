@@ -373,9 +373,6 @@
     "flenderson-service": {
       "tags": []
     },
-    "houston-service": {
-      "tags": []
-    },
     "panama-service": {
       "tags": []
     },
@@ -434,6 +431,9 @@
       "tags": []
     },
     "angular-services-sorting-hat-service": {
+      "tags": []
+    },
+    "angular-services-houston-service": {
       "tags": []
     }
   },
