@@ -38,9 +38,6 @@
       "@cosmos/pages": ["libs/pages/src/index.ts"],
       "@cosmos/codex-people": ["libs/codex-people/src/index.ts"],
       "@cosmos/google-groups": ["libs/google-groups/src/index.ts"],
-      "@cosmos/codex-console-private": [
-        "libs/codex-console-private/src/index.ts"
-      ],
       "@cosmos/mocks": ["libs/mocks/src/index.ts"],
       "@cosmos/messages": ["libs/messages/src/index.ts"],
       "@cosmos/signalr-loops": ["libs/signalr-loops/src/index.ts"],
