@@ -59,7 +59,7 @@ module.exports = {
     '<rootDir>/libs/codex-console-private',
     '<rootDir>/libs/igor-service',
     '<rootDir>/libs/igor-console-private',
-    '<rootDir>/libs/sorting-hat-service',
+    <rootDir>/libs/angular-services/sorting-hat-service,
     '<rootDir>/libs/sorting-hat-console-private',
     '<rootDir>/libs/mocks',
     '<rootDir>/libs/messages',

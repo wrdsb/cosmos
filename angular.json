@@ -4768,42 +4768,6 @@
         }
       }
     },
-    "sorting-hat-service": {
-      "projectType": "library",
-      "root": "libs/sorting-hat-service",
-      "sourceRoot": "libs/sorting-hat-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/sorting-hat-service/tsconfig.lib.json",
-              "libs/sorting-hat-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/sorting-hat-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/sorting-hat-service/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": [
-            "coverage/libs/sorting-hat-service"
-          ]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "sorting-hat-console-private": {
       "projectType": "library",
       "root": "libs/sorting-hat-console-private",
@@ -6707,6 +6671,42 @@
           },
           "outputs": [
             "coverage/libs/angular-services/viewfinder-service"
+          ]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "angular-services-sorting-hat-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/sorting-hat-service",
+      "sourceRoot": "libs/angular-services/sorting-hat-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/sorting-hat-service/tsconfig.lib.json",
+              "libs/angular-services/sorting-hat-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/sorting-hat-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/angular-services/sorting-hat-service/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/angular-services/sorting-hat-service"
           ]
         }
       },

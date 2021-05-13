@@ -93,9 +93,6 @@
       "@cosmos/igor-console-private": [
         "libs/igor-console-private/src/index.ts"
       ],
-      "@cosmos/sorting-hat-service": [
-        "libs/sorting-hat-service/src/index.ts"
-      ],
       "@cosmos/sorting-hat-console-private": [
         "libs/sorting-hat-console-private/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/viewfinder-service": [
         "libs/angular-services/viewfinder-service/src/index.ts"
+      ],
+      "@cosmos/angular-services/sorting-hat-service": [
+        "libs/angular-services/sorting-hat-service/src/index.ts"
       ]
     }
   },

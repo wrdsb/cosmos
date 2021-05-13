@@ -289,9 +289,6 @@
     "igor-console-private": {
       "tags": []
     },
-    "sorting-hat-service": {
-      "tags": []
-    },
     "sorting-hat-console-private": {
       "tags": []
     },
@@ -434,6 +431,9 @@
       "tags": []
     },
     "angular-services-viewfinder-service": {
+      "tags": []
+    },
+    "angular-services-sorting-hat-service": {
       "tags": []
     }
   },

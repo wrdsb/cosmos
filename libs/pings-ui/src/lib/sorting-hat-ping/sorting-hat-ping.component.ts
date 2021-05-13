@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SortingHatService } from "@cosmos/sorting-hat-service";
+import { SortingHatService } from "@cosmos/angular-services/sorting-hat-service";
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({
