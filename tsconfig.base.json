@@ -48,9 +48,6 @@
       "@cosmos/angular-aad-auth": [
         "libs/angular-aad-auth/src/index.ts"
       ],
-      "@cosmos/msgraph-service": [
-        "libs/msgraph-service/src/index.ts"
-      ],
       "@cosmos/profile-page": [
         "libs/profile-page/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/pings-service": [
         "libs/angular-services/pings-service/src/index.ts"
+      ],
+      "@cosmos/angular-services/msgraph-service": [
+        "libs/angular-services/msgraph-service/src/index.ts"
       ]
     }
   },

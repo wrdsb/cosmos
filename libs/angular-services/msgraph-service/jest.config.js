@@ -1,6 +1,6 @@
 module.exports = {
-  preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/libs/msgraph-service',
+  preset: '../../../jest.preset.js',
+  coverageDirectory: '../../../coverage/libs/angular-services/msgraph-service',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',
@@ -19,5 +19,5 @@ module.exports = {
       },
     },
   },
-  displayName: 'msgraph-service',
+  displayName: 'angular-services-msgraph-service',
 };

@@ -19,7 +19,7 @@ import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfig
 import { IPublicClientApplication, PublicClientApplication, InteractionType, BrowserCacheLocation, LogLevel } from '@azure/msal-browser';
 
 import { EnvironmentService } from "@cosmos/environment";
-import { GraphService } from '@cosmos/msgraph-service';
+import { GraphService } from '@cosmos/angular-services/msgraph-service';
 
 import { AuthButtonComponent } from './auth-button/auth-button.component';
 import { LoginPageComponent } from './login-page/login-page.component';

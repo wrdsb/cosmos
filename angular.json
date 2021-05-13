@@ -4176,42 +4176,6 @@
         }
       }
     },
-    "msgraph-service": {
-      "projectType": "library",
-      "root": "libs/msgraph-service",
-      "sourceRoot": "libs/msgraph-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/msgraph-service/tsconfig.lib.json",
-              "libs/msgraph-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/msgraph-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/msgraph-service/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": [
-            "coverage/libs/msgraph-service"
-          ]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "app-settings": {
       "projectType": "library",
       "root": "libs/app-settings",
@@ -6713,6 +6677,42 @@
             "jestConfig": "libs/angular-services/pings-service/jest.config.js",
             "passWithNoTests": true
           }
+        }
+      }
+    },
+    "angular-services-msgraph-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/msgraph-service",
+      "sourceRoot": "libs/angular-services/msgraph-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/msgraph-service/tsconfig.lib.json",
+              "libs/angular-services/msgraph-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/msgraph-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/angular-services/msgraph-service/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/angular-services/msgraph-service"
+          ]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }

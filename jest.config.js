@@ -42,7 +42,7 @@ module.exports = {
     '<rootDir>/libs/chassis',
     '<rootDir>/libs/panels',
     '<rootDir>/libs/angular-aad-auth',
-    '<rootDir>/libs/msgraph-service',
+    <rootDir>/libs/angular-services/msgraph-service,
     '<rootDir>/libs/profile-page',
     '<rootDir>/libs/app-settings',
     '<rootDir>/libs/environment',

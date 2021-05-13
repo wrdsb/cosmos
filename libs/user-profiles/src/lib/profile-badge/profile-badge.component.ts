@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MgtPerson } from '@microsoft/mgt';
 import { User } from "@microsoft/microsoft-graph-types";
-import { GraphService } from '@cosmos/msgraph-service';
+import { GraphService } from '@cosmos/angular-services/msgraph-service';
 
 @Component({
   selector: 'cosmos-profile-badge',
