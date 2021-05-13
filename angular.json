@@ -4228,40 +4228,6 @@
         }
       }
     },
-    "sorting-hat-console-private": {
-      "projectType": "library",
-      "root": "libs/sorting-hat-console-private",
-      "sourceRoot": "libs/sorting-hat-console-private/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/sorting-hat-console-private/tsconfig.lib.json",
-              "libs/sorting-hat-console-private/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/sorting-hat-console-private/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/sorting-hat-console-private/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": ["coverage/libs/sorting-hat-console-private"]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "mocks": {
       "root": "libs/mocks",
       "sourceRoot": "libs/mocks/src",

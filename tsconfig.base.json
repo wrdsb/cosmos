@@ -41,9 +41,6 @@
       "@cosmos/codex-console-private": [
         "libs/codex-console-private/src/index.ts"
       ],
-      "@cosmos/sorting-hat-console-private": [
-        "libs/sorting-hat-console-private/src/index.ts"
-      ],
       "@cosmos/mocks": ["libs/mocks/src/index.ts"],
       "@cosmos/messages": ["libs/messages/src/index.ts"],
       "@cosmos/signalr-loops": ["libs/signalr-loops/src/index.ts"],
