@@ -283,9 +283,6 @@
     "codex-console-private": {
       "tags": []
     },
-    "igor-service": {
-      "tags": []
-    },
     "igor-console-private": {
       "tags": []
     },
@@ -434,6 +431,9 @@
       "tags": []
     },
     "angular-services-skinner-service": {
+      "tags": []
+    },
+    "angular-services-igor-service": {
       "tags": []
     }
   },

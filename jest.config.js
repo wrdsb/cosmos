@@ -57,7 +57,7 @@ module.exports = {
     '<rootDir>/libs/google-groups',
     <rootDir>/libs/angular-services/codex-service,
     '<rootDir>/libs/codex-console-private',
-    '<rootDir>/libs/igor-service',
+    <rootDir>/libs/angular-services/igor-service,
     '<rootDir>/libs/igor-console-private',
     <rootDir>/libs/angular-services/sorting-hat-service,
     '<rootDir>/libs/sorting-hat-console-private',

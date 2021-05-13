@@ -87,9 +87,6 @@
       "@cosmos/codex-console-private": [
         "libs/codex-console-private/src/index.ts"
       ],
-      "@cosmos/igor-service": [
-        "libs/igor-service/src/index.ts"
-      ],
       "@cosmos/igor-console-private": [
         "libs/igor-console-private/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/skinner-service": [
         "libs/angular-services/skinner-service/src/index.ts"
+      ],
+      "@cosmos/angular-services/igor-service": [
+        "libs/angular-services/igor-service/src/index.ts"
       ]
     }
   },

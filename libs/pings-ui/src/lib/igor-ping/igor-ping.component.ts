@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IGORService } from "@cosmos/igor-service";
+import { IGORService } from "@cosmos/angular-services/igor-service";
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({

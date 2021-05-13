@@ -4696,42 +4696,6 @@
         }
       }
     },
-    "igor-service": {
-      "projectType": "library",
-      "root": "libs/igor-service",
-      "sourceRoot": "libs/igor-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/igor-service/tsconfig.lib.json",
-              "libs/igor-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/igor-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/igor-service/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": [
-            "coverage/libs/igor-service"
-          ]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "igor-console-private": {
       "projectType": "library",
       "root": "libs/igor-console-private",
@@ -6713,6 +6677,42 @@
             "jestConfig": "libs/angular-services/skinner-service/jest.config.js",
             "passWithNoTests": true
           }
+        }
+      }
+    },
+    "angular-services-igor-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/igor-service",
+      "sourceRoot": "libs/angular-services/igor-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/igor-service/tsconfig.lib.json",
+              "libs/angular-services/igor-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/igor-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/angular-services/igor-service/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/angular-services/igor-service"
+          ]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }
