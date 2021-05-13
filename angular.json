@@ -5719,37 +5719,6 @@
         }
       }
     },
-    "quartermaster-service": {
-      "projectType": "library",
-      "root": "libs/quartermaster-service",
-      "sourceRoot": "libs/quartermaster-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/quartermaster-service/tsconfig.lib.json",
-              "libs/quartermaster-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/quartermaster-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/quartermaster-service"
-          ],
-          "options": {
-            "jestConfig": "libs/quartermaster-service/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "pings-ui": {
       "projectType": "library",
       "root": "libs/pings-ui",
@@ -6711,6 +6680,37 @@
           ],
           "options": {
             "jestConfig": "libs/angular-services/panama-service/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "angular-services-quartermaster-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/quartermaster-service",
+      "sourceRoot": "libs/angular-services/quartermaster-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/quartermaster-service/tsconfig.lib.json",
+              "libs/angular-services/quartermaster-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/quartermaster-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/angular-services/quartermaster-service"
+          ],
+          "options": {
+            "jestConfig": "libs/angular-services/quartermaster-service/jest.config.js",
             "passWithNoTests": true
           }
         }

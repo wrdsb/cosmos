@@ -159,9 +159,6 @@
       "@cosmos/ats": [
         "libs/ats/src/index.ts"
       ],
-      "@cosmos/quartermaster-service": [
-        "libs/quartermaster-service/src/index.ts"
-      ],
       "@cosmos/pings-ui": [
         "libs/pings-ui/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/panama-service": [
         "libs/angular-services/panama-service/src/index.ts"
+      ],
+      "@cosmos/angular-services/quartermaster-service": [
+        "libs/angular-services/quartermaster-service/src/index.ts"
       ]
     }
   },

@@ -364,9 +364,6 @@
     "spyglass-functions": {
       "tags": []
     },
-    "quartermaster-service": {
-      "tags": []
-    },
     "pings-ui": {
       "tags": []
     },
@@ -434,6 +431,9 @@
       "tags": []
     },
     "angular-services-panama-service": {
+      "tags": []
+    },
+    "angular-services-quartermaster-service": {
       "tags": []
     }
   },

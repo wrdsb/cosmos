@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { QuartermasterService } from "@cosmos/quartermaster-service";
+import { QuartermasterService } from "@cosmos/angular-services/quartermaster-service";
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({
