@@ -10,58 +10,140 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@cosmos/igor-types": ["libs/igor-types/src/index.ts"],
-      "@cosmos/hagar-types": ["libs/hagar-types/src/index.ts"],
-      "@cosmos/azure-functions-shared": [
-        "libs/azure-functions-shared/src/index.ts"
+      "@cosmos/igor-types": [
+        "libs/igor-types/src/index.ts"
       ],
-      "@cosmos/ui-layout": ["libs/ui-layout/src/index.ts"],
-      "@cosmos/ui-navigation": ["libs/ui-navigation/src/index.ts"],
-      "@cosmos/powder-coat": ["libs/powder-coat/src/index.ts"],
-      "@cosmos/chassis": ["libs/chassis/src/index.ts"],
-      "@cosmos/panels": ["libs/panels/src/index.ts"],
-      "@cosmos/angular-aad-auth": ["libs/angular-aad-auth/src/index.ts"],
-      "@cosmos/profile-page": ["libs/profile-page/src/index.ts"],
-      "@cosmos/app-settings": ["libs/app-settings/src/index.ts"],
-      "@cosmos/environment": ["libs/environment/src/index.ts"],
-      "@cosmos/types": ["libs/types/src/index.ts"],
-      "@cosmos/people-sets": ["libs/people-sets/src/index.ts"],
-      "@cosmos/notifications": ["libs/notifications/src/index.ts"],
-      "@cosmos/user-profiles": ["libs/user-profiles/src/index.ts"],
-      "@cosmos/user-auth": ["libs/user-auth/src/index.ts"],
-      "@cosmos/pages": ["libs/pages/src/index.ts"],
-      "@cosmos/codex-people": ["libs/codex-people/src/index.ts"],
-      "@cosmos/google-groups": ["libs/google-groups/src/index.ts"],
-      "@cosmos/mocks": ["libs/mocks/src/index.ts"],
-      "@cosmos/messages": ["libs/messages/src/index.ts"],
-      "@cosmos/signalr-loops": ["libs/signalr-loops/src/index.ts"],
-      "@cosmos/aad-users": ["libs/aad-users/src/index.ts"],
-      "@cosmos/aad-groups": ["libs/aad-groups/src/index.ts"],
-      "@cosmos/http-interceptors": ["libs/http-interceptors/src/index.ts"],
-      "@cosmos/user-roles": ["libs/user-roles/src/index.ts"],
-      "@cosmos/guards": ["libs/guards/src/index.ts"],
+      "@cosmos/hagar-types": [
+        "libs/hagar-types/src/index.ts"
+      ],
+      "@cosmos/ui-layout": [
+        "libs/ui-layout/src/index.ts"
+      ],
+      "@cosmos/ui-navigation": [
+        "libs/ui-navigation/src/index.ts"
+      ],
+      "@cosmos/powder-coat": [
+        "libs/powder-coat/src/index.ts"
+      ],
+      "@cosmos/chassis": [
+        "libs/chassis/src/index.ts"
+      ],
+      "@cosmos/panels": [
+        "libs/panels/src/index.ts"
+      ],
+      "@cosmos/angular-aad-auth": [
+        "libs/angular-aad-auth/src/index.ts"
+      ],
+      "@cosmos/profile-page": [
+        "libs/profile-page/src/index.ts"
+      ],
+      "@cosmos/app-settings": [
+        "libs/app-settings/src/index.ts"
+      ],
+      "@cosmos/environment": [
+        "libs/environment/src/index.ts"
+      ],
+      "@cosmos/types": [
+        "libs/types/src/index.ts"
+      ],
+      "@cosmos/people-sets": [
+        "libs/people-sets/src/index.ts"
+      ],
+      "@cosmos/notifications": [
+        "libs/notifications/src/index.ts"
+      ],
+      "@cosmos/user-profiles": [
+        "libs/user-profiles/src/index.ts"
+      ],
+      "@cosmos/user-auth": [
+        "libs/user-auth/src/index.ts"
+      ],
+      "@cosmos/pages": [
+        "libs/pages/src/index.ts"
+      ],
+      "@cosmos/codex-people": [
+        "libs/codex-people/src/index.ts"
+      ],
+      "@cosmos/google-groups": [
+        "libs/google-groups/src/index.ts"
+      ],
+      "@cosmos/mocks": [
+        "libs/mocks/src/index.ts"
+      ],
+      "@cosmos/messages": [
+        "libs/messages/src/index.ts"
+      ],
+      "@cosmos/signalr-loops": [
+        "libs/signalr-loops/src/index.ts"
+      ],
+      "@cosmos/aad-users": [
+        "libs/aad-users/src/index.ts"
+      ],
+      "@cosmos/aad-groups": [
+        "libs/aad-groups/src/index.ts"
+      ],
+      "@cosmos/http-interceptors": [
+        "libs/http-interceptors/src/index.ts"
+      ],
+      "@cosmos/user-roles": [
+        "libs/user-roles/src/index.ts"
+      ],
+      "@cosmos/guards": [
+        "libs/guards/src/index.ts"
+      ],
       "@cosmos/codex-personality-matrix": [
         "libs/codex-personality-matrix/src/index.ts"
       ],
-      "@cosmos/releases": ["libs/releases/src/index.ts"],
-      "@cosmos/google": ["libs/google/src/index.ts"],
-      "@cosmos/google-calendar": ["libs/google-calendar/src/index.ts"],
-      "@cosmos/people": ["libs/people/src/index.ts"],
-      "@cosmos/schools": ["libs/schools/src/index.ts"],
-      "@cosmos/aad": ["libs/aad/src/index.ts"],
-      "@cosmos/ipps": ["libs/ipps/src/index.ts"],
-      "@cosmos/teamviewer": ["libs/teamviewer/src/index.ts"],
-      "@cosmos/trillium": ["libs/trillium/src/index.ts"],
-      "@cosmos/devices": ["libs/devices/src/index.ts"],
-      "@cosmos/quartermaster": ["libs/quartermaster/src/index.ts"],
-      "@cosmos/ats": ["libs/ats/src/index.ts"],
-      "@cosmos/pings-ui": ["libs/pings-ui/src/index.ts"],
+      "@cosmos/releases": [
+        "libs/releases/src/index.ts"
+      ],
+      "@cosmos/google": [
+        "libs/google/src/index.ts"
+      ],
+      "@cosmos/google-calendar": [
+        "libs/google-calendar/src/index.ts"
+      ],
+      "@cosmos/people": [
+        "libs/people/src/index.ts"
+      ],
+      "@cosmos/schools": [
+        "libs/schools/src/index.ts"
+      ],
+      "@cosmos/aad": [
+        "libs/aad/src/index.ts"
+      ],
+      "@cosmos/ipps": [
+        "libs/ipps/src/index.ts"
+      ],
+      "@cosmos/teamviewer": [
+        "libs/teamviewer/src/index.ts"
+      ],
+      "@cosmos/trillium": [
+        "libs/trillium/src/index.ts"
+      ],
+      "@cosmos/devices": [
+        "libs/devices/src/index.ts"
+      ],
+      "@cosmos/quartermaster": [
+        "libs/quartermaster/src/index.ts"
+      ],
+      "@cosmos/ats": [
+        "libs/ats/src/index.ts"
+      ],
+      "@cosmos/pings-ui": [
+        "libs/pings-ui/src/index.ts"
+      ],
       "@cosmos/friday-functions-lib": [
         "libs/friday-functions-lib/src/index.ts"
       ],
@@ -106,8 +188,14 @@
       ],
       "@cosmos/azure-functions/viewfinder-functions": [
         "libs/azure-functions/viewfinder-functions/src/index.ts"
+      ],
+      "@cosmos/azure-functions/shared": [
+        "libs/azure-functions/shared/src/index.ts"
       ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

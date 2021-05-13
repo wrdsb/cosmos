@@ -1,8 +1,8 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { createLogObject } from "@cosmos/azure-functions-shared";
-import { storeLogBlob } from "@cosmos/azure-functions-shared";
-import { createCallbackMessage } from "@cosmos/azure-functions-shared";
-import { createEvent } from "@cosmos/azure-functions-shared";
+import { createLogObject } from "@cosmos/azure-functions/shared";
+import { storeLogBlob } from "@cosmos/azure-functions/shared";
+import { createCallbackMessage } from "@cosmos/azure-functions/shared";
+import { createEvent } from "@cosmos/azure-functions/shared";
 import { MSGraphGroupsAPI } from "../shared/MSGraphGroupsAPI";
 import { AADGroupCreateFunctionRequest, AADGroupCreateFunctionRequestPayload } from "@cosmos/types";
 

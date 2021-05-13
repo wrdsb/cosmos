@@ -7,7 +7,7 @@ module.exports = {
     '<rootDir>/apps/viewfinder-console',
     '<rootDir>/apps/houston-console',
     '<rootDir>/apps/codex-console',
-    '<rootDir>/libs/azure-functions-shared',
+    <rootDir>/libs/azure-functions/shared,
     '<rootDir>/apps/sorting-hat-functions',
     '<rootDir>/apps/igor-functions',
     '<rootDir>/apps/hagar-functions',

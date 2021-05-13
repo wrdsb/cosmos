@@ -25,7 +25,9 @@
               "apps/panama-console/src/favicon.ico",
               "apps/panama-console/src/assets"
             ],
-            "styles": ["apps/panama-console/src/styles.scss"],
+            "styles": [
+              "apps/panama-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -57,7 +59,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -84,7 +88,10 @@
               "apps/panama-console/tsconfig.app.json",
               "apps/panama-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/panama-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/panama-console/**/*"
+            ]
           }
         },
         "test": {
@@ -93,7 +100,9 @@
             "jestConfig": "apps/panama-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/panama-console"]
+          "outputs": [
+            "coverage/apps/panama-console"
+          ]
         }
       }
     },
@@ -118,8 +127,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/panama-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/panama-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/panama-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/panama-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -148,7 +162,9 @@
               "apps/igor-console/src/favicon.ico",
               "apps/igor-console/src/assets"
             ],
-            "styles": ["apps/igor-console/src/styles.scss"],
+            "styles": [
+              "apps/igor-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -180,7 +196,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -207,7 +225,10 @@
               "apps/igor-console/tsconfig.app.json",
               "apps/igor-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/igor-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igor-console/**/*"
+            ]
           }
         },
         "test": {
@@ -216,7 +237,9 @@
             "jestConfig": "apps/igor-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/igor-console"]
+          "outputs": [
+            "coverage/apps/igor-console"
+          ]
         }
       }
     },
@@ -241,8 +264,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/igor-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/igor-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/igor-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igor-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -271,7 +299,9 @@
               "apps/hagar-console/src/favicon.ico",
               "apps/hagar-console/src/assets"
             ],
-            "styles": ["apps/hagar-console/src/styles.scss"],
+            "styles": [
+              "apps/hagar-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -303,7 +333,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -330,7 +362,10 @@
               "apps/hagar-console/tsconfig.app.json",
               "apps/hagar-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/hagar-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hagar-console/**/*"
+            ]
           }
         },
         "test": {
@@ -339,7 +374,9 @@
             "jestConfig": "apps/hagar-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/hagar-console"]
+          "outputs": [
+            "coverage/apps/hagar-console"
+          ]
         }
       }
     },
@@ -364,8 +401,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/hagar-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/hagar-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/hagar-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hagar-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -394,7 +436,9 @@
               "apps/sorting-hat-console/src/favicon.ico",
               "apps/sorting-hat-console/src/assets"
             ],
-            "styles": ["apps/sorting-hat-console/src/styles.scss"],
+            "styles": [
+              "apps/sorting-hat-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -426,7 +470,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -453,7 +499,10 @@
               "apps/sorting-hat-console/tsconfig.app.json",
               "apps/sorting-hat-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/sorting-hat-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/sorting-hat-console/**/*"
+            ]
           }
         },
         "test": {
@@ -462,7 +511,9 @@
             "jestConfig": "apps/sorting-hat-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/sorting-hat-console"]
+          "outputs": [
+            "coverage/apps/sorting-hat-console"
+          ]
         }
       }
     },
@@ -487,7 +538,9 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/sorting-hat-console-e2e/tsconfig.e2e.json"],
+            "tsConfig": [
+              "apps/sorting-hat-console-e2e/tsconfig.e2e.json"
+            ],
             "exclude": [
               "**/node_modules/**",
               "!apps/sorting-hat-console-e2e/**/*"
@@ -521,7 +574,9 @@
               "apps/viewfinder-console/src/assets",
               "apps/viewfinder-console/src/manifest.webmanifest"
             ],
-            "styles": ["apps/viewfinder-console/src/styles.scss"],
+            "styles": [
+              "apps/viewfinder-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -555,7 +610,9 @@
               "ngswConfigPath": "apps/viewfinder-console/ngsw-config.json"
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -582,7 +639,10 @@
               "apps/viewfinder-console/tsconfig.app.json",
               "apps/viewfinder-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/viewfinder-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/viewfinder-console/**/*"
+            ]
           }
         },
         "test": {
@@ -591,7 +651,9 @@
             "jestConfig": "apps/viewfinder-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/viewfinder-console"]
+          "outputs": [
+            "coverage/apps/viewfinder-console"
+          ]
         }
       }
     },
@@ -616,7 +678,9 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/viewfinder-console-e2e/tsconfig.e2e.json"],
+            "tsConfig": [
+              "apps/viewfinder-console-e2e/tsconfig.e2e.json"
+            ],
             "exclude": [
               "**/node_modules/**",
               "!apps/viewfinder-console-e2e/**/*"
@@ -649,7 +713,9 @@
               "apps/houston-console/src/favicon.ico",
               "apps/houston-console/src/assets"
             ],
-            "styles": ["apps/houston-console/src/styles.scss"],
+            "styles": [
+              "apps/houston-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -681,7 +747,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -708,7 +776,10 @@
               "apps/houston-console/tsconfig.app.json",
               "apps/houston-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/houston-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/houston-console/**/*"
+            ]
           }
         },
         "test": {
@@ -717,7 +788,9 @@
             "jestConfig": "apps/houston-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/houston-console"]
+          "outputs": [
+            "coverage/apps/houston-console"
+          ]
         }
       }
     },
@@ -742,8 +815,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/houston-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/houston-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/houston-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/houston-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -772,7 +850,9 @@
               "apps/codex-console/src/favicon.ico",
               "apps/codex-console/src/assets"
             ],
-            "styles": ["apps/codex-console/src/styles.scss"],
+            "styles": [
+              "apps/codex-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -804,7 +884,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -831,7 +913,10 @@
               "apps/codex-console/tsconfig.app.json",
               "apps/codex-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/codex-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/codex-console/**/*"
+            ]
           }
         },
         "test": {
@@ -840,7 +925,9 @@
             "jestConfig": "apps/codex-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/codex-console"]
+          "outputs": [
+            "coverage/apps/codex-console"
+          ]
         }
       }
     },
@@ -865,38 +952,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/codex-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/codex-console-e2e/**/*"]
-          }
-        }
-      }
-    },
-    "azure-functions-shared": {
-      "root": "libs/azure-functions-shared",
-      "sourceRoot": "libs/azure-functions-shared/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
             "tsConfig": [
-              "libs/azure-functions-shared/tsconfig.lib.json",
-              "libs/azure-functions-shared/tsconfig.spec.json"
+              "apps/codex-console-e2e/tsconfig.e2e.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/azure-functions-shared/**/*"
+              "!apps/codex-console-e2e/**/*"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/azure-functions-shared/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": ["coverage/libs/azure-functions-shared"]
         }
       }
     },
@@ -909,7 +972,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/sorting-hat-functions",
             "tsConfig": "apps/sorting-hat-functions/tsconfig.app.json",
@@ -985,7 +1050,9 @@
             "jestConfig": "apps/sorting-hat-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/sorting-hat-functions"]
+          "outputs": [
+            "coverage/apps/sorting-hat-functions"
+          ]
         }
       }
     },
@@ -998,7 +1065,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/igor-functions",
             "tsConfig": "apps/igor-functions/tsconfig.app.json",
@@ -1062,7 +1131,10 @@
               "apps/igor-functions/tsconfig.app.json",
               "apps/igor-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/igor-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igor-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -1071,7 +1143,9 @@
             "jestConfig": "apps/igor-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/igor-functions"]
+          "outputs": [
+            "coverage/apps/igor-functions"
+          ]
         }
       }
     },
@@ -1084,7 +1158,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/hagar-functions",
             "tsConfig": "apps/hagar-functions/tsconfig.app.json",
@@ -1148,7 +1224,10 @@
               "apps/hagar-functions/tsconfig.app.json",
               "apps/hagar-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/hagar-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hagar-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -1157,7 +1236,9 @@
             "jestConfig": "apps/hagar-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/hagar-functions"]
+          "outputs": [
+            "coverage/apps/hagar-functions"
+          ]
         }
       }
     },
@@ -1170,7 +1251,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/flynn-functions",
             "tsConfig": "apps/flynn-functions/tsconfig.app.json",
@@ -1234,7 +1317,10 @@
               "apps/flynn/tsconfig.app.json",
               "apps/flynn/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/flynn/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flynn/**/*"
+            ]
           }
         },
         "test": {
@@ -1243,7 +1329,9 @@
             "jestConfig": "apps/flynn/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/flynn"]
+          "outputs": [
+            "coverage/apps/flynn"
+          ]
         }
       }
     },
@@ -1256,7 +1344,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/skyline-functions",
             "tsConfig": "apps/skyline-functions/tsconfig.app.json",
@@ -1320,7 +1410,10 @@
               "apps/skyline-functions/tsconfig.app.json",
               "apps/skyline-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/skyline-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skyline-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -1329,7 +1422,9 @@
             "jestConfig": "apps/skyline-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/skyline-functions"]
+          "outputs": [
+            "coverage/apps/skyline-functions"
+          ]
         }
       }
     },
@@ -1342,7 +1437,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/skinner-functions",
             "tsConfig": "apps/skinner-functions/tsconfig.app.json",
@@ -1406,7 +1503,10 @@
               "apps/skinner-functions/tsconfig.app.json",
               "apps/skinner-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/skinner-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skinner-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -1415,7 +1515,9 @@
             "jestConfig": "apps/skinner-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/skinner-functions"]
+          "outputs": [
+            "coverage/apps/skinner-functions"
+          ]
         }
       }
     },
@@ -1428,7 +1530,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/flenderson-functions",
             "tsConfig": "apps/flenderson-functions/tsconfig.app.json",
@@ -1492,7 +1596,10 @@
               "apps/flenderson-functions/tsconfig.app.json",
               "apps/flenderson-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/flenderson-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flenderson-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -1501,7 +1608,9 @@
             "jestConfig": "apps/flenderson-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/flenderson-functions"]
+          "outputs": [
+            "coverage/apps/flenderson-functions"
+          ]
         }
       }
     },
@@ -1514,7 +1623,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/panama-functions",
             "tsConfig": "apps/panama-functions/tsconfig.app.json",
@@ -1578,7 +1689,10 @@
               "apps/panama-functions/tsconfig.app.json",
               "apps/panama-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/panama-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/panama-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -1587,7 +1701,9 @@
             "jestConfig": "apps/panama-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/panama-functions"]
+          "outputs": [
+            "coverage/apps/panama-functions"
+          ]
         }
       }
     },
@@ -1600,7 +1716,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/radar-functions",
             "tsConfig": "apps/radar-functions/tsconfig.app.json",
@@ -1664,7 +1782,10 @@
               "apps/radar-functions/tsconfig.app.json",
               "apps/radar-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/radar-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/radar-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -1673,7 +1794,9 @@
             "jestConfig": "apps/radar-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/radar-functions"]
+          "outputs": [
+            "coverage/apps/radar-functions"
+          ]
         }
       }
     },
@@ -1686,7 +1809,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/lamson-functions",
             "tsConfig": "apps/lamson-functions/tsconfig.app.json",
@@ -1750,7 +1875,10 @@
               "apps/lamson-functions/tsconfig.app.json",
               "apps/lamson-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/lamson-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/lamson-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -1759,7 +1887,9 @@
             "jestConfig": "apps/lamson-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/lamson-functions"]
+          "outputs": [
+            "coverage/apps/lamson-functions"
+          ]
         }
       }
     },
@@ -1772,7 +1902,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/houston-functions",
             "tsConfig": "apps/houston-functions/tsconfig.app.json",
@@ -1836,7 +1968,10 @@
               "apps/houston-functions/tsconfig.app.json",
               "apps/houston-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/houston-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/houston-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -1845,7 +1980,9 @@
             "jestConfig": "apps/houston-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/houston-functions"]
+          "outputs": [
+            "coverage/apps/houston-functions"
+          ]
         }
       }
     },
@@ -1858,7 +1995,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/codex-functions",
             "tsConfig": "apps/codex-functions/tsconfig.app.json",
@@ -1922,7 +2061,10 @@
               "apps/codex-functions/tsconfig.app.json",
               "apps/codex-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/codex-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/codex-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -1931,7 +2073,9 @@
             "jestConfig": "apps/codex-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/codex-functions"]
+          "outputs": [
+            "coverage/apps/codex-functions"
+          ]
         }
       }
     },
@@ -1959,7 +2103,9 @@
               "apps/flenderson-console/src/favicon.ico",
               "apps/flenderson-console/src/assets"
             ],
-            "styles": ["apps/flenderson-console/src/styles.scss"],
+            "styles": [
+              "apps/flenderson-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -1991,7 +2137,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2018,7 +2166,10 @@
               "apps/flenderson-console/tsconfig.app.json",
               "apps/flenderson-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/flenderson-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/flenderson-console/**/*"
+            ]
           }
         },
         "test": {
@@ -2027,7 +2178,9 @@
             "jestConfig": "apps/flenderson-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/flenderson-console"]
+          "outputs": [
+            "coverage/apps/flenderson-console"
+          ]
         }
       }
     },
@@ -2052,7 +2205,9 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/flenderson-console-e2e/tsconfig.e2e.json"],
+            "tsConfig": [
+              "apps/flenderson-console-e2e/tsconfig.e2e.json"
+            ],
             "exclude": [
               "**/node_modules/**",
               "!apps/flenderson-console-e2e/**/*"
@@ -2085,7 +2240,9 @@
               "apps/lamson-console/src/favicon.ico",
               "apps/lamson-console/src/assets"
             ],
-            "styles": ["apps/lamson-console/src/styles.scss"],
+            "styles": [
+              "apps/lamson-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2117,7 +2274,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2144,7 +2303,10 @@
               "apps/lamson-console/tsconfig.app.json",
               "apps/lamson-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/lamson-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/lamson-console/**/*"
+            ]
           }
         },
         "test": {
@@ -2153,7 +2315,9 @@
             "jestConfig": "apps/lamson-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/lamson-console"]
+          "outputs": [
+            "coverage/apps/lamson-console"
+          ]
         }
       }
     },
@@ -2178,8 +2342,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/lamson-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/lamson-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/lamson-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/lamson-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -2208,7 +2377,9 @@
               "apps/radar-console/src/favicon.ico",
               "apps/radar-console/src/assets"
             ],
-            "styles": ["apps/radar-console/src/styles.scss"],
+            "styles": [
+              "apps/radar-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2240,7 +2411,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2267,7 +2440,10 @@
               "apps/radar-console/tsconfig.app.json",
               "apps/radar-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/radar-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/radar-console/**/*"
+            ]
           }
         },
         "test": {
@@ -2276,7 +2452,9 @@
             "jestConfig": "apps/radar-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/radar-console"]
+          "outputs": [
+            "coverage/apps/radar-console"
+          ]
         }
       }
     },
@@ -2301,8 +2479,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/radar-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/radar-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/radar-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/radar-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -2331,7 +2514,9 @@
               "apps/skinner-console/src/favicon.ico",
               "apps/skinner-console/src/assets"
             ],
-            "styles": ["apps/skinner-console/src/styles.scss"],
+            "styles": [
+              "apps/skinner-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2363,7 +2548,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2390,7 +2577,10 @@
               "apps/skinner-console/tsconfig.app.json",
               "apps/skinner-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/skinner-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skinner-console/**/*"
+            ]
           }
         },
         "test": {
@@ -2399,7 +2589,9 @@
             "jestConfig": "apps/skinner-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/skinner-console"]
+          "outputs": [
+            "coverage/apps/skinner-console"
+          ]
         }
       }
     },
@@ -2424,8 +2616,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/skinner-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/skinner-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/skinner-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skinner-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -2454,7 +2651,9 @@
               "apps/skyline-console/src/favicon.ico",
               "apps/skyline-console/src/assets"
             ],
-            "styles": ["apps/skyline-console/src/styles.scss"],
+            "styles": [
+              "apps/skyline-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2486,7 +2685,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2513,7 +2714,10 @@
               "apps/skyline-console/tsconfig.app.json",
               "apps/skyline-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/skyline-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skyline-console/**/*"
+            ]
           }
         },
         "test": {
@@ -2522,7 +2726,9 @@
             "jestConfig": "apps/skyline-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/skyline-console"]
+          "outputs": [
+            "coverage/apps/skyline-console"
+          ]
         }
       }
     },
@@ -2547,8 +2753,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/skyline-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/skyline-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/skyline-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/skyline-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -2561,7 +2772,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/viewfinder-functions",
             "tsConfig": "apps/viewfinder-functions/tsconfig.app.json",
@@ -2621,12 +2834,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/viewfinder-functions/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/viewfinder-functions/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/viewfinder-functions"],
+          "outputs": [
+            "coverage/apps/viewfinder-functions"
+          ],
           "options": {
             "jestConfig": "apps/viewfinder-functions/jest.config.js",
             "passWithNoTests": true
@@ -2658,7 +2875,9 @@
               "apps/claptrap-console/src/favicon.ico",
               "apps/claptrap-console/src/assets"
             ],
-            "styles": ["apps/claptrap-console/src/styles.scss"],
+            "styles": [
+              "apps/claptrap-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2690,7 +2909,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2717,7 +2938,10 @@
               "apps/claptrap-console/tsconfig.app.json",
               "apps/claptrap-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/claptrap-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/claptrap-console/**/*"
+            ]
           }
         },
         "test": {
@@ -2726,7 +2950,9 @@
             "jestConfig": "apps/claptrap-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/claptrap-console"]
+          "outputs": [
+            "coverage/apps/claptrap-console"
+          ]
         }
       }
     },
@@ -2751,8 +2977,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/claptrap-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/claptrap-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/claptrap-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/claptrap-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -2766,7 +2997,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/claptrap-functions",
             "tsConfig": "apps/claptrap-functions/tsconfig.app.json",
@@ -2830,7 +3063,10 @@
               "apps/claptrap-functions/tsconfig.app.json",
               "apps/claptrap-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/claptrap-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/claptrap-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -2839,7 +3075,9 @@
             "jestConfig": "apps/claptrap-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/claptrap-functions"]
+          "outputs": [
+            "coverage/apps/claptrap-functions"
+          ]
         }
       }
     },
@@ -2867,7 +3105,9 @@
               "apps/mcp-console/src/favicon.ico",
               "apps/mcp-console/src/assets"
             ],
-            "styles": ["apps/mcp-console/src/styles.scss"],
+            "styles": [
+              "apps/mcp-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2899,7 +3139,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2926,7 +3168,10 @@
               "apps/mcp-console/tsconfig.app.json",
               "apps/mcp-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/mcp-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/mcp-console/**/*"
+            ]
           }
         },
         "test": {
@@ -2935,7 +3180,9 @@
             "jestConfig": "apps/mcp-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/mcp-console"]
+          "outputs": [
+            "coverage/apps/mcp-console"
+          ]
         }
       }
     },
@@ -2960,8 +3207,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/mcp-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/mcp-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/mcp-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/mcp-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -2975,7 +3227,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/mcp-functions",
             "tsConfig": "apps/mcp-functions/tsconfig.app.json",
@@ -3039,7 +3293,10 @@
               "apps/mcp-functions/tsconfig.app.json",
               "apps/mcp-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/mcp-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/mcp-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -3048,7 +3305,9 @@
             "jestConfig": "apps/mcp-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/mcp-functions"]
+          "outputs": [
+            "coverage/apps/mcp-functions"
+          ]
         }
       }
     },
@@ -3076,7 +3335,9 @@
               "apps/relay-console/src/favicon.ico",
               "apps/relay-console/src/assets"
             ],
-            "styles": ["apps/relay-console/src/styles.scss"],
+            "styles": [
+              "apps/relay-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -3108,7 +3369,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -3135,7 +3398,10 @@
               "apps/relay-console/tsconfig.app.json",
               "apps/relay-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/relay-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/relay-console/**/*"
+            ]
           }
         },
         "test": {
@@ -3144,7 +3410,9 @@
             "jestConfig": "apps/relay-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/relay-console"]
+          "outputs": [
+            "coverage/apps/relay-console"
+          ]
         }
       }
     },
@@ -3169,8 +3437,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/relay-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/relay-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/relay-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/relay-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -3184,7 +3457,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/relay-functions",
             "tsConfig": "apps/relay-functions/tsconfig.app.json",
@@ -3248,7 +3523,10 @@
               "apps/relay-functions/tsconfig.app.json",
               "apps/relay-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/relay-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/relay-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -3257,7 +3535,9 @@
             "jestConfig": "apps/relay-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/relay-functions"]
+          "outputs": [
+            "coverage/apps/relay-functions"
+          ]
         }
       }
     },
@@ -3285,7 +3565,9 @@
               "apps/babbage-console/src/favicon.ico",
               "apps/babbage-console/src/assets"
             ],
-            "styles": ["apps/babbage-console/src/styles.scss"],
+            "styles": [
+              "apps/babbage-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -3317,7 +3599,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -3344,7 +3628,10 @@
               "apps/babbage-console/tsconfig.app.json",
               "apps/babbage-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/babbage-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/babbage-console/**/*"
+            ]
           }
         },
         "test": {
@@ -3353,7 +3640,9 @@
             "jestConfig": "apps/babbage-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/babbage-console"]
+          "outputs": [
+            "coverage/apps/babbage-console"
+          ]
         }
       }
     },
@@ -3378,8 +3667,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/babbage-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/babbage-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/babbage-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/babbage-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -3393,7 +3687,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/babbage-functions",
             "tsConfig": "apps/babbage-functions/tsconfig.app.json",
@@ -3457,7 +3753,10 @@
               "apps/babbage-functions/tsconfig.app.json",
               "apps/babbage-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/babbage-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/babbage-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -3466,7 +3765,9 @@
             "jestConfig": "apps/babbage-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/babbage-functions"]
+          "outputs": [
+            "coverage/apps/babbage-functions"
+          ]
         }
       }
     },
@@ -3494,7 +3795,9 @@
               "apps/hedwig-console/src/favicon.ico",
               "apps/hedwig-console/src/assets"
             ],
-            "styles": ["apps/hedwig-console/src/styles.scss"],
+            "styles": [
+              "apps/hedwig-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -3526,7 +3829,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -3553,7 +3858,10 @@
               "apps/hedwig-console/tsconfig.app.json",
               "apps/hedwig-console/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/hedwig-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hedwig-console/**/*"
+            ]
           }
         },
         "test": {
@@ -3562,7 +3870,9 @@
             "jestConfig": "apps/hedwig-console/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/hedwig-console"]
+          "outputs": [
+            "coverage/apps/hedwig-console"
+          ]
         }
       }
     },
@@ -3587,8 +3897,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/hedwig-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/hedwig-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/hedwig-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hedwig-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -3602,7 +3917,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/hedwig-functions",
             "tsConfig": "apps/hedwig-functions/tsconfig.app.json",
@@ -3666,7 +3983,10 @@
               "apps/hedwig-functions/tsconfig.app.json",
               "apps/hedwig-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/hedwig-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hedwig-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -3675,7 +3995,9 @@
             "jestConfig": "apps/hedwig-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/hedwig-functions"]
+          "outputs": [
+            "coverage/apps/hedwig-functions"
+          ]
         }
       }
     },
@@ -3692,7 +4014,10 @@
               "libs/ui-navigation/tsconfig.lib.json",
               "libs/ui-navigation/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ui-navigation/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui-navigation/**/*"
+            ]
           }
         },
         "test": {
@@ -3701,7 +4026,9 @@
             "jestConfig": "libs/ui-navigation/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/ui-navigation"]
+          "outputs": [
+            "coverage/libs/ui-navigation"
+          ]
         }
       },
       "schematics": {
@@ -3723,7 +4050,10 @@
               "libs/powder-coat/tsconfig.lib.json",
               "libs/powder-coat/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/powder-coat/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/powder-coat/**/*"
+            ]
           }
         },
         "test": {
@@ -3732,7 +4062,9 @@
             "jestConfig": "libs/powder-coat/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/powder-coat"]
+          "outputs": [
+            "coverage/libs/powder-coat"
+          ]
         }
       },
       "schematics": {
@@ -3754,7 +4086,10 @@
               "libs/chassis/tsconfig.lib.json",
               "libs/chassis/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/chassis/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/chassis/**/*"
+            ]
           }
         },
         "test": {
@@ -3763,7 +4098,9 @@
             "jestConfig": "libs/chassis/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/chassis"]
+          "outputs": [
+            "coverage/libs/chassis"
+          ]
         }
       },
       "schematics": {
@@ -3785,7 +4122,10 @@
               "libs/panels/tsconfig.lib.json",
               "libs/panels/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/panels/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/panels/**/*"
+            ]
           }
         },
         "test": {
@@ -3794,7 +4134,9 @@
             "jestConfig": "libs/panels/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/panels"]
+          "outputs": [
+            "coverage/libs/panels"
+          ]
         }
       },
       "schematics": {
@@ -3816,7 +4158,10 @@
               "libs/app-settings/tsconfig.lib.json",
               "libs/app-settings/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/app-settings/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/app-settings/**/*"
+            ]
           }
         },
         "test": {
@@ -3825,7 +4170,9 @@
             "jestConfig": "libs/app-settings/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/app-settings"]
+          "outputs": [
+            "coverage/libs/app-settings"
+          ]
         }
       },
       "schematics": {
@@ -3847,7 +4194,10 @@
               "libs/environment/tsconfig.lib.json",
               "libs/environment/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/environment/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/environment/**/*"
+            ]
           }
         },
         "test": {
@@ -3856,7 +4206,9 @@
             "jestConfig": "libs/environment/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/environment"]
+          "outputs": [
+            "coverage/libs/environment"
+          ]
         }
       },
       "schematics": {
@@ -3878,7 +4230,10 @@
               "libs/types/tsconfig.lib.json",
               "libs/types/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/types/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/types/**/*"
+            ]
           }
         },
         "test": {
@@ -3887,7 +4242,9 @@
             "jestConfig": "libs/types/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/types"]
+          "outputs": [
+            "coverage/libs/types"
+          ]
         }
       }
     },
@@ -3904,7 +4261,10 @@
               "libs/people-sets/tsconfig.lib.json",
               "libs/people-sets/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/people-sets/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/people-sets/**/*"
+            ]
           }
         },
         "test": {
@@ -3913,7 +4273,9 @@
             "jestConfig": "libs/people-sets/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/people-sets"]
+          "outputs": [
+            "coverage/libs/people-sets"
+          ]
         }
       },
       "schematics": {
@@ -3935,7 +4297,10 @@
               "libs/notifications/tsconfig.lib.json",
               "libs/notifications/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/notifications/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/notifications/**/*"
+            ]
           }
         },
         "test": {
@@ -3944,7 +4309,9 @@
             "jestConfig": "libs/notifications/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/notifications"]
+          "outputs": [
+            "coverage/libs/notifications"
+          ]
         }
       },
       "schematics": {
@@ -3966,7 +4333,10 @@
               "libs/user-profiles/tsconfig.lib.json",
               "libs/user-profiles/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/user-profiles/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/user-profiles/**/*"
+            ]
           }
         },
         "test": {
@@ -3975,7 +4345,9 @@
             "jestConfig": "libs/user-profiles/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/user-profiles"]
+          "outputs": [
+            "coverage/libs/user-profiles"
+          ]
         }
       },
       "schematics": {
@@ -3997,7 +4369,10 @@
               "libs/user-auth/tsconfig.lib.json",
               "libs/user-auth/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/user-auth/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/user-auth/**/*"
+            ]
           }
         },
         "test": {
@@ -4006,7 +4381,9 @@
             "jestConfig": "libs/user-auth/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/user-auth"]
+          "outputs": [
+            "coverage/libs/user-auth"
+          ]
         }
       },
       "schematics": {
@@ -4024,7 +4401,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/crankcase-functions",
             "tsConfig": "apps/crankcase-functions/tsconfig.app.json",
@@ -4088,7 +4467,10 @@
               "apps/crankcase-functions/tsconfig.app.json",
               "apps/crankcase-functions/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/crankcase-functions/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/crankcase-functions/**/*"
+            ]
           }
         },
         "test": {
@@ -4097,7 +4479,9 @@
             "jestConfig": "apps/crankcase-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/crankcase-functions"]
+          "outputs": [
+            "coverage/apps/crankcase-functions"
+          ]
         }
       }
     },
@@ -4114,7 +4498,10 @@
               "libs/pages/tsconfig.lib.json",
               "libs/pages/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/pages/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/pages/**/*"
+            ]
           }
         },
         "test": {
@@ -4123,7 +4510,9 @@
             "jestConfig": "libs/pages/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/pages"]
+          "outputs": [
+            "coverage/libs/pages"
+          ]
         }
       },
       "schematics": {
@@ -4145,7 +4534,10 @@
               "libs/codex-people/tsconfig.lib.json",
               "libs/codex-people/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/codex-people/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/codex-people/**/*"
+            ]
           }
         },
         "test": {
@@ -4154,7 +4546,9 @@
             "jestConfig": "libs/codex-people/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/codex-people"]
+          "outputs": [
+            "coverage/libs/codex-people"
+          ]
         }
       },
       "schematics": {
@@ -4176,7 +4570,10 @@
               "libs/google-groups/tsconfig.lib.json",
               "libs/google-groups/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/google-groups/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/google-groups/**/*"
+            ]
           }
         },
         "test": {
@@ -4185,7 +4582,9 @@
             "jestConfig": "libs/google-groups/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/google-groups"]
+          "outputs": [
+            "coverage/libs/google-groups"
+          ]
         }
       },
       "schematics": {
@@ -4207,7 +4606,10 @@
               "libs/mocks/tsconfig.lib.json",
               "libs/mocks/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/mocks/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/mocks/**/*"
+            ]
           }
         },
         "test": {
@@ -4216,7 +4618,9 @@
             "jestConfig": "libs/mocks/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/mocks"]
+          "outputs": [
+            "coverage/libs/mocks"
+          ]
         }
       }
     },
@@ -4233,7 +4637,10 @@
               "libs/messages/tsconfig.lib.json",
               "libs/messages/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/messages/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/messages/**/*"
+            ]
           }
         },
         "test": {
@@ -4242,7 +4649,9 @@
             "jestConfig": "libs/messages/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/messages"]
+          "outputs": [
+            "coverage/libs/messages"
+          ]
         }
       },
       "schematics": {
@@ -4264,7 +4673,10 @@
               "libs/signalr-loops/tsconfig.lib.json",
               "libs/signalr-loops/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/signalr-loops/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/signalr-loops/**/*"
+            ]
           }
         },
         "test": {
@@ -4273,7 +4685,9 @@
             "jestConfig": "libs/signalr-loops/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/signalr-loops"]
+          "outputs": [
+            "coverage/libs/signalr-loops"
+          ]
         }
       },
       "schematics": {
@@ -4295,7 +4709,10 @@
               "libs/aad-users/tsconfig.lib.json",
               "libs/aad-users/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/aad-users/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/aad-users/**/*"
+            ]
           }
         },
         "test": {
@@ -4304,7 +4721,9 @@
             "jestConfig": "libs/aad-users/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/aad-users"]
+          "outputs": [
+            "coverage/libs/aad-users"
+          ]
         }
       },
       "schematics": {
@@ -4326,7 +4745,10 @@
               "libs/aad-groups/tsconfig.lib.json",
               "libs/aad-groups/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/aad-groups/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/aad-groups/**/*"
+            ]
           }
         },
         "test": {
@@ -4335,7 +4757,9 @@
             "jestConfig": "libs/aad-groups/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/aad-groups"]
+          "outputs": [
+            "coverage/libs/aad-groups"
+          ]
         }
       },
       "schematics": {
@@ -4357,7 +4781,10 @@
               "libs/http-interceptors/tsconfig.lib.json",
               "libs/http-interceptors/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/http-interceptors/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/http-interceptors/**/*"
+            ]
           }
         },
         "test": {
@@ -4366,7 +4793,9 @@
             "jestConfig": "libs/http-interceptors/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/http-interceptors"]
+          "outputs": [
+            "coverage/libs/http-interceptors"
+          ]
         }
       },
       "schematics": {
@@ -4388,7 +4817,10 @@
               "libs/user-roles/tsconfig.lib.json",
               "libs/user-roles/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/user-roles/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/user-roles/**/*"
+            ]
           }
         },
         "test": {
@@ -4397,7 +4829,9 @@
             "jestConfig": "libs/user-roles/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/user-roles"]
+          "outputs": [
+            "coverage/libs/user-roles"
+          ]
         }
       },
       "schematics": {
@@ -4419,7 +4853,10 @@
               "libs/guards/tsconfig.lib.json",
               "libs/guards/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/guards/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/guards/**/*"
+            ]
           }
         },
         "test": {
@@ -4428,7 +4865,9 @@
             "jestConfig": "libs/guards/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/guards"]
+          "outputs": [
+            "coverage/libs/guards"
+          ]
         }
       },
       "schematics": {
@@ -4462,7 +4901,9 @@
             "jestConfig": "libs/codex-personality-matrix/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/codex-personality-matrix"]
+          "outputs": [
+            "coverage/libs/codex-personality-matrix"
+          ]
         }
       }
     },
@@ -4479,7 +4920,10 @@
               "libs/releases/tsconfig.lib.json",
               "libs/releases/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/releases/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/releases/**/*"
+            ]
           }
         },
         "test": {
@@ -4488,7 +4932,9 @@
             "jestConfig": "libs/releases/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/releases"]
+          "outputs": [
+            "coverage/libs/releases"
+          ]
         }
       },
       "schematics": {
@@ -4510,7 +4956,10 @@
               "libs/google/tsconfig.lib.json",
               "libs/google/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/google/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/google/**/*"
+            ]
           }
         },
         "test": {
@@ -4519,7 +4968,9 @@
             "jestConfig": "libs/google/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/google"]
+          "outputs": [
+            "coverage/libs/google"
+          ]
         }
       },
       "schematics": {
@@ -4541,7 +4992,10 @@
               "libs/google-calendar/tsconfig.lib.json",
               "libs/google-calendar/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/google-calendar/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/google-calendar/**/*"
+            ]
           }
         },
         "test": {
@@ -4550,7 +5004,9 @@
             "jestConfig": "libs/google-calendar/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/google-calendar"]
+          "outputs": [
+            "coverage/libs/google-calendar"
+          ]
         }
       },
       "schematics": {
@@ -4572,7 +5028,10 @@
               "libs/people/tsconfig.lib.json",
               "libs/people/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/people/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/people/**/*"
+            ]
           }
         },
         "test": {
@@ -4581,7 +5040,9 @@
             "jestConfig": "libs/people/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/people"]
+          "outputs": [
+            "coverage/libs/people"
+          ]
         }
       },
       "schematics": {
@@ -4603,7 +5064,10 @@
               "libs/schools/tsconfig.lib.json",
               "libs/schools/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/schools/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/schools/**/*"
+            ]
           }
         },
         "test": {
@@ -4612,7 +5076,9 @@
             "jestConfig": "libs/schools/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/schools"]
+          "outputs": [
+            "coverage/libs/schools"
+          ]
         }
       },
       "schematics": {
@@ -4634,7 +5100,10 @@
               "libs/aad/tsconfig.lib.json",
               "libs/aad/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/aad/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/aad/**/*"
+            ]
           }
         },
         "test": {
@@ -4643,7 +5112,9 @@
             "jestConfig": "libs/aad/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/aad"]
+          "outputs": [
+            "coverage/libs/aad"
+          ]
         }
       },
       "schematics": {
@@ -4665,7 +5136,10 @@
               "libs/ipps/tsconfig.lib.json",
               "libs/ipps/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ipps/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ipps/**/*"
+            ]
           }
         },
         "test": {
@@ -4674,7 +5148,9 @@
             "jestConfig": "libs/ipps/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/ipps"]
+          "outputs": [
+            "coverage/libs/ipps"
+          ]
         }
       },
       "schematics": {
@@ -4696,7 +5172,10 @@
               "libs/teamviewer/tsconfig.lib.json",
               "libs/teamviewer/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/teamviewer/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/teamviewer/**/*"
+            ]
           }
         },
         "test": {
@@ -4705,7 +5184,9 @@
             "jestConfig": "libs/teamviewer/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/teamviewer"]
+          "outputs": [
+            "coverage/libs/teamviewer"
+          ]
         }
       },
       "schematics": {
@@ -4727,7 +5208,10 @@
               "libs/trillium/tsconfig.lib.json",
               "libs/trillium/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/trillium/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/trillium/**/*"
+            ]
           }
         },
         "test": {
@@ -4736,7 +5220,9 @@
             "jestConfig": "libs/trillium/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/trillium"]
+          "outputs": [
+            "coverage/libs/trillium"
+          ]
         }
       },
       "schematics": {
@@ -4758,7 +5244,10 @@
               "libs/devices/tsconfig.lib.json",
               "libs/devices/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/devices/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/devices/**/*"
+            ]
           }
         },
         "test": {
@@ -4767,7 +5256,9 @@
             "jestConfig": "libs/devices/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/devices"]
+          "outputs": [
+            "coverage/libs/devices"
+          ]
         }
       },
       "schematics": {
@@ -4833,7 +5324,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -4860,7 +5353,9 @@
             "jestConfig": "apps/quartermaster-functions/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/quartermaster-functions"]
+          "outputs": [
+            "coverage/apps/quartermaster-functions"
+          ]
         }
       }
     },
@@ -4877,12 +5372,17 @@
               "libs/quartermaster/tsconfig.lib.json",
               "libs/quartermaster/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/quartermaster/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/quartermaster/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/quartermaster"],
+          "outputs": [
+            "coverage/libs/quartermaster"
+          ],
           "options": {
             "jestConfig": "libs/quartermaster/jest.config.js",
             "passWithNoTests": true
@@ -4903,12 +5403,17 @@
               "libs/ats/tsconfig.lib.json",
               "libs/ats/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ats/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ats/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ats"],
+          "outputs": [
+            "coverage/libs/ats"
+          ],
           "options": {
             "jestConfig": "libs/ats/jest.config.js",
             "passWithNoTests": true
@@ -4924,7 +5429,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/spyglass-functions",
             "tsConfig": "apps/spyglass-functions/tsconfig.app.json",
@@ -4984,12 +5491,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/spyglass-functions/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/spyglass-functions/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/spyglass-functions"],
+          "outputs": [
+            "coverage/apps/spyglass-functions"
+          ],
           "options": {
             "jestConfig": "apps/spyglass-functions/jest.config.js",
             "passWithNoTests": true
@@ -5010,12 +5521,17 @@
               "libs/pings-ui/tsconfig.lib.json",
               "libs/pings-ui/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/pings-ui/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/pings-ui/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/pings-ui"],
+          "outputs": [
+            "coverage/libs/pings-ui"
+          ],
           "options": {
             "jestConfig": "libs/pings-ui/jest.config.js",
             "passWithNoTests": true
@@ -5031,12 +5547,16 @@
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/spectro-functions",
             "main": "apps/spectro-functions/src/main.ts",
             "tsConfig": "apps/spectro-functions/tsconfig.app.json",
-            "assets": ["apps/spectro-functions/src/assets"]
+            "assets": [
+              "apps/spectro-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -5061,12 +5581,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/spectro-functions/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/spectro-functions/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/spectro-functions"],
+          "outputs": [
+            "coverage/apps/spectro-functions"
+          ],
           "options": {
             "jestConfig": "apps/spectro-functions/jest.config.js",
             "passWithNoTests": true
@@ -5093,7 +5617,9 @@
               "apps/spectro-console/src/favicon.ico",
               "apps/spectro-console/src/assets"
             ],
-            "styles": ["apps/spectro-console/src/styles.scss"],
+            "styles": [
+              "apps/spectro-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -5151,12 +5677,17 @@
               "apps/spectro-console/tsconfig.spec.json",
               "apps/spectro-console/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/spectro-console/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/spectro-console/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/spectro-console"],
+          "outputs": [
+            "coverage/apps/spectro-console"
+          ],
           "options": {
             "jestConfig": "apps/spectro-console/jest.config.js",
             "passWithNoTests": true
@@ -5185,8 +5716,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/spectro-console-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/spectro-console-e2e/**/*"]
+            "tsConfig": [
+              "apps/spectro-console-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/spectro-console-e2e/**/*"
+            ]
           }
         }
       }
@@ -5199,12 +5735,16 @@
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/bentley-functions",
             "main": "apps/bentley-functions/src/main.ts",
             "tsConfig": "apps/bentley-functions/tsconfig.app.json",
-            "assets": ["apps/bentley-functions/src/assets"]
+            "assets": [
+              "apps/bentley-functions/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -5229,12 +5769,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/bentley-functions/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/bentley-functions/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/bentley-functions"],
+          "outputs": [
+            "coverage/apps/bentley-functions"
+          ],
           "options": {
             "jestConfig": "apps/bentley-functions/jest.config.js",
             "passWithNoTests": true
@@ -5261,7 +5805,9 @@
               "apps/quartermaster-console/src/favicon.ico",
               "apps/quartermaster-console/src/assets"
             ],
-            "styles": ["apps/quartermaster-console/src/styles.scss"],
+            "styles": [
+              "apps/quartermaster-console/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -5327,7 +5873,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/quartermaster-console"],
+          "outputs": [
+            "coverage/apps/quartermaster-console"
+          ],
           "options": {
             "jestConfig": "apps/quartermaster-console/jest.config.js",
             "passWithNoTests": true
@@ -5356,7 +5904,9 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/quartermaster-console-e2e/tsconfig.e2e.json"],
+            "tsConfig": [
+              "apps/quartermaster-console-e2e/tsconfig.e2e.json"
+            ],
             "exclude": [
               "**/node_modules/**",
               "!apps/quartermaster-console-e2e/**/*"
@@ -5373,7 +5923,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/tollbooth-functions",
             "tsConfig": "apps/tollbooth-functions/tsconfig.app.json",
@@ -5433,12 +5985,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/tollbooth-functions/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/tollbooth-functions/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/tollbooth-functions"],
+          "outputs": [
+            "coverage/apps/tollbooth-functions"
+          ],
           "options": {
             "jestConfig": "apps/tollbooth-functions/jest.config.js",
             "passWithNoTests": true
@@ -5454,7 +6010,9 @@
       "architect": {
         "build": {
           "builder": "./tools/executors/azfunc:azfunc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/friday-functions",
             "tsConfig": "apps/friday-functions/tsconfig.app.json",
@@ -5514,12 +6072,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/friday-functions/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/friday-functions/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/friday-functions"],
+          "outputs": [
+            "coverage/apps/friday-functions"
+          ],
           "options": {
             "jestConfig": "apps/friday-functions/jest.config.js",
             "passWithNoTests": true
@@ -5535,12 +6097,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/friday-functions-lib/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/friday-functions-lib/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/friday-functions-lib"],
+          "outputs": [
+            "coverage/libs/friday-functions-lib"
+          ],
           "options": {
             "jestConfig": "libs/friday-functions-lib/jest.config.js",
             "passWithNoTests": true
@@ -5573,7 +6139,9 @@
             "jestConfig": "libs/angular-services/hagar-service/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/angular-services/hagar-service"]
+          "outputs": [
+            "coverage/libs/angular-services/hagar-service"
+          ]
         }
       },
       "schematics": {
@@ -5607,7 +6175,9 @@
             "jestConfig": "libs/angular-services/codex-service/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/angular-services/codex-service"]
+          "outputs": [
+            "coverage/libs/angular-services/codex-service"
+          ]
         }
       },
       "schematics": {
@@ -5641,7 +6211,9 @@
             "jestConfig": "libs/angular-services/viewfinder-service/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/angular-services/viewfinder-service"]
+          "outputs": [
+            "coverage/libs/angular-services/viewfinder-service"
+          ]
         }
       },
       "schematics": {
@@ -5675,7 +6247,9 @@
             "jestConfig": "libs/angular-services/sorting-hat-service/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/angular-services/sorting-hat-service"]
+          "outputs": [
+            "coverage/libs/angular-services/sorting-hat-service"
+          ]
         }
       },
       "schematics": {
@@ -5705,7 +6279,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/angular-services/houston-service"],
+          "outputs": [
+            "coverage/libs/angular-services/houston-service"
+          ],
           "options": {
             "jestConfig": "libs/angular-services/houston-service/jest.config.js",
             "passWithNoTests": true
@@ -5734,7 +6310,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/angular-services/skinner-service"],
+          "outputs": [
+            "coverage/libs/angular-services/skinner-service"
+          ],
           "options": {
             "jestConfig": "libs/angular-services/skinner-service/jest.config.js",
             "passWithNoTests": true
@@ -5767,7 +6345,9 @@
             "jestConfig": "libs/angular-services/igor-service/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/angular-services/igor-service"]
+          "outputs": [
+            "coverage/libs/angular-services/igor-service"
+          ]
         }
       },
       "schematics": {
@@ -5797,7 +6377,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/angular-services/flenderson-service"],
+          "outputs": [
+            "coverage/libs/angular-services/flenderson-service"
+          ],
           "options": {
             "jestConfig": "libs/angular-services/flenderson-service/jest.config.js",
             "passWithNoTests": true
@@ -5826,7 +6408,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/angular-services/panama-service"],
+          "outputs": [
+            "coverage/libs/angular-services/panama-service"
+          ],
           "options": {
             "jestConfig": "libs/angular-services/panama-service/jest.config.js",
             "passWithNoTests": true
@@ -5855,7 +6439,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/angular-services/quartermaster-service"],
+          "outputs": [
+            "coverage/libs/angular-services/quartermaster-service"
+          ],
           "options": {
             "jestConfig": "libs/angular-services/quartermaster-service/jest.config.js",
             "passWithNoTests": true
@@ -5888,7 +6474,9 @@
             "jestConfig": "libs/angular-services/signalr-service/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/angular-services/signalr-service"]
+          "outputs": [
+            "coverage/libs/angular-services/signalr-service"
+          ]
         }
       },
       "schematics": {
@@ -5918,7 +6506,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/angular-services/pings-service"],
+          "outputs": [
+            "coverage/libs/angular-services/pings-service"
+          ],
           "options": {
             "jestConfig": "libs/angular-services/pings-service/jest.config.js",
             "passWithNoTests": true
@@ -5951,7 +6541,9 @@
             "jestConfig": "libs/angular-services/msgraph-service/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/angular-services/msgraph-service"]
+          "outputs": [
+            "coverage/libs/angular-services/msgraph-service"
+          ]
         }
       },
       "schematics": {
@@ -5975,11 +6567,44 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/azure-functions/viewfinder-functions"],
+          "outputs": [
+            "coverage/libs/azure-functions/viewfinder-functions"
+          ],
           "options": {
             "jestConfig": "libs/azure-functions/viewfinder-functions/jest.config.js",
             "passWithNoTests": true
           }
+        }
+      }
+    },
+    "azure-functions-shared": {
+      "root": "libs/azure-functions/shared",
+      "sourceRoot": "libs/azure-functions/shared/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/azure-functions/shared/tsconfig.lib.json",
+              "libs/azure-functions/shared/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/azure-functions/shared/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/azure-functions/shared/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/azure-functions/shared"
+          ]
         }
       }
     }
