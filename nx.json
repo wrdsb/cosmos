@@ -367,9 +367,6 @@
     "quartermaster-service": {
       "tags": []
     },
-    "panama-service": {
-      "tags": []
-    },
     "pings-ui": {
       "tags": []
     },
@@ -434,6 +431,9 @@
       "tags": []
     },
     "angular-services-flenderson-service": {
+      "tags": []
+    },
+    "angular-services-panama-service": {
       "tags": []
     }
   },

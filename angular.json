@@ -5750,37 +5750,6 @@
         }
       }
     },
-    "panama-service": {
-      "projectType": "library",
-      "root": "libs/panama-service",
-      "sourceRoot": "libs/panama-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/panama-service/tsconfig.lib.json",
-              "libs/panama-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/panama-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/panama-service"
-          ],
-          "options": {
-            "jestConfig": "libs/panama-service/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "pings-ui": {
       "projectType": "library",
       "root": "libs/pings-ui",
@@ -6711,6 +6680,37 @@
           ],
           "options": {
             "jestConfig": "libs/angular-services/flenderson-service/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "angular-services-panama-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/panama-service",
+      "sourceRoot": "libs/angular-services/panama-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/panama-service/tsconfig.lib.json",
+              "libs/angular-services/panama-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/panama-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/angular-services/panama-service"
+          ],
+          "options": {
+            "jestConfig": "libs/angular-services/panama-service/jest.config.js",
             "passWithNoTests": true
           }
         }

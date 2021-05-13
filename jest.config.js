@@ -90,7 +90,7 @@ module.exports = {
     '<rootDir>/libs/quartermaster-service',
     <rootDir>/libs/angular-services/flenderson-service,
     <rootDir>/libs/angular-services/houston-service,
-    '<rootDir>/libs/panama-service',
+    <rootDir>/libs/angular-services/panama-service,
     <rootDir>/libs/angular-services/skinner-service,
     '<rootDir>/libs/pings-ui',
     '<rootDir>/libs/pings-service',

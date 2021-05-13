@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'panama-service',
-  preset: '../../jest.preset.js',
+  displayName: 'angular-services-panama-service',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../coverage/libs/panama-service',
+  coverageDirectory: '../../../coverage/libs/angular-services/panama-service',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

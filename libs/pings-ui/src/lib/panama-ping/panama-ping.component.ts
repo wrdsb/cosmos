@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PanamaService } from "@cosmos/panama-service";
+import { PanamaService } from "@cosmos/angular-services/panama-service";
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({
