@@ -4,7 +4,7 @@ import { catchError, retry, tap } from 'rxjs/operators';
 import { Status } from "@cosmos/types";
 
 import { MessagesService } from '@cosmos/messages';
-import { ViewfinderService } from "@cosmos/viewfinder-service";
+import { ViewfinderService } from "@cosmos/angular-services/viewfinder-service";
 
 import { Asset, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
 

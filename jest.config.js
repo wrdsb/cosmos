@@ -74,7 +74,7 @@ module.exports = {
     '<rootDir>/libs/codex-personality-matrix',
     '<rootDir>/libs/releases',
     '<rootDir>/libs/google',
-    '<rootDir>/libs/viewfinder-service',
+    <rootDir>/libs/angular-services/viewfinder-service,
     '<rootDir>/libs/google-calendar',
     '<rootDir>/libs/people',
     '<rootDir>/libs/schools',

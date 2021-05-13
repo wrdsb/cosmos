@@ -1,6 +1,6 @@
 module.exports = {
-  preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/libs/viewfinder-service',
+  preset: '../../../jest.preset.js',
+  coverageDirectory: '../../../coverage/libs/angular-services/viewfinder-service',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',
@@ -19,5 +19,5 @@ module.exports = {
       },
     },
   },
-  displayName: 'viewfinder-service',
+  displayName: 'angular-services-viewfinder-service',
 };

@@ -5262,42 +5262,6 @@
         }
       }
     },
-    "viewfinder-service": {
-      "projectType": "library",
-      "root": "libs/viewfinder-service",
-      "sourceRoot": "libs/viewfinder-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/viewfinder-service/tsconfig.lib.json",
-              "libs/viewfinder-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/viewfinder-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/viewfinder-service/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": [
-            "coverage/libs/viewfinder-service"
-          ]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "google-calendar": {
       "projectType": "library",
       "root": "libs/google-calendar",
@@ -6707,6 +6671,42 @@
           },
           "outputs": [
             "coverage/libs/angular-services/codex-service"
+          ]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "angular-services-viewfinder-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/viewfinder-service",
+      "sourceRoot": "libs/angular-services/viewfinder-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/viewfinder-service/tsconfig.lib.json",
+              "libs/angular-services/viewfinder-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/viewfinder-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/angular-services/viewfinder-service/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/angular-services/viewfinder-service"
           ]
         }
       },

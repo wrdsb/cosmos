@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ViewfinderService } from "@cosmos/viewfinder-service";
+import { ViewfinderService } from "@cosmos/angular-services/viewfinder-service";
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({

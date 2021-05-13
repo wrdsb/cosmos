@@ -135,9 +135,6 @@
       "@cosmos/google": [
         "libs/google/src/index.ts"
       ],
-      "@cosmos/viewfinder-service": [
-        "libs/viewfinder-service/src/index.ts"
-      ],
       "@cosmos/google-calendar": [
         "libs/google-calendar/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/codex-service": [
         "libs/angular-services/codex-service/src/index.ts"
+      ],
+      "@cosmos/angular-services/viewfinder-service": [
+        "libs/angular-services/viewfinder-service/src/index.ts"
       ]
     }
   },

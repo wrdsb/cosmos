@@ -334,9 +334,6 @@
     "google": {
       "tags": []
     },
-    "viewfinder-service": {
-      "tags": []
-    },
     "google-calendar": {
       "tags": []
     },
@@ -434,6 +431,9 @@
       "tags": []
     },
     "angular-services-codex-service": {
+      "tags": []
+    },
+    "angular-services-viewfinder-service": {
       "tags": []
     }
   },
