@@ -1,45 +1,27 @@
 import { HttpRequest } from "@azure/functions"
 import jwt_decode from 'jwt-decode';
 import { UserState } from "./user-state";
-import { FunctionInvocation } from "@cosmos/types";
+import { MSALToken } from "./msal-token";
 
-export function setResponseState(functionInvocation: FunctionInvocation, userState: UserState): any {
-    const response = {
-        header: {
-            status: 200,
-            message: "",
-            chatter: "",
-            timestamp: functionInvocation.functionInvocationTimestamp,
-            authenticated: userState.authenticated,
-            authorized: userState.authorized,
-            userName: userState.userName,
-            userEmail: userState.userEmail,
-            userRoles: userState.userRoles
-        },
-        payload: {}
-    };
-
-    if (!userState.authenticated) {
-        response.header.status = 401;
-        response.header.message = "Unauthorized: Cannot verify your identity.";
-        response.header.chatter = "Unauthorized: Cannot verify your identity.";
-    }
-    else if (userState.authenticated && !userState.authorized) {
-        response.header.status = 403;
-        response.header.message = "Forbidden: You are not permitted to query Viewfinder";
-        response.header.chatter = "Forbidden: You are not permitted to query Viewfinder";
-    }
-    else if (userState.authenticated && userState.authorized) {
-        response.header.status = 200;
-        response.header.message = "";
-        response.header.chatter = "";
-    }
-    else {
-        response.header.status = 400;
-        response.header.message = "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.";
-        response.header.chatter = "Bad Request: We're not sure what happend, but we're pretty sure it's you, not us.";
+export function setUserState(request: HttpRequest): UserState {
+    let userState = {
+        authenticated: false,
+        authorized: false,
+        idToken: '',
+        userName: '',
+        userEmail: '',
+        userRoles: []
+    } as UserState;
+    
+    if (request.headers['x-ms-token-aad-id-token']) {
+        userState.authenticated = true;
+        userState.idToken = request.headers['x-ms-token-aad-id-token'];
+        const decodedToken = jwt_decode(userState.idToken) as MSALToken;
+        userState.userName = decodedToken.name;
+        userState.userEmail = decodedToken.unique_name;
+        userState.userRoles = decodedToken.roles as string[];
+        userState.authorized = userState.userRoles.includes('cosmos-user-its') ? true : false;
     }
 
     return userState;
 }
-  
