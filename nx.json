@@ -394,9 +394,6 @@
     "friday-functions-lib": {
       "tags": []
     },
-    "viewfinder-functions-shared": {
-      "tags": []
-    },
     "angular-services-hagar-service": {
       "tags": []
     },
@@ -434,6 +431,9 @@
       "tags": []
     },
     "angular-services-msgraph-service": {
+      "tags": []
+    },
+    "azure-functions-viewfinder-functions": {
       "tags": []
     }
   },

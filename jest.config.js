@@ -101,6 +101,6 @@ module.exports = {
     '<rootDir>/apps/tollbooth-functions',
     '<rootDir>/apps/friday-functions',
     '<rootDir>/libs/friday-functions-lib',
-    '<rootDir>/libs/viewfinder-functions-shared',
+    <rootDir>/libs/azure-functions/viewfinder-functions,
   ],
 };

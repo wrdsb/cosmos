@@ -1,6 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { SearchClient, AzureKeyCredential, SearchRequestOptions } from "@azure/search-documents";
-import { setResponseState, setUserState } from "@cosmos/viewfinder-functions-shared";
+import { setResponseState, setUserState } from "@cosmos/azure-functions/viewfinder-functions";
 import { FunctionInvocation, IPPSPerson } from "@cosmos/types";
 
 const peopleElementarySchoolAdmin: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {

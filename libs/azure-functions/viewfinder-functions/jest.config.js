@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'viewfinder-functions-shared',
-  preset: '../../jest.preset.js',
+  displayName: 'azure-functions-viewfinder-functions',
+  preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsConfig: '<rootDir>/tsconfig.spec.json',
@@ -10,5 +10,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/viewfinder-functions-shared',
+  coverageDirectory: '../../../coverage/libs/azure-functions/viewfinder-functions',
 };

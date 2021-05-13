@@ -159,9 +159,6 @@
       "@cosmos/friday-functions-lib": [
         "libs/friday-functions-lib/src/index.ts"
       ],
-      "@cosmos/viewfinder-functions-shared": [
-        "libs/viewfinder-functions-shared/src/index.ts"
-      ],
       "@cosmos/angular-services/hagar-service": [
         "libs/angular-services/hagar-service/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/msgraph-service": [
         "libs/angular-services/msgraph-service/src/index.ts"
+      ],
+      "@cosmos/azure-functions/viewfinder-functions": [
+        "libs/azure-functions/viewfinder-functions/src/index.ts"
       ]
     }
   },
