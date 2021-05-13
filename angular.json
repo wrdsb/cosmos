@@ -5750,37 +5750,6 @@
         }
       }
     },
-    "flenderson-service": {
-      "projectType": "library",
-      "root": "libs/flenderson-service",
-      "sourceRoot": "libs/flenderson-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/flenderson-service/tsconfig.lib.json",
-              "libs/flenderson-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/flenderson-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/flenderson-service"
-          ],
-          "options": {
-            "jestConfig": "libs/flenderson-service/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "panama-service": {
       "projectType": "library",
       "root": "libs/panama-service",
@@ -6713,6 +6682,37 @@
       "schematics": {
         "@nrwl/angular:component": {
           "style": "scss"
+        }
+      }
+    },
+    "angular-services-flenderson-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/flenderson-service",
+      "sourceRoot": "libs/angular-services/flenderson-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/flenderson-service/tsconfig.lib.json",
+              "libs/angular-services/flenderson-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/flenderson-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/angular-services/flenderson-service"
+          ],
+          "options": {
+            "jestConfig": "libs/angular-services/flenderson-service/jest.config.js",
+            "passWithNoTests": true
+          }
         }
       }
     }

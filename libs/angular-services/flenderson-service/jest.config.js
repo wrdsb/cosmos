@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'flenderson-service',
-  preset: '../../jest.preset.js',
+  displayName: 'angular-services-flenderson-service',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../coverage/libs/flenderson-service',
+  coverageDirectory: '../../../coverage/libs/angular-services/flenderson-service',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

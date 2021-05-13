@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FlendersonService } from "@cosmos/flenderson-service";
+import { FlendersonService } from "@cosmos/angular-services/flenderson-service";
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({

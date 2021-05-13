@@ -162,9 +162,6 @@
       "@cosmos/quartermaster-service": [
         "libs/quartermaster-service/src/index.ts"
       ],
-      "@cosmos/flenderson-service": [
-        "libs/flenderson-service/src/index.ts"
-      ],
       "@cosmos/panama-service": [
         "libs/panama-service/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/igor-service": [
         "libs/angular-services/igor-service/src/index.ts"
+      ],
+      "@cosmos/angular-services/flenderson-service": [
+        "libs/angular-services/flenderson-service/src/index.ts"
       ]
     }
   },
