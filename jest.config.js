@@ -55,7 +55,7 @@ module.exports = {
     '<rootDir>/libs/pages',
     '<rootDir>/libs/codex-people',
     '<rootDir>/libs/google-groups',
-    '<rootDir>/libs/codex-service',
+    <rootDir>/libs/angular-services/codex-service,
     '<rootDir>/libs/codex-console-private',
     '<rootDir>/libs/igor-service',
     '<rootDir>/libs/igor-console-private',

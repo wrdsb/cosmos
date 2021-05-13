@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CodexService } from "@cosmos/codex-service";
+import { CodexService } from "@cosmos/angular-services/codex-service";
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({

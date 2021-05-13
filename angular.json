@@ -4660,42 +4660,6 @@
         }
       }
     },
-    "codex-service": {
-      "projectType": "library",
-      "root": "libs/codex-service",
-      "sourceRoot": "libs/codex-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/codex-service/tsconfig.lib.json",
-              "libs/codex-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/codex-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/codex-service/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": [
-            "coverage/libs/codex-service"
-          ]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "codex-console-private": {
       "projectType": "library",
       "root": "libs/codex-console-private",
@@ -6707,6 +6671,42 @@
           },
           "outputs": [
             "coverage/libs/angular-services/hagar-service"
+          ]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "angular-services-codex-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/codex-service",
+      "sourceRoot": "libs/angular-services/codex-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/codex-service/tsconfig.lib.json",
+              "libs/angular-services/codex-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/codex-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/angular-services/codex-service/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/angular-services/codex-service"
           ]
         }
       },

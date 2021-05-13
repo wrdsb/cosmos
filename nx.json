@@ -280,9 +280,6 @@
     "google-groups": {
       "tags": []
     },
-    "codex-service": {
-      "tags": []
-    },
     "codex-console-private": {
       "tags": []
     },
@@ -434,6 +431,9 @@
       "tags": []
     },
     "angular-services-hagar-service": {
+      "tags": []
+    },
+    "angular-services-codex-service": {
       "tags": []
     }
   },
