@@ -65,7 +65,7 @@ module.exports = {
     '<rootDir>/libs/messages',
     '<rootDir>/libs/signalr-service',
     '<rootDir>/libs/signalr-loops',
-    '<rootDir>/libs/hagar-service',
+    <rootDir>/libs/angular-services/hagar-service,
     '<rootDir>/libs/aad-users',
     '<rootDir>/libs/aad-groups',
     '<rootDir>/libs/http-interceptors',

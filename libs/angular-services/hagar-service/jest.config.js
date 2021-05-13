@@ -1,6 +1,6 @@
 module.exports = {
-  preset: '../../jest.preset.js',
-  coverageDirectory: '../../coverage/libs/hagar-service',
+  preset: '../../../jest.preset.js',
+  coverageDirectory: '../../../coverage/libs/angular-services/hagar-service',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',
@@ -19,5 +19,5 @@ module.exports = {
       },
     },
   },
-  displayName: 'hagar-service',
+  displayName: 'angular-services-hagar-service',
 };

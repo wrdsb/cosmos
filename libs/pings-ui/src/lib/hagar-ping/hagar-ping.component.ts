@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HagarService } from '@cosmos/hagar-service';
+import { HagarService } from '@cosmos/angular-services/hagar-service';
 import { PingFunctionResponse, PingRequestState, Status } from "@cosmos/types";
 
 @Component({
