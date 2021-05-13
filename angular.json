@@ -4835,42 +4835,6 @@
         }
       }
     },
-    "signalr-service": {
-      "projectType": "library",
-      "root": "libs/signalr-service",
-      "sourceRoot": "libs/signalr-service/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/signalr-service/tsconfig.lib.json",
-              "libs/signalr-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/signalr-service/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/signalr-service/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": [
-            "coverage/libs/signalr-service"
-          ]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "signalr-loops": {
       "projectType": "library",
       "root": "libs/signalr-loops",
@@ -6713,6 +6677,42 @@
             "jestConfig": "libs/angular-services/quartermaster-service/jest.config.js",
             "passWithNoTests": true
           }
+        }
+      }
+    },
+    "angular-services-signalr-service": {
+      "projectType": "library",
+      "root": "libs/angular-services/signalr-service",
+      "sourceRoot": "libs/angular-services/signalr-service/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-services/signalr-service/tsconfig.lib.json",
+              "libs/angular-services/signalr-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-services/signalr-service/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/angular-services/signalr-service/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/angular-services/signalr-service"
+          ]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }

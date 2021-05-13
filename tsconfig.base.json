@@ -99,9 +99,6 @@
       "@cosmos/messages": [
         "libs/messages/src/index.ts"
       ],
-      "@cosmos/signalr-service": [
-        "libs/signalr-service/src/index.ts"
-      ],
       "@cosmos/signalr-loops": [
         "libs/signalr-loops/src/index.ts"
       ],
@@ -200,6 +197,9 @@
       ],
       "@cosmos/angular-services/quartermaster-service": [
         "libs/angular-services/quartermaster-service/src/index.ts"
+      ],
+      "@cosmos/angular-services/signalr-service": [
+        "libs/angular-services/signalr-service/src/index.ts"
       ]
     }
   },

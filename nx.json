@@ -295,9 +295,6 @@
     "messages": {
       "tags": []
     },
-    "signalr-service": {
-      "tags": []
-    },
     "signalr-loops": {
       "tags": []
     },
@@ -434,6 +431,9 @@
       "tags": []
     },
     "angular-services-quartermaster-service": {
+      "tags": []
+    },
+    "angular-services-signalr-service": {
       "tags": []
     }
   },

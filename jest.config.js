@@ -63,7 +63,7 @@ module.exports = {
     '<rootDir>/libs/sorting-hat-console-private',
     '<rootDir>/libs/mocks',
     '<rootDir>/libs/messages',
-    '<rootDir>/libs/signalr-service',
+    <rootDir>/libs/angular-services/signalr-service,
     '<rootDir>/libs/signalr-loops',
     <rootDir>/libs/angular-services/hagar-service,
     '<rootDir>/libs/aad-users',
