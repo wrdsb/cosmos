@@ -11,7 +11,7 @@ import { DeviceLoan, SearchFunctionRequestPayload, SearchFunctionResponse, Searc
 @Injectable({
   providedIn: 'root'
 })
-export class DeviceLoansService {
+export class QuartermasterDeviceLoansService {
   private searchRequestState: BehaviorSubject<SearchRequestState> = new BehaviorSubject({
     status: Status.UNKNOWN,
     response: 'response',
