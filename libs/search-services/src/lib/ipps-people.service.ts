@@ -11,7 +11,7 @@ import { IPPSPerson, SearchFunctionRequestPayload, SearchFunctionResponse, Searc
 @Injectable({
   providedIn: 'root'
 })
-export class IPPSService {
+export class IPPSPeopleService {
   private searchRequestState: BehaviorSubject<SearchRequestState> = new BehaviorSubject({
     status: Status.UNKNOWN,
     response: 'response',
