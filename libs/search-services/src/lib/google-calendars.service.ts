@@ -11,7 +11,7 @@ import { GoogleCalendar, SearchFunctionRequestPayload, SearchFunctionResponse, S
 @Injectable({
   providedIn: 'root'
 })
-export class GoogleCalendarService {
+export class GoogleCalendarsService {
   private searchRequestState: BehaviorSubject<SearchRequestState> = new BehaviorSubject({
     status: Status.UNKNOWN,
     response: 'response',
