@@ -186,33 +186,12 @@ export class ViewfinderService {
       }
     };
 
-    return this.http.post<SearchFunctionResponse>(findURL, searchFunctionRequest, this.httpOptions)
-      .pipe(
-        tap(_ => console.log('Viewfinder Service: find request')),
-        retry(2),
-        catchError(error => {
-          console.log('Viewfinder Service: catch find request error');
-          this.searchRequestState.next({
-            status: Status.ERROR,
-            response: '',
-            error: error
-          });
-          throw 'Viewfinder Service: error finding via Viewfinder';
-        }),
-        tap(_ => {
-          this.searchRequestState.next({
-            status: Status.SUCCESS,
-            response: 'success',
-            error: ''
-          });
-          console.log('Viewfinder Service: success finding via Viewfinder');
-        })
-      );
+    return this.doSearchRequest(findURL, searchFunctionRequest);
   }
 
+  
   searchItems(searchURL: string, query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
     console.log('Viewfinder Service: searchItems()');
-    console.log('Searching Viewfinder...');
 
     let defaultSearchRequestOptions = {
       includeTotalCount: true,
@@ -226,24 +205,29 @@ export class ViewfinderService {
       payload: searchRequestOptions
     };
 
+    return this.doSearchRequest(searchURL, searchFunctionRequest);
+  }
+
+
+  doSearchRequest(requestURL: string, searchFunctionRequest): Observable<SearchFunctionResponse> {
     this.searchRequestState.next({
       status: Status.LOADING,
       response: 'unknown',
       error: 'unknown'
     });
 
-    return this.http.post<SearchFunctionResponse>(searchURL, searchFunctionRequest, this.httpOptions)
+    return this.http.post<SearchFunctionResponse>(requestURL, searchFunctionRequest, this.httpOptions)
       .pipe(
-        tap(_ => console.log('searh request')),
+        tap(_ => console.log('Viewfinder Service: doSearchRequest()')),
         retry(2),
         catchError(error => {
-          console.log('catch search request error');
+          console.log('Viewfinder Service: catch search request error');
           this.searchRequestState.next({
             status: Status.ERROR,
             response: '',
             error: error
           });
-          throw 'error searching Viewfinder';
+          throw 'Viewfinder Service: error searching Viewfinder';
         }),
         tap(_ => {
           this.searchRequestState.next({
@@ -251,7 +235,7 @@ export class ViewfinderService {
             response: 'success',
             error: ''
           });
-          console.log('success searching Viewfinder');
+          console.log('Viewfinder Service: success searching Viewfinder');
         })
       );
   }
