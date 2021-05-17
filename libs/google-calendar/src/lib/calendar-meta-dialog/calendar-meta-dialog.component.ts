@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 
 import { GoogleCalendar } from "@cosmos/types";
-import { GoogleCalendarService } from '../google-calendar.service';
+import { GoogleCalendarsService } from '@cosmos/search-services';
 
 @Component({
   selector: 'cosmos-calendar-meta-dialog',
@@ -13,7 +13,7 @@ export class CalendarMetaDialogComponent {
   public selectedCalendar$: Observable<GoogleCalendar>;
 
   constructor(
-    private calendarService: GoogleCalendarService
+    private calendarService: GoogleCalendarsService
   ) {
     this.selectedCalendar$ = this.calendarService.selectedCalendar$;
   }

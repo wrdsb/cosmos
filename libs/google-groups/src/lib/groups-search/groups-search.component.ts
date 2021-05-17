@@ -11,7 +11,7 @@ import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
 import { GoogleGroup, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
-import { GoogleGroupsService } from '../google-groups.service';
+import { GoogleGroupsService } from '@cosmos/search-services';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { GroupMetaDialogComponent } from "../group-meta-dialog/group-meta-dialog.component";
 

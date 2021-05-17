@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Observable } from "rxjs";
 
 import { DeviceLoan } from "@cosmos/types";
-import { DeviceLoansService } from '../device-loans.service';
+import { QuartermasterDeviceLoansService } from '@cosmos/search-services';
 
 @Component({
   selector: 'cosmos-device-loan-meta-dialog',
@@ -13,7 +13,7 @@ export class DeviceLoanMetaDialogComponent {
   public selectedLoan$: Observable<DeviceLoan>;
 
   constructor(
-    private deviceLoansService: DeviceLoansService
+    private deviceLoansService: QuartermasterDeviceLoansService
   ) {
     this.selectedLoan$ = this.deviceLoansService.selectedLoan$;
   }

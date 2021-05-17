@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { DeviceLoan, SearchFunctionRequestPayload, SearchFunctionResponse } from "@cosmos/types";
-import { DeviceLoansService } from '../device-loans.service';
+import { QuartermasterDeviceLoansService } from '@cosmos/search-services';
 
 @Component({
   selector: 'cosmos-device-loans-dashboard',
@@ -23,7 +23,7 @@ export class DeviceLoansDashboardComponent implements OnInit {
   public loansPerSchool$: Observable<any[]>;
 
   constructor(
-    private deviceLoansService: DeviceLoansService,
+    private deviceLoansService: QuartermasterDeviceLoansService,
     //public dialog: MatDialog
   ) {
     this.loansPerSchool$ = this.loansPerSchool;

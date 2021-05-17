@@ -11,7 +11,7 @@ import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
 import { DeviceLoan, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
-import { DeviceLoansService } from '../device-loans.service';
+import { QuartermasterDeviceLoansService } from '@cosmos/search-services';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DeviceLoanMetaDialogComponent } from "../device-loan-meta-dialog/device-loan-meta-dialog.component";
 
@@ -85,7 +85,7 @@ export class DeviceLoansSearchComponent implements OnInit {
   deviceLoanMetaDialogRef: MatDialogRef<DeviceLoanMetaDialogComponent>;
 
   constructor(
-    private deviceLoansService: DeviceLoansService,
+    private deviceLoansService: QuartermasterDeviceLoansService,
     public dialog: MatDialog
   ) {
     this.searchRequestState$ = this.deviceLoansService.searchRequestState$;

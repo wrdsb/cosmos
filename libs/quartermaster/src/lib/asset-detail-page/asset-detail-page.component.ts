@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 
 import { Asset } from "@cosmos/types";
-import { QuartermasterAssetsService } from '../quartermaster-assets.service';
+import { QuartermasterAssetsService } from '@cosmos/search-services';
 
 @Component({
   selector: 'cosmos-asset-detail-page',

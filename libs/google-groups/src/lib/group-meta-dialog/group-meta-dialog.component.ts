@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Observable } from "rxjs";
 
 import { GoogleGroup } from "@cosmos/types";
-import { GoogleGroupsService } from '../google-groups.service';
+import { GoogleGroupsService } from '@cosmos/search-services';
 
 @Component({
   selector: 'cosmos-google-group-meta-dialog',

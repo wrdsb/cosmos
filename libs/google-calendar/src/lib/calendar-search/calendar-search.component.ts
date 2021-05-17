@@ -11,7 +11,7 @@ import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
 import { GoogleCalendar, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
-import { GoogleCalendarService } from '../google-calendar.service';
+import { GoogleCalendarsService } from '@cosmos/search-services';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { CalendarMetaDialogComponent } from "../calendar-meta-dialog/calendar-meta-dialog.component";
 
@@ -96,7 +96,7 @@ export class CalendarSearchComponent implements OnInit {
   calendarMetaDialogRef: MatDialogRef<CalendarMetaDialogComponent>;
 
   constructor(
-    private calendarService: GoogleCalendarService,
+    private calendarService: GoogleCalendarsService,
     public dialog: MatDialog
   ) {
     this.searchRequestState$ = this.calendarService.searchRequestState$;

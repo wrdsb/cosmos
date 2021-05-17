@@ -11,7 +11,7 @@ import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
 import { IPPSPerson, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
-import { IPPSService } from '../ipps.service';
+import { IPPSPeopleService } from '@cosmos/search-services';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { PersonMetaDialogComponent } from "../person-meta-dialog/person-meta-dialog.component";
 
@@ -93,7 +93,7 @@ export class AdminTransfersComponent implements OnInit {
   personMetaDialogRef: MatDialogRef<PersonMetaDialogComponent>;
 
   constructor(
-    private ippsService: IPPSService,
+    private ippsService: IPPSPeopleService,
     public dialog: MatDialog
   ) {
     this.searchRequestState$ = this.ippsService.searchRequestState$;

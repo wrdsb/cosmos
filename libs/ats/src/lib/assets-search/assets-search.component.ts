@@ -11,7 +11,7 @@ import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
 import { ATSAsset, SearchFunctionRequestPayload, SearchFunctionResponse } from "@cosmos/types";
-import { ATSAssetsService } from '../ats-assets.service';
+import { ATSAssetsService } from '@cosmos/search-services';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { AssetDetailDialogComponent } from "../asset-detail-dialog/asset-detail-dialog.component";
 
