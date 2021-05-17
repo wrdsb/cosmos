@@ -129,398 +129,75 @@ export class ViewfinderService {
   }
 
   findGoogleGroup(groupID: string): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: findGoogleGroup()');
-
-    let searchFunctionRequest = {
-      payload: {
-        id: groupID
-      }
-    };
-
-    return this.http.post<SearchFunctionResponse>(this.googleGroupsFindURL, searchFunctionRequest, this.httpOptions)
-    .pipe(
-      tap(_ => console.log('Viewfinder Service: Google Group find request')),
-      retry(2),
-      catchError(error => {
-        console.log('Viewfinder Service: catch find request error');
-        this.searchRequestState.next({
-          status: Status.ERROR,
-          response: '',
-          error: error
-        });
-        throw 'Viewfinder Service: error finding via Viewfinder';
-      }),
-      tap(_ => {
-        this.searchRequestState.next({
-          status: Status.SUCCESS,
-          response: 'success',
-          error: ''
-        });
-        console.log('Viewfinder Service: success finding via Viewfinder');
-      })
-    );
+    return this.findItem(this.googleGroupsFindURL, groupID);
   }
 
   searchGoogleGroups(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: searchGoogleGroups()');
-    console.log('Searching Viewfinder...');
-
-    let defaultSearchRequestOptions = {
-      includeTotalCount: true,
-      skip: 0,
-      top: 20,
-    } as SearchFunctionRequestPayload;
-
-    let searchRequestOptions = Object.assign(defaultSearchRequestOptions, query);
-    
-    let searchFunctionRequest = {
-      payload: searchRequestOptions
-    };
-
-    this.searchRequestState.next({
-      status: Status.LOADING,
-      response: 'unknown',
-      error: 'unknown'
-    });
-
-    return this.http.post<SearchFunctionResponse>(this.googleGroupsSearchURL, searchFunctionRequest, this.httpOptions)
-      .pipe(
-        tap(_ => console.log('searh request')),
-        retry(2),
-        catchError(error => {
-          console.log('catch search request error');
-          this.searchRequestState.next({
-            status: Status.ERROR,
-            response: '',
-            error: error
-          });
-          throw 'error searching Viewfinder';
-        }),
-        tap(_ => {
-          this.searchRequestState.next({
-            status: Status.SUCCESS,
-            response: 'success',
-            error: ''
-          });
-          console.log('success searching Viewfinder');
-        })
-      );
+    return this.searchItems(this.googleGroupsSearchURL, query);
   }
-
 
   findGoogleCalendar(calendarID: string): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: findGoogleCalendar()');
-
-    let searchFunctionRequest = {
-      payload: {
-        id: calendarID
-      }
-    };
-
-    return this.http.post<SearchFunctionResponse>(this.googleCalendarFindURL, searchFunctionRequest, this.httpOptions)
-    .pipe(
-      tap(_ => console.log('Viewfinder Service: Google Calendar find request')),
-      retry(2),
-      catchError(error => {
-        console.log('Viewfinder Service: catch find request error');
-        this.searchRequestState.next({
-          status: Status.ERROR,
-          response: '',
-          error: error
-        });
-        throw 'Viewfinder Service: error finding via Viewfinder';
-      }),
-      tap(_ => {
-        this.searchRequestState.next({
-          status: Status.SUCCESS,
-          response: 'success',
-          error: ''
-        });
-        console.log('Viewfinder Service: success finding via Viewfinder');
-      })
-    );
+    return this.findItem(this.googleCalendarFindURL, calendarID);
   }
-
 
   searchGoogleCalendars(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: searchGoogleCalendars()');
-    console.log('Searching Viewfinder...');
-
-    let defaultSearchRequestOptions = {
-      includeTotalCount: true,
-      orderBy: ["summary asc"],
-      skip: 0,
-      top: 20,
-    } as SearchFunctionRequestPayload;
-
-    let searchRequestOptions = Object.assign(defaultSearchRequestOptions, query);
-    
-    let searchFunctionRequest = {
-      payload: searchRequestOptions
-    };
-
-    this.searchRequestState.next({
-      status: Status.LOADING,
-      response: 'unknown',
-      error: 'unknown'
-    });
-
-    return this.http.post<SearchFunctionResponse>(this.googleCalendarsSearchURL, searchFunctionRequest, this.httpOptions)
-      .pipe(
-        tap(_ => console.log('searh request')),
-        retry(2),
-        catchError(error => {
-          console.log('catch search request error');
-          this.searchRequestState.next({
-            status: Status.ERROR,
-            response: '',
-            error: error
-          });
-          throw 'error searching Viewfinder';
-        }),
-        tap(_ => {
-          this.searchRequestState.next({
-            status: Status.SUCCESS,
-            response: 'success',
-            error: ''
-          });
-          console.log('success searching Viewfinder');
-        })
-      );
+    return this.searchItems(this.googleCalendarsSearchURL, query);
   }
-
 
   findIPPSPerson(personID: string): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: findIPPSPerson()');
-
-    let searchFunctionRequest = {
-      payload: {
-        id: personID
-      }
-    };
-
-    return this.http.post<SearchFunctionResponse>(this.ippsPersonFindURL, searchFunctionRequest, this.httpOptions)
-    .pipe(
-      tap(_ => console.log('Viewfinder Service: IPPS Person find request')),
-      retry(2),
-      catchError(error => {
-        console.log('Viewfinder Service: catch find request error');
-        this.searchRequestState.next({
-          status: Status.ERROR,
-          response: '',
-          error: error
-        });
-        throw 'Viewfinder Service: error finding via Viewfinder';
-      }),
-      tap(_ => {
-        this.searchRequestState.next({
-          status: Status.SUCCESS,
-          response: 'success',
-          error: ''
-        });
-        console.log('Viewfinder Service: success finding via Viewfinder');
-      })
-    );
+    return this.findItem(this.ippsPersonFindURL, personID);
   }
-
 
   searchIPPSPeople(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: searchIPPSPeople()');
-    console.log('Searching Viewfinder...');
-
-    let defaultSearchRequestOptions = {
-      includeTotalCount: true,
-      orderBy: ["summary asc"],
-      skip: 0,
-      top: 20,
-    } as SearchFunctionRequestPayload;
-
-    let searchRequestOptions = Object.assign(defaultSearchRequestOptions, query);
-    
-    let searchFunctionRequest = {
-      payload: searchRequestOptions
-    };
-
-    this.searchRequestState.next({
-      status: Status.LOADING,
-      response: 'unknown',
-      error: 'unknown'
-    });
-
-    return this.http.post<SearchFunctionResponse>(this.ippsPeopleSearchURL, searchFunctionRequest, this.httpOptions)
-      .pipe(
-        tap(_ => console.log('searh request')),
-        retry(2),
-        catchError(error => {
-          console.log('catch search request error');
-          this.searchRequestState.next({
-            status: Status.ERROR,
-            response: '',
-            error: error
-          });
-          throw 'error searching Viewfinder';
-        }),
-        tap(_ => {
-          this.searchRequestState.next({
-            status: Status.SUCCESS,
-            response: 'success',
-            error: ''
-          });
-          console.log('success searching Viewfinder');
-        })
-      );
+    return this.searchItems(this.ippsPeopleSearchURL, query);
   }
-
 
   findQuartermasterDeviceLoan(loanID: string): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: findQuartermasterDeviceLoan()');
-
-    let searchFunctionRequest = {
-      payload: {
-        id: loanID
-      }
-    };
-
-    return this.http.post<SearchFunctionResponse>(this.quartermasterDeviceLoanFindURL, searchFunctionRequest, this.httpOptions)
-    .pipe(
-      tap(_ => console.log('Viewfinder Service: Quartermaster Device Loan find request')),
-      retry(2),
-      catchError(error => {
-        console.log('Viewfinder Service: catch find request error');
-        this.searchRequestState.next({
-          status: Status.ERROR,
-          response: '',
-          error: error
-        });
-        throw 'Viewfinder Service: error finding via Viewfinder';
-      }),
-      tap(_ => {
-        this.searchRequestState.next({
-          status: Status.SUCCESS,
-          response: 'success',
-          error: ''
-        });
-        console.log('Viewfinder Service: success finding via Viewfinder');
-      })
-    );
+    return this.findItem(this.quartermasterDeviceLoanFindURL, loanID);
   }
-
 
   searchQuartermasterDeviceLoans(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: searchQuartermasterDeviceLoans()');
-    console.log('Searching Viewfinder...');
-
-    let defaultSearchRequestOptions = {
-      includeTotalCount: true,
-      skip: 0,
-      top: 20,
-    } as SearchFunctionRequestPayload;
-
-    let searchRequestOptions = Object.assign(defaultSearchRequestOptions, query);
-    
-    let searchFunctionRequest = {
-      payload: searchRequestOptions
-    };
-
-    this.searchRequestState.next({
-      status: Status.LOADING,
-      response: 'unknown',
-      error: 'unknown'
-    });
-
-    return this.http.post<SearchFunctionResponse>(this.quartermasterDeviceLoansSearchURL, searchFunctionRequest, this.httpOptions)
-      .pipe(
-        tap(_ => console.log('searh request')),
-        retry(2),
-        catchError(error => {
-          console.log('catch search request error');
-          this.searchRequestState.next({
-            status: Status.ERROR,
-            response: '',
-            error: error
-          });
-          throw 'error searching Viewfinder';
-        }),
-        tap(_ => {
-          this.searchRequestState.next({
-            status: Status.SUCCESS,
-            response: 'success',
-            error: ''
-          });
-          console.log('success searching Viewfinder');
-        })
-      );
+    return this.searchItems(this.quartermasterDeviceLoansSearchURL, query);
   }
-
 
   findATSAsset(assetID: string): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: findATSAsset()');
+    return this.findItem(this.atsAssetFindURL, assetID);
+  }
 
-    let searchFunctionRequest = {
-      payload: {
-        id: assetID
-      }
-    };
+  searchATSAssets(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
+    return this.searchItems(this.atsAssetsSearchURL, query);
+  }
 
-    return this.http.post<SearchFunctionResponse>(this.atsAssetFindURL, searchFunctionRequest, this.httpOptions)
-    .pipe(
-      tap(_ => console.log('Viewfinder Service: ATS Asset find request')),
-      retry(2),
-      catchError(error => {
-        console.log('Viewfinder Service: catch find request error');
-        this.searchRequestState.next({
-          status: Status.ERROR,
-          response: '',
-          error: error
-        });
-        throw 'Viewfinder Service: error finding via Viewfinder';
-      }),
-      tap(_ => {
-        this.searchRequestState.next({
-          status: Status.SUCCESS,
-          response: 'success',
-          error: ''
-        });
-        console.log('Viewfinder Service: success finding via Viewfinder');
-      })
-    );
+  findQuartermasterAsset(assetID: string): Observable<SearchFunctionResponse> {
+    return this.findItem(this.quartermasterAssetFindURL, assetID);
+  }
+
+  searchQuartermasterAssets(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
+    return this.searchItems(this.quartermasterAssetsSearchURL, query);
   }
 
 
-  searchATSAssets(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: searchATSAssets()');
-    console.log('Searching Viewfinder...');
+  findItem(findURL: string, itemID: string): Observable<SearchFunctionResponse> {
+    console.log('Viewfinder Service: findItem()');
 
-    let defaultSearchRequestOptions = {
-      includeTotalCount: true,
-      skip: 0,
-      top: 20,
-    } as SearchFunctionRequestPayload;
-
-    let searchRequestOptions = Object.assign(defaultSearchRequestOptions, query);
-    
     let searchFunctionRequest = {
-      payload: searchRequestOptions
+      payload: {
+        id: itemID
+      }
     };
 
-    this.searchRequestState.next({
-      status: Status.LOADING,
-      response: 'unknown',
-      error: 'unknown'
-    });
-
-    return this.http.post<SearchFunctionResponse>(this.atsAssetsSearchURL, searchFunctionRequest, this.httpOptions)
+    return this.http.post<SearchFunctionResponse>(findURL, searchFunctionRequest, this.httpOptions)
       .pipe(
-        tap(_ => console.log('searh request')),
+        tap(_ => console.log('Viewfinder Service: find request')),
         retry(2),
         catchError(error => {
-          console.log('catch search request error');
+          console.log('Viewfinder Service: catch find request error');
           this.searchRequestState.next({
             status: Status.ERROR,
             response: '',
             error: error
           });
-          throw 'error searching Viewfinder';
+          throw 'Viewfinder Service: error finding via Viewfinder';
         }),
         tap(_ => {
           this.searchRequestState.next({
@@ -528,48 +205,13 @@ export class ViewfinderService {
             response: 'success',
             error: ''
           });
-          console.log('success searching Viewfinder');
+          console.log('Viewfinder Service: success finding via Viewfinder');
         })
       );
   }
 
-
-  findQuartermasterAsset(assetID: string): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: findQuartermasterAsset()');
-
-    let searchFunctionRequest = {
-      payload: {
-        id: assetID
-      }
-    };
-
-    return this.http.post<SearchFunctionResponse>(this.quartermasterAssetFindURL, searchFunctionRequest, this.httpOptions)
-    .pipe(
-      tap(_ => console.log('Viewfinder Service: Quartermaster Asset find request')),
-      retry(2),
-      catchError(error => {
-        console.log('Viewfinder Service: catch find request error');
-        this.searchRequestState.next({
-          status: Status.ERROR,
-          response: '',
-          error: error
-        });
-        throw 'Viewfinder Service: error finding via Viewfinder';
-      }),
-      tap(_ => {
-        this.searchRequestState.next({
-          status: Status.SUCCESS,
-          response: 'success',
-          error: ''
-        });
-        console.log('Viewfinder Service: success finding via Viewfinder');
-      })
-    );
-  }
-
-
-  searchQuartermasterAssets(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    console.log('Viewfinder Service: searchQuartermasterAssets()');
+  searchItems(searchURL: string, query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
+    console.log('Viewfinder Service: searchItems()');
     console.log('Searching Viewfinder...');
 
     let defaultSearchRequestOptions = {
@@ -590,7 +232,7 @@ export class ViewfinderService {
       error: 'unknown'
     });
 
-    return this.http.post<SearchFunctionResponse>(this.quartermasterAssetsSearchURL, searchFunctionRequest, this.httpOptions)
+    return this.http.post<SearchFunctionResponse>(searchURL, searchFunctionRequest, this.httpOptions)
       .pipe(
         tap(_ => console.log('searh request')),
         retry(2),
