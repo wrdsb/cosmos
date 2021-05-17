@@ -21,17 +21,18 @@ interface CodexPerson extends CosmosPerson {
     // fullName?: string;
     // sortableName?: string;
 
-    people_set_names: string[];
-    people_set_memberships: string[];
+    people_set_names?: string[];
+    people_set_memberships?: string[];
     
-    ippsEIN: string;
-    ippsLocationCodes: string[];
-    ippsSchoolCodes: string[];
-    ippsJobCodes: string[];
-    ippsHomeLocation: string;
-    ippsPerson: IPPSPerson;
+    ippsEIN?: string;
+    ippsLocationCodes?: string[];
+    ippsSchoolCodes?: string[];
+    ippsJobCodes?: string[];
+    ippsEmployeeGroupCodes?: string[];
+    ippsHomeLocation?: string;
+    ippsPerson?: IPPSPerson;
 
-    trilliumRecord: TrilliumRecord;
+    trilliumRecord?: TrilliumRecord;
 
     its_field_tech_for: string[];
     dlst_for: string[];

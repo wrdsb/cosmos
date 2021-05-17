@@ -11,6 +11,7 @@ interface CosmosPerson extends CosmosCoreFields {
     email?: string;
     username?: string;
     employeeID?: string;
+    staffNumber?: string;
 
     firstName?: string;
     lastName?: string;
