@@ -2,10 +2,7 @@
   "npmScope": "cosmos",
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tslint.json": "*",
     "nx.json": "*",
     "tsconfig.base.json": "*",
@@ -14,418 +11,179 @@
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
-      }
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
   "projects": {
-    "panama-console": {
-      "tags": []
-    },
+    "panama-console": { "tags": [] },
     "panama-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "panama-console"
-      ]
+      "implicitDependencies": ["panama-console"]
     },
-    "igor-console": {
-      "tags": []
-    },
+    "igor-console": { "tags": [] },
     "igor-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "igor-console"
-      ]
+      "implicitDependencies": ["igor-console"]
     },
-    "hagar-console": {
-      "tags": []
-    },
+    "hagar-console": { "tags": [] },
     "hagar-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "hagar-console"
-      ]
+      "implicitDependencies": ["hagar-console"]
     },
-    "sorting-hat-console": {
-      "tags": []
-    },
+    "sorting-hat-console": { "tags": [] },
     "sorting-hat-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "sorting-hat-console"
-      ]
+      "implicitDependencies": ["sorting-hat-console"]
     },
-    "viewfinder-console": {
-      "tags": []
-    },
+    "viewfinder-console": { "tags": [] },
     "viewfinder-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "viewfinder-console"
-      ]
+      "implicitDependencies": ["viewfinder-console"]
     },
-    "houston-console": {
-      "tags": []
-    },
+    "houston-console": { "tags": [] },
     "houston-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "houston-console"
-      ]
+      "implicitDependencies": ["houston-console"]
     },
-    "codex-console": {
-      "tags": []
-    },
+    "codex-console": { "tags": [] },
     "codex-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "codex-console"
-      ]
+      "implicitDependencies": ["codex-console"]
     },
-    "sorting-hat-functions": {
-      "tags": []
-    },
-    "igor-functions": {
-      "tags": []
-    },
-    "hagar-functions": {
-      "tags": []
-    },
-    "skyline-functions": {
-      "tags": []
-    },
-    "skinner-functions": {
-      "tags": []
-    },
-    "flenderson-functions": {
-      "tags": []
-    },
-    "panama-functions": {
-      "tags": []
-    },
-    "radar-functions": {
-      "tags": []
-    },
-    "lamson-functions": {
-      "tags": []
-    },
-    "houston-functions": {
-      "tags": []
-    },
-    "codex-functions": {
-      "tags": []
-    },
-    "flenderson-console": {
-      "tags": []
-    },
+    "sorting-hat-functions": { "tags": [] },
+    "igor-functions": { "tags": [] },
+    "hagar-functions": { "tags": [] },
+    "skyline-functions": { "tags": [] },
+    "skinner-functions": { "tags": [] },
+    "flenderson-functions": { "tags": [] },
+    "panama-functions": { "tags": [] },
+    "radar-functions": { "tags": [] },
+    "lamson-functions": { "tags": [] },
+    "houston-functions": { "tags": [] },
+    "codex-functions": { "tags": [] },
+    "flenderson-console": { "tags": [] },
     "flenderson-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "flenderson-console"
-      ]
+      "implicitDependencies": ["flenderson-console"]
     },
-    "lamson-console": {
-      "tags": []
-    },
+    "lamson-console": { "tags": [] },
     "lamson-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "lamson-console"
-      ]
+      "implicitDependencies": ["lamson-console"]
     },
-    "radar-console": {
-      "tags": []
-    },
+    "radar-console": { "tags": [] },
     "radar-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "radar-console"
-      ]
+      "implicitDependencies": ["radar-console"]
     },
-    "skinner-console": {
-      "tags": []
-    },
+    "skinner-console": { "tags": [] },
     "skinner-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "skinner-console"
-      ]
+      "implicitDependencies": ["skinner-console"]
     },
-    "skyline-console": {
-      "tags": []
-    },
+    "skyline-console": { "tags": [] },
     "skyline-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "skyline-console"
-      ]
+      "implicitDependencies": ["skyline-console"]
     },
-    "viewfinder-functions": {
-      "tags": []
-    },
-    "claptrap-console": {
-      "tags": []
-    },
+    "viewfinder-functions": { "tags": [] },
+    "claptrap-console": { "tags": [] },
     "claptrap-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "claptrap-console"
-      ]
+      "implicitDependencies": ["claptrap-console"]
     },
-    "claptrap-functions": {
-      "tags": []
-    },
-    "mcp-console": {
-      "tags": []
-    },
-    "mcp-console-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "mcp-console"
-      ]
-    },
-    "mcp-functions": {
-      "tags": []
-    },
-    "relay-console": {
-      "tags": []
-    },
+    "claptrap-functions": { "tags": [] },
+    "mcp-console": { "tags": [] },
+    "mcp-console-e2e": { "tags": [], "implicitDependencies": ["mcp-console"] },
+    "mcp-functions": { "tags": [] },
+    "relay-console": { "tags": [] },
     "relay-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "relay-console"
-      ]
+      "implicitDependencies": ["relay-console"]
     },
-    "relay-functions": {
-      "tags": []
-    },
-    "babbage-console": {
-      "tags": []
-    },
+    "relay-functions": { "tags": [] },
+    "babbage-console": { "tags": [] },
     "babbage-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "babbage-console"
-      ]
+      "implicitDependencies": ["babbage-console"]
     },
-    "babbage-functions": {
-      "tags": []
-    },
-    "hedwig-console": {
-      "tags": []
-    },
+    "babbage-functions": { "tags": [] },
+    "hedwig-console": { "tags": [] },
     "hedwig-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "hedwig-console"
-      ]
+      "implicitDependencies": ["hedwig-console"]
     },
-    "hedwig-functions": {
-      "tags": []
-    },
-    "ui-navigation": {
-      "tags": []
-    },
-    "powder-coat": {
-      "tags": []
-    },
-    "chassis": {
-      "tags": []
-    },
-    "panels": {
-      "tags": []
-    },
-    "app-settings": {
-      "tags": []
-    },
-    "environment": {
-      "tags": []
-    },
-    "types": {
-      "tags": []
-    },
-    "people-sets": {
-      "tags": []
-    },
-    "notifications": {
-      "tags": []
-    },
-    "user-profiles": {
-      "tags": []
-    },
-    "user-auth": {
-      "tags": []
-    },
-    "crankcase-functions": {
-      "tags": []
-    },
-    "pages": {
-      "tags": []
-    },
-    "codex-people": {
-      "tags": []
-    },
-    "google-groups": {
-      "tags": []
-    },
-    "mocks": {
-      "tags": []
-    },
-    "messages": {
-      "tags": []
-    },
-    "signalr-loops": {
-      "tags": []
-    },
-    "flynn": {
-      "tags": []
-    },
-    "aad-users": {
-      "tags": []
-    },
-    "aad-groups": {
-      "tags": []
-    },
-    "http-interceptors": {
-      "tags": []
-    },
-    "user-roles": {
-      "tags": []
-    },
-    "guards": {
-      "tags": []
-    },
-    "codex-personality-matrix": {
-      "tags": []
-    },
-    "releases": {
-      "tags": []
-    },
-    "google": {
-      "tags": []
-    },
-    "google-calendar": {
-      "tags": []
-    },
-    "people": {
-      "tags": []
-    },
-    "schools": {
-      "tags": []
-    },
-    "aad": {
-      "tags": []
-    },
-    "ipps": {
-      "tags": []
-    },
-    "teamviewer": {
-      "tags": []
-    },
-    "trillium": {
-      "tags": []
-    },
-    "devices": {
-      "tags": []
-    },
-    "quartermaster-functions": {
-      "tags": []
-    },
-    "quartermaster": {
-      "tags": []
-    },
-    "ats": {
-      "tags": []
-    },
-    "spyglass-functions": {
-      "tags": []
-    },
-    "pings-ui": {
-      "tags": []
-    },
-    "spectro-functions": {
-      "tags": []
-    },
-    "spectro-console": {
-      "tags": []
-    },
+    "hedwig-functions": { "tags": [] },
+    "ui-navigation": { "tags": [] },
+    "powder-coat": { "tags": [] },
+    "chassis": { "tags": [] },
+    "panels": { "tags": [] },
+    "app-settings": { "tags": [] },
+    "environment": { "tags": [] },
+    "types": { "tags": [] },
+    "people-sets": { "tags": [] },
+    "notifications": { "tags": [] },
+    "user-profiles": { "tags": [] },
+    "user-auth": { "tags": [] },
+    "crankcase-functions": { "tags": [] },
+    "pages": { "tags": [] },
+    "codex-people": { "tags": [] },
+    "google-groups": { "tags": [] },
+    "mocks": { "tags": [] },
+    "messages": { "tags": [] },
+    "signalr-loops": { "tags": [] },
+    "flynn": { "tags": [] },
+    "aad-users": { "tags": [] },
+    "aad-groups": { "tags": [] },
+    "http-interceptors": { "tags": [] },
+    "user-roles": { "tags": [] },
+    "guards": { "tags": [] },
+    "codex-personality-matrix": { "tags": [] },
+    "releases": { "tags": [] },
+    "google": { "tags": [] },
+    "google-calendar": { "tags": [] },
+    "people": { "tags": [] },
+    "schools": { "tags": [] },
+    "aad": { "tags": [] },
+    "ipps": { "tags": [] },
+    "teamviewer": { "tags": [] },
+    "trillium": { "tags": [] },
+    "devices": { "tags": [] },
+    "quartermaster-functions": { "tags": [] },
+    "quartermaster": { "tags": [] },
+    "ats": { "tags": [] },
+    "spyglass-functions": { "tags": [] },
+    "pings-ui": { "tags": [] },
+    "spectro-functions": { "tags": [] },
+    "spectro-console": { "tags": [] },
     "spectro-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "spectro-console"
-      ]
+      "implicitDependencies": ["spectro-console"]
     },
-    "bentley-functions": {
-      "tags": []
-    },
-    "quartermaster-console": {
-      "tags": []
-    },
+    "bentley-functions": { "tags": [] },
+    "quartermaster-console": { "tags": [] },
     "quartermaster-console-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "quartermaster-console"
-      ]
+      "implicitDependencies": ["quartermaster-console"]
     },
-    "tollbooth-functions": {
-      "tags": []
-    },
-    "friday-functions": {
-      "tags": []
-    },
-    "friday-functions-lib": {
-      "tags": []
-    },
-    "angular-services-hagar-service": {
-      "tags": []
-    },
-    "angular-services-codex-service": {
-      "tags": []
-    },
-    "angular-services-viewfinder-service": {
-      "tags": []
-    },
-    "angular-services-sorting-hat-service": {
-      "tags": []
-    },
-    "angular-services-houston-service": {
-      "tags": []
-    },
-    "angular-services-skinner-service": {
-      "tags": []
-    },
-    "angular-services-igor-service": {
-      "tags": []
-    },
-    "angular-services-flenderson-service": {
-      "tags": []
-    },
-    "angular-services-panama-service": {
-      "tags": []
-    },
-    "angular-services-quartermaster-service": {
-      "tags": []
-    },
-    "angular-services-signalr-service": {
-      "tags": []
-    },
-    "angular-services-pings-service": {
-      "tags": []
-    },
-    "angular-services-msgraph-service": {
-      "tags": []
-    },
-    "azure-functions-viewfinder-functions": {
-      "tags": []
-    }
+    "tollbooth-functions": { "tags": [] },
+    "friday-functions": { "tags": [] },
+    "friday-functions-lib": { "tags": [] },
+    "angular-services-hagar-service": { "tags": [] },
+    "angular-services-codex-service": { "tags": [] },
+    "angular-services-viewfinder-service": { "tags": [] },
+    "angular-services-sorting-hat-service": { "tags": [] },
+    "angular-services-houston-service": { "tags": [] },
+    "angular-services-skinner-service": { "tags": [] },
+    "angular-services-igor-service": { "tags": [] },
+    "angular-services-flenderson-service": { "tags": [] },
+    "angular-services-panama-service": { "tags": [] },
+    "angular-services-quartermaster-service": { "tags": [] },
+    "angular-services-signalr-service": { "tags": [] },
+    "angular-services-pings-service": { "tags": [] },
+    "angular-services-msgraph-service": { "tags": [] },
+    "azure-functions-viewfinder-functions": { "tags": [] },
+    "search-services": { "tags": [] }
   },
-  "affected": {
-    "defaultBase": "master"
-  }
+  "affected": { "defaultBase": "master" }
 }

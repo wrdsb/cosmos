@@ -104,3 +104,4 @@ module.exports = {
     <rootDir>/libs/azure-functions/viewfinder-functions,
   ],
 };
+,"<rootDir>/libs/search-services"
