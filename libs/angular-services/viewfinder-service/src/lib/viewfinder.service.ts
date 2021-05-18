@@ -14,25 +14,27 @@ export class ViewfinderService {
   private apiTargetAppName = 'Viewfinder';
   private serviceName = `${this.apiTargetAppName} Service`;
 
-  private pingURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/ping';
-  
-  private googleGroupsFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-group-find';
-  private googleGroupsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-groups-search';
+  private viewfinderURLs = {
+    pingURL: 'https://wrdsb-viewfinder.azurewebsites.net/api/ping',
 
-  private googleCalendarFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-calendar-find';
-  private googleCalendarsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/google-calendars-search';
+    googleGroupFind: 'https://wrdsb-viewfinder.azurewebsites.net/api/google-group-find',
+    googleGroupsSearch: 'https://wrdsb-viewfinder.azurewebsites.net/api/google-groups-search',
 
-  private ippsPersonFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/ipps-person-find';
-  private ippsPeopleSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/ipps-people-search';
+    googleCalendarFind: 'https://wrdsb-viewfinder.azurewebsites.net/api/google-calendar-find',
+    googleCalendarsSearch: 'https://wrdsb-viewfinder.azurewebsites.net/api/google-calendars-search',
 
-  private quartermasterDeviceLoanFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/device-loan-find';
-  private quartermasterDeviceLoansSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/device-loans-search';
+    ippsPersonFind: 'https://wrdsb-viewfinder.azurewebsites.net/api/ipps-person-find',
+    ippsPeopleSearch: 'https://wrdsb-viewfinder.azurewebsites.net/api/ipps-people-search',
 
-  private atsAssetFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/ats-asset-find';
-  private atsAssetsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/ats-assets-search';
+    quartermasterDeviceLoanFind: 'https://wrdsb-viewfinder.azurewebsites.net/api/device-loan-find',
+    quartermasterDeviceLoansSearch: 'https://wrdsb-viewfinder.azurewebsites.net/api/device-loans-search',
 
-  private quartermasterAssetFindURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/quartermaster-asset-find';
-  private quartermasterAssetsSearchURL = 'https://wrdsb-viewfinder.azurewebsites.net/api/quartermaster-assets-search';
+    atsAssetFind: 'https://wrdsb-viewfinder.azurewebsites.net/api/ats-asset-find',
+    atsAssetsSearch: 'https://wrdsb-viewfinder.azurewebsites.net/api/ats-assets-search',
+
+    quartermasterAssetFind: 'https://wrdsb-viewfinder.azurewebsites.net/api/quartermaster-asset-find',
+    quartermasterAssetsSearch: 'https://wrdsb-viewfinder.azurewebsites.net/api/quartermaster-assets-search',
+  };
 
   private pingState: BehaviorSubject<PingFunctionResponse> = new BehaviorSubject({
     header: {
@@ -89,7 +91,7 @@ export class ViewfinderService {
       error: 'unknown'
     });
 
-    this.http.get<PingFunctionResponse>(this.pingURL, this.httpOptions)
+    this.http.get<PingFunctionResponse>(this.viewfinderURLs.pingURL, this.httpOptions)
       .pipe(
         tap(_ => console.log('ping request')),
         retry(2),
@@ -128,59 +130,13 @@ export class ViewfinderService {
       .subscribe(response => this.pingState.next(response));
   }
 
-  findGoogleGroup(groupID: string): Observable<SearchFunctionResponse> {
-    return this.findItem(this.googleGroupsFindURL, groupID);
-  }
 
-  searchGoogleGroups(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    return this.searchItems(this.googleGroupsSearchURL, query);
-  }
-
-  findGoogleCalendar(calendarID: string): Observable<SearchFunctionResponse> {
-    return this.findItem(this.googleCalendarFindURL, calendarID);
-  }
-
-  searchGoogleCalendars(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    return this.searchItems(this.googleCalendarsSearchURL, query);
-  }
-
-  findIPPSPerson(personID: string): Observable<SearchFunctionResponse> {
-    return this.findItem(this.ippsPersonFindURL, personID);
-  }
-
-  searchIPPSPeople(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    return this.searchItems(this.ippsPeopleSearchURL, query);
-  }
-
-  findQuartermasterDeviceLoan(loanID: string): Observable<SearchFunctionResponse> {
-    return this.findItem(this.quartermasterDeviceLoanFindURL, loanID);
-  }
-
-  searchQuartermasterDeviceLoans(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    return this.searchItems(this.quartermasterDeviceLoansSearchURL, query);
-  }
-
-  findATSAsset(assetID: string): Observable<SearchFunctionResponse> {
-    return this.findItem(this.atsAssetFindURL, assetID);
-  }
-
-  searchATSAssets(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    return this.searchItems(this.atsAssetsSearchURL, query);
-  }
-
-  findQuartermasterAsset(assetID: string): Observable<SearchFunctionResponse> {
-    return this.findItem(this.quartermasterAssetFindURL, assetID);
-  }
-
-  searchQuartermasterAssets(query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
-    return this.searchItems(this.quartermasterAssetsSearchURL, query);
-  }
-
-
-  findItem(findURL: string, itemID: string): Observable<SearchFunctionResponse> {
+  findItem(operation: string, itemID: string): Observable<SearchFunctionResponse> {
     console.log('Viewfinder Service: findItem()');
 
-    let searchFunctionRequest = {
+    const findURL = this.viewfinderURLs[operation];
+
+    const searchFunctionRequest = {
       payload: {
         id: itemID
       }
@@ -190,8 +146,10 @@ export class ViewfinderService {
   }
 
   
-  searchItems(searchURL: string, query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
+  searchItems(operation: string, query?: SearchFunctionRequestPayload): Observable<SearchFunctionResponse> {
     console.log('Viewfinder Service: searchItems()');
+
+    const searchURL = this.viewfinderURLs[operation];
 
     let defaultSearchRequestOptions = {
       includeTotalCount: true,
