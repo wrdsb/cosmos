@@ -183,7 +183,8 @@
     "angular-services-pings-service": { "tags": [] },
     "angular-services-msgraph-service": { "tags": [] },
     "azure-functions-viewfinder-functions": { "tags": [] },
-    "search-services": { "tags": [] }
+    "search-services": { "tags": [] },
+    "azure-functions-shared": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
