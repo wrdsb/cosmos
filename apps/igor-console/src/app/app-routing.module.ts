@@ -7,7 +7,7 @@ import { RolesGuard } from "@cosmos/guards";
 const routes: Routes = [
   {
     path: 'calendar',
-    loadChildren: () => import('@cosmos/google-calendar').then(m => m.GoogleCalendarModule),
+    loadChildren: () => import('@cosmos/screens/google/calendar').then(m => m.GoogleCalendarModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'groups',
-    loadChildren: () => import('@cosmos/google-groups').then(m => m.GoogleGroupsModule),
+    loadChildren: () => import('@cosmos/screens/google/groups').then(m => m.GoogleGroupsModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'google',
-    loadChildren: () => import('@cosmos/google').then(m => m.GoogleModule),
+    loadChildren: () => import('@cosmos/screens/google/google').then(m => m.GoogleModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
