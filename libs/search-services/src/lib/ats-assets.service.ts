@@ -3,6 +3,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { Status } from "@cosmos/types";
 
+import { SearchService } from "./search.service";
+
 import { MessagesService } from '@cosmos/messages';
 import { ViewfinderService } from "@cosmos/angular-services/viewfinder-service";
 
@@ -11,99 +13,40 @@ import { ATSAsset, SearchFunctionRequestPayload, SearchFunctionResponse, SearchR
 @Injectable({
   providedIn: 'root'
 })
-export class ATSAssetsService {
-  private searchRequestState: BehaviorSubject<SearchRequestState> = new BehaviorSubject({
-    status: Status.UNKNOWN,
-    response: 'response',
-    error: 'error'
-  });
-  public readonly searchRequestState$: Observable<SearchRequestState> = this.searchRequestState.asObservable();
-
-  private searchResponse: BehaviorSubject<SearchFunctionResponse> = new BehaviorSubject({
-    header: {
-      message: "",
-      chatter: "",
-      status: 0,
-      timestamp: ""
-    },
-    payload: {}
-  });
-  public readonly searchResponse$: Observable<SearchFunctionResponse> = this.searchResponse.asObservable();
-
-  private assetsList: BehaviorSubject<ATSAsset[]> = new BehaviorSubject([]);
-  public readonly assetsList$: Observable<ATSAsset[]> = this.assetsList.asObservable();
-
-  private assetSelected: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public readonly assetSelected$: Observable<boolean> = this.assetSelected.asObservable();
-
-  private selectedAsset: BehaviorSubject<ATSAsset> = new BehaviorSubject<ATSAsset>(null);
-  public readonly selectedAsset$: Observable<ATSAsset> = this.selectedAsset.asObservable();
-
+export class ATSAssetsService extends SearchService<ATSAsset> {
   constructor(
-    private messagesService: MessagesService,
-    private viewfinderService: ViewfinderService
-  ) {}
-
-
-  selectAsset(assetID: string): void {
-    this.findAsset(assetID);
+    protected messagesService: MessagesService,
+    protected viewfinderService: ViewfinderService
+  ) {
+    super(messagesService, viewfinderService);
   }
 
-
-  deselectAsset() {
-    this.assetSelected.next(false);
-    this.selectedAsset.next(null);
+  public selectItem(itemID: string): void {
+    const operation = 'atsAssetFind';
+    this.findItem(operation, itemID).subscribe((response) => {
+      this.itemSelected.next(true);
+      this.selectedItem.next(response.payload.documents[0] as ATSAsset);
+    });
   }
 
+  public deselectItem() {
+    this.itemSelected.next(false);
+    this.selectedItem.next(null);
+  }
 
-  findAsset(assetID): void {
+  findAsset(personID): void {
+    const operation = 'atsAssetFind';
     console.log('ATS Assets Service: findAsset()');
 
-    this.searchRequestState.next({
-      status: Status.LOADING,
-      response: 'unknown',
-      error: 'unknown'
+    this.findItem(operation, personID).subscribe((response) => {
+      this.itemSelected.next(true);
+      this.selectedItem.next(response.payload.documents[0] as ATSAsset);
     });
-
-    this.viewfinderService.findATSAsset(assetID)
-      .pipe(
-        tap(_ => console.log('ATS Assets Service: find request')),
-        retry(2),
-        catchError(error => {
-          console.log('ATS Assets Service: catch find request error');
-          this.searchRequestState.next({
-            status: Status.ERROR,
-            response: '',
-            error: error
-          });
-          this.searchResponse.next({
-            header: {
-              status: 200,
-              message: "error",
-              chatter: "error",
-              timestamp: "timestamp"
-            },
-            payload: {}
-          });
-          throw 'ATS Assets Service: error finding Asset';
-        }),
-        tap(_ => {
-          this.searchRequestState.next({
-            status: Status.SUCCESS,
-            response: 'success',
-            error: ''
-          });
-          console.log('ATS Assets Service: success finding Asset');
-        })
-      )
-      .subscribe((response) => {
-        this.assetSelected.next(true);
-        this.selectedAsset.next(response.payload.documents[0] as ATSAsset);
-      });
   }
 
   
   searchAssets(query?: SearchFunctionRequestPayload): void {
+    const operation = 'atsAssetsSearch';
     console.log('ATS Assets Service: searchAssets()');
 
     let defaultSearchRequestOptions = {
@@ -114,47 +57,10 @@ export class ATSAssetsService {
     } as SearchFunctionRequestPayload;
 
     let searchRequestOptions = Object.assign(defaultSearchRequestOptions, query);
-    
-    this.searchRequestState.next({
-      status: Status.LOADING,
-      response: 'unknown',
-      error: 'unknown'
-    });
 
-    this.viewfinderService.searchATSAssets(searchRequestOptions)
-      .pipe(
-        tap(_ => console.log('ATS Assets Service: search request')),
-        retry(2),
-        catchError(error => {
-          console.log('ATS Assets Service: catch search request error');
-          this.searchRequestState.next({
-            status: Status.ERROR,
-            response: '',
-            error: error
-          });
-          this.searchResponse.next({
-            header: {
-              status: 200,
-              message: "error",
-              chatter: "error",
-              timestamp: "timestamp"
-            },
-            payload: {}
-          });
-          throw 'ATS Assets Service: error searching Viewfinder';
-        }),
-        tap(_ => {
-          this.searchRequestState.next({
-            status: Status.SUCCESS,
-            response: 'success',
-            error: ''
-          });
-          console.log('ATS Assets Service: success searching Viewfinder');
-        })
-      )
-      .subscribe((response) => {
-        this.searchResponse.next(response);
-        this.assetsList.next(response.payload.documents as ATSAsset[]);
-      });
+    this.searchItems(operation, searchRequestOptions).subscribe((response) => {
+      this.searchResponse.next(response);
+      this.itemsList.next(response.payload.documents as ATSAsset[]);
+    });
   }
 }
