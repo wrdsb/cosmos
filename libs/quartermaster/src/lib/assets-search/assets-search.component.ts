@@ -89,10 +89,10 @@ export class AssetsSearchComponent implements OnInit {
     this.maxPage$ = this.totalRecords$.pipe(map(totalRecords => Math.ceil(totalRecords / this.pageSize.value)));
     this.maxPage$.subscribe(this.maxPage);
 
-    this.assetsPage$ = this.assetsService.assetsList$;
+    this.assetsPage$ = this.assetsService.itemsList$;
 
-    this.assetSelected$ = this.assetsService.assetSelected$;
-    this.selectedAsset$ = this.assetsService.selectedAsset$;
+    this.assetSelected$ = this.assetsService.itemSelected$;
+    this.selectedAsset$ = this.assetsService.selectedItem$;
   }
 
   ngOnInit(): void {
@@ -166,7 +166,7 @@ export class AssetsSearchComponent implements OnInit {
   selectAsset(assetID: string): void {
     console.log(`Show details for ${assetID}`);
 
-    this.assetsService.selectAsset(assetID);
+    this.assetsService.selectItem(assetID);
 
     this.assetDetailDialogRef = this.dialog.open(AssetDetailDialogComponent, {
       width: '800px'
@@ -175,7 +175,7 @@ export class AssetsSearchComponent implements OnInit {
 
   deselectAsset(): void {
     console.log(`Deselect selected asset`);
-    this.assetsService.deselectAsset();
+    this.assetsService.deselectItem();
   }
 
   searchAssets(): void {

@@ -106,10 +106,10 @@ export class CalendarSearchComponent implements OnInit {
     this.maxPage$ = this.totalRecords$.pipe(map(totalRecords => Math.ceil(totalRecords / this.pageSize.value)));
     this.maxPage$.subscribe(this.maxPage);
 
-    this.calendarsPage$ = this.calendarService.calendarsList$;
+    this.calendarsPage$ = this.calendarService.itemsList$;
 
-    this.calendarSelected$ = this.calendarService.calendarSelected$;
-    this.selectedCalendar$ = this.calendarService.selectedCalendar$;
+    this.calendarSelected$ = this.calendarService.itemSelected$;
+    this.selectedCalendar$ = this.calendarService.selectedItem$;
   }
 
   ngOnInit() {
@@ -251,7 +251,7 @@ export class CalendarSearchComponent implements OnInit {
   selectCalendar(calendarID: string): void {
     console.log(`Show details for ${calendarID}`);
 
-    this.calendarService.selectCalendar(calendarID);
+    this.calendarService.selectItem(calendarID);
 
     this.calendarMetaDialogRef = this.dialog.open(CalendarMetaDialogComponent, {
       width: '800px'
@@ -260,7 +260,7 @@ export class CalendarSearchComponent implements OnInit {
 
   deselectCalendar(): void {
     console.log(`Deselect selected calendar`);
-    this.calendarService.deselectCalendar();
+    this.calendarService.deselectItem();
   }
 
   searchCalendars(): void {

@@ -15,6 +15,6 @@ export class GroupMetaDialogComponent {
   constructor(
     private groupsService: GoogleGroupsService
   ) {
-    this.selectedGroup$ = this.groupsService.selectedGroup$;
+    this.selectedGroup$ = this.groupsService.selectedItem$;
   }
 }

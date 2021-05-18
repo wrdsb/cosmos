@@ -95,10 +95,10 @@ export class DeviceLoansSearchComponent implements OnInit {
     this.maxPage$ = this.totalRecords$.pipe(map(totalRecords => Math.ceil(totalRecords / this.pageSize.value)));
     this.maxPage$.subscribe(this.maxPage);
 
-    this.loansPage$ = this.deviceLoansService.loansList$;
+    this.loansPage$ = this.deviceLoansService.itemsList$;
     
-    this.loanSelected$ = this.deviceLoansService.loanSelected$;
-    this.selectedLoan$ = this.deviceLoansService.selectedLoan$;
+    this.loanSelected$ = this.deviceLoansService.itemSelected$;
+    this.selectedLoan$ = this.deviceLoansService.selectedItem$;
   }
 
   ngOnInit(): void {
@@ -194,7 +194,7 @@ export class DeviceLoansSearchComponent implements OnInit {
   selectLoan(loanID: string): void {
     console.log(`Show details for ${loanID}`);
 
-    this.deviceLoansService.selectLoan(loanID);
+    this.deviceLoansService.selectItem(loanID);
 
     this.deviceLoanMetaDialogRef = this.dialog.open(DeviceLoanMetaDialogComponent, {
       width: '800px'
@@ -203,7 +203,7 @@ export class DeviceLoansSearchComponent implements OnInit {
 
   deselectLoan(): void {
     console.log(`Deselect selected device loan`);
-    this.deviceLoansService.deselectLoan();
+    this.deviceLoansService.deselectItem();
   }
 
   searchLoans(): void {

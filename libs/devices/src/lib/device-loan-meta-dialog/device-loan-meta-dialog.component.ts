@@ -15,6 +15,6 @@ export class DeviceLoanMetaDialogComponent {
   constructor(
     private deviceLoansService: QuartermasterDeviceLoansService
   ) {
-    this.selectedLoan$ = this.deviceLoansService.selectedLoan$;
+    this.selectedLoan$ = this.deviceLoansService.selectedItem$;
   }
 }

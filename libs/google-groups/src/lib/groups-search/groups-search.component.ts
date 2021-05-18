@@ -111,10 +111,10 @@ export class GroupsSearchComponent implements OnInit {
     this.maxPage$ = this.totalRecords$.pipe(map(totalRecords => Math.ceil(totalRecords / this.pageSize.value)));
     this.maxPage$.subscribe(this.maxPage);
 
-    this.groupsPage$ = this.groupsService.groupsList$;
+    this.groupsPage$ = this.groupsService.itemsList$;
 
-    this.groupSelected$ = this.groupsService.groupSelected$;
-    this.selectedGroup$ = this.groupsService.selectedGroup$;
+    this.groupSelected$ = this.groupsService.itemSelected$;
+    this.selectedGroup$ = this.groupsService.selectedItem$;
   }
 
   ngOnInit() {
@@ -256,7 +256,7 @@ export class GroupsSearchComponent implements OnInit {
   selectGroup(groupID: string): void {
     console.log(`Show details for ${groupID}`);
 
-    this.groupsService.selectGroup(groupID);
+    this.groupsService.selectItem(groupID);
 
     this.groupMetaDialogRef = this.dialog.open(GroupMetaDialogComponent, {
       width: '800px'
@@ -265,7 +265,7 @@ export class GroupsSearchComponent implements OnInit {
 
   deselectGroup(): void {
     console.log(`Deselect selected group`);
-    this.groupsService.deselectGroup();
+    this.groupsService.deselectItem();
   }
 
   searchGroups(): void {

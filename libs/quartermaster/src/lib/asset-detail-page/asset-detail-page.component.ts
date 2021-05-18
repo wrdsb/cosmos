@@ -15,7 +15,7 @@ export class AssetDetailPageComponent implements OnInit {
   constructor(
     private assetsService: QuartermasterAssetsService
   ) {
-    this.selectedAsset$ = this.assetsService.selectedAsset$;
+    this.selectedAsset$ = this.assetsService.selectedItem$;
   }
 
   ngOnInit(): void {

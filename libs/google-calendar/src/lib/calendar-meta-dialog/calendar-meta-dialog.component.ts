@@ -15,6 +15,6 @@ export class CalendarMetaDialogComponent {
   constructor(
     private calendarService: GoogleCalendarsService
   ) {
-    this.selectedCalendar$ = this.calendarService.selectedCalendar$;
+    this.selectedCalendar$ = this.calendarService.selectedItem$;
   }
 }

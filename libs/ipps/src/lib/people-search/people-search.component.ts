@@ -103,10 +103,10 @@ export class PeopleSearchComponent implements OnInit {
     this.maxPage$ = this.totalRecords$.pipe(map(totalRecords => Math.ceil(totalRecords / this.pageSize.value)));
     this.maxPage$.subscribe(this.maxPage);
 
-    this.peoplePage$ = this.ippsService.peopleList$;
+    this.peoplePage$ = this.ippsService.itemsList$;
 
-    this.personSelected$ = this.ippsService.personSelected$;
-    this.selectedPerson$ = this.ippsService.selectedPerson$;
+    this.personSelected$ = this.ippsService.itemSelected$;
+    this.selectedPerson$ = this.ippsService.selectedItem$;
   }
 
   ngOnInit(): void {
@@ -161,7 +161,7 @@ export class PeopleSearchComponent implements OnInit {
   selectPerson(groupID: string): void {
     console.log(`Show details for ${groupID}`);
 
-    this.ippsService.selectPerson(groupID);
+    this.ippsService.selectItem(groupID);
 
     this.personMetaDialogRef = this.dialog.open(PersonMetaDialogComponent, {
       width: '800px'
@@ -170,7 +170,7 @@ export class PeopleSearchComponent implements OnInit {
 
   deselectGroup(): void {
     console.log(`Deselect selected group`);
-    this.ippsService.deselectPerson();
+    this.ippsService.deselectItem();
   }
 
   searchPeople(): void {

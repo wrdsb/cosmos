@@ -10,7 +10,7 @@ import { faCircle as TrueIcon } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
-import { ATSAsset, SearchFunctionRequestPayload, SearchFunctionResponse } from "@cosmos/types";
+import { ATSAsset, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
 import { ATSAssetsService } from '@cosmos/search-services';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { AssetDetailDialogComponent } from "../asset-detail-dialog/asset-detail-dialog.component";
@@ -75,11 +75,18 @@ export class AssetsSearchComponent implements OnInit {
   pageSize = new BehaviorSubject<number>(20);
   maxPage = new BehaviorSubject<number>(1);
 
+  public searchRequestState$: Observable<SearchRequestState>;
   public searchResponse$: Observable<SearchFunctionResponse>;
+  
   public totalRecords$: Observable<number>;
   public maxPage$: Observable<number>;
 
-  public assetsPage$: Observable<ATSAsset[]>;
+  private assetsPage: BehaviorSubject<ATSAsset[]> = new BehaviorSubject([
+    {
+      asset_id: "Loading..."
+    }
+  ]);
+  public readonly assetsPage$: Observable<ATSAsset[]> = this.assetsPage.asObservable();
 
   public assetSelected$: Observable<boolean>;
   public selectedAsset$: Observable<ATSAsset>;
@@ -90,14 +97,17 @@ export class AssetsSearchComponent implements OnInit {
     private assetsService: ATSAssetsService,
     public dialog: MatDialog
   ) {
+    this.searchRequestState$ = this.assetsService.searchRequestState$;
     this.searchResponse$ = this.assetsService.searchResponse$;
+
     this.totalRecords$ = this.searchResponse$.pipe(map(response => response.payload.count));
-    this.assetsPage$ = this.assetsService.assetsList$;
     this.maxPage$ = this.totalRecords$.pipe(map(totalRecords => Math.ceil(totalRecords / this.pageSize.value)));
     this.maxPage$.subscribe(this.maxPage);
 
-    this.assetSelected$ = this.assetsService.assetSelected$;
-    this.selectedAsset$ = this.assetsService.selectedAsset$;
+    this.assetsPage$ = this.assetsService.itemsList$;
+
+    this.assetSelected$ = this.assetsService.itemSelected$;
+    this.selectedAsset$ = this.assetsService.selectedItem$;
   }
 
   ngOnInit(): void {
@@ -200,7 +210,7 @@ export class AssetsSearchComponent implements OnInit {
   selectAsset(assetID: string): void {
     console.log(`Show details for ${assetID}`);
 
-    this.assetsService.selectAsset(assetID);
+    this.assetsService.selectItem(assetID);
 
     this.assetDetailDialogRef = this.dialog.open(AssetDetailDialogComponent, {
       width: '800px'
@@ -209,7 +219,7 @@ export class AssetsSearchComponent implements OnInit {
 
   deselectAsset(): void {
     console.log(`Deselect selected asset`);
-    this.assetsService.deselectAsset();
+    this.assetsService.deselectItem();
   }
 
   searchAssets(): void {
