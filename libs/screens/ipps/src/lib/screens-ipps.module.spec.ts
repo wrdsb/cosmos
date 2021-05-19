@@ -1,14 +1,14 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { IppsModule } from './ipps.module';
+import { ScreensIppsModule } from './screens-ipps.module';
 
-describe('IppsModule', () => {
+describe('ScreensIppsModule', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [IppsModule]
+      imports: [ScreensIppsModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(IppsModule).toBeDefined();
+    expect(ScreensIppsModule).toBeDefined();
   });
 });

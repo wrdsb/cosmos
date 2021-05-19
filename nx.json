@@ -313,9 +313,6 @@
     "aad": {
       "tags": []
     },
-    "ipps": {
-      "tags": []
-    },
     "teamviewer": {
       "tags": []
     },
@@ -428,6 +425,9 @@
       "tags": []
     },
     "screens-google-calendar": {
+      "tags": []
+    },
+    "screens-ipps": {
       "tags": []
     }
   },

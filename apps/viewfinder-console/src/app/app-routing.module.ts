@@ -38,7 +38,7 @@ const routes: Routes = [
   },
   {
     path: 'google',
-    loadChildren: () => import('@cosmos/google').then(m => m.GoogleModule),
+    loadChildren: () => import('@cosmos/screens/google/google').then(m => m.GoogleModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -48,7 +48,7 @@ const routes: Routes = [
   },
   {
     path: 'ipps',
-    loadChildren: () => import('@cosmos/ipps').then(m => m.IppsModule),
+    loadChildren: () => import('@cosmos/screens/ipps').then(m => m.IppsModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },

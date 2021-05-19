@@ -79,7 +79,7 @@ module.exports = {
     '<rootDir>/libs/people',
     '<rootDir>/libs/schools',
     '<rootDir>/libs/aad',
-    '<rootDir>/libs/ipps',
+    <rootDir>/libs/screens/ipps,
     '<rootDir>/libs/teamviewer',
     '<rootDir>/libs/trillium',
     '<rootDir>/libs/devices',

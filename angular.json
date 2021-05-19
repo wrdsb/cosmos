@@ -5015,42 +5015,6 @@
         }
       }
     },
-    "ipps": {
-      "projectType": "library",
-      "root": "libs/ipps",
-      "sourceRoot": "libs/ipps/src",
-      "prefix": "cosmos",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/ipps/tsconfig.lib.json",
-              "libs/ipps/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ipps/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/ipps/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": [
-            "coverage/libs/ipps"
-          ]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "teamviewer": {
       "projectType": "library",
       "root": "libs/teamviewer",
@@ -6630,6 +6594,42 @@
           },
           "outputs": [
             "coverage/libs/screens/google/calendar"
+          ]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "screens-ipps": {
+      "projectType": "library",
+      "root": "libs/screens/ipps",
+      "sourceRoot": "libs/screens/ipps/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/ipps/tsconfig.lib.json",
+              "libs/screens/ipps/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/screens/ipps/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/screens/ipps/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/screens/ipps"
           ]
         }
       },
