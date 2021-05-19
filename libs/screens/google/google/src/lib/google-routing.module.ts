@@ -4,6 +4,7 @@ import { MsalGuard } from '@azure/msal-angular';
 import { RolesGuard } from "@cosmos/guards";
 
 import { GoogleHomeComponent } from "./google-home/google-home.component";
+import { GoogleDashboardComponent } from "./google-dashboard/google-dashboard.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,26 @@ const routes: Routes = [
   {
     path: 'groups',
     loadChildren: () => import('@cosmos/screens/google/groups').then(m => m.GroupsModule),
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  {
+    path: 'dashboard',
+    component: GoogleDashboardComponent,
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  { 
+    path: 'home',
+    component: GoogleHomeComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
