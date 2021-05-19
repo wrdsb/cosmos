@@ -1,1 +1,105 @@
-<p>people-by-school works!</p>
+<h1>People by School</h1>
+
+<div class="records-search">
+  <div class="search-panel">
+
+    <div class="panel-group">
+      <div class="panel-field">
+        <mat-form-field class="input-full-width" floatLabel="never">
+          <mat-label>Any Field</mat-label>
+          <input matInput type="text" [formControl]="schoolCodeSearchFormControl">
+          <button mat-button *ngIf="schoolCodeSearchFormControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="anyFieldSearchFormControl.setValue('')">
+            <fa-icon [icon]="CloseIcon"></fa-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="panel-group">
+      <ng-container *ngIf="( searchRequestState$ | async ) as searchRequestState">
+        <div>Status: {{ searchRequestState.status }}</div>
+        <div>Response: {{ searchRequestState.response }}</div>
+        <div>Error: {{ searchRequestState.error }}</div>
+      </ng-container>
+    </div>
+
+    <div class="panel-group">
+      <ng-container *ngIf="( searchResponse$ | async ) as searchResponse">
+        <div>Status: {{ searchResponse.header.status }}</div>
+        <div>Authenticated: {{ searchResponse.header.authenticated }}</div>
+        <div>Authorized: {{ searchResponse.header.authorized }}</div>
+        <div>User Email: {{ searchResponse.header.userEmail }}</div>
+        <div>User Roles: {{ searchResponse.header.userRoles }}</div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="items-list">
+    <div class="list-header">
+      <div class="search-results">
+        <div>Results: {{ totalRecords$ | async }} total records</div>
+      </div>
+    </div>
+
+    <h2>Principal</h2>
+    <table cdk-table [dataSource]="peoplePage$">
+      <!-- email Column -->
+      <ng-container cdkColumnDef="email">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Email
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.email}} </td>
+      </ng-container>
+
+      <!-- username Column -->
+      <ng-container cdkColumnDef="username">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Username
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.username}} </td>
+      </ng-container>
+
+      <!-- employeeID Column -->
+      <ng-container cdkColumnDef="employeeID">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          Employee ID
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.employeeID}} </td>
+      </ng-container>
+
+      <!-- sortableName Column -->
+      <ng-container cdkColumnDef="sortableName">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            Name
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.sortableName}} </td>
+      </ng-container>
+
+      <!-- jobCodes Column -->
+      <ng-container cdkColumnDef="jobCodes">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          jobCodes
+        </th>
+        <td cdk-cell class="clickable" *cdkCellDef="let person" (click)="selectPerson(person.searchID)"> {{person.jobCodes}} </td>
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value; sticky: true"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value;"></tr>
+    </table>
+  
+    <h2>Vice-principals:</h2>
+
+    <h2>First Secretary:</h2>
+
+    <h2>Second Secretary:</h2>
+
+    <h2>Secretaries:</h2>
+
+    <h2>SAC Secretary:</h2>
+
+    <h2>Guidance Secretary:</h2>
+
+    <h2>Staff</h2>
+
+  </div>
+</div>
