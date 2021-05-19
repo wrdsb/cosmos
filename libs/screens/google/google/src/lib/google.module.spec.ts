@@ -1,5 +1,5 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { GoogleModule } from './screens-google-google.module';
+import { GoogleModule } from './google.module';
 
 describe('GoogleModule', () => {
   beforeEach(waitForAsync(() => {

@@ -18,7 +18,7 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatRadioModule } from "@angular/material/radio";
 
-import { ScreensIppsRoutingModule } from "./ipps-routing.module";
+import { IppsRoutingModule } from "./ipps-routing.module";
 
 import { IPPSHomeComponent } from './ipps-home/ipps-home.component';
 
@@ -68,7 +68,7 @@ import { PersonMetaDialogComponent } from './person-meta-dialog/person-meta-dial
     MatDividerModule,
     MatRadioModule,
 
-    ScreensIppsRoutingModule
+    IppsRoutingModule
   ],
   exports: [
     IPPSHomeComponent,
@@ -92,4 +92,4 @@ import { PersonMetaDialogComponent } from './person-meta-dialog/person-meta-dial
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true }
   ]
 })
-export class ScreensIppsModule {}
+export class IppsModule {}

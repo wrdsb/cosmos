@@ -18,7 +18,7 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatRadioModule } from "@angular/material/radio";
 
-import { GoogleGroupsRoutingModule } from './google-groups-routing.module';
+import { GroupsRoutingModule } from './groups-routing.module';
 
 import { GroupsHomeComponent } from './groups-home/groups-home.component';
 import { GroupsSearchComponent } from './groups-search/groups-search.component';
@@ -61,7 +61,7 @@ import { MembershipsDefinitionsComponent } from './memberships-definitions/membe
     MatDividerModule,
     MatRadioModule,
 
-    GoogleGroupsRoutingModule
+    GroupsRoutingModule
   ],
   exports: [
     GroupDetailComponent,
@@ -76,4 +76,4 @@ import { MembershipsDefinitionsComponent } from './memberships-definitions/membe
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true }
   ]
 })
-export class GoogleGroupsModule {}
+export class GroupsModule {}

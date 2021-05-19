@@ -1,14 +1,14 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { GoogleGroupsModule } from './screens-google-groups.module';
+import { GroupsModule } from './groups.module';
 
-describe('GoogleGroupsModule', () => {
+describe('GroupsModule', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [GoogleGroupsModule]
+      imports: [GroupsModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(GoogleGroupsModule).toBeDefined();
+    expect(GroupsModule).toBeDefined();
   });
 });

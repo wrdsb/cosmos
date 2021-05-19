@@ -1,1 +1,1 @@
-export * from './lib/screens-ipps.module';
+export * from './lib/ipps.module';

@@ -1,1 +1,1 @@
-export * from './lib/screens-google-calendar.module';
+export * from './lib/calendar.module';

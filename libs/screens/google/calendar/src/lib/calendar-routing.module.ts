@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 import { RolesGuard } from "@cosmos/guards";
 
-import { GroupsHomeComponent } from './groups-home/groups-home.component';
-import { GroupsSearchComponent } from './groups-search/groups-search.component';
-import { GroupDetailComponent } from './group-detail/group-detail.component';
+import { CalendarHomeComponent } from './calendar-home/calendar-home.component';
+import { CalendarSearchComponent } from './calendar-search/calendar-search.component';
+import { CalendarDetailComponent } from './calendar-detail/calendar-detail.component';
 
 import { MembershipsDefinitionsComponent } from "./memberships-definitions/memberships-definitions.component";
 import { MembershipsOverridesComponent } from "./memberships-overrides/memberships-overrides.component";
@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   { 
     path: 'search',
-    component: GroupsSearchComponent,
+    component: CalendarSearchComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -42,8 +42,8 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'group/:id',
-    component: GroupDetailComponent,
+    path: 'calendar:id',
+    component: CalendarDetailComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -53,7 +53,7 @@ const routes: Routes = [
   },
   { 
     path: '',
-    component: GroupsHomeComponent,
+    component: CalendarHomeComponent,
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -67,4 +67,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GoogleGroupsRoutingModule { }
+export class CalendarRoutingModule { }

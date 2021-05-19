@@ -1,1 +1,1 @@
-export * from './lib/screens-google-google.module';
+export * from './lib/google.module';

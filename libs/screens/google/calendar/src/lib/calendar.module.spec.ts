@@ -1,14 +1,14 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { GoogleCalendarModule } from './screens-google-calendar.module';
+import { CalendarModule } from './calendar.module';
 
-describe('GoogleCalendarModule', () => {
+describe('CalendarModule', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [GoogleCalendarModule]
+      imports: [CalendarModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(GoogleCalendarModule).toBeDefined();
+    expect(CalendarModule).toBeDefined();
   });
 });
