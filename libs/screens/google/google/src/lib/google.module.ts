@@ -4,22 +4,22 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MsalInterceptor } from '@azure/msal-angular';
 
-import { ScreensGoogleGoogleRoutingModule } from './google-routing.module';
-import { ScreensGoogleGoogleHomeComponent } from './google-home/google-home.component';
+import { GoogleRoutingModule } from './google-routing.module';
+import { GoogleHomeComponent } from './google-home/google-home.component';
 
 @NgModule({
   declarations: [
-    ScreensGoogleGoogleHomeComponent
+    GoogleHomeComponent
   ],
   imports: [
     CommonModule,
-    ScreensGoogleGoogleRoutingModule
+    GoogleRoutingModule
   ],
   exports: [
-    ScreensGoogleGoogleHomeComponent
+    GoogleHomeComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true }
   ]
 })
-export class ScreensGoogleGoogleModule {}
+export class GoogleModule {}

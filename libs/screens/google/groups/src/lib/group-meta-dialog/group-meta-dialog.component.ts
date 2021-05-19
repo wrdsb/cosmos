@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Observable } from "rxjs";
 
-import { ScreensGoogleGoogleGroup } from "@cosmos/types";
-import { ScreensGoogleGoogleGroupsService } from '@cosmos/search-services';
+import { GoogleGroup } from "@cosmos/types";
+import { GoogleGroupsService } from '@cosmos/search-services';
 
 @Component({
   selector: 'cosmos-google-group-meta-dialog',
@@ -10,10 +10,10 @@ import { ScreensGoogleGoogleGroupsService } from '@cosmos/search-services';
   styleUrls: ['./group-meta-dialog.component.scss']
 })
 export class GroupMetaDialogComponent {
-  public selectedGroup$: Observable<ScreensGoogleGoogleGroup>;
+  public selectedGroup$: Observable<GoogleGroup>;
 
   constructor(
-    private groupsService: ScreensGoogleGoogleGroupsService
+    private groupsService: GoogleGroupsService
   ) {
     this.selectedGroup$ = this.groupsService.selectedItem$;
   }

@@ -10,8 +10,8 @@ import { faCircle as TrueIcon } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
-import { ScreensGoogleGoogleGroup, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
-import { ScreensGoogleGoogleGroupsService } from '@cosmos/search-services';
+import { GoogleGroup, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
+import { GoogleGroupsService } from '@cosmos/search-services';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { GroupMetaDialogComponent } from "../group-meta-dialog/group-meta-dialog.component";
 
@@ -87,21 +87,21 @@ export class GroupsSearchComponent implements OnInit {
   public totalRecords$: Observable<number>;
   public maxPage$: Observable<number>;
 
-  private groupsPage: BehaviorSubject<ScreensGoogleGoogleGroup[]> = new BehaviorSubject([
+  private groupsPage: BehaviorSubject<GoogleGroup[]> = new BehaviorSubject([
     {
       name: "Loading...",
       email: "Loading..."      
     }
   ]);
-  public readonly groupsPage$: Observable<ScreensGoogleGoogleGroup[]> = this.groupsPage.asObservable();
+  public readonly groupsPage$: Observable<GoogleGroup[]> = this.groupsPage.asObservable();
 
   public groupSelected$: Observable<boolean>;
-  public selectedGroup$: Observable<ScreensGoogleGoogleGroup>;
+  public selectedGroup$: Observable<GoogleGroup>;
 
   groupMetaDialogRef: MatDialogRef<GroupMetaDialogComponent>;
 
   constructor(
-    private groupsService: ScreensGoogleGoogleGroupsService,
+    private groupsService: GoogleGroupsService,
     public dialog: MatDialog
   ) {
     this.searchRequestState$ = this.groupsService.searchRequestState$;

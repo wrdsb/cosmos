@@ -10,8 +10,8 @@ import { faCircle as TrueIcon } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faFastBackward, faBackward, faForward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
-import { ScreensGoogleGoogleCalendar, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
-import { ScreensGoogleGoogleCalendarsService } from '@cosmos/search-services';
+import { GoogleCalendar, SearchFunctionRequestPayload, SearchFunctionResponse, SearchRequestState } from "@cosmos/types";
+import { GoogleCalendarsService } from '@cosmos/search-services';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { CalendarMetaDialogComponent } from "../calendar-meta-dialog/calendar-meta-dialog.component";
 
@@ -83,20 +83,20 @@ export class CalendarSearchComponent implements OnInit {
   public totalRecords$: Observable<number>;
   public maxPage$: Observable<number>;
 
-  private calendarsPage: BehaviorSubject<ScreensGoogleGoogleCalendar[]> = new BehaviorSubject([
+  private calendarsPage: BehaviorSubject<GoogleCalendar[]> = new BehaviorSubject([
     {
       summary: "Loading..."
     }
   ]);
-  public readonly calendarsPage$: Observable<ScreensGoogleGoogleCalendar[]> = this.calendarsPage.asObservable();
+  public readonly calendarsPage$: Observable<GoogleCalendar[]> = this.calendarsPage.asObservable();
 
   public calendarSelected$: Observable<boolean>;
-  public selectedCalendar$: Observable<ScreensGoogleGoogleCalendar>;
+  public selectedCalendar$: Observable<GoogleCalendar>;
 
   calendarMetaDialogRef: MatDialogRef<CalendarMetaDialogComponent>;
 
   constructor(
-    private calendarService: ScreensGoogleGoogleCalendarsService,
+    private calendarService: GoogleCalendarsService,
     public dialog: MatDialog
   ) {
     this.searchRequestState$ = this.calendarService.searchRequestState$;

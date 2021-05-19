@@ -18,7 +18,7 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatRadioModule } from "@angular/material/radio";
 
-import { ScreensGoogleGoogleCalendarRoutingModule } from './google-calendar-routing.module';
+import { GoogleCalendarRoutingModule } from './google-calendar-routing.module';
 
 import { CalendarHomeComponent } from './calendar-home/calendar-home.component';
 import { CalendarSearchComponent } from './calendar-search/calendar-search.component';
@@ -65,7 +65,7 @@ import { MembershipsOverridesComponent } from './memberships-overrides/membershi
     MatDividerModule,
     MatRadioModule,
 
-    ScreensGoogleGoogleCalendarRoutingModule
+    GoogleCalendarRoutingModule
   ],
   exports: [
     CalendarDetailComponent,
@@ -80,4 +80,4 @@ import { MembershipsOverridesComponent } from './memberships-overrides/membershi
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true }
   ],
 })
-export class ScreensGoogleGoogleCalendarModule {}
+export class GoogleCalendarModule {}

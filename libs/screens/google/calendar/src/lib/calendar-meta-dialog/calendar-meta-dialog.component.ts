@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 
-import { ScreensGoogleGoogleCalendar } from "@cosmos/types";
-import { ScreensGoogleGoogleCalendarsService } from '@cosmos/search-services';
+import { GoogleCalendar } from "@cosmos/types";
+import { GoogleCalendarsService } from '@cosmos/search-services';
 
 @Component({
   selector: 'cosmos-calendar-meta-dialog',
@@ -10,10 +10,10 @@ import { ScreensGoogleGoogleCalendarsService } from '@cosmos/search-services';
   styleUrls: ['./calendar-meta-dialog.component.scss']
 })
 export class CalendarMetaDialogComponent {
-  public selectedCalendar$: Observable<ScreensGoogleGoogleCalendar>;
+  public selectedCalendar$: Observable<GoogleCalendar>;
 
   constructor(
-    private calendarService: ScreensGoogleGoogleCalendarsService
+    private calendarService: GoogleCalendarsService
   ) {
     this.selectedCalendar$ = this.calendarService.selectedItem$;
   }

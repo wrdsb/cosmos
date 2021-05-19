@@ -8,7 +8,7 @@ import { GoogleHomeComponent } from "./google-home/google-home.component";
 const routes: Routes = [
   {
     path: 'calendar',
-    loadChildren: () => import('@cosmos/screens/google/calendar').then(m => m.ScreensGoogleCalendarModule),
+    loadChildren: () => import('@cosmos/screens/google/calendar').then(m => m.CalendarModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'groups',
-    loadChildren: () => import('@cosmos/screens/google/groups').then(m => m.ScreensGoogleGroupsModule),
+    loadChildren: () => import('@cosmos/screens/google/groups').then(m => m.GroupsModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },

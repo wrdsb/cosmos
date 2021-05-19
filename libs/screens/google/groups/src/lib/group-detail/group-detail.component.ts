@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IGORGroup } from "@cosmos/types";
-import { ScreensGoogleGoogleGroupsService } from '@cosmos/search-services';
+import { GoogleGroupsService } from '@cosmos/search-services';
 
 @Component({
   selector: 'cosmos-google-group-detail',
@@ -11,7 +11,7 @@ import { ScreensGoogleGoogleGroupsService } from '@cosmos/search-services';
 export class GroupDetailComponent implements OnInit {
   group: IGORGroup;
 
-  constructor(private groupsService: ScreensGoogleGoogleGroupsService) { }
+  constructor(private groupsService: GoogleGroupsService) { }
 
   ngOnInit() {
   }
