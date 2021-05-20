@@ -184,7 +184,8 @@
       "@cosmos/screens/shared/ipps": ["libs/screens/shared/ipps/src/index.ts"],
       "@cosmos/screens/shared/google": [
         "libs/screens/shared/google/src/index.ts"
-      ]
+      ],
+      "@cosmos/screens/shared/codex": ["libs/screens/shared/codex/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

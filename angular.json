@@ -6806,6 +6806,32 @@
           }
         }
       }
+    },
+    "screens-shared-codex": {
+      "projectType": "library",
+      "root": "libs/screens/shared/codex",
+      "sourceRoot": "libs/screens/shared/codex/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/shared/codex/tsconfig.lib.json",
+              "libs/screens/shared/codex/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/screens/shared/codex/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/screens/shared/codex"],
+          "options": {
+            "jestConfig": "libs/screens/shared/codex/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

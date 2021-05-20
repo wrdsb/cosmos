@@ -211,7 +211,8 @@
     "screens-igor": { "tags": [] },
     "screens-sorting-hat": { "tags": [] },
     "screens-shared-ipps": { "tags": [] },
-    "screens-shared-google": { "tags": [] }
+    "screens-shared-google": { "tags": [] },
+    "screens-shared-codex": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
