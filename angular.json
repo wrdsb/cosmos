@@ -6647,6 +6647,32 @@
           }
         }
       }
+    },
+    "screens-viewfinder": {
+      "projectType": "library",
+      "root": "libs/screens/viewfinder",
+      "sourceRoot": "libs/screens/viewfinder/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/viewfinder/tsconfig.lib.json",
+              "libs/screens/viewfinder/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/screens/viewfinder/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/screens/viewfinder"],
+          "options": {
+            "jestConfig": "libs/screens/viewfinder/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

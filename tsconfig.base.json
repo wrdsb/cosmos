@@ -176,7 +176,8 @@
       ],
       "@cosmos/screens/quartermaster": [
         "libs/screens/quartermaster/src/index.ts"
-      ]
+      ],
+      "@cosmos/screens/viewfinder": ["libs/screens/viewfinder/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

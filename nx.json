@@ -205,7 +205,8 @@
     "ui-google-calendar-presentation-calendar-summary": { "tags": [] },
     "screens-codex-schools": { "tags": [] },
     "screens-codex-people": { "tags": [] },
-    "screens-quartermaster": { "tags": [] }
+    "screens-quartermaster": { "tags": [] },
+    "screens-viewfinder": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
