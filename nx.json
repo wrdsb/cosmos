@@ -212,7 +212,13 @@
     "screens-sorting-hat": { "tags": [] },
     "screens-shared-ipps": { "tags": [] },
     "screens-shared-google": { "tags": [] },
-    "screens-shared-codex": { "tags": [] }
+    "screens-shared-codex": { "tags": [] },
+    "ui-google-calendar-presentation-membership-card": { "tags": [] },
+    "ui-google-groups-presentation-membership-card": { "tags": [] },
+    "ui-google-calendar-presentation-membership-details": { "tags": [] },
+    "ui-google-groups-presentation-membership-details": { "tags": [] },
+    "ui-google-calendar-presentation-membership-summary": { "tags": [] },
+    "ui-google-groups-presentation-membership-summary": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }

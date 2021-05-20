@@ -185,7 +185,27 @@
       "@cosmos/screens/shared/google": [
         "libs/screens/shared/google/src/index.ts"
       ],
-      "@cosmos/screens/shared/codex": ["libs/screens/shared/codex/src/index.ts"]
+      "@cosmos/screens/shared/codex": [
+        "libs/screens/shared/codex/src/index.ts"
+      ],
+      "@cosmos/ui/google/calendar/presentation/membership-card": [
+        "libs/ui/google/calendar/presentation/membership-card/src/index.ts"
+      ],
+      "@cosmos/ui/google/groups/presentation/membership-card": [
+        "libs/ui/google/groups/presentation/membership-card/src/index.ts"
+      ],
+      "@cosmos/ui/google/calendar/presentation/membership-details": [
+        "libs/ui/google/calendar/presentation/membership-details/src/index.ts"
+      ],
+      "@cosmos/ui/google/groups/presentation/membership-details": [
+        "libs/ui/google/groups/presentation/membership-details/src/index.ts"
+      ],
+      "@cosmos/ui/google/calendar/presentation/membership-summary": [
+        "libs/ui/google/calendar/presentation/membership-summary/src/index.ts"
+      ],
+      "@cosmos/ui/google/groups/presentation/membership-summary": [
+        "libs/ui/google/groups/presentation/membership-summary/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
