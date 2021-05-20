@@ -6751,6 +6751,32 @@
           }
         }
       }
+    },
+    "screens-shared-ipps": {
+      "projectType": "library",
+      "root": "libs/screens/shared/ipps",
+      "sourceRoot": "libs/screens/shared/ipps/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/shared/ipps/tsconfig.lib.json",
+              "libs/screens/shared/ipps/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/screens/shared/ipps/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/screens/shared/ipps"],
+          "options": {
+            "jestConfig": "libs/screens/shared/ipps/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

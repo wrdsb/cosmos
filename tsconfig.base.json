@@ -180,7 +180,8 @@
       "@cosmos/screens/viewfinder": ["libs/screens/viewfinder/src/index.ts"],
       "@cosmos/screens/houston": ["libs/screens/houston/src/index.ts"],
       "@cosmos/screens/igor": ["libs/screens/igor/src/index.ts"],
-      "@cosmos/screens/sorting-hat": ["libs/screens/sorting-hat/src/index.ts"]
+      "@cosmos/screens/sorting-hat": ["libs/screens/sorting-hat/src/index.ts"],
+      "@cosmos/screens/shared/ipps": ["libs/screens/shared/ipps/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

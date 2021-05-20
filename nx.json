@@ -209,7 +209,8 @@
     "screens-viewfinder": { "tags": [] },
     "screens-houston": { "tags": [] },
     "screens-igor": { "tags": [] },
-    "screens-sorting-hat": { "tags": [] }
+    "screens-sorting-hat": { "tags": [] },
+    "screens-shared-ipps": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
