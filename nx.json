@@ -208,7 +208,8 @@
     "screens-quartermaster": { "tags": [] },
     "screens-viewfinder": { "tags": [] },
     "screens-houston": { "tags": [] },
-    "screens-igor": { "tags": [] }
+    "screens-igor": { "tags": [] },
+    "screens-sorting-hat": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }

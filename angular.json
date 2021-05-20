@@ -6725,6 +6725,32 @@
           }
         }
       }
+    },
+    "screens-sorting-hat": {
+      "projectType": "library",
+      "root": "libs/screens/sorting-hat",
+      "sourceRoot": "libs/screens/sorting-hat/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/sorting-hat/tsconfig.lib.json",
+              "libs/screens/sorting-hat/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/screens/sorting-hat/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/screens/sorting-hat"],
+          "options": {
+            "jestConfig": "libs/screens/sorting-hat/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
