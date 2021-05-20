@@ -6673,6 +6673,32 @@
           }
         }
       }
+    },
+    "screens-houston": {
+      "projectType": "library",
+      "root": "libs/screens/houston",
+      "sourceRoot": "libs/screens/houston/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/houston/tsconfig.lib.json",
+              "libs/screens/houston/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/screens/houston/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/screens/houston"],
+          "options": {
+            "jestConfig": "libs/screens/houston/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
