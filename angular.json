@@ -6618,6 +6618,35 @@
           }
         }
       }
+    },
+    "screens-quartermaster": {
+      "projectType": "library",
+      "root": "libs/screens/quartermaster",
+      "sourceRoot": "libs/screens/quartermaster/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/quartermaster/tsconfig.lib.json",
+              "libs/screens/quartermaster/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/screens/quartermaster/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/screens/quartermaster"],
+          "options": {
+            "jestConfig": "libs/screens/quartermaster/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
