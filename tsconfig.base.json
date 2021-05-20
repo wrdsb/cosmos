@@ -167,6 +167,9 @@
       ],
       "@cosmos/ui/google/calendar/presentation/calendar-summary": [
         "libs/ui/google/calendar/presentation/calendar-summary/src/index.ts"
+      ],
+      "@cosmos/screens/codex/schools": [
+        "libs/screens/codex/schools/src/index.ts"
       ]
     }
   },

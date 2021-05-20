@@ -6563,6 +6563,35 @@
           }
         }
       }
+    },
+    "screens-codex-schools": {
+      "projectType": "library",
+      "root": "libs/screens/codex/schools",
+      "sourceRoot": "libs/screens/codex/schools/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/codex/schools/tsconfig.lib.json",
+              "libs/screens/codex/schools/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/screens/codex/schools/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/screens/codex/schools"],
+          "options": {
+            "jestConfig": "libs/screens/codex/schools/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
