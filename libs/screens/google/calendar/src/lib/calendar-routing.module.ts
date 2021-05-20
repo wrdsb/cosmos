@@ -52,6 +52,16 @@ const routes: Routes = [
     ]
   },
   { 
+    path: 'home',
+    component: CalendarHomeComponent,
+    data: {
+      roles: ['cosmos-superuser', 'cosmos-user-its']
+    },
+    canActivate: [
+      MsalGuard, RolesGuard
+    ]
+  },
+  { 
     path: '',
     component: CalendarHomeComponent,
     data: {
