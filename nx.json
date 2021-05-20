@@ -207,7 +207,8 @@
     "screens-codex-people": { "tags": [] },
     "screens-quartermaster": { "tags": [] },
     "screens-viewfinder": { "tags": [] },
-    "screens-houston": { "tags": [] }
+    "screens-houston": { "tags": [] },
+    "screens-igor": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }

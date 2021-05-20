@@ -6699,6 +6699,32 @@
           }
         }
       }
+    },
+    "screens-igor": {
+      "projectType": "library",
+      "root": "libs/screens/igor",
+      "sourceRoot": "libs/screens/igor/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/igor/tsconfig.lib.json",
+              "libs/screens/igor/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/screens/igor/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/screens/igor"],
+          "options": {
+            "jestConfig": "libs/screens/igor/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

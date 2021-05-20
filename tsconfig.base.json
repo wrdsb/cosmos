@@ -178,7 +178,8 @@
         "libs/screens/quartermaster/src/index.ts"
       ],
       "@cosmos/screens/viewfinder": ["libs/screens/viewfinder/src/index.ts"],
-      "@cosmos/screens/houston": ["libs/screens/houston/src/index.ts"]
+      "@cosmos/screens/houston": ["libs/screens/houston/src/index.ts"],
+      "@cosmos/screens/igor": ["libs/screens/igor/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
