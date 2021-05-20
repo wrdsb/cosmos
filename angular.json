@@ -7018,6 +7018,130 @@
           }
         }
       }
+    },
+    "ui-google-calendar-presentation-memberships-list": {
+      "projectType": "library",
+      "root": "libs/ui/google/calendar/presentation/memberships-list",
+      "sourceRoot": "libs/ui/google/calendar/presentation/memberships-list/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/google/calendar/presentation/memberships-list/tsconfig.lib.json",
+              "libs/ui/google/calendar/presentation/memberships-list/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/google/calendar/presentation/memberships-list/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui/google/calendar/presentation/memberships-list"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/google/calendar/presentation/memberships-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-google-calendar-presentation-calendars-list": {
+      "projectType": "library",
+      "root": "libs/ui/google/calendar/presentation/calendars-list",
+      "sourceRoot": "libs/ui/google/calendar/presentation/calendars-list/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/google/calendar/presentation/calendars-list/tsconfig.lib.json",
+              "libs/ui/google/calendar/presentation/calendars-list/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/google/calendar/presentation/calendars-list/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui/google/calendar/presentation/calendars-list"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/google/calendar/presentation/calendars-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-google-groups-presentation-memberships-list": {
+      "projectType": "library",
+      "root": "libs/ui/google/groups/presentation/memberships-list",
+      "sourceRoot": "libs/ui/google/groups/presentation/memberships-list/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/google/groups/presentation/memberships-list/tsconfig.lib.json",
+              "libs/ui/google/groups/presentation/memberships-list/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/google/groups/presentation/memberships-list/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui/google/groups/presentation/memberships-list"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/google/groups/presentation/memberships-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-google-groups-presentation-groups-list": {
+      "projectType": "library",
+      "root": "libs/ui/google/groups/presentation/groups-list",
+      "sourceRoot": "libs/ui/google/groups/presentation/groups-list/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/google/groups/presentation/groups-list/tsconfig.lib.json",
+              "libs/ui/google/groups/presentation/groups-list/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/google/groups/presentation/groups-list/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ui/google/groups/presentation/groups-list"
+          ],
+          "options": {
+            "jestConfig": "libs/ui/google/groups/presentation/groups-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

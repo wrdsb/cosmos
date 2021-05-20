@@ -137,5 +137,9 @@ module.exports = {
     '<rootDir>/libs/ui/google/groups/presentation/membership-details',
     '<rootDir>/libs/ui/google/calendar/presentation/membership-summary',
     '<rootDir>/libs/ui/google/groups/presentation/membership-summary',
+    '<rootDir>/libs/ui/google/calendar/presentation/memberships-list',
+    '<rootDir>/libs/ui/google/calendar/presentation/calendars-list',
+    '<rootDir>/libs/ui/google/groups/presentation/memberships-list',
+    '<rootDir>/libs/ui/google/groups/presentation/groups-list',
   ],
 };

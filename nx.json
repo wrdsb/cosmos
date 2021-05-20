@@ -218,7 +218,11 @@
     "ui-google-calendar-presentation-membership-details": { "tags": [] },
     "ui-google-groups-presentation-membership-details": { "tags": [] },
     "ui-google-calendar-presentation-membership-summary": { "tags": [] },
-    "ui-google-groups-presentation-membership-summary": { "tags": [] }
+    "ui-google-groups-presentation-membership-summary": { "tags": [] },
+    "ui-google-calendar-presentation-memberships-list": { "tags": [] },
+    "ui-google-calendar-presentation-calendars-list": { "tags": [] },
+    "ui-google-groups-presentation-memberships-list": { "tags": [] },
+    "ui-google-groups-presentation-groups-list": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }

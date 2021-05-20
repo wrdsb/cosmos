@@ -205,6 +205,18 @@
       ],
       "@cosmos/ui/google/groups/presentation/membership-summary": [
         "libs/ui/google/groups/presentation/membership-summary/src/index.ts"
+      ],
+      "@cosmos/ui/google/calendar/presentation/memberships-list": [
+        "libs/ui/google/calendar/presentation/memberships-list/src/index.ts"
+      ],
+      "@cosmos/ui/google/calendar/presentation/calendars-list": [
+        "libs/ui/google/calendar/presentation/calendars-list/src/index.ts"
+      ],
+      "@cosmos/ui/google/groups/presentation/memberships-list": [
+        "libs/ui/google/groups/presentation/memberships-list/src/index.ts"
+      ],
+      "@cosmos/ui/google/groups/presentation/groups-list": [
+        "libs/ui/google/groups/presentation/groups-list/src/index.ts"
       ]
     }
   },
