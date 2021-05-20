@@ -10,128 +10,51 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@cosmos/igor-types": [
-        "libs/igor-types/src/index.ts"
-      ],
-      "@cosmos/hagar-types": [
-        "libs/hagar-types/src/index.ts"
-      ],
-      "@cosmos/ui-layout": [
-        "libs/ui-layout/src/index.ts"
-      ],
-      "@cosmos/ui-navigation": [
-        "libs/ui-navigation/src/index.ts"
-      ],
-      "@cosmos/powder-coat": [
-        "libs/powder-coat/src/index.ts"
-      ],
-      "@cosmos/chassis": [
-        "libs/chassis/src/index.ts"
-      ],
-      "@cosmos/panels": [
-        "libs/panels/src/index.ts"
-      ],
-      "@cosmos/angular-aad-auth": [
-        "libs/angular-aad-auth/src/index.ts"
-      ],
-      "@cosmos/profile-page": [
-        "libs/profile-page/src/index.ts"
-      ],
-      "@cosmos/app-settings": [
-        "libs/app-settings/src/index.ts"
-      ],
-      "@cosmos/environment": [
-        "libs/environment/src/index.ts"
-      ],
-      "@cosmos/types": [
-        "libs/types/src/index.ts"
-      ],
-      "@cosmos/people-sets": [
-        "libs/people-sets/src/index.ts"
-      ],
-      "@cosmos/notifications": [
-        "libs/notifications/src/index.ts"
-      ],
-      "@cosmos/user-profiles": [
-        "libs/user-profiles/src/index.ts"
-      ],
-      "@cosmos/user-auth": [
-        "libs/user-auth/src/index.ts"
-      ],
-      "@cosmos/pages": [
-        "libs/pages/src/index.ts"
-      ],
-      "@cosmos/codex-people": [
-        "libs/codex-people/src/index.ts"
-      ],
-      "@cosmos/mocks": [
-        "libs/mocks/src/index.ts"
-      ],
-      "@cosmos/messages": [
-        "libs/messages/src/index.ts"
-      ],
-      "@cosmos/signalr-loops": [
-        "libs/signalr-loops/src/index.ts"
-      ],
-      "@cosmos/aad-users": [
-        "libs/aad-users/src/index.ts"
-      ],
-      "@cosmos/aad-groups": [
-        "libs/aad-groups/src/index.ts"
-      ],
-      "@cosmos/http-interceptors": [
-        "libs/http-interceptors/src/index.ts"
-      ],
-      "@cosmos/user-roles": [
-        "libs/user-roles/src/index.ts"
-      ],
-      "@cosmos/guards": [
-        "libs/guards/src/index.ts"
-      ],
+      "@cosmos/igor-types": ["libs/igor-types/src/index.ts"],
+      "@cosmos/hagar-types": ["libs/hagar-types/src/index.ts"],
+      "@cosmos/ui-layout": ["libs/ui-layout/src/index.ts"],
+      "@cosmos/ui-navigation": ["libs/ui-navigation/src/index.ts"],
+      "@cosmos/powder-coat": ["libs/powder-coat/src/index.ts"],
+      "@cosmos/chassis": ["libs/chassis/src/index.ts"],
+      "@cosmos/panels": ["libs/panels/src/index.ts"],
+      "@cosmos/angular-aad-auth": ["libs/angular-aad-auth/src/index.ts"],
+      "@cosmos/profile-page": ["libs/profile-page/src/index.ts"],
+      "@cosmos/app-settings": ["libs/app-settings/src/index.ts"],
+      "@cosmos/environment": ["libs/environment/src/index.ts"],
+      "@cosmos/types": ["libs/types/src/index.ts"],
+      "@cosmos/people-sets": ["libs/people-sets/src/index.ts"],
+      "@cosmos/notifications": ["libs/notifications/src/index.ts"],
+      "@cosmos/user-profiles": ["libs/user-profiles/src/index.ts"],
+      "@cosmos/user-auth": ["libs/user-auth/src/index.ts"],
+      "@cosmos/pages": ["libs/pages/src/index.ts"],
+      "@cosmos/codex-people": ["libs/codex-people/src/index.ts"],
+      "@cosmos/mocks": ["libs/mocks/src/index.ts"],
+      "@cosmos/messages": ["libs/messages/src/index.ts"],
+      "@cosmos/signalr-loops": ["libs/signalr-loops/src/index.ts"],
+      "@cosmos/aad-users": ["libs/aad-users/src/index.ts"],
+      "@cosmos/aad-groups": ["libs/aad-groups/src/index.ts"],
+      "@cosmos/http-interceptors": ["libs/http-interceptors/src/index.ts"],
+      "@cosmos/user-roles": ["libs/user-roles/src/index.ts"],
+      "@cosmos/guards": ["libs/guards/src/index.ts"],
       "@cosmos/codex-personality-matrix": [
         "libs/codex-personality-matrix/src/index.ts"
       ],
-      "@cosmos/releases": [
-        "libs/releases/src/index.ts"
-      ],
-      "@cosmos/people": [
-        "libs/people/src/index.ts"
-      ],
-      "@cosmos/schools": [
-        "libs/schools/src/index.ts"
-      ],
-      "@cosmos/aad": [
-        "libs/aad/src/index.ts"
-      ],
-      "@cosmos/teamviewer": [
-        "libs/teamviewer/src/index.ts"
-      ],
-      "@cosmos/trillium": [
-        "libs/trillium/src/index.ts"
-      ],
-      "@cosmos/devices": [
-        "libs/devices/src/index.ts"
-      ],
-      "@cosmos/quartermaster": [
-        "libs/quartermaster/src/index.ts"
-      ],
-      "@cosmos/ats": [
-        "libs/ats/src/index.ts"
-      ],
-      "@cosmos/pings-ui": [
-        "libs/pings-ui/src/index.ts"
-      ],
+      "@cosmos/releases": ["libs/releases/src/index.ts"],
+      "@cosmos/people": ["libs/people/src/index.ts"],
+      "@cosmos/schools": ["libs/schools/src/index.ts"],
+      "@cosmos/aad": ["libs/aad/src/index.ts"],
+      "@cosmos/teamviewer": ["libs/teamviewer/src/index.ts"],
+      "@cosmos/trillium": ["libs/trillium/src/index.ts"],
+      "@cosmos/devices": ["libs/devices/src/index.ts"],
+      "@cosmos/quartermaster": ["libs/quartermaster/src/index.ts"],
+      "@cosmos/ats": ["libs/ats/src/index.ts"],
+      "@cosmos/pings-ui": ["libs/pings-ui/src/index.ts"],
       "@cosmos/friday-functions-lib": [
         "libs/friday-functions-lib/src/index.ts"
       ],
@@ -180,9 +103,7 @@
       "@cosmos/azure-functions/shared": [
         "libs/azure-functions/shared/src/index.ts"
       ],
-      "@cosmos/search-services": [
-        "libs/search-services/src/index.ts"
-      ],
+      "@cosmos/search-services": ["libs/search-services/src/index.ts"],
       "@cosmos/screens/google/google": [
         "libs/screens/google/google/src/index.ts"
       ],
@@ -192,13 +113,62 @@
       "@cosmos/screens/google/calendar": [
         "libs/screens/google/calendar/src/index.ts"
       ],
-      "@cosmos/screens/ipps": [
-        "libs/screens/ipps/src/index.ts"
+      "@cosmos/screens/ipps": ["libs/screens/ipps/src/index.ts"],
+      "@cosmos/ui/shared/interaction/big-search": [
+        "libs/ui/shared/interaction/big-search/src/index.ts"
+      ],
+      "@cosmos/ui/shared/interaction/big-search-config": [
+        "libs/ui/shared/interaction/big-search-config/src/index.ts"
+      ],
+      "@cosmos/ui/shared/presentation/big-search-results": [
+        "libs/ui/shared/presentation/big-search-results/src/index.ts"
+      ],
+      "@cosmos/ui/shared/interaction/big-search-query": [
+        "libs/ui/shared/interaction/big-search-query/src/index.ts"
+      ],
+      "@cosmos/ui/google/groups/interaction/modify-group": [
+        "libs/ui/google/groups/interaction/modify-group/src/index.ts"
+      ],
+      "@cosmos/ui/google/groups/presentation/group-details": [
+        "libs/ui/google/groups/presentation/group-details/src/index.ts"
+      ],
+      "@cosmos/ui/google/groups/presentation/group-card": [
+        "libs/ui/google/groups/presentation/group-card/src/index.ts"
+      ],
+      "@cosmos/ui/google/groups/presentation/group-summary": [
+        "libs/ui/google/groups/presentation/group-summary/src/index.ts"
+      ],
+      "@cosmos/ui/shared/presentation/entity-summary-dialog": [
+        "libs/ui/shared/presentation/entity-summary-dialog/src/index.ts"
+      ],
+      "@cosmos/ui/shared/presentation/entity-card": [
+        "libs/ui/shared/presentation/entity-card/src/index.ts"
+      ],
+      "@cosmos/ui/shared/presentation/entity-details": [
+        "libs/ui/shared/presentation/entity-details/src/index.ts"
+      ],
+      "@cosmos/ui/google/groups/interaction/modify-membership": [
+        "libs/ui/google/groups/interaction/modify-membership/src/index.ts"
+      ],
+      "@cosmos/ui/shared/interaction/big-search-query-pane": [
+        "libs/ui/shared/interaction/big-search-query-pane/src/index.ts"
+      ],
+      "@cosmos/ui/google/calendar/interaction/modify-membership": [
+        "libs/ui/google/calendar/interaction/modify-membership/src/index.ts"
+      ],
+      "@cosmos/ui/google/calendar/interaction/modify-calendar": [
+        "libs/ui/google/calendar/interaction/modify-calendar/src/index.ts"
+      ],
+      "@cosmos/ui/google/calendar/presentation/calendar-card": [
+        "libs/ui/google/calendar/presentation/calendar-card/src/index.ts"
+      ],
+      "@cosmos/ui/google/calendar/presentation/calendar-details": [
+        "libs/ui/google/calendar/presentation/calendar-details/src/index.ts"
+      ],
+      "@cosmos/ui/google/calendar/presentation/calendar-summary": [
+        "libs/ui/google/calendar/presentation/calendar-summary/src/index.ts"
       ]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }
