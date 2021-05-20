@@ -6777,6 +6777,35 @@
           }
         }
       }
+    },
+    "screens-shared-google": {
+      "projectType": "library",
+      "root": "libs/screens/shared/google",
+      "sourceRoot": "libs/screens/shared/google/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/shared/google/tsconfig.lib.json",
+              "libs/screens/shared/google/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/screens/shared/google/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/screens/shared/google"],
+          "options": {
+            "jestConfig": "libs/screens/shared/google/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

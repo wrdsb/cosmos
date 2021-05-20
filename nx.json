@@ -210,7 +210,8 @@
     "screens-houston": { "tags": [] },
     "screens-igor": { "tags": [] },
     "screens-sorting-hat": { "tags": [] },
-    "screens-shared-ipps": { "tags": [] }
+    "screens-shared-ipps": { "tags": [] },
+    "screens-shared-google": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }
