@@ -170,7 +170,8 @@
       ],
       "@cosmos/screens/codex/schools": [
         "libs/screens/codex/schools/src/index.ts"
-      ]
+      ],
+      "@cosmos/screens/codex/people": ["libs/screens/codex/people/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -203,7 +203,8 @@
     "ui-google-calendar-presentation-calendar-card": { "tags": [] },
     "ui-google-calendar-presentation-calendar-details": { "tags": [] },
     "ui-google-calendar-presentation-calendar-summary": { "tags": [] },
-    "screens-codex-schools": { "tags": [] }
+    "screens-codex-schools": { "tags": [] },
+    "screens-codex-people": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }

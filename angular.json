@@ -6592,6 +6592,32 @@
           }
         }
       }
+    },
+    "screens-codex-people": {
+      "projectType": "library",
+      "root": "libs/screens/codex/people",
+      "sourceRoot": "libs/screens/codex/people/src",
+      "prefix": "cosmos",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/screens/codex/people/tsconfig.lib.json",
+              "libs/screens/codex/people/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/screens/codex/people/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/screens/codex/people"],
+          "options": {
+            "jestConfig": "libs/screens/codex/people/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
