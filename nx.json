@@ -149,7 +149,6 @@
     "quartermaster": { "tags": [] },
     "ats": { "tags": [] },
     "spyglass-functions": { "tags": [] },
-    "pings-ui": { "tags": [] },
     "spectro-functions": { "tags": [] },
     "spectro-console": { "tags": [] },
     "spectro-console-e2e": {
@@ -222,7 +221,9 @@
     "ui-google-calendar-presentation-memberships-list": { "tags": [] },
     "ui-google-calendar-presentation-calendars-list": { "tags": [] },
     "ui-google-groups-presentation-memberships-list": { "tags": [] },
-    "ui-google-groups-presentation-groups-list": { "tags": [] }
+    "ui-google-groups-presentation-groups-list": { "tags": [] },
+    "screens-shared-pings": { "tags": [] },
+    "ui-shared-interaction-pings": { "tags": [] }
   },
   "affected": { "defaultBase": "master" }
 }

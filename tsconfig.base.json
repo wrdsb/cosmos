@@ -54,7 +54,6 @@
       "@cosmos/devices": ["libs/devices/src/index.ts"],
       "@cosmos/quartermaster": ["libs/quartermaster/src/index.ts"],
       "@cosmos/ats": ["libs/ats/src/index.ts"],
-      "@cosmos/pings-ui": ["libs/pings-ui/src/index.ts"],
       "@cosmos/friday-functions-lib": [
         "libs/friday-functions-lib/src/index.ts"
       ],
@@ -217,6 +216,12 @@
       ],
       "@cosmos/ui/google/groups/presentation/groups-list": [
         "libs/ui/google/groups/presentation/groups-list/src/index.ts"
+      ],
+      "@cosmos/screens/shared/pings": [
+        "libs/screens/shared/pings/src/index.ts"
+      ],
+      "@cosmos/ui/shared/interaction/pings": [
+        "libs/ui/shared/interaction/pings/src/index.ts"
       ]
     }
   },

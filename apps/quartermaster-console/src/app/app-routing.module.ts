@@ -38,7 +38,7 @@ const routes: Routes = [
   },
   {
     path: 'ping',
-    loadChildren: () => import('@cosmos/pings-ui').then(m => m.PingsUiModule),
+    loadChildren: () => import('@cosmos/screens/shared/pings').then(m => m.ScreensSharedPingsModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },

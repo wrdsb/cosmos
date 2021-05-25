@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'pings-ui',
-  preset: '../../jest.preset.js',
+  displayName: 'ui-shared-interaction-pings',
+  preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../coverage/libs/pings-ui',
+  coverageDirectory: '../../../../../coverage/libs/ui/shared/interaction/pings',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

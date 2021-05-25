@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { MatButtonModule } from "@angular/material/button";
 
-import { PingsUiRoutingModule } from "./pings-ui-routing.module";
-
 import { AllPingsComponent } from './all-pings/all-pings.component';
 
 import { CodexPingComponent } from './codex-ping/codex-ping.component';
@@ -34,8 +32,7 @@ import { FlendersonPingComponent } from './flenderson-ping/flenderson-ping.compo
   ],
   imports: [
     CommonModule,
-    MatButtonModule,
-    PingsUiRoutingModule
+    MatButtonModule
   ],
   exports: [
     AllPingsComponent,
@@ -51,4 +48,4 @@ import { FlendersonPingComponent } from './flenderson-ping/flenderson-ping.compo
     FlendersonPingComponent
   ]
 })
-export class PingsUiModule {}
+export class UiSharedInteractionPingsModule {}

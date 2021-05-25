@@ -92,7 +92,6 @@ module.exports = {
     '<rootDir>/libs/angular-services/houston-service',
     '<rootDir>/libs/angular-services/panama-service',
     '<rootDir>/libs/angular-services/skinner-service',
-    '<rootDir>/libs/pings-ui',
     '<rootDir>/libs/angular-services/pings-service',
     '<rootDir>/apps/spectro-functions',
     '<rootDir>/apps/spectro-console',
@@ -141,5 +140,7 @@ module.exports = {
     '<rootDir>/libs/ui/google/calendar/presentation/calendars-list',
     '<rootDir>/libs/ui/google/groups/presentation/memberships-list',
     '<rootDir>/libs/ui/google/groups/presentation/groups-list',
+    '<rootDir>/libs/screens/shared/pings',
+    '<rootDir>/libs/ui/shared/interaction/pings',
   ],
 };
