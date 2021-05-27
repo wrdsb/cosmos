@@ -46,7 +46,7 @@ const deviceLoanSubmissionsForeach: AzureFunction = async function (context: Con
         const querySpec = {
             maxItemCount: -1,
             enableCrossPartitionQuery: true,
-            query: `SELECT * FROM c WHERE c.deleted = false`
+            query: `SELECT * FROM c WHERE c.deleted = false and c.schoolCode = 'DOO'`
         }
 
         try {

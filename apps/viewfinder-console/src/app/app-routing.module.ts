@@ -38,7 +38,7 @@ const routes: Routes = [
   },
   {
     path: 'google',
-    loadChildren: () => import('@cosmos/screens/google/google').then(m => m.GoogleModule),
+    loadChildren: () => import('@cosmos/screens/shared/google').then(m => m.ScreensSharedGoogleModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -48,7 +48,7 @@ const routes: Routes = [
   },
   {
     path: 'ipps',
-    loadChildren: () => import('@cosmos/screens/ipps').then(m => m.IppsModule),
+    loadChildren: () => import('@cosmos/screens/shared/ipps').then(m => m.ScreensSharedIppsModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
@@ -58,7 +58,7 @@ const routes: Routes = [
   },
   {
     path: 'ping',
-    loadChildren: () => import('@cosmos/pings-ui').then(m => m.PingsUiModule),
+    loadChildren: () => import('@cosmos/screens/shared/pings').then(m => m.ScreensSharedPingsModule),
     data: {
       roles: ['cosmos-superuser', 'cosmos-user-its']
     },
