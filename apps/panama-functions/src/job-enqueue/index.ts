@@ -183,6 +183,51 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 sentQueueMessage = true;
                 break;
 
+            case 'WRDSB.Panama.View.IPPSGroups.Copy':
+                queueTriggered = 'view-ipps-groups-copy';
+                queueMessage = {
+                    jobType: "WRDSB.Panama.View.IPPSGroups.Copy"
+                };
+                context.bindings.triggerViewIPPSGroupsCopy = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Panama.View.IPPSJobs.Copy':
+                queueTriggered = 'view-ipps-jobs-copy';
+                queueMessage = {
+                    jobType: "WRDSB.Panama.View.IPPSJobs.Copy"
+                };
+                context.bindings.triggerViewIPPSJobsCopy = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Panama.View.IPPSLocations.Copy':
+                queueTriggered = 'view-ipps-locations-copy';
+                queueMessage = {
+                    jobType: "WRDSB.Panama.View.IPPSLocations.Copy"
+                };
+                context.bindings.triggerViewIPPSLocationsCopy = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Panama.View.IPPSPeople.Copy':
+                queueTriggered = 'view-ipps-people-copy';
+                queueMessage = {
+                    jobType: "WRDSB.Panama.View.IPPSPeople.Copy"
+                };
+                context.bindings.triggerViewIPPSPeopleCopy = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Panama.View.IPPSPositions.Copy':
+                queueTriggered = 'view-ipps-positions-copy';
+                queueMessage = {
+                    jobType: "WRDSB.Panama.View.IPPSPositions.Copy"
+                };
+                context.bindings.triggerViewIPPSPositionsCopy = queueMessage;
+                sentQueueMessage = true;
+                break;
+
             case 'WRDSB.Panama.View.SkinnerAssignments.Copy':
                 queueTriggered = 'view-skinnerassignments-copy';
                 queueMessage = {

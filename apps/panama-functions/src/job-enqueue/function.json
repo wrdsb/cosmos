@@ -49,6 +49,41 @@
       "direction": "out"
     },
     {
+      "name": "triggerViewIPPSGroupsCopy",
+      "type": "queue",
+      "queueName": "view-ipps-groups-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewIPPSJobsCopy",
+      "type": "queue",
+      "queueName": "view-ipps-jobs-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewIPPSLocationsCopy",
+      "type": "queue",
+      "queueName": "view-ipps-locations-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewIPPSPeopleCopy",
+      "type": "queue",
+      "queueName": "view-ipps-people-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "triggerViewIPPSPositionsCopy",
+      "type": "queue",
+      "queueName": "view-ipps-positions-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "triggerViewSkinnerAssignmentsCopy",
       "type": "queue",
       "queueName": "view-skinnerassignments-copy",
