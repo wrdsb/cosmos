@@ -167,6 +167,56 @@ const commandHTTP: AzureFunction = async function (context: Context, req: any): 
             statusCode = 202;
             break;
 
+        case 'WRDSB.Panama.View.IPPSGroups.Copy':
+            job = {
+                jobID: functionInvocation.functionInvocationID,
+                jobType: 'WRDSB.Panama.View.IPPSGroups.Copy',
+                operation: null,
+                payload: null
+            };
+            statusCode = 202;
+            break;
+
+        case 'WRDSB.Panama.View.IPPSJobs.Copy':
+            job = {
+                jobID: functionInvocation.functionInvocationID,
+                jobType: 'WRDSB.Panama.View.IPPSJobs.Copy',
+                operation: null,
+                payload: null
+            };
+            statusCode = 202;
+            break;
+
+        case 'WRDSB.Panama.View.IPPSLocations.Copy':
+            job = {
+                jobID: functionInvocation.functionInvocationID,
+                jobType: 'WRDSB.Panama.View.IPPSLocations.Copy',
+                operation: null,
+                payload: null
+            };
+            statusCode = 202;
+            break;
+
+        case 'WRDSB.Panama.View.IPPSPeople.Copy':
+            job = {
+                jobID: functionInvocation.functionInvocationID,
+                jobType: 'WRDSB.Panama.View.IPPSPeople.Copy',
+                operation: null,
+                payload: null
+            };
+            statusCode = 202;
+            break;
+
+        case 'WRDSB.Panama.View.IPPSPositions.Copy':
+            job = {
+                jobID: functionInvocation.functionInvocationID,
+                jobType: 'WRDSB.Panama.View.IPPSPositions.Copy',
+                operation: null,
+                payload: null
+            };
+            statusCode = 202;
+            break;
+
         case 'WRDSB.Panama.View.SkinnerAssignments.Copy':
             job = {
                 jobID: functionInvocation.functionInvocationID,
