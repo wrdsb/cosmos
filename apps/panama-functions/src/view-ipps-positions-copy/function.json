@@ -1,0 +1,39 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "view-ipps-positions-copy",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "incomingBlob",
+      "type": "blob",
+      "path": "ipps-view-ipps-positions/incoming.json",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "outgoingBlob",
+      "type": "blob",
+      "path": "ipps-view-ipps-positions/now.json",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "jobRelay",
+      "type": "queue",
+      "queueName": "job-relay",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbpanama_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
