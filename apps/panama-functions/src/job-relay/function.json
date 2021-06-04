@@ -20,7 +20,6 @@
       "connection": "wrdsbquartermaster_STORAGE",
       "direction": "out"
     },
-
     {
       "name": "triggerViewGClassroomProcess",
       "type": "queue",
@@ -33,6 +32,41 @@
       "type": "queue",
       "direction": "out",
       "queueName": "view-iamwp-process",
+      "connection": "wrdsbflenderson_STORAGE"
+    },
+    {
+      "name": "triggerViewIPPSGroupsProcess",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "view-ipps-groups-process",
+      "connection": "wrdsbflenderson_STORAGE"
+    },
+    {
+      "name": "triggerViewIPPSJobsProcess",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "view-ipps-jobs-process",
+      "connection": "wrdsbflenderson_STORAGE"
+    },
+    {
+      "name": "triggerViewIPPSLocationsProcess",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "view-ipps-locations-process",
+      "connection": "wrdsbflenderson_STORAGE"
+    },
+    {
+      "name": "triggerViewIPPSPeopleProcess",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "view-ipps-people-process",
+      "connection": "wrdsbflenderson_STORAGE"
+    },
+    {
+      "name": "triggerViewIPPSPositionsProcess",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "view-ipps-positions-process",
       "connection": "wrdsbflenderson_STORAGE"
     },
     {

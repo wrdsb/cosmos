@@ -292,7 +292,6 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 };
                 context.bindings.panamaJobEnqueue = queueMessage;
                 break;
-
             case 'WRDSB.Panama.View.IAMWP.Copy':
                 queueTriggered = 'view-iamwp-process';
                 queueMessage = {
@@ -302,6 +301,51 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 sentQueueMessage = true;
                 break;
 
+            case 'WRDSB.Panama.View.IPPSGroups.Copy':
+                queueTriggered = 'view-ipps-groups-process';
+                queueMessage = {
+                    jobType: "Flenderson.View.IPPSGroups.Process"
+                };
+                context.bindings.triggerViewIPPSGroupsProcess = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Panama.View.IPPSJobs.Copy':
+                queueTriggered = 'view-ipps-jobs-process';
+                queueMessage = {
+                    jobType: "Flenderson.View.IPPSJobs.Process"
+                };
+                context.bindings.triggerViewIPPSJobsProcess = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Panama.View.IPPSLocations.Copy':
+                queueTriggered = 'view-ipps-locations-process';
+                queueMessage = {
+                    jobType: "Flenderson.View.IPPSLocations.Process"
+                };
+                context.bindings.triggerViewIPPSLocationsProcess = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Panama.View.IPPSPeople.Copy':
+                queueTriggered = 'view-ipps-people-process';
+                queueMessage = {
+                    jobType: "Flenderson.View.IPPSPeople.Process"
+                };
+                context.bindings.triggerViewIPPSPeopleProcess = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Panama.View.IPPSPositions.Copy':
+                queueTriggered = 'view-ipps-positions-process';
+                queueMessage = {
+                    jobType: "Flenderson.View.IPPSPositions.Process"
+                };
+                context.bindings.triggerViewIPPSPositionsProcess = queueMessage;
+                sentQueueMessage = true;
+                break;
+                                                            
             case 'WRDSB.Panama.View.SkinnerAssignments.Extract':
                 queueTriggered = 'panama:job-enqueue';
                 queueMessage = {
