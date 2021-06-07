@@ -1,0 +1,54 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "view-ipps-people-process",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "panamaBlob",
+            "type": "blob",
+            "path": "ipps-view-ipps-people/now.json",
+            "connection": "wrdsbpanama_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "viewRaw",
+            "type": "blob",
+            "path": "ipps/view-ipps-people-raw.json",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "recordsNowArray",
+            "type": "blob",
+            "path": "ipps/people-now-array.json",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "recordsNowObject",
+            "type": "blob",
+            "path": "ipps/people-now-object.json",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "jobRelay",
+            "type": "queue",
+            "queueName": "job-relay",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbflenderson_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
