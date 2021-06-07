@@ -1,8 +1,14 @@
+import { DateTime, PersonID } from "@cosmos/types";
+
 interface CosmosCoreFields {
-    createdAt?: string;
-    updatedAt?: string;
-    deletedAt?: string;
+    createdAt?: DateTime;
+    updatedAt?: DateTime;
+    deletedAt?: DateTime;
     deleted?: boolean;
+
+    createdBy?: PersonID;
+    updatedBy?: PersonID;
+    deletedBy?: PersonID;
 
     id?: string;
 }
