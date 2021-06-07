@@ -1,6 +1,11 @@
 export type FlendersonJobType =
-'Flenderson.ViewIAMWP.Process' |
-'Flenderson.ViewStaffDir.Process' |
+'WRDSB.Flenderson.ViewIAMWP.Process' |
+'WRDSB.Flenderson.ViewStaffDir.Process' |
+'WRDSB.Flenderson.View.IPPSPositions.Process' |
+'WRDSB.Flenderson.View.IPPSPeople.Process' |
+'WRDSB.Flenderson.View.IPPSLocations.Process' |
+'WRDSB.Flenderson.View.IPPSJobs.Process' |
+'WRDSB.Flenderson.View.IPPSGroups.Process' |
 
 'Flenderson.IPPSEmployeeGroup.Store' |
 'Flenderson.IPPSJob.Store' |
