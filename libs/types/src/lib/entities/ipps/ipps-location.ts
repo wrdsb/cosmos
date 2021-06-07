@@ -1,19 +1,25 @@
-import { CosmosLocation } from "@cosmos/types";
+import { CosmosCoreFields } from "@cosmos/types";
 
-interface IPPSLocation extends CosmosLocation {
-    // Fields from CosmosLocation
-    // id: string;
-    // createdAt: string;
-    // updatedAt: string;
-    // deletedAt: string;
-    // deleted: boolean
+interface IPPSLocation extends CosmosCoreFields {
+    // Fields from CosmosCoreFields
+    //createdAt?: DateTime;
+    //updatedAt?: DateTime;
+    //deletedAt?: DateTime;
+    //deleted?: boolean;
 
-    // locationCode?: string;
-    // locationDescription?: string;
+    //createdBy?: PersonID;
+    //updatedBy?: PersonID;
+    //deletedBy?: PersonID;
 
-    // schoolCode?: string;
-    // schoolType?: string;
-    // panel?: string;
+    //id?: string;
+
+    locationCode: string;
+    LocationType: string;
+    locationDescription: string;
+    locationAbbreviation: string;
+
+    schoolCode: string;
+    panel: string;
 }
 
 export { IPPSLocation }

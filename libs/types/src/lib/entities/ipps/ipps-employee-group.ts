@@ -1,16 +1,22 @@
-import { CosmosEmployeeGroup } from "@cosmos/types";
+import { CosmosCoreFields } from "@cosmos/types";
 
-interface IPPSEmployeeGroup extends CosmosEmployeeGroup {
-    // Fields from CosmosEmployeeGroup
-    // id: string;
-    // createdAt: string;
-    // updatedAt: string;
-    // deletedAt: string;
-    // deleted: boolean
+interface IPPSEmployeeGroup extends CosmosCoreFields {
+    // Fields from CosmosCoreFields
+    //createdAt?: DateTime;
+    //updatedAt?: DateTime;
+    //deletedAt?: DateTime;
+    //deleted?: boolean;
 
-    // employeeGroupCode?: string;
-    // employeeGroupDescription?: string;
-    // employeeGroupCategory?: string;
+    //createdBy?: PersonID;
+    //updatedBy?: PersonID;
+    //deletedBy?: PersonID;
+
+    //id?: string;
+
+    employeeGroupCode: string;
+    employeeGroupCategory: string;
+    employeeGroupDescription: string;
+    employeeGroupAbbreviation: string;
 }
 
 export { IPPSEmployeeGroup };

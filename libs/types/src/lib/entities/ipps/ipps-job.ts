@@ -1,15 +1,21 @@
-import { CosmosJob } from "@cosmos/types";
+import { CosmosCoreFields } from "@cosmos/types";
 
-interface IPPSJob extends CosmosJob {
-    // Fields from CosmosJob
-    // id: string;
-    // createdAt: string;
-    // updatedAt: string;
-    // deletedAt: string;
-    // deleted: boolean
+interface IPPSJob extends CosmosCoreFields {
+    // Fields from CosmosCoreFields
+    //createdAt?: DateTime;
+    //updatedAt?: DateTime;
+    //deletedAt?: DateTime;
+    //deleted?: boolean;
 
-    // jobCode?: string;
-    // jobDescription?: string;
+    //createdBy?: PersonID;
+    //updatedBy?: PersonID;
+    //deletedBy?: PersonID;
+
+    //id?: string;
+
+    jobCode: string;
+    jobDescription: string;
+    jobAbbreviation: string;
 }
 
 export { IPPSJob }
