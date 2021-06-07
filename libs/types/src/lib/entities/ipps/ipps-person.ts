@@ -1,39 +1,25 @@
-import { CosmosPerson } from "@cosmos/types";
-import { IPPSAssignment } from "@cosmos/types";
+import { CosmosCoreFields } from "@cosmos/types";
 
-interface IPPSPerson extends CosmosPerson {
-    // Fields from CosmosPerson
-    // id?: string;
-    // createdAt?: string;
-    // updatedAt?: string;
-    // deletedAt?: string;
-    // deleted?: boolean
+interface IPPSPerson extends CosmosCoreFields {
+    // Fields from CosmosCoreFields
+    //createdAt?: DateTime;
+    //updatedAt?: DateTime;
+    //deletedAt?: DateTime;
+    //deleted?: boolean;
 
-    // email?: string;
-    // username?: string;
-    // employeeID?: string;
+    //createdBy?: PersonID;
+    //updatedBy?: PersonID;
+    //deletedBy?: PersonID;
 
-    // firstName?: string;
-    // lastName?: string;
-    // fullName?: string;
-    // sortableName?: string;
+    //id?: string;
 
-    ein?: string;
+    employeeID: string;
+    email: string;
 
-    locationCodes?: string[];
-    schoolCodes?: string[];
-    jobCodes?: string[];
-    employeeGroupCodes?: string[];
+    firstName: string;
+    lastName: string;
 
-    homeLocation?: string;
-    directory?: string;
-    phone?: string;
-    extension?: string;
-    mbxnumber?: string;
-
-    numberOfAssignments?: number;
-    numberOfActiveAssignments?: number;
-    assignments?: IPPSAssignment[];
+    status: string;
 }
 
 export { IPPSPerson };
