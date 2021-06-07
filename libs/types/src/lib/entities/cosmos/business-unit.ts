@@ -1,6 +1,7 @@
+import { CosmosCoreFields } from "./core-fields";
 import { BusinessUnitID, ChangeDetectionHash, DateTime, PersonID } from "@cosmos/types";
 
-export interface BusinessUnit {
+export interface BusinessUnit extends CosmosCoreFields {
     createdAt?: DateTime;
     updatedAt?: DateTime;
     deletedAt?: DateTime;
