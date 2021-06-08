@@ -35,7 +35,8 @@ const viewIPPSPositionsProcess: AzureFunction = async function (context: Context
 
         // Create the Position object
         const rowRecord = {
-            id:                row.POSITION_ID.toString(),
+            id:                `${row.EMPLOYEE_ID.toString()}-${row.POSITION_ID.toString()}`,
+            employeeID:        row.EMPLOYEE_ID.toString(),
             positionID:        row.POSITION_ID.toString(),
             employeeGroupCode: row.EMP_GROUP_CODE,
             jobCode:           row.JOB_CODE,
