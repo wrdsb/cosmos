@@ -3,21 +3,14 @@
         {
             "name": "triggerMessage",
             "type": "queueTrigger",
-            "queueName": "ipps-people-reconcile",
+            "queueName": "ipps-person-reconcile",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },
         {
-            "name": "peopleNow",
+            "name": "recordsNow",
             "type": "blob",
             "path": "ipps/people-now-object.json",
-            "connection": "wrdsbflenderson_STORAGE",
-            "direction": "in"
-        },
-        {
-            "name": "directoryNow",
-            "type": "blob",
-            "path": "ipps/directory-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },
