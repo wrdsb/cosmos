@@ -3,7 +3,7 @@ import { CosmosClient } from "@azure/cosmos";
 import { createHash } from "crypto";
 import { FunctionInvocation, FlendersonJobType, IPPSJobsReconcileFunctionRequest, IPPSJob } from "@cosmos/types";
 
-const ippsJobsReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSJobsReconcileFunctionRequest): Promise<void> {
+const ippsJobReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSJobsReconcileFunctionRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -15,7 +15,7 @@ const ippsJobsReconcile: AzureFunction = async function (context: Context, trigg
     } as FunctionInvocation;
 
     let jobType = '' as FlendersonJobType;
-    jobType = 'Flenderson.IPPSJob.Reconcile';
+    jobType = 'WRDSB.Flenderson.IPPSJob.Reconcile';
     functionInvocation.jobType = jobType;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
@@ -25,7 +25,7 @@ const ippsJobsReconcile: AzureFunction = async function (context: Context, trigg
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     // give our bindings more human-readable names
-    const recordsNow = context.bindings.jobsNow;
+    const recordsNow = context.bindings.recordsNow;
 
     // ensure we have a full data set
     const totalRecords = Object.getOwnPropertyNames(recordsNow).length;
@@ -90,7 +90,8 @@ const ippsJobsReconcile: AzureFunction = async function (context: Context, trigg
             const newRecord = {
                 id:              recordsNow[recordID].id,
                 jobCode:         recordsNow[recordID].jobCode,
-                jobDescription:  recordsNow[recordID].jobDescription
+                jobDescription:  recordsNow[recordID].jobDescription,
+                jobAbbreviation: recordsNow[recordID].jobAbbreviation
 
                 // these fields are not present in the data from ipps, so we don't map them
                 //createdAt
@@ -106,7 +107,8 @@ const ippsJobsReconcile: AzureFunction = async function (context: Context, trigg
                 const oldRecord = {
                     id:              recordsPrevious[recordID].id,
                     jobCode:         recordsPrevious[recordID].jobCode,
-                    jobDescription:  recordsPrevious[recordID].jobDescription
+                    jobDescription:  recordsPrevious[recordID].jobDescription,
+                    jobAbbreviation: recordsPrevious[recordID].jobAbbreviation
     
                     // these fields are not present in the data from ipps, so we don't map them
                     //createdAt
@@ -228,7 +230,8 @@ const ippsJobsReconcile: AzureFunction = async function (context: Context, trigg
                     const recordObject = {
                         id:              item.id,
                         jobCode:         item.jobCode,
-                        jobDescription:  item.jobDescription
+                        jobDescription:  item.jobDescription,
+                        jobAbbreviation: item.jobAbbreviation
     
                         // these fields are not present in the data from ipps
                         //createdAt: item.createdAt,
@@ -257,11 +260,12 @@ const ippsJobsReconcile: AzureFunction = async function (context: Context, trigg
     function makeHash(objectToHash: IPPSJob): string {
         const objectForHash = JSON.stringify({
             jobCode:         objectToHash.jobCode,
-            jobDescription:  objectToHash.jobDescription
+            jobDescription:  objectToHash.jobDescription,
+            jobAbbreviation: objectToHash.jobAbbreviation
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;
     }
 };
 
-export default ippsJobsReconcile;
+export default ippsJobReconcile;
