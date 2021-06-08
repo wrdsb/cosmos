@@ -15,6 +15,7 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile' |
 'WRDSB.Flenderson.IPPSJob.Reconcile' |
 'WRDSB.Flenderson.IPPSLocation.Reconcile' |
+'WRDSB.Flenderson.IPPSPosition.Reconcile' |
 'WRDSB.Flenderson.IPPSPerson.Reconcile' |
 
 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeParse'

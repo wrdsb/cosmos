@@ -9,3 +9,4 @@ export * from './ipps-employee-groups-reconcile';
 export * from './ipps-jobs-reconcile';
 export * from './ipps-locations-reconcile';
 export * from './ipps-people-reconcile';
+export * from './ipps-position-reconcile';
