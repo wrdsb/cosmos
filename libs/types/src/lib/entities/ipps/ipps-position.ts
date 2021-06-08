@@ -14,7 +14,7 @@ interface IPPSPosition extends CosmosCoreFields {
     //id?: string;
     
     positionID: string;
-    //employeeID: string;
+    employeeID: string;
 
     employeeGroupCode: string;
     jobCode: string;
