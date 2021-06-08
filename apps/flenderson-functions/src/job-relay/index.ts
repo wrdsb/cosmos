@@ -41,7 +41,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
 
     if (jobType) {
         switch (jobType) {
-            case 'Flenderson.ViewIAMWP.Process':
+            case 'WRDSB.Flenderson.View.IAMWP.Process':
                 queueTriggered = 'Flenderson:job-enqueue';
                 queueMessage = [
                     {
@@ -61,17 +61,61 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 sentQueueMessage = true;
                 break;
 
-            case 'Flenderson.ViewStaffDir.Process':
+            case 'WRDSB.Flenderson.View.IPPSGroups.Process':
                 queueTriggered = 'Flenderson:job-enqueue';
-                jobTriggered = 'Flenderson.IPPSPerson.Reconcile';
                 queueMessage = {
-                    jobType: jobTriggered
+                    jobType: 'Flenderson.IPPSEmployeeGroup.Reconcile'
                 };
                 context.bindings.flendersonJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
 
-            case 'Flenderson.IPPSEmployeeGroup.Reconcile':
+            case 'WRDSB.Flenderson.View.IPPSJobs.Process':
+                queueTriggered = 'Flenderson:job-enqueue';
+                queueMessage = {
+                    jobType: 'Flenderson.IPPSJob.Reconcile'
+                };
+                context.bindings.flendersonJobEnqueue = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Flenderson.View.IPPSLocations.Process':
+                queueTriggered = 'Flenderson:job-enqueue';
+                queueMessage = {
+                    jobType: 'Flenderson.IPPSLocation.Reconcile'
+                };
+                context.bindings.flendersonJobEnqueue = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Flenderson.View.IPPSPeople.Process':
+                queueTriggered = 'Flenderson:job-enqueue';
+                queueMessage = {
+                    jobType: 'Flenderson.IPPSPerson.Reconcile'
+                };
+                context.bindings.flendersonJobEnqueue = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Flenderson.View.IPPSPositions.Process':
+                queueTriggered = 'Flenderson:job-enqueue';
+                queueMessage = {
+                    jobType: 'Flenderson.IPPSPosition.Reconcile'
+                };
+                context.bindings.flendersonJobEnqueue = queueMessage;
+                sentQueueMessage = true;
+                break;
+                                                    
+            case 'WRDSB.Flenderson.View.StaffDir.Process':
+                queueTriggered = 'Flenderson:job-enqueue';
+                queueMessage = {
+                    jobType: 'Flenderson.IPPSPerson.Reconcile'
+                };
+                context.bindings.flendersonJobEnqueue = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile':
                 //queueTriggered = 'Flenderson:job-enqueue';
                 //jobTriggered = 'Flenderson.IPPSEmployeeGroup.Reconcile';
                 //queueMessage = {
@@ -80,7 +124,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
-            case 'Flenderson.IPPSJob.Reconcile':
+            case 'WRDSB.Flenderson.IPPSJob.Reconcile':
                 //queueTriggered = 'Flenderson:job-enqueue';
                 //jobTriggered = 'Flenderson.IPPSJob.Reconcile';
                 //queueMessage = {
@@ -89,7 +133,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
-            case 'Flenderson.IPPSLocation.Reconcile':
+            case 'WRDSB.Flenderson.IPPSLocation.Reconcile':
                 //queueTriggered = 'Flenderson:job-enqueue';
                 //jobTriggered = 'Flenderson.IPPSLocation.Reconcile';
                 //queueMessage = {
@@ -98,7 +142,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
-            case 'Flenderson.IPPSPerson.Reconcile':
+            case 'WRDSB.Flenderson.IPPSPerson.Reconcile':
                 //queueTriggered = 'Flenderson:job-enqueue';
                 //jobTriggered = 'Flenderson.IPPSPerson.Reconcile';
                 //queueMessage = {
@@ -107,7 +151,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
-            case 'Flenderson.IPPSEmployeeGroup.Store':
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.Store':
                 //queueTriggered = 'Flenderson:job-enqueue';
                 //jobTriggered = 'Flenderson.IPPSEmployeeGroup.Store';
                 //queueMessage = {
@@ -116,7 +160,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
-            case 'Flenderson.IPPSJob.Store':
+            case 'WRDSB.Flenderson.IPPSJob.Store':
                 //queueTriggered = 'Flenderson:job-enqueue';
                 //jobTriggered = 'Flenderson.IPPSJob.Store';
                 //queueMessage = {
@@ -125,7 +169,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
-            case 'Flenderson.IPPSLocation.Store':
+            case 'WRDSB.Flenderson.IPPSLocation.Store':
                 //queueTriggered = 'Flenderson:job-enqueue';
                 //jobTriggered = 'Flenderson.IPPSLocation.Store';
                 //queueMessage = {
@@ -134,7 +178,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 //context.bindings.flendersonJobEnqueue = queueMessage;
                 break;
 
-            case 'Flenderson.IPPSPerson.Store':
+            case 'WRDSB.Flenderson.IPPSPerson.Store':
                 //queueTriggered = 'Flenderson:job-enqueue';
                 //jobTriggered = 'Flenderson.IPPSPerson.Store';
                 //queueMessage = {
