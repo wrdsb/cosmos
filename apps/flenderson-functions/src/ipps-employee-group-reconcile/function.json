@@ -1,0 +1,33 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "ipps-group-reconcile",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "recordsNow",
+            "type": "blob",
+            "path": "ipps2/groups-now-object.json",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "queueStore",
+            "type": "queue",
+            "queueName": "ipps-employee-group-store",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbflenderson_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
