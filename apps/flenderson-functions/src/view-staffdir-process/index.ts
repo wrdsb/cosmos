@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { FunctionInvocation, FlendersonJobType } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, IPPSDirectory } from "@cosmos/types";
 
 const viewStaffDirProcess: AzureFunction = async function (context: Context, triggerMessage: string): Promise<void> {
     const functionInvocation = {
@@ -46,7 +46,7 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
             schoolCode:     row.SCHOOL_CODE,
             fullName:       row.FULL_NAME,
             jobDesc:        row.JOB_DESC
-        };
+        } as IPPSDirectory;
 
         // Grab what will become our object identifier
         const email = directoryRecord.email;
