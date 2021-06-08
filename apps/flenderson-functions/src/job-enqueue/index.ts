@@ -40,66 +40,101 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
 
     if (jobType) {
         switch (jobType) {
-            case 'Flenderson.ViewIAMWP.Process':
+            case 'WRDSB.Flenderson.View.IAMWP.Process':
                 context.bindings.viewIAMWPProcess = {
                     jobType: jobType,
                     incomingBlob: incomingBlob
                 };
                 break;
 
-            case 'Flenderson.ViewStaffDir.Process':
+            case 'WRDSB.Flenderson.View.IPPSGroups.Process':
+                context.bindings.viewIPPSGroupsProcess = {
+                    jobType: jobType,
+                    incomingBlob: incomingBlob
+                };
+                break;
+
+            case 'WRDSB.Flenderson.View.IPPSJobs.Process':
+                context.bindings.viewIPPSJobsProcess = {
+                    jobType: jobType,
+                    incomingBlob: incomingBlob
+                };
+                break;
+
+            case 'WRDSB.Flenderson.View.IPPSLocations.Process':
+                context.bindings.viewIPPSLocationsProcess = {
+                    jobType: jobType,
+                    incomingBlob: incomingBlob
+                };
+                break;
+
+            case 'WRDSB.Flenderson.View.IPPSPeople.Process':
+                context.bindings.viewIPPSPeopleProcess = {
+                    jobType: jobType,
+                    incomingBlob: incomingBlob
+                };
+                break;
+
+            case 'WRDSB.Flenderson.View.IPPSPositions.Process':
+                context.bindings.viewIPPSPositionsProcess = {
+                    jobType: jobType,
+                    incomingBlob: incomingBlob
+                };
+                break;
+
+            case 'WRDSB.Flenderson.View.StaffDir.Process':
                 context.bindings.viewStaffDirProcess = {
                     jobType: jobType,
                     incomingBlob: incomingBlob
                 };
                 break;
 
-            case 'Flenderson.IPPSEmployeeGroup.Reconcile':
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile':
                 context.bindings.IPPSGroupsReconcile = {
                     jobType: jobType
                 };
                 break;
                 
-            case 'Flenderson.IPPSJob.Reconcile':
+            case 'WRDSB.Flenderson.IPPSJob.Reconcile':
                 context.bindings.IPPSJobsReconcile = {
                     jobType: jobType
                 };
                 break;
 
-            case 'Flenderson.IPPSLocation.Reconcile':
+            case 'WRDSB.Flenderson.IPPSLocation.Reconcile':
                 context.bindings.IPPSLocationsReconcile = {
                     jobType: jobType
                 };
                 break;
             
-            case 'Flenderson.IPPSPerson.Reconcile':
+            case 'WRDSB.Flenderson.IPPSPerson.Reconcile':
                 context.bindings.IPPSPeopleReconcile = {
                     jobType: jobType
                 };
                 break;
 
-            case 'Flenderson.IPPSEmployeeGroup.Store':
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.Store':
                 context.bindings.IPPSEmployeeGroupStore = {
                     operation: operation,
                     payload: payload
                 };
                 break;
 
-            case 'Flenderson.IPPSJob.Store':
+            case 'WRDSB.Flenderson.IPPSJob.Store':
                 context.bindings.IPPSJobStore = {
                     operation: operation,
                     payload: payload
                 };
                 break;
                 
-            case 'Flenderson.IPPSLocation.Store':
+            case 'WRDSB.Flenderson.IPPSLocation.Store':
                 context.bindings.IPPSLocationStore = {
                     operation: operation,
                     payload: payload
                 };
                 break;
                 
-            case 'Flenderson.IPPSPerson.Store':
+            case 'WRDSB.Flenderson.IPPSPerson.Store':
                 context.bindings.IPPSPersonStore = {
                     operation: operation,
                     payload: payload

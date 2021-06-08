@@ -15,6 +15,41 @@
       "direction": "out"
     },
     {
+      "name": "viewIPPSGroupsProcess",
+      "type": "queue",
+      "queueName": "view-ipps-groups-process",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "viewIPPSJobsProcess",
+      "type": "queue",
+      "queueName": "view-ipps-jobs-process",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "viewIPPSLocationsProcess",
+      "type": "queue",
+      "queueName": "view-ipps-locations-process",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "viewIPPSPeopleProcess",
+      "type": "queue",
+      "queueName": "view-ipps-people-process",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "viewIPPSPositionsProcess",
+      "type": "queue",
+      "queueName": "view-ipps-positions-process",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "viewStaffDirProcess",
       "type": "queue",
       "queueName": "view-staffdir-process",
