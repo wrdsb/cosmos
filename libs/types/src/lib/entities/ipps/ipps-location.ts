@@ -14,7 +14,7 @@ interface IPPSLocation extends CosmosCoreFields {
     //id?: string;
 
     locationCode: string;
-    LocationType: string;
+    locationType: string;
     locationDescription: string;
     locationAbbreviation: string;
 
