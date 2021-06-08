@@ -3,7 +3,7 @@ import { CosmosClient } from "@azure/cosmos";
 import { createHash } from "crypto";
 import { FunctionInvocation, FlendersonJobType, IPPSLocationsReconcileFunctionRequest, IPPSLocation } from "@cosmos/types";
 
-const ippsLocationsReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSLocationsReconcileFunctionRequest): Promise<void> {
+const ippsLocationReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSLocationsReconcileFunctionRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -15,7 +15,7 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
     } as FunctionInvocation;
 
     let jobType = '' as FlendersonJobType;
-    jobType = 'Flenderson.IPPSLocation.Reconcile';
+    jobType = 'WRDSB.Flenderson.IPPSLocation.Reconcile';
     functionInvocation.jobType = jobType;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
@@ -25,7 +25,7 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     // give our bindings more human-readable names
-    const recordsNow = context.bindings.locationsNow;
+    const recordsNow = context.bindings.recordsNow;
 
     // ensure we have a full data set
     const totalRecords = Object.getOwnPropertyNames(recordsNow).length;
@@ -90,9 +90,10 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
             const newRecord = {
                 id:                   recordsNow[recordID].id,
                 locationCode:         recordsNow[recordID].locationCode,
+                locationType:         recordsNow[recordID].locationType,
                 locationDescription:  recordsNow[recordID].locationDescription,
+                locationAbbreviation: recordsNow[recordID].locationAbbreviation,
                 schoolCode:           recordsNow[recordID].schoolCode,
-                schoolType:           recordsNow[recordID].schoolType,
                 panel:                recordsNow[recordID].panel
 
                 // these fields are not present in the data from ipps, so we don't map them
@@ -109,11 +110,12 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
                 const oldRecord = {
                     id:                   recordsPrevious[recordID].id,
                     locationCode:         recordsPrevious[recordID].locationCode,
+                    locationType:         recordsPrevious[recordID].locationType,
                     locationDescription:  recordsPrevious[recordID].locationDescription,
+                    locationAbbreviation: recordsPrevious[recordID].locationAbbreviation,
                     schoolCode:           recordsPrevious[recordID].schoolCode,
-                    schoolType:           recordsPrevious[recordID].schoolType,
                     panel:                recordsPrevious[recordID].panel
-    
+        
                     // these fields are not present in the data from ipps, so we don't map them
                     //createdAt
                     //updatedAt
@@ -234,11 +236,12 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
                     const recordObject = {
                         id:                   item.id,
                         locationCode:         item.locationCode,
+                        locationType:         item.locationType,
                         locationDescription:  item.locationDescription,
+                        locationAbbreviation: item.locationAbbreviation,
                         schoolCode:           item.schoolCode,
-                        schoolType:           item.schoolType,
                         panel:                item.panel
-    
+            
                         // these fields are not present in the data from ipps
                         //createdAt: item.createdAt,
                         //updatedAt: item.updatedAt,
@@ -266,14 +269,15 @@ const ippsLocationsReconcile: AzureFunction = async function (context: Context, 
     function makeHash(objectToHash: IPPSLocation): string {
         const objectForHash = JSON.stringify({
             locationCode:         objectToHash.locationCode,
+            locationType:         objectToHash.locationType,
             locationDescription:  objectToHash.locationDescription,
+            locationAbbreviation: objectToHash.locationAbbreviation,
             schoolCode:           objectToHash.schoolCode,
-            schoolType:           objectToHash.schoolType,
             panel:                objectToHash.panel
-        });
+});
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;
     }
 };
 
-export default ippsLocationsReconcile;
+export default ippsLocationReconcile;
