@@ -1,5 +1,4 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { createHash } from "crypto";
 import { FunctionInvocation, FlendersonJobType, IPPSEmployeeGroup } from "@cosmos/types";
 
 const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
