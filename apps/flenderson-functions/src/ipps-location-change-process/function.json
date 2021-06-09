@@ -4,9 +4,9 @@
       "name": "changedRecords",
       "type": "cosmosDBTrigger",
       "databaseName": "flenderson",
-      "collectionName": "locations",
+      "collectionName": "ipps-locations",
       "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
-      "leaseCollectionName": "locations-change-process",
+      "leaseCollectionName": "ipps-locations-change-process",
       "createLeaseCollectionIfNotExists": true,
       "direction": "in"
     },

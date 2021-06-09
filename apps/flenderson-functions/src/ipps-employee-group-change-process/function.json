@@ -4,9 +4,9 @@
       "name": "changedRecords",
       "type": "cosmosDBTrigger",
       "databaseName": "flenderson",
-      "collectionName": "groups",
+      "collectionName": "ipps-employee-groups",
       "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
-      "leaseCollectionName": "groups-change-process",
+      "leaseCollectionName": "ipps-employee-groups-change-process",
       "createLeaseCollectionIfNotExists": true,
       "direction": "in"
     },

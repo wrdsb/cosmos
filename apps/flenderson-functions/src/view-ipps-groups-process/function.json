@@ -24,14 +24,14 @@
         {
             "name": "recordsNowArray",
             "type": "blob",
-            "path": "ipps2/groups-now-array.json",
+            "path": "ipps2/employee-groups-now-array.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "recordsNowObject",
             "type": "blob",
-            "path": "ipps2/groups-now-object.json",
+            "path": "ipps2/employee-groups-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },

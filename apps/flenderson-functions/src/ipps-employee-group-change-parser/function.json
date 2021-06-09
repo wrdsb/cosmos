@@ -3,7 +3,7 @@
         {
             "name": "triggerMessage",
             "type": "queueTrigger",
-            "queueName": "ipps-employee-group-change-parser",
+            "queueName": "ipps-employee-group-change-parse",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },

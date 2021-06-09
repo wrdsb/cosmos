@@ -11,7 +11,7 @@
             "name": "recordIn",
             "type": "cosmosDB",
             "databaseName": "flenderson",
-            "collectionName": "locations",
+            "collectionName": "ipps-locations",
             "id": "{payload.id}",
             "partitionKey": "{payload.id}",
             "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
@@ -21,7 +21,7 @@
             "name": "recordOut",
             "type": "cosmosDB",
             "databaseName": "flenderson",
-            "collectionName": "locations",
+            "collectionName": "ipps-locations",
             "connectionStringSetting": "wrdsb-flenderson_COSMOSDB",
             "direction": "out"
         },

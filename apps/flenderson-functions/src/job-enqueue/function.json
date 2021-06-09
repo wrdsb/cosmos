@@ -63,10 +63,11 @@
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
+
     {
-      "name": "IPPSGroupsReconcile",
+      "name": "IPPSEmployeeGroupsReconcile",
       "type": "queue",
-      "queueName": "ipps-groups-reconcile",
+      "queueName": "ipps-employee-groups-reconcile",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
@@ -91,6 +92,14 @@
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
+    {
+      "name": "IPPSPositionReconcile",
+      "type": "queue",
+      "queueName": "ipps-position-reconcile",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+
     {
       "name": "IPPSEmployeeGroupStore",
       "type": "queue",
@@ -119,6 +128,14 @@
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
+    {
+      "name": "IPPSPositionStore",
+      "type": "queue",
+      "queueName": "ipps-position-store",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+
     {
       "name": "invocationPostProcessor",
       "type": "queue",
