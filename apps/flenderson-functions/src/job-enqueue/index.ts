@@ -68,6 +68,13 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 };
                 break;
 
+            case 'WRDSB.Flenderson.View.IPPSPal.Process':
+                context.bindings.viewIPPSPalProcess = {
+                    jobType: jobType,
+                    incomingBlob: incomingBlob
+                };
+                break;
+
             case 'WRDSB.Flenderson.View.IPPSPeople.Process':
                 context.bindings.viewIPPSPeopleProcess = {
                     jobType: jobType,

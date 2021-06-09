@@ -36,6 +36,13 @@
       "direction": "out"
     },
     {
+      "name": "viewIPPSPalProcess",
+      "type": "queue",
+      "queueName": "view-ipps-pal-process",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "viewIPPSPeopleProcess",
       "type": "queue",
       "queueName": "view-ipps-people-process",
