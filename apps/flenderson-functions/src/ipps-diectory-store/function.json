@@ -3,7 +3,7 @@
         {
             "name": "triggerMessage",
             "type": "queueTrigger",
-            "queueName": "ipps-employee-group-store",
+            "queueName": "ipps-directory-store",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },
@@ -11,7 +11,7 @@
             "name": "recordIn",
             "type": "cosmosDB",
             "databaseName": "flenderson",
-            "collectionName": "directory",
+            "collectionName": "ipps-directory",
             "id": "{payload.id}",
             "partitionKey": "{payload.id}",
             "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
@@ -21,7 +21,7 @@
             "name": "recordOut",
             "type": "cosmosDB",
             "databaseName": "flenderson",
-            "collectionName": "directory",
+            "collectionName": "ipps-directory",
             "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
             "direction": "out"
         },
