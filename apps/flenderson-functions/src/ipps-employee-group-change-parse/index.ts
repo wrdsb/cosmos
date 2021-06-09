@@ -2,7 +2,7 @@ import { AzureFunction, Context } from "@azure/functions";
 import { createHash } from "crypto";
 import { FunctionInvocation, FlendersonJobType, IPPSEmployeeGroup } from "@cosmos/types";
 
-const ippsEmployeeGroupChangeParser: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -93,4 +93,4 @@ const ippsEmployeeGroupChangeParser: AzureFunction = async function (context: Co
     }
 };
 
-export default ippsEmployeeGroupChangeParser;
+export default ippsEmployeeGroupChangeParse;
