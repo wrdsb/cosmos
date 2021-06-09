@@ -6,7 +6,7 @@
       "databaseName": "flenderson",
       "collectionName": "ipps-employee-groups",
       "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
-      "leaseCollectionName": "ipps-employee-groups-change-process",
+      "leaseCollectionName": "ipps-employee-groups-change-trigger",
       "createLeaseCollectionIfNotExists": true,
       "direction": "in"
     },
