@@ -1,0 +1,19 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "ipps-job-change-parse",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbflenderson_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
