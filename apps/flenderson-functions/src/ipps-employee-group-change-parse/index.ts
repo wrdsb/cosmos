@@ -49,7 +49,7 @@ const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Con
     }
 
     if (oldRecord.employeeGroupCode !== newRecord.employeeGroupCode) {
-        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Code.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.EmployeeGroupCode.Change';
         const label = `Employee Group ${newRecord.id} code changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
@@ -57,7 +57,7 @@ const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Con
     }
 
     if (oldRecord.employeeGroupCategory !== newRecord.employeeGroupCategory) {
-        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Category.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.EmployeeGroupCategory.Change';
         const label = `Employee Group ${newRecord.id} category changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
@@ -65,7 +65,7 @@ const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Con
     }
 
     if (oldRecord.employeeGroupDescription !== newRecord.employeeGroupDescription) {
-        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Description.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.EmployeeGroupDescription.Change';
         const label = `Employee Group ${newRecord.id} description changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
@@ -73,7 +73,7 @@ const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Con
     }
 
     if (oldRecord.employeeGroupAbbreviation !== newRecord.employeeGroupAbbreviation) {
-        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Abbriviation.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.EmployeeGroupAbbriviation.Change';
         const label = `Employee Group ${newRecord.id} abbreviation changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);

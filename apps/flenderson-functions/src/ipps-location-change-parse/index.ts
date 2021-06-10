@@ -49,7 +49,7 @@ const ippsLocation: AzureFunction = async function (context: Context, triggerMes
     }
 
     if (oldRecord.locationCode !== newRecord.locationCode) {
-        const eventType = 'WRDSB.Flenderson.IPPSLocation.Code.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSLocation.LocationCode.Change';
         const label = `Location ${newRecord.id} code changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
@@ -57,7 +57,7 @@ const ippsLocation: AzureFunction = async function (context: Context, triggerMes
     }
 
     if (oldRecord.locationType !== newRecord.locationType) {
-        const eventType = 'WRDSB.Flenderson.IPPSLocation.Type.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSLocation.LocationType.Change';
         const label = `Location ${newRecord.id} type changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
@@ -65,7 +65,7 @@ const ippsLocation: AzureFunction = async function (context: Context, triggerMes
     }
 
     if (oldRecord.locationDescription !== newRecord.locationDescription) {
-        const eventType = 'WRDSB.Flenderson.IPPSLocation.Description.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSLocation.LocationDescription.Change';
         const label = `Location ${newRecord.id} description changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
@@ -73,7 +73,7 @@ const ippsLocation: AzureFunction = async function (context: Context, triggerMes
     }
 
     if (oldRecord.locationAbbreviation !== newRecord.locationAbbreviation) {
-        const eventType = 'WRDSB.Flenderson.IPPSLocation.Abbriviation.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSLocation.LocationAbbriviation.Change';
         const label = `Location ${newRecord.id} abbriviation changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);

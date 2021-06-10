@@ -49,7 +49,7 @@ const ippsJobChangeParse: AzureFunction = async function (context: Context, trig
     }
 
     if (oldRecord.jobCode !== newRecord.jobCode) {
-        const eventType = 'WRDSB.Flenderson.IPPSJob.Code.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSJob.JobCode.Change';
         const label = `Job ${newRecord.id} code changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
@@ -57,7 +57,7 @@ const ippsJobChangeParse: AzureFunction = async function (context: Context, trig
     }
 
     if (oldRecord.jobDescription !== newRecord.jobDescription) {
-        const eventType = 'WRDSB.Flenderson.IPPSJob.Description.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSJob.JobDescription.Change';
         const label = `Job ${newRecord.id} description changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
@@ -65,7 +65,7 @@ const ippsJobChangeParse: AzureFunction = async function (context: Context, trig
     }
 
     if (oldRecord.jobAbbreviation !== newRecord.jobAbbreviation) {
-        const eventType = 'WRDSB.Flenderson.IPPSJob.Abbriviation.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSJob.JobAbbriviation.Change';
         const label = `Job ${newRecord.id} abbriviation changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
