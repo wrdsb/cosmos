@@ -2,14 +2,14 @@ import { AzureFunction, Context } from "@azure/functions";
 import { SearchIndexerClient, AzureKeyCredential } from "@azure/search-documents";
 import { FunctionInvocation, IPPSLocation } from "@cosmos/types";
 
-const ippsLocationChangeProcess: AzureFunction = async function (context: Context, changedRecords: IPPSLocation[]): Promise<void> {
+const ippsLocationChangeTrigger: AzureFunction = async function (context: Context, changedRecords: IPPSLocation[]): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Flenderson',
         functionName: context.executionContext.functionName,
         functionDataType: 'IPPSLocation',
-        functionDataOperation: 'ChangeProcess',
+        functionDataOperation: 'ChangeTrigger',
         eventLabel: ''
     } as FunctionInvocation;
 
@@ -33,4 +33,4 @@ const ippsLocationChangeProcess: AzureFunction = async function (context: Contex
     }
 };
 
-export default ippsLocationChangeProcess;
+export default ippsLocationChangeTrigger;

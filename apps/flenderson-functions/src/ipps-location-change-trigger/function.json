@@ -6,7 +6,7 @@
       "databaseName": "flenderson",
       "collectionName": "ipps-locations",
       "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
-      "leaseCollectionName": "ipps-locations-change-process",
+      "leaseCollectionName": "ipps-locations-change-trigger",
       "createLeaseCollectionIfNotExists": true,
       "direction": "in"
     },
