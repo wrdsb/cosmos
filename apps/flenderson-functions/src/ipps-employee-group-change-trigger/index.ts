@@ -2,14 +2,14 @@ import { AzureFunction, Context } from "@azure/functions";
 import { SearchIndexerClient, AzureKeyCredential } from "@azure/search-documents";
 import { FunctionInvocation, IPPSEmployeeGroup } from "@cosmos/types";
 
-const ippsEmployeeGroupChangeProcess: AzureFunction = async function (context: Context, changedRecords: IPPSEmployeeGroup[]): Promise<void> {
+const ippsEmployeeGroupChangeTrigger: AzureFunction = async function (context: Context, changedRecords: IPPSEmployeeGroup[]): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Flenderson',
         functionName: context.executionContext.functionName,
         functionDataType: 'IPPSEmployeeGroup',
-        functionDataOperation: 'ChangeProcess',
+        functionDataOperation: 'ChangeTrigger',
         eventLabel: ''
     } as FunctionInvocation;
 
@@ -33,4 +33,4 @@ const ippsEmployeeGroupChangeProcess: AzureFunction = async function (context: C
     }
 };
 
-export default ippsEmployeeGroupChangeProcess;
+export default ippsEmployeeGroupChangeTrigger;
