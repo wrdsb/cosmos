@@ -25,7 +25,7 @@ const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Con
     const events = [];
 
     if (!oldRecord) {
-        const eventType = 'Flenderson.IPPSEmployeeGroup.Create';
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Create';
         const label = `Employee Group ${newRecord.id} created.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
@@ -33,7 +33,7 @@ const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Con
     }
 
     if (!oldRecord.deleted && newRecord.deleted) {
-        const eventType = 'Flenderson.IPPSEmployeeGroup.Delete';
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Delete';
         const label = `Employee Group ${newRecord.id} deleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
@@ -41,32 +41,40 @@ const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Con
     }
 
     if (!newRecord.deleted && oldRecord.deleted) {
-        const eventType = 'Flenderson.IPPSEmployeeGroup.Undelete';
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Undelete';
         const label = `Employee Group ${newRecord.id} undeleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.employeeGroupCategory !== newRecord.employeeGroupCategory) {
-        const eventType = 'Flenderson.IPPSEmployeeGroup.Category.Change';
-        const label = `Employee Group ${newRecord.id} category changed.`;
-
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
-        events.push(event);
-    }
-
     if (oldRecord.employeeGroupCode !== newRecord.employeeGroupCode) {
-        const eventType = 'Flenderson.IPPSEmployeeGroup.Code.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Code.Change';
         const label = `Employee Group ${newRecord.id} code changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
+    if (oldRecord.employeeGroupCategory !== newRecord.employeeGroupCategory) {
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Category.Change';
+        const label = `Employee Group ${newRecord.id} category changed.`;
+
+        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        events.push(event);
+    }
+
     if (oldRecord.employeeGroupDescription !== newRecord.employeeGroupDescription) {
-        const eventType = 'Flenderson.IPPSEmployeeGroup.Description.Change';
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Description.Change';
         const label = `Employee Group ${newRecord.id} description changed.`;
+
+        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        events.push(event);
+    }
+
+    if (oldRecord.employeeGroupAbbreviation !== newRecord.employeeGroupAbbreviation) {
+        const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Abbriviation.Change';
+        const label = `Employee Group ${newRecord.id} abbreviation changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
