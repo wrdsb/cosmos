@@ -2,14 +2,14 @@ import { AzureFunction, Context } from "@azure/functions";
 import { SearchIndexerClient, AzureKeyCredential } from "@azure/search-documents";
 import { FunctionInvocation, IPPSJob } from "@cosmos/types";
 
-const ippsJobChangeProcess: AzureFunction = async function (context: Context, changedRecords: IPPSJob[]): Promise<void> {
+const ippsJobChangeTrigger: AzureFunction = async function (context: Context, changedRecords: IPPSJob[]): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Flenderson',
         functionName: context.executionContext.functionName,
         functionDataType: 'IPPSJob',
-        functionDataOperation: 'ChangeProcess',
+        functionDataOperation: 'ChangeTrigger',
         eventLabel: ''
     } as FunctionInvocation;
 
@@ -33,4 +33,4 @@ const ippsJobChangeProcess: AzureFunction = async function (context: Context, ch
     }
 };
 
-export default ippsJobChangeProcess;
+export default ippsJobChangeTrigger;
