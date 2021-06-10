@@ -1,6 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { SearchIndexerClient, AzureKeyCredential } from "@azure/search-documents";
-import { FunctionInvocation, IPPSPosition } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, IPPSPosition } from "@cosmos/types";
 
 const ippsPersonChangeTrigger: AzureFunction = async function (context: Context, changedRecords: IPPSPosition[]): Promise<void> {
     const functionInvocation = {
@@ -13,24 +12,17 @@ const ippsPersonChangeTrigger: AzureFunction = async function (context: Context,
         eventLabel: ''
     } as FunctionInvocation;
 
-    const endpoint = process.env['searchEndpoint'];
-    const apiKey = process.env['searchKey'];
-
-    await runSearchIndexer();
+    let jobType = '' as FlendersonJobType;
+    jobType = 'WRDSB.Flenderson.IPPSPosition.ChangeTrigger';
+    functionInvocation.jobType = jobType;
 
     const logPayload = changedRecords;
     functionInvocation.logPayload = logPayload;
 
+    context.bindings.jobRelay = {jobType: jobType};
+    context.bindings.invocationPostProcessor = functionInvocation;
     context.log(functionInvocation);
     context.done(null, functionInvocation);
-
-
-    async function runSearchIndexer() {
-        context.log(`Running Search Indexer...`);
-        
-        const client = new SearchIndexerClient(endpoint, new AzureKeyCredential(apiKey));
-        await client.runIndexer("flenderson-positions");
-    }
 };
 
 export default ippsPersonChangeTrigger;
