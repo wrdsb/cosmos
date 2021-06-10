@@ -2,14 +2,14 @@ import { AzureFunction, Context } from "@azure/functions";
 import { SearchIndexerClient, AzureKeyCredential } from "@azure/search-documents";
 import { FunctionInvocation, IPPSPerson } from "@cosmos/types";
 
-const ippsPersonChangeProcess: AzureFunction = async function (context: Context, changedRecords: IPPSPerson[]): Promise<void> {
+const ippsPersonChangeTrigger: AzureFunction = async function (context: Context, changedRecords: IPPSPerson[]): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Flenderson',
         functionName: context.executionContext.functionName,
         functionDataType: 'IPPSPerson',
-        functionDataOperation: 'ChangeProcess',
+        functionDataOperation: 'ChangeTrigger',
         eventLabel: ''
     } as FunctionInvocation;
 
@@ -33,4 +33,4 @@ const ippsPersonChangeProcess: AzureFunction = async function (context: Context,
     }
 };
 
-export default ippsPersonChangeProcess;
+export default ippsPersonChangeTrigger;
