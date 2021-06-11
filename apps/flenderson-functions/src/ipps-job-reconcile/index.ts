@@ -1,9 +1,9 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
 import { createHash } from "crypto";
-import { FunctionInvocation, FlendersonDatabaseContainer, FlendersonJobType, IPPSJobsReconcileFunctionRequest, IPPSJob } from "@cosmos/types";
+import { FunctionInvocation, FlendersonDatabaseContainer, FlendersonJobType, IPPSJobReconcileFunctionRequest, IPPSJob } from "@cosmos/types";
 
-const ippsJobReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSJobsReconcileFunctionRequest): Promise<void> {
+const ippsJobReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSJobReconcileFunctionRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),

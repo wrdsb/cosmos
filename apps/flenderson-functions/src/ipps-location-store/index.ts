@@ -280,7 +280,7 @@ const ippsLocationStore: AzureFunction = async function (context: Context, trigg
             locationCode:         ippsLocation.locationCode,
             locationDescription:  ippsLocation.locationDescription,
             schoolCode:           ippsLocation.schoolCode,
-            schoolType:           ippsLocation.schoolType,
+            locationType:         ippsLocation.locationType,
             panel:                ippsLocation.panel
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');

@@ -279,25 +279,11 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
 
     function makeHash(objectToHash: IPPSPerson): string {
         const objectForHash = JSON.stringify({
-            email:                     objectToHash.email,
-            username:                  objectToHash.username,
-            employeeID:                objectToHash.employeeID,
-            firstName:                 objectToHash.firstName,
-            lastName:                  objectToHash.lastName,
-            fullName:                  objectToHash.fullName,
-            sortableName:              objectToHash.sortableName,
-            ein:                       objectToHash.ein,
-            locationCodes:             objectToHash.locationCodes,
-            schoolCodes:               objectToHash.schoolCodes,
-            jobCodes:                  objectToHash.jobCodes,
-            homeLocation:              objectToHash.homeLocation,
-            directory:                 objectToHash.directory,
-            phone:                     objectToHash.phone,
-            extension:                 objectToHash.extension,
-            mbxnumber:                 objectToHash.mbxnumber,
-            numberOfAssignments:       objectToHash.numberOfAssignments,
-            numberOfActiveAssignments: objectToHash.numberOfActiveAssignments,
-            assignments:               objectToHash.assignments
+            employeeID:  objectToHash.employeeID,
+            email:       objectToHash.email,
+            firstName:   objectToHash.firstName,
+            lastName:    objectToHash.lastName,
+            status:      objectToHash.status
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;

@@ -152,7 +152,7 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
                 // Reconcile jobs send changes to -store functions directly
                 break;
 
-            case 'WRDSB.Flenderson.FlendersonPerson.Reconcile':
+            case 'WRDSB.Flenderson.FlendersonPerson.Materialize':
                 // Reconcile jobs send changes to -store functions directly
                 break;
 
