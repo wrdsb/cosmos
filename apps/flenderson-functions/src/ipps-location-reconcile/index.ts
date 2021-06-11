@@ -21,7 +21,7 @@ const ippsLocationReconcile: AzureFunction = async function (context: Context, t
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainer = 'locations';
+    const cosmosContainer = 'ipps-locations';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     // give our bindings more human-readable names

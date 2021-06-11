@@ -21,7 +21,7 @@ const ippsDirectoryReconcile: AzureFunction = async function (context: Context, 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainer = 'directory';
+    const cosmosContainer = 'ipps-directory';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     // give our bindings more human-readable names

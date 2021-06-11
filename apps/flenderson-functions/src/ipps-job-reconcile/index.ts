@@ -21,7 +21,7 @@ const ippsJobReconcile: AzureFunction = async function (context: Context, trigge
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainer = 'jobs';
+    const cosmosContainer = 'ipps-jobs';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     // give our bindings more human-readable names

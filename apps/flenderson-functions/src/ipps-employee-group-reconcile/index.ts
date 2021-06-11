@@ -21,7 +21,7 @@ const ippsEmployeeGroupReconcile: AzureFunction = async function (context: Conte
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainer = 'groups';
+    const cosmosContainer = 'ipps-employee-groups';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     // give our bindings more human-readable names
