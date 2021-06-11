@@ -138,8 +138,8 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 };
                 break;
 
-            case 'WRDSB.Flenderson.FlendersonPerson.Reconcile':
-                context.bindings.flendersonPersonReconcile = {
+            case 'WRDSB.Flenderson.FlendersonPerson.Materialize':
+                context.bindings.flendersonPersonMaterialize = {
                     jobType: jobType
                 };
                 break;

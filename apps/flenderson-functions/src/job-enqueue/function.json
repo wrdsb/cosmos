@@ -114,9 +114,9 @@
       "direction": "out"
     },
     {
-      "name": "flendersonPersonReconcile",
+      "name": "flendersonPersonMaterialize",
       "type": "queue",
-      "queueName": "flenderson-person-reconcile",
+      "queueName": "flenderson-person-materialize",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
