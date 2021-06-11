@@ -65,73 +65,115 @@
     },
 
     {
-      "name": "IPPSEmployeeGroupsReconcile",
+      "name": "ippsDirectoryReconcile",
       "type": "queue",
-      "queueName": "ipps-employee-groups-reconcile",
+      "queueName": "ipps-directory-reconcile",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
     {
-      "name": "IPPSJobsReconcile",
+      "name": "ippsEmployeeGroupReconcile",
       "type": "queue",
-      "queueName": "ipps-jobs-reconcile",
+      "queueName": "ipps-employee-group-reconcile",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
     {
-      "name": "IPPSLocationsReconcile",
+      "name": "ippsJobReconcile",
       "type": "queue",
-      "queueName": "ipps-locations-reconcile",
+      "queueName": "ipps-job-reconcile",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
     {
-      "name": "IPPSPeopleReconcile",
+      "name": "ippsLocationReconcile",
       "type": "queue",
-      "queueName": "ipps-people-reconcile",
+      "queueName": "ipps-location-reconcile",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
     {
-      "name": "IPPSPositionReconcile",
+      "name": "ippsPalReconcile",
+      "type": "queue",
+      "queueName": "ipps-pal-reconcile",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "ippsPersonReconcile",
+      "type": "queue",
+      "queueName": "ipps-person-reconcile",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "ippsPositionReconcile",
       "type": "queue",
       "queueName": "ipps-position-reconcile",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
+    {
+      "name": "flendersonPersonReconcile",
+      "type": "queue",
+      "queueName": "flenderson-person-reconcile",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
 
     {
-      "name": "IPPSEmployeeGroupStore",
+      "name": "ippsDirectoryStore",
+      "type": "queue",
+      "queueName": "ipps-directory-store",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "ippsEmployeeGroupStore",
       "type": "queue",
       "queueName": "ipps-employee-group-store",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
     {
-      "name": "IPPSJobStore",
+      "name": "ippsJobStore",
       "type": "queue",
       "queueName": "ipps-job-store",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
     {
-      "name": "IPPSLocationStore",
+      "name": "ippsLocationStore",
       "type": "queue",
       "queueName": "ipps-location-store",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
     {
-      "name": "IPPSPersonStore",
+      "name": "ippsPalStore",
+      "type": "queue",
+      "queueName": "ipps-pal-store",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "ippsPersonStore",
       "type": "queue",
       "queueName": "ipps-person-store",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
     {
-      "name": "IPPSPositionStore",
+      "name": "ippsPositionStore",
       "type": "queue",
       "queueName": "ipps-position-store",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "flendersonPersonStore",
+      "type": "queue",
+      "queueName": "flenderson-person-store",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
