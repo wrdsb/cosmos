@@ -14,15 +14,13 @@ const ippsDirectoryReconcile: AzureFunction = async function (context: Context, 
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.IPPSDirectory.Reconcile';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSDirectory.Reconcile';
     functionInvocation.jobType = jobType;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    let cosmosContainer = '' as FlendersonDatabaseContainer;
-    cosmosContainer = 'ipps-directory';
+    const cosmosContainer: FlendersonDatabaseContainer = 'ipps-directory';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     // give our bindings more human-readable names

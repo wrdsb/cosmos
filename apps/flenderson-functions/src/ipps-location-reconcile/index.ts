@@ -14,15 +14,13 @@ const ippsLocationReconcile: AzureFunction = async function (context: Context, t
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.IPPSLocation.Reconcile';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSLocation.Reconcile';
     functionInvocation.jobType = jobType;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    let cosmosContainer = '' as FlendersonDatabaseContainer;
-    cosmosContainer = 'ipps-locations';
+    const cosmosContainer: FlendersonDatabaseContainer = 'ipps-locations';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     // give our bindings more human-readable names

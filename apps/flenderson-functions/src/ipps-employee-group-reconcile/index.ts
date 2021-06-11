@@ -14,15 +14,13 @@ const ippsEmployeeGroupReconcile: AzureFunction = async function (context: Conte
         eventLabel: ''
     } as FunctionInvocation;
     
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile';
     functionInvocation.jobType = jobType;
 
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    let cosmosContainer = '' as FlendersonDatabaseContainer;
-    cosmosContainer = 'ipps-employee-groups';
+    const cosmosContainer: FlendersonDatabaseContainer = 'ipps-employee-groups';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     // give our bindings more human-readable names
