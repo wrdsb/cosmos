@@ -1,4 +1,5 @@
 export * from './job-types';
+export * from './database-containers';
 
 export * from './ipps-employee-group-store';
 export * from './ipps-job-store';

@@ -1,7 +1,7 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { CosmosClient } from "@azure/cosmos";
 import { createHash } from "crypto";
-import { FunctionInvocation, FlendersonJobType, IPPSJobsReconcileFunctionRequest, IPPSJob } from "@cosmos/types";
+import { FunctionInvocation, FlendersonDatabaseContainer, FlendersonJobType, IPPSJobsReconcileFunctionRequest, IPPSJob } from "@cosmos/types";
 
 const ippsJobReconcile: AzureFunction = async function (context: Context, triggerMessage: IPPSJobsReconcileFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -21,7 +21,8 @@ const ippsJobReconcile: AzureFunction = async function (context: Context, trigge
     const cosmosEndpoint = process.env['cosmosEndpoint'];
     const cosmosKey = process.env['cosmosKey'];
     const cosmosDatabase = process.env['cosmosDatabase'];
-    const cosmosContainer = 'ipps-jobs';
+    let cosmosContainer = '' as FlendersonDatabaseContainer;
+    cosmosContainer = 'ipps-jobs';
     const cosmosClient = new CosmosClient({endpoint: cosmosEndpoint, key: cosmosKey});
 
     // give our bindings more human-readable names
