@@ -12,8 +12,7 @@ const ippsLocationChangeTrigger: AzureFunction = async function (context: Contex
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.IPPSLocation.ChangeTrigger';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSLocation.ChangeTrigger';
     functionInvocation.jobType = jobType;
 
     const logPayload = changedRecords;

@@ -13,8 +13,7 @@ const ippsLocationStore: AzureFunction = async function (context: Context, trigg
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'Flenderson.IPPSLocation.Store';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSLocation.Store';
     functionInvocation.jobType = jobType;
     
     const triggerObject = triggerMessage as IPPSLocationStoreFunctionRequest;
@@ -32,10 +31,11 @@ const ippsLocationStore: AzureFunction = async function (context: Context, trigg
         id: '',
 
         locationCode: '',
+        locationType: '',
         locationDescription: '',
+        locationAbbreviation: '',
 
         schoolCode: '',
-        schoolType: '',
         panel: '',
     } as IPPSLocation;
 

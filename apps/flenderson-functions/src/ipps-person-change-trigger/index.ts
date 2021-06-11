@@ -12,8 +12,7 @@ const ippsPersonChangeTrigger: AzureFunction = async function (context: Context,
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.IPPSPerson.ChangeTrigger';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSPerson.ChangeTrigger';
     functionInvocation.jobType = jobType;
 
     const logPayload = changedRecords;

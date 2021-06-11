@@ -13,8 +13,7 @@ const ippsDirectoryStore: AzureFunction = async function (context: Context, trig
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.IPPSDirectory.Store';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSDirectory.Store';
     functionInvocation.jobType = jobType;
 
     const triggerObject = triggerMessage as IPPSDirectoryStoreFunctionRequest;

@@ -12,8 +12,7 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.ViewStaffDir.Process';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.View.StaffDir.Process';
     functionInvocation.jobType = jobType;
     
     const panamaBlob = context.bindings.panamaBlob;

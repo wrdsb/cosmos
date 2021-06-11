@@ -13,8 +13,7 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'Flenderson.IPPSPerson.Store';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSPerson.Store';
     functionInvocation.jobType = jobType;
     
     const triggerObject = triggerMessage as IPPSPersonStoreFunctionRequest;
@@ -30,31 +29,13 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         deleted: false,
 
         id: '',
-        email: '',
-        username: '',
         employeeID: '',
+        email: '',
 
         firstName: '',
         lastName: '',
-        fullName: '',
-        sortableName: '',
 
-        ein: '',
-
-        locationCodes: [],
-        schoolCodes: [],
-        jobCodes: [],
-        employeeGroupCodes: [],
-
-        homeLocation: '',
-        directory: '',
-        phone: '',
-        extension: '',
-        mbxnumber: '',
-
-        numberOfAssignments: 0,
-        numberOfActiveAssignments: 0,
-        assignments: []
+        status: ''
     } as IPPSPerson;
 
     let result;

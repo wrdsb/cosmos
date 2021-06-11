@@ -13,8 +13,7 @@ const ippsJobStore: AzureFunction = async function (context: Context, triggerMes
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'Flenderson.IPPSJob.Store';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSJob.Store';
     functionInvocation.jobType = jobType;
 
     const triggerObject = triggerMessage as IPPSJobStoreFunctionRequest;

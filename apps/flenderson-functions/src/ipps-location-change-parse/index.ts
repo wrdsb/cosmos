@@ -12,8 +12,7 @@ const ippsLocation: AzureFunction = async function (context: Context, triggerMes
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'Flenderson.IPPSLocation.ChangeParse';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSLocation.ChangeParse';
     functionInvocation.jobType = jobType;
 
     const triggerObject = triggerMessage;

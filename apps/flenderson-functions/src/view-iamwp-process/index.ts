@@ -12,8 +12,7 @@ const viewIAMWPProcess: AzureFunction = async function (context: Context, trigge
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.ViewIAMWP.Process';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.View.IAMWP.Process';
     functionInvocation.jobType = jobType;
     
     const panamaBlob = context.bindings.panamaBlob;

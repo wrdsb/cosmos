@@ -12,8 +12,7 @@ const viewIPPSLocationsProcess: AzureFunction = async function (context: Context
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.View.IPPSLocations.Process';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.View.IPPSLocations.Process';
     functionInvocation.jobType = jobType;
     
     const panamaBlob = context.bindings.panamaBlob;

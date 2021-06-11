@@ -12,8 +12,7 @@ const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Con
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'Flenderson.IPPSEmployeeGroup.ChangeParse';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeParse';
     functionInvocation.jobType = jobType;
 
     const triggerObject = triggerMessage;

@@ -12,8 +12,7 @@ const ippsDirectoryChangeTrigger: AzureFunction = async function (context: Conte
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.IPPSDirectory.ChangeTrigger';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSDirectory.ChangeTrigger';
     functionInvocation.jobType = jobType;
 
     const logPayload = changedRecords;
