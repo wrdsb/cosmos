@@ -8,15 +8,6 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.View.IPPSPositions.Process' |
 'WRDSB.Flenderson.View.StaffDir.Process' |
 
-'WRDSB.Flenderson.IPPSDirectory.Store' |
-'WRDSB.Flenderson.IPPSEmployeeGroup.Store' |
-'WRDSB.Flenderson.IPPSJob.Store' |
-'WRDSB.Flenderson.IPPSLocation.Store' |
-'WRDSB.Flenderson.IPPSPal.Store' |
-'WRDSB.Flenderson.IPPSPerson.Store' |
-'WRDSB.Flenderson.IPPSPosition.Store' |
-'WRDSB.Flenderson.MaterializedPerson.Store' |
-
 'WRDSB.Flenderson.IPPSDirectory.Reconcile' |
 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile' |
 'WRDSB.Flenderson.IPPSJob.Reconcile' |
@@ -24,7 +15,18 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.IPPSPal.Reconcile' |
 'WRDSB.Flenderson.IPPSPerson.Reconcile' |
 'WRDSB.Flenderson.IPPSPosition.Reconcile' |
-'WRDSB.Flenderson.MaterializedPerson.Reconcile' |
+
+'WRDSB.Flenderson.FlendersonPerson.Materialize' |
+
+'WRDSB.Flenderson.IPPSDirectory.Store' |
+'WRDSB.Flenderson.IPPSEmployeeGroup.Store' |
+'WRDSB.Flenderson.IPPSJob.Store' |
+'WRDSB.Flenderson.IPPSLocation.Store' |
+'WRDSB.Flenderson.IPPSPal.Store' |
+'WRDSB.Flenderson.IPPSPerson.Store' |
+'WRDSB.Flenderson.IPPSPosition.Store' |
+
+'WRDSB.Flenderson.FlendersonPerson.Store' |
 
 'WRDSB.Flenderson.IPPSDirectory.ChangeTrigger' |
 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeTrigger' |
@@ -33,7 +35,8 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.IPPSPal.ChangeTrigger' |
 'WRDSB.Flenderson.IPPSPerson.ChangeTrigger' |
 'WRDSB.Flenderson.IPPSPosition.ChangeTrigger' |
-'WRDSB.Flenderson.MaterializedPerson.ChangeTrigger' |
+
+'WRDSB.Flenderson.FlendersonPerson.ChangeTrigger' |
 
 'WRDSB.Flenderson.IPPSDirectory.ChangeParse' |
 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeParse' |
@@ -42,4 +45,7 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.IPPSPal.ChangeParse' |
 'WRDSB.Flenderson.IPPSPerson.ChangeParse' |
 'WRDSB.Flenderson.IPPSPosition.ChangeParse' |
-'WRDSB.Flenderson.MaterializedPerson.ChangeParse' |
+
+'WRDSB.Flenderson.FlendersonPerson.ChangeParse' |
+
+'WRDSB.Flenderson.SearchIndexer.Invoke'
