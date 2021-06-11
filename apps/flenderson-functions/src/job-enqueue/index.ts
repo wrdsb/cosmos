@@ -96,56 +96,167 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 };
                 break;
 
+            case 'WRDSB.Flenderson.IPPSDirectory.Reconcile':
+                context.bindings.ippsDirectoryReconcile = {
+                    jobType: jobType
+                };
+                break;
+
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile':
-                context.bindings.IPPSGroupsReconcile = {
+                context.bindings.ippsGroupReconcile = {
                     jobType: jobType
                 };
                 break;
                 
             case 'WRDSB.Flenderson.IPPSJob.Reconcile':
-                context.bindings.IPPSJobsReconcile = {
+                context.bindings.ippsJobReconcile = {
                     jobType: jobType
                 };
                 break;
 
             case 'WRDSB.Flenderson.IPPSLocation.Reconcile':
-                context.bindings.IPPSLocationsReconcile = {
+                context.bindings.ippsLocationReconcile = {
+                    jobType: jobType
+                };
+                break;
+            
+            case 'WRDSB.Flenderson.IPPSPal.Reconcile':
+                context.bindings.ippsPalReconcile = {
                     jobType: jobType
                 };
                 break;
             
             case 'WRDSB.Flenderson.IPPSPerson.Reconcile':
-                context.bindings.IPPSPeopleReconcile = {
+                context.bindings.ippsPersonReconcile = {
                     jobType: jobType
                 };
                 break;
 
+            case 'WRDSB.Flenderson.IPPSPosition.Reconcile':
+                context.bindings.ippsPositionReconcile = {
+                    jobType: jobType
+                };
+                break;
+
+            case 'WRDSB.Flenderson.FlendersonPerson.Reconcile':
+                context.bindings.flendersonPersonReconcile = {
+                    jobType: jobType
+                };
+                break;
+
+            case 'WRDSB.Flenderson.IPPSDirectory.Store':
+                context.bindings.ippsDirectoryStore = {
+                    operation: operation,
+                    payload: payload
+                };
+                break;
+
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Store':
-                context.bindings.IPPSEmployeeGroupStore = {
+                context.bindings.ippsEmployeeGroupStore = {
                     operation: operation,
                     payload: payload
                 };
                 break;
 
             case 'WRDSB.Flenderson.IPPSJob.Store':
-                context.bindings.IPPSJobStore = {
+                context.bindings.ippsJobStore = {
                     operation: operation,
                     payload: payload
                 };
                 break;
                 
             case 'WRDSB.Flenderson.IPPSLocation.Store':
-                context.bindings.IPPSLocationStore = {
+                context.bindings.ippsLocationStore = {
                     operation: operation,
                     payload: payload
                 };
                 break;
                 
-            case 'WRDSB.Flenderson.IPPSPerson.Store':
-                context.bindings.IPPSPersonStore = {
+            case 'WRDSB.Flenderson.IPPSPal.Store':
+                context.bindings.ippsPalStore = {
                     operation: operation,
                     payload: payload
                 };
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPerson.Store':
+                context.bindings.ippsPersonStore = {
+                    operation: operation,
+                    payload: payload
+                };
+                break;
+    
+            case 'WRDSB.Flenderson.IPPSPosition.Store':
+                context.bindings.ippsPositionStore = {
+                    operation: operation,
+                    payload: payload
+                };
+                break;
+
+            case 'WRDSB.Flenderson.FlendersonPerson.Store':
+                context.bindings.flendersonPersonStore = {
+                    operation: operation,
+                    payload: payload
+                };
+                break;
+
+            case 'WRDSB.Flenderson.IPPSDirectory.ChangeTrigger':
+                // only invoked by Cosmos DB change feed trigger
+                break;
+
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeTrigger':
+                // only invoked by Cosmos DB change feed trigger
+                break;
+
+            case 'WRDSB.Flenderson.IPPSJob.ChangeTrigger':
+                // only invoked by Cosmos DB change feed trigger
+                break;
+
+            case 'WRDSB.Flenderson.IPPSLocation.ChangeTrigger':
+                // only invoked by Cosmos DB change feed trigger
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPal.ChangeTrigger':
+                // only invoked by Cosmos DB change feed trigger
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPerson.ChangeTrigger':
+                // only invoked by Cosmos DB change feed trigger
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPosition.ChangeTrigger':
+                // only invoked by Cosmos DB change feed trigger
+                break;
+
+                // only invoked by Cosmos DB change feed trigger
+            case 'WRDSB.Flenderson.FlendersonPerson.ChangeTrigger':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSDirectory.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSJob.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSLocation.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPal.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPerson.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPosition.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.FlendersonPerson.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.SearchIndexer.Invoke':
                 break;
 
             default:

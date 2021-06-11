@@ -118,84 +118,167 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
             case 'WRDSB.Flenderson.View.StaffDir.Process':
                 queueTriggered = 'Flenderson:job-enqueue';
                 queueMessage = {
-                    jobType: 'WRDSB.Flenderson.IPPSPerson.Reconcile'
+                    jobType: 'WRDSB.Flenderson.IPPSDirectory.Reconcile'
                 };
                 context.bindings.flendersonJobEnqueue = queueMessage;
                 sentQueueMessage = true;
                 break;
 
+            case 'WRDSB.Flenderson.IPPSDirectory.Reconcile':
+                // Reconcile jobs send changes to -store functions directly
+                break;
+
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile':
-                //queueTriggered = 'Flenderson:job-enqueue';
-                //jobTriggered = 'Flenderson.IPPSEmployeeGroup.Reconcile';
-                //queueMessage = {
-                    //jobType: jobTriggered,
-                //};
-                //context.bindings.flendersonJobEnqueue = queueMessage;
+                // Reconcile jobs send changes to -store functions directly
                 break;
 
             case 'WRDSB.Flenderson.IPPSJob.Reconcile':
-                //queueTriggered = 'Flenderson:job-enqueue';
-                //jobTriggered = 'Flenderson.IPPSJob.Reconcile';
-                //queueMessage = {
-                    //jobType: jobTriggered,
-                //};
-                //context.bindings.flendersonJobEnqueue = queueMessage;
+                // Reconcile jobs send changes to -store functions directly
                 break;
 
             case 'WRDSB.Flenderson.IPPSLocation.Reconcile':
-                //queueTriggered = 'Flenderson:job-enqueue';
-                //jobTriggered = 'Flenderson.IPPSLocation.Reconcile';
-                //queueMessage = {
-                    //jobType: jobTriggered,
-                //};
-                //context.bindings.flendersonJobEnqueue = queueMessage;
+                // Reconcile jobs send changes to -store functions directly
+                break;
+            
+            case 'WRDSB.Flenderson.IPPSPal.Reconcile':
+                // Reconcile jobs send changes to -store functions directly
                 break;
 
             case 'WRDSB.Flenderson.IPPSPerson.Reconcile':
-                //queueTriggered = 'Flenderson:job-enqueue';
-                //jobTriggered = 'Flenderson.IPPSPerson.Reconcile';
-                //queueMessage = {
-                    //jobType: jobTriggered,
-                //};
-                //context.bindings.flendersonJobEnqueue = queueMessage;
+                // Reconcile jobs send changes to -store functions directly
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPosition.Reconcile':
+                // Reconcile jobs send changes to -store functions directly
+                break;
+
+            case 'WRDSB.Flenderson.FlendersonPerson.Reconcile':
+                // Reconcile jobs send changes to -store functions directly
+                break;
+
+            case 'WRDSB.Flenderson.IPPSDirectory.Store':
+                // Store jobs send changes to -change-parse functions directly
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Store':
-                //queueTriggered = 'Flenderson:job-enqueue';
-                //jobTriggered = 'Flenderson.IPPSEmployeeGroup.Store';
-                //queueMessage = {
-                    //jobType: jobTriggered,
-                //};
-                //context.bindings.flendersonJobEnqueue = queueMessage;
+                // Store jobs send changes to -change-parse functions directly
                 break;
 
             case 'WRDSB.Flenderson.IPPSJob.Store':
-                //queueTriggered = 'Flenderson:job-enqueue';
-                //jobTriggered = 'Flenderson.IPPSJob.Store';
-                //queueMessage = {
-                    //jobType: jobTriggered,
-                //};
-                //context.bindings.flendersonJobEnqueue = queueMessage;
+                // Store jobs send changes to -change-parse functions directly
                 break;
 
             case 'WRDSB.Flenderson.IPPSLocation.Store':
-                //queueTriggered = 'Flenderson:job-enqueue';
-                //jobTriggered = 'Flenderson.IPPSLocation.Store';
-                //queueMessage = {
-                    //jobType: jobTriggered,
-                //};
-                //context.bindings.flendersonJobEnqueue = queueMessage;
+                // Store jobs send changes to -change-parse functions directly
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPal.Store':
+                // Store jobs send changes to -change-parse functions directly
                 break;
 
             case 'WRDSB.Flenderson.IPPSPerson.Store':
-                //queueTriggered = 'Flenderson:job-enqueue';
-                //jobTriggered = 'Flenderson.IPPSPerson.Store';
-                //queueMessage = {
-                    //jobType: jobTriggered,
-                //};
-                //context.bindings.flendersonJobEnqueue = queueMessage;
+                // Store jobs send changes to -change-parse functions directly
                 break;
 
+            case 'WRDSB.Flenderson.IPPSPosition.Store':
+                // Store jobs send changes to -change-parse functions directly
+                break;
+
+            case 'WRDSB.Flenderson.FlendersonPerson.Store':
+                // Store jobs send changes to -change-parse functions directly
+                break;
+
+            case 'WRDSB.Flenderson.IPPSDirectory.ChangeTrigger':
+                // No search index for this intermediate data type
+                break;
+
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeTrigger':
+                queueTriggered = 'Flenderson:job-enqueue';
+                queueMessage = {
+                    jobType: 'WRDSB.Flenderson.SearchIndexer.Invoke',
+                    payload: {
+                        'indexName': 'flenderson-groups'
+                    }
+                };
+                context.bindings.flendersonJobEnqueue = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Flenderson.IPPSJob.ChangeTrigger':
+                queueTriggered = 'Flenderson:job-enqueue';
+                queueMessage = {
+                    jobType: 'WRDSB.Flenderson.SearchIndexer.Invoke',
+                    payload: {
+                        'indexName': 'flenderson-jobs'
+                    }
+                };
+                context.bindings.flendersonJobEnqueue = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Flenderson.IPPSLocation.ChangeTrigger':
+                queueTriggered = 'Flenderson:job-enqueue';
+                queueMessage = {
+                    jobType: 'WRDSB.Flenderson.SearchIndexer.Invoke',
+                    payload: {
+                        'indexName': 'flenderson-locations'
+                    }
+                };
+                context.bindings.flendersonJobEnqueue = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPal.ChangeTrigger':
+                // No search index for this intermediate data type
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPerson.ChangeTrigger':
+                // No search index for this intermediate data type
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPosition.ChangeTrigger':
+                // No search index for this intermediate data type
+                break;
+
+            case 'WRDSB.Flenderson.FlendersonPerson.ChangeTrigger':
+                queueTriggered = 'Flenderson:job-enqueue';
+                queueMessage = {
+                    jobType: 'WRDSB.Flenderson.SearchIndexer.Invoke',
+                    payload: {
+                        'indexName': 'flenderson-people'
+                    }
+                };
+                context.bindings.flendersonJobEnqueue = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Flenderson.IPPSDirectory.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSJob.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSLocation.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPal.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPerson.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.IPPSPosition.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.FlendersonPerson.ChangeParse':
+                break;
+
+            case 'WRDSB.Flenderson.SearchIndexer.Invoke':
+                break;
+                
             default:
                 context.bindings.callbackMessage = JSON.stringify({
                     status: 422,
