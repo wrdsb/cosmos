@@ -13,7 +13,7 @@ const ippsDirectoryChangeParse: AzureFunction = async function (context: Context
     } as FunctionInvocation;
 
     let jobType = '' as FlendersonJobType;
-    jobType = 'Flenderson.IPPSDirectory.ChangeParse';
+    jobType = 'WRDSB.Flenderson.IPPSDirectory.ChangeParse';
     functionInvocation.jobType = jobType;
 
     const triggerObject = triggerMessage;
