@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { admin_directory_v1 } from 'googleapis';
-import { FunctionInvocation, GoogleGroupsListFunctionRequest, GoogleGroupsListFunctionRequestPayload, GoogleGroup } from "@cosmos/types";
+import { google } from 'googleapis';
+import { FunctionInvocation, GoogleGroupsListFunctionRequest, GoogleGroupsListFunctionRequestPayload } from "@cosmos/types";
 
 const groupsList: AzureFunction = async function (context: Context, triggerMessage): Promise<void> {
     const functionInvocation = {
@@ -16,8 +16,6 @@ const groupsList: AzureFunction = async function (context: Context, triggerMessa
     const triggerObject = triggerMessage as GoogleGroupsListFunctionRequest;
     const payload = triggerObject.payload as GoogleGroupsListFunctionRequestPayload;
 
-    const { google } = require('googleapis');
-
     const clientEmail = process.env.client_email;
     const privateKey = process.env.private_key;
     const userAddress = 'igor@wrdsb.ca';
@@ -31,8 +29,8 @@ const groupsList: AzureFunction = async function (context: Context, triggerMessa
     ];
 
     // stores our Groups in the end; one result for objects, another for arrays
-    let groupsAllObject = {};
-    let groupsAllArray = [];
+    const groupsAllObject = {};
+    const groupsAllArray = [];
 
     // prep our credentials for G Suite APIs
     const auth = new google.auth.JWT({
@@ -98,9 +96,9 @@ const groupsList: AzureFunction = async function (context: Context, triggerMessa
 
     
     async function getGroups(params) {
-        let result = await directory.groups.list(params);
+        const result = await directory.groups.list(params);
         context.log(result);
-        let groups = result.data.groups;
+        const groups = result.data.groups;
         context.log('Got ' + groups.length + ' groups.');
 
         groups.forEach(function(group) {
