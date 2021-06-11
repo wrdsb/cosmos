@@ -11,3 +11,5 @@ export * from './ipps-locations-reconcile';
 export * from './ipps-people-reconcile';
 export * from './ipps-position-reconcile';
 export * from './ipps-directory-reconcile';
+
+export * from './search-indexer-invoke';
