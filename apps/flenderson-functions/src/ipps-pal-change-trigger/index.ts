@@ -12,8 +12,7 @@ const ippsPalChangeTrigger: AzureFunction = async function (context: Context, ch
         eventLabel: ''
     } as FunctionInvocation;
 
-    let jobType = '' as FlendersonJobType;
-    jobType = 'WRDSB.Flenderson.IPPSPal.ChangeTrigger';
+    const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSPal.ChangeTrigger';
     functionInvocation.jobType = jobType;
 
     const logPayload = changedRecords;
