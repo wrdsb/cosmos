@@ -40,7 +40,7 @@ interface FlendersonPerson extends CosmosCoreFields {
 
     numberOfPositions?:       number;
     numberOfActivePositions?: number;
-    ippsPositions?:           FlendersonPosition[]
+    positions?:               FlendersonPosition[]
 }
 
 export { FlendersonPerson };
