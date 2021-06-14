@@ -19,6 +19,8 @@ interface FlendersonPerson extends CosmosCoreFields {
     employeeID?: string;
     ein?: string;
 
+    activityCode: string;
+
     firstName?: string;
     lastName?: string;
     fullName?: string;

@@ -18,3 +18,5 @@ export * from './ipps-person-reconcile';
 export * from './ipps-position-reconcile';
 
 export * from './search-indexer-invoke';
+
+export * from './flenderson-person-materialize';
