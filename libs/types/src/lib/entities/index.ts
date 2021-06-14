@@ -2,6 +2,7 @@ export * from './cosmos';
 
 export * from './aad';
 export * from './codex';
+export * from './flenderson';
 export * from './google';
 export * from './hagar';
 export * from './igor';

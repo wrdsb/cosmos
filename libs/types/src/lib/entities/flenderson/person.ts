@@ -1,7 +1,7 @@
 import { CosmosCoreFields } from "@cosmos/types";
-import { IPPSMaterializedPosition } from "./ipps-materialized-position";
+import { FlendersonPosition } from "@cosmos/types";
 
-interface IPPSMaterializedPerson extends CosmosCoreFields {
+interface FlendersonPerson extends CosmosCoreFields {
     // Fields from CosmosCoreFields
     //createdAt?: DateTime;
     //updatedAt?: DateTime;
@@ -15,7 +15,7 @@ interface IPPSMaterializedPerson extends CosmosCoreFields {
     //id?: string;
 
     email?: string;
-    //username?: string;
+    username?: string;
     employeeID?: string;
     ein?: string;
 
@@ -24,6 +24,7 @@ interface IPPSMaterializedPerson extends CosmosCoreFields {
     fullName?: string;
     sortableName?: string;
 
+    // TODO: use the real types
     locationCodes?: string[];
     schoolCodes?: string[];
     jobCodes?: string[];
@@ -35,9 +36,7 @@ interface IPPSMaterializedPerson extends CosmosCoreFields {
     extension?: string;
     mbxnumber?: string;
 
-    numberOfPositions?: number;
+    numberOfPositions?:       number;
     numberOfActivePositions?: number;
-    positions?: IPPSMaterializedPosition[];
+    ippsPositions?:           FlendersonPosition[]
 }
-
-export { IPPSMaterializedPerson };

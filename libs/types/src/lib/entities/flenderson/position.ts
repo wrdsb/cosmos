@@ -1,6 +1,6 @@
 import { CosmosCoreFields } from "@cosmos/types";
 
-interface IPPSMaterializedPosition extends CosmosCoreFields {
+interface FlendersonPosition extends CosmosCoreFields {
     // Fields from CosmosCoreFields
     //createdAt?: DateTime;
     //updatedAt?: DateTime;
@@ -13,7 +13,7 @@ interface IPPSMaterializedPosition extends CosmosCoreFields {
 
     //id?: string;
     positionID: string;
-    //employeeID: string;
+    employeeID: string;
 
     employeeGroupCode: string;
     employeeGroupCategory: string;
@@ -39,4 +39,4 @@ interface IPPSMaterializedPosition extends CosmosCoreFields {
     positionEndDate: string;
 }
 
-export { IPPSMaterializedPosition };
+export { FlendersonPosition };
