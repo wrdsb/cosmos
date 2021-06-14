@@ -1,0 +1,66 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "flenderson-person-materialize",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "directoryRecord",
+            "type": "cosmosDB",
+            "databaseName": "flenderson",
+            "collectionName": "ipps-directory",
+            "id": "{payload.email}",
+            "partitionKey": "{payload.email}",
+            "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "palRecord",
+            "type": "cosmosDB",
+            "databaseName": "flenderson",
+            "collectionName": "ipps-people",
+            "id": "{payload.employeeID}",
+            "partitionKey": "{payload.employeeID}",
+            "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "personRecord",
+            "type": "cosmosDB",
+            "databaseName": "flenderson",
+            "collectionName": "ipps-people",
+            "id": "{payload.employeeID}",
+            "partitionKey": "{payload.employeeID}",
+            "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "positionsRecords",
+            "type": "cosmosDB",
+            "databaseName": "flenderson",
+            "collectionName": "flenderson-positions",
+            "id": "{payload.employeeID}",
+            "partitionKey": "{payload.employeeID}",
+            "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "queueStore",
+            "type": "queue",
+            "queueName": "flenderson-person-store",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbflenderson_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
