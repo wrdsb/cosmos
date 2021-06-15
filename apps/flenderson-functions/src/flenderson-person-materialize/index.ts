@@ -41,20 +41,29 @@ const flendersonPersonMaterialize: AzureFunction = async function (context: Cont
 
     async function materializePerson(directory: IPPSDirectory, pal: IPPSPal, person: IPPSPerson, positions: FlendersonPosition[]) {
         const materializedPerson = {
+            createdAt:                 person.createdAt ?? null,
+            updatedAt:                 person.updatedAt ?? null,
+            deletedAt:                 person.deletedAt ?? null,
+            deleted:                   person.deleted ?? false,
+
+            createdBy:                 person.createdBy ?? null,
+            updatedBy:                 person.updatedBy ?? null,
+            deletedBy:                 person.deletedBy ?? null,
+
             id:                        person.id,
 
-            email:                     person.email,
+            email:                     person.email ?? email,
             username:                  pal.username,
-            employeeID:                person.employeeID,
+            employeeID:                person.employeeID ?? employeeID,
 
-            activityCode:              person.status,
+            activityCode:              person.status ?? 'ACTIVE',
 
-            firstName:                 person.firstName,
-            lastName:                  person.lastName,
+            firstName:                 person.firstName ?? '',
+            lastName:                  person.lastName ?? '',
             fullName:                  `${person.firstName} ${person.lastName}`,
             sortableName:              `${person.lastName}, ${person.firstName}`,
 
-            ein:                       person.employeeID,
+            ein:                       person.employeeID ?? employeeID,
 
             locationCodes:             [],
             schoolCodes:               [],
@@ -69,7 +78,7 @@ const flendersonPersonMaterialize: AzureFunction = async function (context: Cont
 
             numberOfPositions:         0,
             numberOfActivePositions:   0,
-            positions:             []
+            positions:                 []
         } as FlendersonPerson;
 
         const locationCodes = new Set<string>();
