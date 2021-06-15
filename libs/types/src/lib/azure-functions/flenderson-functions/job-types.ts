@@ -16,8 +16,6 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.IPPSPerson.Reconcile' |
 'WRDSB.Flenderson.IPPSPosition.Reconcile' |
 
-'WRDSB.Flenderson.FlendersonPerson.Materialize' |
-
 'WRDSB.Flenderson.IPPSDirectory.Store' |
 'WRDSB.Flenderson.IPPSEmployeeGroup.Store' |
 'WRDSB.Flenderson.IPPSJob.Store' |
@@ -45,6 +43,9 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.IPPSPal.ChangeParse' |
 'WRDSB.Flenderson.IPPSPerson.ChangeParse' |
 'WRDSB.Flenderson.IPPSPosition.ChangeParse' |
+
+'WRDSB.Flenderson.FlendersonPerson.Materialize' |
+'WRDSB.Flenderson.FlendersonPosition.Materialize' |
 
 'WRDSB.Flenderson.FlendersonPerson.ChangeParse' |
 

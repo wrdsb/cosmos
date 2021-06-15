@@ -20,3 +20,4 @@ export * from './ipps-position-reconcile';
 export * from './search-indexer-invoke';
 
 export * from './flenderson-person-materialize';
+export * from './flenderson-position-materialize';

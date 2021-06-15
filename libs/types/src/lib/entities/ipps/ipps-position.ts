@@ -21,6 +21,7 @@ interface IPPSPosition extends CosmosCoreFields {
     locationCode: string;
 
     establishmentCode: string;
+
     isHomeLocation: string;
 
     positionStartDate: string;
