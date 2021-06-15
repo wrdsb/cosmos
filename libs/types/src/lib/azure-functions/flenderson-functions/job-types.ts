@@ -36,6 +36,7 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.IPPSPosition.ChangeTrigger' |
 
 'WRDSB.Flenderson.FlendersonPerson.ChangeTrigger' |
+'WRDSB.Flenderson.FlendersonPosition.ChangeTrigger' |
 
 'WRDSB.Flenderson.IPPSDirectory.ChangeParse' |
 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeParse' |
@@ -49,5 +50,6 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.FlendersonPosition.Materialize' |
 
 'WRDSB.Flenderson.FlendersonPerson.ChangeParse' |
+'WRDSB.Flenderson.FlendersonPosition.ChangeParse' |
 
 'WRDSB.Flenderson.SearchIndexer.Invoke'
