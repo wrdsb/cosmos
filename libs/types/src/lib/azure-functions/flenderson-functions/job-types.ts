@@ -25,6 +25,7 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.IPPSPosition.Store' |
 
 'WRDSB.Flenderson.FlendersonPerson.Store' |
+'WRDSB.Flenderson.FlendersonPosition.Store' |
 
 'WRDSB.Flenderson.IPPSDirectory.ChangeTrigger' |
 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeTrigger' |
