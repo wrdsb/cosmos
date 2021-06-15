@@ -295,11 +295,25 @@ const flendersonPositionStore: AzureFunction = async function (context: Context,
 
     function makeHash(flendersonPosition: FlendersonPosition): string {
         const objectForHash = JSON.stringify({
-            locationCode:         flendersonPosition.locationCode,
-            locationDescription:  flendersonPosition.locationDescription,
-            schoolCode:           flendersonPosition.schoolCode,
-            locationType:         flendersonPosition.locationType,
-            panel:                flendersonPosition.panel
+            positionID:                 flendersonPosition.positionID,
+            employeeID:                 flendersonPosition.employeeID,
+            employeeGroupCode:          flendersonPosition.employeeGroupCode,
+            employeeGroupCategory:      flendersonPosition.employeeGroupCategory,
+            employeeGroupDescription:   flendersonPosition.employeeGroupDescription,
+            employeeGroupAbbreviation:  flendersonPosition.employeeGroupAbbreviation,
+            jobCode:                    flendersonPosition.jobCode,
+            jobDescription:             flendersonPosition.jobDescription,
+            jobAbbreviation:            flendersonPosition.jobAbbreviation,
+            locationCode:               flendersonPosition.locationCode,
+            LocationType:               flendersonPosition.LocationType,
+            locationDescription:        flendersonPosition.locationDescription,
+            locationAbbreviation:       flendersonPosition.locationAbbreviation,
+            schoolCode:                 flendersonPosition.schoolCode,
+            panel:                      flendersonPosition.panel,
+            establishmentCode:          flendersonPosition.establishmentCode,
+            isHomeLocation:             flendersonPosition.isHomeLocation,
+            positionStartDate:          flendersonPosition.positionStartDate,
+            positionEndDate:            flendersonPosition.positionEndDate
         });
         const objectHash = createHash('md5').update(objectForHash).digest('hex');
         return objectHash;
