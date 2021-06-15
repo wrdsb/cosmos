@@ -1,0 +1,56 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "flenderson-position-materialize",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "employeeGroupRecord",
+            "type": "cosmosDB",
+            "databaseName": "flenderson",
+            "collectionName": "ipps-employee-groups",
+            "id": "{payload.ippsPosition.employeeGroupCode}",
+            "partitionKey": "{payload.ippsPosition.employeeGroupCode}",
+            "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "jobRecord",
+            "type": "cosmosDB",
+            "databaseName": "flenderson",
+            "collectionName": "ipps-jobs",
+            "id": "{payload.ippsPosition.jobCode}",
+            "partitionKey": "{payload.ippsPosition.jobCode}",
+            "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "locationRecord",
+            "type": "cosmosDB",
+            "databaseName": "flenderson",
+            "collectionName": "ipps-locations",
+            "id": "{payload.ippsPosition.locationCode}",
+            "partitionKey": "{payload.ippsPosition.locationCode}",
+            "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+            "direction": "in"
+        },
+        {
+            "name": "queueStore",
+            "type": "queue",
+            "queueName": "flenderson-position-store",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbflenderson_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
