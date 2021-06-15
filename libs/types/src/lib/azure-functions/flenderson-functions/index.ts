@@ -22,4 +22,5 @@ export * from './search-indexer-invoke';
 export * from './flenderson-person-materialize';
 export * from './flenderson-position-materialize';
 
+export * from './flenderson-person-store';
 export * from './flenderson-position-store';
