@@ -1,0 +1,29 @@
+{
+  "bindings": [
+    {
+      "name": "changedRecords",
+      "type": "cosmosDBTrigger",
+      "databaseName": "flenderson",
+      "collectionName": "flenderson-positions",
+      "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+      "leaseCollectionName": "flenderson-positions-change-trigger",
+      "createLeaseCollectionIfNotExists": true,
+      "direction": "in"
+    },
+    {
+      "name": "jobRelay",
+      "type": "queue",
+      "queueName": "job-relay",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    }
+],
+  "scriptFile": "./index.js"
+}
