@@ -18,7 +18,7 @@ const viewIAMWPCopy: AzureFunction = async function (context: Context, triggerMe
 
     const incomingBlob = context.bindings.incomingBlob;
 
-    if (incomingBlob.length < 5000) {
+    if (incomingBlob.length < 50) {
         statusCode = "404"
         statusMessage = "Error: Too few source records. Aborting.";
     } else {
