@@ -26,7 +26,7 @@ const viewIPPSPalProcess: AzureFunction = async function (context: Context, trig
 
     rows.forEach(function(row) {
         // If we're missing an ID, bail
-        if (!row.emp_group_code) {
+        if (!row.employee_id) {
             return;
         }
 
@@ -49,9 +49,9 @@ const viewIPPSPalProcess: AzureFunction = async function (context: Context, trig
         recordsNowArray.push(recordsNowObject[recordID]);
     });    
 
-    // TODO: if (rowsProcessed < 5000 || peopleProcessed < 5000) {
-        //context.done('Too few records. Aborting.');
-    //}
+    if (rowsProcessed < 5000) {
+        context.done('Too few records. Aborting.');
+    }
 
     // Write out Flenderson's local copy of Panama's raw data
     context.bindings.viewRaw = JSON.stringify(panamaBlob);
