@@ -17,21 +17,21 @@
         {
             "name": "viewRaw",
             "type": "blob",
-            "path": "ipps2/view-ipps-locations-raw.json",
+            "path": "ipps/view-ipps-locations-raw.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "recordsNowArray",
             "type": "blob",
-            "path": "ipps2/locations-now-array.json",
+            "path": "ipps/locations-now-array.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "recordsNowObject",
             "type": "blob",
-            "path": "ipps2/locations-now-object.json",
+            "path": "ipps/locations-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },

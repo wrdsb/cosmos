@@ -17,21 +17,21 @@
         {
             "name": "viewRaw",
             "type": "blob",
-            "path": "ipps2/view-ipps-jobs-raw.json",
+            "path": "ipps/view-ipps-jobs-raw.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "recordsNowArray",
             "type": "blob",
-            "path": "ipps2/jobs-now-array.json",
+            "path": "ipps/jobs-now-array.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "recordsNowObject",
             "type": "blob",
-            "path": "ipps2/jobs-now-object.json",
+            "path": "ipps/jobs-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },

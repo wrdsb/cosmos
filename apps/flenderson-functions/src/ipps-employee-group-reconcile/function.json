@@ -10,7 +10,7 @@
         {
             "name": "recordsNow",
             "type": "blob",
-            "path": "ipps2/employee-groups-now-object.json",
+            "path": "ipps/employee-groups-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "in"
         },

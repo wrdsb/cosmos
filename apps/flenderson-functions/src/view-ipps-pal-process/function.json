@@ -17,21 +17,21 @@
         {
             "name": "viewRaw",
             "type": "blob",
-            "path": "ipps2/view-ipps-pal-raw.json",
+            "path": "ipps/view-ipps-pal-raw.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "recordsNowArray",
             "type": "blob",
-            "path": "ipps2/pal-now-array.json",
+            "path": "ipps/pal-now-array.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
         {
             "name": "recordsNowObject",
             "type": "blob",
-            "path": "ipps2/pal-now-object.json",
+            "path": "ipps/pal-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
