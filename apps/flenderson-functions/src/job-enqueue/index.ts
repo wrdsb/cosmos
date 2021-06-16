@@ -103,7 +103,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile':
-                context.bindings.ippsGroupReconcile = {
+                context.bindings.ippsEmployeeGroupReconcile = {
                     jobType: jobType
                 };
                 break;
