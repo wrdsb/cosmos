@@ -1,7 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { FunctionInvocation } from "@cosmos/types";
 
-const viewIAMWPCopy: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const viewIPPSJobsCopy: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -43,4 +43,4 @@ const viewIAMWPCopy: AzureFunction = async function (context: Context, triggerMe
     context.done(null, functionInvocation);
 };
 
-export default viewIAMWPCopy;
+export default viewIPPSJobsCopy;
