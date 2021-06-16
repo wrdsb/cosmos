@@ -21,7 +21,7 @@
             "name": "palRecord",
             "type": "cosmosDB",
             "databaseName": "flenderson",
-            "collectionName": "ipps-people",
+            "collectionName": "ipps-pal",
             "id": "{payload.employeeID}",
             "partitionKey": "{payload.employeeID}",
             "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
