@@ -28,7 +28,7 @@ const ippsPalReconcile: AzureFunction = async function (context: Context, trigge
 
     // ensure we have a full data set
     const totalRecords = Object.getOwnPropertyNames(recordsNow).length;
-    if (totalRecords < 50) {
+    if (totalRecords < 5000) {
         context.done('Too few records. Aborting.');
     }
 
