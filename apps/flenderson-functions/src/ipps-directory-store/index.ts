@@ -71,9 +71,10 @@ const ippsDirectoryStore: AzureFunction = async function (context: Context, trig
 
     if (result.changedDetected) {
         context.bindings.recordOut = result.newRecord;
+
         context.bindings.changeParse = {
             "payload": {
-                oldRecord: oldRecord,
+                oldRecord: (oldRecord) ? oldRecord : null,
                 newRecord: result.newRecord
             }
         };
