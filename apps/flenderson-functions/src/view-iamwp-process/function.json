@@ -22,13 +22,6 @@
             "direction": "out"
         },
         {
-            "name": "viewRawHRIS",
-            "type": "blob",
-            "path": "hris/view-iamwp-raw.json",
-            "connection": "wrdsbflenderson_STORAGE",
-            "direction": "out"
-        },
-        {
             "name": "peopleNowArray",
             "type": "blob",
             "path": "ipps/people-now-array.json",
@@ -39,13 +32,6 @@
             "name": "peopleNowObject",
             "type": "blob",
             "path": "ipps/people-now-object.json",
-            "connection": "wrdsbflenderson_STORAGE",
-            "direction": "out"
-        },
-        {
-            "name": "peopleNowObjectHRIS",
-            "type": "blob",
-            "path": "hris/people-now-object.json",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
