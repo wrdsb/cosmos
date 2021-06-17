@@ -78,9 +78,9 @@
             "direction": "out"
         },
         {
-            "name": "jobRelay",
+            "name": "jobCascade",
             "type": "queue",
-            "queueName": "job-relay",
+            "queueName": "job-cascade",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },

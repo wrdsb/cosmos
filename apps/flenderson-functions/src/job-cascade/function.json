@@ -2,7 +2,7 @@
   "bindings": [{
       "name": "triggerMessage",
       "type": "queueTrigger",
-      "queueName": "job-relay",
+      "queueName": "job-cascade",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "in"
     },

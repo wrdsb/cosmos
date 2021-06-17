@@ -1,14 +1,14 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { FunctionInvocation, FlendersonJobType } from "@cosmos/types";
 
-const jobRelay: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const jobCascade: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
         functionApp: 'Flenderson',
         functionName: context.executionContext.functionName,
         functionDataType: 'Job',
-        functionDataOperation: 'Relay',
+        functionDataOperation: 'Cascade',
         eventLabel: ''
     } as FunctionInvocation;
 
@@ -363,4 +363,4 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
     context.done(null, functionInvocation);
 };
 
-export default jobRelay;
+export default jobCascade;
