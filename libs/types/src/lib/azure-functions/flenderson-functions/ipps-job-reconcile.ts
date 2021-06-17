@@ -1,7 +1,6 @@
 import * as Cosmos from "../common";
 
 interface IPPSJobReconcileFunctionRequest {
-    readonly operation: Cosmos.StoreFunctionOperation;
     readonly payload: IPPSJobReconcileFunctionRequestPayload;
 }
 

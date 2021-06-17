@@ -1,7 +1,6 @@
 import * as Cosmos from "../common";
 
 interface IPPSLocationReconcileFunctionRequest {
-    readonly operation: Cosmos.StoreFunctionOperation;
     readonly payload: IPPSLocationReconcileFunctionRequestPayload;
 }
 
