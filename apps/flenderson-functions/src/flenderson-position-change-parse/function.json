@@ -8,6 +8,13 @@
             "direction": "in"
         },
         {
+            "name": "emailNotification",
+            "type": "queue",
+            "queueName": "notification-email-send",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
           "name": "invocationPostProcessor",
           "type": "queue",
           "queueName": "invocation-post-processor",

@@ -55,6 +55,15 @@ const flendersonPersonChangeParse: AzureFunction = async function (context: Cont
         //events.push(event);
     //}
 
+    //const notification = {
+        //"payload": {
+            //"toEmail": "james_schumann@wrdsb.ca",
+            //"subject": "Flenderson Person changes",
+            //"body": JSON.stringify(events)
+        //}
+    //}
+    //context.bindings.emailNotification = notification;
+
     const logPayload = events;
     functionInvocation.logPayload = logPayload;
 

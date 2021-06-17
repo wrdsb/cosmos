@@ -55,6 +55,15 @@ const flendersonPositionChangeParse: AzureFunction = async function (context: Co
         //events.push(event);
     //}
 
+    //const notification = {
+        //"payload": {
+            //"toEmail": "james_schumann@wrdsb.ca",
+            //"subject": "Flenderson Position changes",
+            //"body": JSON.stringify(events)
+        //}
+    //}
+    //context.bindings.emailNotification = notification;
+
     const logPayload = events;
     functionInvocation.logPayload = logPayload;
 

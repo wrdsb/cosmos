@@ -63,6 +63,15 @@ const ippsPalChangeParse: AzureFunction = async function (context: Context, trig
         events.push(event);
     }
 
+    const notification = {
+        "payload": {
+            "toEmail": "james_schumann@wrdsb.ca",
+            "subject": "IPPS PAL changes",
+            "body": JSON.stringify(events)
+        }
+    }
+    context.bindings.emailNotification = notification;
+
     const logPayload = events;
     functionInvocation.logPayload = logPayload;
 

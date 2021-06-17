@@ -119,6 +119,15 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
+    const notification = {
+        "payload": {
+            "toEmail": "james_schumann@wrdsb.ca",
+            "subject": "IPPS Position changes",
+            "body": JSON.stringify(events)
+        }
+    }
+    context.bindings.emailNotification = notification;
+
     const logPayload = events;
     functionInvocation.logPayload = logPayload;
 

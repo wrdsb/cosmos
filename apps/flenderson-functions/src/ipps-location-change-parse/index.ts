@@ -95,6 +95,15 @@ const ippsLocation: AzureFunction = async function (context: Context, triggerMes
         events.push(event);
     }
 
+    const notification = {
+        "payload": {
+            "toEmail": "james_schumann@wrdsb.ca",
+            "subject": "IPPS Location changes",
+            "body": JSON.stringify(events)
+        }
+    }
+    context.bindings.emailNotification = notification;
+
     const logPayload = events;
     functionInvocation.logPayload = logPayload;
 
