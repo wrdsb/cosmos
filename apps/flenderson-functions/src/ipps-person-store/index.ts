@@ -65,6 +65,13 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
     if (result.changedDetected) {
         context.bindings.recordOut = result.newRecord;
 
+        context.bindings.changeParse = {
+            "payload": {
+                oldRecord: (oldRecord) ? oldRecord : null,
+                newRecord: result.newRecord
+            }
+        };
+
         const logPayload = result.event;
         logPayload['jobType'] = jobType;
         logPayload['statusCode'] = statusCode;

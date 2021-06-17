@@ -26,6 +26,13 @@
             "direction": "out"
         },
         {
+            "name": "changeParse",
+            "type": "queue",
+            "queueName": "ipps-position-change-parse",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
           "name": "invocationPostProcessor",
           "type": "queue",
           "queueName": "invocation-post-processor",
