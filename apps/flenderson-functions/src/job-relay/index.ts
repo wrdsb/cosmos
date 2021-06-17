@@ -12,9 +12,6 @@ const jobRelay: AzureFunction = async function (context: Context, triggerMessage
         eventLabel: ''
     } as FunctionInvocation;
 
-    //const sgMail = require('@sendgrid/mail');
-    //sgMail.setApiKey(process.env['SENDGRID_API_KEY']);
-
     const jobType = triggerMessage.jobType as FlendersonJobType;
     const operation = triggerMessage.operation;
     const payload = triggerMessage.payload;

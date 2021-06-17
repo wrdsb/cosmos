@@ -12,9 +12,6 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
         eventLabel: ''
     } as FunctionInvocation;
 
-    //const sgMail = require('@sendgrid/mail');
-    //sgMail.setApiKey(process.env['SENDGRID_API_KEY']);
-
     const jobType = triggerMessage.jobType as FlendersonJobType;
     const operation = triggerMessage.operation;
     const payload = triggerMessage.payload;
