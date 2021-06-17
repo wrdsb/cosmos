@@ -24,3 +24,5 @@ export * from './flenderson-position-materialize';
 
 export * from './flenderson-person-store';
 export * from './flenderson-position-store';
+
+export * from './notification-email-send';

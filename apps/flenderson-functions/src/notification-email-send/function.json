@@ -1,0 +1,25 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "notification-email-send",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "outboundEmail",
+            "type": "sendGrid",
+            "apiKey" : "sendGridKey",
+            "direction": "out"
+        },
+        {
+            "name": "invocationPostProcessor",
+            "type": "queue",
+            "queueName": "invocation-post-processor",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        }
+      ],
+    "scriptFile": "./index.js"
+}

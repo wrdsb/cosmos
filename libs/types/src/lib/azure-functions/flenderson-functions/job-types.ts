@@ -52,4 +52,5 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.FlendersonPerson.ChangeParse' |
 'WRDSB.Flenderson.FlendersonPosition.ChangeParse' |
 
+'WRDSB.Flenderson.NotificationEmail.Send' |
 'WRDSB.Flenderson.SearchIndexer.Invoke'
