@@ -1,5 +1,15 @@
 export * from './job-types';
 export * from './database-containers';
+export * from './flenderson-command';
+
+export * from './view-iamwp-process';
+export * from './view-ipps-groups-process';
+export * from './view-ipps-jobs-process';
+export * from './view-ipps-locations-process';
+export * from './view-ipps-pal-process';
+export * from './view-ipps-people-process';
+export * from './view-ipps-positions-process';
+export * from './view-staffdir-process';
 
 export * from './ipps-directory-store';
 export * from './ipps-employee-group-store';
