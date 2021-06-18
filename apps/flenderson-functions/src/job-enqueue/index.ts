@@ -1,5 +1,8 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { FunctionInvocation, FlendersonJobType, AssetAssignmentCreateFunctionRequest, AssetAssignmentStoreFunctionRequest, DeviceLoanSubmissionStoreFunctionRequest } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload } from "@cosmos/types";
+import { ViewIAMWPProcessFunctionRequest, ViewIPPSGroupsProcessFunctionRequest, ViewIPPSJobsProcessFunctionRequest, ViewIPPSLocationsProcessFunctionRequest, ViewIPPSPalProcessFunctionRequest, ViewIPPSPeopleProcessFunctionRequest, ViewIPPSPositionsProcessFunctionRequest, ViewStaffDirProcessFunctionRequest } from '@cosmos/types';
+import { IPPSDirectoryReconcileFunctionRequest, IPPSEmployeeGroupReconcileFunctionRequest, IPPSJobReconcileFunctionRequest, IPPSLocationReconcileFunctionRequest, IPPSPalReconcileFunctionRequest, IPPSPersonReconcileFunctionRequest, IPPSPositionReconcileFunctionRequest } from '@cosmos/types';
+import { IPPSDirectoryStoreFunctionRequest, IPPSEmployeeGroupStoreFunctionRequest, IPPSJobStoreFunctionRequest, IPPSLocationStoreFunctionRequest, IPPSPalStoreFunctionRequest, IPPSPersonStoreFunctionRequest, IPPSPositionStoreFunctionRequest, FlendersonPersonStoreFunctionRequest } from '@cosmos/types';
 
 const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
@@ -13,8 +16,8 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
     } as FunctionInvocation;
 
     const jobType = triggerMessage.jobType as FlendersonJobType;
-    const operation = triggerMessage.operation;
-    const payload = triggerMessage.payload;
+    const operation = triggerMessage.operation as FlendersonCommandOperation;
+    const payload = triggerMessage.payload as FlendersonCommandFunctionRequestPayload;
     const incomingBlob = triggerMessage.incomingBlob;
     const offset = triggerMessage.offset;
 
@@ -40,101 +43,114 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
             case 'WRDSB.Flenderson.View.IAMWP.Process':
                 context.bindings.viewIAMWPProcess = {
                     jobType: jobType,
-                    incomingBlob: incomingBlob
-                };
+                    payload: {}
+                } as ViewIAMWPProcessFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSGroups.Process':
                 context.bindings.viewIPPSGroupsProcess = {
                     jobType: jobType,
-                    incomingBlob: incomingBlob
-                };
+                    payload: {}
+                } as ViewIPPSGroupsProcessFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSJobs.Process':
                 context.bindings.viewIPPSJobsProcess = {
                     jobType: jobType,
-                    incomingBlob: incomingBlob
-                };
+                    payload: {}
+                } as ViewIPPSJobsProcessFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSLocations.Process':
                 context.bindings.viewIPPSLocationsProcess = {
                     jobType: jobType,
-                    incomingBlob: incomingBlob
-                };
+                    payload: {}
+                } as ViewIPPSLocationsProcessFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPal.Process':
                 context.bindings.viewIPPSPalProcess = {
                     jobType: jobType,
-                    incomingBlob: incomingBlob
-                };
+                    payload: {}
+                } as ViewIPPSPalProcessFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPeople.Process':
                 context.bindings.viewIPPSPeopleProcess = {
                     jobType: jobType,
-                    incomingBlob: incomingBlob
-                };
+                    payload: {}
+                } as ViewIPPSPeopleProcessFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPositions.Process':
                 context.bindings.viewIPPSPositionsProcess = {
                     jobType: jobType,
-                    incomingBlob: incomingBlob
-                };
+                    payload: {}
+                } as ViewIPPSPositionsProcessFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.View.StaffDir.Process':
                 context.bindings.viewStaffDirProcess = {
                     jobType: jobType,
-                    incomingBlob: incomingBlob
-                };
+                    payload: {}
+                } as ViewStaffDirProcessFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.Reconcile':
                 context.bindings.ippsDirectoryReconcile = {
-                    jobType: jobType
-                };
+                    jobType: jobType,
+                    payload: {}
+                } as IPPSDirectoryReconcileFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile':
                 context.bindings.ippsEmployeeGroupReconcile = {
-                    jobType: jobType
-                };
+                    jobType: jobType,
+                    payload: {}
+                } as IPPSEmployeeGroupReconcileFunctionRequest;
                 break;
                 
             case 'WRDSB.Flenderson.IPPSJob.Reconcile':
                 context.bindings.ippsJobReconcile = {
-                    jobType: jobType
-                };
+                    jobType: jobType,
+                    payload: {}
+                } as IPPSJobReconcileFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.IPPSLocation.Reconcile':
                 context.bindings.ippsLocationReconcile = {
-                    jobType: jobType
-                };
+                    jobType: jobType,
+                    payload: {}
+                } as IPPSLocationReconcileFunctionRequest;
                 break;
             
             case 'WRDSB.Flenderson.IPPSPal.Reconcile':
                 context.bindings.ippsPalReconcile = {
-                    jobType: jobType
-                };
+                    jobType: jobType,
+                    payload: {}
+                } as IPPSPalReconcileFunctionRequest;
                 break;
             
             case 'WRDSB.Flenderson.IPPSPerson.Reconcile':
                 context.bindings.ippsPersonReconcile = {
-                    jobType: jobType
-                };
+                    jobType: jobType,
+                    payload: {}
+                } as IPPSPersonReconcileFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPosition.Reconcile':
                 context.bindings.ippsPositionReconcile = {
-                    jobType: jobType
-                };
+                    jobType: jobType,
+                    payload: {}
+                } as IPPSPositionReconcileFunctionRequest;
                 break;
 
+            case 'WRDSB.Flenderson.FlendersonPosition.Materialize':
+                context.bindings.jobEnqueue = {
+                    jobType: jobType,
+                };
+                break;
+    
             case 'WRDSB.Flenderson.FlendersonPerson.Materialize':
                 context.bindings.flendersonPersonMaterialize = {
                     jobType: jobType
@@ -145,56 +161,56 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 context.bindings.ippsDirectoryStore = {
                     operation: operation,
                     payload: payload
-                };
+                } as IPPSDirectoryStoreFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Store':
                 context.bindings.ippsEmployeeGroupStore = {
                     operation: operation,
                     payload: payload
-                };
+                } as IPPSEmployeeGroupStoreFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.IPPSJob.Store':
                 context.bindings.ippsJobStore = {
                     operation: operation,
                     payload: payload
-                };
+                } as IPPSJobStoreFunctionRequest;
                 break;
                 
             case 'WRDSB.Flenderson.IPPSLocation.Store':
                 context.bindings.ippsLocationStore = {
                     operation: operation,
                     payload: payload
-                };
+                } as IPPSLocationStoreFunctionRequest;
                 break;
                 
             case 'WRDSB.Flenderson.IPPSPal.Store':
                 context.bindings.ippsPalStore = {
                     operation: operation,
                     payload: payload
-                };
+                } as IPPSPalStoreFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPerson.Store':
                 context.bindings.ippsPersonStore = {
                     operation: operation,
                     payload: payload
-                };
+                } as IPPSPersonStoreFunctionRequest;
                 break;
     
             case 'WRDSB.Flenderson.IPPSPosition.Store':
                 context.bindings.ippsPositionStore = {
                     operation: operation,
                     payload: payload
-                };
+                } as IPPSPositionStoreFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.FlendersonPerson.Store':
                 context.bindings.flendersonPersonStore = {
                     operation: operation,
                     payload: payload
-                };
+                } as FlendersonPersonStoreFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.ChangeTrigger':
