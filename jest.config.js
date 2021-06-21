@@ -142,5 +142,6 @@ module.exports = {
     '<rootDir>/libs/ui/google/groups/presentation/groups-list',
     '<rootDir>/libs/screens/shared/pings',
     '<rootDir>/libs/ui/shared/interaction/pings',
+    '<rootDir>/libs/flenderson-functions-shared',
   ],
 };

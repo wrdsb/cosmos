@@ -222,6 +222,9 @@
       ],
       "@cosmos/ui/shared/interaction/pings": [
         "libs/ui/shared/interaction/pings/src/index.ts"
+      ],
+      "@cosmos/flenderson-functions-shared": [
+        "libs/flenderson-functions-shared/src/index.ts"
       ]
     }
   },
