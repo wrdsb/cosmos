@@ -1,6 +1,7 @@
 import { HttpRequest } from "@azure/functions";
 import * as Cosmos from "../common";
 import { FlendersonJobType } from "@cosmos/types";
+import { IPPSPosition } from "@cosmos/types";
 
 interface FlendersonCommandFunctionRequest extends HttpRequest {
     body: FlendersonCommandFunctionRequestBody;
@@ -21,7 +22,11 @@ type FlendersonCommandOperation =
     'delete' | 
     'materialize';
 
-interface FlendersonCommandFunctionRequestPayload {}
+interface FlendersonCommandFunctionRequestPayload {
+    readonly ippsPosition?: IPPSPosition;
+    readonly eamil?: string;
+    readonly employeeID?: string;
+}
 
 
 interface FlendersonCommandFunctionResponse extends Cosmos.FunctionResponse {
