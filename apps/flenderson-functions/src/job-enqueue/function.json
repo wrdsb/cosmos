@@ -114,13 +114,19 @@
       "direction": "out"
     },
     {
+      "name": "flendersonPositionMaterialize",
+      "type": "queue",
+      "queueName": "flenderson-position-materialize",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "flendersonPersonMaterialize",
       "type": "queue",
       "queueName": "flenderson-person-materialize",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
-
     {
       "name": "ippsDirectoryStore",
       "type": "queue",

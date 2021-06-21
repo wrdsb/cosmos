@@ -2,6 +2,7 @@ import { AzureFunction, Context } from "@azure/functions"
 import { FunctionInvocation, FlendersonJobType, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload } from "@cosmos/types";
 import { ViewIAMWPProcessFunctionRequest, ViewIPPSGroupsProcessFunctionRequest, ViewIPPSJobsProcessFunctionRequest, ViewIPPSLocationsProcessFunctionRequest, ViewIPPSPalProcessFunctionRequest, ViewIPPSPeopleProcessFunctionRequest, ViewIPPSPositionsProcessFunctionRequest, ViewStaffDirProcessFunctionRequest } from '@cosmos/types';
 import { IPPSDirectoryReconcileFunctionRequest, IPPSEmployeeGroupReconcileFunctionRequest, IPPSJobReconcileFunctionRequest, IPPSLocationReconcileFunctionRequest, IPPSPalReconcileFunctionRequest, IPPSPersonReconcileFunctionRequest, IPPSPositionReconcileFunctionRequest } from '@cosmos/types';
+import { FlendersonPositionMaterializeFunctionRequest, FlendersonPersonMaterializeFunctionRequest } from '@cosmos/types';
 import { IPPSDirectoryStoreFunctionRequest, IPPSEmployeeGroupStoreFunctionRequest, IPPSJobStoreFunctionRequest, IPPSLocationStoreFunctionRequest, IPPSPalStoreFunctionRequest, IPPSPersonStoreFunctionRequest, IPPSPositionStoreFunctionRequest, FlendersonPersonStoreFunctionRequest } from '@cosmos/types';
 
 const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
@@ -146,15 +147,20 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 break;
 
             case 'WRDSB.Flenderson.FlendersonPosition.Materialize':
-                context.bindings.jobEnqueue = {
+                context.bindings.flendersonPositionMaterialize = {
                     jobType: jobType,
-                };
+                    payload: payload
+                } as FlendersonPositionMaterializeFunctionRequest;
                 break;
     
             case 'WRDSB.Flenderson.FlendersonPerson.Materialize':
                 context.bindings.flendersonPersonMaterialize = {
-                    jobType: jobType
-                };
+                    jobType: jobType,
+                    payload: {
+                        email: '',
+                        employeeID: ''
+                    }
+                } as FlendersonPersonMaterializeFunctionRequest;
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.Store':
