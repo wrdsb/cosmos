@@ -2,7 +2,6 @@ import * as Cosmos from "../common";
 import { IPPSPosition } from "@cosmos/types";
 
 interface FlendersonPositionMaterializeFunctionRequest {
-    readonly operation: Cosmos.StoreFunctionOperation;
     readonly payload: FlendersonPositionMaterializeFunctionRequestPayload;
 }
 

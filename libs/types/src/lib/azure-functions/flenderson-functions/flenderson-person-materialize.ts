@@ -1,7 +1,6 @@
 import * as Cosmos from "../common";
 
 interface FlendersonPersonMaterializeFunctionRequest {
-    readonly operation: Cosmos.StoreFunctionOperation;
     readonly payload: FlendersonPersonMaterializeFunctionRequestPayload;
 }
 
