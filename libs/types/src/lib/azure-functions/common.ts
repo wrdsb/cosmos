@@ -2,6 +2,7 @@ type QueryFunctionOperation = 'list' | 'find';
 type CommandFunctionOperation = 'create' | 'patch' | 'replace' | 'delete' | 'materialize';
 type CreateFunctionOperation = 'create';
 type StoreFunctionOperation = 'patch' | 'replace' | 'delete' | 'materialize';
+type StoreFunctionEvent = 'create' | 'update' | 'delete';
 
 type FunctionCallbackType = 'Function.Invocation';
 
@@ -119,6 +120,7 @@ export {
     CommandFunctionOperation,
     CreateFunctionOperation,
     StoreFunctionOperation,
+    StoreFunctionEvent,
 
     FunctionLogID,
     FunctionName,
