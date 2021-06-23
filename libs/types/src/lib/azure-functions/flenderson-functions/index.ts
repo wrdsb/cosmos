@@ -1,6 +1,7 @@
 export * from './job-types';
 export * from './database-containers';
 export * from './flenderson-command';
+export * from './flenderson-job-enqueue';
 
 export * from './view-iamwp-process';
 export * from './view-ipps-groups-process';
