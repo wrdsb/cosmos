@@ -1,7 +1,7 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { FunctionInvocation, FlendersonJobType } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, FlendersonCommand, FlendersonJobEnqueueFunctionRequest } from "@cosmos/types";
 
-const jobCascade: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const jobCascade: AzureFunction = async function (context: Context, triggerMessage: FunctionInvocation): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -12,126 +12,121 @@ const jobCascade: AzureFunction = async function (context: Context, triggerMessa
         eventLabel: ''
     } as FunctionInvocation;
 
-    const jobType = triggerMessage.jobType as FlendersonJobType;
-    const operation = triggerMessage.operation;
-    const payload = triggerMessage.payload;
-    const incomingBlob = triggerMessage.incomingBlob;
-    const offset = triggerMessage.offset;
+    const triggerObject = triggerMessage as FunctionInvocation;
+    const jobType = triggerObject.jobType as FlendersonJobType;
 
-    let queueTriggered = '';
-    let queueMessages = [];
-    let sentQueueMessage = false;
-
-    const html = '';
-    const sendNotification = false;
+    const jobEnqueueMessages: FlendersonJobEnqueueFunctionRequest[] = [];
 
     let logPayload = {
         status: '',
         message: '',
-        queueMessages: [],
+        jobEnqueueMessages: [],
         queueTriggered: '',
         error: '',
         result: ''
     };
-    const notification = {};
 
     if (jobType) {
         switch (jobType) {
             case 'WRDSB.Flenderson.View.IAMWP.Process':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile'
-                    },
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSJob.Reconcile'
-                    },
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSLocation.Reconcile'
-                    },
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSPerson.Reconcile'
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSJob.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSLocation.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSPerson.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSGroups.Process':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile'
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSJobs.Process':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSJob.Reconcile'
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSJob.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSLocations.Process':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSLocation.Reconcile'
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSLocation.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPal.Process':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSPal.Reconcile'
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSPal.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
     
             case 'WRDSB.Flenderson.View.IPPSPeople.Process':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSPerson.Reconcile'
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSPerson.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPositions.Process':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSPosition.Reconcile'
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSPosition.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
                                                     
             case 'WRDSB.Flenderson.View.StaffDir.Process':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
-                        jobType: 'WRDSB.Flenderson.IPPSDirectory.Reconcile'
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.IPPSDirectory.Reconcile',
+                        operation: 'reconcile',
+                        payload: {}
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.Reconcile':
@@ -203,45 +198,39 @@ const jobCascade: AzureFunction = async function (context: Context, triggerMessa
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeTrigger':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
+                jobEnqueueMessages.push({
+                    command: {
                         jobType: 'WRDSB.Flenderson.SearchIndexer.Invoke',
+                        operation: 'invoke',
                         payload: {
                             'indexName': 'flenderson-groups'
                         }
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
             case 'WRDSB.Flenderson.IPPSJob.ChangeTrigger':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
+                jobEnqueueMessages.push({
+                    command: {
                         jobType: 'WRDSB.Flenderson.SearchIndexer.Invoke',
+                        operation: 'invoke',
                         payload: {
                             'indexName': 'flenderson-jobs'
                         }
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
             case 'WRDSB.Flenderson.IPPSLocation.ChangeTrigger':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
+                jobEnqueueMessages.push({
+                    command: {
                         jobType: 'WRDSB.Flenderson.SearchIndexer.Invoke',
+                        operation: 'invoke',
                         payload: {
                             'indexName': 'flenderson-locations'
                         }
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
             case 'WRDSB.Flenderson.IPPSPal.ChangeTrigger':
@@ -257,17 +246,15 @@ const jobCascade: AzureFunction = async function (context: Context, triggerMessa
                 break;
 
             case 'WRDSB.Flenderson.FlendersonPerson.ChangeTrigger':
-                queueTriggered = 'Flenderson:job-enqueue';
-                queueMessages = [
-                    {
+                jobEnqueueMessages.push({
+                    command: {
                         jobType: 'WRDSB.Flenderson.SearchIndexer.Invoke',
+                        operation: 'invoke',
                         payload: {
                             'indexName': 'flenderson-people'
                         }
-                    }
-                ];
-                context.bindings.flendersonJobEnqueue = queueMessages;
-                sentQueueMessage = true;
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.ChangeParse':
@@ -298,63 +285,35 @@ const jobCascade: AzureFunction = async function (context: Context, triggerMessa
                 break;
                 
             default:
-                context.bindings.callbackMessage = JSON.stringify({
-                    status: 422,
-                    body: "Unprocessable Entity. Cannot find the specified jobType."
-                });
+                // TODO: add some error handling
                 break;
         }
     }
     else {
-        context.bindings.callbackMessage = JSON.stringify({
-            status: 400,
-            body: "Please pass a valid jobType in the request body."
-        });
+        // TODO: add some error handling
     }
 
-    if (sentQueueMessage) {
+    if (jobEnqueueMessages.length > 0) {
+        context.bindings.flendersonJobEnqueue = jobEnqueueMessages;
+    
         logPayload = {
-            status: "200",
-            message: `Sent ${queueMessages} to ${queueTriggered}`,
-            queueMessages: queueMessages,
-            queueTriggered: queueTriggered,
+            status: '200',
+            message: `Sent ${jobEnqueueMessages.length} messages to job-enqueue`,
+            jobEnqueueMessages: jobEnqueueMessages,
+            queueTriggered: 'job-enqueue',
             result: '',
             error: ''
         };
+    } else {
+        logPayload = {
+            status: '400',
+            message: `Sent ${jobEnqueueMessages.length} messages to job-enqueue`,
+            jobEnqueueMessages: jobEnqueueMessages,
+            queueTriggered: 'job-enqueue',
+            result: '',
+            error: 'Bad Request. Unknown error.'
+        };
     }
-
-    //if (sendNotification) {
-        //notification = {
-            //subject: 'Poison Message Notification',
-            //to: process.env['SENDGRID_TO'],
-            //from: {
-                //email: 'errors@panama.wrdsb.io',
-                //name: 'Panama Errors'
-            //},
-            //html: html
-        //};
-        //sgMail.send(notification, (error, result) => {
-            //if (error) {
-                //logPayload = {
-                    //status: "500",
-                    //message: 'Failed to send email notification.',
-                    //queueMessage: '',
-                    //queueTriggered: '',
-                    //result: '',
-                    //error: error,
-                //};
-            //} else {
-                //logPayload = {
-                    //status: "200",
-                    //message: 'Sent email notification',
-                    //queueMessage: '',
-                    //queueTriggered: '',
-                    //result: result,
-                    //error: error
-                //};
-            //}
-        //});
-    //}
 
     functionInvocation.logPayload = logPayload;
 
