@@ -26,12 +26,13 @@ type FlendersonCommandOperation =
     'patch' | 
     'replace' | 
     'delete' | 
-    'materialize';
+    'materialize' |
+    'invoke';
 
 interface FlendersonCommandFunctionRequestPayload {
     readonly eamil?: string;
     readonly employeeID?: string;
-
+    
     readonly ippsDirectory?: IPPSDirectory;
     readonly ippsEmployeeGroup?: IPPSEmployeeGroup;
     readonly ippsJob?: IPPSJob;
@@ -41,6 +42,8 @@ interface FlendersonCommandFunctionRequestPayload {
     readonly ippsPosition?: IPPSPosition;
     readonly flendersonPerson?: FlendersonPerson;
     readonly flendersonPosition?: FlendersonPosition;
+
+    readonly indexName?: string;
 }
 
 
