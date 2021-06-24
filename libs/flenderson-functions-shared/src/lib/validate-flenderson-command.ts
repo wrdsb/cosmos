@@ -1,4 +1,4 @@
-import { FlendersonCommand, FlendersonJobType, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload } from '@cosmos/types';
+import { FlendersonCommand, FlendersonJobType, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload, FlendersonJobEnqueueFunctionRequest} from '@cosmos/types';
 import { IPPSDirectory, IPPSEmployeeGroup, IPPSJob, IPPSLocation, IPPSPal, IPPSPosition, IPPSPerson, FlendersonPerson, FlendersonPosition } from "@cosmos/types";
 
 export function validateFlendersonCommand(jobType: FlendersonJobType, operation: FlendersonCommandOperation, payload: FlendersonCommandFunctionRequestPayload ) {
@@ -6,34 +6,35 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
     let operationValid = false;
     let payloadValid = false;
     let isValid = false;
-    let job: FlendersonCommand;
-    const jobEnqueueMessages: FlendersonCommand[] = [];
+    const jobEnqueueMessages: FlendersonJobEnqueueFunctionRequest[] = [];
 
     switch (jobType) {
         case 'WRDSB.Flenderson.View.IAMWP.Process':
             jobTypeValid = true;
             operationValid = true;
             payloadValid = true;
-        
-            job = {
-                jobType: jobType,
-                operation: 'process',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'process',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.View.IPPSGroups.Process':
             jobTypeValid = true;
             operationValid = true;
             payloadValid = true;
-        
-            job = {
-                jobType: jobType,
-                operation: 'process',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'process',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.View.IPPSJobs.Process':
@@ -41,12 +42,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'process',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'process',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.View.IPPSLocations.Process':
@@ -54,12 +56,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'process',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'process',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.View.IPPSPal.Process':
@@ -67,12 +70,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'process',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'process',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.View.IPPSPeople.Process':
@@ -80,12 +84,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'process',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'process',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.View.IPPSPositions.Process':
@@ -93,12 +98,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'process',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'process',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.View.StaffDir.Process':
@@ -106,12 +112,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'process',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'process',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.IPPSDirectory.Reconcile':
@@ -119,12 +126,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'reconcile',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'reconcile',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile':
@@ -132,12 +140,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'reconcile',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'reconcile',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.IPPSJob.Reconcile':
@@ -145,12 +154,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'reconcile',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'reconcile',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.IPPSLocation.Reconcile':
@@ -158,12 +168,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'reconcile',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'reconcile',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.IPPSPal.Reconcile':
@@ -171,12 +182,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'reconcile',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'reconcile',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.IPPSPerson.Reconcile':
@@ -184,12 +196,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'reconcile',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'reconcile',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.IPPSPosition.Reconcile':
@@ -197,12 +210,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             operationValid = true;
             payloadValid = true;
         
-            job = {
-                jobType: jobType,
-                operation: 'reconcile',
-                payload: {}
-            } as FlendersonCommand;
-            jobEnqueueMessages.push(job);
+            jobEnqueueMessages.push({
+                command: {
+                    jobType: jobType,
+                    operation: 'reconcile',
+                    payload: {}
+                } as FlendersonCommand
+            } as FlendersonJobEnqueueFunctionRequest);
             break;
 
         case 'WRDSB.Flenderson.FlendersonPerson.Materialize':
@@ -217,12 +231,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: 'materialize',
-                    payload: payload
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: 'materialize',
+                        payload: payload
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
 
@@ -238,12 +253,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: 'materialize',
-                    payload: payload
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: 'materialize',
+                        payload: payload
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
 
@@ -259,12 +275,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: operation,
-                    payload: payload.ippsDirectory
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: operation,
+                        payload: payload.ippsDirectory
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
 
@@ -280,12 +297,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: operation,
-                    payload: payload.ippsEmployeeGroup
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: operation,
+                        payload: payload.ippsEmployeeGroup
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
 
@@ -301,12 +319,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: operation,
-                    payload: payload.ippsJob
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: operation,
+                        payload: payload.ippsJob
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
 
@@ -322,12 +341,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: operation,
-                    payload: payload.ippsLocation
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: operation,
+                        payload: payload.ippsLocation
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
 
@@ -343,12 +363,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: operation,
-                    payload: payload.ippsPal
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: operation,
+                        payload: payload.ippsPal
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
 
@@ -364,12 +385,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: operation,
-                    payload: payload.ippsPerson
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: operation,
+                        payload: payload.ippsPerson
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
 
@@ -385,12 +407,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: operation,
-                    payload: payload.ippsPosition
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: operation,
+                        payload: payload.ippsPosition
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
                             
@@ -406,12 +429,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: operation,
-                    payload: payload.flendersonPerson
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: operation,
+                        payload: payload.flendersonPerson
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
 
@@ -427,12 +451,13 @@ export function validateFlendersonCommand(jobType: FlendersonJobType, operation:
             }
 
             if (jobTypeValid && operationValid && payloadValid) {
-                job = {
-                    jobType: jobType,
-                    operation: operation,
-                    payload: payload.flendersonPosition
-                } as FlendersonCommand;
-                jobEnqueueMessages.push(job);
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: jobType,
+                        operation: operation,
+                        payload: payload.flendersonPosition
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
             }
             break;
 
