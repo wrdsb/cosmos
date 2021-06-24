@@ -1,13 +1,17 @@
 import { HttpRequest } from "@azure/functions";
 import * as Cosmos from "../common";
 import { FlendersonJobType } from "@cosmos/types";
-import { IPPSPosition } from "@cosmos/types";
+import { IPPSDirectory, IPPSEmployeeGroup, IPPSJob, IPPSLocation, IPPSPal, IPPSPerson, IPPSPosition, FlendersonPerson, FlendersonPosition } from '@cosmos/types';
 
 interface FlendersonCommandFunctionRequest extends HttpRequest {
     body: FlendersonCommandFunctionRequestBody;
 }
 
-interface FlendersonCommandFunctionRequestBody extends Cosmos.FunctionRequestPayload {
+interface FlendersonCommandFunctionRequestBody {
+    readonly command: FlendersonCommand;
+}
+
+interface FlendersonCommand {
     readonly jobType: FlendersonCommandJobType;
     readonly operation: FlendersonCommandOperation;
     readonly payload: FlendersonCommandFunctionRequestPayload;
@@ -16,6 +20,8 @@ interface FlendersonCommandFunctionRequestBody extends Cosmos.FunctionRequestPay
 type FlendersonCommandJobType = FlendersonJobType;
 
 type FlendersonCommandOperation = 
+    'process' |
+    'reconcile' |
     'create' |
     'patch' | 
     'replace' | 
@@ -23,9 +29,18 @@ type FlendersonCommandOperation =
     'materialize';
 
 interface FlendersonCommandFunctionRequestPayload {
-    readonly ippsPosition?: IPPSPosition;
     readonly eamil?: string;
     readonly employeeID?: string;
+
+    readonly ippsDirectory?: IPPSDirectory;
+    readonly ippsEmployeeGroup?: IPPSEmployeeGroup;
+    readonly ippsJob?: IPPSJob;
+    readonly ippsLocation?: IPPSLocation;
+    readonly ippsPal?: IPPSPal;
+    readonly ippsPerson?: IPPSPerson;
+    readonly ippsPosition?: IPPSPosition;
+    readonly flendersonPerson?: FlendersonPerson;
+    readonly flendersonPosition?: FlendersonPosition;
 }
 
 
@@ -57,6 +72,7 @@ interface FlendersonCommandFunctionInvocationEventPayload extends Cosmos.Functio
 export {
     FlendersonCommandFunctionRequest,
     FlendersonCommandFunctionRequestBody,
+    FlendersonCommand,
     FlendersonCommandJobType,
     FlendersonCommandOperation,
     FlendersonCommandFunctionRequestPayload,
