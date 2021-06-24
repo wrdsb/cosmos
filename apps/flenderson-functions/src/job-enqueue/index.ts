@@ -1,11 +1,11 @@
 import { AzureFunction, Context } from "@azure/functions"
-import { FunctionInvocation, FlendersonJobType, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, FlendersonCommand, FlendersonJobEnqueueFunctionRequest, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload } from "@cosmos/types";
 import { ViewIAMWPProcessFunctionRequest, ViewIPPSGroupsProcessFunctionRequest, ViewIPPSJobsProcessFunctionRequest, ViewIPPSLocationsProcessFunctionRequest, ViewIPPSPalProcessFunctionRequest, ViewIPPSPeopleProcessFunctionRequest, ViewIPPSPositionsProcessFunctionRequest, ViewStaffDirProcessFunctionRequest } from '@cosmos/types';
 import { IPPSDirectoryReconcileFunctionRequest, IPPSEmployeeGroupReconcileFunctionRequest, IPPSJobReconcileFunctionRequest, IPPSLocationReconcileFunctionRequest, IPPSPalReconcileFunctionRequest, IPPSPersonReconcileFunctionRequest, IPPSPositionReconcileFunctionRequest } from '@cosmos/types';
 import { FlendersonPositionMaterializeFunctionRequest, FlendersonPersonMaterializeFunctionRequest } from '@cosmos/types';
-import { IPPSDirectoryStoreFunctionRequest, IPPSEmployeeGroupStoreFunctionRequest, IPPSJobStoreFunctionRequest, IPPSLocationStoreFunctionRequest, IPPSPalStoreFunctionRequest, IPPSPersonStoreFunctionRequest, IPPSPositionStoreFunctionRequest, FlendersonPersonStoreFunctionRequest } from '@cosmos/types';
+import { IPPSDirectoryStoreFunctionRequest, IPPSEmployeeGroupStoreFunctionRequest, IPPSJobStoreFunctionRequest, IPPSLocationStoreFunctionRequest, IPPSPalStoreFunctionRequest, IPPSPersonStoreFunctionRequest, IPPSPositionStoreFunctionRequest, FlendersonPersonStoreFunctionRequest, FlendersonPositionStoreFunctionRequest } from '@cosmos/types';
 
-const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
+const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage: FlendersonJobEnqueueFunctionRequest): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -16,326 +16,393 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
         eventLabel: ''
     } as FunctionInvocation;
 
-    const jobType = triggerMessage.jobType as FlendersonJobType;
-    const operation = triggerMessage.operation as FlendersonCommandOperation;
-    const payload = triggerMessage.payload as FlendersonCommandFunctionRequestPayload;
-    const incomingBlob = triggerMessage.incomingBlob;
-    const offset = triggerMessage.offset;
+    const triggerObject = triggerMessage as FlendersonJobEnqueueFunctionRequest
+    const command = triggerObject.command as FlendersonCommand;
 
-    const queueTriggered = '';
-    const queueMessage = {};
-    const sentQueueMessage = false;
+    const jobType = command.jobType as FlendersonJobType;
+    const operation = command.operation as FlendersonCommandOperation;
+    const payload = command.payload as FlendersonCommandFunctionRequestPayload;
+    //const incomingBlob = command.incomingBlob;
+    //const offset = command.offset;
 
-    const html = '';
-    const sendNotification = false;
+    let queueTriggered = '';
+    let queueMessage = {};
+    let sentQueueMessage = false;
+
+    //const html = '';
+    //const sendNotification = false;
 
     let logPayload = {
         status: '',
         message: '',
+        command: {},
         queueMessage: {},
         queueTriggered: '',
-        error: '',
-        result: ''
+        error: ''
     };
-    const notification = {};
+    //const notification = {};
 
     if (jobType) {
         switch (jobType) {
             case 'WRDSB.Flenderson.View.IAMWP.Process':
-                context.bindings.viewIAMWPProcess = {
+                queueTriggered = "view-iamwp-process";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as ViewIAMWPProcessFunctionRequest;
+                context.bindings.viewIAMWPProcess = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSGroups.Process':
-                context.bindings.viewIPPSGroupsProcess = {
+                queueTriggered = "view-ipps-groups-process";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as ViewIPPSGroupsProcessFunctionRequest;
+                context.bindings.viewIPPSGroupsProcess = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSJobs.Process':
-                context.bindings.viewIPPSJobsProcess = {
+                queueTriggered = "view-ipps-jobs-process";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as ViewIPPSJobsProcessFunctionRequest;
+                context.bindings.viewIPPSJobsProcess = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSLocations.Process':
-                context.bindings.viewIPPSLocationsProcess = {
+                queueTriggered = "view-ipps-locations-process";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as ViewIPPSLocationsProcessFunctionRequest;
+                context.bindings.viewIPPSLocationsProcess = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPal.Process':
-                context.bindings.viewIPPSPalProcess = {
+                queueTriggered = "view-ipps-pal-process";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as ViewIPPSPalProcessFunctionRequest;
+                context.bindings.viewIPPSPalProcess = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPeople.Process':
-                context.bindings.viewIPPSPeopleProcess = {
+                queueTriggered = "view-ipps-people-process";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as ViewIPPSPeopleProcessFunctionRequest;
+                context.bindings.viewIPPSPeopleProcess = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPositions.Process':
-                context.bindings.viewIPPSPositionsProcess = {
+                queueTriggered = "view-ipps-positions-process";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as ViewIPPSPositionsProcessFunctionRequest;
+                context.bindings.viewIPPSPositionsProcess = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.View.StaffDir.Process':
-                context.bindings.viewStaffDirProcess = {
+                queueTriggered = "view-staffdir-process";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as ViewStaffDirProcessFunctionRequest;
+                context.bindings.viewStaffDirProcess = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.Reconcile':
-                context.bindings.ippsDirectoryReconcile = {
+                queueTriggered = "ipps-directory-reconcile";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as IPPSDirectoryReconcileFunctionRequest;
+                context.bindings.ippsDirectoryReconcile = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile':
-                context.bindings.ippsEmployeeGroupReconcile = {
+                queueTriggered = "ipps-employee-group-reconcile";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as IPPSEmployeeGroupReconcileFunctionRequest;
+                context.bindings.ippsEmployeeGroupReconcile = queueMessage;
                 break;
                 
             case 'WRDSB.Flenderson.IPPSJob.Reconcile':
-                context.bindings.ippsJobReconcile = {
+                queueTriggered = "ipps-job-reconcile";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as IPPSJobReconcileFunctionRequest;
+                context.bindings.ippsJobReconcile = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.IPPSLocation.Reconcile':
-                context.bindings.ippsLocationReconcile = {
+                queueTriggered = "ipps-location-reconcile";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as IPPSLocationReconcileFunctionRequest;
+                context.bindings.ippsLocationReconcile = queueMessage;
                 break;
             
             case 'WRDSB.Flenderson.IPPSPal.Reconcile':
-                context.bindings.ippsPalReconcile = {
+                queueTriggered = "ipps-pal-reconcile";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as IPPSPalReconcileFunctionRequest;
+                context.bindings.ippsPalReconcile = queueMessage;
                 break;
             
             case 'WRDSB.Flenderson.IPPSPerson.Reconcile':
-                context.bindings.ippsPersonReconcile = {
+                queueTriggered = "ipps-person-reconcile";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as IPPSPersonReconcileFunctionRequest;
+                context.bindings.ippsPersonReconcile = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPosition.Reconcile':
-                context.bindings.ippsPositionReconcile = {
+                queueTriggered = "ipps-position-reconcile";
+                queueMessage = {
                     jobType: jobType,
                     payload: {}
                 } as IPPSPositionReconcileFunctionRequest;
+                context.bindings.ippsPositionReconcile = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.FlendersonPosition.Materialize':
-                context.bindings.flendersonPositionMaterialize = {
+                queueTriggered = "flenderson-position-materialize";
+                queueMessage = {
                     jobType: jobType,
                     payload: payload
                 } as FlendersonPositionMaterializeFunctionRequest;
+                context.bindings.flendersonPositionMaterialize = queueMessage;
                 break;
     
             case 'WRDSB.Flenderson.FlendersonPerson.Materialize':
-                context.bindings.flendersonPersonMaterialize = {
+                queueTriggered = "flenderson-person-materialize";
+                queueMessage = {
                     jobType: jobType,
                     payload: {
                         email: '',
                         employeeID: ''
                     }
                 } as FlendersonPersonMaterializeFunctionRequest;
+                context.bindings.flendersonPersonMaterialize = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.Store':
-                context.bindings.ippsDirectoryStore = {
+                queueTriggered = "ipps-directory-store";
+                queueMessage = {
                     operation: operation,
                     payload: payload
                 } as IPPSDirectoryStoreFunctionRequest;
+                context.bindings.ippsDirectoryStore = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Store':
-                context.bindings.ippsEmployeeGroupStore = {
+                queueTriggered = "ipps-employee-group-store";
+                queueMessage = {
                     operation: operation,
                     payload: payload
                 } as IPPSEmployeeGroupStoreFunctionRequest;
+                context.bindings.ippsEmployeeGroupStore = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.IPPSJob.Store':
-                context.bindings.ippsJobStore = {
+                queueTriggered = "ipps-job-store";
+                queueMessage = {
                     operation: operation,
                     payload: payload
                 } as IPPSJobStoreFunctionRequest;
+                context.bindings.ippsJobStore = queueMessage;
                 break;
                 
             case 'WRDSB.Flenderson.IPPSLocation.Store':
-                context.bindings.ippsLocationStore = {
+                queueTriggered = "ipps-location-store";
+                queueMessage = {
                     operation: operation,
                     payload: payload
                 } as IPPSLocationStoreFunctionRequest;
+                context.bindings.ippsLocationStore = queueMessage;
                 break;
                 
             case 'WRDSB.Flenderson.IPPSPal.Store':
-                context.bindings.ippsPalStore = {
+                queueTriggered = "ipps-pal-store";
+                queueMessage = {
                     operation: operation,
                     payload: payload
                 } as IPPSPalStoreFunctionRequest;
+                context.bindings.ippsPalStore = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPerson.Store':
-                context.bindings.ippsPersonStore = {
+                queueTriggered = "ipps-person-store";
+                queueMessage = {
                     operation: operation,
                     payload: payload
                 } as IPPSPersonStoreFunctionRequest;
+                context.bindings.ippsPersonStore = queueMessage;
                 break;
     
             case 'WRDSB.Flenderson.IPPSPosition.Store':
-                context.bindings.ippsPositionStore = {
+                queueTriggered = "ipps-position-store";
+                queueMessage = {
                     operation: operation,
                     payload: payload
                 } as IPPSPositionStoreFunctionRequest;
+                context.bindings.ippsPositionStore = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.FlendersonPerson.Store':
-                context.bindings.flendersonPersonStore = {
+                queueTriggered = "flenderson-person-store";
+                queueMessage = {
                     operation: operation,
                     payload: payload
                 } as FlendersonPersonStoreFunctionRequest;
+                context.bindings.flendersonPersonStore = queueMessage;
+                break;
+
+            case 'WRDSB.Flenderson.FlendersonPosition.Store':
+                queueTriggered = "flenderson-position-store";
+                queueMessage = {
+                    operation: operation,
+                    payload: payload
+                } as FlendersonPositionStoreFunctionRequest;
+                context.bindings.flendersonPositionStore = queueMessage;
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.ChangeTrigger':
                 // only invoked by Cosmos DB change feed trigger
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeTrigger':
                 // only invoked by Cosmos DB change feed trigger
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSJob.ChangeTrigger':
                 // only invoked by Cosmos DB change feed trigger
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSLocation.ChangeTrigger':
                 // only invoked by Cosmos DB change feed trigger
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPal.ChangeTrigger':
                 // only invoked by Cosmos DB change feed trigger
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPerson.ChangeTrigger':
                 // only invoked by Cosmos DB change feed trigger
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPosition.ChangeTrigger':
                 // only invoked by Cosmos DB change feed trigger
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
-                // only invoked by Cosmos DB change feed trigger
             case 'WRDSB.Flenderson.FlendersonPerson.ChangeTrigger':
+                // only invoked by Cosmos DB change feed trigger
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.ChangeParse':
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.ChangeParse':
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSJob.ChangeParse':
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSLocation.ChangeParse':
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPal.ChangeParse':
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPerson.ChangeParse':
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPosition.ChangeParse':
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.FlendersonPerson.ChangeParse':
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             case 'WRDSB.Flenderson.SearchIndexer.Invoke':
+                queueTriggered = "";
+                sentQueueMessage = false;
                 break;
 
             default:
-                context.bindings.callbackMessage = JSON.stringify({
-                    status: 422,
-                    body: "Unprocessable Entity. Cannot find the specified jobType."
-                });
+                // TODO: add some error handling
                 break;
         }
     }
     else {
-        context.bindings.callbackMessage = JSON.stringify({
-            status: 400,
-            body: "Please pass a valid jobType in the request body."
-        });
+        // TODO: add some error handling
     }
 
     if (sentQueueMessage) {
         logPayload = {
             status: "200",
-            message: `Sent ${queueMessage} to ${queueTriggered}`,
+            message: `Sent request to ${queueTriggered}`,
+            command: command,
             queueMessage: queueMessage,
             queueTriggered: queueTriggered,
-            result: '',
             error: ''
         };
+    } else {
+        logPayload = {
+            status: '400',
+            message: `Did not send request to ${queueTriggered}`,
+            command: command,
+            queueMessage: queueMessage,
+            queueTriggered: queueTriggered,
+            error: 'Bad Request. Unknown error.'
+        };
     }
-
-    // if (sendNotification) {
-        // notification = {
-            // subject: 'Poison Message Notification',
-            // to: process.env['SENDGRID_TO'],
-            // from: {
-                // email: 'errors@Flenderson.wrdsb.io',
-                // name: 'Flenderson Errors'
-            // },
-            // html: html
-        // };
-        // sgMail.send(notification, (error, result) => {
-            // if (error) {
-                // logPayload = {
-                    // status: "500",
-                    // message: 'Failed to send email notification.',
-                    // queueMessage: '',
-                    // queueTriggered: '',
-                    // result: '',
-                    // error: error,
-                // };
-            // } else {
-                // logPayload = {
-                    // status: "200",
-                    // message: 'Sent email notification',
-                    // queueMessage: '',
-                    // queueTriggered: '',
-                    // result: result,
-                    // error: error
-                // };
-            // }
-        // });
-    // }
 
     functionInvocation.logPayload = logPayload;
 

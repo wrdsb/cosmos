@@ -183,6 +183,13 @@
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
+    {
+      "name": "flendersonPositionStore",
+      "type": "queue",
+      "queueName": "flenderson-position-store",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
 
     {
       "name": "invocationPostProcessor",
