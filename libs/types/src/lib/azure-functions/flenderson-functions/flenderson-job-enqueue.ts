@@ -1,8 +1,10 @@
 import * as Cosmos from "../common";
+import { FlendersonCommand } from "@cosmos/types";
 
 interface FlendersonJobEnqueueFunctionRequest {
-    readonly payload: FlendersonJobEnqueueFunctionRequestPayload;
-}
+    // TODO: add fields for tracing, observability, and notifications/callbacks
+    readonly command: FlendersonCommand;
+};
 
 interface FlendersonJobEnqueueFunctionResponse extends Cosmos.FunctionResponse {
     readonly payload: FlendersonJobEnqueueFunctionResponsePayload;
@@ -16,9 +18,6 @@ interface FlendersonJobEnqueueFunctionCallbackMessage extends Cosmos.FunctionCal
 
 interface FlendersonJobEnqueueFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
     readonly data: FlendersonJobEnqueueFunctionInvocationEventPayload;
-}
-
-interface FlendersonJobEnqueueFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
 }
 
 interface FlendersonJobEnqueueFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
@@ -36,7 +35,6 @@ export {
     FlendersonJobEnqueueFunctionLogObject,
     FlendersonJobEnqueueFunctionCallbackMessage,
     FlendersonJobEnqueueFunctionInvocationEvent,
-    FlendersonJobEnqueueFunctionRequestPayload,
     FlendersonJobEnqueueFunctionResponsePayload,
     FlendersonJobEnqueueFunctionLogObjectPayload,
     FlendersonJobEnqueueFunctionCallbackMessagePayload,
