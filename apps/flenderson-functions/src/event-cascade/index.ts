@@ -1,7 +1,7 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { FunctionInvocation, FlendersonJobType, FlendersonCommand, FlendersonJobEnqueueFunctionRequest, FlendersonEvent, FlendersonEventType, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload } from "@cosmos/types";
+import { FunctionInvocation, FlendersonJobType, FlendersonCommand, FlendersonJobEnqueueFunctionRequest, WRDSBEvent, WRDSBEventType, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload } from "@cosmos/types";
 
-const eventCascade: AzureFunction = async function (context: Context, triggerMessage: FlendersonEvent): Promise<void> {
+const eventCascade: AzureFunction = async function (context: Context, triggerMessage: WRDSBEvent): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -12,8 +12,9 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
         eventLabel: ''
     } as FunctionInvocation;
 
-    const triggerObject = triggerMessage as FlendersonEvent;
-    const eventType = triggerObject.eventType as FlendersonEventType;
+    const incomingEvent = triggerMessage as WRDSBEvent;
+    const eventType = incomingEvent.eventType as WRDSBEventType;
+    const data = incomingEvent.data;
 
     const jobEnqueueMessages: FlendersonJobEnqueueFunctionRequest[] = [];
 
@@ -28,12 +29,38 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
 
     if (eventType) {
         switch (eventType) {
-            case 'WRDSB.Flenderson.View.IAMWP.Process':
+            case 'Flenderson.IPPSPerson.Create':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile',
-                        operation: 'reconcile',
-                        payload: {}
+                        jobType: 'WRDSB.Flenderson.FlendersonPerson.Materialize',
+                        operation: 'materialize',
+                        payload: {
+                            ippsPerson: data.ippsPerson
+                        }
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
+                break;
+
+            case 'Flenderson.IPPSPerson.Update':
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.FlendersonPerson.Materialize',
+                        operation: 'materialize',
+                        payload: {
+                            ippsPerson: data.ippsPerson
+                        }
+                    } as FlendersonCommand
+                } as FlendersonJobEnqueueFunctionRequest);
+                break;
+
+            case 'Flenderson.IPPSPerson.Delete':
+                jobEnqueueMessages.push({
+                    command: {
+                        jobType: 'WRDSB.Flenderson.FlendersonPerson.Materialize',
+                        operation: 'materialize',
+                        payload: {
+                            ippsPerson: data.ippsPerson
+                        }
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
