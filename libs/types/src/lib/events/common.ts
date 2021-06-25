@@ -1,5 +1,6 @@
 import { WRDSBFlendersonEventType, WRDSBFlendersonEventTag } from "@cosmos/types"
 import { FunctionInvocation } from "@cosmos/types";
+import { IPPSDirectory, IPPSEmployeeGroup, IPPSJob, IPPSLocation, IPPSPal, IPPSPerson, IPPSPosition } from "../entities";
 import { WRDSBFlendersonEventSubject } from "./flenderson";
 
 export type WRDSBEventSubject =
@@ -44,6 +45,14 @@ export interface WRDSBEventData {
     // label?: `${oldRecord.email}'s IPPS record deleted.`;
 
     functionInvocation?: FunctionInvocation,
+
+    ippsDirectory?: IPPSDirectory;
+    ippsEmployeeGroup?: IPPSEmployeeGroup;
+    ippsJob?: IPPSJob;
+    ippsLocation?: IPPSLocation;
+    ippsPal?: IPPSPal;
+    ippsPerson?: IPPSPerson;
+    ippsPostiion?: IPPSPosition;
 
     api?: string;
     clientRequestId?: string;
