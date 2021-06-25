@@ -25,7 +25,15 @@ export type WRDSBFlendersonEventSubject =
 
 '/wrdsb/flenderson/ipps-position/create' |
 '/wrdsb/flenderson/ipps-position/update' |
-'/wrdsb/flenderson/ipps-position/delete';
+'/wrdsb/flenderson/ipps-position/delete' |
+
+'/wrdsb/flenderson/flenderson-person/create' |
+'/wrdsb/flenderson/flenderson-person/update' |
+'/wrdsb/flenderson/flenderson-person/delete' |
+
+'/wrdsb/flenderson/flenderson-position/create' |
+'/wrdsb/flenderson/flenderson-position/update' |
+'/wrdsb/flenderson/flenderson-position/delete';
 
 
 export type WRDSBFlendersonEventType =
@@ -55,7 +63,15 @@ export type WRDSBFlendersonEventType =
 
 'Flenderson.IPPSPosition.Create' |
 'Flenderson.IPPSPosition.Update' |
-'Flenderson.IPPSPosition.Delete';
+'Flenderson.IPPSPosition.Delete' |
+
+'Flenderson.FlendersonPerson.Create' |
+'Flenderson.FlendersonPerson.Update' |
+'Flenderson.FlendersonPerson.Delete' |
+
+'Flenderson.FlendersonPosition.Create' |
+'Flenderson.FlendersonPosition.Update' |
+'Flenderson.FlendersonPosition.Delete';
 
 export type WRDSBFlendersonEventTag =
 'flenderson' |
@@ -67,6 +83,9 @@ export type WRDSBFlendersonEventTag =
 'ipps_pal_change' |
 'ipps_person_change' |
 'ipps_position_change' |
+
+'flenderson_person_change' |
+'flenderson_position_change' |
 
 'pal_change' |
 'person_change' |
