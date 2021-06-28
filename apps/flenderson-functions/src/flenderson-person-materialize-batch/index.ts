@@ -25,10 +25,12 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
     const triggerObject = triggerMessage as FlendersonPersonMaterializeBatchFunctionRequest;
     const payload = triggerObject.payload as FlendersonPersonMaterializeBatchFunctionRequestPayload;
     const all = payload.all;
-    const employeeGroupCode = payload.employeeGroupCode;
-    const jobCode = payload.jobCode;
-    const locationCode = payload.locationCode;
-    const positionID = payload.positionID;
+    const employeeID = payload.employeeID;
+    const email = payload.email;
+    const employeeGroupCode = payload.ippsEmployeeGroupCode;
+    const jobCode = payload.ippsJobCode;
+    const locationCode = payload.ippsLocationCode;
+    const positionID = payload.ippsPositionID;
 
     const outgoingQueueMessages: FlendersonPersonMaterializeFunctionRequest[] = [];
 
@@ -37,7 +39,24 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
         const querySpec = {
             query: `SELECT employeeID, email FROM c WHERE c.deleted = false`
         }
+        const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
+        outgoingQueueMessages.concat(requests);
+    }
 
+    if (employeeID) {
+        const cosmosContainer: FlendersonDatabaseContainer = 'ipps-people';
+        const querySpec = {
+            query: `SELECT employeeID, email FROM c WHERE c.deleted = false and c.employeeID = ${employeeID}`
+        }
+        const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
+        outgoingQueueMessages.concat(requests);
+    }
+
+    if (email) {
+        const cosmosContainer: FlendersonDatabaseContainer = 'ipps-people';
+        const querySpec = {
+            query: `SELECT employeeID, email FROM c WHERE c.deleted = false and c.email = ${email}`
+        }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.concat(requests);
     }
@@ -47,7 +66,6 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
         const querySpec = {
             query: `SELECT employeeID FROM c WHERE c.deleted = false and c.employeeGroupCode = ${employeeGroupCode}`
         }
-
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.concat(requests);
     }
@@ -57,7 +75,6 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
         const querySpec = {
             query: `SELECT employeeID FROM c WHERE c.deleted = false and c.jobCode = ${jobCode}`
         }
-
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.concat(requests);
     }
@@ -67,7 +84,6 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
         const querySpec = {
             query: `SELECT employeeID FROM c WHERE c.deleted = false and c.locationCode = ${locationCode}`
         }
-
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.concat(requests);
     }
@@ -77,7 +93,6 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
         const querySpec = {
             query: `SELECT employeeID FROM c WHERE c.deleted = false and c.positionID = ${positionID}`
         }
-
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.concat(requests);
     }
@@ -103,19 +118,28 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
             });
         });
 
-        requests = await fillInEmails(requests);
+        requests = await fillInFields(requests);
 
         return requests;
     }
 
 
-    async function fillInEmails(requests: FlendersonPersonMaterializeFunctionRequest[]): Promise<FlendersonPersonMaterializeFunctionRequest[]> {
+    async function fillInFields(requests: FlendersonPersonMaterializeFunctionRequest[]): Promise<FlendersonPersonMaterializeFunctionRequest[]> {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-people';
         const updatedRequests: FlendersonPersonMaterializeFunctionRequest[] = [];
 
         for (const request of requests) {
-            const employeeID = request.payload.employeeID;
-            const email = await getIPPSPersonEmail(employeeID, cosmosClient, cosmosDatabase, cosmosContainer);
+            let employeeID = request.payload.employeeID;
+            let email = request.payload.email;
+
+            if (employeeID.length < 1) {
+                employeeID = await getIPPSPersonEmployeeID(email, cosmosClient, cosmosDatabase, cosmosContainer);
+            }
+
+            if (email.length < 1) {
+                email = await getIPPSPersonEmail(employeeID, cosmosClient, cosmosDatabase, cosmosContainer);
+            }
+                        
             const newRequest = {
                 payload: {
                     employeeID: request.payload.employeeID,
@@ -185,6 +209,35 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
         } catch (error) {
             context.log(error);
             return email;
+        }
+    }
+
+
+    async function getIPPSPersonEmployeeID(email, cosmosClient, cosmosDatabase, cosmosContainer): Promise<string> {
+        context.log('getIPPSPersonEmail');
+
+        let employeeID = '';
+
+        const querySpec = {
+            query: `SELECT employeeID FROM c WHERE c.email = ${email}`
+        }
+
+        const queryOptions  = {
+            maxItemCount: -1,
+            enableCrossPartitionQuery: true
+        }
+
+        try {
+            const { resources } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(querySpec).fetchAll();
+
+            for (const item of resources) {
+                employeeID = item.employeeID
+            }
+    
+            return employeeID;
+        } catch (error) {
+            context.log(error);
+            return employeeID;
         }
     }
 };
