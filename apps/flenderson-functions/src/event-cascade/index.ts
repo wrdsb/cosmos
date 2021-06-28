@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { FunctionInvocation, FlendersonCommand, FlendersonJobEnqueueFunctionRequest, WRDSBEvent, WRDSBEventType, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload } from "@cosmos/types";
+import { FlendersonPersonMaterializeBatchFunctionRequestPayload } from "@cosmos/types";
 
 const eventCascade: AzureFunction = async function (context: Context, triggerMessage: WRDSBEvent): Promise<void> {
     const functionInvocation = {
@@ -35,8 +36,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsDirectory: data.ippsDirectory
-                        }
+                            email: data.ippsDirectory.email
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -47,8 +48,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsDirectory: data.ippsDirectory
-                        }
+                            email: data.ippsDirectory.email
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -59,8 +60,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsDirectory: data.ippsDirectory
-                        }
+                            email: data.ippsDirectory.email
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -71,8 +72,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsEmployeeGroup: data.ippsEmployeeGroup
-                        }
+                            ippsEmployeeGroupCode: data.ippsEmployeeGroup.employeeGroupCode
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -83,8 +84,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsEmployeeGroup: data.ippsEmployeeGroup
-                        }
+                            ippsEmployeeGroupCode: data.ippsEmployeeGroup.employeeGroupCode
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -95,8 +96,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsEmployeeGroup: data.ippsEmployeeGroup
-                        }
+                            ippsEmployeeGroupCode: data.ippsEmployeeGroup.employeeGroupCode
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -107,8 +108,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsJob: data.ippsJob
-                        }
+                            ippsJobCode: data.ippsJob.jobCode
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -119,8 +120,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsJob: data.ippsJob
-                        }
+                            ippsJobCode: data.ippsJob.jobCode
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -131,8 +132,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsJob: data.ippsJob
-                        }
+                            ippsJobCode: data.ippsJob.jobCode
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -143,8 +144,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsLocation: data.ippsLocation
-                        }
+                            ippsLocationCode: data.ippsLocation.locationCode
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -155,8 +156,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsLocation: data.ippsLocation
-                        }
+                            ippsLocationCode: data.ippsLocation.locationCode
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -167,8 +168,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsLocation: data.ippsLocation
-                        }
+                            ippsLocationCode: data.ippsLocation.locationCode
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -179,8 +180,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsPal: data.ippsPal
-                        }
+                            employeeID: data.ippsPal.employeeID
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -191,8 +192,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsPal: data.ippsPal
-                        }
+                            employeeID: data.ippsPal.employeeID
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -203,8 +204,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            ippsPal: data.ippsPal
-                        }
+                            employeeID: data.ippsPal.employeeID
+                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
