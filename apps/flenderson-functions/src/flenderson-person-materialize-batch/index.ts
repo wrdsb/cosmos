@@ -2,7 +2,6 @@ import { AzureFunction, Context } from "@azure/functions";
 import { CosmosClient } from "@azure/cosmos";
 import { FlendersonJobType, FunctionInvocation, FlendersonDatabaseContainer, FlendersonPersonMaterializeBatchFunctionRequest, FlendersonPersonMaterializeBatchFunctionRequestPayload } from "@cosmos/types";
 import { FlendersonPersonMaterializeFunctionRequest, FlendersonPersonMaterializeFunctionRequestPayload } from "@cosmos/types";
-import { FlendersonPerson, FlendersonPosition, IPPSDirectory, IPPSPal, IPPSPerson } from "@cosmos/types";
 
 const flendersonPersonMaterializeBatch: AzureFunction = async function (context: Context, triggerMessage: FlendersonPersonMaterializeBatchFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -35,31 +34,51 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
 
     if (all) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-people';
-        const requests = await findIPPSPeopleAll(cosmosClient, cosmosDatabase, cosmosContainer);
+        const querySpec = {
+            query: `SELECT employeeID, email FROM c WHERE c.deleted = false`
+        }
+
+        const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.concat(requests);
     }
 
     if (employeeGroupCode) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
-        const requests = await findEmployeeIDsByEmployeeGroupCode(employeeGroupCode, cosmosClient, cosmosDatabase, cosmosContainer);
+        const querySpec = {
+            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.employeeGroupCode = ${employeeGroupCode}`
+        }
+
+        const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.concat(requests);
     }
 
     if (jobCode) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
-        const requests = await findEmployeeIDsByJobCode(jobCode, cosmosClient, cosmosDatabase, cosmosContainer);
+        const querySpec = {
+            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.jobCode = ${jobCode}`
+        }
+
+        const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.concat(requests);
     }
 
     if (locationCode) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
-        const requests = await findEmployeeIDsByLocationCode(locationCode, cosmosClient, cosmosDatabase, cosmosContainer);
+        const querySpec = {
+            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.locationCode = ${locationCode}`
+        }
+
+        const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.concat(requests);
     }
 
     if (positionID) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
-        const requests = await findEmployeeIDsByPositionID(positionID, cosmosClient, cosmosDatabase, cosmosContainer);
+        const querySpec = {
+            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.positionID = ${positionID}`
+        }
+
+        const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.concat(requests);
     }
 
@@ -73,12 +92,8 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
     context.done(null, functionInvocation);
 
 
-    async function findIPPSPeopleAll(cosmosClient, cosmosDatabase, cosmosContainer): Promise<FlendersonPersonMaterializeFunctionRequest[]> {
-        const requests: FlendersonPersonMaterializeFunctionRequest[] = [];
-
-        const querySpec = {
-            query: `SELECT employeeID, email FROM c WHERE c.deleted = false`
-        }
+    async function createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer): Promise<FlendersonPersonMaterializeFunctionRequest[]> {
+        let requests: FlendersonPersonMaterializeFunctionRequest[] = [];
 
         const payloads = await getCosmosItems(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
 
@@ -87,84 +102,30 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
                 payload: payload
             });
         });
-    
-        return requests;
-    }
 
-
-    async function findEmployeeIDsByEmployeeGroupCode(employeeGroupCode, cosmosClient, cosmosDatabase, cosmosContainer): Promise<FlendersonPersonMaterializeFunctionRequest[]> {
-        const requests: FlendersonPersonMaterializeFunctionRequest[] = [];
-
-        const querySpec = {
-            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.employeeGroupCode = ${employeeGroupCode}`
-        }
-
-        const payloads = await getCosmosItems(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-
-        payloads.forEach(payload => {
-            requests.push({
-                payload: payload
-            });
-        });
+        requests = await fillInEmails(requests);
 
         return requests;
     }
 
 
-    async function findEmployeeIDsByJobCode(jobCode, cosmosClient, cosmosDatabase, cosmosContainer): Promise<FlendersonPersonMaterializeFunctionRequest[]> {
-        const requests: FlendersonPersonMaterializeFunctionRequest[] = [];
+    async function fillInEmails(requests: FlendersonPersonMaterializeFunctionRequest[]): Promise<FlendersonPersonMaterializeFunctionRequest[]> {
+        const cosmosContainer: FlendersonDatabaseContainer = 'ipps-people';
+        const updatedRequests: FlendersonPersonMaterializeFunctionRequest[] = [];
 
-        const querySpec = {
-            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.jobCode = ${jobCode}`
-        }
-
-        const payloads = await getCosmosItems(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-
-        payloads.forEach(payload => {
-            requests.push({
-                payload: payload
-            });
-        });
-
-        return requests;
-    }
-
-
-    async function findEmployeeIDsByLocationCode(locationCode, cosmosClient, cosmosDatabase, cosmosContainer): Promise<FlendersonPersonMaterializeFunctionRequest[]> {
-        const requests: FlendersonPersonMaterializeFunctionRequest[] = [];
-
-        const querySpec = {
-            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.locationCode = ${locationCode}`
-        }
-
-        const payloads = await getCosmosItems(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-
-        payloads.forEach(payload => {
-            requests.push({
-                payload: payload
-            });
-        });
-
-        return requests;
-    }
-
-
-    async function findEmployeeIDsByPositionID(positionID, cosmosClient, cosmosDatabase, cosmosContainer): Promise<FlendersonPersonMaterializeFunctionRequest[]> {
-        const requests: FlendersonPersonMaterializeFunctionRequest[] = [];
-
-        const querySpec = {
-            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.positionID = ${positionID}`
-        }
-
-        const payloads = await getCosmosItems(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-
-        payloads.forEach(payload => {
-            requests.push({
-                payload: payload
-            });
-        });
-
-        return requests;
+        for (const request of requests) {
+            const employeeID = request.payload.employeeID;
+            const email = await getIPPSPersonEmail(employeeID, cosmosClient, cosmosDatabase, cosmosContainer);
+            const newRequest = {
+                payload: {
+                    employeeID: request.payload.employeeID,
+                    email: email
+                }
+            } as FlendersonPersonMaterializeFunctionRequest;
+            updatedRequests.push(newRequest);
+        };
+        
+        return updatedRequests;
     }
 
 
@@ -195,6 +156,35 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
         } catch (error) {
             context.log(error);
             return records;
+        }
+    }
+
+
+    async function getIPPSPersonEmail(employeeID, cosmosClient, cosmosDatabase, cosmosContainer): Promise<string> {
+        context.log('getIPPSPersonEmail');
+
+        let email = '';
+
+        const querySpec = {
+            query: `SELECT email FROM c WHERE c.employeeID = ${employeeID}`
+        }
+
+        const queryOptions  = {
+            maxItemCount: -1,
+            enableCrossPartitionQuery: true
+        }
+
+        try {
+            const { resources } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(querySpec).fetchAll();
+
+            for (const item of resources) {
+                email = item.email
+            }
+    
+            return email;
+        } catch (error) {
+            context.log(error);
+            return email;
         }
     }
 };
