@@ -18,12 +18,14 @@ interface FlendersonPersonMaterializeBatchFunctionInvocationEvent extends Cosmos
     readonly data: FlendersonPersonMaterializeBatchFunctionInvocationEventPayload;
 }
 
-interface FlendersonPersonMaterializeBatchFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+interface FlendersonPersonMaterializeBatchFunctionRequestPayload {
     readonly all: boolean;
-    readonly employeeGroupCode?: string;
-    readonly jobCode?: string;
-    readonly locationCode?: string;
-    readonly positionID?: string;
+    readonly employeeID?: string;
+    readonly email?: string;
+    readonly ippsEmployeeGroupCode?: string;
+    readonly ippsJobCode?: string;
+    readonly ippsLocationCode?: string;
+    readonly ippsPositionID?: string;
 }
 
 interface FlendersonPersonMaterializeBatchFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
