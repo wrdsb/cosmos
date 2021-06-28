@@ -25,39 +25,39 @@ const ippsPalChangeParse: AzureFunction = async function (context: Context, trig
 
     if (!oldRecord) {
         const eventType = 'WRDSB.Flenderson.IPPSPal.Create';
-        const label = `PAL ${newRecord.id} created.`;
+        const label = `PAL ${newRecord?.id} created.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (!oldRecord.deleted && newRecord.deleted) {
+    if (!oldRecord?.deleted && newRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.IPPSPal.Delete';
-        const label = `PAL ${newRecord.id} deleted.`;
+        const label = `PAL ${newRecord?.id} deleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (!newRecord.deleted && oldRecord.deleted) {
+    if (!newRecord?.deleted && oldRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.IPPSPal.Undelete';
-        const label = `PAL ${newRecord.id} undeleted.`;
+        const label = `PAL ${newRecord?.id} undeleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.employeeID !== newRecord.employeeID) {
+    if (oldRecord?.employeeID !== newRecord?.employeeID) {
         const eventType = 'WRDSB.Flenderson.IPPSPal.EmployeeID.Change';
-        const label = `PAL ${newRecord.id} employee ID changed.`;
+        const label = `PAL ${newRecord?.id} employee ID changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.username !== newRecord.username) {
+    if (oldRecord?.username !== newRecord?.username) {
         const eventType = 'WRDSB.Flenderson.IPPSPal.Username.Change';
-        const label = `PAL ${newRecord.id} username changed.`;
+        const label = `PAL ${newRecord?.id} username changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);

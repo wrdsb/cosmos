@@ -25,47 +25,47 @@ const ippsJobChangeParse: AzureFunction = async function (context: Context, trig
 
     if (!oldRecord) {
         const eventType = 'WRDSB.Flenderson.IPPSJob.Create';
-        const label = `Job ${newRecord.id} created.`;
+        const label = `Job ${newRecord?.id} created.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (!oldRecord.deleted && newRecord.deleted) {
+    if (!oldRecord?.deleted && newRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.IPPSJob.Delete';
-        const label = `Job ${newRecord.id} deleted.`;
+        const label = `Job ${newRecord?.id} deleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (!newRecord.deleted && oldRecord.deleted) {
+    if (!newRecord?.deleted && oldRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.IPPSJob.Undelete';
-        const label = `Job ${newRecord.id} undeleted.`;
+        const label = `Job ${newRecord?.id} undeleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.jobCode !== newRecord.jobCode) {
+    if (oldRecord?.jobCode !== newRecord?.jobCode) {
         const eventType = 'WRDSB.Flenderson.IPPSJob.JobCode.Change';
-        const label = `Job ${newRecord.id} code changed.`;
+        const label = `Job ${newRecord?.id} code changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.jobDescription !== newRecord.jobDescription) {
+    if (oldRecord?.jobDescription !== newRecord?.jobDescription) {
         const eventType = 'WRDSB.Flenderson.IPPSJob.JobDescription.Change';
-        const label = `Job ${newRecord.id} description changed.`;
+        const label = `Job ${newRecord?.id} description changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.jobAbbreviation !== newRecord.jobAbbreviation) {
+    if (oldRecord?.jobAbbreviation !== newRecord?.jobAbbreviation) {
         const eventType = 'WRDSB.Flenderson.IPPSJob.JobAbbriviation.Change';
-        const label = `Job ${newRecord.id} abbriviation changed.`;
+        const label = `Job ${newRecord?.id} abbriviation changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);

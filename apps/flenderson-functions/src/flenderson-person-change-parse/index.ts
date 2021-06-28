@@ -25,31 +25,31 @@ const flendersonPersonChangeParse: AzureFunction = async function (context: Cont
 
     if (!oldRecord) {
         const eventType = 'WRDSB.Flenderson.FlendersonPerson.Create';
-        const label = `Person ${newRecord.id} created.`;
+        const label = `Person ${newRecord?.id} created.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (!oldRecord.deleted && newRecord.deleted) {
+    if (!oldRecord?.deleted && newRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.FlendersonPerson.Delete';
-        const label = `Person ${newRecord.id} deleted.`;
+        const label = `Person ${newRecord?.id} deleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (!newRecord.deleted && oldRecord.deleted) {
+    if (!newRecord?.deleted && oldRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.FlendersonPerson.Undelete';
-        const label = `Person ${newRecord.id} undeleted.`;
+        const label = `Person ${newRecord?.id} undeleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    //if (oldRecord.jobCode !== newRecord.jobCode) {
+    //if (oldRecord?.jobCode !== newRecord?.jobCode) {
         //const eventType = 'WRDSB.Flenderson.FlendersonPerson.JobCode.Change';
-        //const label = `Job ${newRecord.id} code changed.`;
+        //const label = `Job ${newRecord?.id} code changed.`;
 
         //const event = craftEvent(eventType, label, newRecord, oldRecord);
         //events.push(event);

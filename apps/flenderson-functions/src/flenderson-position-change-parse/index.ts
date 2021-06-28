@@ -25,31 +25,31 @@ const flendersonPositionChangeParse: AzureFunction = async function (context: Co
 
     if (!oldRecord) {
         const eventType = 'WRDSB.Flenderson.FlendersonPosition.Create';
-        const label = `Position ${newRecord.id} created.`;
+        const label = `Position ${newRecord?.id} created.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (!oldRecord.deleted && newRecord.deleted) {
+    if (!oldRecord?.deleted && newRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.FlendersonPosition.Delete';
-        const label = `Position ${newRecord.id} deleted.`;
+        const label = `Position ${newRecord?.id} deleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (!newRecord.deleted && oldRecord.deleted) {
+    if (!newRecord?.deleted && oldRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.FlendersonPosition.Undelete';
-        const label = `Position ${newRecord.id} undeleted.`;
+        const label = `Position ${newRecord?.id} undeleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    //if (oldRecord.jobCode !== newRecord.jobCode) {
+    //if (oldRecord?.jobCode !== newRecord?.jobCode) {
         //const eventType = 'WRDSB.Flenderson.FlendersonPerson.JobCode.Change';
-        //const label = `Job ${newRecord.id} code changed.`;
+        //const label = `Job ${newRecord?.id} code changed.`;
 
         //const event = craftEvent(eventType, label, newRecord, oldRecord);
         //events.push(event);

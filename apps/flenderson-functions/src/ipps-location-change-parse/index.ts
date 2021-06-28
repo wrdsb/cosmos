@@ -25,71 +25,71 @@ const ippsLocation: AzureFunction = async function (context: Context, triggerMes
 
     if (!oldRecord) {
         const eventType = 'WRDSB.Flenderson.IPPSLocation.Create';
-        const label = `Location ${newRecord.id} created.`;
+        const label = `Location ${newRecord?.id} created.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (!oldRecord.deleted && newRecord.deleted) {
+    if (!oldRecord?.deleted && newRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.IPPSLocation.Delete';
-        const label = `Location ${newRecord.id} deleted.`;
+        const label = `Location ${newRecord?.id} deleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (!newRecord.deleted && oldRecord.deleted) {
+    if (!newRecord?.deleted && oldRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.IPPSLocation.Undelete';
-        const label = `Location ${newRecord.id} undeleted.`;
+        const label = `Location ${newRecord?.id} undeleted.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.locationCode !== newRecord.locationCode) {
+    if (oldRecord?.locationCode !== newRecord?.locationCode) {
         const eventType = 'WRDSB.Flenderson.IPPSLocation.LocationCode.Change';
-        const label = `Location ${newRecord.id} code changed.`;
+        const label = `Location ${newRecord?.id} code changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.locationType !== newRecord.locationType) {
+    if (oldRecord?.locationType !== newRecord?.locationType) {
         const eventType = 'WRDSB.Flenderson.IPPSLocation.LocationType.Change';
-        const label = `Location ${newRecord.id} type changed.`;
+        const label = `Location ${newRecord?.id} type changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.locationDescription !== newRecord.locationDescription) {
+    if (oldRecord?.locationDescription !== newRecord?.locationDescription) {
         const eventType = 'WRDSB.Flenderson.IPPSLocation.LocationDescription.Change';
-        const label = `Location ${newRecord.id} description changed.`;
+        const label = `Location ${newRecord?.id} description changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.locationAbbreviation !== newRecord.locationAbbreviation) {
+    if (oldRecord?.locationAbbreviation !== newRecord?.locationAbbreviation) {
         const eventType = 'WRDSB.Flenderson.IPPSLocation.LocationAbbriviation.Change';
-        const label = `Location ${newRecord.id} abbriviation changed.`;
+        const label = `Location ${newRecord?.id} abbriviation changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.schoolCode !== newRecord.schoolCode) {
+    if (oldRecord?.schoolCode !== newRecord?.schoolCode) {
         const eventType = 'WRDSB.Flenderson.IPPSLocation.SchoolCode.Change';
-        const label = `Location ${newRecord.id} school code changed.`;
+        const label = `Location ${newRecord?.id} school code changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);
     }
 
-    if (oldRecord.panel !== newRecord.panel) {
+    if (oldRecord?.panel !== newRecord?.panel) {
         const eventType = 'WRDSB.Flenderson.IPPSLocation.Panel.Change';
-        const label = `Location ${newRecord.id} panel changed.`;
+        const label = `Location ${newRecord?.id} panel changed.`;
 
         const event = craftEvent(eventType, label, newRecord, oldRecord);
         events.push(event);

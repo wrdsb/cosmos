@@ -31,7 +31,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (!oldRecord.deleted && newRecord.deleted) {
+    if (!oldRecord?.deleted && newRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.Delete';
         const label = `Position ${newRecord.id} deleted.`;
 
@@ -39,7 +39,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (!newRecord.deleted && oldRecord.deleted) {
+    if (!newRecord?.deleted && oldRecord?.deleted) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.Undelete';
         const label = `Position ${newRecord.id} undeleted.`;
 
@@ -47,7 +47,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (oldRecord.positionID !== newRecord.positionID) {
+    if (oldRecord?.positionID !== newRecord?.positionID) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.PositionID.Change';
         const label = `Position ${newRecord.id} position ID changed.`;
 
@@ -55,7 +55,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (oldRecord.employeeID !== newRecord.employeeID) {
+    if (oldRecord?.employeeID !== newRecord?.employeeID) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.EmployeeID.Change';
         const label = `Position ${newRecord.id} employee ID changed.`;
 
@@ -63,7 +63,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (oldRecord.employeeGroupCode !== newRecord.employeeGroupCode) {
+    if (oldRecord?.employeeGroupCode !== newRecord?.employeeGroupCode) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.EmployeeGroupCode.Change';
         const label = `Position ${newRecord.id} employee group code changed.`;
 
@@ -71,7 +71,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (oldRecord.jobCode !== newRecord.jobCode) {
+    if (oldRecord?.jobCode !== newRecord?.jobCode) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.JobCode.Change';
         const label = `Position ${newRecord.id} job code changed.`;
 
@@ -79,7 +79,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (oldRecord.locationCode !== newRecord.locationCode) {
+    if (oldRecord?.locationCode !== newRecord?.locationCode) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.LocationCode.Change';
         const label = `Position ${newRecord.id} location code changed.`;
 
@@ -87,7 +87,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (oldRecord.establishmentCode !== newRecord.establishmentCode) {
+    if (oldRecord?.establishmentCode !== newRecord?.establishmentCode) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.EstablishmentCode.Change';
         const label = `Position ${newRecord.id} establishment code changed.`;
 
@@ -95,7 +95,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (oldRecord.isHomeLocation !== newRecord.isHomeLocation) {
+    if (oldRecord?.isHomeLocation !== newRecord?.isHomeLocation) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.isHomeLocation.Change';
         const label = `Position ${newRecord.id} is home location changed.`;
 
@@ -103,7 +103,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (oldRecord.positionStartDate !== newRecord.positionStartDate) {
+    if (oldRecord?.positionStartDate !== newRecord?.positionStartDate) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.PositionStartDate.Change';
         const label = `Position ${newRecord.id} position start date changed.`;
 
@@ -111,7 +111,7 @@ const ippsPositionChangeParse: AzureFunction = async function (context: Context,
         events.push(event);
     }
 
-    if (oldRecord.positionEndDate !== newRecord.positionEndDate) {
+    if (oldRecord?.positionEndDate !== newRecord?.positionEndDate) {
         const eventType = 'WRDSB.Flenderson.IPPSPosition.PositionEndDate.Change';
         const label = `Position ${newRecord.id} position end date changed.`;
 
