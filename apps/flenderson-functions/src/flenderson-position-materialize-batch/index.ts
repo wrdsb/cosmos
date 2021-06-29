@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { CosmosClient } from "@azure/cosmos";
-import { FlendersonJobType, FunctionInvocation, FlendersonDatabaseContainer, FlendersonPositionMaterializeBatchFunctionRequest, FlendersonPositionMaterializeBatchFunctionRequestPayload } from "@cosmos/types";
+import { FlendersonJobType, FunctionInvocation, FlendersonDatabaseContainer, FlendersonPositionMaterializeBatchFunctionRequest, FlendersonPositionMaterializeBatchFunctionRequestPayload, IPPSPosition } from "@cosmos/types";
 import { FlendersonPositionMaterializeFunctionRequest, FlendersonPositionMaterializeFunctionRequestPayload } from "@cosmos/types";
 
 const flendersonPositionMaterializeBatch: AzureFunction = async function (context: Context, triggerMessage: FlendersonPositionMaterializeBatchFunctionRequest): Promise<void> {
@@ -34,12 +34,15 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
     const outgoingQueueMessages: FlendersonPositionMaterializeFunctionRequest[] = [];
 
     if (all) {
+        context.log("op: all")
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
         const querySpec = {
             query: `SELECT * FROM c WHERE c.deleted = false`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        context.log(requests.length);
+        outgoingQueueMessages.push(...requests);
+        context.log(outgoingQueueMessages.length);
     }
 
     if (employeeID) {
@@ -48,7 +51,9 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
             query: `SELECT * FROM c WHERE c.deleted = false and c.employeeID = ${employeeID}`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        context.log(requests.length);
+        outgoingQueueMessages.push(...requests);
+        context.log(outgoingQueueMessages.length);
     }
 
     if (employeeGroupCode) {
@@ -57,7 +62,9 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
             query: `SELECT * FROM c WHERE c.deleted = false and c.employeeGroupCode = ${employeeGroupCode}`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        context.log(requests.length);
+        outgoingQueueMessages.push(...requests);
+        context.log(outgoingQueueMessages.length);
     }
 
     if (jobCode) {
@@ -66,7 +73,9 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
             query: `SELECT * FROM c WHERE c.deleted = false and c.jobCode = ${jobCode}`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        context.log(requests.length);
+        outgoingQueueMessages.push(...requests);
+        context.log(outgoingQueueMessages.length);
     }
 
     if (locationCode) {
@@ -75,7 +84,9 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
             query: `SELECT * FROM c WHERE c.deleted = false and c.locationCode = ${locationCode}`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        context.log(requests.length);
+        outgoingQueueMessages.push(...requests);
+        context.log(outgoingQueueMessages.length);
     }
 
     if (positionID) {
@@ -84,12 +95,16 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
             query: `SELECT * FROM c WHERE c.deleted = false and c.positionID = ${positionID}`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        context.log(requests.length);
+        outgoingQueueMessages.push(...requests);
+        context.log(outgoingQueueMessages.length);
     }
 
     context.bindings.queueMaterialize = outgoingQueueMessages;
 
-    const logPayload = outgoingQueueMessages;
+    const logPayload = {
+        "numberQueued": outgoingQueueMessages.length
+    };
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
@@ -102,11 +117,11 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
 
         const payloads = await getCosmosItems(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
 
-        payloads.forEach(payload => {
+        for (const payload of payloads) {
             requests.push({
                 payload: payload
             });
-        });
+        };
 
         return requests;
     }
@@ -126,8 +141,9 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
             const { resources } = await cosmosClient.database(cosmosDatabase).container(cosmosContainer).items.query(querySpec).fetchAll();
 
             for (const item of resources) {
-                if (!item.deleted) {
-                    const recordObject = {
+                const payloadObject = {
+                    ippsPosition: {
+                        id:                  `${item.employeeID}-${item.positionID}`,
                         positionID:          item.positionID,
                         employeeID:          item.employeeID,
                         employeeGroupCode:   item.employeeGroupCode,
@@ -136,12 +152,12 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
                         establishmentCode:   item.establishmentCode,
                         isHomeLocation:      item.isHomeLocation,
                         positionStartDate:   item.positionStartDate,
-                        positionEndDate:     item.positionEndDate,
+                        positionEndDate:     item.positionEndDate
                     }
-                    records.push(recordObject);
-                }
+                };
+                records.push(payloadObject);
             }
-    
+            context.log(`found ${records.length} records`);
             return records;
         } catch (error) {
             context.log(error);
