@@ -114,8 +114,8 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
         logPayload['jobType'] = jobType;
         logPayload['statusCode'] = statusCode;
         logPayload['statusMessage'] = 'No change detected.';
-        logPayload['recordID'] = result.calcRecord.id;
-        logPayload['newRecordChangeDetectionHash'] = result.calcRecord.changeDetectionHash;
+        logPayload['recordID'] = calcRecord.id;
+        logPayload['newRecordChangeDetectionHash'] = calcRecord.changeDetectionHash;
         logPayload['oldRecordChangeDetectionHash'] = oldRecord.changeDetectionHash;
         functionInvocation.logPayload = logPayload;
     }
