@@ -69,7 +69,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.IPPSEmployeeGroup.Create':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
+                        jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
                             ippsEmployeeGroupCode: data.ippsEmployeeGroup.employeeGroupCode
@@ -81,7 +81,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.IPPSEmployeeGroup.Update':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
+                        jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
                             ippsEmployeeGroupCode: data.ippsEmployeeGroup.employeeGroupCode
@@ -93,7 +93,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.IPPSEmployeeGroup.Delete':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
+                        jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
                             ippsEmployeeGroupCode: data.ippsEmployeeGroup.employeeGroupCode
@@ -105,7 +105,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.IPPSJob.Create':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
+                        jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
                             ippsJobCode: data.ippsJob.jobCode
@@ -117,7 +117,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.IPPSJob.Update':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
+                        jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
                             ippsJobCode: data.ippsJob.jobCode
@@ -129,7 +129,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.IPPSJob.Delete':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
+                        jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
                             ippsJobCode: data.ippsJob.jobCode
@@ -141,7 +141,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.IPPSLocation.Create':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
+                        jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
                             ippsLocationCode: data.ippsLocation.locationCode
@@ -153,7 +153,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.IPPSLocation.Update':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
+                        jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
                             ippsLocationCode: data.ippsLocation.locationCode
@@ -165,7 +165,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.IPPSLocation.Delete':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
+                        jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
                             ippsLocationCode: data.ippsLocation.locationCode
@@ -294,10 +294,10 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.FlendersonPosition.Create':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.Materialize',
+                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            //ippsPerson: data.ippsPerson
+                            employeeID: data.ippsPostiion.employeeID
                         }
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
@@ -306,10 +306,10 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.FlendersonPosition.Update':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.Materialize',
+                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            //ippsPerson: data.ippsPerson
+                            employeeID: data.ippsPostiion.employeeID
                         }
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
@@ -318,10 +318,10 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
             case 'Flenderson.FlendersonPosition.Delete':
                 jobEnqueueMessages.push({
                     command: {
-                        jobType: 'WRDSB.Flenderson.FlendersonPerson.Materialize',
+                        jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            //ippsPerson: data.ippsPerson
+                            employeeID: data.ippsPostiion.employeeID
                         }
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
