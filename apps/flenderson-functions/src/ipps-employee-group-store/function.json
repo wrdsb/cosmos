@@ -28,7 +28,7 @@
         {
             "name": "changeParse",
             "type": "queue",
-            "queueName": "ipps-directory-change-parse",
+            "queueName": "ipps-employee-group-change-parse",
             "connection": "wrdsbflenderson_STORAGE",
             "direction": "out"
         },
