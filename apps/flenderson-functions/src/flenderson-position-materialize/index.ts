@@ -21,13 +21,17 @@ const flendersonPositionMaterialize: AzureFunction = async function (context: Co
     const ippsPosition = payload.ippsPosition;
 
     // give our bindings more human-readable names
+    const positionRecord = context.bindings.positionRecord as IPPSPosition;
     const employeeGroupRecord = context.bindings.employeeGroupRecord as IPPSEmployeeGroup;
     const jobRecord = context.bindings.jobRecord as IPPSJob;
     const locationRecord = context.bindings.locationRecord as IPPSLocation;
 
-    const materializedPosition = await materializePosition(ippsPosition, employeeGroupRecord, jobRecord, locationRecord);
+    const materializedPosition = await materializePosition(positionRecord, employeeGroupRecord, jobRecord, locationRecord);
 
-    context.bindings.queueStore = materializedPosition;
+    context.bindings.queueStore = {
+        operation: "replace",
+        payload: materializedPosition
+    };
 
     const logPayload = materializedPosition;
     functionInvocation.logPayload = logPayload;
@@ -48,7 +52,7 @@ const flendersonPositionMaterialize: AzureFunction = async function (context: Co
             updatedBy:                 position.updatedBy ?? null,
             deletedBy:                 position.deletedBy ?? null,
 
-            id:                        position.id,
+            id:                        position.id ?? `${position.employeeID}-${position.positionID}`,
 
             positionID:                position.positionID,
             employeeID:                position.employeeID,

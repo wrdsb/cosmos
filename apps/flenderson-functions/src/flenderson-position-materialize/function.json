@@ -8,6 +8,16 @@
             "direction": "in"
         },
         {
+            "name": "positionRecord",
+            "type": "cosmosDB",
+            "databaseName": "flenderson",
+            "collectionName": "ipps-positions",
+            "id": "{payload.ippsPosition.id}",
+            "partitionKey": "{payload.ippsPosition.id}",
+            "connectionStringSetting": "wrdsb-flenderson_CosmosDB",
+            "direction": "in"
+        },
+        {
             "name": "employeeGroupRecord",
             "type": "cosmosDB",
             "databaseName": "flenderson",
