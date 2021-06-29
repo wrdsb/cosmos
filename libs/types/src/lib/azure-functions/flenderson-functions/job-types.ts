@@ -49,6 +49,7 @@ export type FlendersonJobType =
 'WRDSB.Flenderson.FlendersonPerson.Materialize' |
 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch' |
 'WRDSB.Flenderson.FlendersonPosition.Materialize' |
+'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch' |
 
 'WRDSB.Flenderson.FlendersonPerson.ChangeParse' |
 'WRDSB.Flenderson.FlendersonPosition.ChangeParse' |
