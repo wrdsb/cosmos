@@ -26,6 +26,13 @@
             "direction": "out"
         },
         {
+            "name": "eventCascade",
+            "type": "queue",
+            "queueName": "event-cascade",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "changeParse",
             "type": "queue",
             "queueName": "ipps-person-change-parse",
