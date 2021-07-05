@@ -17,6 +17,9 @@ const jobCascade: AzureFunction = async function (context: Context, triggerMessa
 
     const jobEnqueueMessages: FlendersonJobEnqueueFunctionRequest[] = [];
 
+    let missingJobType = false;
+    let jobTypeError = false;
+
     let logPayload = {
         status: '',
         message: '',
@@ -285,12 +288,12 @@ const jobCascade: AzureFunction = async function (context: Context, triggerMessa
                 break;
                 
             default:
-                // TODO: add some error handling
+                jobTypeError = true;
                 break;
         }
     }
     else {
-        // TODO: add some error handling
+        missingJobType = true;
     }
 
     if (jobEnqueueMessages.length > 0) {
@@ -304,14 +307,32 @@ const jobCascade: AzureFunction = async function (context: Context, triggerMessa
             result: '',
             error: ''
         };
-    } else {
+    } else if (jobTypeError) {
         logPayload = {
             status: '400',
-            message: `Sent ${jobEnqueueMessages.length} messages to job-enqueue`,
+            message: `jobType Error: unrecognized jobType ${jobType}`,
             jobEnqueueMessages: jobEnqueueMessages,
             queueTriggered: 'job-enqueue',
             result: '',
-            error: 'Bad Request. Unknown error.'
+            error: `jobType Error: unrecognized jobType ${jobType}`
+        };
+    } else if (missingJobType) {
+        logPayload = {
+            status: '400',
+            message: `jobType Error: missing jobType`,
+            jobEnqueueMessages: jobEnqueueMessages,
+            queueTriggered: 'job-enqueue',
+            result: '',
+            error: `jobType Error: missing jobType`
+        };
+    } else {
+        logPayload = {
+            status: "204",
+            message: `Nothing to do.`,
+            jobEnqueueMessages: jobEnqueueMessages,
+            queueTriggered: 'job-enqueue',
+            result: '',
+            error: ''
         };
     }
 
