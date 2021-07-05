@@ -20,7 +20,6 @@ const ippsEmployeeGroupChangeTrigger: AzureFunction = async function (context: C
 
     context.bindings.jobCascade = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

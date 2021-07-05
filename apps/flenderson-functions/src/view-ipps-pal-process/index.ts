@@ -74,7 +74,6 @@ const viewIPPSPalProcess: AzureFunction = async function (context: Context, trig
 
     context.bindings.jobCascade = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

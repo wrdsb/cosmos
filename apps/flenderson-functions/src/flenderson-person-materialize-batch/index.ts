@@ -103,7 +103,6 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 

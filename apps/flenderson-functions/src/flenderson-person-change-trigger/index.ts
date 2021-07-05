@@ -20,7 +20,6 @@ const flendersonPersonChangeTrigger: AzureFunction = async function (context: Co
 
     context.bindings.jobCascade = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

@@ -81,7 +81,6 @@ const viewIPPSPositionsProcess: AzureFunction = async function (context: Context
 
     context.bindings.jobCascade = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

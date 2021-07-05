@@ -108,7 +108,6 @@ const ippsLocation: AzureFunction = async function (context: Context, triggerMes
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 

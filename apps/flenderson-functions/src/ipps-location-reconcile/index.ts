@@ -70,7 +70,6 @@ const ippsLocationReconcile: AzureFunction = async function (context: Context, t
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 

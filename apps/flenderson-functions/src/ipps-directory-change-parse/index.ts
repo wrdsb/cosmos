@@ -140,7 +140,6 @@ const ippsDirectoryChangeParse: AzureFunction = async function (context: Context
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 

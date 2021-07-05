@@ -70,7 +70,6 @@ const ippsPersonReconcile: AzureFunction = async function (context: Context, tri
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 

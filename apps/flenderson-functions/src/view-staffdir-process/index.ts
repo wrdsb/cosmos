@@ -85,7 +85,6 @@ const viewStaffDirProcess: AzureFunction = async function (context: Context, tri
 
     context.bindings.jobCascade = {jobType: jobType};
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

@@ -40,7 +40,6 @@ const flendersonCommandHTTP: AzureFunction = async function (context: Context, r
     context.log(logPayload);
 
     functionInvocation.logPayload = logPayload;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

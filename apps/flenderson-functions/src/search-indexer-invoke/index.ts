@@ -25,7 +25,6 @@ const searchIndexerInvoke: AzureFunction = async function (context: Context, tri
     const logPayload = {'indexName': searchIndex};
     functionInvocation.logPayload = logPayload;
 
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 

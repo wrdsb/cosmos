@@ -339,7 +339,6 @@ const jobCascade: AzureFunction = async function (context: Context, triggerMessa
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(JSON.stringify(functionInvocation));
     context.done(null, functionInvocation);
 };
 

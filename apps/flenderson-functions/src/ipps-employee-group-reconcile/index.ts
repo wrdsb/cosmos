@@ -70,7 +70,6 @@ const ippsEmployeeGroupReconcile: AzureFunction = async function (context: Conte
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 

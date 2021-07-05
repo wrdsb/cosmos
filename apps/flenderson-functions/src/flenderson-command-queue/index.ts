@@ -39,7 +39,6 @@ const flendersonCommandQueue: AzureFunction = async function (context: Context, 
     context.log(logPayload);
 
     functionInvocation.logPayload = logPayload;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

@@ -35,7 +35,6 @@ const flendersonPersonMaterialize: AzureFunction = async function (context: Cont
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 
