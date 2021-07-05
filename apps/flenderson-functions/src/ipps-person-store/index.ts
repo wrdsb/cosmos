@@ -2,7 +2,7 @@ import { AzureFunction, Context } from "@azure/functions";
 import { UTCDateTime, FunctionInvocation, FlendersonJobType, IPPSPersonStoreFunctionRequest, StoreFunctionOperation, IPPSPerson } from "@cosmos/types";
 import { CalcArgs, CalcResult } from "@cosmos/flenderson-functions-shared";
 import { calcPatch, calcReplace, calcDelete, makeHashIPPSPerson } from "@cosmos/flenderson-functions-shared";
-import { craftCreateEvent, craftUpdateEvent, craftDeleteEvent, CraftStorageEventArgs } from "@cosmos/flenderson-functions-shared";
+import { craftCreateEvent, craftUpdateEvent, craftDeleteEvent } from "@cosmos/flenderson-functions-shared";
 
 const ippsPersonStore: AzureFunction = async function (context: Context, triggerMessage: IPPSPersonStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
