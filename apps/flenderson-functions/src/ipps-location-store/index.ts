@@ -122,7 +122,6 @@ const ippsLocationStore: AzureFunction = async function (context: Context, trigg
     }
     
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

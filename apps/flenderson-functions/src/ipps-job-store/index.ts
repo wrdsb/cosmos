@@ -117,7 +117,6 @@ const ippsJobStore: AzureFunction = async function (context: Context, triggerMes
     }
     
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

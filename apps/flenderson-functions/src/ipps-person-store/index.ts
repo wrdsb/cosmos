@@ -121,7 +121,6 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
     }
     
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 

@@ -118,7 +118,6 @@ const ippsEmployeeGroupStore: AzureFunction = async function (context: Context, 
     }
     
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 
