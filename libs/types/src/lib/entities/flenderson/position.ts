@@ -12,6 +12,7 @@ interface FlendersonPosition extends CosmosCoreFields {
     //deletedBy?: PersonID;
 
     //id?: string;
+    changeDetectionHash?: string;
     positionID: string;
     employeeID: string;
 

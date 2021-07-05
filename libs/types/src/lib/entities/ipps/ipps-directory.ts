@@ -12,7 +12,8 @@ interface IPPSDirectory extends CosmosCoreFields {
     //deletedBy?: PersonID;
 
     //id?: string;
-    
+    changeDetectionHash?: string;
+
     email: string;
 
     firstName: string;

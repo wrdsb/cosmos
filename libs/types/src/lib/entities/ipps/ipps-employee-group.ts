@@ -12,6 +12,7 @@ interface IPPSEmployeeGroup extends CosmosCoreFields {
     //deletedBy?: PersonID;
 
     //id?: string;
+    changeDetectionHash?: string;
 
     employeeGroupCode: string;
     employeeGroupCategory: string;

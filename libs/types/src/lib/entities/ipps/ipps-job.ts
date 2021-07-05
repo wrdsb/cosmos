@@ -12,6 +12,7 @@ interface IPPSJob extends CosmosCoreFields {
     //deletedBy?: PersonID;
 
     //id?: string;
+    changeDetectionHash?: string;
 
     jobCode: string;
     jobDescription: string;

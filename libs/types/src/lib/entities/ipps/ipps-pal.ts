@@ -12,6 +12,7 @@ interface IPPSPal extends CosmosCoreFields {
     //deletedBy?: PersonID;
 
     //id?: string;
+    changeDetectionHash?: string;
     
     employeeID: string;
     username: string;

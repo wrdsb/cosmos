@@ -12,6 +12,7 @@ interface IPPSLocation extends CosmosCoreFields {
     //deletedBy?: PersonID;
 
     //id?: string;
+    changeDetectionHash?: string;
 
     locationCode: string;
     locationType: string;

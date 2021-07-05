@@ -13,7 +13,8 @@ interface FlendersonPerson extends CosmosCoreFields {
     //deletedBy?: PersonID;
 
     //id?: string;
-
+    changeDetectionHash?: string;
+    
     email?: string;
     username?: string;
     employeeID?: string;
