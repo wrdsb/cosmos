@@ -18,11 +18,6 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
     const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSPerson.Store';
     functionInvocation.jobType = jobType;
 
-    const eventInfo: CraftStorageEventArgs = {
-        eventSubjectDataType: 'ipps-person',
-        tagsRoot: 'ipps_person'
-    };
-    
     const triggerObject = triggerMessage as IPPSPersonStoreFunctionRequest;
     const operation = triggerObject.operation as StoreFunctionOperation;
     const payload = triggerObject.payload as IPPSPerson;
@@ -86,15 +81,15 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
     switch (eventOp) {
         case 'create':
             changeDetected = true;
-            event = craftCreateEvent(oldRecord, calcRecord, functionInvocation, eventInfo);
+            event = craftCreateEvent(oldRecord, calcRecord, functionInvocation);
             break;
         case 'update':
             changeDetected = (oldRecord.changeDetectionHash === calcRecord.changeDetectionHash) ? false : true;
-            event = craftUpdateEvent(oldRecord, calcRecord, functionInvocation, eventInfo);
+            event = craftUpdateEvent(oldRecord, calcRecord, functionInvocation);
             break;
         case 'delete':
             changeDetected = true;
-            event = craftDeleteEvent(oldRecord, calcRecord, functionInvocation, eventInfo);
+            event = craftDeleteEvent(oldRecord, calcRecord, functionInvocation);
             break;
     }
 
