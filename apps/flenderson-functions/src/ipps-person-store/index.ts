@@ -2,7 +2,7 @@ import { AzureFunction, Context } from "@azure/functions";
 import { UTCDateTime, FunctionInvocation, FlendersonJobType, IPPSPersonStoreFunctionRequest, StoreFunctionOperation, IPPSPerson } from "@cosmos/types";
 import { CalcArgs, CalcResult } from "@cosmos/flenderson-functions-shared";
 import { calcPatch, calcReplace, calcDelete, makeHashIPPSPerson } from "@cosmos/flenderson-functions-shared";
-import { craftCreateEvent, craftUpdateEvent, craftDeleteEvent } from "@cosmos/flenderson-functions-shared";
+import { craftCreateEvent, craftUpdateEvent, craftDeleteEvent, CraftStorageEventArgs } from "@cosmos/flenderson-functions-shared";
 
 const ippsPersonStore: AzureFunction = async function (context: Context, triggerMessage: IPPSPersonStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -17,6 +17,11 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
 
     const jobType: FlendersonJobType = 'WRDSB.Flenderson.IPPSPerson.Store';
     functionInvocation.jobType = jobType;
+
+    const eventInfo: CraftStorageEventArgs = {
+        eventSubjectDataType: 'ipps-person',
+        tagsRoot: 'ipps_person'
+    };
     
     const triggerObject = triggerMessage as IPPSPersonStoreFunctionRequest;
     const operation = triggerObject.operation as StoreFunctionOperation;
@@ -81,21 +86,21 @@ const ippsPersonStore: AzureFunction = async function (context: Context, trigger
     switch (eventOp) {
         case 'create':
             changeDetected = true;
-            event = craftCreateEvent(oldRecord, calcRecord, functionInvocation);
+            event = craftCreateEvent(oldRecord, calcRecord, functionInvocation, eventInfo);
             break;
         case 'update':
             changeDetected = (oldRecord.changeDetectionHash === calcRecord.changeDetectionHash) ? false : true;
-            event = craftUpdateEvent(oldRecord, calcRecord, functionInvocation);
+            event = craftUpdateEvent(oldRecord, calcRecord, functionInvocation, eventInfo);
             break;
         case 'delete':
             changeDetected = true;
-            event = craftDeleteEvent(oldRecord, calcRecord, functionInvocation);
+            event = craftDeleteEvent(oldRecord, calcRecord, functionInvocation, eventInfo);
             break;
     }
 
     if (changeDetected) {
         context.bindings.recordOut = calcRecord;
-
+        context.bindings.eventCascade = event;
         context.bindings.changeParse = {
             "payload": {
                 oldRecord: (oldRecord) ? oldRecord : null,
