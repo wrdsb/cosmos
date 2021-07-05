@@ -2,18 +2,18 @@ import { craftEvent, CraftEventArgs } from "@cosmos/flenderson-functions-shared"
 import { StoreFunctionEvent } from "@cosmos/types";
 import { WRDSBFlendersonEventSubject, WRDSBFlendersonEventType, WRDSBFlendersonEventTag } from "@cosmos/types";
 
-export function craftCreateEvent(oldRecord, newRecord, functionInvocation) {
-    const eventSubject: WRDSBFlendersonEventSubject = '/wrdsb/flenderson/ipps-person/create';
-    const eventType: WRDSBFlendersonEventType = 'Flenderson.IPPSPerson.Create';
+export function craftCreateEvent(oldRecord, newRecord, functionInvocation, args: CraftStorageEventArgs) {
+    const eventSubject = `/wrdsb/flenderson/${args.eventSubjectDataType}/create` as WRDSBFlendersonEventSubject;
+    const eventType = `Flenderson.${functionInvocation.functionDataType}.Create` as WRDSBFlendersonEventType;
     const operation: StoreFunctionEvent = 'create';
-    const label = `${newRecord?.email}'s IPPS record created.`;
-    const tags: WRDSBFlendersonEventTag[] = [
+    const label = `${functionInvocation.functionDataType} record created.`;
+    const tags = [
         "flenderson", 
-        "ipps_person_change",
-        "person_change"
-    ];
+        "create_record",
+        `${args.tagsRoot}_change`
+    ] as WRDSBFlendersonEventTag[];
 
-    const args: CraftEventArgs = {
+    const craftEventArgs: CraftEventArgs = {
         recordID: oldRecord?.id,
         eventSubject: eventSubject,
         eventType: eventType,
@@ -23,23 +23,23 @@ export function craftCreateEvent(oldRecord, newRecord, functionInvocation) {
         tags: tags,
     }
 
-    const event = craftEvent(args);
+    const event = craftEvent(craftEventArgs);
     return event;
 }
 
 
-export function craftUpdateEvent(oldRecord, newRecord, functionInvocation) {
-    const eventSubject: WRDSBFlendersonEventSubject = '/wrdsb/flenderson/ipps-person/update';
-    const eventType: WRDSBFlendersonEventType = 'Flenderson.IPPSPerson.Update';
+export function craftUpdateEvent(oldRecord, newRecord, functionInvocation, args: CraftStorageEventArgs) {
+    const eventSubject = `/wrdsb/flenderson/${args.eventSubjectDataType}/update` as WRDSBFlendersonEventSubject;
+    const eventType = `Flenderson.${functionInvocation.functionDataType}.Update` as WRDSBFlendersonEventType;
     const operation: StoreFunctionEvent = 'update';
-    const label = `${newRecord?.email}'s IPPS record updated.`;
-    const tags: WRDSBFlendersonEventTag[] = [
-        "flenderson", 
-        "ipps_person_change",
-        "person_change"
-    ];
+    const label = `${functionInvocation.functionDataType} record updated.`;
+    const tags = [
+        "flenderson",
+        "update_record",
+        `${args.tagsRoot}_change`
+    ] as WRDSBFlendersonEventTag[];
 
-    const args: CraftEventArgs = {
+    const craftEventArgs: CraftEventArgs = {
         recordID: oldRecord?.id,
         eventSubject: eventSubject,
         eventType: eventType,
@@ -49,23 +49,23 @@ export function craftUpdateEvent(oldRecord, newRecord, functionInvocation) {
         tags: tags,
     }
 
-    const event = craftEvent(args);
+    const event = craftEvent(craftEventArgs);
     return event;
 }
 
 
-export function craftDeleteEvent(oldRecord, newRecord, functionInvocation) {
-    const eventSubject: WRDSBFlendersonEventSubject = '/wrdsb/flenderson/ipps-person/delete';
-    const eventType: WRDSBFlendersonEventType = 'Flenderson.IPPSPerson.Delete';
+export function craftDeleteEvent(oldRecord, newRecord, functionInvocation, args: CraftStorageEventArgs) {
+    const eventSubject = `/wrdsb/flenderson/${args.eventSubjectDataType}/delete` as WRDSBFlendersonEventSubject;
+    const eventType = `Flenderson.${functionInvocation.functionDataType}.Delete` as WRDSBFlendersonEventType;
     const operation: StoreFunctionEvent = 'delete';
-    const label = `${oldRecord?.email}'s IPPS record deleted.`;
-    const tags: WRDSBFlendersonEventTag[] = [
+    const label = `${functionInvocation.functionDataType} record deleted.`;
+    const tags = [
         "flenderson", 
-        "ipps_person_change",
-        "person_change"
-    ];
+        "delete_record",
+        `${args.tagsRoot}_change`
+    ] as WRDSBFlendersonEventTag[];
 
-    const args: CraftEventArgs = {
+    const craftEventArgs: CraftEventArgs = {
         recordID: oldRecord?.id,
         eventSubject: eventSubject,
         eventType: eventType,
@@ -75,6 +75,11 @@ export function craftDeleteEvent(oldRecord, newRecord, functionInvocation) {
         tags: tags,
     }
 
-    const event = craftEvent(args);
+    const event = craftEvent(craftEventArgs);
     return event;
 }
+
+export interface CraftStorageEventArgs {
+    eventSubjectDataType: string;
+    tagsRoot: string;
+};
