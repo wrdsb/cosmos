@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { UTCDateTime, FunctionInvocation, FlendersonJobType, IPPSEmployeeGroupStoreFunctionRequest, StoreFunctionOperation, IPPSEmployeeGroupStoreFunctionRequestPayload, IPPSEmployeeGroup } from "@cosmos/types";
+import { UTCDateTime, FunctionInvocation, FlendersonJobType, IPPSEmployeeGroupStoreFunctionRequest, StoreFunctionOperation, IPPSEmployeeGroup } from "@cosmos/types";
 import { CalcArgs, CalcResult } from "@cosmos/flenderson-functions-shared";
 import { calcPatch, calcReplace, calcDelete, makeHashIPPSEmployeeGroup } from "@cosmos/flenderson-functions-shared";
 import { craftCreateEvent, craftUpdateEvent, craftDeleteEvent } from "@cosmos/flenderson-functions-shared";

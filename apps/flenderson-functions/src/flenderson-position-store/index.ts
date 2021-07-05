@@ -1,7 +1,7 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { UTCDateTime, FunctionInvocation, FlendersonJobType, FlendersonPositionStoreFunctionRequest, StoreFunctionOperation, FlendersonPositionStoreFunctionRequestPayload, FlendersonPosition } from "@cosmos/types";
+import { UTCDateTime, FunctionInvocation, FlendersonJobType, FlendersonPositionStoreFunctionRequest, StoreFunctionOperation, FlendersonPosition } from "@cosmos/types";
 import { CalcArgs, CalcResult } from "@cosmos/flenderson-functions-shared";
-import { calcPatch, calcReplace, calcDelete, makeHashFlendersonPerson } from "@cosmos/flenderson-functions-shared";
+import { calcPatch, calcReplace, calcDelete, makeHashFlendersonPosition } from "@cosmos/flenderson-functions-shared";
 import { craftCreateEvent, craftUpdateEvent, craftDeleteEvent } from "@cosmos/flenderson-functions-shared";
 
 const flendersonPositionStore: AzureFunction = async function (context: Context, triggerMessage: FlendersonPositionStoreFunctionRequest): Promise<void> {
@@ -93,7 +93,7 @@ const flendersonPositionStore: AzureFunction = async function (context: Context,
     const calcRecord = result.calcRecord;
     const eventOp = result.eventOp;
 
-    calcRecord.changeDetectionHash = makeHashFlendersonPerson(calcRecord);
+    calcRecord.changeDetectionHash = makeHashFlendersonPosition(calcRecord);
     let changeDetected = false;
     let event;
     
