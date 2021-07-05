@@ -16,15 +16,16 @@ export function craftCreateEvent(oldRecord, newRecord, functionInvocation) {
         `${tagsRoot}_change`
     ] as WRDSBFlendersonEventTag[];
 
-    const craftEventArgs: CraftEventArgs = {
-        recordID: oldRecord?.id,
+    let craftEventArgs: CraftEventArgs = {
+        recordID: newRecord?.id,
         eventSubject: eventSubject,
         eventType: eventType,
         functionInvocation: functionInvocation,
         operation: operation,
         label: label,
-        tags: tags,
+        tags: tags
     }
+    craftEventArgs = addEventData(newRecord, craftEventArgs);
 
     const event = craftEvent(craftEventArgs);
     return event;
@@ -45,15 +46,16 @@ export function craftUpdateEvent(oldRecord, newRecord, functionInvocation) {
         `${tagsRoot}_change`
     ] as WRDSBFlendersonEventTag[];
 
-    const craftEventArgs: CraftEventArgs = {
-        recordID: oldRecord?.id,
+    let craftEventArgs: CraftEventArgs = {
+        recordID: newRecord?.id,
         eventSubject: eventSubject,
         eventType: eventType,
         functionInvocation: functionInvocation,
         operation: operation,
         label: label,
-        tags: tags,
+        tags: tags
     }
+    craftEventArgs = addEventData(newRecord, craftEventArgs);
 
     const event = craftEvent(craftEventArgs);
     return event;
@@ -74,29 +76,116 @@ export function craftDeleteEvent(oldRecord, newRecord, functionInvocation) {
         `${tagsRoot}_change`
     ] as WRDSBFlendersonEventTag[];
 
-    const craftEventArgs: CraftEventArgs = {
-        recordID: oldRecord?.id,
+    let craftEventArgs: CraftEventArgs = {
+        recordID: newRecord?.id,
         eventSubject: eventSubject,
         eventType: eventType,
         functionInvocation: functionInvocation,
         operation: operation,
         label: label,
-        tags: tags,
+        tags: tags
     }
+    craftEventArgs = addEventData(newRecord, craftEventArgs);
 
     const event = craftEvent(craftEventArgs);
     return event;
 }
+
 
 export interface CraftStorageEventArgs {
     eventSubjectDataType: CraftStorageEventSubjectDataType;
     tagsRoot: CraftStorageEventTagsRoot;
 };
 
+
+function addEventData(newRecord, craftEventArgs: CraftEventArgs): CraftEventArgs {
+    switch (craftEventArgs.functionInvocation.functionDataType) {
+        case 'FlendersonPerson':
+            craftEventArgs.flendersonPerson = newRecord;
+            return craftEventArgs;
+            break;
+
+        case 'FlendersonPosition':
+            craftEventArgs.flendersonPostiion = newRecord;
+            return craftEventArgs;
+            break;
+
+        case 'IPPSDirectory':
+            craftEventArgs.ippsDirectory = newRecord;
+            return craftEventArgs;
+            break;
+
+        case 'IPPSEmployeeGroup':
+            craftEventArgs.ippsEmployeeGroup = newRecord;
+            return craftEventArgs;
+            break;
+
+        case 'IPPSJob':
+            craftEventArgs.ippsJob = newRecord;
+            return craftEventArgs;
+            break;
+
+        case 'IPPSLocation':
+            craftEventArgs.ippsLocation = newRecord;
+            return craftEventArgs;
+            break;
+
+        case 'IPPSPal':
+            craftEventArgs.ippsPal = newRecord;
+            return craftEventArgs;
+            break;
+
+        case 'IPPSPerson':
+            craftEventArgs.ippsPerson = newRecord;
+            return craftEventArgs;
+            break;
+
+        case 'IPPSPosition':
+            craftEventArgs.ippsPostiion = newRecord;
+            return craftEventArgs;
+            break;
+
+        default:
+            break;
+    }
+}
+
 function extractEventSubjectDataType(functionInvocation: FunctionInvocation): CraftStorageEventSubjectDataType{
     switch (functionInvocation.functionDataType) {
+        case 'FlendersonPerson':
+            return 'flenderson-person';
+            break;
+    
+        case 'FlendersonPosition':
+            return 'flenderson-position';
+            break;
+    
+        case 'IPPSDirectory':
+            return 'ipps-directory';
+            break;
+    
+        case 'IPPSEmployeeGroup':
+            return 'ipps-employee-group';
+            break;
+    
+        case 'IPPSJob':
+            return 'ipps-job';
+            break;
+    
+        case 'IPPSLocation':
+            return 'ipps-location';
+            break;
+    
+        case 'IPPSPal':
+            return 'ipps-pal';
+            break;
+    
         case 'IPPSPerson':
             return 'ipps-person';
+            break;
+    
+        case 'IPPSPosition':
+            return 'ipps-position';
             break;
     
         default:
@@ -106,8 +195,40 @@ function extractEventSubjectDataType(functionInvocation: FunctionInvocation): Cr
 
 function extractTagsRoot(functionInvocation: FunctionInvocation): CraftStorageEventTagsRoot{
     switch (functionInvocation.functionDataType) {
+        case 'FlendersonPerson':
+            return 'flenderson_person';
+            break;
+    
+        case 'FlendersonPosition':
+            return 'flenderson_position';
+            break;
+    
+        case 'IPPSDirectory':
+            return 'ipps_directory';
+            break;
+    
+        case 'IPPSEmployeeGroup':
+            return 'ipps_employee_group';
+            break;
+    
+        case 'IPPSJob':
+            return 'ipps_job';
+            break;
+    
+        case 'IPPSLocation':
+            return 'ipps_location';
+            break;
+    
+        case 'IPPSPal':
+            return 'ipps_pal';
+            break;
+    
         case 'IPPSPerson':
             return 'ipps_person';
+            break;
+    
+        case 'IPPSPosition':
+            return 'ipps_position';
             break;
     
         default:
@@ -115,6 +236,25 @@ function extractTagsRoot(functionInvocation: FunctionInvocation): CraftStorageEv
     }
 } 
 
-export type CraftStorageEventSubjectDataType = 'ipps-person';
+export type CraftStorageEventSubjectDataType =
+'flenderson-person' |
+'flenderson-position' |
+'ipps-directory' |
+'ipps-employee-group' |
+'ipps-job' |
+'ipps-location' |
+'ipps-pal' |
+'ipps-person' |
+'ipps-position' ;
 
-export type CraftStorageEventTagsRoot = 'ipps_person';
+
+export type CraftStorageEventTagsRoot =
+'flenderson_person' |
+'flenderson_position' |
+'ipps_directory' |
+'ipps_employee_group' |
+'ipps_job' |
+'ipps_location' |
+'ipps_pal' |
+'ipps_person' |
+'ipps_position';
