@@ -29,6 +29,9 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
     let queueMessage = {};
     let sentQueueMessage = false;
 
+    let missingJobType = false;
+    let jobTypeError = false;
+
     //const html = '';
     //const sendNotification = false;
 
@@ -61,6 +64,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as ViewIPPSGroupsProcessFunctionRequest;
                 context.bindings.viewIPPSGroupsProcess = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSJobs.Process':
@@ -70,6 +74,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as ViewIPPSJobsProcessFunctionRequest;
                 context.bindings.viewIPPSJobsProcess = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSLocations.Process':
@@ -79,6 +84,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as ViewIPPSLocationsProcessFunctionRequest;
                 context.bindings.viewIPPSLocationsProcess = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPal.Process':
@@ -88,6 +94,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as ViewIPPSPalProcessFunctionRequest;
                 context.bindings.viewIPPSPalProcess = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPeople.Process':
@@ -97,6 +104,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as ViewIPPSPeopleProcessFunctionRequest;
                 context.bindings.viewIPPSPeopleProcess = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.View.IPPSPositions.Process':
@@ -106,6 +114,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as ViewIPPSPositionsProcessFunctionRequest;
                 context.bindings.viewIPPSPositionsProcess = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.View.StaffDir.Process':
@@ -115,6 +124,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as ViewStaffDirProcessFunctionRequest;
                 context.bindings.viewStaffDirProcess = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.Reconcile':
@@ -124,6 +134,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as IPPSDirectoryReconcileFunctionRequest;
                 context.bindings.ippsDirectoryReconcile = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Reconcile':
@@ -133,6 +144,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as IPPSEmployeeGroupReconcileFunctionRequest;
                 context.bindings.ippsEmployeeGroupReconcile = queueMessage;
+                sentQueueMessage = true;
                 break;
                 
             case 'WRDSB.Flenderson.IPPSJob.Reconcile':
@@ -142,6 +154,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as IPPSJobReconcileFunctionRequest;
                 context.bindings.ippsJobReconcile = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.IPPSLocation.Reconcile':
@@ -151,6 +164,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as IPPSLocationReconcileFunctionRequest;
                 context.bindings.ippsLocationReconcile = queueMessage;
+                sentQueueMessage = true;
                 break;
             
             case 'WRDSB.Flenderson.IPPSPal.Reconcile':
@@ -160,6 +174,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as IPPSPalReconcileFunctionRequest;
                 context.bindings.ippsPalReconcile = queueMessage;
+                sentQueueMessage = true;
                 break;
             
             case 'WRDSB.Flenderson.IPPSPerson.Reconcile':
@@ -169,6 +184,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as IPPSPersonReconcileFunctionRequest;
                 context.bindings.ippsPersonReconcile = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPosition.Reconcile':
@@ -178,6 +194,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: {}
                 } as IPPSPositionReconcileFunctionRequest;
                 context.bindings.ippsPositionReconcile = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.FlendersonPosition.Materialize':
@@ -187,6 +204,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as FlendersonPositionMaterializeFunctionRequest;
                 context.bindings.flendersonPositionMaterialize = queueMessage;
+                sentQueueMessage = true;
                 break;
     
             case 'WRDSB.Flenderson.FlendersonPerson.Materialize':
@@ -199,6 +217,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     }
                 } as FlendersonPersonMaterializeFunctionRequest;
                 context.bindings.flendersonPersonMaterialize = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.Store':
@@ -208,6 +227,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as IPPSDirectoryStoreFunctionRequest;
                 context.bindings.ippsDirectoryStore = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.IPPSEmployeeGroup.Store':
@@ -217,6 +237,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as IPPSEmployeeGroupStoreFunctionRequest;
                 context.bindings.ippsEmployeeGroupStore = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.IPPSJob.Store':
@@ -226,6 +247,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as IPPSJobStoreFunctionRequest;
                 context.bindings.ippsJobStore = queueMessage;
+                sentQueueMessage = true;
                 break;
                 
             case 'WRDSB.Flenderson.IPPSLocation.Store':
@@ -235,6 +257,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as IPPSLocationStoreFunctionRequest;
                 context.bindings.ippsLocationStore = queueMessage;
+                sentQueueMessage = true;
                 break;
                 
             case 'WRDSB.Flenderson.IPPSPal.Store':
@@ -244,6 +267,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as IPPSPalStoreFunctionRequest;
                 context.bindings.ippsPalStore = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.IPPSPerson.Store':
@@ -253,6 +277,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as IPPSPersonStoreFunctionRequest;
                 context.bindings.ippsPersonStore = queueMessage;
+                sentQueueMessage = true;
                 break;
     
             case 'WRDSB.Flenderson.IPPSPosition.Store':
@@ -262,6 +287,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as IPPSPositionStoreFunctionRequest;
                 context.bindings.ippsPositionStore = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.FlendersonPerson.Store':
@@ -271,6 +297,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as FlendersonPersonStoreFunctionRequest;
                 context.bindings.flendersonPersonStore = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.FlendersonPosition.Store':
@@ -280,6 +307,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                     payload: payload
                 } as FlendersonPositionStoreFunctionRequest;
                 context.bindings.flendersonPositionStore = queueMessage;
+                sentQueueMessage = true;
                 break;
 
             case 'WRDSB.Flenderson.IPPSDirectory.ChangeTrigger':
@@ -376,12 +404,12 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 break;
 
             default:
-                // TODO: add some error handling
+                jobTypeError = true;
                 break;
         }
     }
     else {
-        // TODO: add some error handling
+        missingJobType = true;
     }
 
     if (sentQueueMessage) {
@@ -393,14 +421,32 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
             queueTriggered: queueTriggered,
             error: ''
         };
-    } else {
+    } else if (jobTypeError) {
         logPayload = {
             status: '400',
-            message: `Did not send request to ${queueTriggered}`,
+            message: `jobType Error: unrecognized jobType ${jobType}`,
             command: command,
             queueMessage: queueMessage,
             queueTriggered: queueTriggered,
-            error: 'Bad Request. Unknown error.'
+            error: `jobType Error: unrecognized jobType ${jobType}`
+        };
+    } else if (missingJobType) {
+        logPayload = {
+            status: '400',
+            message: `jobType Error: missing jobType`,
+            command: command,
+            queueMessage: queueMessage,
+            queueTriggered: queueTriggered,
+            error: `jobType Error: missing jobType`
+        };
+    } else {
+        logPayload = {
+            status: "204",
+            message: `Nothing to do.`,
+            command: command,
+            queueMessage: queueMessage,
+            queueTriggered: queueTriggered,
+            error: ''
         };
     }
 
