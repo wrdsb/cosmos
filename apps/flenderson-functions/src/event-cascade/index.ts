@@ -297,7 +297,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            employeeID: data.ippsPostiion.employeeID
+                            employeeID: data.flendersonPostiion.employeeID
                         }
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
@@ -309,7 +309,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            employeeID: data.ippsPostiion.employeeID
+                            employeeID: data.flendersonPostiion.employeeID
                         }
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
@@ -321,7 +321,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            employeeID: data.ippsPostiion.employeeID
+                            employeeID: data.flendersonPostiion.employeeID
                         }
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
