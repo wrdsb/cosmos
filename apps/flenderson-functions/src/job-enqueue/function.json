@@ -114,6 +114,20 @@
       "direction": "out"
     },
     {
+      "name": "flendersonPersonMaterialize",
+      "type": "queue",
+      "queueName": "flenderson-person-materialize",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "flendersonPersonMaterializeBatch",
+      "type": "queue",
+      "queueName": "flenderson-person-materialize-batch",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "flendersonPositionMaterialize",
       "type": "queue",
       "queueName": "flenderson-position-materialize",
@@ -121,9 +135,9 @@
       "direction": "out"
     },
     {
-      "name": "flendersonPersonMaterialize",
+      "name": "flendersonPositionMaterializeBatch",
       "type": "queue",
-      "queueName": "flenderson-person-materialize",
+      "queueName": "flenderson-position-materialize-batch",
       "connection": "wrdsbflenderson_STORAGE",
       "direction": "out"
     },
