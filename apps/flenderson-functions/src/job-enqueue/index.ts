@@ -4,6 +4,7 @@ import { ViewIAMWPProcessFunctionRequest, ViewIPPSGroupsProcessFunctionRequest, 
 import { IPPSDirectoryReconcileFunctionRequest, IPPSEmployeeGroupReconcileFunctionRequest, IPPSJobReconcileFunctionRequest, IPPSLocationReconcileFunctionRequest, IPPSPalReconcileFunctionRequest, IPPSPersonReconcileFunctionRequest, IPPSPositionReconcileFunctionRequest } from '@cosmos/types';
 import { FlendersonPositionMaterializeFunctionRequest, FlendersonPersonMaterializeFunctionRequest } from '@cosmos/types';
 import { IPPSDirectoryStoreFunctionRequest, IPPSEmployeeGroupStoreFunctionRequest, IPPSJobStoreFunctionRequest, IPPSLocationStoreFunctionRequest, IPPSPalStoreFunctionRequest, IPPSPersonStoreFunctionRequest, IPPSPositionStoreFunctionRequest, FlendersonPersonStoreFunctionRequest, FlendersonPositionStoreFunctionRequest } from '@cosmos/types';
+import { FlendersonPersonMaterializeBatchFunctionRequest, FlendersonPersonMaterializeBatchFunctionRequestPayload, FlendersonPositionMaterializeBatchFunctionRequest, FlendersonPositionMaterializeBatchFunctionRequestPayload } from "@cosmos/types";
 
 const jobEnqueue: AzureFunction = async function (context: Context, triggerMessage: FlendersonJobEnqueueFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -201,9 +202,29 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 queueTriggered = "flenderson-position-materialize";
                 queueMessage = {
                     jobType: jobType,
-                    payload: payload
+                    payload: {
+                        ippsPosition: payload.ippsPosition
+                    }
                 } as FlendersonPositionMaterializeFunctionRequest;
                 context.bindings.flendersonPositionMaterialize = queueMessage;
+                sentQueueMessage = true;
+                break;
+    
+            case 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch':
+                queueTriggered = "flenderson-position-materialize-batch";
+                queueMessage = {
+                    jobType: jobType,
+                    payload: {
+                        all: payload.all,
+                        employeeID: payload.employeeID,
+                        email: payload.email,
+                        ippsEmployeeGroupCode: payload.ippsEmployeeGroupCode,
+                        ippsJobCode: payload.ippsJobCode,
+                        ippsLocationCode: payload.ippsLocationCode,
+                        ippsPositionID: payload.ippsPositionID,
+                    }
+                } as FlendersonPositionMaterializeBatchFunctionRequest;
+                context.bindings.flendersonPositionMaterializeBatch = queueMessage;
                 sentQueueMessage = true;
                 break;
     
@@ -212,11 +233,29 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                 queueMessage = {
                     jobType: jobType,
                     payload: {
-                        email: '',
-                        employeeID: ''
+                        email: payload.email,
+                        employeeID: payload.employeeID
                     }
                 } as FlendersonPersonMaterializeFunctionRequest;
                 context.bindings.flendersonPersonMaterialize = queueMessage;
+                sentQueueMessage = true;
+                break;
+
+            case 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch':
+                queueTriggered = "flenderson-person-materialize-batch";
+                queueMessage = {
+                    jobType: jobType,
+                    payload: {
+                        all: payload.all,
+                        employeeID: payload.employeeID,
+                        email: payload.email,
+                        ippsEmployeeGroupCode: payload.ippsEmployeeGroupCode,
+                        ippsJobCode: payload.ippsJobCode,
+                        ippsLocationCode: payload.ippsLocationCode,
+                        ippsPositionID: payload.ippsPositionID,
+                    }
+                } as FlendersonPersonMaterializeBatchFunctionRequest;
+                context.bindings.flendersonPersonMaterializeBatch = queueMessage;
                 sentQueueMessage = true;
                 break;
 
@@ -453,6 +492,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
+    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 
