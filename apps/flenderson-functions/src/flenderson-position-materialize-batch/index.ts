@@ -45,7 +45,7 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
     if (employeeID) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
         const querySpec = {
-            query: `SELECT * FROM c WHERE c.deleted = false and c.employeeID = ${employeeID}`
+            query: `SELECT * FROM c WHERE c.deleted = false and c.employeeID = "${employeeID}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.push(...requests);
@@ -54,7 +54,7 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
     if (employeeGroupCode) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
         const querySpec = {
-            query: `SELECT * FROM c WHERE c.deleted = false and c.employeeGroupCode = ${employeeGroupCode}`
+            query: `SELECT * FROM c WHERE c.deleted = false and c.employeeGroupCode = "${employeeGroupCode}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.push(...requests);
@@ -63,7 +63,7 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
     if (jobCode) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
         const querySpec = {
-            query: `SELECT * FROM c WHERE c.deleted = false and c.jobCode = ${jobCode}`
+            query: `SELECT * FROM c WHERE c.deleted = false and c.jobCode = "${jobCode}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.push(...requests);
@@ -72,7 +72,7 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
     if (locationCode) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
         const querySpec = {
-            query: `SELECT * FROM c WHERE c.deleted = false and c.locationCode = ${locationCode}`
+            query: `SELECT * FROM c WHERE c.deleted = false and c.locationCode = "${locationCode}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.push(...requests);
@@ -81,7 +81,7 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
     if (positionID) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
         const querySpec = {
-            query: `SELECT * FROM c WHERE c.deleted = false and c.positionID = ${positionID}`
+            query: `SELECT * FROM c WHERE c.deleted = false and c.positionID = "${positionID}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
         outgoingQueueMessages.push(...requests);
@@ -95,6 +95,8 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
+    context.log(outgoingQueueMessages);
+    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 
@@ -109,6 +111,7 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
             });
         };
 
+        context.log(`created ${requests.length} requests`);
         return requests;
     }
 
@@ -143,7 +146,10 @@ const flendersonPositionMaterializeBatch: AzureFunction = async function (contex
                 };
                 records.push(payloadObject);
             }
+
+            context.log(`found ${records.length} records`);
             return records;
+
         } catch (error) {
             context.log(error);
             return records;
