@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { FunctionInvocation, FlendersonCommand, FlendersonJobEnqueueFunctionRequest, WRDSBEvent, WRDSBEventType, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload } from "@cosmos/types";
-import { FlendersonPersonMaterializeBatchFunctionRequestPayload } from "@cosmos/types";
+import { FlendersonPersonMaterializeBatchFunctionRequestPayload, FlendersonPositionMaterializeBatchFunctionRequestPayload } from "@cosmos/types";
 
 const eventCascade: AzureFunction = async function (context: Context, triggerMessage: WRDSBEvent): Promise<void> {
     const functionInvocation = {
@@ -73,7 +73,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         operation: 'materialize',
                         payload: {
                             ippsEmployeeGroupCode: data.ippsEmployeeGroup.employeeGroupCode
-                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
+                        } as FlendersonPositionMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -85,7 +85,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         operation: 'materialize',
                         payload: {
                             ippsEmployeeGroupCode: data.ippsEmployeeGroup.employeeGroupCode
-                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
+                        } as FlendersonPositionMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -97,7 +97,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         operation: 'materialize',
                         payload: {
                             ippsEmployeeGroupCode: data.ippsEmployeeGroup.employeeGroupCode
-                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
+                        } as FlendersonPositionMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -109,7 +109,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         operation: 'materialize',
                         payload: {
                             ippsJobCode: data.ippsJob.jobCode
-                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
+                        } as FlendersonPositionMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -121,7 +121,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         operation: 'materialize',
                         payload: {
                             ippsJobCode: data.ippsJob.jobCode
-                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
+                        } as FlendersonPositionMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -133,7 +133,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         operation: 'materialize',
                         payload: {
                             ippsJobCode: data.ippsJob.jobCode
-                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
+                        } as FlendersonPositionMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -145,7 +145,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         operation: 'materialize',
                         payload: {
                             ippsLocationCode: data.ippsLocation.locationCode
-                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
+                        } as FlendersonPositionMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -157,7 +157,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         operation: 'materialize',
                         payload: {
                             ippsLocationCode: data.ippsLocation.locationCode
-                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
+                        } as FlendersonPositionMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -169,7 +169,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         operation: 'materialize',
                         payload: {
                             ippsLocationCode: data.ippsLocation.locationCode
-                        } as FlendersonPersonMaterializeBatchFunctionRequestPayload
+                        } as FlendersonPositionMaterializeBatchFunctionRequestPayload
                     } as FlendersonCommand
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
@@ -336,10 +336,13 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
         // TODO: add some error handling
     }
 
-    functionInvocation.logPayload = logPayload;
+    context.bindings.flendersonJobEnqueue = jobEnqueueMessages;
 
+    logPayload.queueMessages = jobEnqueueMessages;
+    functionInvocation.logPayload = logPayload;
     context.bindings.invocationPostProcessor = functionInvocation;
-    context.log(JSON.stringify(functionInvocation));
+
+    context.log(functionInvocation);
     context.done(null, functionInvocation);
 };
 
