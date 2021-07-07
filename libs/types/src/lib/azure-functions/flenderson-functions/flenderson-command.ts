@@ -30,8 +30,15 @@ type FlendersonCommandOperation =
     'invoke';
 
 interface FlendersonCommandFunctionRequestPayload {
-    readonly eamil?: string;
+    readonly all?: boolean;
+
+    readonly email?: string;
     readonly employeeID?: string;
+
+    readonly ippsEmployeeGroupCode?: string;
+    readonly ippsJobCode?: string;
+    readonly ippsLocationCode?: string;
+    readonly ippsPositionID?: string;
     
     readonly ippsDirectory?: IPPSDirectory;
     readonly ippsEmployeeGroup?: IPPSEmployeeGroup;
