@@ -30,7 +30,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
 
     if (eventType) {
         switch (eventType) {
-            case 'Flenderson.IPPSDirectory.Create':
+            case 'WRDSB.Flenderson.IPPSDirectory.Create':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
@@ -42,7 +42,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSDirectory.Update':
+            case 'WRDSB.Flenderson.IPPSDirectory.Update':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
@@ -54,7 +54,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSDirectory.Delete':
+            case 'WRDSB.Flenderson.IPPSDirectory.Delete':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
@@ -66,7 +66,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSEmployeeGroup.Create':
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.Create':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
@@ -78,7 +78,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSEmployeeGroup.Update':
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.Update':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
@@ -90,7 +90,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSEmployeeGroup.Delete':
+            case 'WRDSB.Flenderson.IPPSEmployeeGroup.Delete':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
@@ -102,7 +102,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSJob.Create':
+            case 'WRDSB.Flenderson.IPPSJob.Create':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
@@ -114,7 +114,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSJob.Update':
+            case 'WRDSB.Flenderson.IPPSJob.Update':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
@@ -126,7 +126,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSJob.Delete':
+            case 'WRDSB.Flenderson.IPPSJob.Delete':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
@@ -138,7 +138,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSLocation.Create':
+            case 'WRDSB.Flenderson.IPPSLocation.Create':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
@@ -150,7 +150,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSLocation.Update':
+            case 'WRDSB.Flenderson.IPPSLocation.Update':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
@@ -162,7 +162,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSLocation.Delete':
+            case 'WRDSB.Flenderson.IPPSLocation.Delete':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.MaterializeBatch',
@@ -174,7 +174,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSPal.Create':
+            case 'WRDSB.Flenderson.IPPSPal.Create':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
@@ -186,7 +186,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSPal.Update':
+            case 'WRDSB.Flenderson.IPPSPal.Update':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
@@ -198,7 +198,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSPal.Delete':
+            case 'WRDSB.Flenderson.IPPSPal.Delete':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
@@ -210,7 +210,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSPerson.Create':
+            case 'WRDSB.Flenderson.IPPSPerson.Create':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.Materialize',
@@ -222,7 +222,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSPerson.Update':
+            case 'WRDSB.Flenderson.IPPSPerson.Update':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.Materialize',
@@ -234,7 +234,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSPerson.Delete':
+            case 'WRDSB.Flenderson.IPPSPerson.Delete':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.Materialize',
@@ -246,7 +246,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSPosition.Create':
+            case 'WRDSB.Flenderson.IPPSPosition.Create':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.Materialize',
@@ -258,7 +258,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSPosition.Update':
+            case 'WRDSB.Flenderson.IPPSPosition.Update':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.Materialize',
@@ -270,7 +270,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.IPPSPosition.Delete':
+            case 'WRDSB.Flenderson.IPPSPosition.Delete':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPosition.Materialize',
@@ -282,16 +282,16 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.FlendersonPerson.Create':
+            case 'WRDSB.Flenderson.FlendersonPerson.Create':
                 break;
 
-            case 'Flenderson.FlendersonPerson.Update':
+            case 'WRDSB.Flenderson.FlendersonPerson.Update':
                 break;
 
-            case 'Flenderson.FlendersonPerson.Delete':
+            case 'WRDSB.Flenderson.FlendersonPerson.Delete':
                 break;
 
-            case 'Flenderson.FlendersonPosition.Create':
+            case 'WRDSB.Flenderson.FlendersonPosition.Create':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
@@ -303,7 +303,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.FlendersonPosition.Update':
+            case 'WRDSB.Flenderson.FlendersonPosition.Update':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
@@ -315,7 +315,7 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                 } as FlendersonJobEnqueueFunctionRequest);
                 break;
 
-            case 'Flenderson.FlendersonPosition.Delete':
+            case 'WRDSB.Flenderson.FlendersonPosition.Delete':
                 jobEnqueueMessages.push({
                     command: {
                         jobType: 'WRDSB.Flenderson.FlendersonPerson.MaterializeBatch',
