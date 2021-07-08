@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { FunctionInvocation, FlendersonJobType, IPPSJob } from "@cosmos/types";
+import { craftEvent } from "@cosmos/flenderson-functions-shared";
 
 const ippsJobChangeParse: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
@@ -20,54 +21,128 @@ const ippsJobChangeParse: AzureFunction = async function (context: Context, trig
 
     const oldRecord = payload.oldRecord as IPPSJob;
     const newRecord = payload.newRecord as IPPSJob;
+    const functionInvocationID = payload.functionInvocationID;
+    const functionInvocationTimestamp = payload.functionInvocationTimestamp;
 
     const events = [];
 
     if (!oldRecord) {
+        const eventSubject = '/wrdsb/flenderson/ipps-job/create';
         const eventType = 'WRDSB.Flenderson.IPPSJob.Create';
         const label = `Job ${newRecord?.id} created.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (!oldRecord?.deleted && newRecord?.deleted) {
+        const eventSubject = '/wrdsb/flenderson/ipps-job/delete';
         const eventType = 'WRDSB.Flenderson.IPPSJob.Delete';
         const label = `Job ${newRecord?.id} deleted.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (!newRecord?.deleted && oldRecord?.deleted) {
+        const eventSubject = '/wrdsb/flenderson/ipps-job/undelete';
         const eventType = 'WRDSB.Flenderson.IPPSJob.Undelete';
         const label = `Job ${newRecord?.id} undeleted.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (oldRecord?.jobCode !== newRecord?.jobCode) {
+        const eventSubject = '/wrdsb/flenderson/ipps-job/jobCode/change';
         const eventType = 'WRDSB.Flenderson.IPPSJob.JobCode.Change';
         const label = `Job ${newRecord?.id} code changed.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (oldRecord?.jobDescription !== newRecord?.jobDescription) {
+        const eventSubject = '/wrdsb/flenderson/ipps-job/jobDescription/change';
         const eventType = 'WRDSB.Flenderson.IPPSJob.JobDescription.Change';
         const label = `Job ${newRecord?.id} description changed.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (oldRecord?.jobAbbreviation !== newRecord?.jobAbbreviation) {
+        const eventSubject = '/wrdsb/flenderson/ipps-job/jobAbbreviation/change';
         const eventType = 'WRDSB.Flenderson.IPPSJob.JobAbbriviation.Change';
         const label = `Job ${newRecord?.id} abbriviation changed.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
@@ -85,18 +160,6 @@ const ippsJobChangeParse: AzureFunction = async function (context: Context, trig
 
     context.bindings.invocationPostProcessor = functionInvocation;
     context.done(null, functionInvocation);
-
-
-    function craftEvent(eventType, label, newRecord, oldRecord) {
-        const event = {
-            eventType: eventType,
-            label: label,
-            newRecord: newRecord,
-            oldRecord: oldRecord
-        }
-
-        return event;
-    }
 };
 
 export default ippsJobChangeParse;

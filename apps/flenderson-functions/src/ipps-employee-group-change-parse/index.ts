@@ -1,5 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { FunctionInvocation, FlendersonJobType, IPPSEmployeeGroup } from "@cosmos/types";
+import { craftEvent } from "@cosmos/flenderson-functions-shared";
 
 const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Context, triggerMessage: any): Promise<void> {
     const functionInvocation = {
@@ -20,62 +21,148 @@ const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Con
 
     const oldRecord = payload.oldRecord as IPPSEmployeeGroup;
     const newRecord = payload.newRecord as IPPSEmployeeGroup;
+    const functionInvocationID = payload.functionInvocationID;
+    const functionInvocationTimestamp = payload.functionInvocationTimestamp;
 
     const events = [];
 
     if (!oldRecord) {
+        const eventSubject = '/wrdsb/flenderson/ipps-employee-group/create';
         const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Create';
         const label = `Employee Group ${newRecord?.id} created.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (!oldRecord?.deleted && newRecord?.deleted) {
+        const eventSubject = '/wrdsb/flenderson/ipps-employee-group/delete';
         const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Delete';
         const label = `Employee Group ${newRecord?.id} deleted.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (!newRecord?.deleted && oldRecord?.deleted) {
+        const eventSubject = '/wrdsb/flenderson/ipps-employee-group/undelete';
         const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.Undelete';
         const label = `Employee Group ${newRecord?.id} undeleted.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (oldRecord?.employeeGroupCode !== newRecord?.employeeGroupCode) {
+        const eventSubject = '/wrdsb/flenderson/ipps-employee-group/employeeGroupCode/change';
         const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.EmployeeGroupCode.Change';
         const label = `Employee Group ${newRecord?.id} code changed.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (oldRecord?.employeeGroupCategory !== newRecord?.employeeGroupCategory) {
+        const eventSubject = '/wrdsb/flenderson/ipps-employee-group/employeeGroupCategory/change';
         const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.EmployeeGroupCategory.Change';
         const label = `Employee Group ${newRecord?.id} category changed.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (oldRecord?.employeeGroupDescription !== newRecord?.employeeGroupDescription) {
+        const eventSubject = '/wrdsb/flenderson/ipps-employee-group/employeeGroupDescription/change';
         const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.EmployeeGroupDescription.Change';
         const label = `Employee Group ${newRecord?.id} description changed.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
     if (oldRecord?.employeeGroupAbbreviation !== newRecord?.employeeGroupAbbreviation) {
+        const eventSubject = '/wrdsb/flenderson/ipps-employee-group/employeeGroupAbbreviation/change';
         const eventType = 'WRDSB.Flenderson.IPPSEmployeeGroup.EmployeeGroupAbbriviation.Change';
         const label = `Employee Group ${newRecord?.id} abbreviation changed.`;
+        const tags = [];
 
-        const event = craftEvent(eventType, label, newRecord, oldRecord);
+        const event = craftEvent({
+            eventSubject: eventSubject,
+            eventType: eventType,
+            label: label,
+            tags: tags,
+        
+            functionInvocationID: functionInvocationID,
+            functionInvocationTimestamp: functionInvocationTimestamp,
+            newRecord: newRecord,
+            oldRecord: oldRecord
+        });
         events.push(event);
     }
 
@@ -93,18 +180,6 @@ const ippsEmployeeGroupChangeParse: AzureFunction = async function (context: Con
 
     context.bindings.invocationPostProcessor = functionInvocation;
     context.done(null, functionInvocation);
-
-
-    function craftEvent(eventType, label, newRecord, oldRecord) {
-        const event = {
-            eventType: eventType,
-            label: label,
-            newRecord: newRecord,
-            oldRecord: oldRecord
-        }
-
-        return event;
-    }
 };
 
 export default ippsEmployeeGroupChangeParse;
