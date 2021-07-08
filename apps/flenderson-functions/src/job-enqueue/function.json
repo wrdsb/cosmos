@@ -8,6 +8,13 @@
       "direction": "in"
     },
     {
+      "name": "viewAllProcess",
+      "type": "queue",
+      "queueName": "view-all-process",
+      "connection": "wrdsbflenderson_STORAGE",
+      "direction": "out"
+    },
+    {
       "name": "viewIAMWPProcess",
       "type": "queue",
       "queueName": "view-iamwp-process",

@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { FunctionInvocation, FlendersonJobType, FlendersonCommand, FlendersonJobEnqueueFunctionRequest, FlendersonCommandOperation, FlendersonCommandFunctionRequestPayload } from "@cosmos/types";
-import { ViewIAMWPProcessFunctionRequest, ViewIPPSGroupsProcessFunctionRequest, ViewIPPSJobsProcessFunctionRequest, ViewIPPSLocationsProcessFunctionRequest, ViewIPPSPalProcessFunctionRequest, ViewIPPSPeopleProcessFunctionRequest, ViewIPPSPositionsProcessFunctionRequest, ViewStaffDirProcessFunctionRequest } from '@cosmos/types';
+import { ViewAllProcessFunctionRequest, ViewIAMWPProcessFunctionRequest, ViewIPPSGroupsProcessFunctionRequest, ViewIPPSJobsProcessFunctionRequest, ViewIPPSLocationsProcessFunctionRequest, ViewIPPSPalProcessFunctionRequest, ViewIPPSPeopleProcessFunctionRequest, ViewIPPSPositionsProcessFunctionRequest, ViewStaffDirProcessFunctionRequest } from '@cosmos/types';
 import { IPPSDirectoryReconcileFunctionRequest, IPPSEmployeeGroupReconcileFunctionRequest, IPPSJobReconcileFunctionRequest, IPPSLocationReconcileFunctionRequest, IPPSPalReconcileFunctionRequest, IPPSPersonReconcileFunctionRequest, IPPSPositionReconcileFunctionRequest } from '@cosmos/types';
 import { FlendersonPositionMaterializeFunctionRequest, FlendersonPersonMaterializeFunctionRequest } from '@cosmos/types';
 import { IPPSDirectoryStoreFunctionRequest, IPPSEmployeeGroupStoreFunctionRequest, IPPSJobStoreFunctionRequest, IPPSLocationStoreFunctionRequest, IPPSPalStoreFunctionRequest, IPPSPersonStoreFunctionRequest, IPPSPositionStoreFunctionRequest, FlendersonPersonStoreFunctionRequest, FlendersonPositionStoreFunctionRequest } from '@cosmos/types';
@@ -48,6 +48,16 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
 
     if (jobType) {
         switch (jobType) {
+            case 'WRDSB.Flenderson.View.All.Process':
+                queueTriggered = "view-all-process";
+                queueMessage = {
+                    jobType: jobType,
+                    payload: {}
+                } as ViewAllProcessFunctionRequest;
+                context.bindings.viewAllProcess = queueMessage;
+                sentQueueMessage = true;
+                break;
+
             case 'WRDSB.Flenderson.View.IAMWP.Process':
                 queueTriggered = "view-iamwp-process";
                 queueMessage = {

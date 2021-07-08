@@ -31,6 +31,10 @@ const jobCascade: AzureFunction = async function (context: Context, triggerMessa
 
     if (jobType) {
         switch (jobType) {
+            case 'WRDSB.Flenderson.View.All.Process':
+                // This job is used to enqueue other jobs directly
+                break;
+
             case 'WRDSB.Flenderson.View.IAMWP.Process':
                 jobEnqueueMessages.push({
                     command: {
