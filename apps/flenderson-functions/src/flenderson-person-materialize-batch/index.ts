@@ -37,72 +37,76 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
     if (all) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-people';
         const querySpec = {
-            query: `SELECT employeeID, email FROM c WHERE c.deleted = false`
+            query: `SELECT c.employeeID, c.email FROM c WHERE c.deleted = false`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        outgoingQueueMessages.push(...requests);
     }
 
     if (employeeID) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-people';
         const querySpec = {
-            query: `SELECT employeeID, email FROM c WHERE c.deleted = false and c.employeeID = ${employeeID}`
+            query: `SELECT c.employeeID, c.email FROM c WHERE c.deleted = false and c.employeeID = "${employeeID}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        outgoingQueueMessages.push(...requests);
     }
 
     if (email) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-people';
         const querySpec = {
-            query: `SELECT employeeID, email FROM c WHERE c.deleted = false and c.email = ${email}`
+            query: `SELECT c.employeeID, c.email FROM c WHERE c.deleted = false and c.email = "${email}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        outgoingQueueMessages.push(...requests);
     }
 
     if (employeeGroupCode) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
         const querySpec = {
-            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.employeeGroupCode = ${employeeGroupCode}`
+            query: `SELECT c.employeeID FROM c WHERE c.deleted = false and c.employeeGroupCode = "${employeeGroupCode}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        outgoingQueueMessages.push(...requests);
     }
 
     if (jobCode) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
         const querySpec = {
-            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.jobCode = ${jobCode}`
+            query: `SELECT c.employeeID FROM c WHERE c.deleted = false and c.jobCode = "${jobCode}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        outgoingQueueMessages.push(...requests);
     }
 
     if (locationCode) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
         const querySpec = {
-            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.locationCode = ${locationCode}`
+            query: `SELECT c.employeeID FROM c WHERE c.deleted = false and c.locationCode = "${locationCode}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        outgoingQueueMessages.push(...requests);
     }
 
     if (positionID) {
         const cosmosContainer: FlendersonDatabaseContainer = 'ipps-positions';
         const querySpec = {
-            query: `SELECT employeeID FROM c WHERE c.deleted = false and c.positionID = ${positionID}`
+            query: `SELECT c.employeeID FROM c WHERE c.deleted = false and c.positionID = "${positionID}"`
         }
         const requests = await createRequests(querySpec, cosmosClient, cosmosDatabase, cosmosContainer);
-        outgoingQueueMessages.concat(requests);
+        outgoingQueueMessages.push(...requests);
     }
 
     context.bindings.queueMaterialize = outgoingQueueMessages;
 
-    const logPayload = outgoingQueueMessages;
+    const logPayload = {
+        "numberQueued": outgoingQueueMessages.length
+    };
     functionInvocation.logPayload = logPayload;
 
     context.bindings.invocationPostProcessor = functionInvocation;
+    context.log(outgoingQueueMessages);
+    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 
@@ -119,6 +123,7 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
 
         requests = await fillInFields(requests);
 
+        context.log(`created ${requests.length} requests`);
         return requests;
     }
 
@@ -141,13 +146,13 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
                         
             const newRequest = {
                 payload: {
-                    employeeID: request.payload.employeeID,
+                    employeeID: employeeID,
                     email: email
                 }
             } as FlendersonPersonMaterializeFunctionRequest;
             updatedRequests.push(newRequest);
         };
-        
+
         return updatedRequests;
     }
 
@@ -175,7 +180,9 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
                 }
             }
     
+            context.log(`found ${records.length} records`);
             return records;
+
         } catch (error) {
             context.log(error);
             return records;
@@ -189,7 +196,7 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
         let email = '';
 
         const querySpec = {
-            query: `SELECT email FROM c WHERE c.employeeID = ${employeeID}`
+            query: `SELECT c.email FROM c WHERE c.employeeID = "${employeeID}"`
         }
 
         const queryOptions  = {
@@ -218,7 +225,7 @@ const flendersonPersonMaterializeBatch: AzureFunction = async function (context:
         let employeeID = '';
 
         const querySpec = {
-            query: `SELECT employeeID FROM c WHERE c.email = ${email}`
+            query: `SELECT c.employeeID FROM c WHERE c.email = "${email}"`
         }
 
         const queryOptions  = {
