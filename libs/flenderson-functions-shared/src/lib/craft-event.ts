@@ -28,7 +28,7 @@ export interface CraftEventArgs {
 export function craftEvent(args: CraftEventArgs): WRDSBEvent {
 
     const eventData: WRDSBEventData = {
-        source: `/${args.eventSubject}/${args.recordID}`,
+        source: `${args.eventSubject}/${args.recordID}`,
         functionInvocationID: args.functionInvocation.functionInvocationID,
         label: args.label,
         tags: args.tags,
