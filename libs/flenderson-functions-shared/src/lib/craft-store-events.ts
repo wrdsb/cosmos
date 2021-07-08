@@ -1,22 +1,27 @@
-import { craftEvent, CraftEventArgs } from "@cosmos/flenderson-functions-shared";
-import { FunctionInvocation, StoreFunctionEvent } from "@cosmos/types";
+import { FunctionInvocation } from "@cosmos/types";
+import { WRDSBEvent, WRDSBEventData } from "@cosmos/types";
 import { WRDSBFlendersonEventSubject, WRDSBFlendersonEventType, WRDSBFlendersonEventTag } from "@cosmos/types";
+import { StoreFunctionEvent } from "@cosmos/types";
+import { FlendersonPerson, FlendersonPosition, IPPSDirectory, IPPSEmployeeGroup, IPPSJob, IPPSLocation, IPPSPal, IPPSPerson, IPPSPosition } from "@cosmos/types";
 
-export function craftCreateEvent(oldRecord, newRecord, functionInvocation) {
+
+export function craftStoreCreateEvent(oldRecord, newRecord, functionInvocation) {
     const eventSubjectDataType = extractEventSubjectDataType(functionInvocation);
     const tagsRoot = extractTagsRoot(functionInvocation);
 
-    const eventSubject = `/wrdsb/flenderson/${eventSubjectDataType}/create` as WRDSBFlendersonEventSubject;
-    const eventType = `Flenderson.${functionInvocation.functionDataType}.Create` as WRDSBFlendersonEventType;
+    const eventSubject = `/wrdsb/flenderson/${eventSubjectDataType}/store/create` as WRDSBFlendersonEventSubject;
+    const eventType = `Flenderson.${functionInvocation.functionDataType}.Store.Create` as WRDSBFlendersonEventType;
     const operation: StoreFunctionEvent = 'create';
     const label = `${functionInvocation.functionDataType} record created.`;
     const tags = [
-        "flenderson", 
-        "create_record",
+        "flenderson",
+        "store",
+        "flenderson_store",
+        "store_create",
         `${tagsRoot}_change`
     ] as WRDSBFlendersonEventTag[];
 
-    let craftEventArgs: CraftEventArgs = {
+    let craftEventArgs: CraftStoreEventArgs = {
         recordID: newRecord?.id,
         eventSubject: eventSubject,
         eventType: eventType,
@@ -27,26 +32,28 @@ export function craftCreateEvent(oldRecord, newRecord, functionInvocation) {
     }
     craftEventArgs = addEventData(newRecord, craftEventArgs);
 
-    const event = craftEvent(craftEventArgs);
+    const event = craftStoreEvent(craftEventArgs);
     return event;
 }
 
 
-export function craftUpdateEvent(oldRecord, newRecord, functionInvocation) {
+export function craftStoreUpdateEvent(oldRecord, newRecord, functionInvocation) {
     const eventSubjectDataType = extractEventSubjectDataType(functionInvocation);
     const tagsRoot = extractTagsRoot(functionInvocation);
 
-    const eventSubject = `/wrdsb/flenderson/${eventSubjectDataType}/update` as WRDSBFlendersonEventSubject;
-    const eventType = `Flenderson.${functionInvocation.functionDataType}.Update` as WRDSBFlendersonEventType;
+    const eventSubject = `/wrdsb/flenderson/${eventSubjectDataType}/store/update` as WRDSBFlendersonEventSubject;
+    const eventType = `Flenderson.${functionInvocation.functionDataType}.Store.Update` as WRDSBFlendersonEventType;
     const operation: StoreFunctionEvent = 'update';
     const label = `${functionInvocation.functionDataType} record updated.`;
     const tags = [
         "flenderson",
-        "update_record",
+        "store",
+        "flenderson_store",
+        "store_update",
         `${tagsRoot}_change`
     ] as WRDSBFlendersonEventTag[];
 
-    let craftEventArgs: CraftEventArgs = {
+    let craftEventArgs: CraftStoreEventArgs = {
         recordID: newRecord?.id,
         eventSubject: eventSubject,
         eventType: eventType,
@@ -57,26 +64,28 @@ export function craftUpdateEvent(oldRecord, newRecord, functionInvocation) {
     }
     craftEventArgs = addEventData(newRecord, craftEventArgs);
 
-    const event = craftEvent(craftEventArgs);
+    const event = craftStoreEvent(craftEventArgs);
     return event;
 }
 
 
-export function craftDeleteEvent(oldRecord, newRecord, functionInvocation) {
+export function craftStoreDeleteEvent(oldRecord, newRecord, functionInvocation) {
     const eventSubjectDataType = extractEventSubjectDataType(functionInvocation);
     const tagsRoot = extractTagsRoot(functionInvocation);
 
-    const eventSubject = `/wrdsb/flenderson/${eventSubjectDataType}/delete` as WRDSBFlendersonEventSubject;
-    const eventType = `Flenderson.${functionInvocation.functionDataType}.Delete` as WRDSBFlendersonEventType;
+    const eventSubject = `/wrdsb/flenderson/${eventSubjectDataType}/store/delete` as WRDSBFlendersonEventSubject;
+    const eventType = `Flenderson.${functionInvocation.functionDataType}.Store.Delete` as WRDSBFlendersonEventType;
     const operation: StoreFunctionEvent = 'delete';
     const label = `${functionInvocation.functionDataType} record deleted.`;
     const tags = [
         "flenderson", 
-        "delete_record",
+        "store",
+        "flenderson_store",
+        "store_delete",
         `${tagsRoot}_change`
     ] as WRDSBFlendersonEventTag[];
 
-    let craftEventArgs: CraftEventArgs = {
+    let craftEventArgs: CraftStoreEventArgs = {
         recordID: newRecord?.id,
         eventSubject: eventSubject,
         eventType: eventType,
@@ -87,18 +96,68 @@ export function craftDeleteEvent(oldRecord, newRecord, functionInvocation) {
     }
     craftEventArgs = addEventData(newRecord, craftEventArgs);
 
-    const event = craftEvent(craftEventArgs);
+    const event = craftStoreEvent(craftEventArgs);
     return event;
 }
 
 
-export interface CraftStorageEventArgs {
-    eventSubjectDataType: CraftStorageEventSubjectDataType;
-    tagsRoot: CraftStorageEventTagsRoot;
-};
+interface CraftStoreEventArgs {
+    recordID: string;
+    operation: StoreFunctionEvent;
+    eventSubject: WRDSBFlendersonEventSubject;
+    eventType: WRDSBFlendersonEventType;
+    functionInvocation: FunctionInvocation;
+    label: string;
+    tags: WRDSBFlendersonEventTag[];
+
+    flendersonPerson?: FlendersonPerson;
+    flendersonPostiion?: FlendersonPosition;
+
+    ippsDirectory?: IPPSDirectory;
+    ippsEmployeeGroup?: IPPSEmployeeGroup;
+    ippsJob?: IPPSJob;
+    ippsLocation?: IPPSLocation;
+    ippsPal?: IPPSPal;
+    ippsPerson?: IPPSPerson;
+    ippsPostiion?: IPPSPosition;
+}
 
 
-function addEventData(newRecord, craftEventArgs: CraftEventArgs): CraftEventArgs {
+function craftStoreEvent(args: CraftStoreEventArgs): WRDSBEvent {
+
+    const eventData: WRDSBEventData = {
+        source: `${args.eventSubject}/${args.recordID}`,
+        functionInvocationID: args.functionInvocation.functionInvocationID,
+        label: args.label,
+        tags: args.tags,
+        contentType: "application/json"
+    };
+
+    if (args.flendersonPerson)   { eventData.flendersonPerson = args.flendersonPerson };
+    if (args.flendersonPostiion) { eventData.flendersonPostiion = args.flendersonPostiion };
+    if (args.ippsDirectory)      { eventData.ippsDirectory = args.ippsDirectory };
+    if (args.ippsEmployeeGroup)  { eventData.ippsEmployeeGroup = args.ippsEmployeeGroup };
+    if (args.ippsJob)            { eventData.ippsJob = args.ippsJob };
+    if (args.ippsLocation)       { eventData.ippsLocation = args.ippsLocation };
+    if (args.ippsPal)            { eventData.ippsPal = args.ippsPal };
+    if (args.ippsPerson)         { eventData.ippsPerson = args.ippsPerson };
+    if (args.ippsPostiion)       { eventData.ippsPostiion = args.ippsPostiion };
+
+    const event: WRDSBEvent = {
+        subject: args.eventSubject,
+        eventType: args.eventType,
+        eventTime: args.functionInvocation.functionInvocationTimestamp,
+        id: `${args.eventType}-${args.functionInvocation.functionInvocationID}`,
+        data: eventData,
+        dataVersion: "1.0",
+    };
+
+    // TODO: check message length
+    return event;
+}
+
+
+function addEventData(newRecord, craftEventArgs: CraftStoreEventArgs): CraftStoreEventArgs {
     switch (craftEventArgs.functionInvocation.functionDataType) {
         case 'FlendersonPerson':
             craftEventArgs.flendersonPerson = newRecord;
@@ -236,7 +295,7 @@ function extractTagsRoot(functionInvocation: FunctionInvocation): CraftStorageEv
     }
 } 
 
-export type CraftStorageEventSubjectDataType =
+type CraftStorageEventSubjectDataType =
 'flenderson-person' |
 'flenderson-position' |
 'ipps-directory' |
@@ -248,7 +307,7 @@ export type CraftStorageEventSubjectDataType =
 'ipps-position' ;
 
 
-export type CraftStorageEventTagsRoot =
+type CraftStorageEventTagsRoot =
 'flenderson_person' |
 'flenderson_position' |
 'ipps_directory' |
