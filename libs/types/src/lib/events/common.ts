@@ -57,6 +57,9 @@ export interface WRDSBEventData {
     flendersonPerson?: FlendersonPerson;
     flendersonPostiion?: FlendersonPosition;
 
+    oldRecord?;
+    newRecord?;
+
     api?: string;
     clientRequestId?: string;
     requestId?: string;
