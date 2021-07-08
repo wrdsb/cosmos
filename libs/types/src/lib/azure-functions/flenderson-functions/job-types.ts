@@ -1,4 +1,5 @@
 export type FlendersonJobType =
+'WRDSB.Flenderson.View.All.Process' |
 'WRDSB.Flenderson.View.IAMWP.Process' |
 'WRDSB.Flenderson.View.IPPSGroups.Process' |
 'WRDSB.Flenderson.View.IPPSJobs.Process' |
