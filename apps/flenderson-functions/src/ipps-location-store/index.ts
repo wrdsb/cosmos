@@ -2,7 +2,7 @@ import { AzureFunction, Context } from "@azure/functions";
 import { UTCDateTime, FunctionInvocation, FlendersonJobType, IPPSLocationStoreFunctionRequest, StoreFunctionOperation, IPPSLocation } from "@cosmos/types";
 import { CalcArgs, CalcResult } from "@cosmos/flenderson-functions-shared";
 import { calcPatch, calcReplace, calcDelete, makeHashIPPSLocation } from "@cosmos/flenderson-functions-shared";
-import { craftCreateEvent, craftUpdateEvent, craftDeleteEvent } from "@cosmos/flenderson-functions-shared";
+import { craftStoreCreateEvent, craftStoreUpdateEvent, craftStoreDeleteEvent } from "@cosmos/flenderson-functions-shared";
 
 const ippsLocationStore: AzureFunction = async function (context: Context, triggerMessage: IPPSLocationStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -82,15 +82,15 @@ const ippsLocationStore: AzureFunction = async function (context: Context, trigg
     switch (eventOp) {
         case 'create':
             changeDetected = true;
-            event = craftCreateEvent(oldRecord, calcRecord, functionInvocation);
+            event = craftStoreCreateEvent(oldRecord, calcRecord, functionInvocation);
             break;
         case 'update':
             changeDetected = (oldRecord.changeDetectionHash === calcRecord.changeDetectionHash) ? false : true;
-            event = craftUpdateEvent(oldRecord, calcRecord, functionInvocation);
+            event = craftStoreUpdateEvent(oldRecord, calcRecord, functionInvocation);
             break;
         case 'delete':
             changeDetected = true;
-            event = craftDeleteEvent(oldRecord, calcRecord, functionInvocation);
+            event = craftStoreDeleteEvent(oldRecord, calcRecord, functionInvocation);
             break;
     }
 
@@ -99,6 +99,8 @@ const ippsLocationStore: AzureFunction = async function (context: Context, trigg
         context.bindings.eventCascade = event;
         context.bindings.changeParse = {
             "payload": {
+                functionInvocationID: functionInvocation.functionInvocationID,
+                functionInvocationTimestamp: functionInvocation.functionInvocationTimestamp,
                 oldRecord: (oldRecord) ? oldRecord : null,
                 newRecord: calcRecord
             }

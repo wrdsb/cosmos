@@ -2,7 +2,7 @@ import { AzureFunction, Context } from "@azure/functions";
 import { UTCDateTime, FunctionInvocation, FlendersonJobType, IPPSPalStoreFunctionRequest, StoreFunctionOperation, IPPSPal } from "@cosmos/types";
 import { CalcArgs, CalcResult } from "@cosmos/flenderson-functions-shared";
 import { calcPatch, calcReplace, calcDelete, makeHashIPPSPal } from "@cosmos/flenderson-functions-shared";
-import { craftCreateEvent, craftUpdateEvent, craftDeleteEvent } from "@cosmos/flenderson-functions-shared";
+import { craftStoreCreateEvent, craftStoreUpdateEvent, craftStoreDeleteEvent } from "@cosmos/flenderson-functions-shared";
 
 const ippsPalStore: AzureFunction = async function (context: Context, triggerMessage: IPPSPalStoreFunctionRequest): Promise<void> {
     const functionInvocation = {
@@ -77,15 +77,15 @@ const ippsPalStore: AzureFunction = async function (context: Context, triggerMes
     switch (eventOp) {
         case 'create':
             changeDetected = true;
-            event = craftCreateEvent(oldRecord, calcRecord, functionInvocation);
+            event = craftStoreCreateEvent(oldRecord, calcRecord, functionInvocation);
             break;
         case 'update':
             changeDetected = (oldRecord.changeDetectionHash === calcRecord.changeDetectionHash) ? false : true;
-            event = craftUpdateEvent(oldRecord, calcRecord, functionInvocation);
+            event = craftStoreUpdateEvent(oldRecord, calcRecord, functionInvocation);
             break;
         case 'delete':
             changeDetected = true;
-            event = craftDeleteEvent(oldRecord, calcRecord, functionInvocation);
+            event = craftStoreDeleteEvent(oldRecord, calcRecord, functionInvocation);
             break;
     }
 
@@ -94,6 +94,8 @@ const ippsPalStore: AzureFunction = async function (context: Context, triggerMes
         context.bindings.eventCascade = event;
         context.bindings.changeParse = {
             "payload": {
+                functionInvocationID: functionInvocation.functionInvocationID,
+                functionInvocationTimestamp: functionInvocation.functionInvocationTimestamp,
                 oldRecord: (oldRecord) ? oldRecord : null,
                 newRecord: calcRecord
             }
