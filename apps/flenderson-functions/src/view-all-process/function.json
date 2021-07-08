@@ -1,0 +1,68 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "view-all-process",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "viewIppsJobsProcess",
+            "type": "queue",
+            "queueName": "view-ipps-jobs-process",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewIppsGroupsProcess",
+            "type": "queue",
+            "queueName": "view-ipps-groups-process",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewIppsLocationsProcess",
+            "type": "queue",
+            "queueName": "view-ipps-locations-process",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewIppsPalProcess",
+            "type": "queue",
+            "queueName": "view-ipps-pal-process",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewIppsPeopleProcess",
+            "type": "queue",
+            "queueName": "view-ipps-people-process",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewIppsPositionsProcess",
+            "type": "queue",
+            "queueName": "view-ipps-positions-process",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "viewStaffdirProcess",
+            "type": "queue",
+            "queueName": "view-staffdir-process",
+            "connection": "wrdsbflenderson_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbflenderson_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
