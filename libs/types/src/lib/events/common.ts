@@ -1,16 +1,19 @@
-import { WRDSBFlendersonEventType, WRDSBFlendersonEventTag } from "@cosmos/types"
+import { WRDSBFlendersonEventType, WRDSBFlendersonEventTag, WRDSBFlendersonEventSubject } from "@cosmos/types"
+import { WRDSBWALDIREventSubject, WRDSBWALDIREventTag, WRDSBWALDIREventType } from "@cosmos/types";
 import { FunctionInvocation } from "@cosmos/types";
 import { FlendersonPerson, FlendersonPosition, IPPSDirectory, IPPSEmployeeGroup, IPPSJob, IPPSLocation, IPPSPal, IPPSPerson, IPPSPosition } from "@cosmos/types";
-import { WRDSBFlendersonEventSubject } from "./flenderson";
 
 export type WRDSBEventSubject =
-    WRDSBFlendersonEventSubject;
+    WRDSBFlendersonEventSubject|
+    WRDSBWALDIREventSubject;
 
 export type WRDSBEventType =
-    WRDSBFlendersonEventType;
+    WRDSBFlendersonEventType|
+    WRDSBWALDIREventType;
 
 export type WRDSBEventTag =
-    WRDSBFlendersonEventTag;
+    WRDSBFlendersonEventTag|
+    WRDSBWALDIREventTag;
 
 // "2017-06-26T18:41:00.9584103Z"
 export type UTCDateTime = string;
