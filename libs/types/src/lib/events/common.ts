@@ -1,7 +1,7 @@
 import { WRDSBFlendersonEventType, WRDSBFlendersonEventTag, WRDSBFlendersonEventSubject } from "@cosmos/types"
 import { WRDSBWALDIREventSubject, WRDSBWALDIREventTag, WRDSBWALDIREventType } from "@cosmos/types";
 import { FunctionInvocation } from "@cosmos/types";
-import { FlendersonPerson, FlendersonPosition, IPPSDirectory, IPPSEmployeeGroup, IPPSJob, IPPSLocation, IPPSPal, IPPSPerson, IPPSPosition } from "@cosmos/types";
+import { FlendersonPerson, FlendersonPosition, IPPSDirectory, IPPSEmployeeGroup, IPPSJob, IPPSLocation, IPPSPal, IPPSPerson, IPPSPosition, WALDIRUser, WPUser } from "@cosmos/types";
 
 export type WRDSBEventSubject =
     WRDSBFlendersonEventSubject|
@@ -59,6 +59,10 @@ export interface WRDSBEventData {
 
     flendersonPerson?: FlendersonPerson;
     flendersonPostiion?: FlendersonPosition;
+
+    waldirUser?: WALDIRUser;
+
+    wpUser?: WPUser;
 
     oldRecord?;
     newRecord?;
