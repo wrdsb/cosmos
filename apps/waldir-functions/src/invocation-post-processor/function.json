@@ -1,0 +1,26 @@
+{
+  "bindings": [{
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "callbackMessage",
+      "type": "queue",
+      "queueName": "callbacks",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "flynnEvent",
+      "type": "queue",
+      "queueName": "event-emitter",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": true,
+  "scriptFile": "./index.js"
+}
