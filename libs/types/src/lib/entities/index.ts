@@ -12,3 +12,5 @@ export * from './sorting-hat';
 //export * from './sparkrock';
 export * from './team-viewer';
 export * from './trillium';
+export * from './waldir';
+export * from './wordpress';
