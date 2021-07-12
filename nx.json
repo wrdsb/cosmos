@@ -512,6 +512,13 @@
     },
     "waldir-functions": {
       "tags": []
+    },
+    "waldir-console": {
+      "tags": []
+    },
+    "waldir-console-e2e": {
+      "tags": [],
+      "implicitDependencies": ["waldir-console"]
     }
   }
 }
