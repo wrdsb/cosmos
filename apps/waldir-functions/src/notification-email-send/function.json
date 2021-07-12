@@ -1,0 +1,25 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "notification-email-send",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "outboundEmail",
+            "type": "sendGrid",
+            "apiKey" : "sendGridKey",
+            "direction": "out"
+        },
+        {
+            "name": "invocationPostProcessor",
+            "type": "queue",
+            "queueName": "invocation-post-processor",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "out"
+        }
+      ],
+    "scriptFile": "./index.js"
+}
