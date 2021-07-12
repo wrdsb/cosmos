@@ -1,5 +1,4 @@
 {
-  "npmScope": "cosmos",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": {
@@ -11,6 +10,10 @@
     "tsconfig.base.json": "*",
     ".eslintrc.json": "*"
   },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "cosmos",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
@@ -506,9 +509,9 @@
     },
     "flenderson-functions-shared": {
       "tags": []
+    },
+    "waldir-functions": {
+      "tags": []
     }
-  },
-  "affected": {
-    "defaultBase": "master"
   }
 }

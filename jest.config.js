@@ -143,5 +143,6 @@ module.exports = {
     '<rootDir>/libs/screens/shared/pings',
     '<rootDir>/libs/ui/shared/interaction/pings',
     '<rootDir>/libs/flenderson-functions-shared',
+    '<rootDir>/apps/waldir-functions',
   ],
 };
