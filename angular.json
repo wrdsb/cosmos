@@ -7506,6 +7506,27 @@
           }
         }
       }
+    },
+    "waldir-functions-shared": {
+      "root": "libs/waldir-functions-shared",
+      "sourceRoot": "libs/waldir-functions-shared/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/waldir-functions-shared/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/waldir-functions-shared"],
+          "options": {
+            "jestConfig": "libs/waldir-functions-shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

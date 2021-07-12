@@ -225,6 +225,9 @@
       ],
       "@cosmos/flenderson-functions-shared": [
         "libs/flenderson-functions-shared/src/index.ts"
+      ],
+      "@cosmos/waldir-functions-shared": [
+        "libs/waldir-functions-shared/src/index.ts"
       ]
     }
   },

@@ -519,6 +519,9 @@
     "waldir-console-e2e": {
       "tags": [],
       "implicitDependencies": ["waldir-console"]
+    },
+    "waldir-functions-shared": {
+      "tags": []
     }
   }
 }

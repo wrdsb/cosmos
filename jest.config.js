@@ -145,5 +145,6 @@ module.exports = {
     '<rootDir>/libs/flenderson-functions-shared',
     '<rootDir>/apps/waldir-functions',
     '<rootDir>/apps/waldir-console',
+    '<rootDir>/libs/waldir-functions-shared',
   ],
 };
