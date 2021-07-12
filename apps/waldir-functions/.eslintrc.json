@@ -1,11 +1,12 @@
 {
-  "extends": ["../../.eslintrc.json"],
+  "extends": "../../.eslintrc.json",
   "ignorePatterns": ["!**/*"],
+  "rules": {},
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["apps/waldir-functions/tsconfig.*?.json"]
+        "project": ["apps/viewfinder-functions/tsconfig.*?.json"]
       },
       "rules": {}
     },

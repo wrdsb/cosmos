@@ -7315,13 +7315,43 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "./tools/executors/azfunc:azfunc",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/waldir-functions",
-            "main": "apps/waldir-functions/src/main.ts",
             "tsConfig": "apps/waldir-functions/tsconfig.app.json",
-            "assets": ["apps/waldir-functions/src/assets"]
+            "webpackConfig": "apps/viewfinder-functions/webpack.config.js",
+            "watch": false,
+            "buildLibsFromSource": true,
+            "externalDependencies": "none",
+            "sourceMap": false,
+            "assets": [
+              {
+                "input": "./apps/waldir-functions/src",
+                "glob": "**/function.json",
+                "output": "./waldir-functions"
+              },
+              {
+                "input": "./apps/waldir-functions/src",
+                "glob": "host.json",
+                "output": "./waldir-functions"
+              },
+              {
+                "input": "./apps/waldir-functions/src",
+                "glob": "proxies.json",
+                "output": "./waldir-functions"
+              },
+              {
+                "input": "./apps/waldir-functions/src",
+                "glob": "extensions.csproj",
+                "output": "./waldir-functions"
+              },
+              {
+                "input": "./apps/waldir-functions/src/bin",
+                "glob": "**.*",
+                "output": "./waldir-functions/bin"
+              }
+            ]
           },
           "configurations": {
             "production": {

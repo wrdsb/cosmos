@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "module": "commonjs",
+    "composite": true,
+    "outDir": "../../dist/apps/waldir-functions",
     "types": ["node"]
   },
   "exclude": ["**/*.spec.ts"],
