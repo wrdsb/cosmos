@@ -1,0 +1,26 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "waldir-command",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "waldirJobEnqueue",
+      "type": "queue",
+      "queueName": "job-enqueue",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
