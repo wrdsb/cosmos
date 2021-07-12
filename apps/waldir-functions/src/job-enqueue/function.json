@@ -1,0 +1,83 @@
+{
+  "bindings": [
+    {
+      "name": "triggerMessage",
+      "type": "queueTrigger",
+      "queueName": "job-enqueue",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "in"
+    },
+    {
+      "name": "waldirUserMaterialize",
+      "type": "queue",
+      "queueName": "waldir-user-materialize",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "waldirUserStore",
+      "type": "queue",
+      "queueName": "waldir-user-store",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "wpUserCreate",
+      "type": "queue",
+      "queueName": "wp-user-create",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "wpUserDelete",
+      "type": "queue",
+      "queueName": "wp-user-delete",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "wpUserGet",
+      "type": "queue",
+      "queueName": "wp-user-get",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "wpUserGetAll",
+      "type": "queue",
+      "queueName": "wp-user-get-all",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "wpUserReconcile",
+      "type": "queue",
+      "queueName": "wp-user-reconcile",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "wpUserStore",
+      "type": "queue",
+      "queueName": "wp-user-store",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "wpUserUpdate",
+      "type": "queue",
+      "queueName": "wp-user-update",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "./index.js"
+}
