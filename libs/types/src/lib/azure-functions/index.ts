@@ -10,3 +10,4 @@ export * from './igor-functions';
 export * from './quartermaster-functions';
 export * from './skinner-functions';
 export * from './sorting-hat-functions';
+export * from './waldir-functions';
