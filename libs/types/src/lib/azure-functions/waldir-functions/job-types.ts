@@ -7,7 +7,7 @@ export type WALDIRJobType =
 
 'WRDSB.WALDIR.WPUser.Reconcile' |
 
-'WRDSB.WALDIR.WALDIRUSer.Store' |
+'WRDSB.WALDIR.WALDIRUser.Store' |
 'WRDSB.WALDIR.WPUser.Store' |
 
 'WRDSB.WALDIR.WALDIR.ChangeTrigger' |
