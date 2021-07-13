@@ -13,6 +13,36 @@ interface WPUser extends CosmosCoreFields {
 
     //id?: string;
     changeDetectionHash?: string;
+
+    siteURL?: string;
+    siteDomain?: string;
+    siteSlug?: string;
+    siteLink?: string;
+
+    username?: string;
+    email?: string;
+
+    name?: string;
+    firstName?: string;
+    lastName?: string;
+    nickname?: string;
+
+    description?: string;
+    link?: string;
+    slug?: string;
+    url?: string;
+
+    locale?: string;
+    registeredDate?: string;
+
+    password?: string;
+
+    roles?: string[];
+
+    capabilities?: any;
+    extraCapabilities?: any;
+    avatarURLs?: any;
+    meta?: any;
 }
 
 export { WPUser };

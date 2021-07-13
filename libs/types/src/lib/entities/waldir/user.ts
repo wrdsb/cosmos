@@ -13,6 +13,30 @@ interface WALDIRUser extends CosmosCoreFields {
 
     //id?: string;
     changeDetectionHash?: string;
+
+    username?: string;
+    email?: string;
+
+    name?: string;
+    firstName?: string;
+    lastName?: string;
+    nickname?: string;
+
+    siteIDs?: string[];
+    roles?: string[];
+
+    siteMemberships: WPSiteMembership[];
+}
+
+interface WPSite {
+    siteID?: string;
+    siteURL?: string;
+    siteDomain?: string;
+    siteSlug?: string;
+}
+
+interface WPSiteMembership {
+
 }
 
 export { WALDIRUser };
