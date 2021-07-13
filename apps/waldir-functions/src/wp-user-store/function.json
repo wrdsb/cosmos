@@ -1,0 +1,51 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "wp-user-store",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "recordIn",
+            "type": "cosmosDB",
+            "databaseName": "waldir",
+            "collectionName": "wp-users",
+            "id": "{payload.id}",
+            "partitionKey": "{payload.id}",
+            "connectionStringSetting": "wrdsb-waldir_COSMOSDB",
+            "direction": "in"
+        },
+        {
+            "name": "recordOut",
+            "type": "cosmosDB",
+            "databaseName": "waldir",
+            "collectionName": "wp-users",
+            "connectionStringSetting": "wrdsb-waldir_COSMOSDB",
+            "direction": "out"
+        },
+        {
+            "name": "eventCascade",
+            "type": "queue",
+            "queueName": "event-cascade",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "changeParse",
+            "type": "queue",
+            "queueName": "wp-user-change-parse",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbwaldir_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
