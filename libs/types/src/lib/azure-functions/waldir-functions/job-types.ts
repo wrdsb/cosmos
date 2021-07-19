@@ -3,14 +3,15 @@ export type WALDIRJobType =
 'WRDSB.WALDIR.WPUser.GetAll' |
 'WRDSB.WALDIR.WPUser.Create' |
 'WRDSB.WALDIR.WPUser.Update' |
-'WRDSB.WALDIR.WPUser.Create' |
+'WRDSB.WALDIR.WPUser.Delete' |
 
+'WRDSB.WALDIR.WALDIRUser.Reconcile' |
 'WRDSB.WALDIR.WPUser.Reconcile' |
 
 'WRDSB.WALDIR.WALDIRUser.Store' |
 'WRDSB.WALDIR.WPUser.Store' |
 
-'WRDSB.WALDIR.WALDIR.ChangeTrigger' |
+'WRDSB.WALDIR.WALDIRUser.ChangeTrigger' |
 'WRDSB.WALDIR.WPUser.ChangeTrigger' |
 
 'WRDSB.WALDIR.WALDIRUser.ChangeParse' |

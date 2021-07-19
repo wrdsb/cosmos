@@ -1,7 +1,7 @@
 import { HttpRequest } from "@azure/functions";
 import * as Cosmos from "../common";
 import { WALDIRJobType } from "@cosmos/types";
-import { IPPSDirectory, IPPSEmployeeGroup, IPPSJob, IPPSLocation, IPPSPal, IPPSPerson, IPPSPosition, WALDIRPerson, WALDIRPosition } from '@cosmos/types';
+import { WALDIRUser, WPUser } from '@cosmos/types';
 
 interface WALDIRCommandFunctionRequest extends HttpRequest {
     body: WALDIRCommandFunctionRequestBody;
@@ -20,14 +20,16 @@ interface WALDIRCommand {
 type WALDIRCommandJobType = WALDIRJobType;
 
 type WALDIRCommandOperation = 
-    'process' |
+    'get' |
+    'getAll' |
     'reconcile' |
     'create' |
     'patch' | 
     'replace' | 
     'delete' | 
     'materialize' |
-    'invoke';
+    'invoke' |
+    'send';
 
 interface WALDIRCommandFunctionRequestPayload {
     readonly all?: boolean;
@@ -35,20 +37,8 @@ interface WALDIRCommandFunctionRequestPayload {
     readonly email?: string;
     readonly employeeID?: string;
 
-    readonly ippsEmployeeGroupCode?: string;
-    readonly ippsJobCode?: string;
-    readonly ippsLocationCode?: string;
-    readonly ippsPositionID?: string;
-    
-    readonly ippsDirectory?: IPPSDirectory;
-    readonly ippsEmployeeGroup?: IPPSEmployeeGroup;
-    readonly ippsJob?: IPPSJob;
-    readonly ippsLocation?: IPPSLocation;
-    readonly ippsPal?: IPPSPal;
-    readonly ippsPerson?: IPPSPerson;
-    readonly ippsPosition?: IPPSPosition;
-    readonly WALDIRPerson?: WALDIRPerson;
-    readonly WALDIRPosition?: WALDIRPosition;
+    readonly waldirUser: WALDIRUser;
+    readonly wpUser: WPUser;
 
     readonly indexName?: string;
 }
