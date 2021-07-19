@@ -1,4 +1,5 @@
 import * as Cosmos from "../common";
+import { WPDomain, WPSite, WPService, WPEnvironment } from "@cosmos/types"
 
 interface WPUserGetAllFunctionRequest {
     readonly payload: WPUserGetAllFunctionRequestPayload;
@@ -19,6 +20,10 @@ interface WPUserGetAllFunctionInvocationEvent extends Cosmos.FunctionInvocationE
 }
 
 interface WPUserGetAllFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+    wpDomain?: WPDomain;
+    wpSite?: WPSite;
+    wpService?: WPService;
+    wpEnvironment?: WPEnvironment;
 }
 
 interface WPUserGetAllFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
