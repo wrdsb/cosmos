@@ -7320,7 +7320,7 @@
           "options": {
             "outputPath": "dist/apps/waldir-functions",
             "tsConfig": "apps/waldir-functions/tsconfig.app.json",
-            "webpackConfig": "apps/viewfinder-functions/webpack.config.js",
+            "webpackConfig": "apps/waldir-functions/webpack.config.js",
             "watch": false,
             "buildLibsFromSource": true,
             "externalDependencies": "none",
