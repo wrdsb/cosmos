@@ -8,6 +8,13 @@
             "direction": "in"
         },
         {
+            "name": "wpUserStore",
+            "type": "queue",
+            "queueName": "wp-user-store",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "out"
+        },
+        {
             "name": "eventCascade",
             "type": "queue",
             "queueName": "event-cascade",

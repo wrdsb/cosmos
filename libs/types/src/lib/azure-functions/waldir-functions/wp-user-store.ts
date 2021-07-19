@@ -1,8 +1,9 @@
 import * as Cosmos from "../common";
+import { WPUser } from "@cosmos/types";
 
 interface WPUserStoreFunctionRequest {
     readonly operation: Cosmos.StoreFunctionOperation;
-    readonly payload: WPUserStoreFunctionRequestPayload;
+    readonly payload: WPUser;
 }
 
 interface WPUserStoreFunctionResponse extends Cosmos.FunctionResponse {
@@ -17,9 +18,6 @@ interface WPUserStoreFunctionCallbackMessage extends Cosmos.FunctionCallbackMess
 
 interface WPUserStoreFunctionInvocationEvent extends Cosmos.FunctionInvocationEvent {
     readonly data: WPUserStoreFunctionInvocationEventPayload;
-}
-
-interface WPUserStoreFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
 }
 
 interface WPUserStoreFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
@@ -37,7 +35,6 @@ export {
     WPUserStoreFunctionLogObject,
     WPUserStoreFunctionCallbackMessage,
     WPUserStoreFunctionInvocationEvent,
-    WPUserStoreFunctionRequestPayload,
     WPUserStoreFunctionResponsePayload,
     WPUserStoreFunctionLogObjectPayload,
     WPUserStoreFunctionCallbackMessagePayload,
