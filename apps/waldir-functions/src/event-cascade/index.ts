@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions";
 import { FunctionInvocation, WALDIRCommand, WALDIRJobEnqueueFunctionRequest, WRDSBEvent, WRDSBEventType, WALDIRCommandOperation, WALDIRCommandFunctionRequestPayload } from "@cosmos/types";
-import { WALDIRPersonMaterializeBatchFunctionRequestPayload, WALDIRPositionMaterializeBatchFunctionRequestPayload } from "@cosmos/types";
+import { WALDIRUserMaterializeBatchFunctionRequestPayload } from "@cosmos/types";
 
 const eventCascade: AzureFunction = async function (context: Context, triggerMessage: WRDSBEvent): Promise<void> {
     const functionInvocation = {
@@ -36,8 +36,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.WALDIR.WALDIRUser.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            email: data.ippsDirectory.email
-                        } as WALDIRPersonMaterializeBatchFunctionRequestPayload
+                            email: data.wpUser.email
+                        } as WALDIRUserMaterializeBatchFunctionRequestPayload
                     } as WALDIRCommand
                 } as WALDIRJobEnqueueFunctionRequest);
                 break;
@@ -48,8 +48,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.WALDIR.WALDIRUser.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            email: data.ippsDirectory.email
-                        } as WALDIRPersonMaterializeBatchFunctionRequestPayload
+                            email: data.wpUser.email
+                        } as WALDIRUserMaterializeBatchFunctionRequestPayload
                     } as WALDIRCommand
                 } as WALDIRJobEnqueueFunctionRequest);
                 break;
@@ -60,8 +60,8 @@ const eventCascade: AzureFunction = async function (context: Context, triggerMes
                         jobType: 'WRDSB.WALDIR.WALDIRUser.MaterializeBatch',
                         operation: 'materialize',
                         payload: {
-                            email: data.ippsDirectory.email
-                        } as WALDIRPersonMaterializeBatchFunctionRequestPayload
+                            email: data.wpUser.email
+                        } as WALDIRUserMaterializeBatchFunctionRequestPayload
                     } as WALDIRCommand
                 } as WALDIRJobEnqueueFunctionRequest);
                 break;
