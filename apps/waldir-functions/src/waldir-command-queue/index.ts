@@ -1,8 +1,8 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { FunctionInvocation, WALDIRJobType, WALDIRCommand, WALDIRCommandFunctionRequestBody, WALDIRCommandOperation, WALDIRCommandFunctionRequestPayload } from '@cosmos/types';
-import { generateResponseObject, validateWALDIRCommand } from "@cosmos/flenderson-functions-shared";
+import { generateResponseObject, validateWALDIRCommand } from "@cosmos/waldir-functions-shared";
 
-const flendersonCommandQueue: AzureFunction = async function (context: Context, triggerMessage: WALDIRCommandFunctionRequestBody): Promise<void> {
+const waldirCommandQueue: AzureFunction = async function (context: Context, triggerMessage: WALDIRCommandFunctionRequestBody): Promise<void> {
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
@@ -42,4 +42,4 @@ const flendersonCommandQueue: AzureFunction = async function (context: Context, 
     context.done(null, functionInvocation);
 };
 
-export default flendersonCommandQueue;
+export default waldirCommandQueue;

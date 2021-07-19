@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from "@azure/functions"
 import { FunctionInvocation, WALDIRCommand, WALDIRCommandFunctionRequest, WALDIRCommandFunctionRequestBody, WALDIRJobType, WALDIRCommandOperation, WALDIRCommandFunctionRequestPayload } from '@cosmos/types';
-import { generateResponseObject, validateWALDIRCommand } from "@cosmos/walder-functions-shared";
+import { generateResponseObject, validateWALDIRCommand } from "@cosmos/waldir-functions-shared";
 
 const waldirCommandHTTP: AzureFunction = async function (context: Context, req: WALDIRCommandFunctionRequest): Promise<void> {
     const functionInvocation = {
