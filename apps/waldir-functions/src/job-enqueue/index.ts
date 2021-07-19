@@ -9,7 +9,7 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
     const functionInvocation = {
         functionInvocationID: context.executionContext.invocationId,
         functionInvocationTimestamp: new Date().toJSON(),
-        functionApp: 'Flenderson',
+        functionApp: 'WALDIR',
         functionName: context.executionContext.functionName,
         functionDataType: 'Job',
         functionDataOperation: 'Enqueue',
@@ -78,10 +78,8 @@ const jobEnqueue: AzureFunction = async function (context: Context, triggerMessa
                         all: payload.all,
                         employeeID: payload.employeeID,
                         email: payload.email,
-                        ippsEmployeeGroupCode: payload.ippsEmployeeGroupCode,
-                        ippsJobCode: payload.ippsJobCode,
-                        ippsLocationCode: payload.ippsLocationCode,
-                        ippsPositionID: payload.ippsPositionID,
+                        waldirUser: payload.waldirUser,
+                        wpUser: payload.wpUser
                     }
                 } as WALDIRUserMaterializeBatchFunctionRequest;
                 context.bindings.walderUserMaterializeBatch = queueMessage;
