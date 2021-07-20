@@ -6,17 +6,18 @@ import { WALDIRUser, WPUser } from "@cosmos/types";
 
 
 export function craftStoreCreateEvent(oldRecord, newRecord, functionInvocation) {
+    const functionApp = functionInvocation.functionApp;
     const eventSubjectDataType = extractEventSubjectDataType(functionInvocation);
     const tagsRoot = extractTagsRoot(functionInvocation);
 
-    const eventSubject = `/wrdsb/flenderson/${eventSubjectDataType}/store/create` as WRDSBWALDIREventSubject;
-    const eventType = `Flenderson.${functionInvocation.functionDataType}.Store.Create` as WRDSBWALDIREventType;
+    const eventSubject = `/wrdsb/${functionApp.toLowerCase()}/${eventSubjectDataType}/store/create` as WRDSBWALDIREventSubject;
+    const eventType = `${functionApp}.${functionInvocation.functionDataType}.Store.Create` as WRDSBWALDIREventType;
     const operation: StoreFunctionEvent = 'create';
     const label = `${functionInvocation.functionDataType} record created.`;
     const tags = [
-        "waldir",
+        `${functionApp.toLowerCase()}`,
         "store",
-        "waldir_store",
+        `${functionApp.toLowerCase()}_store`,
         "store_create",
         `${tagsRoot}_change`
     ] as WRDSBWALDIREventTag[];
@@ -38,17 +39,18 @@ export function craftStoreCreateEvent(oldRecord, newRecord, functionInvocation) 
 
 
 export function craftStoreUpdateEvent(oldRecord, newRecord, functionInvocation) {
+    const functionApp = functionInvocation.functionApp;
     const eventSubjectDataType = extractEventSubjectDataType(functionInvocation);
     const tagsRoot = extractTagsRoot(functionInvocation);
 
-    const eventSubject = `/wrdsb/flenderson/${eventSubjectDataType}/store/update` as WRDSBWALDIREventSubject;
-    const eventType = `Flenderson.${functionInvocation.functionDataType}.Store.Update` as WRDSBWALDIREventType;
+    const eventSubject = `/wrdsb/${functionApp.toLowerCase()}/${eventSubjectDataType}/store/update` as WRDSBWALDIREventSubject;
+    const eventType = `${functionApp}.${functionInvocation.functionDataType}.Store.Update` as WRDSBWALDIREventType;
     const operation: StoreFunctionEvent = 'update';
     const label = `${functionInvocation.functionDataType} record updated.`;
     const tags = [
-        "waldir",
+        `${functionApp.toLowerCase()}`,
         "store",
-        "waldir_store",
+        `${functionApp.toLowerCase()}_store`,
         "store_update",
         `${tagsRoot}_change`
     ] as WRDSBWALDIREventTag[];
@@ -70,17 +72,18 @@ export function craftStoreUpdateEvent(oldRecord, newRecord, functionInvocation) 
 
 
 export function craftStoreDeleteEvent(oldRecord, newRecord, functionInvocation) {
+    const functionApp = functionInvocation.functionApp;
     const eventSubjectDataType = extractEventSubjectDataType(functionInvocation);
     const tagsRoot = extractTagsRoot(functionInvocation);
 
-    const eventSubject = `/wrdsb/flenderson/${eventSubjectDataType}/store/delete` as WRDSBWALDIREventSubject;
-    const eventType = `Flenderson.${functionInvocation.functionDataType}.Store.Delete` as WRDSBWALDIREventType;
+    const eventSubject = `/wrdsb/${functionApp.toLowerCase()}/${eventSubjectDataType}/store/delete` as WRDSBWALDIREventSubject;
+    const eventType = `${functionApp}.${functionInvocation.functionDataType}.Store.Delete` as WRDSBWALDIREventType;
     const operation: StoreFunctionEvent = 'delete';
     const label = `${functionInvocation.functionDataType} record deleted.`;
     const tags = [
-        "flenderson", 
+        `${functionApp.toLowerCase()}`,
         "store",
-        "flenderson_store",
+        `${functionApp.toLowerCase()}_store`,
         "store_delete",
         `${tagsRoot}_change`
     ] as WRDSBWALDIREventTag[];
