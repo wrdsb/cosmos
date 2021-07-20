@@ -20,7 +20,7 @@ const wpUserGet: AzureFunction = async function (context: Context, triggerMessag
     const payload = triggerObject.payload as WPUserGetFunctionRequestPayload;
 
     const wpDomain = payload.wpDomain;
-    const wpSite = payload.wpSite;
+    const wpSite = (payload.wpSite && payload.wpSite !== 'root') ? payload.wpSite : 'root';
     const wpService = payload.wpService;
     const wpEnvironment = payload.wpEnvironment;
 
@@ -32,10 +32,10 @@ const wpUserGet: AzureFunction = async function (context: Context, triggerMessag
     const apiKeyName = `wrdsb_${wpService}_${wpEnvironment}_key`;
     const apiKey = process.env[apiKeyName];
 
-    const baseURL = (wpSite) ? `https://${wpDomain}/${wpSite}/wp-json` : `https://${wpDomain}/wp-json`;
+    const baseURL = (wpSite !== 'root') ? `https://${wpDomain}/${wpSite}/wp-json` : `https://${wpDomain}/wp-json`;
     let path = '';
 
-    if (wpSite) {
+    if (wpSite !== 'root') {
         if (employeeID) {
             path = `/wrdsb/v2/blog-user-by-id-number/${employeeID}`;
         } else if (email) {
@@ -72,11 +72,11 @@ const wpUserGet: AzureFunction = async function (context: Context, triggerMessag
         timeout: 15000
     };
 
-    const response = await getUser();
+    const response = await getUser(axiosOptions);
 
-    const siteSlug = (wpSite) ? wpSite : 'root';
-    const siteURL = (wpSite) ? `${wpDomain}/${wpSite}` : `${wpDomain}`;
-    const siteLink = (wpSite) ? `https://${wpDomain}/${wpSite}` : `https://${wpDomain}/`;
+    const siteSlug = wpSite;
+    const siteURL = (wpSite !== 'root') ? `${wpDomain}/${wpSite}` : `${wpDomain}`;
+    const siteLink = (wpSite !== 'root') ? `https://${wpDomain}/${wpSite}` : `https://${wpDomain}/`;
 
     const wpUser: WPUser = {
         id: `${wpDomain}_${wpSite}_${response.data.id}`,
@@ -152,7 +152,7 @@ const wpUserGet: AzureFunction = async function (context: Context, triggerMessag
     context.done(null, functionInvocation);
 
 
-    async function getUser(): Promise<AxiosResponse> {
+    async function getUser(axiosOptions: AxiosRequestConfig): Promise<AxiosResponse> {
         try {
             const response = await axios(axiosOptions);
             return response;
