@@ -8,9 +8,16 @@
             "direction": "in"
         },
         {
-            "name": "outputBlob",
+            "name": "outputArrayBlob",
             "type": "blob",
-            "path": "wp-user-get-all/{payload.wpDomain}-{payload.wpSite}-{payload.wpEnvironment}.json",
+            "path": "wp-user-get-all/{payload.wpDomain}-{payload.wpSite}-{payload.wpEnvironment}-array.json",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "outputObjectBlob",
+            "type": "blob",
+            "path": "wp-user-get-all/{payload.wpDomain}-{payload.wpSite}-{payload.wpEnvironment}-object.json",
             "connection": "wrdsbwaldir_STORAGE",
             "direction": "out"
         },

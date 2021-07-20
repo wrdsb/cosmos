@@ -31,6 +31,7 @@ const wpUserGetAll: AzureFunction = async function (context: Context, triggerMes
     const basePath = '/wp/v2/users?per_page=100';
 
     let usersList: WPUser[] = [];
+    let usersObject = {};
 
     const axiosOptions: AxiosRequestConfig = {
         baseURL: baseURL,
@@ -63,11 +64,18 @@ const wpUserGetAll: AzureFunction = async function (context: Context, triggerMes
     context.log(`Total pages: ${totalPages}`);
     context.log(`Got ${usersList.length} of ${totalUsers} users.`);
 
-    context.bindings.outputBlob = usersList;
+    usersList.forEach(function(user) {
+        usersObject[user.email] = user;
+    });
+
+    context.bindings.outputArrayBlob = usersList;
+    context.bindings.outputObjectBlob = usersList;
 
     const logPayload = {
         totalUsers: totalUsers,
-        totalUsersRecieved: usersList.length
+        totalUsersRecieved: usersList.length,
+        outputArrayBlob: `wp-user-get-all/${wpDomain}-${wpSite}-${wpEnvironment}-array.json`,
+        outputObjectBlob: `wp-user-get-all/${wpDomain}-${wpSite}-${wpEnvironment}-object.json`
     }
 
     functionInvocation.logPayload = logPayload;
