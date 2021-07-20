@@ -1,4 +1,5 @@
 import * as Cosmos from "../common";
+import { WPDomain, WPSite, WPService, WPEnvironment, WPUser } from "@cosmos/types"
 
 interface WPUserUpdateFunctionRequest {
     readonly payload: WPUserUpdateFunctionRequestPayload;
@@ -19,6 +20,17 @@ interface WPUserUpdateFunctionInvocationEvent extends Cosmos.FunctionInvocationE
 }
 
 interface WPUserUpdateFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+    wpDomain?: WPDomain;
+    wpSite?: WPSite;
+    wpService?: WPService;
+    wpEnvironment?: WPEnvironment;
+
+    employeeID?: string;
+    email?: string;
+    username?: string;
+    userID?: string;
+
+    readonly wpUser: WPUser;
 }
 
 interface WPUserUpdateFunctionResponsePayload extends Cosmos.FunctionResponsePayload {
