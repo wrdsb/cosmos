@@ -87,6 +87,7 @@ const wpUserCreate: AzureFunction = async function (context: Context, triggerMes
 
     const postResponse = await postUser(postOptions);
     const putResponse = await putUser(postOptions);
+    const createdUser = putResponse.data;
 
     context.log(postResponse);
     context.log(putResponse);
@@ -95,23 +96,23 @@ const wpUserCreate: AzureFunction = async function (context: Context, triggerMes
     const siteURL = (wpSite !== 'root') ? `${wpDomain}/${wpSite}` : `${wpDomain}`;
     const siteLink = (wpSite !== 'root') ? `https://${wpDomain}/${wpSite}` : `https://${wpDomain}/`;
 
-    wpUser.id = `${wpDomain}_${wpSite}_${postResponse.data.id}`;
-    wpUser.site_domain = wpDomain;
-    wpUser.site_slug = siteSlug;
-    wpUser.site_url = siteURL;
-    wpUser.site_link = siteLink;
-    delete wpUser['password'];
+    createdUser.id = `${wpDomain}_${wpSite}_${postResponse.data.id}`;
+    createdUser.site_domain = wpDomain;
+    createdUser.site_slug = siteSlug;
+    createdUser.site_url = siteURL;
+    createdUser.site_link = siteLink;
+    delete createdUser['password'];
 
     const userStore: WPUserStoreFunctionRequest = {
         operation: 'replace',
-        payload: wpUser
+        payload: createdUser
     }
 
     context.bindings.wpUserStore = userStore;
     //context.bindings.eventCascade = '';
     //context.bindings.jobCascade = '';
 
-    const logPayload = wpUser;
+    const logPayload = createdUser;
     functionInvocation.logPayload = logPayload;
     context.bindings.invocationPostProcessor = functionInvocation;
 

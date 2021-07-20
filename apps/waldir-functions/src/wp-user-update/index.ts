@@ -74,31 +74,29 @@ const wpUserUpdate: AzureFunction = async function (context: Context, triggerMes
     };
 
     const response = await putUser(axiosOptions);
-
-    context.log(response);
-    context.log(wpUser);
+    const updatedUser = response.data;
 
     const siteSlug = wpSite;
     const siteURL = (wpSite !== 'root') ? `${wpDomain}/${wpSite}` : `${wpDomain}`;
     const siteLink = (wpSite !== 'root') ? `https://${wpDomain}/${wpSite}` : `https://${wpDomain}/`;
 
-    wpUser.id = `${wpDomain}_${wpSite}_${response.data.id}`;
-    wpUser.site_domain = wpDomain;
-    wpUser.site_slug = siteSlug;
-    wpUser.site_url = siteURL;
-    wpUser.site_link = siteLink;
-    delete wpUser['password'];
+    updatedUser.id = `${wpDomain}_${wpSite}_${response.data.id}`;
+    updatedUser.site_domain = wpDomain;
+    updatedUser.site_slug = siteSlug;
+    updatedUser.site_url = siteURL;
+    updatedUser.site_link = siteLink;
+    delete updatedUser['password'];
 
     const userStore: WPUserStoreFunctionRequest = {
         operation: 'replace',
-        payload: wpUser
+        payload: updatedUser
     }
 
     context.bindings.wpUserStore = userStore;
     //context.bindings.eventCascade = '';
     //context.bindings.jobCascade = '';
 
-    const logPayload = wpUser;
+    const logPayload = updatedUser;
     functionInvocation.logPayload = logPayload;
     context.bindings.invocationPostProcessor = functionInvocation;
 
