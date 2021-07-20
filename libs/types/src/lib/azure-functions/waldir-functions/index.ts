@@ -1,5 +1,6 @@
 export * from './job-types';
 export * from './wp-types';
+export * from './database-containers';
 
 export * from './waldir-command';
 export * from './waldir-job-enqueue';
