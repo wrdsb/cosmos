@@ -1,0 +1,40 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "wp-user-create",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "wpUserStore",
+            "type": "queue",
+            "queueName": "wp-user-store",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "eventCascade",
+            "type": "queue",
+            "queueName": "event-cascade",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "out"
+        },
+        {
+            "name": "jobCascade",
+            "type": "queue",
+            "queueName": "job-cascade",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbwaldir_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
