@@ -81,10 +81,10 @@ const wpUserGet: AzureFunction = async function (context: Context, triggerMessag
     const wpUser: WPUser = {
         id: `${wpDomain}_${wpSite}_${response.data.id}`,
 
-        site_domain: wpDomain,
-        site_slug: siteSlug,
-        site_url: siteURL,
-        site_link: siteLink,
+        siteURL: siteURL,
+        siteDomain: wpDomain,
+        siteSlug: siteSlug,
+        siteLink: siteLink,
 
         username: response.data.username,
         email: response.data.email,

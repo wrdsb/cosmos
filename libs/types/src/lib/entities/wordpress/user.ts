@@ -14,10 +14,10 @@ interface WPUser extends CosmosCoreFields {
     //id?: string;
     changeDetectionHash?: string;
 
-    site_url?: string;
-    site_domain?: string;
-    site_slug?: string;
-    site_link?: string;
+    siteURL?: string;
+    siteDomain?: string;
+    siteSlug?: string;
+    siteLink?: string;
 
     username?: string;
     email?: string;

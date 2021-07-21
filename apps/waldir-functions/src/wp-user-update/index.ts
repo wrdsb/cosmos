@@ -81,10 +81,10 @@ const wpUserUpdate: AzureFunction = async function (context: Context, triggerMes
     const siteLink = (wpSite !== 'root') ? `https://${wpDomain}/${wpSite}` : `https://${wpDomain}/`;
 
     updatedUser.id = `${wpDomain}_${wpSite}_${response.data.id}`;
-    updatedUser.site_domain = wpDomain;
-    updatedUser.site_slug = siteSlug;
-    updatedUser.site_url = siteURL;
-    updatedUser.site_link = siteLink;
+    updatedUser.siteDomain = wpDomain;
+    updatedUser.siteSlug = siteSlug;
+    updatedUser.siteURL = siteURL;
+    updatedUser.siteLink = siteLink;
     delete updatedUser['password'];
 
     const userStore: WPUserStoreFunctionRequest = {

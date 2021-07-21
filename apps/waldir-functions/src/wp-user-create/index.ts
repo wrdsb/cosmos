@@ -97,10 +97,10 @@ const wpUserCreate: AzureFunction = async function (context: Context, triggerMes
     const siteLink = (wpSite !== 'root') ? `https://${wpDomain}/${wpSite}` : `https://${wpDomain}/`;
 
     createdUser.id = `${wpDomain}_${wpSite}_${postResponse.data.id}`;
-    createdUser.site_domain = wpDomain;
-    createdUser.site_slug = siteSlug;
-    createdUser.site_url = siteURL;
-    createdUser.site_link = siteLink;
+    createdUser.siteDomain = wpDomain;
+    createdUser.siteSlug = siteSlug;
+    createdUser.siteURL = siteURL;
+    createdUser.siteLink = siteLink;
     delete createdUser['password'];
 
     const userStore: WPUserStoreFunctionRequest = {
