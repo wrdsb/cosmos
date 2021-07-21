@@ -18,7 +18,10 @@ interface WPUserReconcileFunctionInvocationEvent extends Cosmos.FunctionInvocati
     readonly data: WPUserReconcileFunctionInvocationEventPayload;
 }
 
-interface WPUserReconcileFunctionRequestPayload extends Cosmos.FunctionRequestPayload {
+interface WPUserReconcileFunctionRequestPayload {
+    readonly wpDomain?: string;
+    readonly wpSite?: string;
+    readonly wpEnvironment?: string;
 }
 
 interface WPUserReconcileFunctionResponsePayload extends Cosmos.FunctionResponsePayload {

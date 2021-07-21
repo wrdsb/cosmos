@@ -1,0 +1,33 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "wp-user-reconcile",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "recordsNow",
+            "type": "blob",
+            "path": "wp-user-get-all/{payload.wpDomain}-{payload.wpSite}-{payload.wpEnvironment}-object.json",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "queueStore",
+            "type": "queue",
+            "queueName": "wp-user-store",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbwaldir_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
