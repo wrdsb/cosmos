@@ -56,6 +56,7 @@ const wpUserGetAll: AzureFunction = async function (context: Context, triggerMes
             axiosOptions.url = path;
             let users = await getUsers(axiosOptions);
             usersList = await appendUsers(usersList, users);
+            usersObject = await addUsers(usersObject, users);
             context.log(`Got page ${page}...`);
         }
     }
@@ -63,10 +64,6 @@ const wpUserGetAll: AzureFunction = async function (context: Context, triggerMes
     context.log(`Total users: ${totalUsers}`);
     context.log(`Total pages: ${totalPages}`);
     context.log(`Got ${usersList.length} of ${totalUsers} users.`);
-
-    usersList.forEach(function(user) {
-        usersObject[user.email] = user;
-    });
 
     context.bindings.outputArrayBlob = usersList;
     context.bindings.outputObjectBlob = usersObject;
@@ -160,6 +157,74 @@ const wpUserGetAll: AzureFunction = async function (context: Context, triggerMes
             usersList.push(wpUser);
         });
         return usersList;
+    }
+
+    async function addUsers(usersObject, usersPage: AxiosResponse) {
+        const data = usersPage.data;
+        const siteSlug = wpSite;
+        const siteURL = (wpSite !== 'root') ? `${wpDomain}/${wpSite}` : `${wpDomain}`;
+        const siteLink = (wpSite !== 'root') ? `https://${wpDomain}/${wpSite}` : `https://${wpDomain}/`;
+
+        data.forEach(function (user: WPUser) {
+            const wpUser: WPUser = {
+                id: `${wpDomain}_${wpSite}_${user.id}`,
+        
+                siteDomain: wpDomain,
+                siteSlug: siteSlug,
+                siteURL: siteURL,
+                siteLink: siteLink,
+        
+                username: user.username,
+                email: user.email,
+                name: user.name,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                nickname: user.nickname,
+                description: user.description,
+                link: user.link,
+                slug: user.slug,
+                url: user.url,
+                locale: user.locale,
+                registered_date: user.registered_date,
+                roles: user.roles,
+                capabilities: user.capabilities,
+                extra_capabilities: user.extra_capabilities,
+                avatar_urls: user.avatar_urls,
+                meta: user.meta,
+                ipps_activity_code: user.ipps_activity_code,
+                ipps_employee_group_category: user.ipps_employee_group_category,
+                ipps_employee_group_code: user.ipps_employee_group_code,
+                ipps_employee_group_description: user.ipps_employee_group_description,
+                ipps_extension: user.ipps_extension,
+                ipps_home_loc: user.ipps_home_loc,
+                ipps_job_code: user.ipps_job_code,
+                ipps_job_desc: user.ipps_job_desc,
+                ipps_location_code: user.ipps_location_code,
+                ipps_location_desc: user.ipps_location_desc,
+                ipps_panel: user.ipps_panel,
+                ipps_phone_no: user.ipps_phone_no,
+                ipps_school_code: user.ipps_school_code,
+                ipps_school_type: user.ipps_school_type,
+                wrdsb_id_number: user.wrdsb_id_number,
+                wrdsb_school: user.wrdsb_school,
+                wrdsb_baksheesh: user.wrdsb_baksheesh,
+                wrdsb_supervisor: user.wrdsb_supervisor,
+                wrdsb_section: user.wrdsb_section,
+                wrdsb_physical_location: user.wrdsb_physical_location,
+                wrdsb_voicemail: user.wrdsb_voicemail,
+                wrdsb_job_title: user.wrdsb_job_title,
+                wrdsb_display_in_staff_list: user.wrdsb_display_in_staff_list,
+                wrdsb_contact_options: user.wrdsb_contact_options,
+                wrdsb_website_url: user.wrdsb_website_url,
+                wrdsb_phone_extension: user.wrdsb_phone_extension,
+                wrdsb_regular_hours: user.wrdsb_regular_hours,
+                wrdsb_is_in_today: user.wrdsb_is_in_today,
+                wrdsb_is_available_now: user.wrdsb_is_available_now,
+            };
+
+            usersObject[wpUser.id] = wpUser;
+        });
+        return usersObject;
     }
 };
 
