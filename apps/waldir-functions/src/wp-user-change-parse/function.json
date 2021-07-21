@@ -1,0 +1,26 @@
+{
+    "bindings": [
+        {
+            "name": "triggerMessage",
+            "type": "queueTrigger",
+            "queueName": "wp-user-change-parse",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "in"
+        },
+        {
+            "name": "emailNotification",
+            "type": "queue",
+            "queueName": "notification-email-send",
+            "connection": "wrdsbwaldir_STORAGE",
+            "direction": "out"
+        },
+        {
+          "name": "invocationPostProcessor",
+          "type": "queue",
+          "queueName": "invocation-post-processor",
+          "connection": "wrdsbwaldir_STORAGE",
+          "direction": "out"
+        }
+    ],
+    "scriptFile": "./index.js"
+}
