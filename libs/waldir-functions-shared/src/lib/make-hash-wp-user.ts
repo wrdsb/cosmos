@@ -3,10 +3,10 @@ import { createHash } from "crypto";
 
 export function makeHashWPUser(objectToHash: WPUser): string {
     const objectForHash = JSON.stringify({
-        site_url:                 objectToHash.site_url,
-        site_domain:              objectToHash.site_domain,
-        site_slug:                objectToHash.site_slug,
-        site_link:                objectToHash.site_link,
+        siteURL:                  objectToHash.siteURL,
+        siteDomain :              objectToHash.siteDomain,
+        siteSlug:                 objectToHash.siteSlug,
+        siteLink:                 objectToHash.siteLink,
 
         username:                 objectToHash.username,
         email:                    objectToHash.email,
