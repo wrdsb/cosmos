@@ -45,8 +45,8 @@ const wpUserStore: AzureFunction = async function (context: Context, triggerMess
         email: '',
     
         name: '',
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         nickname: '',
     
         description: '',
@@ -55,11 +55,44 @@ const wpUserStore: AzureFunction = async function (context: Context, triggerMess
         url: '',
     
         locale: '',
-        registeredDate: '',
-    
-        password: '',
+        registered_date: '',
     
         roles: [],
+
+        capabilities: {},
+        extra_capabilities: {},
+        avatar_urls: {},
+        meta: [],
+    
+        ipps_activity_code: [],
+        ipps_employee_group_category: [],
+        ipps_employee_group_code: [],
+        ipps_employee_group_description: [],
+        ipps_extension: [],
+        ipps_home_loc: [],
+        ipps_job_code: [],
+        ipps_job_desc: [],
+        ipps_location_code: [],
+        ipps_location_desc: [],
+        ipps_panel: [],
+        ipps_phone_no: [],
+        ipps_school_code: [],
+        ipps_school_type: [],
+        wrdsb_id_number: [],
+        wrdsb_school: [],
+        wrdsb_baksheesh: [],
+        wrdsb_supervisor: [],
+        wrdsb_section: [],
+        wrdsb_physical_location: '',
+        wrdsb_voicemail: '',
+        wrdsb_job_title: '',
+        wrdsb_display_in_staff_list: false,
+        wrdsb_contact_options: '',
+        wrdsb_website_url: '',
+        wrdsb_phone_extension: '',
+        wrdsb_regular_hours: '',
+        wrdsb_is_in_today: false,
+        wrdsb_is_available_now: false,
     } as WPUser;
 
     const calcArgs: CalcArgs<WPUser> = {
