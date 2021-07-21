@@ -185,8 +185,9 @@ const wpUserReconcile: AzureFunction = async function (context: Context, trigger
         const recordsPrevious = {};
 
         const querySpec = {
-            query: `SELECT * FROM c WHERE c.wpDomain = '${wpDomain}' and c.wpSite = '${wpSite}' and c.wpEnvironment = '${wpEnvironment}'`
+            query: `SELECT * FROM c WHERE c.siteDomain = '${wpDomain}' and c.siteSlug = '${wpSite}'`
         }
+        context.log(querySpec);
 
         const queryOptions  = {
             maxItemCount: -1,
