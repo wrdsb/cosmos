@@ -1,0 +1,29 @@
+{
+  "bindings": [
+    {
+      "name": "changedRecords",
+      "type": "cosmosDBTrigger",
+      "databaseName": "waldir",
+      "collectionName": "waldir-users",
+      "connectionStringSetting": "wrdsb-waldir_COSMOSDB",
+      "leaseCollectionName": "waldir-users-change-trigger",
+      "createLeaseCollectionIfNotExists": true,
+      "direction": "in"
+    },
+    {
+      "name": "jobCascade",
+      "type": "queue",
+      "queueName": "job-cascade",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    },
+    {
+      "name": "invocationPostProcessor",
+      "type": "queue",
+      "queueName": "invocation-post-processor",
+      "connection": "wrdsbwaldir_STORAGE",
+      "direction": "out"
+    }
+],
+  "scriptFile": "./index.js"
+}
