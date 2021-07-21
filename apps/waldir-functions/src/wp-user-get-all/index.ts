@@ -69,7 +69,7 @@ const wpUserGetAll: AzureFunction = async function (context: Context, triggerMes
     });
 
     context.bindings.outputArrayBlob = usersList;
-    context.bindings.outputObjectBlob = usersList;
+    context.bindings.outputObjectBlob = usersObject;
 
     const logPayload = {
         totalUsers: totalUsers,
@@ -81,6 +81,7 @@ const wpUserGetAll: AzureFunction = async function (context: Context, triggerMes
     functionInvocation.logPayload = logPayload;
     context.bindings.invocationPostProcessor = functionInvocation;
 
+    context.log(functionInvocation);
     context.done(null, functionInvocation);
 
 
