@@ -61,16 +61,16 @@ interface WPUser extends CosmosCoreFields {
     wrdsb_baksheesh?: string[];
     wrdsb_supervisor?: string[];
     wrdsb_section?: string[];
-    wrdsb_physical_location?: boolean;
+    wrdsb_physical_location?: string;
     wrdsb_voicemail?: string;
     wrdsb_job_title?: string;
-    wrdsb_display_in_staff_list?: string;
+    wrdsb_display_in_staff_list?: boolean;
     wrdsb_contact_options?: string;
     wrdsb_website_url?: string;
-    wrdsb_phone_extension?: false;
-    wrdsb_regular_hours?: false;
-    wrdsb_is_in_today?: false;
-    wrdsb_is_available_now?: false;
+    wrdsb_phone_extension?: string;
+    wrdsb_regular_hours?: string;
+    wrdsb_is_in_today?: boolean;
+    wrdsb_is_available_now?: boolean;
 }
 
 export { WPUser };
