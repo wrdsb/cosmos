@@ -28,7 +28,7 @@ const wpUserGetAll: AzureFunction = async function (context: Context, triggerMes
     const apiKey = process.env[apiKeyName];
 
     const baseURL = (wpSite !== 'root') ? `https://${wpDomain}/${wpSite}/wp-json` : `https://${wpDomain}/wp-json`;
-    const basePath = '/wp/v2/users?per_page=100';
+    const basePath = '/wp/v2/users?context=edit&per_page=100';
 
     let usersList: WPUser[] = [];
     let usersObject = {};
@@ -46,6 +46,7 @@ const wpUserGetAll: AzureFunction = async function (context: Context, triggerMes
 
     const firstPage = await getUsers(axiosOptions);
     usersList = await appendUsers(usersList, firstPage);
+    usersObject = await addUsers(usersObject, firstPage);
 
     const totalUsers = firstPage.headers['x-wp-total'];
     const totalPages = firstPage.headers['x-wp-totalpages'];
